@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cockpit-Trader — Morning Briefing</title>
+<style>
+  :root {
+    --bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;
+    --muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;
+    --blue:#3b82f6;--cyan:#06b6d4;--white:#f1f5f9;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;padding:20px;min-height:100vh;}
+  .header{text-align:center;padding:20px 0 30px;border-bottom:1px solid var(--border);margin-bottom:30px;}
+  .header h1{font-size:28px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .header .ts{color:var(--muted);font-size:13px;margin-top:8px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1400px;margin:0 auto;}
+  .fw{grid-column:1/-1;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;}
+  .ct{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px;}
+  .bias-wrap{display:flex;align-items:center;gap:24px;padding:10px 0;}
+  .tlight{display:flex;flex-direction:column;gap:6px;background:#000;padding:10px 8px;border-radius:20px;border:2px solid #333;}
+  .light{width:32px;height:32px;border-radius:50%;background:#1a1a1a;transition:all .3s;}
+  .ag{background:var(--green);box-shadow:0 0 20px var(--green);}
+  .ay{background:var(--yellow);box-shadow:0 0 20px var(--yellow);}
+  .ar{background:var(--red);box-shadow:0 0 20px var(--red);}
+  .bi{flex:1;}
+  .bl{font-size:28px;font-weight:700;letter-spacing:2px;}
+  .bs{font-size:14px;color:var(--muted);margin-top:4px;}
+  .qrow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
+  .qp{font-size:32px;font-weight:700;}
+  .qc{font-size:16px;font-weight:600;}
+  .pos{color:var(--green);}.neg{color:var(--red);}
+  .lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .lb{text-align:center;padding:12px 8px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid var(--border);}
+  .ll{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
+  .lv{font-size:18px;font-weight:600;}
+  .lpoc{border-color:var(--cyan);}.lpoc .lv{color:var(--cyan);}
+  .lvah{border-color:var(--green);}.lvah .lv{color:var(--green);}
+  .lval{border-color:var(--red);}.lval .lv{color:var(--red);}
+  .lvwap{border-color:var(--yellow);}.lvwap .lv{color:var(--yellow);}
+  .vpc{width:100%;height:320px;}
+  .vpc svg{width:100%;height:100%;}
+  .sbadge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:14px;font-weight:600;margin-bottom:8px;background:rgba(59,130,246,.15);color:var(--blue);}
+  .sdesc{font-size:13px;color:var(--muted);line-height:1.5;}
+  .slist{list-style:none;}
+  .slist li{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;}
+  .sdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;}
+  .ssc{font-weight:600;min-width:30px;text-align:right;}
+  .cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .ci{text-align:center;padding:16px 8px;background:rgba(255,255,255,.02);border-radius:8px;border:1px solid var(--border);}
+  .cl2{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+  .cp2{font-size:20px;font-weight:600;}
+  .cc2{font-size:12px;margin-top:4px;}
+  .cale{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;align-items:center;}
+  .cat{color:var(--cyan);min-width:55px;font-size:12px;}
+  .can{flex:1;}
+  .cac{color:var(--muted);min-width:30px;text-align:right;font-size:12px;}
+  .imp-high{color:var(--red);font-weight:700;min-width:20px;}
+  .imp-medium{color:var(--yellow);min-width:20px;}
+  .day-label{padding:10px 0 4px;font-size:12px;letter-spacing:1px;border-top:1px solid var(--border);margin-top:4px;}
+  .kassa-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;
+               background:rgba(6,182,212,0.15);color:var(--cyan);border:1px solid var(--cyan);
+               margin-left:8px;letter-spacing:1px;vertical-align:middle;}
+  .loading{text-align:center;padding:60px;color:var(--muted);}
+  @media(max-width:768px){
+    .grid{grid-template-columns:1fr;}
+    .lgrid{grid-template-columns:repeat(2,1fr);}
+    .cgrid{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+<script>window.__COCKPIT_DATA__ = {"timestamp": "2026-04-01T11:34:31.785307", "instruments": {"SPX": {"name": "S&P 500 (Kassa)", "ticker": "^GSPC", "quote": {"price": 6528.52, "change": 184.8, "change_pct": 2.91, "high": 6539.05, "low": 6395.88, "open": 6395.88, "prev_close": 6343.72}, "market_profile": {"poc": 6384.53, "vah": 6413.51, "val": 6341.75, "vwap": 6366.28, "day_high": 6427.31, "day_low": 6316.91, "shape": {"name": "Normal Variation", "description": "Leichte Richtung \u2014 Abwarten auf Breakout aus VA."}, "volume_profile": [{"price": 6318.29, "volume": 662049000.0}, {"price": 6321.05, "volume": 662049000.0}, {"price": 6323.81, "volume": 662049000.0}, {"price": 6326.57, "volume": 662049000.0}, {"price": 6329.33, "volume": 662049000.0}, {"price": 6332.09, "volume": 662049000.0}, {"price": 6334.85, "volume": 662049000.0}, {"price": 6337.61, "volume": 810829000.0}, {"price": 6340.37, "volume": 810829000.0}, {"price": 6343.13, "volume": 810829000.0}, {"price": 6345.89, "volume": 748898000.0}, {"price": 6348.65, "volume": 748898000.0}, {"price": 6351.41, "volume": 428152000.0}, {"price": 6354.17, "volume": 428152000.0}, {"price": 6356.93, "volume": 560123000.0}, {"price": 6359.69, "volume": 411343000.0}, {"price": 6362.45, "volume": 411343000.0}, {"price": 6365.21, "volume": 278855000.0}, {"price": 6367.97, "volume": 278855000.0}, {"price": 6370.73, "volume": 558347235.0}, {"price": 6373.49, "volume": 887522071.0}, {"price": 6376.25, "volume": 1028499071.0}, {"price": 6379.01, "volume": 1213480688.0}, {"price": 6381.77, "volume": 1213480688.0}, {"price": 6384.53, "volume": 1233010951.0}, {"price": 6387.29, "volume": 1107998951.0}, {"price": 6390.05, "volume": 1107998951.0}, {"price": 6392.81, "volume": 1107998951.0}, {"price": 6395.57, "volume": 903836115.0}, {"price": 6398.33, "volume": 903836115.0}, {"price": 6401.09, "volume": 762859115.0}, {"price": 6403.85, "volume": 556735570.0}, {"price": 6406.61, "volume": 556735570.0}, {"price": 6409.37, "volume": 556735570.0}, {"price": 6412.13, "volume": 405234307.0}, {"price": 6414.89, "volume": 220252690.0}, {"price": 6417.65, "volume": 220252690.0}, {"price": 6420.41, "volume": 220252690.0}, {"price": 6423.17, "volume": 220252690.0}, {"price": 6425.93, "volume": 220252690.0}]}, "current_price": 6528.52, "bias": {"score": 75, "bias": "BULLISH", "color": "green", "signals": [{"label": "Preis > VWAP", "score": 2, "direction": "bullish"}, {"label": "Ueber VAH \u2014 Breakout", "score": 2, "direction": "bullish"}, {"label": "Preis > POC", "score": 1, "direction": "bullish"}, {"label": "Shape: Normal Variation", "score": 0, "direction": "neutral"}, {"label": "Overnight Inventory: Long", "score": 1, "direction": "bullish"}, {"label": "VIX 24.98 \u2014 Elevated", "score": -1, "direction": "bearish"}, {"label": "VIX stabil", "score": 0, "direction": "neutral"}, {"label": "Dollar schwaecher", "score": 1, "direction": "bullish"}, {"label": "Yields stabil", "score": 0, "direction": "neutral"}, {"label": "Daily OTF Check", "score": 0, "direction": "neutral"}, {"label": "Gap Analysis", "score": 0, "direction": "neutral"}, {"label": "Session Expectation", "score": 0, "direction": "neutral"}]}}, "DJI": {"name": "Dow Jones (Kassa)", "ticker": "^DJI", "quote": {"price": 46341.51, "change": 1125.37, "change_pct": 2.49, "high": 46383.4, "low": 45480.3, "open": 45541.76, "prev_close": 45216.14}, "market_profile": {"poc": 45320.2, "vah": 45568.91, "val": 45227.83, "vwap": 45351.31, "day_high": 45625.76, "day_low": 45057.28, "shape": {"name": "Normal Day", "description": "Ausbalanciert \u2014 Range-Trading um POC."}, "volume_profile": [{"price": 45064.39, "volume": 93445300.0}, {"price": 45078.6, "volume": 93445300.0}, {"price": 45092.81, "volume": 93445300.0}, {"price": 45107.02, "volume": 93445300.0}, {"price": 45121.24, "volume": 93445300.0}, {"price": 45135.45, "volume": 93445300.0}, {"price": 45149.66, "volume": 93445300.0}, {"price": 45163.87, "volume": 93445300.0}, {"price": 45178.08, "volume": 93445300.0}, {"price": 45192.3, "volume": 93445300.0}, {"price": 45206.51, "volume": 93445300.0}, {"price": 45220.72, "volume": 117177749.0}, {"price": 45234.93, "volume": 140390644.0}, {"price": 45249.14, "volume": 140390644.0}, {"price": 45263.36, "volume": 159325947.0}, {"price": 45277.57, "volume": 128297238.0}, {"price": 45291.78, "volume": 128297238.0}, {"price": 45305.99, "volume": 164027515.0}, {"price": 45320.2, "volume": 197511897.0}, {"price": 45334.42, "volume": 197511897.0}, {"price": 45348.63, "volume": 173779448.0}, {"price": 45362.84, "volume": 173779448.0}, {"price": 45377.05, "volume": 152180335.0}, {"price": 45391.26, "volume": 152180335.0}, {"price": 45405.48, "volume": 152180335.0}, {"price": 45419.69, "volume": 184190813.0}, {"price": 45433.9, "volume": 148460536.0}, {"price": 45448.11, "volume": 149427216.0}, {"price": 45462.32, "volume": 149427216.0}, {"price": 45476.54, "volume": 174899790.0}, {"price": 45490.75, "volume": 174899790.0}, {"price": 45504.96, "volume": 154350705.0}, {"price": 45519.17, "volume": 154350705.0}, {"price": 45533.38, "volume": 154350705.0}, {"price": 45547.6, "volume": 120866323.0}, {"price": 45561.81, "volume": 120866323.0}, {"price": 45576.02, "volume": 120866323.0}, {"price": 45590.23, "volume": 98258241.0}, {"price": 45604.44, "volume": 66247763.0}, {"price": 45618.66, "volume": 66247763.0}]}, "current_price": 46341.51, "bias": {"score": 75, "bias": "BULLISH", "color": "green", "signals": [{"label": "Preis > VWAP", "score": 2, "direction": "bullish"}, {"label": "Ueber VAH \u2014 Breakout", "score": 2, "direction": "bullish"}, {"label": "Preis > POC", "score": 1, "direction": "bullish"}, {"label": "Shape: Normal Day", "score": 0, "direction": "neutral"}, {"label": "Overnight Inventory: Long", "score": 1, "direction": "bullish"}, {"label": "VIX 24.98 \u2014 Elevated", "score": -1, "direction": "bearish"}, {"label": "VIX stabil", "score": 0, "direction": "neutral"}, {"label": "Dollar schwaecher", "score": 1, "direction": "bullish"}, {"label": "Yields stabil", "score": 0, "direction": "neutral"}, {"label": "Daily OTF Check", "score": 0, "direction": "neutral"}, {"label": "Gap Analysis", "score": 0, "direction": "neutral"}, {"label": "Session Expectation", "score": 0, "direction": "neutral"}]}}}, "context": {"VIX": {"price": 24.98, "change": -0.27, "change_pct": -1.07, "high": 24.99, "low": 24.21, "open": 24.3, "prev_close": 25.25}, "DXY": {"price": 99.59, "change": -0.37, "change_pct": -0.37, "high": 99.88, "low": 99.41, "open": 99.79, "prev_close": 99.96}, "US10Y": {"price": 4.31, "change": -0.03, "change_pct": -0.71, "high": 4.33, "low": 4.29, "open": 4.31, "prev_close": 4.34}, "DAX": {"price": 23070.12, "change": 390.08, "change_pct": 1.72, "high": 23343.91, "low": 23070.12, "open": 23326.89, "prev_close": 22680.04}}, "calendar": []};</script>
+</head>
+<body>
+<div class="header">
+  <h1>✈ Cockpit-Trader</h1>
+  <div class="ts" id="ts">Lade Daten...</div>
+</div>
+<div class="grid" id="dash">
+  <div class="loading fw">
+    ⏳ Lade Daten...<br>
+    <small style="font-size:12px;margin-top:8px;display:block;">
+      Zuerst: <code>python cockpit-morning.py</code> ausführen
+    </small>
+  </div>
+</div>
+<script>
+function load(){
+  if(window.__COCKPIT_DATA__){
+    render(window.__COCKPIT_DATA__);
+    return;
+  }
+  fetch('data.json')
+    .then(r=>{ if(!r.ok) throw new Error('data.json nicht gefunden'); return r.json(); })
+    .then(render)
+    .catch(e=>{
+      document.getElementById('dash').innerHTML=
+        `<div class="loading fw">❌ ${e.message}<br><small>python cockpit-morning.py ausführen — öffne cockpit-briefing.html</small></div>`;
+    });
+}
+
+function render(d){
+  const ts=new Date(d.timestamp);
+  document.getElementById('ts').textContent=
+    `Pre-Flight Briefing — ${ts.toLocaleDateString('de-DE')} ${ts.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})} Uhr`;
+  let html='';
+  html+=renderCtx(d.context);
+  html+=renderCal(d.calendar);
+  for(const[k,inst] of Object.entries(d.instruments)){
+    if(!inst.error) html+=renderInst(k,inst);
+  }
+  document.getElementById('dash').innerHTML=html;
+}
+
+function renderInst(k,inst){
+  const q=inst.quote||{}, mp=inst.market_profile||{}, b=inst.bias||{};
+  const cc=(q.change||0)>=0?'pos':'neg', cs=(q.change||0)>=0?'+':'';
+  const currentPrice=inst.current_price||null;
+  return `
+<div class="card">
+  <div class="ct">📈 ${k} — ${inst.name||k} <span class="kassa-badge">KASSA</span></div>
+  <div class="qrow">
+    <span class="qp">${f(q.price)}</span>
+    <span class="qc ${cc}">${cs}${f(q.change)} (${cs}${f(q.change_pct)}%)</span>
+  </div>
+  <div style="font-size:11px;color:var(--muted);margin-bottom:8px">
+    H: ${f(q.high)} &nbsp;|&nbsp; L: ${f(q.low)} &nbsp;|&nbsp; Prev Close: ${f(q.prev_close)}
+  </div>
+  <div class="bias-wrap">
+    ${tlight(b.color)}
+    <div class="bi">
+      <div class="bl" style="color:var(--${b.color||'muted'})">${b.bias||'—'}</div>
+      <div class="bs">Bias Score: ${b.score??'—'} / 100</div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="ct">🎯 Key Levels — ${k}</div>
+  <div class="lgrid">
+    <div class="lb lpoc"><div class="ll">POC</div><div class="lv">${f(mp.poc)}</div></div>
+    <div class="lb lvah"><div class="ll">VAH</div><div class="lv">${f(mp.vah)}</div></div>
+    <div class="lb lval"><div class="ll">VAL</div><div class="lv">${f(mp.val)}</div></div>
+    <div class="lb lvwap"><div class="ll">VWAP</div><div class="lv">${f(mp.vwap)}</div></div>
+  </div>
+  <div style="margin-top:16px">
+    <span class="sbadge">${mp.shape?.name||'—'}</span>
+    <div class="sdesc">${mp.shape?.description||''}</div>
+  </div>
+  <div style="margin-top:6px;font-size:12px;color:var(--muted)">
+    Range: ${f(mp.day_low)} – ${f(mp.day_high)}
+  </div>
+</div>
+<div class="card">
+  <div class="ct">📊 Volume Profile — ${k}
+    <span style="margin-left:12px;color:#f1f5f9;font-size:10px">── Aktueller Kurs</span>
+    <span style="margin-left:8px;color:#06b6d4;font-size:10px">╌╌ POC</span>
+    <span style="margin-left:8px;color:#22c55e;font-size:10px">╌╌ VAH</span>
+    <span style="margin-left:8px;color:#ef4444;font-size:10px">╌╌ VAL</span>
+  </div>
+  <div class="vpc">${drawVP(mp, currentPrice)}</div>
+</div>
+<div class="card">
+  <div class="ct">🔍 Bias Signals — ${k}</div>
+  <ul class="slist">
+    ${(b.signals||[]).map(s=>`
+    <li>
+      <span>
+        <span class="sdot" style="background:${
+          s.direction==='bullish'?'var(--green)':
+          s.direction==='bearish'?'var(--red)':'var(--muted)'}">
+        </span>${s.label}
+      </span>
+      <span class="ssc ${s.score>0?'pos':s.score<0?'neg':''}">${s.score>0?'+'+s.score:s.score}</span>
+    </li>`).join('')}
+  </ul>
+</div>`;
+}
+
+function tlight(color){
+  return `<div class="tlight">
+    <div class="light ${color==='green'?'ag':''}"></div>
+    <div class="light ${color==='yellow'?'ay':''}"></div>
+    <div class="light ${color==='red'?'ar':''}"></div>
+  </div>`;
+}
+
+function drawVP(mp, currentPrice){
+  if(!mp||!mp.volume_profile)
+    return '<div style="text-align:center;color:var(--muted);padding:40px">Keine Daten</div>';
+
+  const vps    = mp.volume_profile;
+  const maxV   = Math.max(...vps.map(b=>b.volume));
+  const h=320, w=520, bH=h/vps.length, margin=70, rightPad=20;
+  const minP   = vps[0].price;
+  const maxP   = vps[vps.length-1].price;
+  const priceRange = maxP - minP || 1;
+  const p2y    = p => h - ((p - minP) / priceRange) * h;
+  const tick   = (vps[1]?.price - vps[0]?.price) || 1;
+
+  const priceInRange = currentPrice !== null &&
+                       currentPrice >= minP - priceRange * 0.3 &&
+                       currentPrice <= maxP + priceRange * 0.3;
+  let bars = '';
+
+  vps.forEach((bin,i)=>{
+    const bW = maxV > 0 ? (bin.volume / maxV) * (w - margin - rightPad) : 0;
+    const y  = h - (i+1) * bH;
+    let col  = 'rgba(59,130,246,0.4)';
+    if(mp.poc && Math.abs(bin.price - mp.poc) < tick * 0.6)
+      col = 'rgba(6,182,212,0.8)';
+    else if(mp.vah && mp.val && bin.price >= mp.val && bin.price <= mp.vah)
+      col = 'rgba(59,130,246,0.6)';
+    bars += `<rect x="${margin}" y="${y}" width="${bW}" height="${bH-1}" fill="${col}" rx="2"/>`;
+    if(i % 4 === 0)
+      bars += `<text x="${margin-6}" y="${y+bH/2+4}" text-anchor="end" fill="#64748b" font-size="10" font-family="monospace">${bin.price.toFixed(0)}</text>`;
+  });
+
+  if(mp.poc){const y=p2y(mp.poc);
+    bars+=`<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#06b6d4" stroke-width="2" stroke-dasharray="6,3"/>`;
+    bars+=`<text x="${w-4}" y="${y-4}" text-anchor="end" fill="#06b6d4" font-size="11" font-family="monospace">POC ${mp.poc}</text>`;}
+  if(mp.vah){const y=p2y(mp.vah);
+    bars+=`<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4"/>`;
+    bars+=`<text x="${w-4}" y="${y-4}" text-anchor="end" fill="#22c55e" font-size="10" font-family="monospace">VAH ${mp.vah}</text>`;}
+  if(mp.val){const y=p2y(mp.val);
+    bars+=`<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,4"/>`;
+    bars+=`<text x="${w-4}" y="${y+14}" text-anchor="end" fill="#ef4444" font-size="10" font-family="monospace">VAL ${mp.val}</text>`;}
+
+  if(priceInRange){
+    const y = p2y(currentPrice);
+    bars += `<rect x="${margin}" y="${y-9}" width="92" height="18" fill="rgba(241,245,249,0.15)" rx="3"/>`;
+    bars += `<line x1="${margin}" y1="${y}" x2="${w-100}" y2="${y}" stroke="#f1f5f9" stroke-width="2"/>`;
+    const ax = w-102;
+    bars += `<polygon points="${ax},${y-5} ${ax+10},${y} ${ax},${y+5}" fill="#f1f5f9"/>`;
+    bars += `<text x="${margin+4}" y="${y+5}" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">▶ ${currentPrice.toFixed(2)}</text>`;
+    bars += `<text x="${w-4}" y="${y+5}" text-anchor="end" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">${currentPrice.toFixed(2)}</text>`;
+  } else if(currentPrice !== null){
+    const aboveRange = currentPrice > maxP;
+    const arrowY     = aboveRange ? 16 : h-6;
+    const arrowChar  = aboveRange ? '▲' : '▼';
+    bars += `<text x="${margin+4}" y="${arrowY}" fill="#f1f5f9" font-size="12" font-family="monospace">${arrowChar} Kurs ${currentPrice.toFixed(2)} (ausserhalb Vortags-Range)</text>`;
+  }
+
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet">${bars}</svg>`;
+}
+
+function renderCtx(ctx){
+  if(!ctx) return '';
+  return `<div class="card fw">
+    <div class="ct">🌍 Macro Context</div>
+    <div class="cgrid">
+      ${['VIX','DXY','US10Y','DAX'].map(k=>{
+        const d=ctx[k];
+        if(!d) return `<div class="ci"><div class="cl2">${k}</div><div class="cp2">—</div></div>`;
+        const cc=(d.change||0)>=0?'pos':'neg', cs=(d.change||0)>=0?'+':'';
+        return `<div class="ci">
+          <div class="cl2">${k}</div>
+          <div class="cp2">${f(d.price)}</div>
+          <div class="cc2 ${cc}">${cs}${f(d.change)} (${cs}${f(d.change_pct)}%)</div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+}
+
+function renderCal(cal){
+  if(!cal||!cal.length)
+    return `<div class="card fw">
+      <div class="ct">📅 Macro Kalender</div>
+      <div style="color:var(--muted);font-size:13px;padding:8px 0">Keine High-Impact Events gefunden</div>
+    </div>`;
+
+  const grouped={};
+  cal.forEach(e=>{
+    const d=e.date||String(e.time||'').slice(0,10)||'unbekannt';
+    if(!grouped[d]) grouped[d]=[];
+    grouped[d].push(e);
+  });
+
+  const today=new Date().toISOString().slice(0,10);
+  let rows='';
+
+  for(const[date,events] of Object.entries(grouped)){
+    const isToday  = date===today;
+    const labelCol = isToday?'var(--cyan)':'var(--yellow)';
+    const labelTxt = isToday?`Heute — ${fmtDate(date)}`:`Nächster Tag — ${fmtDate(date)}`;
+    rows+=`<div class="day-label" style="color:${labelCol}">${labelTxt}</div>`;
+    rows+=events.map(e=>`
+    <div class="cale">
+      <span class="cat">${String(e.time||'').slice(11,16)||'—'}</span>
+      <span class="can">${e.event}</span>
+      <span class="imp-${e.impact==='high'?'high':'medium'}">${e.impact==='high'?'●●':'●'}</span>
+      <span class="cac">${e.country}</span>
+    </div>`).join('');
+  }
+
+  return `<div class="card fw">
+    <div class="ct">📅 Macro Kalender — High &amp; Medium Impact</div>
+    ${rows}
+  </div>`;
+}
+
+function fmtDate(d){
+  if(!d||d==='unbekannt') return d;
+  try{
+    return new Date(d).toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
+  }catch(e){ return d; }
+}
+
+function f(v){
+  if(v===null||v===undefined) return '—';
+  return typeof v==='number'
+    ? v.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})
+    : v;
+}
+
+load();
+</script>
+</body>
+</html>

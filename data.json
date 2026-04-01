@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-01T11:17:42.934888",
+  "timestamp": "2026-04-01T11:34:31.785307",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
@@ -219,7 +219,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX 24.73 \u2014 Elevated",
+            "label": "VIX 24.98 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
           },
@@ -474,7 +474,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX 24.73 \u2014 Elevated",
+            "label": "VIX 24.98 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
           },
@@ -514,18 +514,18 @@
   },
   "context": {
     "VIX": {
-      "price": 24.73,
-      "change": -0.52,
-      "change_pct": -2.06,
-      "high": 24.91,
+      "price": 24.98,
+      "change": -0.27,
+      "change_pct": -1.07,
+      "high": 24.99,
       "low": 24.21,
       "open": 24.3,
       "prev_close": 25.25
     },
     "DXY": {
-      "price": 99.51,
-      "change": -0.45,
-      "change_pct": -0.45,
+      "price": 99.59,
+      "change": -0.37,
+      "change_pct": -0.37,
       "high": 99.88,
       "low": 99.41,
       "open": 99.79,
@@ -541,11 +541,11 @@
       "prev_close": 4.34
     },
     "DAX": {
-      "price": 23193.14,
-      "change": 513.1,
-      "change_pct": 2.26,
+      "price": 23070.12,
+      "change": 390.08,
+      "change_pct": 1.72,
       "high": 23343.91,
-      "low": 23111.88,
+      "low": 23070.12,
       "open": 23326.89,
       "prev_close": 22680.04
     }
