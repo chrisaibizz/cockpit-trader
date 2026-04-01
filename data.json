@@ -1,0 +1,554 @@
+{
+  "timestamp": "2026-04-01T10:21:09.758478",
+  "instruments": {
+    "SPX": {
+      "name": "S&P 500 (Kassa)",
+      "ticker": "^GSPC",
+      "quote": {
+        "price": 6528.52,
+        "change": 184.8,
+        "change_pct": 2.91,
+        "high": 6539.05,
+        "low": 6395.88,
+        "open": 6395.88,
+        "prev_close": 6343.72
+      },
+      "market_profile": {
+        "poc": 6384.53,
+        "vah": 6413.51,
+        "val": 6341.75,
+        "vwap": 6366.28,
+        "day_high": 6427.31,
+        "day_low": 6316.91,
+        "shape": {
+          "name": "Normal Variation",
+          "description": "Leichte Richtung \u2014 Abwarten auf Breakout aus VA."
+        },
+        "volume_profile": [
+          {
+            "price": 6318.29,
+            "volume": 662049000.0
+          },
+          {
+            "price": 6321.05,
+            "volume": 662049000.0
+          },
+          {
+            "price": 6323.81,
+            "volume": 662049000.0
+          },
+          {
+            "price": 6326.57,
+            "volume": 662049000.0
+          },
+          {
+            "price": 6329.33,
+            "volume": 662049000.0
+          },
+          {
+            "price": 6332.09,
+            "volume": 662049000.0
+          },
+          {
+            "price": 6334.85,
+            "volume": 662049000.0
+          },
+          {
+            "price": 6337.61,
+            "volume": 810829000.0
+          },
+          {
+            "price": 6340.37,
+            "volume": 810829000.0
+          },
+          {
+            "price": 6343.13,
+            "volume": 810829000.0
+          },
+          {
+            "price": 6345.89,
+            "volume": 748898000.0
+          },
+          {
+            "price": 6348.65,
+            "volume": 748898000.0
+          },
+          {
+            "price": 6351.41,
+            "volume": 428152000.0
+          },
+          {
+            "price": 6354.17,
+            "volume": 428152000.0
+          },
+          {
+            "price": 6356.93,
+            "volume": 560123000.0
+          },
+          {
+            "price": 6359.69,
+            "volume": 411343000.0
+          },
+          {
+            "price": 6362.45,
+            "volume": 411343000.0
+          },
+          {
+            "price": 6365.21,
+            "volume": 278855000.0
+          },
+          {
+            "price": 6367.97,
+            "volume": 278855000.0
+          },
+          {
+            "price": 6370.73,
+            "volume": 558347235.0
+          },
+          {
+            "price": 6373.49,
+            "volume": 887522071.0
+          },
+          {
+            "price": 6376.25,
+            "volume": 1028499071.0
+          },
+          {
+            "price": 6379.01,
+            "volume": 1213480688.0
+          },
+          {
+            "price": 6381.77,
+            "volume": 1213480688.0
+          },
+          {
+            "price": 6384.53,
+            "volume": 1233010951.0
+          },
+          {
+            "price": 6387.29,
+            "volume": 1107998951.0
+          },
+          {
+            "price": 6390.05,
+            "volume": 1107998951.0
+          },
+          {
+            "price": 6392.81,
+            "volume": 1107998951.0
+          },
+          {
+            "price": 6395.57,
+            "volume": 903836115.0
+          },
+          {
+            "price": 6398.33,
+            "volume": 903836115.0
+          },
+          {
+            "price": 6401.09,
+            "volume": 762859115.0
+          },
+          {
+            "price": 6403.85,
+            "volume": 556735570.0
+          },
+          {
+            "price": 6406.61,
+            "volume": 556735570.0
+          },
+          {
+            "price": 6409.37,
+            "volume": 556735570.0
+          },
+          {
+            "price": 6412.13,
+            "volume": 405234307.0
+          },
+          {
+            "price": 6414.89,
+            "volume": 220252690.0
+          },
+          {
+            "price": 6417.65,
+            "volume": 220252690.0
+          },
+          {
+            "price": 6420.41,
+            "volume": 220252690.0
+          },
+          {
+            "price": 6423.17,
+            "volume": 220252690.0
+          },
+          {
+            "price": 6425.93,
+            "volume": 220252690.0
+          }
+        ]
+      },
+      "current_price": 6528.52,
+      "bias": {
+        "score": 75,
+        "bias": "BULLISH",
+        "color": "green",
+        "signals": [
+          {
+            "label": "Preis > VWAP",
+            "score": 2,
+            "direction": "bullish"
+          },
+          {
+            "label": "Ueber VAH \u2014 Breakout",
+            "score": 2,
+            "direction": "bullish"
+          },
+          {
+            "label": "Preis > POC",
+            "score": 1,
+            "direction": "bullish"
+          },
+          {
+            "label": "Shape: Normal Variation",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Overnight Inventory: Long",
+            "score": 1,
+            "direction": "bullish"
+          },
+          {
+            "label": "VIX 24.67 \u2014 Elevated",
+            "score": -1,
+            "direction": "bearish"
+          },
+          {
+            "label": "VIX stabil",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Dollar schwaecher",
+            "score": 1,
+            "direction": "bullish"
+          },
+          {
+            "label": "Yields stabil",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Daily OTF Check",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Gap Analysis",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Session Expectation",
+            "score": 0,
+            "direction": "neutral"
+          }
+        ]
+      }
+    },
+    "DJI": {
+      "name": "Dow Jones (Kassa)",
+      "ticker": "^DJI",
+      "quote": {
+        "price": 46341.51,
+        "change": 1125.37,
+        "change_pct": 2.49,
+        "high": 46383.4,
+        "low": 45480.3,
+        "open": 45541.76,
+        "prev_close": 45216.14
+      },
+      "market_profile": {
+        "poc": 45320.2,
+        "vah": 45568.91,
+        "val": 45227.83,
+        "vwap": 45351.31,
+        "day_high": 45625.76,
+        "day_low": 45057.28,
+        "shape": {
+          "name": "Normal Day",
+          "description": "Ausbalanciert \u2014 Range-Trading um POC."
+        },
+        "volume_profile": [
+          {
+            "price": 45064.39,
+            "volume": 93445300.0
+          },
+          {
+            "price": 45078.6,
+            "volume": 93445300.0
+          },
+          {
+            "price": 45092.81,
+            "volume": 93445300.0
+          },
+          {
+            "price": 45107.02,
+            "volume": 93445300.0
+          },
+          {
+            "price": 45121.24,
+            "volume": 93445300.0
+          },
+          {
+            "price": 45135.45,
+            "volume": 93445300.0
+          },
+          {
+            "price": 45149.66,
+            "volume": 93445300.0
+          },
+          {
+            "price": 45163.87,
+            "volume": 93445300.0
+          },
+          {
+            "price": 45178.08,
+            "volume": 93445300.0
+          },
+          {
+            "price": 45192.3,
+            "volume": 93445300.0
+          },
+          {
+            "price": 45206.51,
+            "volume": 93445300.0
+          },
+          {
+            "price": 45220.72,
+            "volume": 117177749.0
+          },
+          {
+            "price": 45234.93,
+            "volume": 140390644.0
+          },
+          {
+            "price": 45249.14,
+            "volume": 140390644.0
+          },
+          {
+            "price": 45263.36,
+            "volume": 159325947.0
+          },
+          {
+            "price": 45277.57,
+            "volume": 128297238.0
+          },
+          {
+            "price": 45291.78,
+            "volume": 128297238.0
+          },
+          {
+            "price": 45305.99,
+            "volume": 164027515.0
+          },
+          {
+            "price": 45320.2,
+            "volume": 197511897.0
+          },
+          {
+            "price": 45334.42,
+            "volume": 197511897.0
+          },
+          {
+            "price": 45348.63,
+            "volume": 173779448.0
+          },
+          {
+            "price": 45362.84,
+            "volume": 173779448.0
+          },
+          {
+            "price": 45377.05,
+            "volume": 152180335.0
+          },
+          {
+            "price": 45391.26,
+            "volume": 152180335.0
+          },
+          {
+            "price": 45405.48,
+            "volume": 152180335.0
+          },
+          {
+            "price": 45419.69,
+            "volume": 184190813.0
+          },
+          {
+            "price": 45433.9,
+            "volume": 148460536.0
+          },
+          {
+            "price": 45448.11,
+            "volume": 149427216.0
+          },
+          {
+            "price": 45462.32,
+            "volume": 149427216.0
+          },
+          {
+            "price": 45476.54,
+            "volume": 174899790.0
+          },
+          {
+            "price": 45490.75,
+            "volume": 174899790.0
+          },
+          {
+            "price": 45504.96,
+            "volume": 154350705.0
+          },
+          {
+            "price": 45519.17,
+            "volume": 154350705.0
+          },
+          {
+            "price": 45533.38,
+            "volume": 154350705.0
+          },
+          {
+            "price": 45547.6,
+            "volume": 120866323.0
+          },
+          {
+            "price": 45561.81,
+            "volume": 120866323.0
+          },
+          {
+            "price": 45576.02,
+            "volume": 120866323.0
+          },
+          {
+            "price": 45590.23,
+            "volume": 98258241.0
+          },
+          {
+            "price": 45604.44,
+            "volume": 66247763.0
+          },
+          {
+            "price": 45618.66,
+            "volume": 66247763.0
+          }
+        ]
+      },
+      "current_price": 46341.51,
+      "bias": {
+        "score": 75,
+        "bias": "BULLISH",
+        "color": "green",
+        "signals": [
+          {
+            "label": "Preis > VWAP",
+            "score": 2,
+            "direction": "bullish"
+          },
+          {
+            "label": "Ueber VAH \u2014 Breakout",
+            "score": 2,
+            "direction": "bullish"
+          },
+          {
+            "label": "Preis > POC",
+            "score": 1,
+            "direction": "bullish"
+          },
+          {
+            "label": "Shape: Normal Day",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Overnight Inventory: Long",
+            "score": 1,
+            "direction": "bullish"
+          },
+          {
+            "label": "VIX 24.67 \u2014 Elevated",
+            "score": -1,
+            "direction": "bearish"
+          },
+          {
+            "label": "VIX stabil",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Dollar schwaecher",
+            "score": 1,
+            "direction": "bullish"
+          },
+          {
+            "label": "Yields stabil",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Daily OTF Check",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Gap Analysis",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Session Expectation",
+            "score": 0,
+            "direction": "neutral"
+          }
+        ]
+      }
+    }
+  },
+  "context": {
+    "VIX": {
+      "price": 24.67,
+      "change": -0.58,
+      "change_pct": -2.3,
+      "high": 24.82,
+      "low": 24.21,
+      "open": 24.3,
+      "prev_close": 25.25
+    },
+    "DXY": {
+      "price": 99.63,
+      "change": -0.33,
+      "change_pct": -0.33,
+      "high": 99.88,
+      "low": 99.5,
+      "open": 99.79,
+      "prev_close": 99.96
+    },
+    "US10Y": {
+      "price": 4.31,
+      "change": -0.03,
+      "change_pct": -0.71,
+      "high": 4.33,
+      "low": 4.29,
+      "open": 4.31,
+      "prev_close": 4.34
+    },
+    "DAX": {
+      "price": 23153.15,
+      "change": 473.11,
+      "change_pct": 2.09,
+      "high": 23343.91,
+      "low": 23131.06,
+      "open": 23326.89,
+      "prev_close": 22680.04
+    }
+  },
+  "calendar": []
+}
