@@ -1,0 +1,42 @@
+name: Cockpit-Trader Daily Update
+
+on:
+  schedule:
+    # Jeden Tag um 07:00 Uhr deutscher Zeit (06:00 UTC)
+    - cron: '0 6 * * 1-5'
+    # Samstag um 10:00 Uhr (09:00 UTC) — Wochenend-Check
+    - cron: '0 9 * * 6'
+  workflow_dispatch:
+    # Manueller Start jederzeit per Knopfdruck auf GitHub
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Pakete installieren
+        run: pip install -r requirements.txt
+
+      - name: Cockpit-Morning Script ausfuehren
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+        run: python cockpit-morning.py
+
+      - name: Aenderungen zu GitHub pushen
+        run: |
+          git config --global user.email "cockpit@trader.bot"
+          git config --global user.name "Cockpit-Trader Bot"
+          git add index.html data.json
+          git diff --staged --quiet || git commit -m "Daily Briefing $(date +'%Y-%m-%d %H:%M')"
+          git push
