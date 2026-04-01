@@ -3,10 +3,8 @@
 Cockpit-Trader: Vollautomatisches Morning Briefing
 SP500 & Dow Jones KASSA — Market Profile, VWAP, Bias-Ampel
 Symbole: ^GSPC (S&P 500 Cash), ^DJI (Dow Jones Cash)
-Setup:
-  python -m pip install finnhub-python yfinance numpy
-  setx FINNHUB_API_KEY "dein_key"
-  python cockpit-morning.py
+GitHub Actions: laeuft automatisch Mo-Fr 07:00 Uhr
+iPhone URL: https://chrisaibizz.github.io/cockpit-trader/
 """
 
 import json, os, sys, traceback
@@ -324,7 +322,6 @@ def process_instrument(ticker, name):
 def main():
     print("\n>>> main() gestartet")
 
-    # Kassa-Kurse: ^GSPC = S&P 500 Cash, ^DJI = Dow Jones Cash
     spx = process_instrument("^GSPC", "S&P 500 (Kassa)")
     dji = process_instrument("^DJI",  "Dow Jones (Kassa)")
 
@@ -372,13 +369,19 @@ def main():
         + json.dumps(out, default=str)
         + ";</script>"
     )
-    html = html.replace("</head>", data_tag + "\n</head>")
+    html_embedded = html.replace("</head>", data_tag + "\n</head>")
 
-    out_path = os.path.join(script_dir, "cockpit-briefing.html")
-    print(f">>> Schreibe cockpit-briefing.html...")
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(html)
-    print(f"    -> {out_path}")
+    briefing_path = os.path.join(script_dir, "cockpit-briefing.html")
+    print(">>> Schreibe cockpit-briefing.html...")
+    with open(briefing_path, "w", encoding="utf-8") as f:
+        f.write(html_embedded)
+    print(f"    -> {briefing_path}")
+
+    index_path = os.path.join(script_dir, "index.html")
+    print(">>> Schreibe index.html (GitHub Pages)...")
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write(html_embedded)
+    print(f"    -> {index_path}")
 
     print(f"\n{'='*50}")
     print(f"Timestamp: {out['timestamp']}")
@@ -396,7 +399,9 @@ def main():
     for e in cal[:8]:
         print(f"  {e.get('date','')} {str(e['time'])[11:16]}  {e['event']} ({e['country']}) [{e['impact']}]")
 
-    print(f"\n✅ Fertig! cockpit-briefing.html per Doppelklick oeffnen.")
+    print(f"\n✅ Fertig!")
+    print(f"   Lokal:  cockpit-briefing.html per Doppelklick oeffnen")
+    print(f"   iPhone: https://chrisaibizz.github.io/cockpit-trader/")
 
 if __name__ == "__main__":
     try:
