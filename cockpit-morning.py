@@ -404,5 +404,4 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"\n❌ UNERWARTETER FEHLER:")
         traceback.print_exc()
-    finally:
-        input("\nEnter druecken zum Beenden...")
+        sys.exit(1)
