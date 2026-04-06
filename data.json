@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-04T09:38:55.475007",
+  "timestamp": "2026-04-06T07:19:02.130637",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
@@ -222,11 +222,6 @@
             "label": "VIX 23.87 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
-          },
-          {
-            "label": "Dollar neutral",
-            "score": 0,
-            "direction": "neutral"
           },
           {
             "label": "Daily OTF Check",
@@ -469,11 +464,6 @@
             "direction": "bearish"
           },
           {
-            "label": "Dollar neutral",
-            "score": 0,
-            "direction": "neutral"
-          },
-          {
             "label": "Daily OTF Check",
             "score": 0,
             "direction": "neutral"
@@ -497,19 +487,19 @@
       "price": 23.87,
       "change": 0.0,
       "change_pct": 0.0,
-      "high": 27.89,
+      "high": 23.87,
       "low": 23.87,
-      "open": 26.78,
+      "open": 0.0,
       "prev_close": 23.87
     },
     "DXY": {
-      "price": 100.19,
-      "change": 0.16,
-      "change_pct": 0.16,
-      "high": 100.22,
-      "low": 99.95,
-      "open": 99.99,
-      "prev_close": 100.03
+      "price": 100.12,
+      "change": 0.0,
+      "change_pct": 0.0,
+      "high": 100.29,
+      "low": 100.04,
+      "open": 100.18,
+      "prev_close": 100.12
     },
     "US10Y": {
       "price": 4.31,
