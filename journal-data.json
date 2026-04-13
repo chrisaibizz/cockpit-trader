@@ -1,6 +1,6 @@
 {
   "date": "2026-04-13",
-  "timestamp": "2026-04-13T13:49:22.039364",
+  "timestamp": "2026-04-13T14:21:22.000000",
   "debrief": {
     "orders_checked": 3,
     "fill_rate": "33%",
@@ -249,8 +249,8 @@
       "name": "US30",
       "bias": "Baerisch",
       "bias_color": "red",
-      "bias_score": -45,
-      "bias_pct": "95",
+      "bias_score": -33,
+      "bias_pct": "65",
       "bias_signals": [
         {
           "label": "Preis < VWAP",
@@ -258,59 +258,29 @@
           "direction": "bearish"
         },
         {
-          "label": "Unter VAL — Breakdown",
+          "label": "4H CHoCH — Bärischer Kontext",
           "score": -2,
           "direction": "bearish"
         },
         {
-          "label": "Preis < POC",
+          "label": "Gap Down 507 Pkt — Schwäche",
+          "score": -2,
+          "direction": "bearish"
+        },
+        {
+          "label": "Kurs weit unter Morning-Order (907 Pkt)",
           "score": -1,
           "direction": "bearish"
         },
         {
-          "label": "Shape: Normal Variation (Up)",
-          "score": 2,
-          "direction": "bullish"
-        },
-        {
-          "label": "Overnight Inventory: Short",
+          "label": "Sell-Bounce Setup aktiv",
           "score": -1,
           "direction": "bearish"
         },
         {
-          "label": "CVD positiv (+88306) — Kaufdruck",
-          "score": 1,
-          "direction": "bullish"
-        },
-        {
-          "label": "VIX 21.26 — Elevated",
+          "label": "VIX erhoeht — Vorsicht",
           "score": -1,
           "direction": "bearish"
-        },
-        {
-          "label": "VIX rising sharply",
-          "score": -1,
-          "direction": "bearish"
-        },
-        {
-          "label": "Yields stabil",
-          "score": 0,
-          "direction": "neutral"
-        },
-        {
-          "label": "Daily OTF Check",
-          "score": 0,
-          "direction": "neutral"
-        },
-        {
-          "label": "Gap Analysis",
-          "score": 0,
-          "direction": "neutral"
-        },
-        {
-          "label": "Session Expectation",
-          "score": 0,
-          "direction": "neutral"
         }
       ],
       "cvd": {
@@ -318,11 +288,11 @@
         "direction": "bullish"
       },
       "quote": {
-        "price": 47504.15,
-        "change": -681.65,
-        "change_pct": -1.41,
+        "price": 47433.0,
+        "change": -752.8,
+        "change_pct": -1.56,
         "high": 48235.06,
-        "low": 47856.18,
+        "low": 47358.0,
         "open": 48199.39,
         "prev_close": 48185.8,
         "source": "tradingview_live"
@@ -331,9 +301,9 @@
         "poc": 48180.18,
         "vah": 48256.84,
         "val": 48037.82,
-        "vwap": 47611.47,
+        "vwap": 47557.0,
         "day_high": 48256.84,
-        "day_low": 48037.82,
+        "day_low": 47358.0,
         "shape": {
           "name": "Normal Variation (Up)",
           "description": "Leicht bullischer Bias — Abwarten auf Breakout aus VA"
@@ -341,13 +311,13 @@
         "volume_profile": [],
         "source": "tradingview"
       },
-      "current_price": 47504.15,
-      "daily_summary": "Bias Baerisch (Score -45). Vortag Range: 48037.82 – 48256.84. VIX=21.3.",
-      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
+      "current_price": 47433.0,
+      "daily_summary": "Bias Baerisch (Score -33, 65%). US-UPDATE 14:21: Morning-Order 48340 obsolet. Kurs bei 47433 (-907 Pkt). Neuer Sell-Bounce 47550.",
+      "h4_summary": "4H CHoCH bärisch. Gap Down 507 Pkt vom Wochenschluss. Kurs weit unter VAL (48037).",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 47504.15 unter VWAP (47611.47), ausserhalb Value Area. POC=48180.18 VAH=48256.84 VAL=48037.82. CVD +88306 (Kaufdruck). Shape: Normal Variation (Up).",
+      "h30m_summary": "Kurs 47433 unter VWAP (47557). Gap-Down Markt. Sell-Bounce Entry 47550 bei VWAP-Retest.",
       "mp_shape_yesterday": "Normal Variation (Up)",
-      "mp_shape_forecast": "Normal Variation (Up)",
+      "mp_shape_forecast": "Gap-Down Non-Trend Balance",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
       "key_levels": [
         {
@@ -361,34 +331,40 @@
           "source": "Market Profile"
         },
         {
-          "level": "VAL Vortag",
+          "level": "VAL Vortag / Friday VAL",
           "price": "48037.82",
           "source": "Market Profile"
         },
         {
           "level": "VWAP 30M",
-          "price": "47611.47",
+          "price": "47557.0",
           "source": "VWAP"
+        },
+        {
+          "level": "Sell-Bounce Entry",
+          "price": "47550",
+          "source": "US-UPDATE 14:21"
         }
       ],
       "orders": [
         {
           "type": "Limit Sell",
-          "entry": "48245.89",
-          "sl": "48311.6",
-          "tp1": "48037.82",
-          "tp2": "47928.31",
-          "rr": "3.17",
-          "p_fill": "70",
-          "p_tp1": "52",
+          "entry": "47550",
+          "sl": "47670",
+          "tp1": "46807",
+          "tp2": "46698",
+          "rr": "6.2 / 7.1",
+          "p_fill": "55",
+          "p_tp1": "50",
           "tf": "30M",
-          "confluence": "Preis < VWAP + Unter VAL — Breakdown + Preis < POC",
+          "confluence": "VWAP-Retest + Gap-Down Kontext + 4H CHoCH",
           "mp_shape_yesterday": "Normal Variation (Up)",
-          "mp_shape_forecast": "Normal Variation (Up)",
-          "vwap_position": "Preis unter VWAP"
+          "mp_shape_forecast": "Gap-Down Non-Trend Balance",
+          "vwap_position": "Unter VWAP (47557)",
+          "notizen": "US-UPDATE 14:21: Morning-Order 48340 obsolet (Kurs 47433, +907Pt darunter). Neuer Sell-Bounce 47550 bei VWAP-Retest."
         }
       ],
-      "invalidation": "Kurs schliesst ueber 48256.84 — bearischer Bias negiert"
+      "invalidation": "Kurs schliesst ueber 48037.82 (VAL) — bearischer Bias negiert"
     },
     {
       "name": "SPX500",
@@ -543,7 +519,7 @@
       "VIX 21.3 — Elevated, Vorsicht bei Einstiegen",
       "VIX steigt stark (+10.6%) — Volatilitaet im Wandel"
     ],
-    "notes": "Auto-generiert 13:49. VIX=21.3. Beste Konfluenz: SPX500."
+    "notes": "Update 14:21. US30 Morning-Order 48340 obsolet — Neuer Sell-Bounce 47550 (Kurs 907Pkt darunter). GER40 Sell 23924.7 aktiv. SPX500 Sell 6835.79 aktiv."
   },
   "stats": {
     "total": 3,
