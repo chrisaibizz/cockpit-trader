@@ -3,133 +3,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>The Trading Floor — Journal</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<title>Trading Floor — Journal</title>
+<style>
+:root{--bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;--muted:#64748b;--dim:#374151;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#06b6d4}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0;min-height:100vh;font-size:14px}
+nav{position:sticky;top:0;z-index:100;background:rgba(10,14,23,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-weight:800;font-size:13px;letter-spacing:1px;color:var(--text)}
+.nav-brand span{color:var(--blue)}
+.nav-links{display:flex;gap:2px}
+.nav-links a{color:var(--muted);text-decoration:none;padding:6px 10px;font-size:11px;font-weight:600;border-radius:6px;letter-spacing:0.5px}
+.nav-links a.active{color:var(--blue);background:rgba(59,130,246,0.1)}
+main{padding:16px;max-width:600px;margin:0 auto}
+.page-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.page-sub{font-size:11px;color:var(--muted);margin-bottom:16px}
+.ts{font-size:10px;color:var(--dim);margin-bottom:16px;font-family:monospace}
+
+/* Debrief */
+.debrief{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:12px}
+.debrief-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.debrief-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+.d-stat{text-align:center;background:rgba(255,255,255,0.02);border-radius:6px;padding:8px 4px}
+.d-stat-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px}
+.d-stat-value{font-size:16px;font-weight:700;font-family:monospace;margin-top:2px}
+.d-learnings{font-size:12px;color:var(--muted);line-height:1.5;border-top:1px solid var(--border);padding-top:8px;margin-top:4px}
+.d-learn{padding:2px 0}
+.d-learn::before{content:"→ ";color:var(--cyan)}
+
+/* Instrument */
+.inst{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:12px}
+.inst-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.inst-name{font-size:15px;font-weight:700}
+.inst-bias{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.bias-bull{background:rgba(34,197,94,0.12);color:var(--green)}
+.bias-bear{background:rgba(239,68,68,0.12);color:var(--red)}
+.bias-neutral{background:rgba(234,179,8,0.12);color:var(--yellow)}
+
+.inst-summary{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:8px}
+.tf-label{display:inline-block;font-size:9px;font-weight:700;color:var(--blue);background:rgba(59,130,246,0.1);padding:2px 6px;border-radius:3px;margin-right:4px;font-family:monospace}
+
+/* MP Section */
+.mp-section{border-top:1px solid var(--border);padding-top:8px;margin-top:8px}
+.mp-title{font-size:10px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:700}
+.mp-row{display:flex;justify-content:space-between;font-size:12px;padding:2px 0}
+.mp-label{color:var(--dim)}
+.mp-value{font-family:monospace;font-weight:600}
+.shape-badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;background:rgba(59,130,246,0.1);color:var(--blue);margin-top:4px}
+
+/* Key Levels */
+.levels-section{border-top:1px solid var(--border);padding-top:8px;margin-top:8px}
+.levels-title{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.level-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
+.level-name{color:var(--muted);min-width:60px}
+.level-price{font-family:monospace;font-weight:600}
+.level-source{font-size:10px;color:var(--dim);text-align:right}
+
+/* Invalidation */
+.invalidation{font-size:11px;color:var(--yellow);background:rgba(234,179,8,0.08);padding:6px 8px;border-radius:6px;margin-top:8px}
+
+/* Summary */
+.summary{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:12px}
+.summary-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.summary-best{font-size:14px;font-weight:700;margin-bottom:4px}
+.summary-best strong{color:var(--green)}
+.summary-warn{font-size:11px;color:var(--yellow);padding:2px 0}
+.summary-warn::before{content:"⚠ "}
+
+/* Loading / Empty */
+.empty{text-align:center;padding:60px 20px;color:var(--dim)}
+.empty h3{color:var(--muted);font-size:14px;margin-bottom:8px}
+.empty p{font-size:12px;line-height:1.6}
+footer{text-align:center;padding:20px;font-size:10px;color:var(--dim);border-top:1px solid var(--border)}
+</style>
 </head>
 <body>
-
+<nav>
+  <div class="nav-brand">✈ THE <span>TRADING FLOOR</span></div>
+  <div class="nav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="journal.html" class="active">Journal</a>
+    <a href="orders.html">Orders</a>
+  </div>
+</nav>
 <main>
-  <div class="header">
-    <h1>Analyse Journal<small>Morning Briefing &middot; Indikatoren &middot; Market Profile</small></h1>
-    <div class="timestamp" id="journalDate"></div>
-  </div>
-  <div style="display:flex;justify-content:center;gap:8px;padding:12px 0 20px;border-bottom:1px solid #1e2a3a;margin-bottom:30px;">
-    <a href="index.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Dashboard</a>
-    <a href="journal.html" style="color:#e2e8f0;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;background:rgba(59,130,246,0.15);border:1px solid #3b82f6;letter-spacing:1px;">Journal</a>
-    <a href="orders.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Orders</a>
-  </div>
-
+  <div class="page-title">Analyse Journal</div>
+  <div class="page-sub">Morning Briefing — Zusammenfassung</div>
   <div id="content">
-    <div class="loading">
-      <div class="spinner"></div>
-      <p>Lade Journal...</p>
+    <div class="empty">
+      <h3>Lade Journal...</h3>
     </div>
   </div>
 </main>
-
-<footer>
-  The Trading Floor v1.0 &middot; Cockpit Trader &middot; CFD Trading via Vantage
-</footer>
-
+<footer>The Trading Floor · Cockpit Trader · Auction Market Theory</footer>
 <script>
-function updateClock(){
-  const now=new Date();
-  const el=document.getElementById('navTime');
-  if(el) el.textContent=now.toLocaleString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
-}
-updateClock();setInterval(updateClock,30000);
-
-async function loadJournal(){
+async function load(){
   try{
-    const res=await fetch('journal-data.json?t='+Date.now());
-    if(!res.ok) throw new Error('Noch kein Journal vorhanden');
-    return await res.json();
+    const r=await fetch('journal-data.json?t='+Date.now());
+    if(!r.ok) throw new Error();
+    return await r.json();
   }catch(e){
-    document.getElementById('content').innerHTML=`
-      <div class="placeholder">
-        <h3>Journal wird nach der naechsten Morning-Analyse verfuegbar</h3>
-        <p>Claude Code erstellt das Journal automatisch um 08:00.<br>
-        Die Analyse umfasst: Debrief, Daily/4H/1H/30M pro Instrument,<br>
-        MP Shape Analyse, Konfluenz-basierte Limit Orders.</p>
-      </div>`;
+    document.getElementById('content').innerHTML='<div class="empty"><h3>Kein Journal vorhanden</h3><p>Wird nach der Morning-Analyse erstellt.</p></div>';
     return null;
   }
 }
-
+function bc(b){
+  if(!b)return'bias-neutral';
+  const l=b.toLowerCase();
+  return l.includes('bull')?'bias-bull':l.includes('bear')||l.includes('bär')?'bias-bear':'bias-neutral';
+}
 function render(d){
-  if(!d) return;
-  const el=document.getElementById('journalDate');
-  if(el) el.textContent=d.date||'';
-
-  let html='';
+  if(!d)return;
+  let h='<div class="ts">'+d.date+' · '+(d.timestamp?new Date(d.timestamp).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}):'')+' Uhr</div>';
 
   // Debrief
   if(d.debrief){
     const db=d.debrief;
-    html+=`
-    <div class="section-title">Debrief — Vortag</div>
-    <div class="journal-section">
-      <div class="journal-stats">
-        <div class="j-stat"><div class="j-stat-label">Orders geprueft</div><div class="j-stat-value">${db.orders_checked??'—'}</div></div>
-        <div class="j-stat"><div class="j-stat-label">Fill-Rate</div><div class="j-stat-value">${db.fill_rate||'—'}</div></div>
-        <div class="j-stat"><div class="j-stat-label">TP1-Rate</div><div class="j-stat-value">${db.tp1_rate||'—'}</div></div>
-        <div class="j-stat"><div class="j-stat-label">Trend</div><div class="j-stat-value">${db.trend||'—'}</div></div>
-      </div>
-      ${db.learnings&&db.learnings.length?`<div class="j-learnings"><div class="j-learn-title">Learnings</div>${db.learnings.map(l=>`<div class="j-learn-item">→ ${l}</div>`).join('')}</div>`:''}
-    </div>`;
+    h+='<div class="debrief"><div class="debrief-title">Debrief Vortag</div>';
+    h+='<div class="debrief-grid">';
+    h+='<div class="d-stat"><div class="d-stat-label">Fill Rate</div><div class="d-stat-value">'+(db.fill_rate||'—')+'</div></div>';
+    h+='<div class="d-stat"><div class="d-stat-label">TP1 Rate</div><div class="d-stat-value">'+(db.tp1_rate||'—')+'</div></div>';
+    h+='<div class="d-stat"><div class="d-stat-label">Trend</div><div class="d-stat-value" style="font-size:11px">'+(db.trend||'—')+'</div></div>';
+    h+='</div>';
+    if(db.learnings&&db.learnings.length){
+      h+='<div class="d-learnings">';
+      db.learnings.forEach(l=>{h+='<div class="d-learn">'+l+'</div>';});
+      h+='</div>';
+    }
+    h+='</div>';
   }
 
   // Instruments
-  if(d.instruments&&d.instruments.length){
-    for(const inst of d.instruments){
-      const bc=inst.bias&&inst.bias.includes('Bull')?'bias-bull':inst.bias&&inst.bias.includes('Bär')?'bias-bear':'bias-neutral';
-      html+=`
-      <div class="section-title">${inst.name} — <span class="${bc}" style="font-size:0.8rem;padding:0.15rem 0.5rem;border-radius:4px">${inst.bias||'—'} (${inst.bias_pct||'?'}%)</span></div>
-      <div class="journal-section">
-        ${inst.daily_summary?`<div class="j-tf"><span class="j-tf-label">Daily</span>${inst.daily_summary}</div>`:''}
-        ${inst.h4_summary?`<div class="j-tf"><span class="j-tf-label">4H</span>${inst.h4_summary}</div>`:''}
-        ${inst.h1_summary?`<div class="j-tf"><span class="j-tf-label">1H</span>${inst.h1_summary}</div>`:''}
-        ${inst.h30m_summary?`<div class="j-tf"><span class="j-tf-label">30M</span>${inst.h30m_summary}</div>`:''}
+  const insts=d.instruments||[];
+  insts.forEach(inst=>{
+    const bias=inst.bias||'';
+    const cls=bc(bias);
+    h+='<div class="inst">';
+    h+='<div class="inst-header"><div class="inst-name">'+inst.name+'</div>';
+    h+='<div class="inst-bias '+cls+'">'+(bias||'—')+' '+(inst.bias_pct||inst.bias_score||'')+'</div></div>';
 
-        ${inst.mp_shape_yesterday||inst.mp_shape_forecast?`
-        <div class="j-mp">
-          <div class="j-mp-title">Market Profile</div>
-          ${inst.mp_shape_yesterday?`<div class="j-mp-row"><span class="j-mp-label">Gestern</span><span class="j-mp-value">${inst.mp_shape_yesterday}</span></div>`:''}
-          ${inst.mp_shape_forecast?`<div class="j-mp-row"><span class="j-mp-label">Prognose</span><span class="j-mp-value">${inst.mp_shape_forecast}</span></div>`:''}
-          ${inst.mp_5day_sequence?`<div class="j-mp-row"><span class="j-mp-label">5-Tage</span><span class="j-mp-value">${inst.mp_5day_sequence}</span></div>`:''}
-        </div>`:''}
+    // TF Summaries
+    h+='<div class="inst-summary">';
+    if(inst.daily_summary) h+='<div><span class="tf-label">D</span>'+inst.daily_summary+'</div>';
+    if(inst.h4_summary) h+='<div><span class="tf-label">4H</span>'+inst.h4_summary+'</div>';
+    if(inst.h1_summary) h+='<div><span class="tf-label">1H</span>'+inst.h1_summary+'</div>';
+    if(inst.h30m_summary) h+='<div><span class="tf-label">30M</span>'+inst.h30m_summary+'</div>';
+    h+='</div>';
 
-        ${inst.key_levels&&inst.key_levels.length?`
-        <div class="j-levels">
-          <div class="j-levels-title">Key Levels</div>
-          <table class="j-table">
-            <thead><tr><th>Level</th><th>Preis</th><th>Quelle</th></tr></thead>
-            <tbody>${inst.key_levels.map(l=>`<tr><td>${l.level}</td><td>${l.price}</td><td>${l.source}</td></tr>`).join('')}</tbody>
-          </table>
-        </div>`:''}
-
-        ${inst.invalidation?`<div class="j-warning">⚠ Invalidierung: ${inst.invalidation}</div>`:''}
-      </div>`;
+    // MP
+    const mp=inst.market_profile||{};
+    if(inst.mp_shape_yesterday||mp.poc||mp.shape){
+      h+='<div class="mp-section"><div class="mp-title">Market Profile</div>';
+      if(mp.poc) h+='<div class="mp-row"><span class="mp-label">POC</span><span class="mp-value" style="color:var(--cyan)">'+mp.poc+'</span></div>';
+      if(mp.vah) h+='<div class="mp-row"><span class="mp-label">VAH</span><span class="mp-value" style="color:var(--green)">'+mp.vah+'</span></div>';
+      if(mp.val) h+='<div class="mp-row"><span class="mp-label">VAL</span><span class="mp-value" style="color:var(--red)">'+mp.val+'</span></div>';
+      if(mp.vwap) h+='<div class="mp-row"><span class="mp-label">VWAP</span><span class="mp-value" style="color:var(--yellow)">'+mp.vwap+'</span></div>';
+      const shape=inst.mp_shape_yesterday||(mp.shape?mp.shape.name||mp.shape:null);
+      if(shape) h+='<div class="shape-badge">'+shape+'</div>';
+      if(inst.mp_shape_forecast) h+=' <div class="shape-badge" style="background:rgba(34,197,94,0.1);color:var(--green)">→ '+inst.mp_shape_forecast+'</div>';
+      h+='</div>';
     }
-  }
+
+    // Key Levels
+    if(inst.key_levels&&inst.key_levels.length){
+      h+='<div class="levels-section"><div class="levels-title">Key Levels</div>';
+      inst.key_levels.forEach(l=>{
+        h+='<div class="level-row"><span class="level-name">'+l.level+'</span><span class="level-price">'+l.price+'</span><span class="level-source">'+l.source+'</span></div>';
+      });
+      h+='</div>';
+    }
+
+    // Invalidation
+    if(inst.invalidation) h+='<div class="invalidation">'+inst.invalidation+'</div>';
+
+    h+='</div>';
+  });
 
   // Summary
   if(d.summary){
-    html+=`
-    <div class="section-title">Gesamtuebersicht</div>
-    <div class="journal-section">
-      ${d.summary.best_instrument?`<div class="j-highlight">Klarste Struktur: <strong>${d.summary.best_instrument}</strong></div>`:''}
-      ${d.summary.total_orders?`<div style="font-size:0.85rem;color:var(--text2);margin-top:0.3rem">Limit Orders heute: ${d.summary.total_orders}</div>`:''}
-      ${d.summary.warnings&&d.summary.warnings.length?`<div class="j-warnings">${d.summary.warnings.map(w=>`<div class="j-warn-item">⚠ ${w}</div>`).join('')}</div>`:''}
-      ${d.summary.notes?`<div style="font-size:0.8rem;color:var(--text3);margin-top:0.5rem">${d.summary.notes}</div>`:''}
-    </div>`;
+    h+='<div class="summary"><div class="summary-title">Gesamtübersicht</div>';
+    if(d.summary.best_instrument) h+='<div class="summary-best">Bestes Setup: <strong>'+d.summary.best_instrument+'</strong></div>';
+    if(d.summary.total_orders) h+='<div style="font-size:12px;color:var(--muted)">Orders heute: '+d.summary.total_orders+'</div>';
+    if(d.summary.warnings) d.summary.warnings.forEach(w=>{h+='<div class="summary-warn">'+w+'</div>';});
+    if(d.summary.notes) h+='<div style="font-size:11px;color:var(--dim);margin-top:4px">'+d.summary.notes+'</div>';
+    h+='</div>';
   }
 
-  document.getElementById('content').innerHTML=html;
+  document.getElementById('content').innerHTML=h;
 }
-
-loadJournal().then(render);
+load().then(render);
 </script>
 </body>
 </html>

@@ -3,151 +3,166 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>The Trading Floor — Orders</title>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<title>Trading Floor — Orders</title>
+<style>
+:root{--bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;--muted:#64748b;--dim:#374151;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#06b6d4}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0;min-height:100vh;font-size:14px}
+nav{position:sticky;top:0;z-index:100;background:rgba(10,14,23,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-weight:800;font-size:13px;letter-spacing:1px;color:var(--text)}
+.nav-brand span{color:var(--blue)}
+.nav-links{display:flex;gap:2px}
+.nav-links a{color:var(--muted);text-decoration:none;padding:6px 10px;font-size:11px;font-weight:600;border-radius:6px;letter-spacing:0.5px}
+.nav-links a.active{color:var(--blue);background:rgba(59,130,246,0.1)}
+main{padding:16px;max-width:600px;margin:0 auto}
+.page-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.page-sub{font-size:11px;color:var(--muted);margin-bottom:16px}
+.ts{font-size:10px;color:var(--dim);margin-bottom:12px;font-family:monospace}
+
+/* Stats bar */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:16px}
+.stat{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 4px}
+.stat-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px}
+.stat-value{font-size:18px;font-weight:800;font-family:monospace;margin-top:2px}
+
+/* Order card */
+.order{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px;transition:border-color 0.2s}
+.order:first-of-type{border-color:var(--cyan)}
+.order-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.order-inst{font-size:15px;font-weight:700}
+.order-type{font-size:12px;font-weight:700;padding:3px 8px;border-radius:4px}
+.type-buy{background:rgba(34,197,94,0.12);color:var(--green)}
+.type-sell{background:rgba(239,68,68,0.12);color:var(--red)}
+
+/* Price grid */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.pg{text-align:center;background:rgba(255,255,255,0.02);border-radius:6px;padding:6px}
+.pg-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px}
+.pg-value{font-size:14px;font-weight:700;font-family:monospace;margin-top:2px}
+
+/* Probability */
+.prob-section{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.prob-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.prob-label{font-size:10px;color:var(--dim);min-width:36px;text-transform:uppercase}
+.prob-bar{flex:1;height:8px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden}
+.prob-fill{height:100%;border-radius:4px;transition:width 0.6s ease}
+.prob-pct{font-size:12px;font-weight:700;font-family:monospace;min-width:32px;text-align:right}
+.rr-badge{display:flex;align-items:center;gap:6px}
+.rr-label{font-size:10px;color:var(--dim)}
+.rr-value{font-size:14px;font-weight:800;color:var(--cyan);font-family:monospace}
+
+/* Confluence */
+.conf{font-size:11px;color:var(--muted);line-height:1.5}
+.conf-dots{color:var(--yellow);letter-spacing:3px;font-size:12px;margin-right:6px}
+.conf-tf{font-size:10px;color:var(--dim);margin-top:4px}
+
+/* Empty */
+.empty{text-align:center;padding:60px 20px;color:var(--dim)}
+.empty h3{color:var(--muted);font-size:14px;margin-bottom:8px}
+.empty p{font-size:12px;line-height:1.6}
+footer{text-align:center;padding:20px;font-size:10px;color:var(--dim);border-top:1px solid var(--border)}
+</style>
 </head>
 <body>
-
+<nav>
+  <div class="nav-brand">✈ THE <span>TRADING FLOOR</span></div>
+  <div class="nav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="journal.html">Journal</a>
+    <a href="orders.html" class="active">Orders</a>
+  </div>
+</nav>
 <main>
-  <div class="header">
-    <h1>Limit Orders<small>Nach Wahrscheinlichkeit sortiert &middot; Konfluenz-basiert</small></h1>
-    <div class="timestamp" id="ordersDate"></div>
-  </div>
-  <div style="display:flex;justify-content:center;gap:8px;padding:12px 0 20px;border-bottom:1px solid #1e2a3a;margin-bottom:30px;">
-    <a href="index.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Dashboard</a>
-    <a href="journal.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Journal</a>
-    <a href="orders.html" style="color:#e2e8f0;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;background:rgba(59,130,246,0.15);border:1px solid #3b82f6;letter-spacing:1px;">Orders</a>
-  </div>
-
+  <div class="page-title">Limit Orders</div>
+  <div class="page-sub">Sortiert nach Wahrscheinlichkeit · Konfluenz-basiert</div>
   <div id="content">
-    <div class="loading">
-      <div class="spinner"></div>
-      <p>Lade Orders...</p>
-    </div>
+    <div class="empty"><h3>Lade Orders...</h3></div>
   </div>
 </main>
-
-<footer>
-  The Trading Floor v1.0 &middot; Cockpit Trader &middot; CFD Trading via Vantage
-</footer>
-
+<footer>The Trading Floor · Cockpit Trader · Auction Market Theory</footer>
 <script>
-function updateClock(){
-  const now=new Date();
-  const el=document.getElementById('navTime');
-  if(el) el.textContent=now.toLocaleString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
-}
-updateClock();setInterval(updateClock,30000);
-
-async function loadOrders(){
+async function load(){
   try{
-    const res=await fetch('journal-data.json?t='+Date.now());
-    if(!res.ok) throw new Error('Noch keine Orders vorhanden');
-    return await res.json();
+    const r=await fetch('journal-data.json?t='+Date.now());
+    if(!r.ok) throw new Error();
+    return await r.json();
   }catch(e){
-    document.getElementById('content').innerHTML=`
-      <div class="placeholder">
-        <h3>Orders werden nach der naechsten Morning-Analyse verfuegbar</h3>
-        <p>Claude Code berechnet Limit Orders basierend auf Konfluenz-Analyse.<br>
-        Sortiert nach Wahrscheinlichkeit (P(TP1)), mit R:R und Konfluenz-Score.</p>
-      </div>`;
+    document.getElementById('content').innerHTML='<div class="empty"><h3>Keine Orders vorhanden</h3><p>Werden nach der Morning-Analyse erstellt.</p></div>';
     return null;
   }
 }
-
 function render(d){
-  if(!d) return;
-  const el=document.getElementById('ordersDate');
-  if(el) el.textContent=d.date||'';
+  if(!d)return;
 
-  // Collect all orders from all instruments
-  let allOrders=[];
-  if(d.instruments){
-    for(const inst of d.instruments){
-      if(inst.orders){
-        for(const o of inst.orders){
-          allOrders.push({...o, instrument:inst.name});
-        }
-      }
-    }
-  }
+  // Collect orders from all instruments
+  let all=[];
+  (d.instruments||[]).forEach(inst=>{
+    (inst.orders||[]).forEach(o=>{
+      all.push({...o,instrument:inst.name,bias:inst.bias,bias_score:inst.bias_score});
+    });
+  });
 
   // Sort by P(TP1) descending
-  allOrders.sort((a,b)=>(parseFloat(b.p_tp1)||0)-(parseFloat(a.p_tp1)||0));
+  all.sort((a,b)=>(parseFloat(b.p_tp1)||0)-(parseFloat(a.p_tp1)||0));
 
-  if(!allOrders.length){
-    document.getElementById('content').innerHTML=`
-      <div class="placeholder">
-        <h3>Keine Limit Orders fuer heute</h3>
-        <p>Die Morning-Analyse hat keine Orders mit ausreichender Konfluenz gefunden,<br>
-        oder die Analyse wurde noch nicht durchgefuehrt.</p>
-      </div>`;
+  if(!all.length){
+    document.getElementById('content').innerHTML='<div class="empty"><h3>Keine Orders für heute</h3><p>Kein Setup mit ausreichender Konfluenz gefunden.</p></div>';
     return;
   }
 
-  let html=`<div class="orders-summary">
-    <div class="os-item"><div class="os-label">Gesamt</div><div class="os-value">${allOrders.length}</div></div>
-    <div class="os-item"><div class="os-label">Long</div><div class="os-value" style="color:var(--green)">${allOrders.filter(o=>(o.type||'').includes('Buy')).length}</div></div>
-    <div class="os-item"><div class="os-label">Short</div><div class="os-value" style="color:var(--red)">${allOrders.filter(o=>(o.type||'').includes('Sell')).length}</div></div>
-    <div class="os-item"><div class="os-label">Avg R:R</div><div class="os-value">${(allOrders.reduce((s,o)=>s+(parseFloat(o.rr)||0),0)/allOrders.length).toFixed(1)}</div></div>
-  </div>`;
+  const longs=all.filter(o=>(o.type||'').toLowerCase().includes('buy')).length;
+  const shorts=all.length-longs;
+  const avgRR=(all.reduce((s,o)=>s+(parseFloat(o.rr)||0),0)/all.length).toFixed(1);
 
-  // Order cards (mobile friendly, no table)
-  html+=`<div class="section-title">Orders nach Wahrscheinlichkeit</div>`;
-  html+=`<div class="order-list">`;
+  let h='<div class="ts">'+d.date+'</div>';
+  h+='<div class="stats-bar">';
+  h+='<div class="stat"><div class="stat-label">Total</div><div class="stat-value">'+all.length+'</div></div>';
+  h+='<div class="stat"><div class="stat-label">Long</div><div class="stat-value" style="color:var(--green)">'+longs+'</div></div>';
+  h+='<div class="stat"><div class="stat-label">Short</div><div class="stat-value" style="color:var(--red)">'+shorts+'</div></div>';
+  h+='<div class="stat"><div class="stat-label">Ø R:R</div><div class="stat-value" style="color:var(--cyan)">'+avgRR+'</div></div>';
+  h+='</div>';
 
-  for(const o of allOrders){
-    const isLong=(o.type||'').includes('Buy');
-    const typeColor=isLong?'var(--green)':'var(--red)';
-    const pTp1=parseFloat(o.p_tp1)||0;
+  all.forEach((o,i)=>{
+    const isBuy=(o.type||'').toLowerCase().includes('buy');
+    const typeCls=isBuy?'type-buy':'type-sell';
     const pFill=parseFloat(o.p_fill)||0;
-    const confScore=(o.confluence||'').split('✓').length-1;
+    const pTp1=parseFloat(o.p_tp1)||0;
+    const conf=(o.confluence||'');
+    const dots=conf.split(/[✓+,]/).length-1;
 
-    html+=`
-    <div class="order-card">
-      <div class="order-top">
-        <div class="order-instrument">${o.instrument||'—'}</div>
-        <div class="order-type" style="color:${typeColor}">${o.type||'—'}</div>
-      </div>
-      <div class="order-prices">
-        <div class="op"><div class="op-label">Entry</div><div class="op-value">${o.entry||'—'}</div></div>
-        <div class="op"><div class="op-label">SL</div><div class="op-value" style="color:var(--red)">${o.sl||'—'}</div></div>
-        <div class="op"><div class="op-label">TP1</div><div class="op-value" style="color:var(--green)">${o.tp1||'—'}</div></div>
-        ${o.tp2?`<div class="op"><div class="op-label">TP2</div><div class="op-value" style="color:var(--cyan)">${o.tp2}</div></div>`:''}
-      </div>
-      <div class="order-metrics">
-        <div class="om">
-          <div class="om-label">R:R</div>
-          <div class="om-value">${o.rr||'—'}</div>
-        </div>
-        <div class="om">
-          <div class="om-label">P(Fill)</div>
-          <div class="om-bar"><div class="om-fill" style="width:${pFill}%;background:var(--blue)"></div></div>
-          <div class="om-pct">${o.p_fill||'—'}%</div>
-        </div>
-        <div class="om">
-          <div class="om-label">P(TP1)</div>
-          <div class="om-bar"><div class="om-fill" style="width:${pTp1}%;background:var(--green)"></div></div>
-          <div class="om-pct">${o.p_tp1||'—'}%</div>
-        </div>
-      </div>
-      <div class="order-confluence">
-        <div class="oc-label">Konfluenz</div>
-        <div class="oc-dots">${'●'.repeat(confScore)}${'○'.repeat(4-confScore)}</div>
-        <div class="oc-text">${o.confluence||'—'}</div>
-      </div>
-      <div class="order-meta">
-        <span>TF: ${o.tf||'—'}</span>
-      </div>
-    </div>`;
-  }
-  html+=`</div>`;
+    h+='<div class="order">';
 
-  document.getElementById('content').innerHTML=html;
+    // Header
+    h+='<div class="order-top"><div class="order-inst">'+(o.instrument||'—')+(i===0?' ⭐':'')+'</div>';
+    h+='<div class="order-type '+typeCls+'">'+(o.type||'—')+'</div></div>';
+
+    // Prices
+    h+='<div class="price-grid">';
+    h+='<div class="pg"><div class="pg-label">Entry</div><div class="pg-value">'+(o.entry||'—')+'</div></div>';
+    h+='<div class="pg"><div class="pg-label">Stop</div><div class="pg-value" style="color:var(--red)">'+(o.sl||'—')+'</div></div>';
+    h+='<div class="pg"><div class="pg-label">TP1</div><div class="pg-value" style="color:var(--green)">'+(o.tp1||'—')+'</div></div>';
+    h+='</div>';
+
+    // Probabilities + R:R
+    h+='<div class="prob-section">';
+    h+='<div class="rr-badge"><span class="rr-label">R:R</span><span class="rr-value">'+(o.rr||'—')+'</span></div>';
+    h+='<div class="prob-row"><span class="prob-label">Fill</span><div class="prob-bar"><div class="prob-fill" style="width:'+pFill+'%;background:var(--blue)"></div></div><span class="prob-pct">'+pFill+'%</span></div>';
+    h+='<div class="prob-row"><span class="prob-label">TP1</span><div class="prob-bar"><div class="prob-fill" style="width:'+pTp1+'%;background:var(--green)"></div></div><span class="prob-pct">'+pTp1+'%</span></div>';
+    h+='</div>';
+
+    // Confluence
+    h+='<div class="conf">';
+    h+='<span class="conf-dots">'+'●'.repeat(Math.min(dots,5))+'○'.repeat(Math.max(5-dots,0))+'</span>';
+    h+=conf;
+    if(o.tf) h+='<div class="conf-tf">Timeframe: '+o.tf+'</div>';
+    h+='</div>';
+
+    h+='</div>';
+  });
+
+  document.getElementById('content').innerHTML=h;
 }
-
-loadOrders().then(render);
+load().then(render);
 </script>
 </body>
 </html>
