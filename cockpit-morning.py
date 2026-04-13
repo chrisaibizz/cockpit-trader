@@ -377,8 +377,8 @@ def main():
         f.write(html_embedded)
     print(f"    -> {briefing_path}")
 
-    index_path = os.path.join(script_dir, "index.html")
-    print(">>> Schreibe index.html (GitHub Pages)...")
+    index_path = os.path.join(script_dir, "dashboard-legacy.html")
+    print(">>> Schreibe dashboard-legacy.html (GitHub Pages)...")
     with open(index_path, "w", encoding="utf-8") as f:
         f.write(html_embedded)
     print(f"    -> {index_path}")
