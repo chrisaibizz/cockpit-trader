@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-13T11:15:09.771728",
+  "timestamp": "2026-04-13T12:30:30.773629",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
@@ -14,194 +14,38 @@
         "prev_close": 6824.66
       },
       "market_profile": {
-        "poc": 6823.32,
-        "vah": 6835.31,
-        "val": 6779.99,
-        "vwap": 6805.28,
-        "day_high": 6835.31,
-        "day_low": 6761.55,
+        "poc": 6831.62,
+        "vah": 6836.71,
+        "val": 6818.4,
+        "vwap": 6831.62,
+        "day_high": 6836.71,
+        "day_low": 6818.4,
         "shape": {
-          "name": "Double Distribution",
-          "description": "Zwei Value Areas \u2014 oft Trend-Folgetag."
+          "name": "n/a",
+          "description": ""
         },
-        "volume_profile": [
-          {
-            "price": 6762.47,
-            "volume": 382609887.0
-          },
-          {
-            "price": 6764.32,
-            "volume": 382609887.0
-          },
-          {
-            "price": 6766.16,
-            "volume": 382609887.0
-          },
-          {
-            "price": 6768.0,
-            "volume": 603797122.0
-          },
-          {
-            "price": 6769.85,
-            "volume": 772531855.0
-          },
-          {
-            "price": 6771.69,
-            "volume": 772531855.0
-          },
-          {
-            "price": 6773.54,
-            "volume": 772531855.0
-          },
-          {
-            "price": 6775.38,
-            "volume": 772531855.0
-          },
-          {
-            "price": 6777.22,
-            "volume": 772531855.0
-          },
-          {
-            "price": 6779.07,
-            "volume": 598488287.0
-          },
-          {
-            "price": 6780.91,
-            "volume": 781192595.0
-          },
-          {
-            "price": 6782.76,
-            "volume": 572626276.0
-          },
-          {
-            "price": 6784.6,
-            "volume": 572626276.0
-          },
-          {
-            "price": 6786.44,
-            "volume": 351439041.0
-          },
-          {
-            "price": 6788.29,
-            "volume": 351439041.0
-          },
-          {
-            "price": 6790.13,
-            "volume": 351439041.0
-          },
-          {
-            "price": 6791.98,
-            "volume": 182704308.0
-          },
-          {
-            "price": 6793.82,
-            "volume": 182704308.0
-          },
-          {
-            "price": 6795.66,
-            "volume": 182704308.0
-          },
-          {
-            "price": 6797.51,
-            "volume": 182704308.0
-          },
-          {
-            "price": 6799.35,
-            "volume": 182704308.0
-          },
-          {
-            "price": 6801.2,
-            "volume": 182704308.0
-          },
-          {
-            "price": 6803.04,
-            "volume": 182704308.0
-          },
-          {
-            "price": 6804.88,
-            "volume": 182704308.0
-          },
-          {
-            "price": 6806.73,
-            "volume": 182704308.0
-          },
-          {
-            "price": 6808.57,
-            "volume": 303604308.0
-          },
-          {
-            "price": 6810.42,
-            "volume": 439896308.0
-          },
-          {
-            "price": 6812.26,
-            "volume": 593468308.0
-          },
-          {
-            "price": 6814.1,
-            "volume": 885422308.0
-          },
-          {
-            "price": 6815.95,
-            "volume": 702718000.0
-          },
-          {
-            "price": 6817.79,
-            "volume": 702718000.0
-          },
-          {
-            "price": 6819.64,
-            "volume": 581818000.0
-          },
-          {
-            "price": 6821.48,
-            "volume": 814721000.0
-          },
-          {
-            "price": 6823.32,
-            "volume": 1240561000.0
-          },
-          {
-            "price": 6825.17,
-            "volume": 1240561000.0
-          },
-          {
-            "price": 6827.01,
-            "volume": 1116837000.0
-          },
-          {
-            "price": 6828.86,
-            "volume": 948607000.0
-          },
-          {
-            "price": 6830.7,
-            "volume": 948607000.0
-          },
-          {
-            "price": 6832.54,
-            "volume": 232903000.0
-          },
-          {
-            "price": 6834.39,
-            "volume": 232903000.0
-          }
-        ]
+        "volume_profile": [],
+        "source": "tradingview"
+      },
+      "cvd": {
+        "value": 37864.19,
+        "direction": "bullish"
       },
       "current_price": 6816.89,
       "bias": {
-        "score": 0,
-        "bias": "NEUTRAL",
-        "color": "yellow",
+        "score": -78,
+        "bias": "BEARISH",
+        "color": "red",
         "signals": [
           {
-            "label": "Preis > VWAP",
-            "score": 2,
-            "direction": "bullish"
+            "label": "Preis < VWAP",
+            "score": -2,
+            "direction": "bearish"
           },
           {
-            "label": "In Value Area",
-            "score": 0,
-            "direction": "neutral"
+            "label": "Unter VAL \u2014 Breakdown",
+            "score": -2,
+            "direction": "bearish"
           },
           {
             "label": "Preis < POC",
@@ -209,17 +53,22 @@
             "direction": "bearish"
           },
           {
-            "label": "Shape: Double Distribution",
+            "label": "Shape: n/a",
             "score": 0,
             "direction": "neutral"
           },
           {
-            "label": "Overnight Inventory: Long",
+            "label": "Overnight Inventory: Short",
+            "score": -1,
+            "direction": "bearish"
+          },
+          {
+            "label": "CVD positiv (+37864) \u2014 Kaufdruck",
             "score": 1,
             "direction": "bullish"
           },
           {
-            "label": "VIX 21.33 \u2014 Elevated",
+            "label": "VIX 21.29 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
           },
@@ -264,182 +113,26 @@
         "prev_close": 48185.8
       },
       "market_profile": {
-        "poc": 48220.98,
-        "vah": 48308.11,
-        "val": 47817.01,
-        "vwap": 48052.46,
-        "day_high": 48323.95,
-        "day_low": 47690.27,
+        "poc": 48180.18,
+        "vah": 48256.84,
+        "val": 48037.82,
+        "vwap": 48180.18,
+        "day_high": 48256.84,
+        "day_low": 48037.82,
         "shape": {
-          "name": "Normal Variation",
-          "description": "Leichte Richtung \u2014 Abwarten auf Breakout aus VA."
+          "name": "n/a",
+          "description": ""
         },
-        "volume_profile": [
-          {
-            "price": 47698.19,
-            "volume": 34972500.0
-          },
-          {
-            "price": 47714.03,
-            "volume": 34972500.0
-          },
-          {
-            "price": 47729.87,
-            "volume": 61612270.0
-          },
-          {
-            "price": 47745.72,
-            "volume": 88782657.0
-          },
-          {
-            "price": 47761.56,
-            "volume": 120083215.0
-          },
-          {
-            "price": 47777.4,
-            "volume": 120083215.0
-          },
-          {
-            "price": 47793.24,
-            "volume": 120083215.0
-          },
-          {
-            "price": 47809.08,
-            "volume": 120083215.0
-          },
-          {
-            "price": 47824.93,
-            "volume": 120938373.0
-          },
-          {
-            "price": 47840.77,
-            "volume": 120938373.0
-          },
-          {
-            "price": 47856.61,
-            "volume": 120938373.0
-          },
-          {
-            "price": 47872.45,
-            "volume": 120938373.0
-          },
-          {
-            "price": 47888.29,
-            "volume": 28025545.0
-          },
-          {
-            "price": 47904.14,
-            "volume": 28025545.0
-          },
-          {
-            "price": 47919.98,
-            "volume": 28025545.0
-          },
-          {
-            "price": 47935.82,
-            "volume": 28025545.0
-          },
-          {
-            "price": 47951.66,
-            "volume": 28025545.0
-          },
-          {
-            "price": 47967.5,
-            "volume": 28025545.0
-          },
-          {
-            "price": 47983.35,
-            "volume": 28025545.0
-          },
-          {
-            "price": 47999.19,
-            "volume": 28025545.0
-          },
-          {
-            "price": 48015.03,
-            "volume": 28025545.0
-          },
-          {
-            "price": 48030.87,
-            "volume": 28025545.0
-          },
-          {
-            "price": 48046.71,
-            "volume": 28025545.0
-          },
-          {
-            "price": 48062.56,
-            "volume": 28025545.0
-          },
-          {
-            "price": 48078.4,
-            "volume": 52547215.0
-          },
-          {
-            "price": 48094.24,
-            "volume": 24521670.0
-          },
-          {
-            "price": 48110.08,
-            "volume": 24521670.0
-          },
-          {
-            "price": 48125.92,
-            "volume": 24521670.0
-          },
-          {
-            "price": 48141.77,
-            "volume": 24521670.0
-          },
-          {
-            "price": 48157.61,
-            "volume": 44378595.0
-          },
-          {
-            "price": 48173.45,
-            "volume": 104202763.0
-          },
-          {
-            "price": 48189.29,
-            "volume": 157420422.0
-          },
-          {
-            "price": 48205.13,
-            "volume": 157420422.0
-          },
-          {
-            "price": 48220.98,
-            "volume": 157579534.0
-          },
-          {
-            "price": 48236.82,
-            "volume": 152342297.0
-          },
-          {
-            "price": 48252.66,
-            "volume": 132485372.0
-          },
-          {
-            "price": 48268.5,
-            "volume": 56066226.0
-          },
-          {
-            "price": 48284.34,
-            "volume": 56066226.0
-          },
-          {
-            "price": 48300.19,
-            "volume": 56066226.0
-          },
-          {
-            "price": 48316.03,
-            "volume": 16970263.0
-          }
-        ]
+        "volume_profile": [],
+        "source": "tradingview"
+      },
+      "cvd": {
+        "value": 87904.93,
+        "direction": "bullish"
       },
       "current_price": 47916.57,
       "bias": {
-        "score": -100,
+        "score": -78,
         "bias": "BEARISH",
         "color": "red",
         "signals": [
@@ -449,9 +142,9 @@
             "direction": "bearish"
           },
           {
-            "label": "In Value Area",
-            "score": 0,
-            "direction": "neutral"
+            "label": "Unter VAL \u2014 Breakdown",
+            "score": -2,
+            "direction": "bearish"
           },
           {
             "label": "Preis < POC",
@@ -459,7 +152,7 @@
             "direction": "bearish"
           },
           {
-            "label": "Shape: Normal Variation",
+            "label": "Shape: n/a",
             "score": 0,
             "direction": "neutral"
           },
@@ -469,7 +162,12 @@
             "direction": "bearish"
           },
           {
-            "label": "VIX 21.33 \u2014 Elevated",
+            "label": "CVD positiv (+87905) \u2014 Kaufdruck",
+            "score": 1,
+            "direction": "bullish"
+          },
+          {
+            "label": "VIX 21.29 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
           },
@@ -504,22 +202,22 @@
   },
   "context": {
     "VIX": {
-      "price": 21.33,
-      "change": 2.1,
-      "change_pct": 10.92,
+      "price": 21.29,
+      "change": 2.06,
+      "change_pct": 10.71,
       "high": 21.36,
       "low": 21.1,
       "open": 21.17,
       "prev_close": 19.23
     },
     "DXY": {
-      "price": 98.96,
+      "price": 98.99,
       "change": 0.0,
       "change_pct": 0.0,
       "high": 99.18,
       "low": 98.89,
       "open": 99.05,
-      "prev_close": 98.96
+      "prev_close": 98.99
     },
     "US10Y": {
       "price": 4.32,
@@ -531,11 +229,11 @@
       "prev_close": 4.29
     },
     "DAX": {
-      "price": 23579.77,
-      "change": -224.18,
-      "change_pct": -0.94,
+      "price": 23578.17,
+      "change": -225.78,
+      "change_pct": -0.95,
       "high": 23614.26,
-      "low": 23545.69,
+      "low": 23538.36,
       "open": 23562.19,
       "prev_close": 23803.95
     }

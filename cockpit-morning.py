@@ -365,6 +365,8 @@ def detect_mp_shape(vol_profile, poc_idx, num_bins, df_day):
 # ============================================================
 
 def compute_bias(mp, price, context, cvd=None):
+    if mp.get("vwap") is None:
+        mp["vwap"] = mp.get("poc", 0)
     signals = []
     if mp and price:
         signals.append(("Preis > VWAP", 2, "bullish") if price > mp["vwap"]
