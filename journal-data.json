@@ -1,6 +1,6 @@
 {
   "date": "2026-04-13",
-  "timestamp": "2026-04-13T13:35:10.038834",
+  "timestamp": "2026-04-13T13:49:22.039364",
   "debrief": {
     "orders_checked": 3,
     "fill_rate": "33%",
@@ -11,15 +11,15 @@
   "instruments": [
     {
       "name": "GER40",
-      "bias": "Neutral",
-      "bias_color": "yellow",
-      "bias_score": -9,
-      "bias_pct": "59",
+      "bias": "Baerisch",
+      "bias_color": "red",
+      "bias_score": -45,
+      "bias_pct": "95",
       "bias_signals": [
         {
-          "label": "Preis > VWAP",
-          "score": 2,
-          "direction": "bullish"
+          "label": "Preis < VWAP",
+          "score": -2,
+          "direction": "bearish"
         },
         {
           "label": "Unter VAL — Breakdown",
@@ -42,12 +42,12 @@
           "direction": "bearish"
         },
         {
-          "label": "CVD positiv (+2075) — Kaufdruck",
+          "label": "CVD positiv (+2171) — Kaufdruck",
           "score": 1,
           "direction": "bullish"
         },
         {
-          "label": "VIX 21.1 — Elevated",
+          "label": "VIX 21.26 — Elevated",
           "score": -1,
           "direction": "bearish"
         },
@@ -78,23 +78,24 @@
         }
       ],
       "cvd": {
-        "value": 2074.91,
+        "value": 2170.88,
         "direction": "bullish"
       },
       "quote": {
-        "price": 23561.03,
-        "change": -242.92,
-        "change_pct": -1.02,
+        "price": 23523.6,
+        "change": -280.35,
+        "change_pct": -1.18,
         "high": 23614.26,
-        "low": 23538.36,
+        "low": 23533.54,
         "open": 23562.19,
-        "prev_close": 23803.95
+        "prev_close": 23803.95,
+        "source": "tradingview_live"
       },
       "market_profile": {
         "poc": 23908.87,
         "vah": 23933.87,
         "val": 23750.55,
-        "vwap": 23550.88,
+        "vwap": 23550.01,
         "day_high": 23933.87,
         "day_low": 23750.55,
         "shape": {
@@ -104,11 +105,11 @@
         "volume_profile": [],
         "source": "tradingview"
       },
-      "current_price": 23561.03,
-      "daily_summary": "Bias Neutral (Score -9). Vortag Range: 23750.55 – 23933.87. VIX=21.1.",
+      "current_price": 23523.6,
+      "daily_summary": "Bias Baerisch (Score -45). Vortag Range: 23750.55 – 23933.87. VIX=21.3.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 23561.03 ueber VWAP (23550.88), ausserhalb Value Area. POC=23908.87 VAH=23933.87 VAL=23750.55. CVD +2075 (Kaufdruck). Shape: Normal Variation (Up).",
+      "h30m_summary": "Kurs 23523.6 unter VWAP (23550.01), ausserhalb Value Area. POC=23908.87 VAH=23933.87 VAL=23750.55. CVD +2171 (Kaufdruck). Shape: Normal Variation (Up).",
       "mp_shape_yesterday": "Normal Variation (Up)",
       "mp_shape_forecast": "Normal Variation (Up)",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -130,7 +131,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "23550.88",
+          "price": "23550.01",
           "source": "VWAP"
         }
       ],
@@ -142,28 +143,28 @@
           "tp1": "23750.55",
           "tp2": "23658.89",
           "rr": "3.17",
-          "p_fill": "24",
-          "p_tp1": "19",
+          "p_fill": "70",
+          "p_tp1": "52",
           "tf": "30M",
-          "confluence": "Unter VAL — Breakdown + Preis < POC + Overnight Inventory: Short (NEUTRAL Bias — geringere Konfluenz)",
+          "confluence": "Preis < VWAP + Unter VAL — Breakdown + Preis < POC",
           "mp_shape_yesterday": "Normal Variation (Up)",
           "mp_shape_forecast": "Normal Variation (Up)",
-          "vwap_position": "Preis ueber VWAP"
+          "vwap_position": "Preis unter VWAP"
         }
       ],
-      "invalidation": "Kurs bricht aus Value Area (23750.55–23933.87) aus"
+      "invalidation": "Kurs schliesst ueber 23933.87 — bearischer Bias negiert"
     },
     {
       "name": "US30",
-      "bias": "Neutral",
-      "bias_color": "yellow",
-      "bias_score": -9,
-      "bias_pct": "59",
+      "bias": "Baerisch",
+      "bias_color": "red",
+      "bias_score": -45,
+      "bias_pct": "95",
       "bias_signals": [
         {
-          "label": "Preis > VWAP",
-          "score": 2,
-          "direction": "bullish"
+          "label": "Preis < VWAP",
+          "score": -2,
+          "direction": "bearish"
         },
         {
           "label": "Unter VAL — Breakdown",
@@ -191,7 +192,7 @@
           "direction": "bullish"
         },
         {
-          "label": "VIX 21.1 — Elevated",
+          "label": "VIX 21.26 — Elevated",
           "score": -1,
           "direction": "bearish"
         },
@@ -226,19 +227,20 @@
         "direction": "bullish"
       },
       "quote": {
-        "price": 47916.57,
-        "change": -269.23,
-        "change_pct": -0.56,
+        "price": 47504.15,
+        "change": -681.65,
+        "change_pct": -1.41,
         "high": 48235.06,
         "low": 47856.18,
         "open": 48199.39,
-        "prev_close": 48185.8
+        "prev_close": 48185.8,
+        "source": "tradingview_live"
       },
       "market_profile": {
         "poc": 48180.18,
         "vah": 48256.84,
         "val": 48037.82,
-        "vwap": 47614.05,
+        "vwap": 47611.47,
         "day_high": 48256.84,
         "day_low": 48037.82,
         "shape": {
@@ -248,11 +250,11 @@
         "volume_profile": [],
         "source": "tradingview"
       },
-      "current_price": 47916.57,
-      "daily_summary": "Bias Neutral (Score -9). Vortag Range: 48037.82 – 48256.84. VIX=21.1.",
+      "current_price": 47504.15,
+      "daily_summary": "Bias Baerisch (Score -45). Vortag Range: 48037.82 – 48256.84. VIX=21.3.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 47916.57 ueber VWAP (47614.05), ausserhalb Value Area. POC=48180.18 VAH=48256.84 VAL=48037.82. CVD +88306 (Kaufdruck). Shape: Normal Variation (Up).",
+      "h30m_summary": "Kurs 47504.15 unter VWAP (47611.47), ausserhalb Value Area. POC=48180.18 VAH=48256.84 VAL=48037.82. CVD +88306 (Kaufdruck). Shape: Normal Variation (Up).",
       "mp_shape_yesterday": "Normal Variation (Up)",
       "mp_shape_forecast": "Normal Variation (Up)",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -274,7 +276,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "47614.05",
+          "price": "47611.47",
           "source": "VWAP"
         }
       ],
@@ -286,16 +288,16 @@
           "tp1": "48037.82",
           "tp2": "47928.31",
           "rr": "3.17",
-          "p_fill": "24",
-          "p_tp1": "19",
+          "p_fill": "70",
+          "p_tp1": "52",
           "tf": "30M",
-          "confluence": "Unter VAL — Breakdown + Preis < POC + Overnight Inventory: Short (NEUTRAL Bias — geringere Konfluenz)",
+          "confluence": "Preis < VWAP + Unter VAL — Breakdown + Preis < POC",
           "mp_shape_yesterday": "Normal Variation (Up)",
           "mp_shape_forecast": "Normal Variation (Up)",
-          "vwap_position": "Preis ueber VWAP"
+          "vwap_position": "Preis unter VWAP"
         }
       ],
-      "invalidation": "Kurs bricht aus Value Area (48037.82–48256.84) aus"
+      "invalidation": "Kurs schliesst ueber 48256.84 — bearischer Bias negiert"
     },
     {
       "name": "SPX500",
@@ -335,7 +337,7 @@
           "direction": "bullish"
         },
         {
-          "label": "VIX 21.1 — Elevated",
+          "label": "VIX 21.26 — Elevated",
           "score": -1,
           "direction": "bearish"
         },
@@ -370,19 +372,20 @@
         "direction": "bullish"
       },
       "quote": {
-        "price": 6816.89,
-        "change": -7.77,
-        "change_pct": -0.11,
+        "price": 6778.53,
+        "change": -46.13,
+        "change_pct": -0.68,
         "high": 6845.77,
         "low": 6808.46,
         "open": 6839.24,
-        "prev_close": 6824.66
+        "prev_close": 6824.66,
+        "source": "tradingview_live"
       },
       "market_profile": {
         "poc": 6831.62,
         "vah": 6836.71,
         "val": 6818.4,
-        "vwap": 6769.37,
+        "vwap": 6769.67,
         "day_high": 6836.71,
         "day_low": 6818.4,
         "shape": {
@@ -392,11 +395,11 @@
         "volume_profile": [],
         "source": "tradingview"
       },
-      "current_price": 6816.89,
-      "daily_summary": "Bias Baerisch (Score -33). Vortag Range: 6818.4 – 6836.71. VIX=21.1.",
+      "current_price": 6778.53,
+      "daily_summary": "Bias Baerisch (Score -33). Vortag Range: 6818.4 – 6836.71. VIX=21.3.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 6816.89 ueber VWAP (6769.37), ausserhalb Value Area. POC=6831.62 VAH=6836.71 VAL=6818.4. CVD +37933 (Kaufdruck). Shape: Normal Variation.",
+      "h30m_summary": "Kurs 6778.53 ueber VWAP (6769.67), ausserhalb Value Area. POC=6831.62 VAH=6836.71 VAL=6818.4. CVD +37933 (Kaufdruck). Shape: Normal Variation.",
       "mp_shape_yesterday": "Normal Variation",
       "mp_shape_forecast": "Normal Variation",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -418,7 +421,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "6769.37",
+          "price": "6769.67",
           "source": "VWAP"
         }
       ],
@@ -443,13 +446,13 @@
     }
   ],
   "summary": {
-    "best_instrument": "GER40",
+    "best_instrument": "SPX500",
     "total_orders": 3,
     "warnings": [
-      "VIX 21.1 — Elevated, Vorsicht bei Einstiegen",
-      "VIX steigt stark (+9.7%) — Volatilitaet im Wandel"
+      "VIX 21.3 — Elevated, Vorsicht bei Einstiegen",
+      "VIX steigt stark (+10.6%) — Volatilitaet im Wandel"
     ],
-    "notes": "Auto-generiert 13:35. VIX=21.1. Beste Konfluenz: GER40."
+    "notes": "Auto-generiert 13:49. VIX=21.3. Beste Konfluenz: SPX500."
   },
   "stats": {
     "total": 3,

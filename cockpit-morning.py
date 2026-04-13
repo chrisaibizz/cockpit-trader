@@ -355,6 +355,51 @@ def get_tv_data(ticker, timeframe="30"):
             })()
         """)
 
+        # 4c. Aktueller Kurs aus TradingView (letzter Bar-Close der Main Series)
+        tv_price_raw = _eval("""
+            (function() {
+              try {
+                var chart = window.TradingViewApi._activeChartWidgetWV.value()._chartWidget;
+                var ms = chart.model().model().mainSeries();
+                // Methode 1: Data Window View (zeigt OHLCV des letzten Bars)
+                if (ms.dataWindowView) {
+                  var dwv = ms.dataWindowView();
+                  if (dwv && dwv.items) {
+                    var items = dwv.items();
+                    for (var i = 0; i < (items||[]).length; i++) {
+                      var it = items[i];
+                      var title = (it._title||'').toUpperCase();
+                      if ((title==='C'||title==='CLOSE'||title==='LAST') && it._value && it._value!=='\u2205') {
+                        var v = parseFloat(it._value.replace(/[^0-9.\-]/g,''));
+                        if (!isNaN(v) && v > 10) return v;
+                      }
+                    }
+                    // Fallback: erster gueltiger numerischer Wert
+                    for (var i = 0; i < (items||[]).length; i++) {
+                      var it = items[i];
+                      if (it._value && it._value!=='\u2205') {
+                        var v = parseFloat(it._value.replace(/[^0-9.\-]/g,''));
+                        if (!isNaN(v) && v > 10) return v;
+                      }
+                    }
+                  }
+                }
+                // Methode 2: letzter Bar aus der Datenreihe
+                var bars = ms.data().bars();
+                var n = bars.size();
+                if (n > 0) {
+                  var last = bars.get(n-1);
+                  if (last && last.value) {
+                    for (var idx = 4; idx >= 1; idx--) {
+                      if (typeof last.value[idx]==='number' && last.value[idx]>10) return last.value[idx];
+                    }
+                  }
+                }
+                return null;
+              } catch(e) { return null; }
+            })()
+        """)
+
         ws.close()
 
         # 5. MP verarbeiten
@@ -391,11 +436,20 @@ def get_tv_data(ticker, timeframe="30"):
             print(f"    CVD (TradingView): {val_cvd:+.0f} ({direction})")
             cvd = {"value": val_cvd, "direction": direction}
 
-        return mp, cvd
+        # 7. Live-Preis verarbeiten
+        tv_price = None
+        if tv_price_raw is not None:
+            try:
+                tv_price = round(float(tv_price_raw), 2)
+                print(f"    Kurs (TradingView live): {tv_price}")
+            except (TypeError, ValueError):
+                pass
+
+        return mp, cvd, tv_price
 
     except Exception as e:
         print(f"    TV CDP nicht verfuegbar ({type(e).__name__}): {e}")
-        return None, None
+        return None, None, None
 
 
 def compute_market_profile(df_day):
@@ -611,14 +665,27 @@ def process_instrument(ticker, name):
     df_day = df[dates == last_full_day]
     print(f"  Bars fuer MP: {len(df_day)}")
 
-    mp_tv, cvd = get_tv_data(ticker)
+    mp_tv, cvd, tv_price = get_tv_data(ticker)
     mp = mp_tv or compute_market_profile(df_day)
     q  = fetch_quote(ticker)
+
+    # TV-Live-Preis ersetzt Yahoo-Close fuer Dashboard-Anzeige
+    if tv_price is not None and q:
+        prev_close  = q["prev_close"]
+        q["price"]       = tv_price
+        q["change"]      = round(tv_price - prev_close, 2)
+        q["change_pct"]  = round((tv_price - prev_close) / prev_close * 100, 2)
+        q["source"]      = "tradingview_live"
+        print(f"    Kurs Dashboard (TV live): {tv_price} "
+              f"({q['change']:+.2f} / {q['change_pct']:+.2f}% vs Vortag)")
+    elif q:
+        q["source"] = "yahoo_eod"
+
     return {
         "name": name, "ticker": ticker,
         "quote": q, "market_profile": mp,
         "cvd": cvd,
-        "current_price": q["price"] if q else None,
+        "current_price": tv_price if tv_price else (q["price"] if q else None),
     }
 
 # ============================================================
