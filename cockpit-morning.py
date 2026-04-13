@@ -625,11 +625,374 @@ def process_instrument(ticker, name):
 # 5. MAIN
 # ============================================================
 
+def generate_order(inst, mp, price, bias_data, shape_name):
+    """
+    Generiert automatisch eine Order aus Market-Profile-Daten und Bias.
+    Gibt None zurueck wenn kein klares Setup vorhanden.
+    """
+    if not mp or not price:
+        return None
+    poc  = mp.get("poc", 0)
+    vah  = mp.get("vah", 0)
+    val  = mp.get("val", 0)
+    vwap = mp.get("vwap") or poc
+    if vah == val:
+        return None
+
+    va_range = vah - val
+    bias     = bias_data.get("bias", "NEUTRAL")
+    score    = bias_data.get("score", 0)
+    signals  = bias_data.get("signals", [])
+
+    # Richtung bestimmen: bei NEUTRAL aus Score-Vorzeichen + Preis-Position ableiten
+    if bias == "NEUTRAL":
+        # Preis-Position gibt zusaetzlichen Hinweis
+        below_val  = price < val
+        above_vah  = price > vah
+        below_vwap = price < vwap
+        if score < 0 or below_val or (below_vwap and score <= 0):
+            effective_bias = "BEARISH"
+        elif score > 0 or above_vah or (not below_vwap and score >= 0):
+            effective_bias = "BULLISH"
+        else:
+            effective_bias = "BEARISH"  # Tiebreak: bearisch wenn unklar
+        # Niedrigere Wahrscheinlichkeiten fuer NEUTRAL-abgeleitete Orders
+        neutral_penalty = 15
+    else:
+        effective_bias  = bias
+        neutral_penalty = 0
+
+    # Konfluenz: Top-3 passende Signale
+    direction_sigs = [s["label"] for s in signals
+                      if (effective_bias == "BULLISH" and s["direction"] == "bullish")
+                      or (effective_bias == "BEARISH" and s["direction"] == "bearish")]
+    confluence = " + ".join(direction_sigs[:3]) or "MP-Levels + Score-Richtung"
+    if bias == "NEUTRAL":
+        confluence += " (NEUTRAL Bias — geringere Konfluenz)"
+
+    # VWAP-Position relativ zu Preis
+    vwap_pos = ("Preis ueber VWAP" if price > vwap
+                else "Preis unter VWAP" if price < vwap
+                else "Preis an VWAP")
+
+    # P(Fill) und P(TP1) basierend auf Score
+    abs_score = abs(score)
+    p_fill = max(20, min(70, 30 + abs_score) - neutral_penalty)
+    p_tp1  = max(15, min(65, 30 + abs_score // 2) - neutral_penalty)
+
+    if effective_bias == "BULLISH":
+        # Buy-Setup: Entry an VAL oder VWAP (tiefer von beiden)
+        entry = round(min(val, vwap) + va_range * 0.05, 2)
+        sl    = round(entry - va_range * 0.30, 2)
+        tp1   = round(vah, 2)
+        tp2   = round(vah + va_range * 0.50, 2)
+        order_type = "Limit Buy"
+    else:  # BEARISH
+        # Sell-Setup: Entry an VAH oder VWAP (hoeher von beiden)
+        entry = round(max(vah, vwap) - va_range * 0.05, 2)
+        sl    = round(entry + va_range * 0.30, 2)
+        tp1   = round(val, 2)
+        tp2   = round(val - va_range * 0.50, 2)
+        order_type = "Limit Sell"
+
+    rr_raw = abs(tp1 - entry) / abs(sl - entry) if abs(sl - entry) > 0 else 0
+    if rr_raw < 1.0:
+        return None  # Unguenstiges R:R — kein Order
+
+    return {
+        "type":               order_type,
+        "entry":              str(entry),
+        "sl":                 str(sl),
+        "tp1":                str(tp1),
+        "tp2":                str(tp2),
+        "rr":                 str(round(rr_raw, 2)),
+        "p_fill":             str(p_fill),
+        "p_tp1":              str(p_tp1),
+        "tf":                 "30M",
+        "confluence":         confluence,
+        "mp_shape_yesterday": shape_name,
+        "mp_shape_forecast":  shape_name,
+        "vwap_position":      vwap_pos,
+    }
+
+
+def generate_journal_data(instruments_map, ctx, cal, script_dir):
+    """
+    Erstellt journal-data.json aus den Instrument-Analyse-Daten.
+    instruments_map: {"GER40": ger_inst, "US30": dji_inst, "SPX500": spx_inst}
+    """
+    import subprocess
+    today = datetime.now().strftime("%Y-%m-%d")
+    today_time = datetime.now().strftime("%H:%M")
+
+    vix_price  = (ctx.get("VIX") or {}).get("price", 0)
+    vix_chg    = (ctx.get("VIX") or {}).get("change_pct", 0)
+    dxy_chg    = (ctx.get("DXY") or {}).get("change_pct", 0)
+
+    journal_instruments = []
+    all_orders_for_sheet = []
+    warnings = []
+
+    if vix_price > 25:
+        warnings.append(f"VIX {vix_price:.1f} — High Fear! Stops enger setzen")
+    elif vix_price > 20:
+        warnings.append(f"VIX {vix_price:.1f} — Elevated, Vorsicht bei Einstiegen")
+    if abs(vix_chg) > 5:
+        direction = "steigt" if vix_chg > 0 else "faellt"
+        warnings.append(f"VIX {direction} stark ({vix_chg:+.1f}%) — Volatilitaet im Wandel")
+    if abs(dxy_chg) > 0.5:
+        direction = "steigt" if dxy_chg > 0 else "faellt"
+        warnings.append(f"USD {direction} ({dxy_chg:+.2f}%) — Richtungsrisiko beachten")
+
+    name_map = {
+        "GER40":  "GER40",
+        "US30":   "US30",
+        "SPX500": "SP500",
+    }
+
+    best_inst = None
+    best_score = -999
+
+    for display_name, inst in instruments_map.items():
+        mp         = inst.get("market_profile") or {}
+        price      = inst.get("current_price")
+        bias_data  = inst.get("bias") or {}
+        cvd        = inst.get("cvd") or {}
+        q          = inst.get("quote") or {}
+        shape_name = (mp.get("shape") or {}).get("name", "n/a")
+        bias_str   = bias_data.get("bias", "NEUTRAL")
+        score      = bias_data.get("score", 0)
+
+        # Bias-String auf Deutsch
+        bias_de = {"BULLISH": "Bullisch", "BEARISH": "Baerisch", "NEUTRAL": "Neutral"}.get(bias_str, "Neutral")
+        bias_pct = min(95, 50 + abs(score))
+
+        # Key Levels
+        key_levels = []
+        if mp.get("vah"):  key_levels.append({"level": "VAH Vortag", "price": str(mp["vah"]), "source": "Market Profile"})
+        if mp.get("poc"):  key_levels.append({"level": "POC Vortag", "price": str(mp["poc"]), "source": "Market Profile"})
+        if mp.get("val"):  key_levels.append({"level": "VAL Vortag", "price": str(mp["val"]), "source": "Market Profile"})
+        if mp.get("vwap"): key_levels.append({"level": "VWAP 30M",  "price": str(mp["vwap"]), "source": "VWAP"})
+
+        # VWAP-Position-Summary
+        vwap = mp.get("vwap") or mp.get("poc", 0)
+        vwap_txt = ("ueber VWAP" if price and price > vwap else "unter VWAP") if price else "?"
+        in_va = (mp.get("val", 0) <= (price or 0) <= mp.get("vah", 0)) if price else False
+        va_txt = "in Value Area" if in_va else "ausserhalb Value Area"
+
+        # Auto-Summary basierend auf Daten
+        cvd_txt = ""
+        if cvd.get("value") is not None:
+            v = cvd["value"]
+            cvd_txt = f" CVD {v:+.0f} ({'Kaufdruck' if v > 0 else 'Verkaufsdruck'})."
+
+        h30m_summary = (
+            f"Kurs {price} {vwap_txt} ({vwap}), {va_txt}. "
+            f"POC={mp.get('poc')} VAH={mp.get('vah')} VAL={mp.get('val')}.{cvd_txt} "
+            f"Shape: {shape_name}."
+        )
+        daily_summary = (
+            f"Bias {bias_de} (Score {score}). "
+            f"Vortag Range: {mp.get('day_low')} – {mp.get('day_high')}. "
+            f"VIX={vix_price:.1f}."
+        )
+
+        # Auto-Order generieren
+        order = generate_order(display_name, mp, price, bias_data, shape_name)
+        orders_list = [order] if order else []
+
+        # Invalidierung
+        if bias_str == "BULLISH":
+            invalidation = f"Kurs schliesst unter {mp.get('val')} — bullischer Bias negiert"
+        elif bias_str == "BEARISH":
+            invalidation = f"Kurs schliesst ueber {mp.get('vah')} — bearischer Bias negiert"
+        else:
+            invalidation = f"Kurs bricht aus Value Area ({mp.get('val')}–{mp.get('vah')}) aus"
+
+        journal_instruments.append({
+            "name":                display_name,
+            "bias":                bias_de,
+            "bias_pct":            str(bias_pct),
+            "daily_summary":       daily_summary,
+            "h4_summary":          "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
+            "h1_summary":          "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
+            "h30m_summary":        h30m_summary,
+            "mp_shape_yesterday":  shape_name,
+            "mp_shape_forecast":   shape_name,
+            "mp_5day_sequence":    "5-Tage-Sequenz: automatische Berechnung folgt",
+            "key_levels":          key_levels,
+            "orders":              orders_list,
+            "invalidation":        invalidation,
+        })
+
+        # Sheet-Orders vorbereiten (mit Instrument-Name)
+        for ord_data in orders_list:
+            sheet_order = {
+                "date":               today,
+                "time":               today_time,
+                "instrument":         display_name,
+                "bias":               bias_de,
+                "bias_pct":           str(bias_pct),
+                "notes":              f"Auto-generiert | VIX={vix_price:.1f}",
+            }
+            sheet_order.update(ord_data)
+            all_orders_for_sheet.append(sheet_order)
+
+        if score > best_score:
+            best_score = score
+            best_inst  = display_name
+
+    # Stats aus altem journal-data.json lesen
+    stats = {"total": len(all_orders_for_sheet), "fill_rate": "n/a", "tp1_rate": "n/a", "trend": "laufend"}
+    old_journal_path = os.path.join(script_dir, "journal-data.json")
+    if os.path.exists(old_journal_path):
+        try:
+            with open(old_journal_path, encoding="utf-8") as f:
+                old = json.load(f)
+            stats = old.get("stats", stats)
+        except Exception:
+            pass
+
+    journal = {
+        "date":        today,
+        "timestamp":   datetime.now().isoformat(),
+        "debrief": {
+            "orders_checked": len(all_orders_for_sheet),
+            "fill_rate":      stats.get("fill_rate", "n/a"),
+            "tp1_rate":       stats.get("tp1_rate", "n/a"),
+            "trend":          stats.get("trend", "laufend"),
+            "learnings":      [],
+        },
+        "instruments": journal_instruments,
+        "summary": {
+            "best_instrument": best_inst or "n/a",
+            "total_orders":    len(all_orders_for_sheet),
+            "warnings":        warnings,
+            "notes":           (
+                f"Auto-generiert {datetime.now().strftime('%H:%M')}. "
+                f"VIX={vix_price:.1f}. "
+                f"Beste Konfluenz: {best_inst}."
+            ),
+        },
+        "stats": stats,
+    }
+
+    # journal-data.json schreiben
+    jpath = os.path.join(script_dir, "journal-data.json")
+    with open(jpath, "w", encoding="utf-8") as f:
+        json.dump(journal, f, indent=2, ensure_ascii=False, default=str)
+    print(f"    -> {jpath}")
+    print(f"    -> {len(journal_instruments)} Instrumente, {len(all_orders_for_sheet)} Orders")
+
+    return journal, all_orders_for_sheet
+
+
+def run_pipeline(journal, orders, script_dir):
+    """
+    Fuehrt die komplette Pipeline aus:
+    1. Orders → Google Sheet (journal.js write-multiple)
+    2. Report → Google Doc  (journal.js report)
+    3. git push
+    """
+    import subprocess
+
+    journal_js = os.path.normpath(
+        os.path.join(script_dir, "..", "trading-journal", "journal.js")
+    )
+    if not os.path.exists(journal_js):
+        print(f"    WARNUNG: journal.js nicht gefunden: {journal_js}")
+        return
+
+    today = datetime.now().strftime("%Y-%m-%d")
+
+    # 1. Orders → Google Sheet
+    if orders:
+        print("\n>>> Google Sheet: Orders schreiben...")
+        orders_json = json.dumps(orders, ensure_ascii=False, default=str)
+        try:
+            result = subprocess.run(
+                ["node", journal_js, "write-multiple", orders_json],
+                capture_output=True, text=True, timeout=30, encoding="utf-8"
+            )
+            if result.returncode == 0:
+                print(f"    -> {result.stdout.strip()}")
+            else:
+                print(f"    FEHLER: {result.stderr.strip()[:200]}")
+        except Exception as e:
+            print(f"    FEHLER (Sheet): {e}")
+    else:
+        print("\n>>> Google Sheet: Keine Orders (NEUTRAL Bias)")
+
+    # 2. Report → Google Doc
+    print("\n>>> Google Docs: Morning Report erstellen...")
+    report_payload = {
+        "date":        today,
+        "timestamp":   journal["timestamp"],
+        "instruments": journal["instruments"],
+        "summary":     journal["summary"],
+        "context":     {},
+    }
+    report_json = json.dumps(report_payload, ensure_ascii=False, default=str)
+    try:
+        result = subprocess.run(
+            ["node", journal_js, "report", report_json],
+            capture_output=True, text=True, timeout=60, encoding="utf-8"
+        )
+        if result.returncode == 0:
+            print(f"    -> {result.stdout.strip()[:300]}")
+        else:
+            print(f"    FEHLER: {result.stderr.strip()[:200]}")
+    except Exception as e:
+        print(f"    FEHLER (Doc): {e}")
+
+    # 3. Stats aktualisieren
+    print("\n>>> Google Sheet: Stats aktualisieren...")
+    try:
+        result = subprocess.run(
+            ["node", journal_js, "stats"],
+            capture_output=True, text=True, timeout=30, encoding="utf-8"
+        )
+        if result.returncode == 0:
+            out = json.loads(result.stdout.strip())
+            print(f"    -> Fill Rate: {out.get('fill_rate','?')}  "
+                  f"TP1 Rate: {out.get('tp1_rate','?')}  "
+                  f"Trend: {out.get('trend','?')}")
+        else:
+            print(f"    FEHLER: {result.stderr.strip()[:200]}")
+    except Exception as e:
+        print(f"    FEHLER (Stats): {e}")
+
+    # 4. git push
+    print("\n>>> Git push...")
+    try:
+        add_result = subprocess.run(
+            ["git", "add", "-A"],
+            capture_output=True, text=True, cwd=script_dir, encoding="utf-8"
+        )
+        commit_msg = f"Morning Briefing {today} — GER40/US30/SPX500 Auto-Pipeline"
+        commit_result = subprocess.run(
+            ["git", "commit", "-m", commit_msg],
+            capture_output=True, text=True, cwd=script_dir, encoding="utf-8"
+        )
+        if "nothing to commit" in commit_result.stdout:
+            print("    -> Keine neuen Aenderungen zum Committen")
+        else:
+            print(f"    -> Commit: {commit_result.stdout.strip()[:100]}")
+            push_result = subprocess.run(
+                ["git", "push", "origin", "main"],
+                capture_output=True, text=True, cwd=script_dir, encoding="utf-8"
+            )
+            print(f"    -> Push: {'OK' if push_result.returncode == 0 else push_result.stderr.strip()[:100]}")
+    except Exception as e:
+        print(f"    FEHLER (git): {e}")
+
+
 def main():
     print("\n>>> main() gestartet")
 
-    spx = process_instrument("^GSPC", "S&P 500 (Kassa)")
-    dji = process_instrument("^DJI",  "Dow Jones (Kassa)")
+    spx  = process_instrument("^GSPC",  "S&P 500 (Kassa)")
+    dji  = process_instrument("^DJI",   "Dow Jones (Kassa)")
+    ger  = process_instrument("^GDAXI", "DAX (Kassa)")
 
     print("\n>>> Context-Daten holen...")
     ctx = {
@@ -642,13 +1005,14 @@ def main():
     print("\n>>> Bias berechnen...")
     spx["bias"] = compute_bias(spx.get("market_profile"), spx.get("current_price"), ctx, spx.get("cvd"))
     dji["bias"] = compute_bias(dji.get("market_profile"), dji.get("current_price"), ctx, dji.get("cvd"))
+    ger["bias"] = compute_bias(ger.get("market_profile"), ger.get("current_price"), ctx, ger.get("cvd"))
 
     print("\n>>> Kalender holen...")
     cal = fetch_calendar()
 
     out = {
         "timestamp":   datetime.now().isoformat(),
-        "instruments": {"SPX": spx, "DJI": dji},
+        "instruments": {"SPX": spx, "DJI": dji, "GER": ger},
         "context":     ctx,
         "calendar":    cal,
     }
@@ -689,25 +1053,39 @@ def main():
         f.write(html_embedded)
     print(f"    -> {index_path}")
 
+    # Summary-Print
     print(f"\n{'='*50}")
     print(f"Timestamp: {out['timestamp']}")
-    for k, inst in out["instruments"].items():
+    inst_labels = {"SPX": spx, "DJI": dji, "GER": ger}
+    for k, inst in inst_labels.items():
         q  = inst.get("quote")          or {}
         mp = inst.get("market_profile") or {}
         b  = inst.get("bias",           {})
         print(f"\n  {k}:")
         if q:  print(f"    Kurs:  {q['price']}  ({q['change']:+.2f} / {q['change_pct']:+.2f}%)")
-        if mp: print(f"    Levels: POC={mp['poc']}  VAH={mp['vah']}  VAL={mp['val']}  VWAP={mp['vwap']}")
-        if mp: print(f"    Shape:  {mp['shape']['name']}")
-        if b:  print(f"    Bias:   {b['bias']} (Score: {b['score']})")
+        if mp: print(f"    Levels: POC={mp.get('poc')}  VAH={mp.get('vah')}  VAL={mp.get('val')}  VWAP={mp.get('vwap')}")
+        if mp: print(f"    Shape:  {(mp.get('shape') or {}).get('name','?')}")
+        if b:  print(f"    Bias:   {b.get('bias','?')} (Score: {b.get('score','?')})")
 
     print(f"\nKalender: {len(cal)} Events")
     for e in cal[:8]:
         print(f"  {e.get('date','')} {str(e['time'])[11:16]}  {e['event']} ({e['country']}) [{e['impact']}]")
 
-    print(f"\n✅ Fertig!")
-    print(f"   Lokal:  cockpit-briefing.html per Doppelklick oeffnen")
-    print(f"   iPhone: https://chrisaibizz.github.io/cockpit-trader/")
+    # ── PIPELINE ──────────────────────────────────────────────
+    print("\n>>> journal-data.json generieren...")
+    instruments_map = {
+        "GER40":  ger,
+        "US30":   dji,
+        "SPX500": spx,
+    }
+    journal, orders = generate_journal_data(instruments_map, ctx, cal, script_dir)
+
+    print("\n>>> Pipeline starten (Sheet / Doc / git)...")
+    run_pipeline(journal, orders, script_dir)
+
+    print("\nFertig!")
+    print("   Lokal:  cockpit-briefing.html per Doppelklick oeffnen")
+    print("   iPhone: https://chrisaibizz.github.io/cockpit-trader/")
 
 if __name__ == "__main__":
     try:
