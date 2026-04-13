@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-13T12:49:01.987500",
+  "timestamp": "2026-04-13T12:58:51.381260",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
@@ -17,7 +17,7 @@
         "poc": 6831.62,
         "vah": 6836.71,
         "val": 6818.4,
-        "vwap": 6767.97,
+        "vwap": 6768.11,
         "day_high": 6836.71,
         "day_low": 6818.4,
         "shape": {
@@ -68,7 +68,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX 21.28 \u2014 Elevated",
+            "label": "VIX 21.31 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
           },
@@ -116,7 +116,7 @@
         "poc": 48180.18,
         "vah": 48256.84,
         "val": 48037.82,
-        "vwap": 47604.26,
+        "vwap": 47605.99,
         "day_high": 48256.84,
         "day_low": 48037.82,
         "shape": {
@@ -167,7 +167,106 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX 21.28 \u2014 Elevated",
+            "label": "VIX 21.31 \u2014 Elevated",
+            "score": -1,
+            "direction": "bearish"
+          },
+          {
+            "label": "VIX rising sharply",
+            "score": -1,
+            "direction": "bearish"
+          },
+          {
+            "label": "Yields stabil",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Daily OTF Check",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Gap Analysis",
+            "score": 0,
+            "direction": "neutral"
+          },
+          {
+            "label": "Session Expectation",
+            "score": 0,
+            "direction": "neutral"
+          }
+        ]
+      }
+    },
+    "GER": {
+      "name": "DAX (Kassa)",
+      "ticker": "^GDAXI",
+      "quote": {
+        "price": 23562.62,
+        "change": -241.33,
+        "change_pct": -1.01,
+        "high": 23614.26,
+        "low": 23538.36,
+        "open": 23562.19,
+        "prev_close": 23803.95
+      },
+      "market_profile": {
+        "poc": 23908.87,
+        "vah": 23933.87,
+        "val": 23750.55,
+        "vwap": 23548.93,
+        "day_high": 23933.87,
+        "day_low": 23750.55,
+        "shape": {
+          "name": "Normal Variation (Up)",
+          "description": "Leicht bullischer Bias \u2014 Abwarten auf Breakout aus VA"
+        },
+        "volume_profile": [],
+        "source": "tradingview"
+      },
+      "cvd": {
+        "value": 1999.22,
+        "direction": "bullish"
+      },
+      "current_price": 23562.62,
+      "bias": {
+        "score": -9,
+        "bias": "NEUTRAL",
+        "color": "yellow",
+        "signals": [
+          {
+            "label": "Preis > VWAP",
+            "score": 2,
+            "direction": "bullish"
+          },
+          {
+            "label": "Unter VAL \u2014 Breakdown",
+            "score": -2,
+            "direction": "bearish"
+          },
+          {
+            "label": "Preis < POC",
+            "score": -1,
+            "direction": "bearish"
+          },
+          {
+            "label": "Shape: Normal Variation (Up)",
+            "score": 2,
+            "direction": "bullish"
+          },
+          {
+            "label": "Overnight Inventory: Short",
+            "score": -1,
+            "direction": "bearish"
+          },
+          {
+            "label": "CVD positiv (+1999) \u2014 Kaufdruck",
+            "score": 1,
+            "direction": "bullish"
+          },
+          {
+            "label": "VIX 21.31 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
           },
@@ -202,22 +301,22 @@
   },
   "context": {
     "VIX": {
-      "price": 21.28,
-      "change": 2.05,
-      "change_pct": 10.66,
+      "price": 21.31,
+      "change": 2.08,
+      "change_pct": 10.82,
       "high": 21.36,
       "low": 21.1,
       "open": 21.17,
       "prev_close": 19.23
     },
     "DXY": {
-      "price": 98.97,
+      "price": 98.93,
       "change": 0.0,
       "change_pct": 0.0,
       "high": 99.18,
       "low": 98.89,
       "open": 99.05,
-      "prev_close": 98.97
+      "prev_close": 98.93
     },
     "US10Y": {
       "price": 4.32,
@@ -229,9 +328,9 @@
       "prev_close": 4.29
     },
     "DAX": {
-      "price": 23578.17,
-      "change": -225.78,
-      "change_pct": -0.95,
+      "price": 23562.62,
+      "change": -241.33,
+      "change_pct": -1.01,
       "high": 23614.26,
       "low": 23538.36,
       "open": 23562.19,

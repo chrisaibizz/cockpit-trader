@@ -1,133 +1,147 @@
 {
   "date": "2026-04-13",
-  "timestamp": "2026-04-13T09:30:00",
+  "timestamp": "2026-04-13T12:58:51.389268",
   "debrief": {
-    "orders_checked": 3,
+    "orders_checked": 1,
     "fill_rate": "33%",
     "tp1_rate": "0%",
-    "trend": "Erste Daten",
-    "learnings": [
-      "SP500 Limit Buy gefuellt aber SL getriggert (+45 Pkt)",
-      "GER40 + US30 Entry-Levels zu konservativ, nicht gefuellt",
-      "VIX +9.88% Warnung beachten - Volatilitaet steigt"
-    ]
+    "trend": "Erste Daten - zu frueh fuer Trend",
+    "learnings": []
   },
   "instruments": [
     {
       "name": "GER40",
-      "bias": "Baerisch",
-      "bias_pct": "60",
-      "daily_summary": "Unter 200 SMA (24128), unter Kumo Daily (Senkou B 23633). SMC Res 24652/25114, Sup 22912/22709. Gap Down -252 Pkt heute.",
-      "h4_summary": "Im Kumo 4H (23090-23642), VWAP 23537. 200 SMA 23797 als Widerstand. SMC Res 24217/24493, Sup 23398/22352.",
-      "h1_summary": "Kumo 30M bärisch (Senkou B 23737 über Kurs). Kijun 23616 als Widerstand. VWAP 23540.",
-      "h30m_summary": "Gap Down Open 23465 unter VAL 23717. Kurs 23570 unter Kumo. Limit Sell bei Pullback zu VAL-Zone.",
-      "mp_shape_yesterday": "Normal Variation",
-      "mp_shape_forecast": "Trend Day Down",
-      "mp_5day_sequence": "Bounce 22842-23413 → Trend Day Up 23764-24251 → Normal 23676-24014 → Normal 23717-24050 → Heute Gap Down unter VAL",
+      "bias": "Neutral",
+      "bias_pct": "59",
+      "daily_summary": "Bias Neutral (Score -9). Vortag Range: 23750.55 – 23933.87. VIX=21.3.",
+      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
+      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
+      "h30m_summary": "Kurs 23562.62 ueber VWAP (23548.93), ausserhalb Value Area. POC=23908.87 VAH=23933.87 VAL=23750.55. CVD +1999 (Kaufdruck). Shape: Normal Variation (Up).",
+      "mp_shape_yesterday": "Normal Variation (Up)",
+      "mp_shape_forecast": "Normal Variation (Up)",
+      "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
       "key_levels": [
-        {"level": "VAH Vortag", "price": "24050", "source": "Market Profile"},
-        {"level": "POC Vortag", "price": "23850", "source": "Market Profile"},
-        {"level": "VAL Vortag", "price": "23717", "source": "Market Profile"},
-        {"level": "VWAP 30M", "price": "23540", "source": "VWAP"},
-        {"level": "Kijun 30M", "price": "23616", "source": "Ichimoku"},
-        {"level": "SMC Support", "price": "23398", "source": "SMC"}
+        {
+          "level": "VAH Vortag",
+          "price": "23933.87",
+          "source": "Market Profile"
+        },
+        {
+          "level": "POC Vortag",
+          "price": "23908.87",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL Vortag",
+          "price": "23750.55",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP 30M",
+          "price": "23548.93",
+          "source": "VWAP"
+        }
+      ],
+      "orders": [],
+      "invalidation": "Kurs bricht aus Value Area (23750.55–23933.87) aus"
+    },
+    {
+      "name": "US30",
+      "bias": "Neutral",
+      "bias_pct": "59",
+      "daily_summary": "Bias Neutral (Score -9). Vortag Range: 48037.82 – 48256.84. VIX=21.3.",
+      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
+      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
+      "h30m_summary": "Kurs 47916.57 ueber VWAP (47605.99), ausserhalb Value Area. POC=48180.18 VAH=48256.84 VAL=48037.82. CVD +87905 (Kaufdruck). Shape: Normal Variation (Up).",
+      "mp_shape_yesterday": "Normal Variation (Up)",
+      "mp_shape_forecast": "Normal Variation (Up)",
+      "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
+      "key_levels": [
+        {
+          "level": "VAH Vortag",
+          "price": "48256.84",
+          "source": "Market Profile"
+        },
+        {
+          "level": "POC Vortag",
+          "price": "48180.18",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL Vortag",
+          "price": "48037.82",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP 30M",
+          "price": "47605.99",
+          "source": "VWAP"
+        }
+      ],
+      "orders": [],
+      "invalidation": "Kurs bricht aus Value Area (48037.82–48256.84) aus"
+    },
+    {
+      "name": "SPX500",
+      "bias": "Baerisch",
+      "bias_pct": "83",
+      "daily_summary": "Bias Baerisch (Score -33). Vortag Range: 6818.4 – 6836.71. VIX=21.3.",
+      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
+      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
+      "h30m_summary": "Kurs 6816.89 ueber VWAP (6768.11), ausserhalb Value Area. POC=6831.62 VAH=6836.71 VAL=6818.4. CVD +37864 (Kaufdruck). Shape: Normal Variation.",
+      "mp_shape_yesterday": "Normal Variation",
+      "mp_shape_forecast": "Normal Variation",
+      "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
+      "key_levels": [
+        {
+          "level": "VAH Vortag",
+          "price": "6836.71",
+          "source": "Market Profile"
+        },
+        {
+          "level": "POC Vortag",
+          "price": "6831.62",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL Vortag",
+          "price": "6818.4",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP 30M",
+          "price": "6768.11",
+          "source": "VWAP"
+        }
       ],
       "orders": [
         {
           "type": "Limit Sell",
-          "entry": "23700",
-          "sl": "23850",
-          "tp1": "23400",
-          "tp2": "23090",
-          "rr": "2.0",
-          "p_fill": "40",
-          "p_tp1": "55",
+          "entry": "6835.79",
+          "sl": "6841.28",
+          "tp1": "6818.4",
+          "tp2": "6809.24",
+          "rr": "3.17",
+          "p_fill": "63",
+          "p_tp1": "46",
           "tf": "30M",
-          "confluence": "SMC CHoCH + Kumo Resistance + MP VAL-Retest + Kijun 30M"
+          "confluence": "Unter VAL — Breakdown + Preis < POC + Overnight Inventory: Short",
+          "mp_shape_yesterday": "Normal Variation",
+          "mp_shape_forecast": "Normal Variation",
+          "vwap_position": "Preis ueber VWAP"
         }
       ],
-      "invalidation": "Kurs schliesst ueber 23850 (POC Vortag) negiert bearischen Bias"
-    },
-    {
-      "name": "DJ30",
-      "bias": "Bullisch",
-      "bias_pct": "55",
-      "daily_summary": "Ueber 200 SMA (46986), gerade ueber Kumo Daily (Senkou B 47699). Bounce von 44845 auf 48366. SMC Res 48961, Sup 46332.",
-      "h4_summary": "Ueber Kumo 4H (46944-47572), ueber 200 SMA 4H (47192). Tenkan 47840 als Widerstand. SMC Res 48344/49716, Sup 47712/46779.",
-      "h1_summary": "Kumo 30M eng (47679-47840). VWAP 47583, Kurs 47726 leicht ueber Upper. Rueckkehr in Value Area nach Gap Down.",
-      "h30m_summary": "Gap Down Open 47464 unter VAL 47712. Kurs zurueck ueber VAL. BESTES SETUP heute. VWAP 47583 als Entry-Zone.",
-      "mp_shape_yesterday": "Normal Variation",
-      "mp_shape_forecast": "Normal Variation",
-      "mp_5day_sequence": "Baerisch 46241-46849 → Trend Day Up 46649-48072 → Stark bullisch 47712-48366 → Pullback 47884-48322 → Heute Gap Down + Rueckkehr",
-      "key_levels": [
-        {"level": "VAH Vortag", "price": "48300", "source": "Market Profile"},
-        {"level": "POC Vortag", "price": "47950", "source": "Market Profile"},
-        {"level": "VAL Vortag", "price": "47712", "source": "Market Profile"},
-        {"level": "VWAP 30M", "price": "47583", "source": "VWAP"},
-        {"level": "SMC CHoCH 4H", "price": "48344", "source": "SMC"},
-        {"level": "Daily Kumo Senkou B", "price": "47699", "source": "Ichimoku Daily"}
-      ],
-      "orders": [
-        {
-          "type": "Limit Buy",
-          "entry": "47580",
-          "sl": "47358",
-          "tp1": "47940",
-          "tp2": "48300",
-          "rr": "1.62",
-          "p_fill": "55",
-          "p_tp1": "55",
-          "tf": "30M",
-          "confluence": "MP VAL + VWAP + SMC Support 47712 + Daily Kumo Support"
-        }
-      ],
-      "invalidation": "Kurs unter 47358 (Tagestief) negiert bullischen Bias"
-    },
-    {
-      "name": "SP500",
-      "bias": "Bullisch",
-      "bias_pct": "60",
-      "daily_summary": "Ueber 200 SMA (6685), ueber Kumo Daily (6662). Tenkan > Kijun bullisch. Bounce von 6318 auf 6852. SMC Res 6949.",
-      "h4_summary": "Ueber Kumo 4H (6621-6746), ueber 200 SMA 4H (6688). SMC 6777 Breakout bestaetigt. Tenkan 6794 als Widerstand.",
-      "h1_summary": "Kurs im Kumo 30M (6781-6794). VWAP 6766, Upper 6781. SMC Support 6777 neu etabliert.",
-      "h30m_summary": "Gap Down Open 6743 unter VAL 6812. Kurs 6785 im Kumo. Buy bei Pullback zu VWAP 6766. Enger SL auf Tagestief 6735.",
-      "mp_shape_yesterday": "Non-Trend (Range 40 Pkt)",
-      "mp_shape_forecast": "Normal Variation",
-      "mp_5day_sequence": "Baerisch 6544-6644 → Trend Day Up 6624-6813 → Bullisch 6760-6843 → Non-Trend 6812-6852 → Heute Gap Down unter VAL",
-      "key_levels": [
-        {"level": "VAH Vortag", "price": "6843", "source": "Market Profile"},
-        {"level": "POC Vortag", "price": "6825", "source": "Market Profile"},
-        {"level": "VAL Vortag", "price": "6812", "source": "Market Profile"},
-        {"level": "VWAP 30M", "price": "6766", "source": "VWAP"},
-        {"level": "SMC Support", "price": "6777", "source": "SMC 4H"},
-        {"level": "Kumo 30M", "price": "6781-6794", "source": "Ichimoku 30M"}
-      ],
-      "orders": [
-        {
-          "type": "Limit Buy",
-          "entry": "6766",
-          "sl": "6735",
-          "tp1": "6812",
-          "tp2": "6852",
-          "rr": "1.48",
-          "p_fill": "40",
-          "p_tp1": "55",
-          "tf": "30M",
-          "confluence": "VWAP + Kumo Unterseite + SMC 6777 Support + MP VAL-Zone"
-        }
-      ],
-      "invalidation": "Kurs unter 6735 (Tagestief) negiert bullischen Bias"
+      "invalidation": "Kurs schliesst ueber 6836.71 — bearischer Bias negiert"
     }
   ],
   "summary": {
-    "best_instrument": "DJ30",
-    "total_orders": 3,
+    "best_instrument": "GER40",
+    "total_orders": 1,
     "warnings": [
-      "VIX 21.13 +9.88% - Elevated, rising sharply",
-      "Alle 3 Instrumente mit Gap Down eroeffnet",
-      "GER40 strukturell baerisch - unter 200 SMA Daily"
+      "VIX 21.3 — Elevated, Vorsicht bei Einstiegen",
+      "VIX steigt stark (+10.8%) — Volatilitaet im Wandel"
     ],
-    "notes": "DJ30 bestes Setup: Rueckkehr in Value nach Gap Down, hoechste Konfluenz. VIX-Anstieg beachten - engere Stops moeglich."
+    "notes": "Auto-generiert 12:58. VIX=21.3. Beste Konfluenz: GER40."
   },
   "stats": {
     "total": 3,
