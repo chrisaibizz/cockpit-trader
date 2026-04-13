@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-11T09:41:06.709016",
+  "timestamp": "2026-04-13T05:00:25.794611",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
@@ -189,7 +189,7 @@
       },
       "current_price": 6816.89,
       "bias": {
-        "score": 60,
+        "score": 33,
         "bias": "BULLISH",
         "color": "green",
         "signals": [
@@ -229,9 +229,9 @@
             "direction": "neutral"
           },
           {
-            "label": "Dollar neutral",
-            "score": 0,
-            "direction": "neutral"
+            "label": "Dollar staerker",
+            "score": -1,
+            "direction": "bearish"
           },
           {
             "label": "Yields stabil",
@@ -444,7 +444,7 @@
       },
       "current_price": 47916.57,
       "bias": {
-        "score": -60,
+        "score": -67,
         "bias": "BEARISH",
         "color": "red",
         "signals": [
@@ -484,9 +484,9 @@
             "direction": "neutral"
           },
           {
-            "label": "Dollar neutral",
-            "score": 0,
-            "direction": "neutral"
+            "label": "Dollar staerker",
+            "score": -1,
+            "direction": "bearish"
           },
           {
             "label": "Yields stabil",
@@ -523,13 +523,13 @@
       "prev_close": 19.49
     },
     "DXY": {
-      "price": 98.65,
-      "change": -0.17,
-      "change_pct": -0.17,
-      "high": 99.01,
-      "low": 98.54,
-      "open": 98.87,
-      "prev_close": 98.82
+      "price": 99.04,
+      "change": 0.39,
+      "change_pct": 0.39,
+      "high": 99.18,
+      "low": 99.0,
+      "open": 99.05,
+      "prev_close": 98.65
     },
     "US10Y": {
       "price": 4.32,
@@ -550,5 +550,30 @@
       "prev_close": 23806.99
     }
   },
-  "calendar": []
+  "calendar": [
+    {
+      "date": "2026-04-14",
+      "time": "BMO/AMC",
+      "event": "JPM Earnings",
+      "country": "US",
+      "impact": "high",
+      "type": "earnings",
+      "estimate": 5.51108,
+      "prior": null
+    }
+  ],
+  "macro": {
+    "fred": {
+      "GDP": {
+        "value": 31422.526,
+        "date": "2025-10-01",
+        "unit": "Mrd. USD (BIP)"
+      }
+    },
+    "macro_bias": {
+      "score": 0,
+      "label": "NEUTRAL",
+      "signals": []
+    }
+  }
 }
