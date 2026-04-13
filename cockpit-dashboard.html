@@ -75,6 +75,10 @@
 <div class="header">
   <h1>✈ Cockpit-Trader</h1>
   <div class="ts" id="ts">Lade Daten...</div>
+  <div id="age-bar" style="margin-top:6px;font-size:12px;display:none;">
+    <span id="age-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
+    <span id="age-txt"></span>
+  </div>
 </div>
 <div class="grid" id="dash">
   <div class="loading fw">
@@ -99,10 +103,35 @@ function load(){
     });
 }
 
+let _analysisTs=null;
+
+function fmtAge(ts){
+  const mins=Math.floor((Date.now()-ts.getTime())/60000);
+  if(mins<1)  return {txt:'gerade eben aktualisiert', color:'#22c55e'};
+  if(mins<60) return {txt:`vor ${mins} Min aktualisiert`, color:'#22c55e'};
+  const h=Math.floor(mins/60), m=mins%60;
+  if(h<4)     return {txt:`vor ${h}h ${m}min aktualisiert`, color:'#eab308'};
+  if(h<8)     return {txt:`vor ${h}h aktualisiert — bitte neu starten`, color:'#f97316'};
+  return       {txt:`Analyse ${h}h alt — VERALTET`, color:'#ef4444'};
+}
+
+function updateAge(){
+  if(!_analysisTs) return;
+  const {txt,color}=fmtAge(_analysisTs);
+  document.getElementById('age-txt').textContent=txt;
+  document.getElementById('age-txt').style.color=color;
+  document.getElementById('age-dot').style.background=color;
+  document.getElementById('age-dot').style.boxShadow=`0 0 6px ${color}`;
+}
+
 function render(d){
-  const ts=new Date(d.timestamp);
+  _analysisTs=new Date(d.timestamp);
+  const ts=_analysisTs;
   document.getElementById('ts').textContent=
     `Pre-Flight Briefing — ${ts.toLocaleDateString('de-DE')} ${ts.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})} Uhr`;
+  document.getElementById('age-bar').style.display='block';
+  updateAge();
+  setInterval(updateAge, 60000);
   let html='';
   html+=renderCtx(d.context);
   html+=renderCal(d.calendar);

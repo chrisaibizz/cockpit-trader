@@ -1,6 +1,6 @@
 {
   "date": "2026-04-13",
-  "timestamp": "2026-04-13T13:05:11.978410",
+  "timestamp": "2026-04-13T13:12:17.235392",
   "debrief": {
     "orders_checked": 3,
     "fill_rate": "33%",
@@ -13,10 +13,10 @@
       "name": "GER40",
       "bias": "Neutral",
       "bias_pct": "59",
-      "daily_summary": "Bias Neutral (Score -9). Vortag Range: 23750.55 – 23933.87. VIX=21.3.",
+      "daily_summary": "Bias Neutral (Score -9). Vortag Range: 23750.55 – 23933.87. VIX=21.2.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 23567.21 ueber VWAP (23549.96), ausserhalb Value Area. POC=23908.87 VAH=23933.87 VAL=23750.55. CVD +1999 (Kaufdruck). Shape: Normal Variation (Up).",
+      "h30m_summary": "Kurs 23563.61 ueber VWAP (23550.43), ausserhalb Value Area. POC=23908.87 VAH=23933.87 VAL=23750.55. CVD +1999 (Kaufdruck). Shape: Normal Variation (Up).",
       "mp_shape_yesterday": "Normal Variation (Up)",
       "mp_shape_forecast": "Normal Variation (Up)",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -38,7 +38,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "23549.96",
+          "price": "23550.43",
           "source": "VWAP"
         }
       ],
@@ -65,10 +65,10 @@
       "name": "US30",
       "bias": "Neutral",
       "bias_pct": "59",
-      "daily_summary": "Bias Neutral (Score -9). Vortag Range: 48037.82 – 48256.84. VIX=21.3.",
+      "daily_summary": "Bias Neutral (Score -9). Vortag Range: 48037.82 – 48256.84. VIX=21.2.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 47916.57 ueber VWAP (47609.72), ausserhalb Value Area. POC=48180.18 VAH=48256.84 VAL=48037.82. CVD +88284 (Kaufdruck). Shape: Normal Variation (Up).",
+      "h30m_summary": "Kurs 47916.57 ueber VWAP (47612.09), ausserhalb Value Area. POC=48180.18 VAH=48256.84 VAL=48037.82. CVD +88284 (Kaufdruck). Shape: Normal Variation (Up).",
       "mp_shape_yesterday": "Normal Variation (Up)",
       "mp_shape_forecast": "Normal Variation (Up)",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -90,7 +90,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "47609.72",
+          "price": "47612.09",
           "source": "VWAP"
         }
       ],
@@ -117,10 +117,10 @@
       "name": "SPX500",
       "bias": "Baerisch",
       "bias_pct": "83",
-      "daily_summary": "Bias Baerisch (Score -33). Vortag Range: 6818.4 – 6836.71. VIX=21.3.",
+      "daily_summary": "Bias Baerisch (Score -33). Vortag Range: 6818.4 – 6836.71. VIX=21.2.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 6816.89 ueber VWAP (6768.58), ausserhalb Value Area. POC=6831.62 VAH=6836.71 VAL=6818.4. CVD +37834 (Kaufdruck). Shape: Normal Variation.",
+      "h30m_summary": "Kurs 6816.89 ueber VWAP (6768.83), ausserhalb Value Area. POC=6831.62 VAH=6836.71 VAL=6818.4. CVD +37834 (Kaufdruck). Shape: Normal Variation.",
       "mp_shape_yesterday": "Normal Variation",
       "mp_shape_forecast": "Normal Variation",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -142,7 +142,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "6768.58",
+          "price": "6768.83",
           "source": "VWAP"
         }
       ],
@@ -170,10 +170,10 @@
     "best_instrument": "GER40",
     "total_orders": 3,
     "warnings": [
-      "VIX 21.3 — Elevated, Vorsicht bei Einstiegen",
-      "VIX steigt stark (+10.6%) — Volatilitaet im Wandel"
+      "VIX 21.2 — Elevated, Vorsicht bei Einstiegen",
+      "VIX steigt stark (+10.1%) — Volatilitaet im Wandel"
     ],
-    "notes": "Auto-generiert 13:05. VIX=21.3. Beste Konfluenz: GER40."
+    "notes": "Auto-generiert 13:12. VIX=21.2. Beste Konfluenz: GER40."
   },
   "stats": {
     "total": 3,
