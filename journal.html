@@ -74,16 +74,15 @@ main{padding:16px;max-width:600px;margin:0 auto}
 .empty h3{color:var(--muted);font-size:14px;margin-bottom:8px}
 .empty p{font-size:12px;line-height:1.6}
 footer{text-align:center;padding:20px;font-size:10px;color:var(--dim);border-top:1px solid var(--border)}
+.header{text-align:center;padding:20px 0 30px;border-bottom:1px solid var(--border);margin-bottom:0;}
+.header h1{font-size:28px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.header .ts{color:var(--muted);font-size:13px;margin-top:8px;}
 </style>
 </head>
 <body>
 <div class="header">
   <h1>✈ Cockpit-Trader</h1>
-  <div class="ts" id="ts">Lade Daten...</div>
-  <div id="age-bar" style="margin-top:6px;font-size:12px;display:none;">
-    <span id="age-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
-    <span id="age-txt"></span>
-  </div>
+  <div class="ts" id="ts">Analyse Journal</div>
 </div>
 <div style="display:flex;justify-content:center;gap:8px;padding:12px 0 20px;border-bottom:1px solid #1e2a3a;margin-bottom:30px;">
   <a href="index.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Dashboard</a>
