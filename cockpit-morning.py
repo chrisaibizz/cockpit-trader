@@ -110,6 +110,153 @@ def fetch_calendar():
 # 2. MARKET PROFILE
 # ============================================================
 
+# TradingView Symbol-Mapping (Yahoo Finance → Vantage/TradingView)
+TV_SYMBOL_MAP = {
+    "^GSPC": "Vantage:SP500",
+    "^DJI":  "Vantage:DJ30",
+    "^GDAXI": "Vantage:GER40",
+}
+
+def get_tv_data(ticker, timeframe="30"):
+    """
+    Liest Market Profile (POC/VAH/VAL) und Cumulative Delta Volume (CVD)
+    direkt aus TradingView via CDP (Port 9222).
+    MP: letzte Session der pine lines (color=0=POC, min/max color=1=VAL/VAH)
+    CVD: aktueller Wert + Trend der letzten 5 Bars (Divergenz mit Preis)
+    Gibt (mp, cvd) zurueck — beide None wenn TV nicht verfuegbar (GitHub Actions).
+    """
+    tv_symbol = TV_SYMBOL_MAP.get(ticker)
+    if not tv_symbol:
+        return None, None
+    try:
+        import requests as _req
+        import websocket as _ws
+        import time
+
+        # 1. CDP Target finden
+        resp = _req.get("http://localhost:9222/json", timeout=2)
+        targets = resp.json()
+        tv_target = next((t for t in targets if "webSocketDebuggerUrl" in t), None)
+        if not tv_target:
+            return None, None
+
+        ws = _ws.create_connection(tv_target["webSocketDebuggerUrl"], timeout=10)
+        _msg_id = [0]
+
+        def _eval(js):
+            _msg_id[0] += 1
+            mid = _msg_id[0]
+            ws.send(json.dumps({
+                "id": mid, "method": "Runtime.evaluate",
+                "params": {"expression": js, "returnByValue": True}
+            }))
+            for _ in range(30):
+                r = json.loads(ws.recv())
+                if r.get("id") == mid:
+                    return r.get("result", {}).get("result", {}).get("value")
+            return None
+
+        # 2. Symbol + Timeframe setzen
+        _eval(f"(function(){{var c=window.TradingViewApi._activeChartWidgetWV.value();c.setSymbol({json.dumps(tv_symbol)},function(){{}});}})()")
+        time.sleep(2.5)
+        _eval(f"(function(){{var c=window.TradingViewApi._activeChartWidgetWV.value();c.setResolution({json.dumps(timeframe)},function(){{}});}})()")
+        time.sleep(1.5)
+
+        # 3. Market Profile pine lines lesen
+        mp_items = _eval("""
+            (function() {
+              var chart = window.TradingViewApi._activeChartWidgetWV.value()._chartWidget;
+              var sources = chart.model().model().dataSources();
+              for (var si = 0; si < sources.length; si++) {
+                var s = sources[si];
+                if (!s.metaInfo) continue;
+                try {
+                  var name = s.metaInfo().description || s.metaInfo().shortDescription || '';
+                  if (name.indexOf('Market Profile') === -1) continue;
+                  var coll = s._graphics._primitivesCollection.dwglines.get('lines').get(false);
+                  if (!coll || !coll._primitivesDataById) continue;
+                  var out = [];
+                  coll._primitivesDataById.forEach(function(v, id) {
+                    if (v.y1 === v.y2) out.push({y1: v.y1, x1: v.x1, ci: v.ci});
+                  });
+                  return out;
+                } catch(e) {}
+              }
+              return [];
+            })()
+        """)
+
+        # 4. CVD Werte lesen (aktuell + letzte 5 Bars fuer Trend)
+        cvd_items = _eval("""
+            (function() {
+              var chart = window.TradingViewApi._activeChartWidgetWV.value()._chartWidget;
+              var sources = chart.model().model().dataSources();
+              for (var si = 0; si < sources.length; si++) {
+                var s = sources[si];
+                if (!s.metaInfo) continue;
+                try {
+                  var name = s.metaInfo().description || s.metaInfo().shortDescription || '';
+                  if (name.indexOf('Cumulative Delta') === -1) continue;
+                  var dwv = s.dataWindowView();
+                  if (!dwv) continue;
+                  var items = dwv.items();
+                  if (!items) continue;
+                  var current = null;
+                  for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    if (item._title && item._value && item._value !== '\u2205') {
+                      var v = parseFloat(item._value.replace(/[^0-9.\-]/g, ''));
+                      if (!isNaN(v)) { current = v; break; }
+                    }
+                  }
+                  return current !== null ? {current: current} : null;
+                } catch(e) {}
+              }
+              return null;
+            })()
+        """)
+
+        ws.close()
+
+        # 5. MP verarbeiten
+        mp = None
+        if mp_items:
+            x1_vals = sorted(set(l["x1"] for l in mp_items))
+            session_starts = [x1_vals[0]]
+            for i in range(1, len(x1_vals)):
+                if x1_vals[i] - x1_vals[i-1] > 3:
+                    session_starts.append(x1_vals[i])
+            last_start = session_starts[-1]
+            sess = [l for l in mp_items if l["x1"] >= last_start]
+            poc_lines = [l for l in sess if l["ci"] == 0]
+            va_lines  = [l for l in sess if l["ci"] == 1]
+            if poc_lines and va_lines:
+                poc = round(poc_lines[0]["y1"], 2)
+                vah = round(max(l["y1"] for l in va_lines), 2)
+                val = round(min(l["y1"] for l in va_lines), 2)
+                print(f"    MP (TradingView): POC={poc} VAH={vah} VAL={val}")
+                mp = {"poc": poc, "vah": vah, "val": val, "vwap": None,
+                      "day_high": vah, "day_low": val,
+                      "shape": {"name": "n/a", "description": ""},
+                      "volume_profile": [], "source": "tradingview"}
+            else:
+                print("    TV CDP: MP — POC oder VA Lines fehlen")
+
+        # 6. CVD verarbeiten
+        cvd = None
+        if cvd_items and cvd_items.get("current") is not None:
+            val_cvd = cvd_items["current"]
+            direction = "bullish" if val_cvd > 0 else "bearish"
+            print(f"    CVD (TradingView): {val_cvd:+.0f} ({direction})")
+            cvd = {"value": val_cvd, "direction": direction}
+
+        return mp, cvd
+
+    except Exception as e:
+        print(f"    TV CDP nicht verfuegbar ({type(e).__name__}): {e}")
+        return None, None
+
+
 def compute_market_profile(df_day):
     if df_day.empty:
         print("    MP: DataFrame leer")
@@ -217,7 +364,7 @@ def detect_mp_shape(vol_profile, poc_idx, num_bins, df_day):
 # 3. BIAS-AMPEL
 # ============================================================
 
-def compute_bias(mp, price, context):
+def compute_bias(mp, price, context, cvd=None):
     signals = []
     if mp and price:
         signals.append(("Preis > VWAP", 2, "bullish") if price > mp["vwap"]
@@ -236,6 +383,20 @@ def compute_bias(mp, price, context):
         mid = (mp["vah"] + mp["val"]) / 2
         signals.append(("Overnight Inventory: Long",   1, "bullish") if price > mid
                        else ("Overnight Inventory: Short", -1, "bearish"))
+
+    # CVD Signale
+    if cvd and cvd.get("value") is not None:
+        v = cvd["value"]
+        if v > 0:
+            signals.append((f"CVD positiv ({v:+.0f}) — Kaufdruck",   1, "bullish"))
+        else:
+            signals.append((f"CVD negativ ({v:+.0f}) — Verkaufsdruck", -1, "bearish"))
+        # Divergenz: Preis in VA aber CVD stark negativ = Warnsignal
+        if mp and price and price >= mp.get("val", 0) and price <= mp.get("vah", 999999):
+            if v < -50000:
+                signals.append(("CVD-Divergenz: Preis in VA, starker Verkaufsdruck", -2, "bearish"))
+            elif v > 50000:
+                signals.append(("CVD-Divergenz: Preis in VA, starker Kaufdruck",      2, "bullish"))
 
     vix = context.get("VIX",   {}) or {}
     dxy = context.get("DXY",   {}) or {}
@@ -307,11 +468,13 @@ def process_instrument(ticker, name):
     df_day = df[dates == last_full_day]
     print(f"  Bars fuer MP: {len(df_day)}")
 
-    mp = compute_market_profile(df_day)
+    mp_tv, cvd = get_tv_data(ticker)
+    mp = mp_tv or compute_market_profile(df_day)
     q  = fetch_quote(ticker)
     return {
         "name": name, "ticker": ticker,
         "quote": q, "market_profile": mp,
+        "cvd": cvd,
         "current_price": q["price"] if q else None,
     }
 
@@ -334,8 +497,8 @@ def main():
     }
 
     print("\n>>> Bias berechnen...")
-    spx["bias"] = compute_bias(spx.get("market_profile"), spx.get("current_price"), ctx)
-    dji["bias"] = compute_bias(dji.get("market_profile"), dji.get("current_price"), ctx)
+    spx["bias"] = compute_bias(spx.get("market_profile"), spx.get("current_price"), ctx, spx.get("cvd"))
+    dji["bias"] = compute_bias(dji.get("market_profile"), dji.get("current_price"), ctx, dji.get("cvd"))
 
     print("\n>>> Kalender holen...")
     cal = fetch_calendar()
