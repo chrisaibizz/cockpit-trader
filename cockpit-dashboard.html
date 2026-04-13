@@ -140,33 +140,146 @@ function render(d){
   let html='';
   html+=renderCtx(d.context);
   html+=renderCal(d.calendar);
-  for(const[k,inst] of Object.entries(d.instruments)){
-    if(!inst.error) html+=renderInst(k,inst);
+  const insts=(d.journal&&d.journal.instruments)||[];
+  if(insts.length){
+    insts.forEach(ji=>{ html+=renderInst(ji); });
+  } else {
+    for(const[k,inst] of Object.entries(d.instruments||{})){
+      if(!inst.error) html+=renderInstLegacy(k,inst);
+    }
   }
   document.getElementById('dash').innerHTML=html;
 }
 
-function renderInst(k,inst){
-  const q=inst.quote||{}, mp=inst.market_profile||{}, b=inst.bias||{};
-  const cc=(q.change||0)>=0?'pos':'neg', cs=(q.change||0)>=0?'+':'';
-  const currentPrice=inst.current_price||null;
+function biasColor(c){
+  return c==='green'?'#22c55e':c==='red'?'#ef4444':'#eab308';
+}
+
+function tlight(color){
+  const gc=biasColor(color);
+  return `<div class="tlight">
+    <div class="light" style="${color==='green'?`background:#22c55e;box-shadow:0 0 20px #22c55e`:''}" ></div>
+    <div class="light" style="${color==='yellow'?`background:#eab308;box-shadow:0 0 20px #eab308`:''}" ></div>
+    <div class="light" style="${color==='red'?`background:#ef4444;box-shadow:0 0 20px #ef4444`:''}" ></div>
+  </div>`;
+}
+
+function renderInst(ji){
+  const mp    = ji.market_profile||{};
+  const q     = ji.quote||{};
+  const cvd   = ji.cvd||{};
+  const price = ji.current_price;
+  const color = ji.bias_color||'yellow';
+  const gc    = biasColor(color);
+  const cc    = (q.change||0)>=0?'pos':'neg';
+  const cs    = (q.change||0)>=0?'+':'';
+  const shape = mp.shape||{};
+
+  // Key Levels: aus journal key_levels
+  const klRows=(ji.key_levels||[]).map(kl=>`
+    <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;">
+      <span style="color:var(--muted)">${kl.level}</span>
+      <span style="font-weight:600;color:#f1f5f9">${kl.price}</span>
+      <span style="color:var(--muted);font-size:11px">${kl.source||''}</span>
+    </div>`).join('');
+
+  // Orders
+  const orderCards=(ji.orders||[]).map(o=>{
+    const oc=o.type&&o.type.includes('Buy')?'var(--green)':'var(--red)';
+    return `<div style="border:1px solid ${oc};border-radius:8px;padding:10px;margin-top:8px;font-size:13px;">
+      <div style="color:${oc};font-weight:700;margin-bottom:6px">${o.type||'—'}</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px 12px;">
+        <span style="color:var(--muted)">Entry</span><span style="color:var(--muted)">SL</span><span style="color:var(--muted)">TP1</span>
+        <span style="font-weight:600">${o.entry||'—'}</span><span style="font-weight:600;color:var(--red)">${o.sl||'—'}</span><span style="font-weight:600;color:var(--green)">${o.tp1||'—'}</span>
+      </div>
+      <div style="margin-top:6px;color:var(--muted)">R:R <span style="color:#f1f5f9;font-weight:600">${o.rr||'—'}</span>
+        &nbsp;|&nbsp; P(Fill) <span style="color:#f1f5f9">${o.p_fill||'—'}%</span>
+        &nbsp;|&nbsp; P(TP1) <span style="color:#f1f5f9">${o.p_tp1||'—'}%</span>
+        &nbsp;|&nbsp; TF <span style="color:#f1f5f9">${o.tf||'—'}</span>
+      </div>
+      <div style="margin-top:4px;font-size:11px;color:var(--muted)">${o.confluence||''}</div>
+    </div>`;
+  }).join('');
+
+  // Bias Signals
+  const sigRows=(ji.bias_signals||[]).map(s=>`
+    <li>
+      <span>
+        <span class="sdot" style="background:${s.direction==='bullish'?'var(--green)':s.direction==='bearish'?'var(--red)':'var(--muted)'}"></span>
+        ${s.label}
+      </span>
+      <span class="ssc ${s.score>0?'pos':s.score<0?'neg':''}">${s.score>0?'+'+s.score:s.score}</span>
+    </li>`).join('');
+
+  // CVD
+  const cvdHtml=cvd.value!=null
+    ?`<div style="margin-top:6px;font-size:12px">CVD <span style="font-weight:600;color:${cvd.value>0?'var(--green)':'var(--red)'}">${cvd.value>0?'+':''}${Math.round(cvd.value).toLocaleString('de-DE')}</span> <span style="color:var(--muted)">${cvd.direction||''}</span></div>`
+    :'';
+
   return `
 <div class="card">
-  <div class="ct">📈 ${k} — ${inst.name||k} <span class="kassa-badge">KASSA</span></div>
+  <div class="ct">📈 ${ji.name} <span class="kassa-badge">KASSA</span></div>
   <div class="qrow">
     <span class="qp">${f(q.price)}</span>
     <span class="qc ${cc}">${cs}${f(q.change)} (${cs}${f(q.change_pct)}%)</span>
   </div>
-  <div style="font-size:11px;color:var(--muted);margin-bottom:8px">
-    H: ${f(q.high)} &nbsp;|&nbsp; L: ${f(q.low)} &nbsp;|&nbsp; Prev Close: ${f(q.prev_close)}
+  <div style="font-size:11px;color:var(--muted);margin-bottom:10px">
+    H: ${f(q.high)} &nbsp;|&nbsp; L: ${f(q.low)} &nbsp;|&nbsp; Prev: ${f(q.prev_close)}
   </div>
   <div class="bias-wrap">
-    ${tlight(b.color)}
+    ${tlight(color)}
     <div class="bi">
-      <div class="bl" style="color:var(--${b.color||'muted'})">${b.bias||'—'}</div>
-      <div class="bs">Bias Score: ${b.score??'—'} / 100</div>
+      <div class="bl" style="color:${gc}">${ji.bias||'—'}</div>
+      <div class="bs">Score: ${ji.bias_score??'—'} &nbsp;|&nbsp; Konfluenz: ${ji.bias_pct||'—'}%</div>
+      ${cvdHtml}
     </div>
   </div>
+  <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">
+    ${ji.h30m_summary||''}
+  </div>
+</div>
+<div class="card">
+  <div class="ct">🎯 Key Levels — ${ji.name}</div>
+  <div class="lgrid" style="margin-bottom:12px">
+    <div class="lb lpoc"><div class="ll">POC</div><div class="lv">${f(mp.poc)}</div></div>
+    <div class="lb lvah"><div class="ll">VAH</div><div class="lv">${f(mp.vah)}</div></div>
+    <div class="lb lval"><div class="ll">VAL</div><div class="lv">${f(mp.val)}</div></div>
+    <div class="lb lvwap"><div class="ll">VWAP</div><div class="lv">${f(mp.vwap)}</div></div>
+  </div>
+  ${klRows}
+  <div style="margin-top:12px">
+    <span class="sbadge">${shape.name||'—'}</span>
+    <div class="sdesc">${shape.description||''}</div>
+  </div>
+  <div style="margin-top:6px;font-size:11px;color:var(--muted)">
+    Range Vortag: ${f(mp.day_low)} – ${f(mp.day_high)}
+  </div>
+  ${ji.invalidation?`<div style="margin-top:8px;padding:6px 10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:6px;font-size:12px;color:#ef4444">Invalidierung: ${ji.invalidation}</div>`:''}
+</div>
+<div class="card">
+  <div class="ct">📊 Levels Chart — ${ji.name}
+    <span style="margin-left:8px;color:#f1f5f9;font-size:10px">── Kurs</span>
+    <span style="margin-left:6px;color:#06b6d4;font-size:10px">╌ POC</span>
+    <span style="margin-left:6px;color:#22c55e;font-size:10px">╌ VAH</span>
+    <span style="margin-left:6px;color:#ef4444;font-size:10px">╌ VAL</span>
+  </div>
+  <div class="vpc">${drawVP(mp, price)}</div>
+</div>
+<div class="card">
+  <div class="ct">🔍 Bias Signals — ${ji.name}</div>
+  <ul class="slist">${sigRows}</ul>
+  ${orderCards?`<div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px"><div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:4px">Order Setup</div>${orderCards}</div>`:''}
+</div>`;
+}
+
+function renderInstLegacy(k,inst){
+  const q=inst.quote||{}, mp=inst.market_profile||{}, b=inst.bias||{};
+  const cc=(q.change||0)>=0?'pos':'neg', cs=(q.change||0)>=0?'+':'';
+  return `
+<div class="card">
+  <div class="ct">📈 ${k} <span class="kassa-badge">KASSA</span></div>
+  <div class="qrow"><span class="qp">${f(q.price)}</span><span class="qc ${cc}">${cs}${f(q.change)} (${cs}${f(q.change_pct)}%)</span></div>
+  <div class="bias-wrap">${tlight(b.color)}<div class="bi"><div class="bl" style="color:${biasColor(b.color)}">${b.bias||'—'}</div><div class="bs">Score: ${b.score??'—'}</div></div></div>
 </div>
 <div class="card">
   <div class="ct">🎯 Key Levels — ${k}</div>
@@ -176,46 +289,7 @@ function renderInst(k,inst){
     <div class="lb lval"><div class="ll">VAL</div><div class="lv">${f(mp.val)}</div></div>
     <div class="lb lvwap"><div class="ll">VWAP</div><div class="lv">${f(mp.vwap)}</div></div>
   </div>
-  <div style="margin-top:16px">
-    <span class="sbadge">${mp.shape?.name||'—'}</span>
-    <div class="sdesc">${mp.shape?.description||''}</div>
-  </div>
-  <div style="margin-top:6px;font-size:12px;color:var(--muted)">
-    Range: ${f(mp.day_low)} – ${f(mp.day_high)}
-  </div>
-</div>
-<div class="card">
-  <div class="ct">📊 Volume Profile — ${k}
-    <span style="margin-left:12px;color:#f1f5f9;font-size:10px">── Aktueller Kurs</span>
-    <span style="margin-left:8px;color:#06b6d4;font-size:10px">╌╌ POC</span>
-    <span style="margin-left:8px;color:#22c55e;font-size:10px">╌╌ VAH</span>
-    <span style="margin-left:8px;color:#ef4444;font-size:10px">╌╌ VAL</span>
-  </div>
-  <div class="vpc">${drawVP(mp, currentPrice)}</div>
-</div>
-<div class="card">
-  <div class="ct">🔍 Bias Signals — ${k}</div>
-  <ul class="slist">
-    ${(b.signals||[]).map(s=>`
-    <li>
-      <span>
-        <span class="sdot" style="background:${
-          s.direction==='bullish'?'var(--green)':
-          s.direction==='bearish'?'var(--red)':'var(--muted)'}">
-        </span>${s.label}
-      </span>
-      <span class="ssc ${s.score>0?'pos':s.score<0?'neg':''}">${s.score>0?'+'+s.score:s.score}</span>
-    </li>`).join('')}
-  </ul>
 </div>`;
-}
-
-function tlight(color){
-  return `<div class="tlight">
-    <div class="light ${color==='green'?'ag':''}"></div>
-    <div class="light ${color==='yellow'?'ay':''}"></div>
-    <div class="light ${color==='red'?'ar':''}"></div>
-  </div>`;
 }
 
 function drawVPFromLevels(mp, currentPrice){

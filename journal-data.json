@@ -1,6 +1,6 @@
 {
   "date": "2026-04-13",
-  "timestamp": "2026-04-13T13:24:58.443942",
+  "timestamp": "2026-04-13T13:35:10.038834",
   "debrief": {
     "orders_checked": 3,
     "fill_rate": "33%",
@@ -12,11 +12,103 @@
     {
       "name": "GER40",
       "bias": "Neutral",
+      "bias_color": "yellow",
+      "bias_score": -9,
       "bias_pct": "59",
+      "bias_signals": [
+        {
+          "label": "Preis > VWAP",
+          "score": 2,
+          "direction": "bullish"
+        },
+        {
+          "label": "Unter VAL — Breakdown",
+          "score": -2,
+          "direction": "bearish"
+        },
+        {
+          "label": "Preis < POC",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "Shape: Normal Variation (Up)",
+          "score": 2,
+          "direction": "bullish"
+        },
+        {
+          "label": "Overnight Inventory: Short",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "CVD positiv (+2075) — Kaufdruck",
+          "score": 1,
+          "direction": "bullish"
+        },
+        {
+          "label": "VIX 21.1 — Elevated",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "VIX rising sharply",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "Yields stabil",
+          "score": 0,
+          "direction": "neutral"
+        },
+        {
+          "label": "Daily OTF Check",
+          "score": 0,
+          "direction": "neutral"
+        },
+        {
+          "label": "Gap Analysis",
+          "score": 0,
+          "direction": "neutral"
+        },
+        {
+          "label": "Session Expectation",
+          "score": 0,
+          "direction": "neutral"
+        }
+      ],
+      "cvd": {
+        "value": 2074.91,
+        "direction": "bullish"
+      },
+      "quote": {
+        "price": 23561.03,
+        "change": -242.92,
+        "change_pct": -1.02,
+        "high": 23614.26,
+        "low": 23538.36,
+        "open": 23562.19,
+        "prev_close": 23803.95
+      },
+      "market_profile": {
+        "poc": 23908.87,
+        "vah": 23933.87,
+        "val": 23750.55,
+        "vwap": 23550.88,
+        "day_high": 23933.87,
+        "day_low": 23750.55,
+        "shape": {
+          "name": "Normal Variation (Up)",
+          "description": "Leicht bullischer Bias — Abwarten auf Breakout aus VA"
+        },
+        "volume_profile": [],
+        "source": "tradingview"
+      },
+      "current_price": 23561.03,
       "daily_summary": "Bias Neutral (Score -9). Vortag Range: 23750.55 – 23933.87. VIX=21.1.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 23568.59 ueber VWAP (23550.79), ausserhalb Value Area. POC=23908.87 VAH=23933.87 VAL=23750.55. CVD +2075 (Kaufdruck). Shape: Normal Variation (Up).",
+      "h30m_summary": "Kurs 23561.03 ueber VWAP (23550.88), ausserhalb Value Area. POC=23908.87 VAH=23933.87 VAL=23750.55. CVD +2075 (Kaufdruck). Shape: Normal Variation (Up).",
       "mp_shape_yesterday": "Normal Variation (Up)",
       "mp_shape_forecast": "Normal Variation (Up)",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -38,7 +130,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "23550.79",
+          "price": "23550.88",
           "source": "VWAP"
         }
       ],
@@ -64,11 +156,103 @@
     {
       "name": "US30",
       "bias": "Neutral",
+      "bias_color": "yellow",
+      "bias_score": -9,
       "bias_pct": "59",
+      "bias_signals": [
+        {
+          "label": "Preis > VWAP",
+          "score": 2,
+          "direction": "bullish"
+        },
+        {
+          "label": "Unter VAL — Breakdown",
+          "score": -2,
+          "direction": "bearish"
+        },
+        {
+          "label": "Preis < POC",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "Shape: Normal Variation (Up)",
+          "score": 2,
+          "direction": "bullish"
+        },
+        {
+          "label": "Overnight Inventory: Short",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "CVD positiv (+88306) — Kaufdruck",
+          "score": 1,
+          "direction": "bullish"
+        },
+        {
+          "label": "VIX 21.1 — Elevated",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "VIX rising sharply",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "Yields stabil",
+          "score": 0,
+          "direction": "neutral"
+        },
+        {
+          "label": "Daily OTF Check",
+          "score": 0,
+          "direction": "neutral"
+        },
+        {
+          "label": "Gap Analysis",
+          "score": 0,
+          "direction": "neutral"
+        },
+        {
+          "label": "Session Expectation",
+          "score": 0,
+          "direction": "neutral"
+        }
+      ],
+      "cvd": {
+        "value": 88305.52,
+        "direction": "bullish"
+      },
+      "quote": {
+        "price": 47916.57,
+        "change": -269.23,
+        "change_pct": -0.56,
+        "high": 48235.06,
+        "low": 47856.18,
+        "open": 48199.39,
+        "prev_close": 48185.8
+      },
+      "market_profile": {
+        "poc": 48180.18,
+        "vah": 48256.84,
+        "val": 48037.82,
+        "vwap": 47614.05,
+        "day_high": 48256.84,
+        "day_low": 48037.82,
+        "shape": {
+          "name": "Normal Variation (Up)",
+          "description": "Leicht bullischer Bias — Abwarten auf Breakout aus VA"
+        },
+        "volume_profile": [],
+        "source": "tradingview"
+      },
+      "current_price": 47916.57,
       "daily_summary": "Bias Neutral (Score -9). Vortag Range: 48037.82 – 48256.84. VIX=21.1.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 47916.57 ueber VWAP (47614.89), ausserhalb Value Area. POC=48180.18 VAH=48256.84 VAL=48037.82. CVD +88284 (Kaufdruck). Shape: Normal Variation (Up).",
+      "h30m_summary": "Kurs 47916.57 ueber VWAP (47614.05), ausserhalb Value Area. POC=48180.18 VAH=48256.84 VAL=48037.82. CVD +88306 (Kaufdruck). Shape: Normal Variation (Up).",
       "mp_shape_yesterday": "Normal Variation (Up)",
       "mp_shape_forecast": "Normal Variation (Up)",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -90,7 +274,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "47614.89",
+          "price": "47614.05",
           "source": "VWAP"
         }
       ],
@@ -116,11 +300,103 @@
     {
       "name": "SPX500",
       "bias": "Baerisch",
+      "bias_color": "red",
+      "bias_score": -33,
       "bias_pct": "83",
+      "bias_signals": [
+        {
+          "label": "Preis > VWAP",
+          "score": 2,
+          "direction": "bullish"
+        },
+        {
+          "label": "Unter VAL — Breakdown",
+          "score": -2,
+          "direction": "bearish"
+        },
+        {
+          "label": "Preis < POC",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "Shape: Normal Variation",
+          "score": 0,
+          "direction": "neutral"
+        },
+        {
+          "label": "Overnight Inventory: Short",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "CVD positiv (+37933) — Kaufdruck",
+          "score": 1,
+          "direction": "bullish"
+        },
+        {
+          "label": "VIX 21.1 — Elevated",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "VIX rising sharply",
+          "score": -1,
+          "direction": "bearish"
+        },
+        {
+          "label": "Yields stabil",
+          "score": 0,
+          "direction": "neutral"
+        },
+        {
+          "label": "Daily OTF Check",
+          "score": 0,
+          "direction": "neutral"
+        },
+        {
+          "label": "Gap Analysis",
+          "score": 0,
+          "direction": "neutral"
+        },
+        {
+          "label": "Session Expectation",
+          "score": 0,
+          "direction": "neutral"
+        }
+      ],
+      "cvd": {
+        "value": 37932.7,
+        "direction": "bullish"
+      },
+      "quote": {
+        "price": 6816.89,
+        "change": -7.77,
+        "change_pct": -0.11,
+        "high": 6845.77,
+        "low": 6808.46,
+        "open": 6839.24,
+        "prev_close": 6824.66
+      },
+      "market_profile": {
+        "poc": 6831.62,
+        "vah": 6836.71,
+        "val": 6818.4,
+        "vwap": 6769.37,
+        "day_high": 6836.71,
+        "day_low": 6818.4,
+        "shape": {
+          "name": "Normal Variation",
+          "description": "Ausgewogen ohne klare Richtung — Range-Handel"
+        },
+        "volume_profile": [],
+        "source": "tradingview"
+      },
+      "current_price": 6816.89,
       "daily_summary": "Bias Baerisch (Score -33). Vortag Range: 6818.4 – 6836.71. VIX=21.1.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 6816.89 ueber VWAP (6769.12), ausserhalb Value Area. POC=6831.62 VAH=6836.71 VAL=6818.4. CVD +37834 (Kaufdruck). Shape: Normal Variation.",
+      "h30m_summary": "Kurs 6816.89 ueber VWAP (6769.37), ausserhalb Value Area. POC=6831.62 VAH=6836.71 VAL=6818.4. CVD +37933 (Kaufdruck). Shape: Normal Variation.",
       "mp_shape_yesterday": "Normal Variation",
       "mp_shape_forecast": "Normal Variation",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -142,7 +418,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "6769.12",
+          "price": "6769.37",
           "source": "VWAP"
         }
       ],
@@ -171,9 +447,9 @@
     "total_orders": 3,
     "warnings": [
       "VIX 21.1 — Elevated, Vorsicht bei Einstiegen",
-      "VIX steigt stark (+9.8%) — Volatilitaet im Wandel"
+      "VIX steigt stark (+9.7%) — Volatilitaet im Wandel"
     ],
-    "notes": "Auto-generiert 13:24. VIX=21.1. Beste Konfluenz: GER40."
+    "notes": "Auto-generiert 13:35. VIX=21.1. Beste Konfluenz: GER40."
   },
   "stats": {
     "total": 3,

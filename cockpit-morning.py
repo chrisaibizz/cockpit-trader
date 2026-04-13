@@ -812,7 +812,14 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
         journal_instruments.append({
             "name":                display_name,
             "bias":                bias_de,
+            "bias_color":          bias_data.get("color", "yellow"),
+            "bias_score":          score,
             "bias_pct":            str(bias_pct),
+            "bias_signals":        bias_data.get("signals", []),
+            "cvd":                 cvd,
+            "quote":               q,
+            "market_profile":      mp,
+            "current_price":       price,
             "daily_summary":       daily_summary,
             "h4_summary":          "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
             "h1_summary":          "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
@@ -1010,14 +1017,20 @@ def main():
     print("\n>>> Kalender holen...")
     cal = fetch_calendar()
 
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # ── JOURNAL ZUERST (damit es ins HTML eingebettet werden kann) ─
+    print("\n>>> journal-data.json generieren...")
+    instruments_map = {"GER40": ger, "US30": dji, "SPX500": spx}
+    journal, orders = generate_journal_data(instruments_map, ctx, cal, script_dir)
+
     out = {
         "timestamp":   datetime.now().isoformat(),
         "instruments": {"SPX": spx, "DJI": dji, "GER": ger},
         "context":     ctx,
         "calendar":    cal,
+        "journal":     journal,
     }
-
-    script_dir = os.path.dirname(os.path.abspath(__file__))
 
     print("\n>>> Schreibe data.json...")
     json_path = os.path.join(script_dir, "data.json")
@@ -1041,50 +1054,33 @@ def main():
     )
     html_embedded = html.replace("</head>", data_tag + "\n</head>")
 
-    briefing_path = os.path.join(script_dir, "cockpit-briefing.html")
-    print(">>> Schreibe cockpit-briefing.html...")
-    with open(briefing_path, "w", encoding="utf-8") as f:
-        f.write(html_embedded)
-    print(f"    -> {briefing_path}")
-
-    index_path = os.path.join(script_dir, "dashboard-legacy.html")
-    print(">>> Schreibe dashboard-legacy.html (GitHub Pages)...")
-    with open(index_path, "w", encoding="utf-8") as f:
-        f.write(html_embedded)
-    print(f"    -> {index_path}")
-
-    gh_pages_path = os.path.join(script_dir, "index.html")
-    print(">>> Schreibe index.html (GitHub Pages Einstieg)...")
-    with open(gh_pages_path, "w", encoding="utf-8") as f:
-        f.write(html_embedded)
-    print(f"    -> {gh_pages_path}")
+    for fname, label in [
+        ("cockpit-briefing.html", "cockpit-briefing.html"),
+        ("dashboard-legacy.html", "dashboard-legacy.html (GitHub Pages)"),
+        ("index.html",            "index.html (GitHub Pages Einstieg)"),
+    ]:
+        fpath = os.path.join(script_dir, fname)
+        print(f">>> Schreibe {label}...")
+        with open(fpath, "w", encoding="utf-8") as f:
+            f.write(html_embedded)
+        print(f"    -> {fpath}")
 
     # Summary-Print
     print(f"\n{'='*50}")
     print(f"Timestamp: {out['timestamp']}")
-    inst_labels = {"SPX": spx, "DJI": dji, "GER": ger}
-    for k, inst in inst_labels.items():
-        q  = inst.get("quote")          or {}
-        mp = inst.get("market_profile") or {}
-        b  = inst.get("bias",           {})
-        print(f"\n  {k}:")
-        if q:  print(f"    Kurs:  {q['price']}  ({q['change']:+.2f} / {q['change_pct']:+.2f}%)")
-        if mp: print(f"    Levels: POC={mp.get('poc')}  VAH={mp.get('vah')}  VAL={mp.get('val')}  VWAP={mp.get('vwap')}")
-        if mp: print(f"    Shape:  {(mp.get('shape') or {}).get('name','?')}")
-        if b:  print(f"    Bias:   {b.get('bias','?')} (Score: {b.get('score','?')})")
+    for ji in journal.get("instruments", []):
+        mp = ji.get("market_profile") or {}
+        print(f"\n  {ji['name']}:")
+        q = ji.get("quote") or {}
+        if q: print(f"    Kurs:   {q.get('price')}  ({q.get('change',0):+.2f} / {q.get('change_pct',0):+.2f}%)")
+        print(f"    Levels: POC={mp.get('poc')}  VAH={mp.get('vah')}  VAL={mp.get('val')}  VWAP={mp.get('vwap')}")
+        print(f"    Shape:  {ji.get('mp_shape_yesterday','?')}")
+        print(f"    Bias:   {ji.get('bias','?')} (Score: {ji.get('bias_score','?')})")
+        if ji.get("orders"): print(f"    Order:  {ji['orders'][0]['type']} @ {ji['orders'][0]['entry']}")
 
     print(f"\nKalender: {len(cal)} Events")
     for e in cal[:8]:
         print(f"  {e.get('date','')} {str(e['time'])[11:16]}  {e['event']} ({e['country']}) [{e['impact']}]")
-
-    # ── PIPELINE ──────────────────────────────────────────────
-    print("\n>>> journal-data.json generieren...")
-    instruments_map = {
-        "GER40":  ger,
-        "US30":   dji,
-        "SPX500": spx,
-    }
-    journal, orders = generate_journal_data(instruments_map, ctx, cal, script_dir)
 
     print("\n>>> Pipeline starten (Sheet / Doc / git)...")
     run_pipeline(journal, orders, script_dir)
