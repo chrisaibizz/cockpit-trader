@@ -564,13 +564,17 @@ def compute_bias(mp, price, context, cvd=None):
         mp["vwap"] = mp.get("poc", 0)
     signals = []
     if mp and price:
-        signals.append(("Preis > VWAP", 2, "bullish") if price > mp["vwap"]
-                       else ("Preis < VWAP", -2, "bearish"))
-        if   price > mp["vah"]: signals.append(("Ueber VAH — Breakout",   2, "bullish"))
-        elif price < mp["val"]: signals.append(("Unter VAL — Breakdown", -2, "bearish"))
-        else:                   signals.append(("In Value Area",           0, "neutral"))
-        signals.append(("Preis > POC", 1, "bullish") if price > mp["poc"]
-                       else ("Preis < POC", -1, "bearish"))
+        vwap = mp["vwap"]
+        vah  = mp["vah"]
+        val  = mp["val"]
+        poc  = mp["poc"]
+        signals.append((f"Preis > VWAP ({price:.0f} > {vwap:.0f})", 2, "bullish") if price > vwap
+                       else (f"Preis < VWAP ({price:.0f} < {vwap:.0f})", -2, "bearish"))
+        if   price > vah: signals.append((f"Ueber VAH — Breakout ({price:.0f} > {vah:.0f})",   2, "bullish"))
+        elif price < val: signals.append((f"Unter VAL — Breakdown ({price:.0f} < {val:.0f})", -2, "bearish"))
+        else:             signals.append((f"In Value Area ({val:.0f} – {vah:.0f})",             0, "neutral"))
+        signals.append((f"Preis > POC ({price:.0f} > {poc:.0f})", 1, "bullish") if price > poc
+                       else (f"Preis < POC ({price:.0f} < {poc:.0f})", -1, "bearish"))
         sn = mp["shape"]["name"]
         if   "Up"      in sn: signals.append((f"Shape: {sn}",  2, "bullish"))
         elif "Down"    in sn: signals.append((f"Shape: {sn}", -2, "bearish"))
@@ -613,16 +617,20 @@ def compute_bias(mp, price, context, cvd=None):
         else:         signals.append(("VIX stabil",            0, "neutral"))
 
     if dxy.get("change_pct"):
-        cp = dxy["change_pct"]
-        if   cp < -0.3: signals.append(("Dollar schwaecher",  1, "bullish"))
-        elif cp >  0.3: signals.append(("Dollar staerker",   -1, "bearish"))
-        else:           signals.append(("Dollar neutral",      0, "neutral"))
+        cp  = dxy["change_pct"]
+        dpx = dxy.get("price")
+        dpy = f" ({dpx:.2f})" if dpx else ""
+        if   cp < -0.3: signals.append((f"Dollar schwaecher{dpy}",  1, "bullish"))
+        elif cp >  0.3: signals.append((f"Dollar staerker{dpy}",   -1, "bearish"))
+        else:           signals.append((f"DXY neutral{dpy}",         0, "neutral"))
 
     if y10.get("change_pct"):
-        cp = y10["change_pct"]
-        if   cp >  2: signals.append(("Yields steigen stark", -1, "bearish"))
-        elif cp < -2: signals.append(("Yields fallen stark",   1, "bullish"))
-        else:         signals.append(("Yields stabil",          0, "neutral"))
+        cp  = y10["change_pct"]
+        ypx = y10.get("price")
+        ypy = f" ({ypx:.2f}%)" if ypx else ""
+        if   cp >  2: signals.append((f"Yields steigen stark{ypy}", -1, "bearish"))
+        elif cp < -2: signals.append((f"Yields fallen stark{ypy}",   1, "bullish"))
+        else:         signals.append((f"10Y Yields stabil{ypy}",      0, "neutral"))
 
     signals += [
         ("Daily OTF Check",     0, "neutral"),
