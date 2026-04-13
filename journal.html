@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Trading Floor — Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">✈ The <span>Trading Floor</span></div>
+    <div class="nav-links">
+      <a href="index.html">Dashboard</a>
+      <a href="journal.html" class="active">Journal</a>
+      <a href="orders.html">Orders</a>
+    </div>
+    <div class="nav-time" id="navTime"></div>
+  </div>
+</nav>
+
+<main>
+  <div class="header">
+    <h1>Analyse Journal<small>Morning Briefing &middot; Indikatoren &middot; Market Profile</small></h1>
+    <div class="timestamp" id="journalDate"></div>
+  </div>
+
+  <div id="content">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Lade Journal...</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  The Trading Floor v1.0 &middot; Cockpit Trader &middot; CFD Trading via Vantage
+</footer>
+
+<script>
+function updateClock(){
+  const now=new Date();
+  const el=document.getElementById('navTime');
+  if(el) el.textContent=now.toLocaleString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+}
+updateClock();setInterval(updateClock,30000);
+
+async function loadJournal(){
+  try{
+    const res=await fetch('journal-data.json?t='+Date.now());
+    if(!res.ok) throw new Error('Noch kein Journal vorhanden');
+    return await res.json();
+  }catch(e){
+    document.getElementById('content').innerHTML=`
+      <div class="placeholder">
+        <h3>Journal wird nach der naechsten Morning-Analyse verfuegbar</h3>
+        <p>Claude Code erstellt das Journal automatisch um 08:00.<br>
+        Die Analyse umfasst: Debrief, Daily/4H/1H/30M pro Instrument,<br>
+        MP Shape Analyse, Konfluenz-basierte Limit Orders.</p>
+      </div>`;
+    return null;
+  }
+}
+
+function render(d){
+  if(!d) return;
+  const el=document.getElementById('journalDate');
+  if(el) el.textContent=d.date||'';
+
+  let html='';
+
+  // Debrief
+  if(d.debrief){
+    const db=d.debrief;
+    html+=`
+    <div class="section-title">Debrief — Vortag</div>
+    <div class="journal-section">
+      <div class="journal-stats">
+        <div class="j-stat"><div class="j-stat-label">Orders geprueft</div><div class="j-stat-value">${db.orders_checked??'—'}</div></div>
+        <div class="j-stat"><div class="j-stat-label">Fill-Rate</div><div class="j-stat-value">${db.fill_rate||'—'}</div></div>
+        <div class="j-stat"><div class="j-stat-label">TP1-Rate</div><div class="j-stat-value">${db.tp1_rate||'—'}</div></div>
+        <div class="j-stat"><div class="j-stat-label">Trend</div><div class="j-stat-value">${db.trend||'—'}</div></div>
+      </div>
+      ${db.learnings&&db.learnings.length?`<div class="j-learnings"><div class="j-learn-title">Learnings</div>${db.learnings.map(l=>`<div class="j-learn-item">→ ${l}</div>`).join('')}</div>`:''}
+    </div>`;
+  }
+
+  // Instruments
+  if(d.instruments&&d.instruments.length){
+    for(const inst of d.instruments){
+      const bc=inst.bias&&inst.bias.includes('Bull')?'bias-bull':inst.bias&&inst.bias.includes('Bär')?'bias-bear':'bias-neutral';
+      html+=`
+      <div class="section-title">${inst.name} — <span class="${bc}" style="font-size:0.8rem;padding:0.15rem 0.5rem;border-radius:4px">${inst.bias||'—'} (${inst.bias_pct||'?'}%)</span></div>
+      <div class="journal-section">
+        ${inst.daily_summary?`<div class="j-tf"><span class="j-tf-label">Daily</span>${inst.daily_summary}</div>`:''}
+        ${inst.h4_summary?`<div class="j-tf"><span class="j-tf-label">4H</span>${inst.h4_summary}</div>`:''}
+        ${inst.h1_summary?`<div class="j-tf"><span class="j-tf-label">1H</span>${inst.h1_summary}</div>`:''}
+        ${inst.h30m_summary?`<div class="j-tf"><span class="j-tf-label">30M</span>${inst.h30m_summary}</div>`:''}
+
+        ${inst.mp_shape_yesterday||inst.mp_shape_forecast?`
+        <div class="j-mp">
+          <div class="j-mp-title">Market Profile</div>
+          ${inst.mp_shape_yesterday?`<div class="j-mp-row"><span class="j-mp-label">Gestern</span><span class="j-mp-value">${inst.mp_shape_yesterday}</span></div>`:''}
+          ${inst.mp_shape_forecast?`<div class="j-mp-row"><span class="j-mp-label">Prognose</span><span class="j-mp-value">${inst.mp_shape_forecast}</span></div>`:''}
+          ${inst.mp_5day_sequence?`<div class="j-mp-row"><span class="j-mp-label">5-Tage</span><span class="j-mp-value">${inst.mp_5day_sequence}</span></div>`:''}
+        </div>`:''}
+
+        ${inst.key_levels&&inst.key_levels.length?`
+        <div class="j-levels">
+          <div class="j-levels-title">Key Levels</div>
+          <table class="j-table">
+            <thead><tr><th>Level</th><th>Preis</th><th>Quelle</th></tr></thead>
+            <tbody>${inst.key_levels.map(l=>`<tr><td>${l.level}</td><td>${l.price}</td><td>${l.source}</td></tr>`).join('')}</tbody>
+          </table>
+        </div>`:''}
+
+        ${inst.invalidation?`<div class="j-warning">⚠ Invalidierung: ${inst.invalidation}</div>`:''}
+      </div>`;
+    }
+  }
+
+  // Summary
+  if(d.summary){
+    html+=`
+    <div class="section-title">Gesamtuebersicht</div>
+    <div class="journal-section">
+      ${d.summary.best_instrument?`<div class="j-highlight">Klarste Struktur: <strong>${d.summary.best_instrument}</strong></div>`:''}
+      ${d.summary.total_orders?`<div style="font-size:0.85rem;color:var(--text2);margin-top:0.3rem">Limit Orders heute: ${d.summary.total_orders}</div>`:''}
+      ${d.summary.warnings&&d.summary.warnings.length?`<div class="j-warnings">${d.summary.warnings.map(w=>`<div class="j-warn-item">⚠ ${w}</div>`).join('')}</div>`:''}
+      ${d.summary.notes?`<div style="font-size:0.8rem;color:var(--text3);margin-top:0.5rem">${d.summary.notes}</div>`:''}
+    </div>`;
+  }
+
+  document.getElementById('content').innerHTML=html;
+}
+
+loadJournal().then(render);
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Trading Floor — Orders</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">✈ The <span>Trading Floor</span></div>
+    <div class="nav-links">
+      <a href="index.html">Dashboard</a>
+      <a href="journal.html">Journal</a>
+      <a href="orders.html" class="active">Orders</a>
+    </div>
+    <div class="nav-time" id="navTime"></div>
+  </div>
+</nav>
+
+<main>
+  <div class="header">
+    <h1>Limit Orders<small>Nach Wahrscheinlichkeit sortiert &middot; Konfluenz-basiert</small></h1>
+    <div class="timestamp" id="ordersDate"></div>
+  </div>
+
+  <div id="content">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Lade Orders...</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  The Trading Floor v1.0 &middot; Cockpit Trader &middot; CFD Trading via Vantage
+</footer>
+
+<script>
+function updateClock(){
+  const now=new Date();
+  const el=document.getElementById('navTime');
+  if(el) el.textContent=now.toLocaleString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+}
+updateClock();setInterval(updateClock,30000);
+
+async function loadOrders(){
+  try{
+    const res=await fetch('journal-data.json?t='+Date.now());
+    if(!res.ok) throw new Error('Noch keine Orders vorhanden');
+    return await res.json();
+  }catch(e){
+    document.getElementById('content').innerHTML=`
+      <div class="placeholder">
+        <h3>Orders werden nach der naechsten Morning-Analyse verfuegbar</h3>
+        <p>Claude Code berechnet Limit Orders basierend auf Konfluenz-Analyse.<br>
+        Sortiert nach Wahrscheinlichkeit (P(TP1)), mit R:R und Konfluenz-Score.</p>
+      </div>`;
+    return null;
+  }
+}
+
+function render(d){
+  if(!d) return;
+  const el=document.getElementById('ordersDate');
+  if(el) el.textContent=d.date||'';
+
+  // Collect all orders from all instruments
+  let allOrders=[];
+  if(d.instruments){
+    for(const inst of d.instruments){
+      if(inst.orders){
+        for(const o of inst.orders){
+          allOrders.push({...o, instrument:inst.name});
+        }
+      }
+    }
+  }
+
+  // Sort by P(TP1) descending
+  allOrders.sort((a,b)=>(parseFloat(b.p_tp1)||0)-(parseFloat(a.p_tp1)||0));
+
+  if(!allOrders.length){
+    document.getElementById('content').innerHTML=`
+      <div class="placeholder">
+        <h3>Keine Limit Orders fuer heute</h3>
+        <p>Die Morning-Analyse hat keine Orders mit ausreichender Konfluenz gefunden,<br>
+        oder die Analyse wurde noch nicht durchgefuehrt.</p>
+      </div>`;
+    return;
+  }
+
+  let html=`<div class="orders-summary">
+    <div class="os-item"><div class="os-label">Gesamt</div><div class="os-value">${allOrders.length}</div></div>
+    <div class="os-item"><div class="os-label">Long</div><div class="os-value" style="color:var(--green)">${allOrders.filter(o=>(o.type||'').includes('Buy')).length}</div></div>
+    <div class="os-item"><div class="os-label">Short</div><div class="os-value" style="color:var(--red)">${allOrders.filter(o=>(o.type||'').includes('Sell')).length}</div></div>
+    <div class="os-item"><div class="os-label">Avg R:R</div><div class="os-value">${(allOrders.reduce((s,o)=>s+(parseFloat(o.rr)||0),0)/allOrders.length).toFixed(1)}</div></div>
+  </div>`;
+
+  // Order cards (mobile friendly, no table)
+  html+=`<div class="section-title">Orders nach Wahrscheinlichkeit</div>`;
+  html+=`<div class="order-list">`;
+
+  for(const o of allOrders){
+    const isLong=(o.type||'').includes('Buy');
+    const typeColor=isLong?'var(--green)':'var(--red)';
+    const pTp1=parseFloat(o.p_tp1)||0;
+    const pFill=parseFloat(o.p_fill)||0;
+    const confScore=(o.confluence||'').split('✓').length-1;
+
+    html+=`
+    <div class="order-card">
+      <div class="order-top">
+        <div class="order-instrument">${o.instrument||'—'}</div>
+        <div class="order-type" style="color:${typeColor}">${o.type||'—'}</div>
+      </div>
+      <div class="order-prices">
+        <div class="op"><div class="op-label">Entry</div><div class="op-value">${o.entry||'—'}</div></div>
+        <div class="op"><div class="op-label">SL</div><div class="op-value" style="color:var(--red)">${o.sl||'—'}</div></div>
+        <div class="op"><div class="op-label">TP1</div><div class="op-value" style="color:var(--green)">${o.tp1||'—'}</div></div>
+        ${o.tp2?`<div class="op"><div class="op-label">TP2</div><div class="op-value" style="color:var(--cyan)">${o.tp2}</div></div>`:''}
+      </div>
+      <div class="order-metrics">
+        <div class="om">
+          <div class="om-label">R:R</div>
+          <div class="om-value">${o.rr||'—'}</div>
+        </div>
+        <div class="om">
+          <div class="om-label">P(Fill)</div>
+          <div class="om-bar"><div class="om-fill" style="width:${pFill}%;background:var(--blue)"></div></div>
+          <div class="om-pct">${o.p_fill||'—'}%</div>
+        </div>
+        <div class="om">
+          <div class="om-label">P(TP1)</div>
+          <div class="om-bar"><div class="om-fill" style="width:${pTp1}%;background:var(--green)"></div></div>
+          <div class="om-pct">${o.p_tp1||'—'}%</div>
+        </div>
+      </div>
+      <div class="order-confluence">
+        <div class="oc-label">Konfluenz</div>
+        <div class="oc-dots">${'●'.repeat(confScore)}${'○'.repeat(4-confScore)}</div>
+        <div class="oc-text">${o.confluence||'—'}</div>
+      </div>
+      <div class="order-meta">
+        <span>TF: ${o.tf||'—'}</span>
+      </div>
+    </div>`;
+  }
+  html+=`</div>`;
+
+  document.getElementById('content').innerHTML=html;
+}
+
+loadOrders().then(render);
+</script>
+</body>
+</html>

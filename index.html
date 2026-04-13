@@ -2,319 +2,457 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cockpit-Trader — Morning Briefing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>The Trading Floor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;
-    --muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;
-    --blue:#3b82f6;--cyan:#06b6d4;--white:#f1f5f9;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;padding:20px;min-height:100vh;}
-  .header{text-align:center;padding:20px 0 30px;border-bottom:1px solid var(--border);margin-bottom:30px;}
-  .header h1{font-size:28px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-  .header .ts{color:var(--muted);font-size:13px;margin-top:8px;}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1400px;margin:0 auto;}
-  .fw{grid-column:1/-1;}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;}
-  .ct{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px;}
-  .bias-wrap{display:flex;align-items:center;gap:24px;padding:10px 0;}
-  .tlight{display:flex;flex-direction:column;gap:6px;background:#000;padding:10px 8px;border-radius:20px;border:2px solid #333;}
-  .light{width:32px;height:32px;border-radius:50%;background:#1a1a1a;transition:all .3s;}
-  .ag{background:var(--green);box-shadow:0 0 20px var(--green);}
-  .ay{background:var(--yellow);box-shadow:0 0 20px var(--yellow);}
-  .ar{background:var(--red);box-shadow:0 0 20px var(--red);}
-  .bi{flex:1;}
-  .bl{font-size:28px;font-weight:700;letter-spacing:2px;}
-  .bs{font-size:14px;color:var(--muted);margin-top:4px;}
-  .qrow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
-  .qp{font-size:32px;font-weight:700;}
-  .qc{font-size:16px;font-weight:600;}
-  .pos{color:var(--green);}.neg{color:var(--red);}
-  .lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-  .lb{text-align:center;padding:12px 8px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid var(--border);}
-  .ll{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
-  .lv{font-size:18px;font-weight:600;}
-  .lpoc{border-color:var(--cyan);}.lpoc .lv{color:var(--cyan);}
-  .lvah{border-color:var(--green);}.lvah .lv{color:var(--green);}
-  .lval{border-color:var(--red);}.lval .lv{color:var(--red);}
-  .lvwap{border-color:var(--yellow);}.lvwap .lv{color:var(--yellow);}
-  .vpc{width:100%;height:320px;}
-  .vpc svg{width:100%;height:100%;}
-  .sbadge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:14px;font-weight:600;margin-bottom:8px;background:rgba(59,130,246,.15);color:var(--blue);}
-  .sdesc{font-size:13px;color:var(--muted);line-height:1.5;}
-  .slist{list-style:none;}
-  .slist li{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;}
-  .sdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;}
-  .ssc{font-weight:600;min-width:30px;text-align:right;}
-  .cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-  .ci{text-align:center;padding:16px 8px;background:rgba(255,255,255,.02);border-radius:8px;border:1px solid var(--border);}
-  .cl2{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
-  .cp2{font-size:20px;font-weight:600;}
-  .cc2{font-size:12px;margin-top:4px;}
-  .cale{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;align-items:center;}
-  .cat{color:var(--cyan);min-width:55px;font-size:12px;}
-  .can{flex:1;}
-  .cac{color:var(--muted);min-width:30px;text-align:right;font-size:12px;}
-  .imp-high{color:var(--red);font-weight:700;min-width:20px;}
-  .imp-medium{color:var(--yellow);min-width:20px;}
-  .day-label{padding:10px 0 4px;font-size:12px;letter-spacing:1px;border-top:1px solid var(--border);margin-top:4px;}
-  .kassa-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;
-               background:rgba(6,182,212,0.15);color:var(--cyan);border:1px solid var(--cyan);
-               margin-left:8px;letter-spacing:1px;vertical-align:middle;}
-  .loading{text-align:center;padding:60px;color:var(--muted);}
-  @media(max-width:768px){
-    .grid{grid-template-columns:1fr;}
-    .lgrid{grid-template-columns:repeat(2,1fr);}
-    .cgrid{grid-template-columns:repeat(2,1fr);}
-  }
+:root {
+  --bg: #080b11;
+  --bg2: #0d1117;
+  --bg3: #151b25;
+  --bg4: #1c2433;
+  --border: #1e2d45;
+  --text: #e6edf3;
+  --text2: #8b949e;
+  --text3: #484f58;
+  --green: #3fb950;
+  --green-bg: rgba(63,185,80,0.08);
+  --red: #f85149;
+  --red-bg: rgba(248,81,73,0.08);
+  --amber: #d29922;
+  --amber-bg: rgba(210,153,34,0.08);
+  --blue: #58a6ff;
+  --blue-bg: rgba(88,166,255,0.08);
+  --cyan: #39d2c0;
+  --purple: #bc8cff;
+  --accent: #58a6ff;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:16px; }
+body {
+  font-family:'Outfit',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* === NAV === */
+nav {
+  position:sticky; top:0; z-index:100;
+  background:rgba(8,11,17,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 1rem;
+}
+.nav-inner {
+  max-width:1200px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  height:56px;
+}
+.nav-brand {
+  font-weight:800; font-size:1.1rem; letter-spacing:-0.02em;
+  color:var(--text);
+  display:flex; align-items:center; gap:0.5rem;
+}
+.nav-brand span { color:var(--accent); }
+.nav-links { display:flex; gap:0; }
+.nav-links a {
+  color:var(--text2); text-decoration:none;
+  padding:0.5rem 0.8rem; font-size:0.85rem; font-weight:500;
+  border-radius:8px; transition:all 0.2s;
+  position:relative;
+}
+.nav-links a:hover { color:var(--text); background:var(--bg3); }
+.nav-links a.active {
+  color:var(--accent);
+  background:var(--blue-bg);
+}
+.nav-time {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.75rem; color:var(--text3);
+  display:none;
+}
+@media(min-width:640px){ .nav-time{display:block;} }
+
+/* === MAIN === */
+main {
+  max-width:1200px; margin:0 auto;
+  padding:1.5rem 1rem 4rem;
+}
+
+/* === HEADER === */
+.header {
+  margin-bottom:1.5rem;
+  display:flex; align-items:flex-end; justify-content:space-between;
+  flex-wrap:wrap; gap:0.5rem;
+}
+.header h1 {
+  font-size:1.5rem; font-weight:700; letter-spacing:-0.03em;
+  line-height:1.2;
+}
+.header h1 small { font-size:0.8rem; color:var(--text2); font-weight:400; display:block; margin-top:0.2rem; }
+.header .timestamp {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem; color:var(--text3);
+  white-space:nowrap;
+}
+
+/* === BIAS CARDS === */
+.bias-grid {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0.75rem;
+  margin-bottom:1.5rem;
+}
+@media(min-width:640px){ .bias-grid{grid-template-columns:1fr 1fr;} }
+@media(min-width:960px){ .bias-grid{grid-template-columns:1fr 1fr 1fr;} }
+
+.bias-card {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:1rem 1.2rem;
+  transition:border-color 0.3s;
+}
+.bias-card:hover { border-color:var(--accent); }
+.bias-card .card-header {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:0.75rem;
+}
+.bias-card .symbol {
+  font-weight:700; font-size:1.1rem; letter-spacing:-0.02em;
+}
+.bias-card .price {
+  font-family:'JetBrains Mono',monospace;
+  font-size:1rem; font-weight:600;
+}
+.bias-card .change {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.75rem; font-weight:500;
+}
+.bias-card .bias-badge {
+  display:inline-flex; align-items:center; gap:0.3rem;
+  padding:0.25rem 0.6rem; border-radius:6px;
+  font-size:0.75rem; font-weight:600; text-transform:uppercase;
+  letter-spacing:0.04em;
+}
+.bias-bull { background:var(--green-bg); color:var(--green); }
+.bias-bear { background:var(--red-bg); color:var(--red); }
+.bias-neutral { background:var(--amber-bg); color:var(--amber); }
+
+.bias-card .levels {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:0.3rem 1rem;
+  margin-top:0.75rem;
+  font-size:0.75rem;
+}
+.bias-card .levels dt { color:var(--text3); font-weight:400; }
+.bias-card .levels dd {
+  font-family:'JetBrains Mono',monospace;
+  color:var(--text2); font-weight:500; text-align:right;
+}
+.bias-card .mp-shape {
+  margin-top:0.6rem; padding-top:0.6rem;
+  border-top:1px solid var(--border);
+  font-size:0.75rem; color:var(--text2);
+}
+.bias-card .mp-shape strong { color:var(--cyan); }
+
+/* === CONTEXT BAR === */
+.context-bar {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:0.5rem;
+  margin-bottom:1.5rem;
+}
+@media(min-width:640px){ .context-bar{grid-template-columns:repeat(4,1fr);} }
+@media(min-width:960px){ .context-bar{grid-template-columns:repeat(6,1fr);} }
+
+.ctx-item {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:0.6rem 0.8rem;
+  text-align:center;
+}
+.ctx-item .ctx-label {
+  font-size:0.65rem; color:var(--text3);
+  text-transform:uppercase; letter-spacing:0.06em;
+  margin-bottom:0.2rem;
+}
+.ctx-item .ctx-value {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.9rem; font-weight:600;
+}
+
+/* === MACRO SECTION === */
+.section-title {
+  font-size:0.8rem; font-weight:600; color:var(--text2);
+  text-transform:uppercase; letter-spacing:0.08em;
+  margin-bottom:0.75rem;
+  padding-bottom:0.4rem;
+  border-bottom:1px solid var(--border);
+}
+
+.macro-grid {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0.5rem;
+  margin-bottom:1.5rem;
+}
+@media(min-width:640px){ .macro-grid{grid-template-columns:1fr 1fr;} }
+
+.macro-card {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:0.8rem 1rem;
+}
+.macro-card .macro-title {
+  font-size:0.7rem; color:var(--text3);
+  text-transform:uppercase; letter-spacing:0.05em;
+  margin-bottom:0.3rem;
+}
+.macro-card .macro-value {
+  font-family:'JetBrains Mono',monospace;
+  font-size:1rem; font-weight:600;
+}
+.macro-card .macro-date {
+  font-size:0.65rem; color:var(--text3); margin-top:0.15rem;
+}
+
+/* === CALENDAR === */
+.cal-list {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:0.8rem 1rem;
+  margin-bottom:1.5rem;
+}
+.cal-item {
+  display:flex; align-items:center; gap:0.6rem;
+  padding:0.4rem 0;
+  font-size:0.8rem;
+}
+.cal-item + .cal-item { border-top:1px solid var(--border); }
+.cal-badge {
+  font-size:0.6rem; font-weight:600;
+  padding:0.15rem 0.4rem; border-radius:4px;
+  text-transform:uppercase; letter-spacing:0.04em;
+  white-space:nowrap;
+}
+.cal-badge.earnings { background:var(--amber-bg); color:var(--amber); }
+.cal-badge.fred { background:var(--blue-bg); color:var(--blue); }
+.cal-date {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem; color:var(--text3);
+  min-width:5rem;
+}
+.cal-text { color:var(--text2); }
+
+/* === FOOTER === */
+footer {
+  text-align:center;
+  padding:2rem 1rem;
+  font-size:0.65rem;
+  color:var(--text3);
+  border-top:1px solid var(--border);
+}
+
+/* === LOADING === */
+.loading {
+  text-align:center; padding:4rem 1rem;
+  color:var(--text3);
+}
+.loading .spinner {
+  width:32px; height:32px;
+  border:3px solid var(--border);
+  border-top:3px solid var(--accent);
+  border-radius:50%;
+  animation:spin 0.8s linear infinite;
+  margin:0 auto 1rem;
+}
+@keyframes spin { to{transform:rotate(360deg)} }
+
+/* === NO JOURNAL PLACEHOLDER === */
+.placeholder {
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:3rem 1.5rem;
+  text-align:center;
+  color:var(--text3);
+}
+.placeholder h3 { color:var(--text2); margin-bottom:0.5rem; font-size:1rem; }
+.placeholder p { font-size:0.8rem; line-height:1.6; }
 </style>
-<script>window.__COCKPIT_DATA__ = {"timestamp": "2026-04-13T05:00:25.794611", "instruments": {"SPX": {"name": "S&P 500 (Kassa)", "ticker": "^GSPC", "quote": {"price": 6816.89, "change": -7.77, "change_pct": -0.11, "high": 6845.77, "low": 6808.46, "open": 6839.24, "prev_close": 6824.66}, "market_profile": {"poc": 6823.32, "vah": 6835.31, "val": 6779.99, "vwap": 6805.28, "day_high": 6835.31, "day_low": 6761.55, "shape": {"name": "Double Distribution", "description": "Zwei Value Areas \u2014 oft Trend-Folgetag."}, "volume_profile": [{"price": 6762.47, "volume": 382609887.0}, {"price": 6764.32, "volume": 382609887.0}, {"price": 6766.16, "volume": 382609887.0}, {"price": 6768.0, "volume": 603797122.0}, {"price": 6769.85, "volume": 772531855.0}, {"price": 6771.69, "volume": 772531855.0}, {"price": 6773.54, "volume": 772531855.0}, {"price": 6775.38, "volume": 772531855.0}, {"price": 6777.22, "volume": 772531855.0}, {"price": 6779.07, "volume": 598488287.0}, {"price": 6780.91, "volume": 781192595.0}, {"price": 6782.76, "volume": 572626276.0}, {"price": 6784.6, "volume": 572626276.0}, {"price": 6786.44, "volume": 351439041.0}, {"price": 6788.29, "volume": 351439041.0}, {"price": 6790.13, "volume": 351439041.0}, {"price": 6791.98, "volume": 182704308.0}, {"price": 6793.82, "volume": 182704308.0}, {"price": 6795.66, "volume": 182704308.0}, {"price": 6797.51, "volume": 182704308.0}, {"price": 6799.35, "volume": 182704308.0}, {"price": 6801.2, "volume": 182704308.0}, {"price": 6803.04, "volume": 182704308.0}, {"price": 6804.88, "volume": 182704308.0}, {"price": 6806.73, "volume": 182704308.0}, {"price": 6808.57, "volume": 303604308.0}, {"price": 6810.42, "volume": 439896308.0}, {"price": 6812.26, "volume": 593468308.0}, {"price": 6814.1, "volume": 885422308.0}, {"price": 6815.95, "volume": 702718000.0}, {"price": 6817.79, "volume": 702718000.0}, {"price": 6819.64, "volume": 581818000.0}, {"price": 6821.48, "volume": 814721000.0}, {"price": 6823.32, "volume": 1240561000.0}, {"price": 6825.17, "volume": 1240561000.0}, {"price": 6827.01, "volume": 1116837000.0}, {"price": 6828.86, "volume": 948607000.0}, {"price": 6830.7, "volume": 948607000.0}, {"price": 6832.54, "volume": 232903000.0}, {"price": 6834.39, "volume": 232903000.0}]}, "current_price": 6816.89, "bias": {"score": 33, "bias": "BULLISH", "color": "green", "signals": [{"label": "Preis > VWAP", "score": 2, "direction": "bullish"}, {"label": "In Value Area", "score": 0, "direction": "neutral"}, {"label": "Preis < POC", "score": -1, "direction": "bearish"}, {"label": "Shape: Double Distribution", "score": 0, "direction": "neutral"}, {"label": "Overnight Inventory: Long", "score": 1, "direction": "bullish"}, {"label": "VIX 19.23 \u2014 Normal", "score": 1, "direction": "bullish"}, {"label": "VIX stabil", "score": 0, "direction": "neutral"}, {"label": "Dollar staerker", "score": -1, "direction": "bearish"}, {"label": "Yields stabil", "score": 0, "direction": "neutral"}, {"label": "Daily OTF Check", "score": 0, "direction": "neutral"}, {"label": "Gap Analysis", "score": 0, "direction": "neutral"}, {"label": "Session Expectation", "score": 0, "direction": "neutral"}]}}, "DJI": {"name": "Dow Jones (Kassa)", "ticker": "^DJI", "quote": {"price": 47916.57, "change": -269.23, "change_pct": -0.56, "high": 48235.06, "low": 47856.18, "open": 48199.39, "prev_close": 48185.8}, "market_profile": {"poc": 48220.98, "vah": 48308.11, "val": 47817.01, "vwap": 48052.46, "day_high": 48323.95, "day_low": 47690.27, "shape": {"name": "Normal Variation", "description": "Leichte Richtung \u2014 Abwarten auf Breakout aus VA."}, "volume_profile": [{"price": 47698.19, "volume": 34972500.0}, {"price": 47714.03, "volume": 34972500.0}, {"price": 47729.87, "volume": 61612270.0}, {"price": 47745.72, "volume": 88782657.0}, {"price": 47761.56, "volume": 120083215.0}, {"price": 47777.4, "volume": 120083215.0}, {"price": 47793.24, "volume": 120083215.0}, {"price": 47809.08, "volume": 120083215.0}, {"price": 47824.93, "volume": 120938373.0}, {"price": 47840.77, "volume": 120938373.0}, {"price": 47856.61, "volume": 120938373.0}, {"price": 47872.45, "volume": 120938373.0}, {"price": 47888.29, "volume": 28025545.0}, {"price": 47904.14, "volume": 28025545.0}, {"price": 47919.98, "volume": 28025545.0}, {"price": 47935.82, "volume": 28025545.0}, {"price": 47951.66, "volume": 28025545.0}, {"price": 47967.5, "volume": 28025545.0}, {"price": 47983.35, "volume": 28025545.0}, {"price": 47999.19, "volume": 28025545.0}, {"price": 48015.03, "volume": 28025545.0}, {"price": 48030.87, "volume": 28025545.0}, {"price": 48046.71, "volume": 28025545.0}, {"price": 48062.56, "volume": 28025545.0}, {"price": 48078.4, "volume": 52547215.0}, {"price": 48094.24, "volume": 24521670.0}, {"price": 48110.08, "volume": 24521670.0}, {"price": 48125.92, "volume": 24521670.0}, {"price": 48141.77, "volume": 24521670.0}, {"price": 48157.61, "volume": 44378595.0}, {"price": 48173.45, "volume": 104202763.0}, {"price": 48189.29, "volume": 157420422.0}, {"price": 48205.13, "volume": 157420422.0}, {"price": 48220.98, "volume": 157579534.0}, {"price": 48236.82, "volume": 152342297.0}, {"price": 48252.66, "volume": 132485372.0}, {"price": 48268.5, "volume": 56066226.0}, {"price": 48284.34, "volume": 56066226.0}, {"price": 48300.19, "volume": 56066226.0}, {"price": 48316.03, "volume": 16970263.0}]}, "current_price": 47916.57, "bias": {"score": -67, "bias": "BEARISH", "color": "red", "signals": [{"label": "Preis < VWAP", "score": -2, "direction": "bearish"}, {"label": "In Value Area", "score": 0, "direction": "neutral"}, {"label": "Preis < POC", "score": -1, "direction": "bearish"}, {"label": "Shape: Normal Variation", "score": 0, "direction": "neutral"}, {"label": "Overnight Inventory: Short", "score": -1, "direction": "bearish"}, {"label": "VIX 19.23 \u2014 Normal", "score": 1, "direction": "bullish"}, {"label": "VIX stabil", "score": 0, "direction": "neutral"}, {"label": "Dollar staerker", "score": -1, "direction": "bearish"}, {"label": "Yields stabil", "score": 0, "direction": "neutral"}, {"label": "Daily OTF Check", "score": 0, "direction": "neutral"}, {"label": "Gap Analysis", "score": 0, "direction": "neutral"}, {"label": "Session Expectation", "score": 0, "direction": "neutral"}]}}}, "context": {"VIX": {"price": 19.23, "change": -0.26, "change_pct": -1.33, "high": 20.28, "low": 18.83, "open": 19.71, "prev_close": 19.49}, "DXY": {"price": 99.04, "change": 0.39, "change_pct": 0.39, "high": 99.18, "low": 99.0, "open": 99.05, "prev_close": 98.65}, "US10Y": {"price": 4.32, "change": 0.02, "change_pct": 0.56, "high": 4.32, "low": 4.28, "open": 4.28, "prev_close": 4.29}, "DAX": {"price": 23803.95, "change": -3.04, "change_pct": -0.01, "high": 24043.59, "low": 23767.71, "open": 23827.54, "prev_close": 23806.99}}, "calendar": [{"date": "2026-04-14", "time": "BMO/AMC", "event": "JPM Earnings", "country": "US", "impact": "high", "type": "earnings", "estimate": 5.51108, "prior": null}], "macro": {"fred": {"GDP": {"value": 31422.526, "date": "2025-10-01", "unit": "Mrd. USD (BIP)"}}, "macro_bias": {"score": 0, "label": "NEUTRAL", "signals": []}}};</script>
 </head>
 <body>
-<div class="header">
-  <h1>✈ Cockpit-Trader</h1>
-  <div class="ts" id="ts">Lade Daten...</div>
-</div>
-<div class="grid" id="dash">
-  <div class="loading fw">
-    ⏳ Lade Daten...<br>
-    <small style="font-size:12px;margin-top:8px;display:block;">
-      Zuerst: <code>python cockpit-morning.py</code> ausführen
-    </small>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">✈ The <span>Trading Floor</span></div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Dashboard</a>
+      <a href="journal.html">Journal</a>
+      <a href="orders.html">Orders</a>
+    </div>
+    <div class="nav-time" id="navTime"></div>
   </div>
-</div>
+</nav>
+
+<main>
+  <div id="content">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Lade Marktdaten...</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  The Trading Floor v1.0 &middot; Cockpit Trader &middot; CFD Trading via Vantage &middot; Daten aktualisiert um 05:00 MEZ
+</footer>
+
 <script>
-function load(){
-  if(window.__COCKPIT_DATA__){
-    render(window.__COCKPIT_DATA__);
-    return;
-  }
-  fetch('data.json')
-    .then(r=>{ if(!r.ok) throw new Error('data.json nicht gefunden'); return r.json(); })
-    .then(render)
-    .catch(e=>{
-      document.getElementById('dash').innerHTML=
-        `<div class="loading fw">❌ ${e.message}<br><small>python cockpit-morning.py ausführen — öffne cockpit-briefing.html</small></div>`;
-    });
+// Clock
+function updateClock(){
+  const now=new Date();
+  const el=document.getElementById('navTime');
+  if(el) el.textContent=now.toLocaleString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
 }
+updateClock();setInterval(updateClock,30000);
+
+// Load data
+async function loadData(){
+  try{
+    const res=await fetch('data.json?t='+Date.now());
+    if(!res.ok) throw new Error('data.json nicht gefunden');
+    return await res.json();
+  }catch(e){
+    document.getElementById('content').innerHTML=`
+      <div class="loading">
+        <p style="color:var(--red)">Fehler: ${e.message}</p>
+        <p style="margin-top:0.5rem;font-size:0.75rem;color:var(--text3)">Wurde cockpit-morning.py ausgefuehrt?</p>
+      </div>`;
+    return null;
+  }
+}
+
+function biasClass(score){
+  if(score>0) return 'bias-bull';
+  if(score<0) return 'bias-bear';
+  return 'bias-neutral';
+}
+function biasLabel(score){
+  if(score>=60) return 'BULLISH';
+  if(score>0) return 'LEICHT BULL';
+  if(score<=-60) return 'BEARISH';
+  if(score<0) return 'LEICHT BEAR';
+  return 'NEUTRAL';
+}
+function changeColor(val){
+  if(val>0) return 'var(--green)';
+  if(val<0) return 'var(--red)';
+  return 'var(--text2)';
+}
+function fmt(n,d){return n!=null?Number(n).toFixed(d??2):'—';}
 
 function render(d){
-  const ts=new Date(d.timestamp);
-  document.getElementById('ts').textContent=
-    `Pre-Flight Briefing — ${ts.toLocaleDateString('de-DE')} ${ts.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})} Uhr`;
-  let html='';
-  html+=renderCtx(d.context);
-  html+=renderCal(d.calendar);
-  for(const[k,inst] of Object.entries(d.instruments)){
-    if(!inst.error) html+=renderInst(k,inst);
-  }
-  document.getElementById('dash').innerHTML=html;
-}
+  if(!d){return;}
+  const ts=d.timestamp?new Date(d.timestamp).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}):'—';
 
-function renderInst(k,inst){
-  const q=inst.quote||{}, mp=inst.market_profile||{}, b=inst.bias||{};
-  const cc=(q.change||0)>=0?'pos':'neg', cs=(q.change||0)>=0?'+':'';
-  const currentPrice=inst.current_price||null;
-  return `
-<div class="card">
-  <div class="ct">📈 ${k} — ${inst.name||k} <span class="kassa-badge">KASSA</span></div>
-  <div class="qrow">
-    <span class="qp">${f(q.price)}</span>
-    <span class="qc ${cc}">${cs}${f(q.change)} (${cs}${f(q.change_pct)}%)</span>
-  </div>
-  <div style="font-size:11px;color:var(--muted);margin-bottom:8px">
-    H: ${f(q.high)} &nbsp;|&nbsp; L: ${f(q.low)} &nbsp;|&nbsp; Prev Close: ${f(q.prev_close)}
-  </div>
-  <div class="bias-wrap">
-    ${tlight(b.color)}
-    <div class="bi">
-      <div class="bl" style="color:var(--${b.color||'muted'})">${b.bias||'—'}</div>
-      <div class="bs">Bias Score: ${b.score??'—'} / 100</div>
-    </div>
-  </div>
-</div>
-<div class="card">
-  <div class="ct">🎯 Key Levels — ${k}</div>
-  <div class="lgrid">
-    <div class="lb lpoc"><div class="ll">POC</div><div class="lv">${f(mp.poc)}</div></div>
-    <div class="lb lvah"><div class="ll">VAH</div><div class="lv">${f(mp.vah)}</div></div>
-    <div class="lb lval"><div class="ll">VAL</div><div class="lv">${f(mp.val)}</div></div>
-    <div class="lb lvwap"><div class="ll">VWAP</div><div class="lv">${f(mp.vwap)}</div></div>
-  </div>
-  <div style="margin-top:16px">
-    <span class="sbadge">${mp.shape?.name||'—'}</span>
-    <div class="sdesc">${mp.shape?.description||''}</div>
-  </div>
-  <div style="margin-top:6px;font-size:12px;color:var(--muted)">
-    Range: ${f(mp.day_low)} – ${f(mp.day_high)}
-  </div>
-</div>
-<div class="card">
-  <div class="ct">📊 Volume Profile — ${k}
-    <span style="margin-left:12px;color:#f1f5f9;font-size:10px">── Aktueller Kurs</span>
-    <span style="margin-left:8px;color:#06b6d4;font-size:10px">╌╌ POC</span>
-    <span style="margin-left:8px;color:#22c55e;font-size:10px">╌╌ VAH</span>
-    <span style="margin-left:8px;color:#ef4444;font-size:10px">╌╌ VAL</span>
-  </div>
-  <div class="vpc">${drawVP(mp, currentPrice)}</div>
-</div>
-<div class="card">
-  <div class="ct">🔍 Bias Signals — ${k}</div>
-  <ul class="slist">
-    ${(b.signals||[]).map(s=>`
-    <li>
-      <span>
-        <span class="sdot" style="background:${
-          s.direction==='bullish'?'var(--green)':
-          s.direction==='bearish'?'var(--red)':'var(--muted)'}">
-        </span>${s.label}
-      </span>
-      <span class="ssc ${s.score>0?'pos':s.score<0?'neg':''}">${s.score>0?'+'+s.score:s.score}</span>
-    </li>`).join('')}
-  </ul>
-</div>`;
-}
-
-function tlight(color){
-  return `<div class="tlight">
-    <div class="light ${color==='green'?'ag':''}"></div>
-    <div class="light ${color==='yellow'?'ay':''}"></div>
-    <div class="light ${color==='red'?'ar':''}"></div>
+  let html=`
+  <div class="header">
+    <h1>Markt-Dashboard<small>Bias &middot; Levels &middot; Makro-Kontext</small></h1>
+    <div class="timestamp">Aktualisiert: ${ts}</div>
   </div>`;
-}
 
-function drawVP(mp, currentPrice){
-  if(!mp||!mp.volume_profile)
-    return '<div style="text-align:center;color:var(--muted);padding:40px">Keine Daten</div>';
-
-  const vps    = mp.volume_profile;
-  const maxV   = Math.max(...vps.map(b=>b.volume));
-  const h=320, w=520, bH=h/vps.length, margin=70, rightPad=20;
-  const minP   = vps[0].price;
-  const maxP   = vps[vps.length-1].price;
-  const priceRange = maxP - minP || 1;
-  const p2y    = p => h - ((p - minP) / priceRange) * h;
-  const tick   = (vps[1]?.price - vps[0]?.price) || 1;
-
-  const priceInRange = currentPrice !== null &&
-                       currentPrice >= minP - priceRange * 0.3 &&
-                       currentPrice <= maxP + priceRange * 0.3;
-  let bars = '';
-
-  vps.forEach((bin,i)=>{
-    const bW = maxV > 0 ? (bin.volume / maxV) * (w - margin - rightPad) : 0;
-    const y  = h - (i+1) * bH;
-    let col  = 'rgba(59,130,246,0.4)';
-    if(mp.poc && Math.abs(bin.price - mp.poc) < tick * 0.6)
-      col = 'rgba(6,182,212,0.8)';
-    else if(mp.vah && mp.val && bin.price >= mp.val && bin.price <= mp.vah)
-      col = 'rgba(59,130,246,0.6)';
-    bars += `<rect x="${margin}" y="${y}" width="${bW}" height="${bH-1}" fill="${col}" rx="2"/>`;
-    if(i % 4 === 0)
-      bars += `<text x="${margin-6}" y="${y+bH/2+4}" text-anchor="end" fill="#64748b" font-size="10" font-family="monospace">${bin.price.toFixed(0)}</text>`;
-  });
-
-  if(mp.poc){const y=p2y(mp.poc);
-    bars+=`<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#06b6d4" stroke-width="2" stroke-dasharray="6,3"/>`;
-    bars+=`<text x="${w-4}" y="${y-4}" text-anchor="end" fill="#06b6d4" font-size="11" font-family="monospace">POC ${mp.poc}</text>`;}
-  if(mp.vah){const y=p2y(mp.vah);
-    bars+=`<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4"/>`;
-    bars+=`<text x="${w-4}" y="${y-4}" text-anchor="end" fill="#22c55e" font-size="10" font-family="monospace">VAH ${mp.vah}</text>`;}
-  if(mp.val){const y=p2y(mp.val);
-    bars+=`<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,4"/>`;
-    bars+=`<text x="${w-4}" y="${y+14}" text-anchor="end" fill="#ef4444" font-size="10" font-family="monospace">VAL ${mp.val}</text>`;}
-
-  if(priceInRange){
-    const y = p2y(currentPrice);
-    bars += `<rect x="${margin}" y="${y-9}" width="92" height="18" fill="rgba(241,245,249,0.15)" rx="3"/>`;
-    bars += `<line x1="${margin}" y1="${y}" x2="${w-100}" y2="${y}" stroke="#f1f5f9" stroke-width="2"/>`;
-    const ax = w-102;
-    bars += `<polygon points="${ax},${y-5} ${ax+10},${y} ${ax},${y+5}" fill="#f1f5f9"/>`;
-    bars += `<text x="${margin+4}" y="${y+5}" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">▶ ${currentPrice.toFixed(2)}</text>`;
-    bars += `<text x="${w-4}" y="${y+5}" text-anchor="end" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">${currentPrice.toFixed(2)}</text>`;
-  } else if(currentPrice !== null){
-    const aboveRange = currentPrice > maxP;
-    const arrowY     = aboveRange ? 16 : h-6;
-    const arrowChar  = aboveRange ? '▲' : '▼';
-    bars += `<text x="${margin+4}" y="${arrowY}" fill="#f1f5f9" font-size="12" font-family="monospace">${arrowChar} Kurs ${currentPrice.toFixed(2)} (ausserhalb Vortags-Range)</text>`;
-  }
-
-  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet">${bars}</svg>`;
-}
-
-function renderCtx(ctx){
-  if(!ctx) return '';
-  return `<div class="card fw">
-    <div class="ct">🌍 Macro Context</div>
-    <div class="cgrid">
-      ${['VIX','DXY','US10Y','DAX'].map(k=>{
-        const d=ctx[k];
-        if(!d) return `<div class="ci"><div class="cl2">${k}</div><div class="cp2">—</div></div>`;
-        const cc=(d.change||0)>=0?'pos':'neg', cs=(d.change||0)>=0?'+':'';
-        return `<div class="ci">
-          <div class="cl2">${k}</div>
-          <div class="cp2">${f(d.price)}</div>
-          <div class="cc2 ${cc}">${cs}${f(d.change)} (${cs}${f(d.change_pct)}%)</div>
-        </div>`;
-      }).join('')}
-    </div>
+  // Context bar
+  const ctx=d.context||{};
+  html+=`<div class="context-bar">
+    <div class="ctx-item"><div class="ctx-label">VIX</div><div class="ctx-value" style="color:${(ctx.vix_value||0)>25?'var(--red)':(ctx.vix_value||0)>18?'var(--amber)':'var(--green)'}">${fmt(ctx.vix_value,1)}</div></div>
+    <div class="ctx-item"><div class="ctx-label">DXY</div><div class="ctx-value">${fmt(ctx.dxy_value,2)}</div></div>
+    <div class="ctx-item"><div class="ctx-label">10Y Yield</div><div class="ctx-value">${fmt(ctx.tnx_value,2)}%</div></div>
+    <div class="ctx-item"><div class="ctx-label">DAX</div><div class="ctx-value">${fmt(ctx.dax_value,0)}</div></div>
+    <div class="ctx-item"><div class="ctx-label">Makro-Bias</div><div class="ctx-value" style="color:${(d.fred?.macro_bias_score||0)>0?'var(--green)':'var(--red)'}">${d.fred?.macro_bias||'—'}</div></div>
+    <div class="ctx-item"><div class="ctx-label">FRED Score</div><div class="ctx-value">${d.fred?.macro_bias_score??'—'}</div></div>
   </div>`;
-}
 
-function renderCal(cal){
-  if(!cal||!cal.length)
-    return `<div class="card fw">
-      <div class="ct">📅 Macro Kalender</div>
-      <div style="color:var(--muted);font-size:13px;padding:8px 0">Keine High-Impact Events gefunden</div>
+  // Bias cards
+  const instruments=d.instruments||{};
+  html+=`<div class="section-title">Instrumente</div><div class="bias-grid">`;
+  for(const[key,inst] of Object.entries(instruments)){
+    const bc=biasClass(inst.bias_score);
+    const bl=biasLabel(inst.bias_score);
+    const chg=inst.change||0;
+    const chgPct=inst.change_pct||0;
+    html+=`
+    <div class="bias-card">
+      <div class="card-header">
+        <div>
+          <div class="symbol">${inst.name||key}</div>
+          <div class="change" style="color:${changeColor(chg)}">${chg>=0?'+':''}${fmt(chg,2)} (${fmt(chgPct,2)}%)</div>
+        </div>
+        <div style="text-align:right">
+          <div class="price">${fmt(inst.price,2)}</div>
+          <div class="bias-badge ${bc}">${bl} ${inst.bias_score??''}</div>
+        </div>
+      </div>
+      <dl class="levels">
+        <dt>POC</dt><dd>${fmt(inst.poc,2)}</dd>
+        <dt>VAH</dt><dd>${fmt(inst.vah,2)}</dd>
+        <dt>VAL</dt><dd>${fmt(inst.val,2)}</dd>
+        <dt>VWAP</dt><dd>${fmt(inst.vwap,2)}</dd>
+      </dl>
+      <div class="mp-shape">Shape: <strong>${inst.mp_shape||'—'}</strong></div>
     </div>`;
+  }
+  html+=`</div>`;
 
-  const grouped={};
-  cal.forEach(e=>{
-    const d=e.date||String(e.time||'').slice(0,10)||'unbekannt';
-    if(!grouped[d]) grouped[d]=[];
-    grouped[d].push(e);
-  });
-
-  const today=new Date().toISOString().slice(0,10);
-  let rows='';
-
-  for(const[date,events] of Object.entries(grouped)){
-    const isToday  = date===today;
-    const labelCol = isToday?'var(--cyan)':'var(--yellow)';
-    const labelTxt = isToday?`Heute — ${fmtDate(date)}`:`Nächster Tag — ${fmtDate(date)}`;
-    rows+=`<div class="day-label" style="color:${labelCol}">${labelTxt}</div>`;
-    rows+=events.map(e=>`
-    <div class="cale">
-      <span class="cat">${String(e.time||'').slice(11,16)||'—'}</span>
-      <span class="can">${e.event}</span>
-      <span class="imp-${e.impact==='high'?'high':'medium'}">${e.impact==='high'?'●●':'●'}</span>
-      <span class="cac">${e.country}</span>
-    </div>`).join('');
+  // FRED Macro
+  if(d.fred){
+    html+=`<div class="section-title">FRED Makrodaten</div><div class="macro-grid">`;
+    const fm=d.fred;
+    const macros=[
+      {t:'Fed Funds Rate',v:fm.fedfunds_value,u:'%',dt:fm.fedfunds_date},
+      {t:'CPI Inflation',v:fm.cpi_value,u:'',dt:fm.cpi_date},
+      {t:'Unemployment',v:fm.unrate_value,u:'%',dt:fm.unrate_date},
+      {t:'10Y Breakeven',v:fm.t10yie_value,u:'%',dt:fm.t10yie_date},
+      {t:'HY Spread',v:fm.hy_spread_value,u:'%',dt:fm.hy_spread_date},
+      {t:'GDP',v:fm.gdp_value,u:'',dt:fm.gdp_date},
+    ];
+    for(const m of macros){
+      html+=`<div class="macro-card">
+        <div class="macro-title">${m.t}</div>
+        <div class="macro-value">${fmt(m.v,m.u==='%'?2:1)}${m.u}</div>
+        <div class="macro-date">${m.dt||''}</div>
+      </div>`;
+    }
+    html+=`</div>`;
   }
 
-  return `<div class="card fw">
-    <div class="ct">📅 Macro Kalender — High &amp; Medium Impact</div>
-    ${rows}
-  </div>`;
+  // Calendar
+  if(d.calendar&&d.calendar.length>0){
+    html+=`<div class="section-title">Kalender (7 Tage)</div><div class="cal-list">`;
+    for(const ev of d.calendar){
+      const badge=ev.type==='EARNINGS'?'earnings':'fred';
+      html+=`<div class="cal-item">
+        <span class="cal-badge ${badge}">${ev.type}</span>
+        <span class="cal-date">${ev.date}</span>
+        <span class="cal-text">${ev.title}</span>
+      </div>`;
+    }
+    html+=`</div>`;
+  }
+
+  document.getElementById('content').innerHTML=html;
 }
 
-function fmtDate(d){
-  if(!d||d==='unbekannt') return d;
-  try{
-    return new Date(d).toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
-  }catch(e){ return d; }
-}
-
-function f(v){
-  if(v===null||v===undefined) return '—';
-  return typeof v==='number'
-    ? v.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})
-    : v;
-}
-
-load();
+loadData().then(render);
 </script>
 </body>
 </html>
