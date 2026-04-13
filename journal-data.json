@@ -5,8 +5,99 @@
     "orders_checked": 3,
     "fill_rate": "33%",
     "tp1_rate": "0%",
-    "trend": "Erste Daten - zu frueh fuer Trend",
-    "learnings": []
+    "sl_rate": "33%",
+    "total_pnl": 45,
+    "trend": "1/3 Fills. SP500 getroffen (SL +45 PnL). GER40 & US30 nicht gefuellt.",
+    "learnings": [
+      "SP500 mit niedrigster P(Fill)% (35%) war einziger Fill — extreme Kompression triggerte",
+      "US30 mit hoechster P(Fill)% (60%) verfehlte — Non-Trend Konsolidierung blieb intakt",
+      "GER40 Limit Buy 23875 nicht erreicht — Daily Kumo-Konflikt verhinderte Pullback"
+    ]
+  },
+  "yesterday_results": {
+    "date": "2026-04-10",
+    "orders": [
+      {
+        "instrument": "GER40",
+        "type": "Limit Buy",
+        "entry": "23875",
+        "sl": "23795",
+        "tp1": "24012",
+        "tp2": "24217",
+        "rr": "1.71 / 4.28",
+        "p_fill": "45",
+        "p_tp1": "55",
+        "tf": "1H",
+        "bias": "Neutral-Bullisch",
+        "bias_pct": "55",
+        "confluence": "SMC CHoCH 1H + VWAP 30M + MP POC + Kijun 1H",
+        "mp_shape_yesterday": "Normal Variation Day (Upside)",
+        "mp_shape_forecast": "Trend Day Up / Open Drive",
+        "vwap_position": "Ueber VWAP+1s (23920)",
+        "gefuellt": false,
+        "tp1_erreicht": false,
+        "sl_erreicht": false,
+        "pnl": 0,
+        "notizen": "4H CHoCH 24217 = Swing-Ziel. Pullback auf 30M CHoCH + VWAP Konfluenz. Daily Kumo-Konflikt beachten."
+      },
+      {
+        "instrument": "US30",
+        "type": "Limit Sell",
+        "entry": "48340",
+        "sl": "48420",
+        "tp1": "48095",
+        "tp2": "47974",
+        "rr": "3.06 / 4.58",
+        "p_fill": "60",
+        "p_tp1": "52",
+        "tf": "4H",
+        "bias": "Baerisch",
+        "bias_pct": "60",
+        "confluence": "SMC CHoCH 4H + MP VAH Gestern + Daily CHoCH-Kontext",
+        "mp_shape_yesterday": "Trend Day Up",
+        "mp_shape_forecast": "Neutral Day / Non-Trend",
+        "vwap_position": "Leicht ueber VWAP (48176)",
+        "gefuellt": false,
+        "tp1_erreicht": false,
+        "sl_erreicht": false,
+        "pnl": 0,
+        "notizen": "4H CHoCH 48344 nach Trend Day Up. Non-Trend Konsolidierung = Wartemodus. Macro baerisch durch Daily CHoCH 48961. Bestes Setup heute."
+      },
+      {
+        "instrument": "SP500",
+        "type": "Limit Buy",
+        "entry": "6771",
+        "sl": "6743",
+        "tp1": "6843",
+        "tp2": "6950",
+        "rr": "2.57 / 6.40",
+        "p_fill": "35",
+        "p_tp1": "50",
+        "tf": "1H",
+        "bias": "Neutral-Bullisch",
+        "bias_pct": "55",
+        "confluence": "SMC BOS 1H + MP Cluster",
+        "mp_shape_yesterday": "Normal Variation Day (Upside)",
+        "mp_shape_forecast": "Neutral Day (extremer Non-Trend 26 Punkte)",
+        "vwap_position": "Ueber VWAP+1s (6831)",
+        "gefuellt": true,
+        "tp1_erreicht": false,
+        "sl_erreicht": true,
+        "pnl": 45,
+        "notizen": "Extreme Kompression (26 Pt Range). Gefuellt + SL erreicht aber +45 PnL (fruehzeitig manuell geschlossen oder Breakeven-Move). Grosse Bewegung erwartet, Geduld erforderlich."
+      }
+    ],
+    "summary": {
+      "total_orders": 3,
+      "filled": 1,
+      "fill_rate": "33%",
+      "tp1_reached": 0,
+      "tp1_rate": "0%",
+      "sl_reached": 1,
+      "sl_rate": "33%",
+      "total_pnl": 45,
+      "notes": "SP500 gefuellt, SL erreicht, +45 PnL. GER40 und US30 nicht gefuellt."
+    }
   },
   "instruments": [
     {
@@ -456,8 +547,11 @@
   },
   "stats": {
     "total": 3,
+    "filled": 1,
     "fill_rate": "33%",
     "tp1_rate": "0%",
-    "trend": "Erste Daten - zu frueh fuer Trend"
+    "sl_rate": "33%",
+    "total_pnl": 45,
+    "trend": "SP500 +45 PnL (SL-Hit). 2/3 nicht gefuellt."
   }
 }
