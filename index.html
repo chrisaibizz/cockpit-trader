@@ -6,289 +6,7 @@
 <title>The Trading Floor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #080b11;
-  --bg2: #0d1117;
-  --bg3: #151b25;
-  --bg4: #1c2433;
-  --border: #1e2d45;
-  --text: #e6edf3;
-  --text2: #8b949e;
-  --text3: #484f58;
-  --green: #3fb950;
-  --green-bg: rgba(63,185,80,0.08);
-  --red: #f85149;
-  --red-bg: rgba(248,81,73,0.08);
-  --amber: #d29922;
-  --amber-bg: rgba(210,153,34,0.08);
-  --blue: #58a6ff;
-  --blue-bg: rgba(88,166,255,0.08);
-  --cyan: #39d2c0;
-  --purple: #bc8cff;
-  --accent: #58a6ff;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-html { font-size:16px; }
-body {
-  font-family:'Outfit',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  -webkit-font-smoothing:antialiased;
-}
-
-/* === NAV === */
-nav {
-  position:sticky; top:0; z-index:100;
-  background:rgba(8,11,17,0.85);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  padding:0 1rem;
-}
-.nav-inner {
-  max-width:1200px; margin:0 auto;
-  display:flex; align-items:center; justify-content:space-between;
-  height:56px;
-}
-.nav-brand {
-  font-weight:800; font-size:1.1rem; letter-spacing:-0.02em;
-  color:var(--text);
-  display:flex; align-items:center; gap:0.5rem;
-}
-.nav-brand span { color:var(--accent); }
-.nav-links { display:flex; gap:0; }
-.nav-links a {
-  color:var(--text2); text-decoration:none;
-  padding:0.5rem 0.8rem; font-size:0.85rem; font-weight:500;
-  border-radius:8px; transition:all 0.2s;
-  position:relative;
-}
-.nav-links a:hover { color:var(--text); background:var(--bg3); }
-.nav-links a.active {
-  color:var(--accent);
-  background:var(--blue-bg);
-}
-.nav-time {
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.75rem; color:var(--text3);
-  display:none;
-}
-@media(min-width:640px){ .nav-time{display:block;} }
-
-/* === MAIN === */
-main {
-  max-width:1200px; margin:0 auto;
-  padding:1.5rem 1rem 4rem;
-}
-
-/* === HEADER === */
-.header {
-  margin-bottom:1.5rem;
-  display:flex; align-items:flex-end; justify-content:space-between;
-  flex-wrap:wrap; gap:0.5rem;
-}
-.header h1 {
-  font-size:1.5rem; font-weight:700; letter-spacing:-0.03em;
-  line-height:1.2;
-}
-.header h1 small { font-size:0.8rem; color:var(--text2); font-weight:400; display:block; margin-top:0.2rem; }
-.header .timestamp {
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.7rem; color:var(--text3);
-  white-space:nowrap;
-}
-
-/* === BIAS CARDS === */
-.bias-grid {
-  display:grid;
-  grid-template-columns:1fr;
-  gap:0.75rem;
-  margin-bottom:1.5rem;
-}
-@media(min-width:640px){ .bias-grid{grid-template-columns:1fr 1fr;} }
-@media(min-width:960px){ .bias-grid{grid-template-columns:1fr 1fr 1fr;} }
-
-.bias-card {
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:1rem 1.2rem;
-  transition:border-color 0.3s;
-}
-.bias-card:hover { border-color:var(--accent); }
-.bias-card .card-header {
-  display:flex; align-items:center; justify-content:space-between;
-  margin-bottom:0.75rem;
-}
-.bias-card .symbol {
-  font-weight:700; font-size:1.1rem; letter-spacing:-0.02em;
-}
-.bias-card .price {
-  font-family:'JetBrains Mono',monospace;
-  font-size:1rem; font-weight:600;
-}
-.bias-card .change {
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.75rem; font-weight:500;
-}
-.bias-card .bias-badge {
-  display:inline-flex; align-items:center; gap:0.3rem;
-  padding:0.25rem 0.6rem; border-radius:6px;
-  font-size:0.75rem; font-weight:600; text-transform:uppercase;
-  letter-spacing:0.04em;
-}
-.bias-bull { background:var(--green-bg); color:var(--green); }
-.bias-bear { background:var(--red-bg); color:var(--red); }
-.bias-neutral { background:var(--amber-bg); color:var(--amber); }
-
-.bias-card .levels {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:0.3rem 1rem;
-  margin-top:0.75rem;
-  font-size:0.75rem;
-}
-.bias-card .levels dt { color:var(--text3); font-weight:400; }
-.bias-card .levels dd {
-  font-family:'JetBrains Mono',monospace;
-  color:var(--text2); font-weight:500; text-align:right;
-}
-.bias-card .mp-shape {
-  margin-top:0.6rem; padding-top:0.6rem;
-  border-top:1px solid var(--border);
-  font-size:0.75rem; color:var(--text2);
-}
-.bias-card .mp-shape strong { color:var(--cyan); }
-
-/* === CONTEXT BAR === */
-.context-bar {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:0.5rem;
-  margin-bottom:1.5rem;
-}
-@media(min-width:640px){ .context-bar{grid-template-columns:repeat(4,1fr);} }
-@media(min-width:960px){ .context-bar{grid-template-columns:repeat(6,1fr);} }
-
-.ctx-item {
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:0.6rem 0.8rem;
-  text-align:center;
-}
-.ctx-item .ctx-label {
-  font-size:0.65rem; color:var(--text3);
-  text-transform:uppercase; letter-spacing:0.06em;
-  margin-bottom:0.2rem;
-}
-.ctx-item .ctx-value {
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.9rem; font-weight:600;
-}
-
-/* === MACRO SECTION === */
-.section-title {
-  font-size:0.8rem; font-weight:600; color:var(--text2);
-  text-transform:uppercase; letter-spacing:0.08em;
-  margin-bottom:0.75rem;
-  padding-bottom:0.4rem;
-  border-bottom:1px solid var(--border);
-}
-
-.macro-grid {
-  display:grid;
-  grid-template-columns:1fr;
-  gap:0.5rem;
-  margin-bottom:1.5rem;
-}
-@media(min-width:640px){ .macro-grid{grid-template-columns:1fr 1fr;} }
-
-.macro-card {
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:0.8rem 1rem;
-}
-.macro-card .macro-title {
-  font-size:0.7rem; color:var(--text3);
-  text-transform:uppercase; letter-spacing:0.05em;
-  margin-bottom:0.3rem;
-}
-.macro-card .macro-value {
-  font-family:'JetBrains Mono',monospace;
-  font-size:1rem; font-weight:600;
-}
-.macro-card .macro-date {
-  font-size:0.65rem; color:var(--text3); margin-top:0.15rem;
-}
-
-/* === CALENDAR === */
-.cal-list {
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:0.8rem 1rem;
-  margin-bottom:1.5rem;
-}
-.cal-item {
-  display:flex; align-items:center; gap:0.6rem;
-  padding:0.4rem 0;
-  font-size:0.8rem;
-}
-.cal-item + .cal-item { border-top:1px solid var(--border); }
-.cal-badge {
-  font-size:0.6rem; font-weight:600;
-  padding:0.15rem 0.4rem; border-radius:4px;
-  text-transform:uppercase; letter-spacing:0.04em;
-  white-space:nowrap;
-}
-.cal-badge.earnings { background:var(--amber-bg); color:var(--amber); }
-.cal-badge.fred { background:var(--blue-bg); color:var(--blue); }
-.cal-date {
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.7rem; color:var(--text3);
-  min-width:5rem;
-}
-.cal-text { color:var(--text2); }
-
-/* === FOOTER === */
-footer {
-  text-align:center;
-  padding:2rem 1rem;
-  font-size:0.65rem;
-  color:var(--text3);
-  border-top:1px solid var(--border);
-}
-
-/* === LOADING === */
-.loading {
-  text-align:center; padding:4rem 1rem;
-  color:var(--text3);
-}
-.loading .spinner {
-  width:32px; height:32px;
-  border:3px solid var(--border);
-  border-top:3px solid var(--accent);
-  border-radius:50%;
-  animation:spin 0.8s linear infinite;
-  margin:0 auto 1rem;
-}
-@keyframes spin { to{transform:rotate(360deg)} }
-
-/* === NO JOURNAL PLACEHOLDER === */
-.placeholder {
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:3rem 1.5rem;
-  text-align:center;
-  color:var(--text3);
-}
-.placeholder h3 { color:var(--text2); margin-bottom:0.5rem; font-size:1rem; }
-.placeholder p { font-size:0.8rem; line-height:1.6; }
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -314,11 +32,10 @@ footer {
 </main>
 
 <footer>
-  The Trading Floor v1.0 &middot; Cockpit Trader &middot; CFD Trading via Vantage &middot; Daten aktualisiert um 05:00 MEZ
+  The Trading Floor v1.0 &middot; Cockpit Trader &middot; CFD Trading via Vantage &middot; Daten ab 05:00 MEZ
 </footer>
 
 <script>
-// Clock
 function updateClock(){
   const now=new Date();
   const el=document.getElementById('navTime');
@@ -326,130 +43,130 @@ function updateClock(){
 }
 updateClock();setInterval(updateClock,30000);
 
-// Load data
 async function loadData(){
   try{
     const res=await fetch('data.json?t='+Date.now());
     if(!res.ok) throw new Error('data.json nicht gefunden');
     return await res.json();
   }catch(e){
-    document.getElementById('content').innerHTML=`
-      <div class="loading">
-        <p style="color:var(--red)">Fehler: ${e.message}</p>
-        <p style="margin-top:0.5rem;font-size:0.75rem;color:var(--text3)">Wurde cockpit-morning.py ausgefuehrt?</p>
-      </div>`;
+    document.getElementById('content').innerHTML='<div class="loading"><p style="color:var(--red)">'+e.message+'</p></div>';
     return null;
   }
 }
 
-function biasClass(score){
-  if(score>0) return 'bias-bull';
-  if(score<0) return 'bias-bear';
+function biasClass(label){
+  if(!label) return 'bias-neutral';
+  const l=label.toUpperCase();
+  if(l.includes('BULL')) return 'bias-bull';
+  if(l.includes('BEAR')) return 'bias-bear';
   return 'bias-neutral';
 }
-function biasLabel(score){
-  if(score>=60) return 'BULLISH';
-  if(score>0) return 'LEICHT BULL';
-  if(score<=-60) return 'BEARISH';
-  if(score<0) return 'LEICHT BEAR';
-  return 'NEUTRAL';
-}
-function changeColor(val){
-  if(val>0) return 'var(--green)';
-  if(val<0) return 'var(--red)';
-  return 'var(--text2)';
-}
+function chgColor(v){return v>0?'var(--green)':v<0?'var(--red)':'var(--text2)';}
 function fmt(n,d){return n!=null?Number(n).toFixed(d??2):'—';}
 
 function render(d){
-  if(!d){return;}
+  if(!d) return;
   const ts=d.timestamp?new Date(d.timestamp).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}):'—';
+  const ctx=d.context||{};
+  const vix=ctx.VIX||{};
+  const dxy=ctx.DXY||{};
+  const tnx=ctx.US10Y||{};
+  const dax=ctx.DAX||{};
+  const macro=d.macro||{};
+  const mb=macro.macro_bias||{};
+  const fred=macro.fred||{};
 
-  let html=`
-  <div class="header">
-    <h1>Markt-Dashboard<small>Bias &middot; Levels &middot; Makro-Kontext</small></h1>
+  let h='';
+
+  // Header
+  h+=`<div class="header">
+    <h1>Markt-Dashboard<small>Bias · Levels · Makro-Kontext</small></h1>
     <div class="timestamp">Aktualisiert: ${ts}</div>
   </div>`;
 
   // Context bar
-  const ctx=d.context||{};
-  html+=`<div class="context-bar">
-    <div class="ctx-item"><div class="ctx-label">VIX</div><div class="ctx-value" style="color:${(ctx.vix_value||0)>25?'var(--red)':(ctx.vix_value||0)>18?'var(--amber)':'var(--green)'}">${fmt(ctx.vix_value,1)}</div></div>
-    <div class="ctx-item"><div class="ctx-label">DXY</div><div class="ctx-value">${fmt(ctx.dxy_value,2)}</div></div>
-    <div class="ctx-item"><div class="ctx-label">10Y Yield</div><div class="ctx-value">${fmt(ctx.tnx_value,2)}%</div></div>
-    <div class="ctx-item"><div class="ctx-label">DAX</div><div class="ctx-value">${fmt(ctx.dax_value,0)}</div></div>
-    <div class="ctx-item"><div class="ctx-label">Makro-Bias</div><div class="ctx-value" style="color:${(d.fred?.macro_bias_score||0)>0?'var(--green)':'var(--red)'}">${d.fred?.macro_bias||'—'}</div></div>
-    <div class="ctx-item"><div class="ctx-label">FRED Score</div><div class="ctx-value">${d.fred?.macro_bias_score??'—'}</div></div>
+  h+=`<div class="context-bar">
+    <div class="ctx-item"><div class="ctx-label">VIX</div><div class="ctx-value" style="color:${(vix.price||0)>25?'var(--red)':(vix.price||0)>18?'var(--amber)':'var(--green)'}">${fmt(vix.price,1)}</div></div>
+    <div class="ctx-item"><div class="ctx-label">DXY</div><div class="ctx-value">${fmt(dxy.price,2)}</div></div>
+    <div class="ctx-item"><div class="ctx-label">10Y Yield</div><div class="ctx-value">${fmt(tnx.price,2)}%</div></div>
+    <div class="ctx-item"><div class="ctx-label">DAX</div><div class="ctx-value">${fmt(dax.price,0)}</div></div>
+    <div class="ctx-item"><div class="ctx-label">Makro</div><div class="ctx-value" style="color:${mb.label==='POSITIV'?'var(--green)':mb.label==='NEGATIV'?'var(--red)':'var(--amber)'}">${mb.label||'—'}</div></div>
+    <div class="ctx-item"><div class="ctx-label">Score</div><div class="ctx-value">${mb.score??'—'}</div></div>
   </div>`;
 
-  // Bias cards
-  const instruments=d.instruments||{};
-  html+=`<div class="section-title">Instrumente</div><div class="bias-grid">`;
-  for(const[key,inst] of Object.entries(instruments)){
-    const bc=biasClass(inst.bias_score);
-    const bl=biasLabel(inst.bias_score);
-    const chg=inst.change||0;
-    const chgPct=inst.change_pct||0;
-    html+=`
-    <div class="bias-card">
+  // Instrument cards
+  const inst=d.instruments||{};
+  h+=`<div class="section-title">Instrumente</div><div class="bias-grid">`;
+  for(const[k,v] of Object.entries(inst)){
+    const q=v.quote||{};
+    const mp=v.market_profile||{};
+    const b=v.bias||{};
+    const bc=biasClass(b.bias);
+    h+=`<div class="bias-card">
       <div class="card-header">
         <div>
-          <div class="symbol">${inst.name||key}</div>
-          <div class="change" style="color:${changeColor(chg)}">${chg>=0?'+':''}${fmt(chg,2)} (${fmt(chgPct,2)}%)</div>
+          <div class="symbol">${v.name||k}</div>
+          <div class="change" style="color:${chgColor(q.change)}">${q.change>=0?'+':''}${fmt(q.change,2)} (${fmt(q.change_pct,2)}%)</div>
         </div>
         <div style="text-align:right">
-          <div class="price">${fmt(inst.price,2)}</div>
-          <div class="bias-badge ${bc}">${bl} ${inst.bias_score??''}</div>
+          <div class="price">${fmt(q.price,2)}</div>
+          <div class="bias-badge ${bc}">${b.bias||'—'} ${b.score||''}</div>
         </div>
       </div>
       <dl class="levels">
-        <dt>POC</dt><dd>${fmt(inst.poc,2)}</dd>
-        <dt>VAH</dt><dd>${fmt(inst.vah,2)}</dd>
-        <dt>VAL</dt><dd>${fmt(inst.val,2)}</dd>
-        <dt>VWAP</dt><dd>${fmt(inst.vwap,2)}</dd>
+        <dt>POC</dt><dd>${fmt(mp.poc,2)}</dd>
+        <dt>VAH</dt><dd>${fmt(mp.vah,2)}</dd>
+        <dt>VAL</dt><dd>${fmt(mp.val,2)}</dd>
+        <dt>VWAP</dt><dd>${fmt(mp.vwap,2)}</dd>
       </dl>
-      <div class="mp-shape">Shape: <strong>${inst.mp_shape||'—'}</strong></div>
+      <div class="mp-shape">Shape: <strong>${mp.shape?mp.shape.name:'—'}</strong>${mp.shape&&mp.shape.description?' — '+mp.shape.description:''}</div>
     </div>`;
   }
-  html+=`</div>`;
+  h+=`</div>`;
 
-  // FRED Macro
-  if(d.fred){
-    html+=`<div class="section-title">FRED Makrodaten</div><div class="macro-grid">`;
-    const fm=d.fred;
-    const macros=[
-      {t:'Fed Funds Rate',v:fm.fedfunds_value,u:'%',dt:fm.fedfunds_date},
-      {t:'CPI Inflation',v:fm.cpi_value,u:'',dt:fm.cpi_date},
-      {t:'Unemployment',v:fm.unrate_value,u:'%',dt:fm.unrate_date},
-      {t:'10Y Breakeven',v:fm.t10yie_value,u:'%',dt:fm.t10yie_date},
-      {t:'HY Spread',v:fm.hy_spread_value,u:'%',dt:fm.hy_spread_date},
-      {t:'GDP',v:fm.gdp_value,u:'',dt:fm.gdp_date},
-    ];
-    for(const m of macros){
-      html+=`<div class="macro-card">
-        <div class="macro-title">${m.t}</div>
-        <div class="macro-value">${fmt(m.v,m.u==='%'?2:1)}${m.u}</div>
-        <div class="macro-date">${m.dt||''}</div>
-      </div>`;
+  // Context details
+  h+=`<div class="section-title">Marktkontext</div><div class="macro-grid">`;
+  [{t:'VIX',d:vix},{t:'DXY',d:dxy},{t:'10Y Yield',d:tnx},{t:'DAX',d:dax}].forEach(m=>{
+    h+=`<div class="macro-card">
+      <div class="macro-title">${m.t}</div>
+      <div class="macro-value">${fmt(m.d.price,2)}</div>
+      <div class="macro-date" style="color:${chgColor(m.d.change_pct)}">${m.d.change_pct!=null?(m.d.change_pct>=0?'+':'')+fmt(m.d.change_pct,2)+'%':''}</div>
+    </div>`;
+  });
+  h+=`</div>`;
+
+  // FRED
+  if(Object.keys(fred).length>0){
+    h+=`<div class="section-title">FRED Makrodaten</div><div class="macro-grid">`;
+    for(const[fk,fv] of Object.entries(fred)){
+      if(fv&&typeof fv==='object'&&fv.value!=null){
+        h+=`<div class="macro-card">
+          <div class="macro-title">${fk}</div>
+          <div class="macro-value">${fmt(fv.value,fk==='GDP'?1:2)}</div>
+          <div class="macro-date">${fv.date||''} ${fv.unit||''}</div>
+        </div>`;
+      }
     }
-    html+=`</div>`;
+    h+=`</div>`;
   }
 
   // Calendar
-  if(d.calendar&&d.calendar.length>0){
-    html+=`<div class="section-title">Kalender (7 Tage)</div><div class="cal-list">`;
-    for(const ev of d.calendar){
-      const badge=ev.type==='EARNINGS'?'earnings':'fred';
-      html+=`<div class="cal-item">
-        <span class="cal-badge ${badge}">${ev.type}</span>
-        <span class="cal-date">${ev.date}</span>
-        <span class="cal-text">${ev.title}</span>
+  const cal=d.calendar||[];
+  if(cal.length>0){
+    h+=`<div class="section-title">Kalender (7 Tage)</div><div class="cal-list">`;
+    for(const ev of cal){
+      const badge=(ev.type||'').toLowerCase()==='earnings'?'earnings':'fred';
+      h+=`<div class="cal-item">
+        <span class="cal-badge ${badge}">${ev.type||'EVENT'}</span>
+        <span class="cal-date">${ev.date||''}</span>
+        <span class="cal-text">${ev.event||ev.title||''}</span>
+        ${ev.impact?`<span class="cal-badge" style="background:${ev.impact==='high'?'var(--red-bg)':'var(--amber-bg)'};color:${ev.impact==='high'?'var(--red)':'var(--amber)'}">${ev.impact}</span>`:''}
       </div>`;
     }
-    html+=`</div>`;
+    h+=`</div>`;
   }
 
-  document.getElementById('content').innerHTML=html;
+  document.getElementById('content').innerHTML=h;
 }
 
 loadData().then(render);
