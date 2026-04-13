@@ -1,8 +1,8 @@
 {
   "date": "2026-04-13",
-  "timestamp": "2026-04-13T12:58:51.389268",
+  "timestamp": "2026-04-13T13:05:11.978410",
   "debrief": {
-    "orders_checked": 1,
+    "orders_checked": 3,
     "fill_rate": "33%",
     "tp1_rate": "0%",
     "trend": "Erste Daten - zu frueh fuer Trend",
@@ -16,7 +16,7 @@
       "daily_summary": "Bias Neutral (Score -9). Vortag Range: 23750.55 – 23933.87. VIX=21.3.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 23562.62 ueber VWAP (23548.93), ausserhalb Value Area. POC=23908.87 VAH=23933.87 VAL=23750.55. CVD +1999 (Kaufdruck). Shape: Normal Variation (Up).",
+      "h30m_summary": "Kurs 23567.21 ueber VWAP (23549.96), ausserhalb Value Area. POC=23908.87 VAH=23933.87 VAL=23750.55. CVD +1999 (Kaufdruck). Shape: Normal Variation (Up).",
       "mp_shape_yesterday": "Normal Variation (Up)",
       "mp_shape_forecast": "Normal Variation (Up)",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -38,11 +38,27 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "23548.93",
+          "price": "23549.96",
           "source": "VWAP"
         }
       ],
-      "orders": [],
+      "orders": [
+        {
+          "type": "Limit Sell",
+          "entry": "23924.7",
+          "sl": "23979.7",
+          "tp1": "23750.55",
+          "tp2": "23658.89",
+          "rr": "3.17",
+          "p_fill": "24",
+          "p_tp1": "19",
+          "tf": "30M",
+          "confluence": "Unter VAL — Breakdown + Preis < POC + Overnight Inventory: Short (NEUTRAL Bias — geringere Konfluenz)",
+          "mp_shape_yesterday": "Normal Variation (Up)",
+          "mp_shape_forecast": "Normal Variation (Up)",
+          "vwap_position": "Preis ueber VWAP"
+        }
+      ],
       "invalidation": "Kurs bricht aus Value Area (23750.55–23933.87) aus"
     },
     {
@@ -52,7 +68,7 @@
       "daily_summary": "Bias Neutral (Score -9). Vortag Range: 48037.82 – 48256.84. VIX=21.3.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 47916.57 ueber VWAP (47605.99), ausserhalb Value Area. POC=48180.18 VAH=48256.84 VAL=48037.82. CVD +87905 (Kaufdruck). Shape: Normal Variation (Up).",
+      "h30m_summary": "Kurs 47916.57 ueber VWAP (47609.72), ausserhalb Value Area. POC=48180.18 VAH=48256.84 VAL=48037.82. CVD +88284 (Kaufdruck). Shape: Normal Variation (Up).",
       "mp_shape_yesterday": "Normal Variation (Up)",
       "mp_shape_forecast": "Normal Variation (Up)",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -74,11 +90,27 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "47605.99",
+          "price": "47609.72",
           "source": "VWAP"
         }
       ],
-      "orders": [],
+      "orders": [
+        {
+          "type": "Limit Sell",
+          "entry": "48245.89",
+          "sl": "48311.6",
+          "tp1": "48037.82",
+          "tp2": "47928.31",
+          "rr": "3.17",
+          "p_fill": "24",
+          "p_tp1": "19",
+          "tf": "30M",
+          "confluence": "Unter VAL — Breakdown + Preis < POC + Overnight Inventory: Short (NEUTRAL Bias — geringere Konfluenz)",
+          "mp_shape_yesterday": "Normal Variation (Up)",
+          "mp_shape_forecast": "Normal Variation (Up)",
+          "vwap_position": "Preis ueber VWAP"
+        }
+      ],
       "invalidation": "Kurs bricht aus Value Area (48037.82–48256.84) aus"
     },
     {
@@ -88,7 +120,7 @@
       "daily_summary": "Bias Baerisch (Score -33). Vortag Range: 6818.4 – 6836.71. VIX=21.3.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 6816.89 ueber VWAP (6768.11), ausserhalb Value Area. POC=6831.62 VAH=6836.71 VAL=6818.4. CVD +37864 (Kaufdruck). Shape: Normal Variation.",
+      "h30m_summary": "Kurs 6816.89 ueber VWAP (6768.58), ausserhalb Value Area. POC=6831.62 VAH=6836.71 VAL=6818.4. CVD +37834 (Kaufdruck). Shape: Normal Variation.",
       "mp_shape_yesterday": "Normal Variation",
       "mp_shape_forecast": "Normal Variation",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -110,7 +142,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "6768.11",
+          "price": "6768.58",
           "source": "VWAP"
         }
       ],
@@ -136,12 +168,12 @@
   ],
   "summary": {
     "best_instrument": "GER40",
-    "total_orders": 1,
+    "total_orders": 3,
     "warnings": [
       "VIX 21.3 — Elevated, Vorsicht bei Einstiegen",
-      "VIX steigt stark (+10.8%) — Volatilitaet im Wandel"
+      "VIX steigt stark (+10.6%) — Volatilitaet im Wandel"
     ],
-    "notes": "Auto-generiert 12:58. VIX=21.3. Beste Konfluenz: GER40."
+    "notes": "Auto-generiert 13:05. VIX=21.3. Beste Konfluenz: GER40."
   },
   "stats": {
     "total": 3,
