@@ -117,6 +117,117 @@ TV_SYMBOL_MAP = {
     "^GDAXI": "Vantage:GER40",
 }
 
+def detect_shape_from_tpo(sess, poc, vah, val):
+    """
+    Klassifiziert die MP-Shape anhand der TPO-Lines aus TradingView.
+    ci=1: Value Area Lines, ci=2: Lines ausserhalb VA, ci=0: POC
+    Jede Line repraesentiert eine Zeiteinheit (TPO) am Preis-Level.
+    """
+    from collections import Counter
+
+    # Alle Lines: VA (ci=1) + ausserhalb VA (ci=2) + POC (ci=0)
+    all_lines = [l for l in sess if l["ci"] in (0, 1, 2)]
+    if len(all_lines) < 5:
+        return {"name": "n/a", "description": "Zu wenig TPO-Daten"}
+
+    # Tick-Groesse dynamisch ermitteln
+    raw_prices = sorted(set(round(l["y1"], 2) for l in all_lines))
+    diffs = [raw_prices[i+1] - raw_prices[i]
+             for i in range(len(raw_prices)-1)
+             if raw_prices[i+1] - raw_prices[i] > 0.001]
+    if not diffs:
+        return {"name": "n/a", "description": "Preis-Aufloesung nicht bestimmbar"}
+    raw_tick = min(diffs)
+    # Auf sinnvollen Tick runden (0.01 / 0.25 / 1.0 / 5.0)
+    if raw_tick < 0.1:
+        tick = 0.01
+    elif raw_tick < 0.5:
+        tick = 0.25
+    elif raw_tick < 2.0:
+        tick = 1.0
+    else:
+        tick = max(1.0, round(raw_tick))
+
+    # TPO-Counts pro Level
+    price_counts = Counter()
+    for l in all_lines:
+        lvl = round(round(l["y1"] / tick) * tick, 4)
+        price_counts[lvl] += 1
+
+    sorted_levels = sorted(price_counts.keys())
+    tpo_vals = [price_counts[p] for p in sorted_levels]
+    n = len(sorted_levels)
+    if n < 3:
+        return {"name": "n/a", "description": "Zu wenig Preis-Level"}
+
+    total_tpo = sum(tpo_vals)
+    third = max(1, n // 3)
+
+    upper_tpo  = sum(tpo_vals[2*third:])
+    middle_tpo = sum(tpo_vals[third:2*third])
+    lower_tpo  = sum(tpo_vals[:third])
+
+    price_range = sorted_levels[-1] - sorted_levels[0]
+    if price_range == 0:
+        return {"name": "Normal Day", "description": "Keine Range — kein Muster erkennbar"}
+
+    # POC-Position relativ zur Range (0=unten, 1=oben)
+    poc_pos = (poc - sorted_levels[0]) / price_range
+
+    # VA-Groesse relativ zur Range
+    va_size  = vah - val
+    va_ratio = va_size / price_range if price_range > 0 else 0
+
+    # --- Klassifikation ---
+
+    # Trend Day: POC am Extrem
+    if poc_pos > 0.80:
+        return {"name": "Trend Day (Up)",
+                "description": "POC am oberen Extrem — starker Aufwaerts-Trend, Continuation-Bias"}
+    if poc_pos < 0.20:
+        return {"name": "Trend Day (Down)",
+                "description": "POC am unteren Extrem — starker Abwaerts-Trend, Continuation-Bias"}
+
+    # P-Shape: Volumen oben schwer, unten leicht (Buying Tail unten)
+    if upper_tpo > 0.50 * total_tpo and lower_tpo < 0.20 * total_tpo:
+        return {"name": "P-Shape",
+                "description": "Distribution oben, Buying Tail unten — Short Covering. Oft bearish reversal."}
+
+    # b-Shape: Volumen unten schwer, oben leicht (Selling Tail oben)
+    if lower_tpo > 0.50 * total_tpo and upper_tpo < 0.20 * total_tpo:
+        return {"name": "b-Shape",
+                "description": "Distribution unten, Selling Tail oben — Long Liquidation. Oft bullish reversal."}
+
+    # Double Distribution: zwei Peaks mit LVN dazwischen
+    peaks = [i for i in range(1, n-1)
+             if tpo_vals[i] > tpo_vals[i-1] and tpo_vals[i] > tpo_vals[i+1]
+             and tpo_vals[i] > 0.25 * max(tpo_vals)]
+    if len(peaks) >= 2 and abs(peaks[0] - peaks[-1]) > third:
+        return {"name": "Double Distribution",
+                "description": "Zwei Value Areas mit LVN dazwischen — Trend-Continuation wahrscheinlich"}
+
+    # Non-Trend: VA deckt fast die gesamte Range ab
+    if va_ratio > 0.85:
+        return {"name": "Non-Trend Day",
+                "description": "Breite VA — Range-Bound, kein klarer Richtungs-Bias"}
+
+    # Normal Day: POC zentral, mittleres Drittel dominant
+    if middle_tpo > 0.40 * total_tpo and 0.30 < poc_pos < 0.70:
+        return {"name": "Normal Day",
+                "description": "Ausbalanciert, POC zentral — Range-Trading um POC wahrscheinlich"}
+
+    # Normal Variation: leichte Richtung erkennbar
+    if poc_pos > 0.55:
+        return {"name": "Normal Variation (Up)",
+                "description": "Leicht bullischer Bias — Abwarten auf Breakout aus VA"}
+    if poc_pos < 0.45:
+        return {"name": "Normal Variation (Down)",
+                "description": "Leicht bearischer Bias — Abwarten auf Breakdown aus VA"}
+
+    return {"name": "Normal Variation",
+            "description": "Ausgewogen ohne klare Richtung — Range-Handel"}
+
+
 def get_tv_data(ticker, timeframe="30"):
     """
     Liest Market Profile (POC/VAH/VAL) und Cumulative Delta Volume (CVD)
@@ -216,6 +327,34 @@ def get_tv_data(ticker, timeframe="30"):
             })()
         """)
 
+        # 4b. VWAP Wert lesen
+        vwap_val = _eval("""
+            (function() {
+              var chart = window.TradingViewApi._activeChartWidgetWV.value()._chartWidget;
+              var sources = chart.model().model().dataSources();
+              for (var si = 0; si < sources.length; si++) {
+                var s = sources[si];
+                if (!s.metaInfo) continue;
+                try {
+                  var name = (s.metaInfo().description || s.metaInfo().shortDescription || '').toUpperCase();
+                  if (name.indexOf('VWAP') === -1) continue;
+                  var dwv = s.dataWindowView();
+                  if (!dwv) continue;
+                  var items = dwv.items();
+                  if (!items) continue;
+                  for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    if (item._value && item._value !== '\u2205') {
+                      var v = parseFloat(item._value.replace(/[^0-9.\-]/g, ''));
+                      if (!isNaN(v) && v > 10) return v;
+                    }
+                  }
+                } catch(e) {}
+              }
+              return null;
+            })()
+        """)
+
         ws.close()
 
         # 5. MP verarbeiten
@@ -234,10 +373,12 @@ def get_tv_data(ticker, timeframe="30"):
                 poc = round(poc_lines[0]["y1"], 2)
                 vah = round(max(l["y1"] for l in va_lines), 2)
                 val = round(min(l["y1"] for l in va_lines), 2)
-                print(f"    MP (TradingView): POC={poc} VAH={vah} VAL={val}")
-                mp = {"poc": poc, "vah": vah, "val": val, "vwap": None,
+                shape = detect_shape_from_tpo(sess, poc, vah, val)
+                vwap_rounded = round(float(vwap_val), 2) if vwap_val is not None else None
+                print(f"    MP (TradingView): POC={poc} VAH={vah} VAL={val} VWAP={vwap_rounded} Shape={shape['name']}")
+                mp = {"poc": poc, "vah": vah, "val": val, "vwap": vwap_rounded,
                       "day_high": vah, "day_low": val,
-                      "shape": {"name": "n/a", "description": ""},
+                      "shape": shape,
                       "volume_profile": [], "source": "tradingview"}
             else:
                 print("    TV CDP: MP — POC oder VA Lines fehlen")

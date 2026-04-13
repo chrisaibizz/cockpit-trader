@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-13T12:30:30.773629",
+  "timestamp": "2026-04-13T12:49:01.987500",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
@@ -17,12 +17,12 @@
         "poc": 6831.62,
         "vah": 6836.71,
         "val": 6818.4,
-        "vwap": 6831.62,
+        "vwap": 6767.97,
         "day_high": 6836.71,
         "day_low": 6818.4,
         "shape": {
-          "name": "n/a",
-          "description": ""
+          "name": "Normal Variation",
+          "description": "Ausgewogen ohne klare Richtung \u2014 Range-Handel"
         },
         "volume_profile": [],
         "source": "tradingview"
@@ -33,14 +33,14 @@
       },
       "current_price": 6816.89,
       "bias": {
-        "score": -78,
+        "score": -33,
         "bias": "BEARISH",
         "color": "red",
         "signals": [
           {
-            "label": "Preis < VWAP",
-            "score": -2,
-            "direction": "bearish"
+            "label": "Preis > VWAP",
+            "score": 2,
+            "direction": "bullish"
           },
           {
             "label": "Unter VAL \u2014 Breakdown",
@@ -53,7 +53,7 @@
             "direction": "bearish"
           },
           {
-            "label": "Shape: n/a",
+            "label": "Shape: Normal Variation",
             "score": 0,
             "direction": "neutral"
           },
@@ -68,7 +68,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX 21.29 \u2014 Elevated",
+            "label": "VIX 21.28 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
           },
@@ -116,12 +116,12 @@
         "poc": 48180.18,
         "vah": 48256.84,
         "val": 48037.82,
-        "vwap": 48180.18,
+        "vwap": 47604.26,
         "day_high": 48256.84,
         "day_low": 48037.82,
         "shape": {
-          "name": "n/a",
-          "description": ""
+          "name": "Normal Variation (Up)",
+          "description": "Leicht bullischer Bias \u2014 Abwarten auf Breakout aus VA"
         },
         "volume_profile": [],
         "source": "tradingview"
@@ -132,14 +132,14 @@
       },
       "current_price": 47916.57,
       "bias": {
-        "score": -78,
-        "bias": "BEARISH",
-        "color": "red",
+        "score": -9,
+        "bias": "NEUTRAL",
+        "color": "yellow",
         "signals": [
           {
-            "label": "Preis < VWAP",
-            "score": -2,
-            "direction": "bearish"
+            "label": "Preis > VWAP",
+            "score": 2,
+            "direction": "bullish"
           },
           {
             "label": "Unter VAL \u2014 Breakdown",
@@ -152,9 +152,9 @@
             "direction": "bearish"
           },
           {
-            "label": "Shape: n/a",
-            "score": 0,
-            "direction": "neutral"
+            "label": "Shape: Normal Variation (Up)",
+            "score": 2,
+            "direction": "bullish"
           },
           {
             "label": "Overnight Inventory: Short",
@@ -167,7 +167,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX 21.29 \u2014 Elevated",
+            "label": "VIX 21.28 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
           },
@@ -202,22 +202,22 @@
   },
   "context": {
     "VIX": {
-      "price": 21.29,
-      "change": 2.06,
-      "change_pct": 10.71,
+      "price": 21.28,
+      "change": 2.05,
+      "change_pct": 10.66,
       "high": 21.36,
       "low": 21.1,
       "open": 21.17,
       "prev_close": 19.23
     },
     "DXY": {
-      "price": 98.99,
+      "price": 98.97,
       "change": 0.0,
       "change_pct": 0.0,
       "high": 99.18,
       "low": 98.89,
       "open": 99.05,
-      "prev_close": 98.99
+      "prev_close": 98.97
     },
     "US10Y": {
       "price": 4.32,
