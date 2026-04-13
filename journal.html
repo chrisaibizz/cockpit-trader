@@ -83,13 +83,16 @@ footer{text-align:center;padding:20px;font-size:10px;color:var(--dim);border-top
 <div class="header">
   <h1>✈ Cockpit-Trader</h1>
   <div class="ts" id="ts">Analyse Journal</div>
+  <div id="age-bar" style="margin-top:6px;font-size:12px;display:none;">
+    <span id="age-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
+    <span id="age-txt"></span>
+  </div>
 </div>
 <div style="display:flex;justify-content:center;gap:8px;padding:12px 0 20px;border-bottom:1px solid #1e2a3a;margin-bottom:30px;">
   <a href="index.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Dashboard</a>
   <a href="journal.html" style="color:#e2e8f0;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;background:rgba(59,130,246,0.15);border:1px solid #3b82f6;letter-spacing:1px;">Journal</a>
   <a href="orders.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Orders</a>
 </div>
-<div id="age" style="text-align:center;font-size:11px;color:#64748b;margin-top:4px;margin-bottom:16px;"></div>
 <main>
   <div class="page-title">Analyse Journal</div>
   <div class="page-sub">Morning Briefing — Zusammenfassung</div>
@@ -116,28 +119,32 @@ function bc(b){
   const l=b.toLowerCase();
   return l.includes('bull')?'bias-bull':l.includes('bear')||l.includes('bär')?'bias-bear':'bias-neutral';
 }
-function updateAge(ts){
-  if(!ts)return;
-  const diff=Math.floor((Date.now()-new Date(ts).getTime())/60000);
-  const el=document.getElementById('age');
-  if(!el)return;
-  if(diff<1)el.textContent='gerade aktualisiert';
-  else if(diff<60)el.textContent='vor '+diff+' Min aktualisiert';
-  else if(diff<1440)el.textContent='vor '+Math.floor(diff/60)+' Std aktualisiert';
-  else el.textContent='vor '+Math.floor(diff/1440)+' Tag(en) aktualisiert';
+var _analysisTs=null;
+function fmtAge(ts){
+  const mins=Math.floor((Date.now()-ts.getTime())/60000);
+  if(mins<1)  return {txt:'gerade eben aktualisiert',color:'#22c55e'};
+  if(mins<60) return {txt:'vor '+mins+' Min aktualisiert',color:'#22c55e'};
+  const h=Math.floor(mins/60),m=mins%60;
+  if(h<4)     return {txt:'vor '+h+'h '+m+'min aktualisiert',color:'#eab308'};
+  if(h<8)     return {txt:'vor '+h+'h aktualisiert - bitte neu starten',color:'#f97316'};
+  return       {txt:'Analyse '+h+'h alt - VERALTET',color:'#ef4444'};
+}
+function updateAge(){
+  if(!_analysisTs)return;
+  const r=fmtAge(_analysisTs);
+  document.getElementById('age-txt').textContent=r.txt;
+  document.getElementById('age-txt').style.color=r.color;
+  document.getElementById('age-dot').style.background=r.color;
+  document.getElementById('age-dot').style.boxShadow='0 0 6px '+r.color;
 }
 function render(d){
   if(!d)return;
   if(d.timestamp){
-    const dt=new Date(d.timestamp);
-    const dd=String(dt.getDate()).padStart(2,'0');
-    const mm=String(dt.getMonth()+1).padStart(2,'0');
-    const yyyy=dt.getFullYear();
-    const hh=String(dt.getHours()).padStart(2,'0');
-    const mi=String(dt.getMinutes()).padStart(2,'0');
-    document.getElementById('ts').textContent='Analyse Journal — '+dd+'.'+mm+'.'+yyyy+' '+hh+':'+mi+' Uhr';
-    updateAge(d.timestamp);
-    setInterval(()=>updateAge(d.timestamp),60000);
+    _analysisTs=new Date(d.timestamp);
+    document.getElementById('ts').textContent='Analyse Journal — '+_analysisTs.toLocaleDateString('de-DE')+' '+_analysisTs.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr';
+    document.getElementById('age-bar').style.display='block';
+    updateAge();
+    setInterval(updateAge,60000);
   }
   let h='';
 
