@@ -1053,6 +1053,12 @@ def main():
         f.write(html_embedded)
     print(f"    -> {index_path}")
 
+    gh_pages_path = os.path.join(script_dir, "index.html")
+    print(">>> Schreibe index.html (GitHub Pages Einstieg)...")
+    with open(gh_pages_path, "w", encoding="utf-8") as f:
+        f.write(html_embedded)
+    print(f"    -> {gh_pages_path}")
+
     # Summary-Print
     print(f"\n{'='*50}")
     print(f"Timestamp: {out['timestamp']}")
