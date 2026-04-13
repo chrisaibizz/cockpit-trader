@@ -218,9 +218,35 @@ function tlight(color){
   </div>`;
 }
 
+function drawVPFromLevels(mp, currentPrice){
+  if(!mp||!mp.poc) return '<div style="text-align:center;color:var(--muted);padding:40px">Kein Volume Profile verfuegbar</div>';
+  const h=200, w=520, margin=80, rightPad=20;
+  const levels=[
+    {label:'VAH', price:mp.vah, color:'#22c55e'},
+    {label:'POC', price:mp.poc, color:'#06b6d4'},
+    {label:'VWAP',price:mp.vwap,color:'#eab308'},
+    {label:'VAL', price:mp.val, color:'#ef4444'},
+  ].filter(l=>l.price!=null).sort((a,b)=>b.price-a.price);
+  if(currentPrice) levels.push({label:'Kurs',price:currentPrice,color:'#f1f5f9',bold:true});
+  const allPrices=levels.map(l=>l.price);
+  const minP=Math.min(...allPrices), maxP=Math.max(...allPrices);
+  const range=maxP-minP||1;
+  const p2y=p=>10+(1-(p-minP)/range)*(h-20);
+  let lines='';
+  levels.forEach(l=>{
+    const y=p2y(l.price);
+    const dash=l.bold?'':' stroke-dasharray="6,3"';
+    const sw=l.bold?2.5:1.5;
+    lines+=`<line x1="${margin}" y1="${y}" x2="${w-rightPad}" y2="${y}" stroke="${l.color}" stroke-width="${sw}"${dash}/>`;
+    lines+=`<text x="${margin-6}" y="${y+4}" text-anchor="end" fill="${l.color}" font-size="11" font-family="monospace"${l.bold?' font-weight="bold"':''}>${l.price.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})}</text>`;
+    lines+=`<text x="${w-rightPad+4}" y="${y+4}" fill="${l.color}" font-size="10" font-family="monospace">${l.label}</text>`;
+  });
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:${h}px">${lines}</svg>`;
+}
+
 function drawVP(mp, currentPrice){
-  if(!mp||!mp.volume_profile)
-    return '<div style="text-align:center;color:var(--muted);padding:40px">Keine Daten</div>';
+  if(!mp||!mp.volume_profile||!mp.volume_profile.length)
+    return drawVPFromLevels(mp, currentPrice);
 
   const vps    = mp.volume_profile;
   const maxV   = Math.max(...vps.map(b=>b.volume));

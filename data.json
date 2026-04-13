@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-13T13:21:51.256695",
+  "timestamp": "2026-04-13T13:24:58.341299",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
@@ -17,7 +17,7 @@
         "poc": 6831.62,
         "vah": 6836.71,
         "val": 6818.4,
-        "vwap": 6746.7,
+        "vwap": 6769.12,
         "day_high": 6836.71,
         "day_low": 6818.4,
         "shape": {
@@ -28,7 +28,7 @@
         "source": "tradingview"
       },
       "cvd": {
-        "value": 47262.41,
+        "value": 37834.01,
         "direction": "bullish"
       },
       "current_price": 6816.89,
@@ -63,12 +63,12 @@
             "direction": "bearish"
           },
           {
-            "label": "CVD positiv (+47262) \u2014 Kaufdruck",
+            "label": "CVD positiv (+37834) \u2014 Kaufdruck",
             "score": 1,
             "direction": "bullish"
           },
           {
-            "label": "VIX 21.02 \u2014 Elevated",
+            "label": "VIX 21.11 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
           },
@@ -116,7 +116,7 @@
         "poc": 48180.18,
         "vah": 48256.84,
         "val": 48037.82,
-        "vwap": 47430.78,
+        "vwap": 47614.89,
         "day_high": 48256.84,
         "day_low": 48037.82,
         "shape": {
@@ -127,7 +127,7 @@
         "source": "tradingview"
       },
       "cvd": {
-        "value": 82185.75,
+        "value": 88283.52,
         "direction": "bullish"
       },
       "current_price": 47916.57,
@@ -162,12 +162,12 @@
             "direction": "bearish"
           },
           {
-            "label": "CVD positiv (+82186) \u2014 Kaufdruck",
+            "label": "CVD positiv (+88284) \u2014 Kaufdruck",
             "score": 1,
             "direction": "bullish"
           },
           {
-            "label": "VIX 21.02 \u2014 Elevated",
+            "label": "VIX 21.11 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
           },
@@ -203,9 +203,9 @@
       "name": "DAX (Kassa)",
       "ticker": "^GDAXI",
       "quote": {
-        "price": 23574.72,
-        "change": -229.23,
-        "change_pct": -0.96,
+        "price": 23568.59,
+        "change": -235.36,
+        "change_pct": -0.99,
         "high": 23614.26,
         "low": 23538.36,
         "open": 23562.19,
@@ -215,7 +215,7 @@
         "poc": 23908.87,
         "vah": 23933.87,
         "val": 23750.55,
-        "vwap": 23885.02,
+        "vwap": 23550.79,
         "day_high": 23933.87,
         "day_low": 23750.55,
         "shape": {
@@ -226,19 +226,19 @@
         "source": "tradingview"
       },
       "cvd": {
-        "value": 4075.45,
+        "value": 2074.91,
         "direction": "bullish"
       },
-      "current_price": 23574.72,
+      "current_price": 23568.59,
       "bias": {
-        "score": -45,
-        "bias": "BEARISH",
-        "color": "red",
+        "score": -9,
+        "bias": "NEUTRAL",
+        "color": "yellow",
         "signals": [
           {
-            "label": "Preis < VWAP",
-            "score": -2,
-            "direction": "bearish"
+            "label": "Preis > VWAP",
+            "score": 2,
+            "direction": "bullish"
           },
           {
             "label": "Unter VAL \u2014 Breakdown",
@@ -261,12 +261,12 @@
             "direction": "bearish"
           },
           {
-            "label": "CVD positiv (+4075) \u2014 Kaufdruck",
+            "label": "CVD positiv (+2075) \u2014 Kaufdruck",
             "score": 1,
             "direction": "bullish"
           },
           {
-            "label": "VIX 21.02 \u2014 Elevated",
+            "label": "VIX 21.11 \u2014 Elevated",
             "score": -1,
             "direction": "bearish"
           },
@@ -301,9 +301,9 @@
   },
   "context": {
     "VIX": {
-      "price": 21.02,
-      "change": 1.79,
-      "change_pct": 9.31,
+      "price": 21.11,
+      "change": 1.88,
+      "change_pct": 9.78,
       "high": 21.36,
       "low": 21.01,
       "open": 21.17,
@@ -328,9 +328,9 @@
       "prev_close": 4.29
     },
     "DAX": {
-      "price": 23574.72,
-      "change": -229.23,
-      "change_pct": -0.96,
+      "price": 23568.59,
+      "change": -235.36,
+      "change_pct": -0.99,
       "high": 23614.26,
       "low": 23538.36,
       "open": 23562.19,
