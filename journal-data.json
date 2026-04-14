@@ -1,144 +1,118 @@
 {
   "date": "2026-04-14",
-  "timestamp": "2026-04-14T07:00:00.000000",
+  "timestamp": "2026-04-14T15:30:00.000Z",
   "debrief": {
-    "orders_checked": 3,
-    "fill_rate": "33%",
-    "tp1_rate": "0%",
-    "trend": "SP500 +45 PnL (SL-Hit). GER40+US30 nicht gefuellt.",
-    "learnings": [
-      "Gap-Up-Tage sind schwer zu antizipieren — Limit Sells bei Gap-Fill-Levels wurden nicht getestet",
-      "SP500 hatte beste relative Staerke und wurde gefuellt — weiterhin priorisieren",
-      "Viele Duplikate durch Auto-Generator bereinigen"
-    ]
+    "orders_checked": 0,
+    "fill_rate": "n/a",
+    "tp1_rate": "n/a",
+    "trend": "n/a",
+    "learnings": ["Dry-Run Modus — kein Debrief durchgefuehrt"]
   },
   "instruments": [
     {
       "name": "GER40",
       "bias": "Bullisch",
-      "bias_pct": "68",
-      "daily_summary": "Ueber Kumo Daily (23161-23633), Tenkan > Kijun, CDV positiv. Einziges Gegenargument: 200 SMA Daily bei 24130. SMC Resistance: 24652 / 25114.",
-      "h4_summary": "Ueber Kumo 4H (23240-23727). CHoCH 4H bei 24217 ist naechste strukturelle Resistance. BOS bei 24493. CDV +207K.",
-      "h1_summary": "Ueber Kumo 1H (23737-23849). Tenkan > Kijun bullisch. SMC OB Support: 23963 / 23833.",
-      "h30m_summary": "Kurs 24000 ueber VWAP Upper (23984) — ausserhalb 1-Sigma sehr bullisch. CDV +12K. SMC OB: 23717 / 23676.",
-      "mp_shape_yesterday": "Normal Variation — POC 23971, VAH 24002, VAL 23857",
-      "mp_shape_forecast": "P-Shape oder Trend Day Up — Open Drive bullisch, Kurs ueber VAH",
-      "mp_5day_sequence": "Normal Variation. Gap-Down Vortag (23742 < VAL), heute Gap-Up zurueck ueber VAH — Balance-Recovery",
+      "bias_pct": "60",
+      "daily_summary": "Ichimoku D strong_bullish. Preis 24058 unter SMA200 (24131) — kritischer Widerstand. VP POC 24229 darueber. Elliott Wave C up.",
+      "h4_summary": "Ichimoku 4H bullish, CDV 10x bullisch. Bull OB 4H bei 23424-23576.",
+      "h1_summary": "VWAP +1.21 SD. Bear OB 1H bei 24202-24350 = naechster Widerstand.",
+      "h30m_summary": "VWAP +1.23 SD. CHoCH bullisch 24051. Bear OB 30M 24229-24332.",
+      "mp_shape_yesterday": "b-Shape (POC 23546, VAH 23748, VAL 23478)",
+      "mp_shape_forecast": "Breakout ueber Balance / Open Drive",
+      "mp_5day_sequence": "23170 (Trend) → 24020 (Balanced) → 23905 → 23909 → 23546 (b-Shape) → heute Breakout",
       "key_levels": [
-        {"level": "4H BOS", "price": "24493", "source": "SMC 4H"},
-        {"level": "4H CHoCH / Sell-Zone", "price": "24217", "source": "SMC 4H"},
-        {"level": "Daily 200 SMA", "price": "24130", "source": "SMA"},
-        {"level": "VAH Vortag", "price": "24002", "source": "Market Profile"},
-        {"level": "POC Vortag / SMC OB 1H", "price": "23971/23963", "source": "MP + SMC"},
-        {"level": "VAL Vortag", "price": "23857", "source": "Market Profile"},
-        {"level": "SMC OB 30M", "price": "23717", "source": "SMC 30M"}
+        {"level": "SMA200", "price": "24131", "source": "Daily"},
+        {"level": "VP POC D", "price": "24229", "source": "Daily VP"},
+        {"level": "Pivot R1", "price": "24142", "source": "Pivot"},
+        {"level": "Gestern VAH (Support)", "price": "23748", "source": "Market Profile"},
+        {"level": "Bear OB 1H", "price": "24202-24350", "source": "SMC 1H"}
       ],
       "orders": [
         {
           "type": "Limit Buy",
-          "entry": "23963",
-          "sl": "23805",
-          "tp1": "24217",
-          "tp2": "24493",
-          "rr": "1.6 / 3.4",
-          "p_fill": "45",
+          "entry": "23780",
+          "sl": "23420",
+          "tp1": "24131",
+          "tp2": "24229",
+          "rr": "1.9",
+          "p_fill": "50",
           "p_tp1": "55",
-          "tf": "1H/30M",
-          "confluence": "SMC 1H OB + VP POC + MP VAH + Kijun 1H"
-        },
-        {
-          "type": "Limit Sell",
-          "entry": "24200",
-          "sl": "24260",
-          "tp1": "23963",
-          "tp2": "23857",
-          "rr": "3.9 / 5.7",
-          "p_fill": "28",
-          "p_tp1": "50",
-          "tf": "4H",
-          "confluence": "4H CHoCH + Daily 200 SMA Naehe"
+          "tf": "30M",
+          "confluence": "MP VAH + Pivot P + 4H FVG + Ichimoku"
         }
       ],
-      "invalidation": "Unter 23833 (SMC OB 30M) wird der bullische Bias negiert. Unter 23857 (VAL) Gap-Fill-Szenario."
+      "invalidation": "Tagesschluss unter 23400 negiert den bullischen Bias."
     },
     {
-      "name": "US30",
-      "bias": "Bullisch (Vorsicht)",
-      "bias_pct": "55",
-      "daily_summary": "VT-Close 48218, ueber VAH (48074). Shape Trend Day Down ist Warnsignal. Overnight Inventory Long positiv.",
-      "h4_summary": "Nicht verfuegbar — US-Markt noch nicht offen bei Analyse.",
-      "h1_summary": "Nicht verfuegbar. Nach Markteroeffnung 14:30 CET neu analysieren.",
-      "h30m_summary": "Nicht verfuegbar.",
-      "mp_shape_yesterday": "Trend Day Down — POC 47936, VAH 48074, VAL 47865",
-      "mp_shape_forecast": "Pending — bei Markteroeffnung pruefen",
-      "mp_5day_sequence": "Trend Day Down Vortag. Kurs ueber VAH — moegliche Umkehr oder weitere Staerke",
+      "name": "DJ30",
+      "bias": "Bullisch",
+      "bias_pct": "70",
+      "daily_summary": "Ichimoku D strong_bullish. SMA200 47009 — Preis 1522 Pts darueber. SMC D bullish. VP POC 46408 weit unten.",
+      "h4_summary": "Ichimoku 4H strong_bullish, CDV 10x bullisch. Bull OB 48179-48326.",
+      "h1_summary": "VWAP +2.26 SD extended. Bear OB 1H direkt ueber Preis.",
+      "h30m_summary": "VWAP +2.27 SD. Bull OB 30M 48179-48326 = gestern POC. Bear OB 48790-48894.",
+      "mp_shape_yesterday": "Neutral/Konsolidierung (POC 47704, VAH 47773, VAL 47405)",
+      "mp_shape_forecast": "Breakout-Fortsetzung / Initiative Buying",
+      "mp_5day_sequence": "46591 → 47823 → 47892 → 48180 → 47704 → heute Open Drive +754 Pts ueber VAH",
       "key_levels": [
-        {"level": "VAH Vortag", "price": "48074", "source": "Market Profile"},
-        {"level": "POC Vortag", "price": "47936", "source": "Market Profile"},
-        {"level": "VAL Vortag", "price": "47865", "source": "Market Profile"}
+        {"level": "Pivot R1", "price": "48582", "source": "Pivot"},
+        {"level": "Bear OB 30M", "price": "48790-48894", "source": "SMC 30M"},
+        {"level": "Bull OB 30M (gestern POC)", "price": "48179-48326", "source": "SMC 30M"},
+        {"level": "4H Kijun", "price": "47952", "source": "Ichimoku 4H"},
+        {"level": "SMA200", "price": "47009", "source": "Daily"}
       ],
       "orders": [
         {
-          "type": "Limit Buy (vorläufig)",
-          "entry": "47940",
-          "sl": "47840",
-          "tp1": "48218",
-          "tp2": "48400",
-          "rr": "2.8 / 4.6",
-          "p_fill": "35",
-          "p_tp1": "50",
+          "type": "Limit Buy",
+          "entry": "48240",
+          "sl": "47350",
+          "tp1": "48582",
+          "tp2": "48842",
+          "rr": "1.9",
+          "p_fill": "55",
+          "p_tp1": "60",
           "tf": "30M",
-          "confluence": "VP POC + MP VAH Retest — PENDING Markteroeffnung"
+          "confluence": "MP gestern POC + 30M Bull OB + CDV bullish + Ichimoku D"
         }
       ],
-      "invalidation": "Unter 47865 (VAL) baerisches Signal. Trend Day Down Shape mahnt zur Vorsicht."
+      "invalidation": "Schluss unter 47400 (gestern VAL) negiert den Setup."
     },
     {
       "name": "SPX500",
       "bias": "Bullisch",
-      "bias_pct": "72",
-      "daily_summary": "VT-Close 6886, Bias BULLISH (100). Kurs weit ueber VA (6810-6834). Overnight Long. VIX 19.12 ok. Staerkste relative Staerke.",
-      "h4_summary": "Nicht verfuegbar — US-Markt noch geschlossen.",
-      "h1_summary": "Nicht verfuegbar. Nach Markteroeffnung 14:30 CET neu analysieren.",
-      "h30m_summary": "Nicht verfuegbar.",
-      "mp_shape_yesterday": "Normal Variation — POC 6816, VAH 6834, VAL 6810",
-      "mp_shape_forecast": "Pending — Erwartung: Trend Day Up oder P-Shape",
-      "mp_5day_sequence": "Normal Variation. Kurs stark ueber VA — institutioneller Kaufdruck dominant",
+      "bias_pct": "65",
+      "daily_summary": "Ichimoku D strong_bullish. SMA200 6690 — Preis 259 Pts darueber. Elliott Wave (5) komplett = Korrektionswarnung.",
+      "h4_summary": "Ichimoku 4H strong_bullish, CDV 11x bullisch. Bear OB direkt ueber Preis.",
+      "h1_summary": "VWAP +2.63 SD sehr extended. Bear OB 6950-6974 direkt ueber Preis.",
+      "h30m_summary": "VWAP +2.65 SD. VP HVN sell 6907-6951 am Preis. Bull OB 6889-6893.",
+      "mp_shape_yesterday": "Kompakt (POC 6780, VAH 6857, VAL 6768, VA 89 Pts)",
+      "mp_shape_forecast": "Open Drive aus Coiling-Phase — aber sehr extended",
+      "mp_5day_sequence": "6592 → 6790 → 6779 → 6832 (Doji!) → 6780 → heute +92 Pts ueber VAH",
       "key_levels": [
-        {"level": "VAH Vortag", "price": "6834", "source": "Market Profile"},
-        {"level": "POC Vortag", "price": "6816", "source": "Market Profile"},
-        {"level": "VAL Vortag", "price": "6810", "source": "Market Profile"}
+        {"level": "Bear OB / Pivot R1", "price": "6950-6974", "source": "SMC 1H + Pivot"},
+        {"level": "Pivot R2", "price": "7005", "source": "Pivot"},
+        {"level": "Gestern VAH", "price": "6857", "source": "Market Profile"},
+        {"level": "Bull OB 1H", "price": "6890-6897", "source": "SMC 1H"},
+        {"level": "Pivot P / 4H Kijun", "price": "6843", "source": "Pivot + Ichimoku"}
       ],
-      "orders": [
-        {
-          "type": "Limit Buy (vorläufig)",
-          "entry": "6836",
-          "sl": "6805",
-          "tp1": "6900",
-          "tp2": "6950",
-          "rr": "2.1 / 3.7",
-          "p_fill": "35",
-          "p_tp1": "55",
-          "tf": "30M",
-          "confluence": "MP VAH + Overnight Long + VIX ok — PENDING Markteroeffnung"
-        }
-      ],
-      "invalidation": "Unter 6810 (VAL) Bias negiert. Unter 6780 baerisches Szenario aktiv."
+      "orders": [],
+      "invalidation": "Kein Entry jetzt. Warte auf Pullback zu 6857-6897."
     }
   ],
   "summary": {
-    "best_instrument": "GER40",
-    "total_orders": 4,
+    "best_instrument": "DJ30",
+    "total_orders": 2,
     "warnings": [
-      "US30 und SPX500 ohne Live-Chart-Daten — bei Markteroeffnung 14:30 CET nachschaerfen",
-      "US30 Trend Day Down Shape VT ist Warnsignal fuer Long-Bias"
+      "SPX500: Elliott Wave (5) komplett — moegliches Interim-Top",
+      "Alle Instrumente bei +2 bis +2.7 SD VWAP — Extended",
+      "GER40: Preis unter SMA200 — schwaecher als US-Maerkte"
     ],
-    "notes": "GER40 Gap-Up +263 Pkt. Alle TFs bullisch ueber Kumo. Widerstand: 200 SMA Daily 24130 und CHoCH 24217. Makro: VIX 19, DXY 98.39 schwach, Yields 4.30% fallend."
+    "notes": "Koordinierter Risk-On Breakout. Limit-Buy GER40 @ 23780 und DJ30 @ 48240 bei Pullback."
   },
   "stats": {
-    "total": 47,
-    "fill_rate": "2.1%",
-    "tp1_rate": "0%",
-    "trend": "Stabil — Limit Orders haeufig nicht gefuellt bei Gap-Bewegungen"
+    "total": 0,
+    "fill_rate": "n/a",
+    "tp1_rate": "n/a",
+    "trend": "n/a"
   }
 }
