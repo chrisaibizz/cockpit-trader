@@ -12,7 +12,8 @@
   --blue:#3b82f6;--cyan:#38bdf8;--magenta:#d946ef;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;min-height:100vh}
+html{font-size:clamp(13px,1.1vw,16px)}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:1rem;min-height:100vh}
 
 /* ── NAV ─────────────────────────────────────────────────────────── */
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
@@ -52,7 +53,8 @@ main{padding:0 0 48px}
 
 /* ── INSTRUMENT GRID ─────────────────────────────────────────────── */
 .instr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:800px){.instr-grid{grid-template-columns:1fr}}
+@media(max-width:767px){.instr-grid{grid-template-columns:1fr}}
+@media(min-width:768px) and (max-width:1199px){.instr-grid{grid-template-columns:1fr 1fr}}
 
 /* ── INSTRUMENT CARD ─────────────────────────────────────────────── */
 .icard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;transition:border-color .2s}
@@ -112,14 +114,16 @@ main{padding:0 0 48px}
 
 /* ── CHARTS GRID ─────────────────────────────────────────────────── */
 .charts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:800px){.charts-grid{grid-template-columns:1fr}}
+@media(max-width:767px){.charts-grid{grid-template-columns:1fr}}
+@media(min-width:768px) and (max-width:1199px){.charts-grid{grid-template-columns:1fr 1fr}}
 .chart-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px}
 .chart-title{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:10px}
 .chart-nodata{font-size:11px;color:var(--dim);padding:40px 0;text-align:center}
 
 /* ── INTERPRETATION ──────────────────────────────────────────────── */
 .interp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:800px){.interp-grid{grid-template-columns:1fr}}
+@media(max-width:767px){.interp-grid{grid-template-columns:1fr}}
+@media(min-width:768px) and (max-width:1199px){.interp-grid{grid-template-columns:1fr 1fr}}
 .interp-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px}
 .interp-badge{display:inline-flex;align-items:center;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:2px 8px;border-radius:10px;margin-bottom:6px}
 .ib-bull{background:rgba(34,197,94,.1);color:var(--green)}
@@ -135,6 +139,38 @@ main{padding:0 0 48px}
 .warn-icon{color:var(--yellow);flex-shrink:0}
 .notes-card{margin-top:10px;padding:12px;background:rgba(56,189,248,.04);border:1px solid rgba(56,189,248,.15);border-radius:8px;font-size:11px;color:var(--muted);line-height:1.5}
 .notes-card b{color:var(--cyan);display:block;font-size:9px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+
+/* ── DESKTOP ≥ 1200px ────────────────────────────────────────────── */
+@media(min-width:1200px){
+  .section{padding:24px 24px 0}
+  /* Nav + Header */
+  .nav-brand{font-size:14px}.nav-links a{font-size:12px;padding:6px 12px}
+  .h-title{font-size:24px}.h-sub{font-size:12px}.status-line{font-size:11px}
+  /* Makro bar */
+  .m-item{padding:10px 20px}.m-label{font-size:9px}.m-val{font-size:16px}.m-sub{font-size:9px}
+  .m-bias-label{font-size:9px}.m-bias-text{font-size:12px}
+  /* Section titles */
+  .s-title{font-size:11px;margin-bottom:14px}
+  /* Instrument cards */
+  .icard{padding:18px}
+  .ic-name{font-size:17px}
+  .score-lbl{font-size:10px}
+  .score-val{font-size:30px}
+  .score-txt{font-size:10px}
+  .mp-tag{font-size:12px;padding:7px 10px}.mp-tag b{font-size:10px}
+  .lvl-n{font-size:9px}.lvl-p{font-size:15px}
+  .top-ord{padding:9px 11px;font-size:12px}.ord-type{font-size:10px}.ord-entry{font-size:15px}.ord-fill{font-size:11px}
+  .sig-dot{width:12px;height:12px}.sig-lbl{font-size:8px}
+  /* Charts */
+  .chart-card{padding:16px}.chart-title{font-size:11px}
+  /* Interpretation */
+  .interp-item{padding:14px}
+  .interp-badge{font-size:10px;padding:3px 10px}
+  .interp-name{font-size:13px}.interp-txt{font-size:12px}.interp-fc{font-size:11px}
+  /* Warnings */
+  .warn-item{font-size:12px;padding:10px 14px}
+  .notes-card{font-size:12px;padding:14px}.notes-card b{font-size:10px}
+}
 </style>
 </head>
 <body>

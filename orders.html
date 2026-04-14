@@ -12,7 +12,8 @@
   --blue:#3b82f6;--cyan:#38bdf8;--magenta:#d946ef;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;min-height:100vh}
+html{font-size:clamp(13px,1.1vw,16px)}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:1rem;min-height:100vh}
 
 /* ── NAV ─────────────────────────────────────────────────────────── */
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
@@ -75,6 +76,28 @@ td{padding:10px 12px;vertical-align:middle;white-space:nowrap}
 .empty p{font-size:12px;line-height:1.6}
 
 footer{text-align:center;padding:20px;font-size:10px;color:var(--dim);border-top:1px solid var(--border);margin-top:32px}
+
+/* ── DESKTOP ≥ 1200px ────────────────────────────────────────────── */
+@media(min-width:1200px){
+  .nav-brand{font-size:14px}.nav-links a{font-size:12px;padding:6px 12px}
+  .h-title{font-size:24px}.h-sub{font-size:12px}.status-line{font-size:11px}
+  main{padding:24px}
+  .stats-bar{gap:12px;margin-bottom:24px}
+  .stat{padding:12px 8px}.stat-label{font-size:10px}.stat-value{font-size:22px}
+  thead th{font-size:10px;padding:12px 14px}
+  td{font-size:13px;padding:12px 14px}
+  .td-inst{font-size:15px}
+  .td-type{font-size:11px;padding:4px 10px}
+  .td-price{font-size:14px}
+  .td-rr{font-size:14px}
+  .td-conf{font-size:12px}
+  .pct-bar-bg{width:52px}
+}
+/* ── TABLET 768–1199px ───────────────────────────────────────────── */
+@media(min-width:768px) and (max-width:1199px){
+  td{font-size:12px;padding:9px 10px}
+  .td-price{font-size:13px}
+}
 </style>
 </head>
 <body>

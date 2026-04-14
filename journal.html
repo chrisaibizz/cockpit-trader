@@ -7,7 +7,8 @@
 <style>
 :root{--bg:#0d1117;--card:#161b22;--border:#21262d;--text:#e2e8f0;--muted:#8b949e;--dim:#30363d;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#38bdf8}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0;min-height:100vh;font-size:14px}
+html{font-size:clamp(13px,1.1vw,16px)}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0;min-height:100vh;font-size:1rem}
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
 .nav-brand{font-weight:800;font-size:13px;letter-spacing:1px;display:flex;align-items:center;gap:6px}
 .nav-brand .ico{font-size:15px;opacity:.85}
@@ -76,9 +77,29 @@ main{padding:16px;max-width:600px;margin:0 auto}
 .empty h3{color:var(--muted);font-size:14px;margin-bottom:8px}
 .empty p{font-size:12px;line-height:1.6}
 footer{text-align:center;padding:20px;font-size:10px;color:var(--dim);border-top:1px solid var(--border)}
-.header{text-align:center;padding:20px 0 30px;border-bottom:1px solid var(--border);margin-bottom:0;}
-.header h1{font-size:28px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.header .ts{color:var(--muted);font-size:13px;margin-top:8px;}
+
+/* ── DESKTOP ≥ 1200px ────────────────────────────────────────────── */
+@media(min-width:1200px){
+  .nav-brand{font-size:14px}.nav-links a{font-size:12px;padding:6px 12px}
+  main{max-width:860px;padding:24px}
+  .page-title{font-size:22px}.page-sub{font-size:12px}
+  .debrief{padding:16px}.debrief-title{font-size:12px}
+  .d-stat-label{font-size:10px}.d-stat-value{font-size:18px}
+  .d-learnings{font-size:13px}
+  .inst{padding:16px}.inst-name{font-size:17px}
+  .inst-bias{font-size:12px}
+  .inst-summary{font-size:13px}
+  .tf-label{font-size:10px}
+  .mp-title{font-size:11px}.mp-row{font-size:13px}.shape-badge{font-size:12px}
+  .levels-title{font-size:11px}.level-row{font-size:13px}
+  .invalidation{font-size:12px}
+  .summary-best{font-size:16px}.summary-warn{font-size:12px}
+}
+/* ── TABLET 768–1199px ───────────────────────────────────────────── */
+@media(min-width:768px) and (max-width:1199px){
+  main{max-width:720px}
+  .inst-summary{font-size:12px}
+}
 </style>
 </head>
 <body>
