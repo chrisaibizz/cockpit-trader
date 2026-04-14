@@ -1,14 +1,14 @@
 {
-  "timestamp": "2026-04-13T19:06:08.298021",
+  "timestamp": "2026-04-14T05:00:27.930796",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
       "ticker": "^GSPC",
       "quote": {
-        "price": 6847.69,
-        "change": 30.8,
-        "change_pct": 0.45,
-        "high": 6851.79,
+        "price": 6886.24,
+        "change": 69.35,
+        "change_pct": 1.02,
+        "high": 6887.0,
         "low": 6790.02,
         "open": 6806.47,
         "prev_close": 6816.89,
@@ -189,24 +189,24 @@
         ]
       },
       "cvd": null,
-      "current_price": 6847.69,
+      "current_price": 6886.24,
       "bias": {
         "score": 100,
         "bias": "BULLISH",
         "color": "green",
         "signals": [
           {
-            "label": "Preis > VWAP (6848 > 6824)",
+            "label": "Preis > VWAP (6886 > 6824)",
             "score": 2,
             "direction": "bullish"
           },
           {
-            "label": "Ueber VAH \u2014 Breakout (6848 > 6835)",
+            "label": "Ueber VAH \u2014 Breakout (6886 > 6835)",
             "score": 2,
             "direction": "bullish"
           },
           {
-            "label": "Preis > POC (6848 > 6816)",
+            "label": "Preis > POC (6886 > 6816)",
             "score": 1,
             "direction": "bullish"
           },
@@ -221,7 +221,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX 19.41 \u2014 Normal",
+            "label": "VIX 19.12 \u2014 Normal",
             "score": 1,
             "direction": "bullish"
           },
@@ -257,10 +257,10 @@
       "name": "Dow Jones (Kassa)",
       "ticker": "^DJI",
       "quote": {
-        "price": 47928.45,
-        "change": 11.88,
-        "change_pct": 0.02,
-        "high": 47969.89,
+        "price": 48218.25,
+        "change": 301.68,
+        "change_pct": 0.63,
+        "high": 48221.37,
         "low": 47505.97,
         "open": 47718.21,
         "prev_close": 47916.57,
@@ -441,26 +441,26 @@
         ]
       },
       "cvd": null,
-      "current_price": 47928.45,
+      "current_price": 48218.25,
       "bias": {
-        "score": -71,
-        "bias": "BEARISH",
-        "color": "red",
+        "score": 56,
+        "bias": "BULLISH",
+        "color": "green",
         "signals": [
           {
-            "label": "Preis < VWAP (47928 < 47982)",
-            "score": -2,
-            "direction": "bearish"
+            "label": "Preis > VWAP (48218 > 47982)",
+            "score": 2,
+            "direction": "bullish"
           },
           {
-            "label": "In Value Area (47866 \u2013 48074)",
-            "score": 0,
-            "direction": "neutral"
+            "label": "Ueber VAH \u2014 Breakout (48218 > 48074)",
+            "score": 2,
+            "direction": "bullish"
           },
           {
-            "label": "Preis < POC (47928 < 47937)",
-            "score": -1,
-            "direction": "bearish"
+            "label": "Preis > POC (48218 > 47937)",
+            "score": 1,
+            "direction": "bullish"
           },
           {
             "label": "Shape: Trend Day (Down)",
@@ -468,12 +468,12 @@
             "direction": "bearish"
           },
           {
-            "label": "Overnight Inventory: Short",
-            "score": -1,
-            "direction": "bearish"
+            "label": "Overnight Inventory: Long",
+            "score": 1,
+            "direction": "bullish"
           },
           {
-            "label": "VIX 19.41 \u2014 Normal",
+            "label": "VIX 19.12 \u2014 Normal",
             "score": 1,
             "direction": "bullish"
           },
@@ -725,7 +725,7 @@
             "direction": "bearish"
           },
           {
-            "label": "VIX 19.41 \u2014 Normal",
+            "label": "VIX 19.12 \u2014 Normal",
             "score": 1,
             "direction": "bullish"
           },
@@ -760,27 +760,27 @@
   },
   "context": {
     "VIX": {
-      "price": 19.41,
-      "change": 0.18,
-      "change_pct": 0.94,
+      "price": 19.12,
+      "change": -0.11,
+      "change_pct": -0.57,
       "high": 21.58,
-      "low": 19.41,
+      "low": 18.96,
       "open": 21.17,
       "prev_close": 19.23
     },
     "DXY": {
-      "price": 98.6,
+      "price": 98.39,
       "change": 0.0,
       "change_pct": 0.0,
-      "high": 99.18,
-      "low": 98.6,
-      "open": 99.05,
-      "prev_close": 98.6
+      "high": 98.41,
+      "low": 98.33,
+      "open": 98.37,
+      "prev_close": 98.39
     },
     "US10Y": {
       "price": 4.3,
-      "change": -0.01,
-      "change_pct": -0.32,
+      "change": -0.02,
+      "change_pct": -0.46,
       "high": 4.35,
       "low": 4.3,
       "open": 4.35,
@@ -798,8 +798,8 @@
   },
   "calendar": [],
   "journal": {
-    "date": "2026-04-13",
-    "timestamp": "2026-04-13T19:06:08.291031",
+    "date": "2026-04-14",
+    "timestamp": "2026-04-14T05:00:27.917250",
     "debrief": {
       "orders_checked": 3,
       "fill_rate": "33%",
@@ -841,7 +841,7 @@
             "direction": "bearish"
           },
           {
-            "label": "VIX 19.41 \u2014 Normal",
+            "label": "VIX 19.12 \u2014 Normal",
             "score": 1,
             "direction": "bullish"
           },
@@ -1057,7 +1057,7 @@
           ]
         },
         "current_price": 23742.44,
-        "daily_summary": "Bias Baerisch (Score -71). Vortag Range: 23767.71 \u2013 24043.59. VIX=19.4.",
+        "daily_summary": "Bias Baerisch (Score -71). Vortag Range: 23767.71 \u2013 24043.59. VIX=19.1.",
         "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
         "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
         "h30m_summary": "Kurs 23742.44 unter VWAP (nan), ausserhalb Value Area. POC=23971.17 VAH=24002.21 VAL=23857.37. Shape: Normal Variation.",
@@ -1107,25 +1107,25 @@
       },
       {
         "name": "US30",
-        "bias": "Baerisch",
-        "bias_color": "red",
-        "bias_score": -71,
+        "bias": "Bullisch",
+        "bias_color": "green",
+        "bias_score": 56,
         "bias_pct": "95",
         "bias_signals": [
           {
-            "label": "Preis < VWAP (47928 < 47982)",
-            "score": -2,
-            "direction": "bearish"
+            "label": "Preis > VWAP (48218 > 47982)",
+            "score": 2,
+            "direction": "bullish"
           },
           {
-            "label": "In Value Area (47866 \u2013 48074)",
-            "score": 0,
-            "direction": "neutral"
+            "label": "Ueber VAH \u2014 Breakout (48218 > 48074)",
+            "score": 2,
+            "direction": "bullish"
           },
           {
-            "label": "Preis < POC (47928 < 47937)",
-            "score": -1,
-            "direction": "bearish"
+            "label": "Preis > POC (48218 > 47937)",
+            "score": 1,
+            "direction": "bullish"
           },
           {
             "label": "Shape: Trend Day (Down)",
@@ -1133,12 +1133,12 @@
             "direction": "bearish"
           },
           {
-            "label": "Overnight Inventory: Short",
-            "score": -1,
-            "direction": "bearish"
+            "label": "Overnight Inventory: Long",
+            "score": 1,
+            "direction": "bullish"
           },
           {
-            "label": "VIX 19.41 \u2014 Normal",
+            "label": "VIX 19.12 \u2014 Normal",
             "score": 1,
             "direction": "bullish"
           },
@@ -1170,10 +1170,10 @@
         ],
         "cvd": {},
         "quote": {
-          "price": 47928.45,
-          "change": 11.88,
-          "change_pct": 0.02,
-          "high": 47969.89,
+          "price": 48218.25,
+          "change": 301.68,
+          "change_pct": 0.63,
+          "high": 48221.37,
           "low": 47505.97,
           "open": 47718.21,
           "prev_close": 47916.57,
@@ -1353,11 +1353,11 @@
             }
           ]
         },
-        "current_price": 47928.45,
-        "daily_summary": "Bias Baerisch (Score -71). Vortag Range: 47856.18 \u2013 48235.06. VIX=19.4.",
+        "current_price": 48218.25,
+        "daily_summary": "Bias Bullisch (Score 56). Vortag Range: 47856.18 \u2013 48235.06. VIX=19.1.",
         "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
         "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-        "h30m_summary": "Kurs 47928.45 unter VWAP (47982.21), in Value Area. POC=47936.69 VAH=48074.04 VAL=47865.65. Shape: Trend Day (Down).",
+        "h30m_summary": "Kurs 48218.25 ueber VWAP (47982.21), ausserhalb Value Area. POC=47936.69 VAH=48074.04 VAL=47865.65. Shape: Trend Day (Down).",
         "mp_shape_yesterday": "Trend Day (Down)",
         "mp_shape_forecast": "Trend Day (Down)",
         "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -1385,22 +1385,22 @@
         ],
         "orders": [
           {
-            "type": "Limit Sell",
-            "entry": "48063.62",
-            "sl": "48126.14",
-            "tp1": "47865.65",
-            "tp2": "47761.46",
+            "type": "Limit Buy",
+            "entry": "47876.07",
+            "sl": "47813.55",
+            "tp1": "48074.04",
+            "tp2": "48178.24",
             "rr": "3.17",
             "p_fill": "70",
-            "p_tp1": "65",
+            "p_tp1": "58",
             "tf": "30M",
-            "confluence": "Preis < VWAP (47928 < 47982) + Preis < POC (47928 < 47937) + Shape: Trend Day (Down)",
+            "confluence": "Preis > VWAP (48218 > 47982) + Ueber VAH \u2014 Breakout (48218 > 48074) + Preis > POC (48218 > 47937)",
             "mp_shape_yesterday": "Trend Day (Down)",
             "mp_shape_forecast": "Trend Day (Down)",
-            "vwap_position": "Preis unter VWAP"
+            "vwap_position": "Preis ueber VWAP"
           }
         ],
-        "invalidation": "Kurs schliesst ueber 48074.04 \u2014 bearischer Bias negiert"
+        "invalidation": "Kurs schliesst unter 47865.65 \u2014 bullischer Bias negiert"
       },
       {
         "name": "SPX500",
@@ -1410,17 +1410,17 @@
         "bias_pct": "95",
         "bias_signals": [
           {
-            "label": "Preis > VWAP (6848 > 6824)",
+            "label": "Preis > VWAP (6886 > 6824)",
             "score": 2,
             "direction": "bullish"
           },
           {
-            "label": "Ueber VAH \u2014 Breakout (6848 > 6835)",
+            "label": "Ueber VAH \u2014 Breakout (6886 > 6835)",
             "score": 2,
             "direction": "bullish"
           },
           {
-            "label": "Preis > POC (6848 > 6816)",
+            "label": "Preis > POC (6886 > 6816)",
             "score": 1,
             "direction": "bullish"
           },
@@ -1435,7 +1435,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX 19.41 \u2014 Normal",
+            "label": "VIX 19.12 \u2014 Normal",
             "score": 1,
             "direction": "bullish"
           },
@@ -1467,10 +1467,10 @@
         ],
         "cvd": {},
         "quote": {
-          "price": 6847.69,
-          "change": 30.8,
-          "change_pct": 0.45,
-          "high": 6851.79,
+          "price": 6886.24,
+          "change": 69.35,
+          "change_pct": 1.02,
+          "high": 6887.0,
           "low": 6790.02,
           "open": 6806.47,
           "prev_close": 6816.89,
@@ -1650,11 +1650,11 @@
             }
           ]
         },
-        "current_price": 6847.69,
-        "daily_summary": "Bias Bullisch (Score 100). Vortag Range: 6808.46 \u2013 6845.77. VIX=19.4.",
+        "current_price": 6886.24,
+        "daily_summary": "Bias Bullisch (Score 100). Vortag Range: 6808.46 \u2013 6845.77. VIX=19.1.",
         "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
         "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-        "h30m_summary": "Kurs 6847.69 ueber VWAP (6823.98), ausserhalb Value Area. POC=6816.39 VAH=6834.58 VAL=6810.33. Shape: Normal Variation.",
+        "h30m_summary": "Kurs 6886.24 ueber VWAP (6823.98), ausserhalb Value Area. POC=6816.39 VAH=6834.58 VAL=6810.33. Shape: Normal Variation.",
         "mp_shape_yesterday": "Normal Variation",
         "mp_shape_forecast": "Normal Variation",
         "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -1691,7 +1691,7 @@
             "p_fill": "70",
             "p_tp1": "65",
             "tf": "30M",
-            "confluence": "Preis > VWAP (6848 > 6824) + Ueber VAH \u2014 Breakout (6848 > 6835) + Preis > POC (6848 > 6816)",
+            "confluence": "Preis > VWAP (6886 > 6824) + Ueber VAH \u2014 Breakout (6886 > 6835) + Preis > POC (6886 > 6816)",
             "mp_shape_yesterday": "Normal Variation",
             "mp_shape_forecast": "Normal Variation",
             "vwap_position": "Preis ueber VWAP"
@@ -1704,7 +1704,7 @@
       "best_instrument": "SPX500",
       "total_orders": 3,
       "warnings": [],
-      "notes": "Auto-generiert 19:06. VIX=19.4. Beste Konfluenz: SPX500."
+      "notes": "Auto-generiert 05:00. VIX=19.1. Beste Konfluenz: SPX500."
     },
     "stats": {
       "total": 3,
