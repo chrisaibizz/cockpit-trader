@@ -3,199 +3,232 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Trading Floor — Orders</title>
+<title>Cockpit-Trader — Orders</title>
 <style>
-:root{--bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;--muted:#64748b;--dim:#374151;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#06b6d4}
+:root{
+  --bg:#0d1117;--card:#161b22;--border:#21262d;
+  --text:#e2e8f0;--muted:#8b949e;--dim:#30363d;
+  --green:#22c55e;--red:#ef4444;--yellow:#eab308;
+  --blue:#3b82f6;--cyan:#38bdf8;--magenta:#d946ef;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0;min-height:100vh;font-size:14px}
-nav{position:sticky;top:0;z-index:100;background:rgba(10,14,23,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{font-weight:800;font-size:13px;letter-spacing:1px;color:var(--text)}
-.nav-brand span{color:var(--blue)}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;min-height:100vh}
+
+/* ── NAV ─────────────────────────────────────────────────────────── */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-weight:800;font-size:13px;letter-spacing:1px;display:flex;align-items:center;gap:6px}
+.nav-brand .ico{font-size:15px;opacity:.85}
+.nav-brand .name{color:var(--cyan)}
 .nav-links{display:flex;gap:2px}
-.nav-links a{color:var(--muted);text-decoration:none;padding:6px 10px;font-size:11px;font-weight:600;border-radius:6px;letter-spacing:0.5px}
-.nav-links a.active{color:var(--blue);background:rgba(59,130,246,0.1)}
-main{padding:16px;max-width:600px;margin:0 auto}
-.page-title{font-size:18px;font-weight:700;margin-bottom:4px}
-.page-sub{font-size:11px;color:var(--muted);margin-bottom:16px}
-.ts{font-size:10px;color:var(--dim);margin-bottom:12px;font-family:monospace}
+.nav-links a{color:var(--muted);text-decoration:none;padding:5px 10px;font-size:11px;font-weight:600;border-radius:6px;letter-spacing:.5px;transition:all .15s}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.nav-links a.active{color:var(--cyan);background:rgba(56,189,248,.1)}
 
-/* Stats bar */
-.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:16px}
-.stat{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 4px}
-.stat-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px}
-.stat-value{font-size:18px;font-weight:800;font-family:monospace;margin-top:2px}
+/* ── HEADER ──────────────────────────────────────────────────────── */
+header{text-align:center;padding:22px 16px 18px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(56,189,248,.06) 0%,transparent 100%)}
+.h-icon{font-size:26px;margin-bottom:4px;opacity:.7}
+.h-title{font-size:20px;font-weight:800;letter-spacing:6px;color:var(--cyan);text-transform:uppercase}
+.h-sub{font-size:11px;color:var(--muted);margin-top:5px;letter-spacing:.5px}
+.status-line{margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:10px;padding:3px 12px;border-radius:20px;background:rgba(255,255,255,.02);border:1px solid var(--border)}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.status-dot.stale{background:var(--red);animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
-/* Order card */
-.order{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px;transition:border-color 0.2s}
-.order:first-of-type{border-color:var(--cyan)}
-.order-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.order-inst{font-size:15px;font-weight:700}
-.order-type{font-size:12px;font-weight:700;padding:3px 8px;border-radius:4px}
-.type-buy{background:rgba(34,197,94,0.12);color:var(--green)}
-.type-sell{background:rgba(239,68,68,0.12);color:var(--red)}
+/* ── STATS BAR ───────────────────────────────────────────────────── */
+main{padding:16px;max-width:1400px;margin:0 auto}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
+.stat{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 6px}
+.stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.stat-value{font-size:20px;font-weight:800;font-family:monospace;margin-top:2px}
 
-/* Price grid */
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-.pg{text-align:center;background:rgba(255,255,255,0.02);border-radius:6px;padding:6px}
-.pg-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px}
-.pg-value{font-size:14px;font-weight:700;font-family:monospace;margin-top:2px}
+/* ── TABLE WRAPPER ───────────────────────────────────────────────── */
+.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead tr{background:rgba(255,255,255,.03);border-bottom:2px solid var(--border)}
+thead th{padding:10px 12px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:700;white-space:nowrap}
+tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,.02)}
+tbody tr:first-child{border-left:3px solid var(--cyan)}
+td{padding:10px 12px;vertical-align:middle;white-space:nowrap}
 
-/* Probability */
-.prob-section{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-.prob-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.prob-label{font-size:10px;color:var(--dim);min-width:36px;text-transform:uppercase}
-.prob-bar{flex:1;height:8px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden}
-.prob-fill{height:100%;border-radius:4px;transition:width 0.6s ease}
-.prob-pct{font-size:12px;font-weight:700;font-family:monospace;min-width:32px;text-align:right}
-.rr-badge{display:flex;align-items:center;gap:6px}
-.rr-label{font-size:10px;color:var(--dim)}
-.rr-value{font-size:14px;font-weight:800;color:var(--cyan);font-family:monospace}
+/* Column-specific styles */
+.td-inst{font-weight:700;font-size:13px}
+.td-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:10px;display:inline-block}
+.type-buy{background:rgba(34,197,94,.1);color:var(--green)}
+.type-sell{background:rgba(239,68,68,.1);color:var(--red)}
+.td-price{font-family:monospace;font-weight:600;font-size:13px}
+.td-sl{color:var(--red)}
+.td-tp{color:var(--green)}
+.td-rr{font-family:monospace;font-weight:700;color:var(--cyan)}
+.td-pct{font-family:monospace;font-weight:700}
+.td-conf{font-size:11px;color:var(--muted);max-width:200px;white-space:normal;line-height:1.3}
 
-/* Confluence */
-.conf{font-size:11px;color:var(--muted);line-height:1.5}
-.conf-dots{color:var(--yellow);letter-spacing:3px;font-size:12px;margin-right:6px}
-.conf-tf{font-size:10px;color:var(--dim);margin-top:4px}
+/* P_Fill% bar */
+.pct-cell{display:flex;align-items:center;gap:6px}
+.pct-bar-bg{width:40px;height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;flex-shrink:0}
+.pct-bar{height:4px;border-radius:4px}
 
-/* Empty */
+/* Empty state */
 .empty{text-align:center;padding:60px 20px;color:var(--dim)}
 .empty h3{color:var(--muted);font-size:14px;margin-bottom:8px}
 .empty p{font-size:12px;line-height:1.6}
-footer{text-align:center;padding:20px;font-size:10px;color:var(--dim);border-top:1px solid var(--border)}
-.header{text-align:center;padding:20px 0 30px;border-bottom:1px solid var(--border);margin-bottom:0;}
-.header h1{font-size:28px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.header .ts{color:var(--muted);font-size:13px;margin-top:8px;}
+
+footer{text-align:center;padding:20px;font-size:10px;color:var(--dim);border-top:1px solid var(--border);margin-top:32px}
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>✈ Cockpit-Trader</h1>
-  <div class="ts" id="ts">Limit Orders</div>
-  <div id="age-bar" style="margin-top:6px;font-size:12px;display:none;">
-    <span id="age-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
-    <span id="age-txt"></span>
+
+<nav>
+  <div class="nav-brand">
+    <span class="ico">✈</span>
+    <span>COCKPIT-<span class="name">TRADER</span></span>
   </div>
-</div>
-<div style="display:flex;justify-content:center;gap:8px;padding:12px 0 20px;border-bottom:1px solid #1e2a3a;margin-bottom:30px;">
-  <a href="index.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Dashboard</a>
-  <a href="journal.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Journal</a>
-  <a href="orders.html" style="color:#e2e8f0;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;background:rgba(59,130,246,0.15);border:1px solid #3b82f6;letter-spacing:1px;">Orders</a>
-</div>
+  <div class="nav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="journal.html">Journal</a>
+    <a href="orders.html" class="active">Orders</a>
+  </div>
+</nav>
+
+<header>
+  <div class="h-icon">✈</div>
+  <div class="h-title">Cockpit-Trader</div>
+  <div class="h-sub">Limit Orders — <span id="ts-display">–</span></div>
+  <div class="status-line">
+    <span class="status-dot" id="status-dot"></span>
+    <span id="status-text">Lade Daten…</span>
+  </div>
+</header>
+
 <main>
-  <div class="page-title">Limit Orders</div>
-  <div class="page-sub">Sortiert nach Wahrscheinlichkeit · Konfluenz-basiert</div>
+  <div class="stats-bar" id="stats-bar" style="display:none">
+    <div class="stat"><div class="stat-label">Total</div><div class="stat-value" id="s-total">0</div></div>
+    <div class="stat"><div class="stat-label">Long</div><div class="stat-value" style="color:var(--green)" id="s-long">0</div></div>
+    <div class="stat"><div class="stat-label">Short</div><div class="stat-value" style="color:var(--red)" id="s-short">0</div></div>
+    <div class="stat"><div class="stat-label">Ø R:R</div><div class="stat-value" style="color:var(--cyan)" id="s-rr">—</div></div>
+  </div>
   <div id="content">
-    <div class="empty"><h3>Lade Orders...</h3></div>
+    <div class="empty"><h3>Lade Orders…</h3></div>
   </div>
 </main>
+
 <footer>The Trading Floor · Cockpit Trader · Auction Market Theory</footer>
+
 <script>
-async function load(){
-  try{
-    const r=await fetch('journal-data.json?t='+Date.now());
-    if(!r.ok) throw new Error();
-    return await r.json();
-  }catch(e){
-    document.getElementById('content').innerHTML='<div class="empty"><h3>Keine Orders vorhanden</h3><p>Werden nach der Morning-Analyse erstellt.</p></div>';
-    return null;
-  }
-}
-var _analysisTs=null;
-function fmtAge(ts){
-  const mins=Math.floor((Date.now()-ts.getTime())/60000);
-  if(mins<1)  return {txt:'gerade eben aktualisiert',color:'#22c55e'};
-  if(mins<60) return {txt:'vor '+mins+' Min aktualisiert',color:'#22c55e'};
-  const h=Math.floor(mins/60),m=mins%60;
-  if(h<4)     return {txt:'vor '+h+'h '+m+'min aktualisiert',color:'#eab308'};
-  if(h<8)     return {txt:'vor '+h+'h aktualisiert - bitte neu starten',color:'#f97316'};
-  return       {txt:'Analyse '+h+'h alt - VERALTET',color:'#ef4444'};
-}
-function updateAge(){
-  if(!_analysisTs)return;
-  const r=fmtAge(_analysisTs);
-  document.getElementById('age-txt').textContent=r.txt;
-  document.getElementById('age-txt').style.color=r.color;
-  document.getElementById('age-dot').style.background=r.color;
-  document.getElementById('age-dot').style.boxShadow='0 0 6px '+r.color;
-}
-function render(d){
-  if(!d)return;
-  if(d.timestamp){
-    _analysisTs=new Date(d.timestamp);
-    document.getElementById('ts').textContent='Limit Orders — '+_analysisTs.toLocaleDateString('de-DE')+' '+_analysisTs.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr';
-    document.getElementById('age-bar').style.display='block';
-    updateAge();
-    setInterval(updateAge,60000);
-  }
+async function loadOrders() {
+  try {
+    const res = await fetch('journal-data.json?t=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const d = await res.json();
 
-  // Collect orders from all instruments
-  let all=[];
-  (d.instruments||[]).forEach(inst=>{
-    (inst.orders||[]).forEach(o=>{
-      all.push({...o,instrument:inst.name,bias:inst.bias,bias_score:inst.bias_score});
+    // Header status
+    const ts    = new Date(d.timestamp);
+    const ageH  = (Date.now() - ts) / 3600000;
+    const tsStr = ts.toLocaleDateString('de-DE') + ' ' +
+                  ts.toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'});
+    document.getElementById('ts-display').textContent = tsStr;
+    const dot  = document.getElementById('status-dot');
+    const stxt = document.getElementById('status-text');
+    if (ageH > 4) {
+      dot.classList.add('stale');
+      stxt.textContent = `VERALTET — ${Math.round(ageH)}h alt`;
+      stxt.style.color = 'var(--red)';
+    } else {
+      stxt.textContent = `OK — ${Math.round(ageH * 60)}min`;
+      stxt.style.color = 'var(--green)';
+    }
+
+    // Collect all orders from all instruments
+    let all = [];
+    (d.instruments || []).forEach(inst => {
+      (inst.orders || []).forEach(o => {
+        all.push({ ...o, instrument: inst.name, bias: inst.bias });
+      });
     });
-  });
 
-  // Sort by P(TP1) descending
-  all.sort((a,b)=>(parseFloat(b.p_tp1)||0)-(parseFloat(a.p_tp1)||0));
+    // Sort by P_Fill% descending
+    all.sort((a, b) => parseFloat(b.p_fill || 0) - parseFloat(a.p_fill || 0));
 
-  if(!all.length){
-    document.getElementById('content').innerHTML='<div class="empty"><h3>Keine Orders für heute</h3><p>Kein Setup mit ausreichender Konfluenz gefunden.</p></div>';
-    return;
+    if (!all.length) {
+      document.getElementById('content').innerHTML =
+        '<div class="empty"><h3>Keine Orders für heute</h3><p>Kein Setup mit ausreichender Konfluenz gefunden.</p></div>';
+      return;
+    }
+
+    // Stats
+    const longs  = all.filter(o => (o.type || '').toLowerCase().includes('buy')).length;
+    const shorts = all.length - longs;
+    const avgRR  = (all.reduce((s, o) => s + (parseFloat(o.rr) || 0), 0) / all.length).toFixed(1);
+    document.getElementById('stats-bar').style.display = 'grid';
+    document.getElementById('s-total').textContent = all.length;
+    document.getElementById('s-long').textContent  = longs;
+    document.getElementById('s-short').textContent = shorts;
+    document.getElementById('s-rr').textContent    = avgRR;
+
+    // Build table
+    const rows = all.map((o, i) => {
+      const isBuy   = (o.type || '').toLowerCase().includes('buy');
+      const typeCls = isBuy ? 'type-buy' : 'type-sell';
+      const pFill   = parseFloat(o.p_fill) || 0;
+      const pTp1    = parseFloat(o.p_tp1)  || 0;
+      const fillCol = pFill >= 60 ? 'var(--green)' : pFill >= 40 ? 'var(--yellow)' : 'var(--muted)';
+      const tp1Col  = pTp1  >= 60 ? 'var(--green)' : pTp1  >= 40 ? 'var(--yellow)' : 'var(--muted)';
+      return `
+        <tr>
+          <td class="td-inst">${o.instrument || '—'}${i === 0 ? ' ⭐' : ''}</td>
+          <td><span class="td-type ${typeCls}">${o.type || '—'}</span></td>
+          <td class="td-price">${o.entry || '—'}</td>
+          <td class="td-price td-sl">${o.sl || '—'}</td>
+          <td class="td-price td-tp">${o.tp1 || '—'}</td>
+          <td class="td-price td-tp">${o.tp2 || '—'}</td>
+          <td class="td-rr">${o.rr || '—'}</td>
+          <td>
+            <div class="pct-cell">
+              <div class="pct-bar-bg"><div class="pct-bar" style="width:${pFill}%;background:${fillCol}"></div></div>
+              <span class="td-pct" style="color:${fillCol}">${pFill}%</span>
+            </div>
+          </td>
+          <td>
+            <div class="pct-cell">
+              <div class="pct-bar-bg"><div class="pct-bar" style="width:${pTp1}%;background:${tp1Col}"></div></div>
+              <span class="td-pct" style="color:${tp1Col}">${pTp1}%</span>
+            </div>
+          </td>
+          <td class="td-conf">${o.confluence || '—'}</td>
+        </tr>`;
+    }).join('');
+
+    document.getElementById('content').innerHTML = `
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Instrument</th>
+              <th>Typ</th>
+              <th>Entry</th>
+              <th>SL</th>
+              <th>TP1</th>
+              <th>TP2</th>
+              <th>R:R</th>
+              <th>P_Fill%</th>
+              <th>P_TP1%</th>
+              <th>Konfluenz</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+
+  } catch (err) {
+    document.getElementById('status-text').textContent = 'Fehler: ' + err.message;
+    document.getElementById('status-dot').classList.add('stale');
+    document.getElementById('content').innerHTML =
+      `<div class="empty"><h3>Fehler beim Laden</h3><p>${err.message}</p></div>`;
   }
-
-  const longs=all.filter(o=>(o.type||'').toLowerCase().includes('buy')).length;
-  const shorts=all.length-longs;
-  const avgRR=(all.reduce((s,o)=>s+(parseFloat(o.rr)||0),0)/all.length).toFixed(1);
-
-  let h='<div class="ts">'+d.date+'</div>';
-  h+='<div class="stats-bar">';
-  h+='<div class="stat"><div class="stat-label">Total</div><div class="stat-value">'+all.length+'</div></div>';
-  h+='<div class="stat"><div class="stat-label">Long</div><div class="stat-value" style="color:var(--green)">'+longs+'</div></div>';
-  h+='<div class="stat"><div class="stat-label">Short</div><div class="stat-value" style="color:var(--red)">'+shorts+'</div></div>';
-  h+='<div class="stat"><div class="stat-label">Ø R:R</div><div class="stat-value" style="color:var(--cyan)">'+avgRR+'</div></div>';
-  h+='</div>';
-
-  all.forEach((o,i)=>{
-    const isBuy=(o.type||'').toLowerCase().includes('buy');
-    const typeCls=isBuy?'type-buy':'type-sell';
-    const pFill=parseFloat(o.p_fill)||0;
-    const pTp1=parseFloat(o.p_tp1)||0;
-    const conf=(o.confluence||'');
-    const dots=conf.split(/[✓+,]/).length-1;
-
-    h+='<div class="order">';
-
-    // Header
-    h+='<div class="order-top"><div class="order-inst">'+(o.instrument||'—')+(i===0?' ⭐':'')+'</div>';
-    h+='<div class="order-type '+typeCls+'">'+(o.type||'—')+'</div></div>';
-
-    // Prices
-    h+='<div class="price-grid">';
-    h+='<div class="pg"><div class="pg-label">Entry</div><div class="pg-value">'+(o.entry||'—')+'</div></div>';
-    h+='<div class="pg"><div class="pg-label">Stop</div><div class="pg-value" style="color:var(--red)">'+(o.sl||'—')+'</div></div>';
-    h+='<div class="pg"><div class="pg-label">TP1</div><div class="pg-value" style="color:var(--green)">'+(o.tp1||'—')+'</div></div>';
-    h+='</div>';
-
-    // Probabilities + R:R
-    h+='<div class="prob-section">';
-    h+='<div class="rr-badge"><span class="rr-label">R:R</span><span class="rr-value">'+(o.rr||'—')+'</span></div>';
-    h+='<div class="prob-row"><span class="prob-label">Fill</span><div class="prob-bar"><div class="prob-fill" style="width:'+pFill+'%;background:var(--blue)"></div></div><span class="prob-pct">'+pFill+'%</span></div>';
-    h+='<div class="prob-row"><span class="prob-label">TP1</span><div class="prob-bar"><div class="prob-fill" style="width:'+pTp1+'%;background:var(--green)"></div></div><span class="prob-pct">'+pTp1+'%</span></div>';
-    h+='</div>';
-
-    // Confluence
-    h+='<div class="conf">';
-    h+='<span class="conf-dots">'+'●'.repeat(Math.min(dots,5))+'○'.repeat(Math.max(5-dots,0))+'</span>';
-    h+=conf;
-    if(o.tf) h+='<div class="conf-tf">Timeframe: '+o.tf+'</div>';
-    h+='</div>';
-
-    h+='</div>';
-  });
-
-  document.getElementById('content').innerHTML=h;
 }
-load().then(render);
+
+loadOrders();
 </script>
 </body>
 </html>

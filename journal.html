@@ -5,15 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Trading Floor — Journal</title>
 <style>
-:root{--bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;--muted:#64748b;--dim:#374151;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#06b6d4}
+:root{--bg:#0d1117;--card:#161b22;--border:#21262d;--text:#e2e8f0;--muted:#8b949e;--dim:#30363d;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#38bdf8}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0;min-height:100vh;font-size:14px}
-nav{position:sticky;top:0;z-index:100;background:rgba(10,14,23,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{font-weight:800;font-size:13px;letter-spacing:1px;color:var(--text)}
-.nav-brand span{color:var(--blue)}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-weight:800;font-size:13px;letter-spacing:1px;display:flex;align-items:center;gap:6px}
+.nav-brand .ico{font-size:15px;opacity:.85}
+.nav-brand .name{color:var(--cyan)}
 .nav-links{display:flex;gap:2px}
-.nav-links a{color:var(--muted);text-decoration:none;padding:6px 10px;font-size:11px;font-weight:600;border-radius:6px;letter-spacing:0.5px}
-.nav-links a.active{color:var(--blue);background:rgba(59,130,246,0.1)}
+.nav-links a{color:var(--muted);text-decoration:none;padding:5px 10px;font-size:11px;font-weight:600;border-radius:6px;letter-spacing:.5px;transition:all .15s}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.nav-links a.active{color:var(--cyan);background:rgba(56,189,248,.1)}
 main{padding:16px;max-width:600px;margin:0 auto}
 .page-title{font-size:18px;font-weight:700;margin-bottom:4px}
 .page-sub{font-size:11px;color:var(--muted);margin-bottom:16px}
@@ -80,19 +82,28 @@ footer{text-align:center;padding:20px;font-size:10px;color:var(--dim);border-top
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>✈ Cockpit-Trader</h1>
-  <div class="ts" id="ts">Analyse Journal</div>
-  <div id="age-bar" style="margin-top:6px;font-size:12px;display:none;">
-    <span id="age-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
-    <span id="age-txt"></span>
+<nav>
+  <div class="nav-brand">
+    <span class="ico">✈</span>
+    <span>COCKPIT-<span class="name">TRADER</span></span>
   </div>
-</div>
-<div style="display:flex;justify-content:center;gap:8px;padding:12px 0 20px;border-bottom:1px solid #1e2a3a;margin-bottom:30px;">
-  <a href="index.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Dashboard</a>
-  <a href="journal.html" style="color:#e2e8f0;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;background:rgba(59,130,246,0.15);border:1px solid #3b82f6;letter-spacing:1px;">Journal</a>
-  <a href="orders.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Orders</a>
-</div>
+  <div class="nav-links">
+    <a href="index.html">Dashboard</a>
+    <a href="journal.html" class="active">Journal</a>
+    <a href="orders.html">Orders</a>
+  </div>
+</nav>
+
+<header style="text-align:center;padding:22px 16px 18px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(56,189,248,.06) 0%,transparent 100%)">
+  <div style="font-size:26px;margin-bottom:4px;opacity:.7">✈</div>
+  <div style="font-size:20px;font-weight:800;letter-spacing:6px;color:var(--cyan);text-transform:uppercase">Cockpit-Trader</div>
+  <div style="font-size:11px;color:var(--muted);margin-top:5px"><span id="ts">Analyse Journal</span></div>
+  <div style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:10px;padding:3px 12px;border-radius:20px;background:rgba(255,255,255,.02);border:1px solid var(--border)" id="age-bar">
+    <span id="age-dot" style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;flex-shrink:0"></span>
+    <span id="age-txt" style="color:var(--green)"></span>
+  </div>
+</header>
+
 <main>
   <div class="page-title">Analyse Journal</div>
   <div class="page-sub">Morning Briefing — Zusammenfassung</div>
