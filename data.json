@@ -522,7 +522,7 @@
         "poc": 23574.77,
         "vah": 23619.43,
         "val": 23488.88,
-        "vwap": NaN,
+        "vwap": null,
         "day_high": 23756.85,
         "day_low": 23482.01,
         "shape": {
@@ -1310,7 +1310,7 @@
           "poc": 23574.77,
           "vah": 23619.43,
           "val": 23488.88,
-          "vwap": NaN,
+          "vwap": null,
           "day_high": 23756.85,
           "day_low": 23482.01,
           "shape": {

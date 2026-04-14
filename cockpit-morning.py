@@ -1,16 +1,40 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Cockpit-Trader: Vollautomatisches Morning Briefing
-SP500 & Dow Jones KASSA — Market Profile, VWAP, Bias-Ampel
+SP500 & Dow Jones KASSA â€” Market Profile, VWAP, Bias-Ampel
 Symbole: ^GSPC (S&P 500 Cash), ^DJI (Dow Jones Cash)
 GitHub Actions: laeuft automatisch Mo-Fr 07:00 Uhr
 iPhone URL: https://chrisaibizz.github.io/cockpit-trader/
 """
 
-import json, os, sys, traceback
+import json, os, sys, traceback, math
 import numpy as np
 from datetime import datetime, timedelta
 import yfinance as yf
+
+
+class SafeJSONEncoder(json.JSONEncoder):
+    """Converts float NaN/Inf to null so output is valid JSON."""
+    def iterencode(self, o, _one_shot=False):
+        return super().iterencode(self._fix_nan(o), _one_shot)
+
+    def _fix_nan(self, obj):
+        if isinstance(obj, float) and (math.isnan(obj) or math.isinf(obj)):
+            return None
+        # Also handle numpy scalar types
+        try:
+            if isinstance(obj, np.floating) and (np.isnan(obj) or np.isinf(obj)):
+                return None
+            if isinstance(obj, np.integer):
+                return int(obj)
+        except Exception:
+            pass
+        if isinstance(obj, dict):
+            return {k: self._fix_nan(v) for k, v in obj.items()}
+        if isinstance(obj, list):
+            return [self._fix_nan(v) for v in obj]
+        return obj
+
 
 print(">>> Script gestartet")
 
@@ -110,7 +134,7 @@ def fetch_calendar():
 # 2. MARKET PROFILE
 # ============================================================
 
-# TradingView Symbol-Mapping (Yahoo Finance → Vantage/TradingView)
+# TradingView Symbol-Mapping (Yahoo Finance â†’ Vantage/TradingView)
 TV_SYMBOL_MAP = {
     "^GSPC": "Vantage:SP500",
     "^DJI":  "Vantage:DJ30",
@@ -169,7 +193,7 @@ def detect_shape_from_tpo(sess, poc, vah, val):
 
     price_range = sorted_levels[-1] - sorted_levels[0]
     if price_range == 0:
-        return {"name": "Normal Day", "description": "Keine Range — kein Muster erkennbar"}
+        return {"name": "Normal Day", "description": "Keine Range â€” kein Muster erkennbar"}
 
     # POC-Position relativ zur Range (0=unten, 1=oben)
     poc_pos = (poc - sorted_levels[0]) / price_range
@@ -183,20 +207,20 @@ def detect_shape_from_tpo(sess, poc, vah, val):
     # Trend Day: POC am Extrem
     if poc_pos > 0.80:
         return {"name": "Trend Day (Up)",
-                "description": "POC am oberen Extrem — starker Aufwaerts-Trend, Continuation-Bias"}
+                "description": "POC am oberen Extrem â€” starker Aufwaerts-Trend, Continuation-Bias"}
     if poc_pos < 0.20:
         return {"name": "Trend Day (Down)",
-                "description": "POC am unteren Extrem — starker Abwaerts-Trend, Continuation-Bias"}
+                "description": "POC am unteren Extrem â€” starker Abwaerts-Trend, Continuation-Bias"}
 
     # P-Shape: Volumen oben schwer, unten leicht (Buying Tail unten)
     if upper_tpo > 0.50 * total_tpo and lower_tpo < 0.20 * total_tpo:
         return {"name": "P-Shape",
-                "description": "Distribution oben, Buying Tail unten — Short Covering. Oft bearish reversal."}
+                "description": "Distribution oben, Buying Tail unten â€” Short Covering. Oft bearish reversal."}
 
     # b-Shape: Volumen unten schwer, oben leicht (Selling Tail oben)
     if lower_tpo > 0.50 * total_tpo and upper_tpo < 0.20 * total_tpo:
         return {"name": "b-Shape",
-                "description": "Distribution unten, Selling Tail oben — Long Liquidation. Oft bullish reversal."}
+                "description": "Distribution unten, Selling Tail oben â€” Long Liquidation. Oft bullish reversal."}
 
     # Double Distribution: zwei Peaks mit LVN dazwischen
     peaks = [i for i in range(1, n-1)
@@ -204,28 +228,28 @@ def detect_shape_from_tpo(sess, poc, vah, val):
              and tpo_vals[i] > 0.25 * max(tpo_vals)]
     if len(peaks) >= 2 and abs(peaks[0] - peaks[-1]) > third:
         return {"name": "Double Distribution",
-                "description": "Zwei Value Areas mit LVN dazwischen — Trend-Continuation wahrscheinlich"}
+                "description": "Zwei Value Areas mit LVN dazwischen â€” Trend-Continuation wahrscheinlich"}
 
     # Non-Trend: VA deckt fast die gesamte Range ab
     if va_ratio > 0.85:
         return {"name": "Non-Trend Day",
-                "description": "Breite VA — Range-Bound, kein klarer Richtungs-Bias"}
+                "description": "Breite VA â€” Range-Bound, kein klarer Richtungs-Bias"}
 
     # Normal Day: POC zentral, mittleres Drittel dominant
     if middle_tpo > 0.40 * total_tpo and 0.30 < poc_pos < 0.70:
         return {"name": "Normal Day",
-                "description": "Ausbalanciert, POC zentral — Range-Trading um POC wahrscheinlich"}
+                "description": "Ausbalanciert, POC zentral â€” Range-Trading um POC wahrscheinlich"}
 
     # Normal Variation: leichte Richtung erkennbar
     if poc_pos > 0.55:
         return {"name": "Normal Variation (Up)",
-                "description": "Leicht bullischer Bias — Abwarten auf Breakout aus VA"}
+                "description": "Leicht bullischer Bias â€” Abwarten auf Breakout aus VA"}
     if poc_pos < 0.45:
         return {"name": "Normal Variation (Down)",
-                "description": "Leicht bearischer Bias — Abwarten auf Breakdown aus VA"}
+                "description": "Leicht bearischer Bias â€” Abwarten auf Breakdown aus VA"}
 
     return {"name": "Normal Variation",
-            "description": "Ausgewogen ohne klare Richtung — Range-Handel"}
+            "description": "Ausgewogen ohne klare Richtung â€” Range-Handel"}
 
 
 def get_tv_data(ticker, timeframe="30"):
@@ -234,7 +258,7 @@ def get_tv_data(ticker, timeframe="30"):
     direkt aus TradingView via CDP (Port 9222).
     MP: letzte Session der pine lines (color=0=POC, min/max color=1=VAL/VAH)
     CVD: aktueller Wert + Trend der letzten 5 Bars (Divergenz mit Preis)
-    Gibt (mp, cvd) zurueck — beide None wenn TV nicht verfuegbar (GitHub Actions).
+    Gibt (mp, cvd) zurueck â€” beide None wenn TV nicht verfuegbar (GitHub Actions).
     """
     tv_symbol = TV_SYMBOL_MAP.get(ticker)
     if not tv_symbol:
@@ -419,14 +443,14 @@ def get_tv_data(ticker, timeframe="30"):
                 vah = round(max(l["y1"] for l in va_lines), 2)
                 val = round(min(l["y1"] for l in va_lines), 2)
                 shape = detect_shape_from_tpo(sess, poc, vah, val)
-                vwap_rounded = round(float(vwap_val), 2) if vwap_val is not None else None
+                vwap_rounded = round(float(vwap_val), 2) if (vwap_val is not None and str(vwap_val).lower() != "nan") else None
                 print(f"    MP (TradingView): POC={poc} VAH={vah} VAL={val} VWAP={vwap_rounded} Shape={shape['name']}")
                 mp = {"poc": poc, "vah": vah, "val": val, "vwap": vwap_rounded,
                       "day_high": vah, "day_low": val,
                       "shape": shape,
                       "volume_profile": [], "source": "tradingview"}
             else:
-                print("    TV CDP: MP — POC oder VA Lines fehlen")
+                print("    TV CDP: MP â€” POC oder VA Lines fehlen")
 
         # 6. CVD verarbeiten
         cvd = None
@@ -548,19 +572,19 @@ def detect_mp_shape(vol_profile, poc_idx, num_bins, df_day):
                 peaks.append(i)
     if len(peaks) >= 2 and abs(peaks[0] - peaks[-1]) > third:
         return {"name": "Double Distribution",
-                "description": "Zwei Value Areas — oft Trend-Folgetag."}
+                "description": "Zwei Value Areas â€” oft Trend-Folgetag."}
     if middle > 0.4*total:
         return {"name": "Normal Day",
-                "description": "Ausbalanciert — Range-Trading um POC."}
+                "description": "Ausbalanciert â€” Range-Trading um POC."}
     return {"name": "Normal Variation",
-            "description": "Leichte Richtung — Abwarten auf Breakout aus VA."}
+            "description": "Leichte Richtung â€” Abwarten auf Breakout aus VA."}
 
 # ============================================================
 # 3. BIAS-AMPEL
 # ============================================================
 
 def compute_bias(mp, price, context, cvd=None):
-    if mp.get("vwap") is None:
+    if mp.get("vwap") is None or str(mp.get("vwap")).lower() == "nan":
         mp["vwap"] = mp.get("poc", 0)
     signals = []
     if mp and price:
@@ -570,9 +594,9 @@ def compute_bias(mp, price, context, cvd=None):
         poc  = mp["poc"]
         signals.append((f"Preis > VWAP ({price:.0f} > {vwap:.0f})", 2, "bullish") if price > vwap
                        else (f"Preis < VWAP ({price:.0f} < {vwap:.0f})", -2, "bearish"))
-        if   price > vah: signals.append((f"Ueber VAH — Breakout ({price:.0f} > {vah:.0f})",   2, "bullish"))
-        elif price < val: signals.append((f"Unter VAL — Breakdown ({price:.0f} < {val:.0f})", -2, "bearish"))
-        else:             signals.append((f"In Value Area ({val:.0f} – {vah:.0f})",             0, "neutral"))
+        if   price > vah: signals.append((f"Ueber VAH â€” Breakout ({price:.0f} > {vah:.0f})",   2, "bullish"))
+        elif price < val: signals.append((f"Unter VAL â€” Breakdown ({price:.0f} < {val:.0f})", -2, "bearish"))
+        else:             signals.append((f"In Value Area ({val:.0f} â€“ {vah:.0f})",             0, "neutral"))
         signals.append((f"Preis > POC ({price:.0f} > {poc:.0f})", 1, "bullish") if price > poc
                        else (f"Preis < POC ({price:.0f} < {poc:.0f})", -1, "bearish"))
         sn = mp["shape"]["name"]
@@ -589,9 +613,9 @@ def compute_bias(mp, price, context, cvd=None):
     if cvd and cvd.get("value") is not None:
         v = cvd["value"]
         if v > 0:
-            signals.append((f"CVD positiv ({v:+.0f}) — Kaufdruck",   1, "bullish"))
+            signals.append((f"CVD positiv ({v:+.0f}) â€” Kaufdruck",   1, "bullish"))
         else:
-            signals.append((f"CVD negativ ({v:+.0f}) — Verkaufsdruck", -1, "bearish"))
+            signals.append((f"CVD negativ ({v:+.0f}) â€” Verkaufsdruck", -1, "bearish"))
         # Divergenz: Preis in VA aber CVD stark negativ = Warnsignal
         if mp and price and price >= mp.get("val", 0) and price <= mp.get("vah", 999999):
             if v < -50000:
@@ -605,10 +629,10 @@ def compute_bias(mp, price, context, cvd=None):
 
     if vix.get("price"):
         v = vix["price"]
-        if   v < 15: signals.append((f"VIX {v} — Low Vol",   2, "bullish"))
-        elif v < 20: signals.append((f"VIX {v} — Normal",    1, "bullish"))
-        elif v < 25: signals.append((f"VIX {v} — Elevated", -1, "bearish"))
-        else:        signals.append((f"VIX {v} — High Fear", -2, "bearish"))
+        if   v < 15: signals.append((f"VIX {v} â€” Low Vol",   2, "bullish"))
+        elif v < 20: signals.append((f"VIX {v} â€” Normal",    1, "bullish"))
+        elif v < 25: signals.append((f"VIX {v} â€” Elevated", -1, "bearish"))
+        else:        signals.append((f"VIX {v} â€” High Fear", -2, "bearish"))
 
     if vix.get("change_pct"):
         cp = vix["change_pct"]
@@ -743,7 +767,7 @@ def generate_order(inst, mp, price, bias_data, shape_name):
                       or (effective_bias == "BEARISH" and s["direction"] == "bearish")]
     confluence = " + ".join(direction_sigs[:3]) or "MP-Levels + Score-Richtung"
     if bias == "NEUTRAL":
-        confluence += " (NEUTRAL Bias — geringere Konfluenz)"
+        confluence += " (NEUTRAL Bias â€” geringere Konfluenz)"
 
     # VWAP-Position relativ zu Preis
     vwap_pos = ("Preis ueber VWAP" if price > vwap
@@ -772,7 +796,7 @@ def generate_order(inst, mp, price, bias_data, shape_name):
 
     rr_raw = abs(tp1 - entry) / abs(sl - entry) if abs(sl - entry) > 0 else 0
     if rr_raw < 1.0:
-        return None  # Unguenstiges R:R — kein Order
+        return None  # Unguenstiges R:R â€” kein Order
 
     return {
         "type":               order_type,
@@ -809,15 +833,15 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
     warnings = []
 
     if vix_price > 25:
-        warnings.append(f"VIX {vix_price:.1f} — High Fear! Stops enger setzen")
+        warnings.append(f"VIX {vix_price:.1f} â€” High Fear! Stops enger setzen")
     elif vix_price > 20:
-        warnings.append(f"VIX {vix_price:.1f} — Elevated, Vorsicht bei Einstiegen")
+        warnings.append(f"VIX {vix_price:.1f} â€” Elevated, Vorsicht bei Einstiegen")
     if abs(vix_chg) > 5:
         direction = "steigt" if vix_chg > 0 else "faellt"
-        warnings.append(f"VIX {direction} stark ({vix_chg:+.1f}%) — Volatilitaet im Wandel")
+        warnings.append(f"VIX {direction} stark ({vix_chg:+.1f}%) â€” Volatilitaet im Wandel")
     if abs(dxy_chg) > 0.5:
         direction = "steigt" if dxy_chg > 0 else "faellt"
-        warnings.append(f"USD {direction} ({dxy_chg:+.2f}%) — Richtungsrisiko beachten")
+        warnings.append(f"USD {direction} ({dxy_chg:+.2f}%) â€” Richtungsrisiko beachten")
 
     name_map = {
         "GER40":  "GER40",
@@ -868,7 +892,7 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
         )
         daily_summary = (
             f"Bias {bias_de} (Score {score}). "
-            f"Vortag Range: {mp.get('day_low')} – {mp.get('day_high')}. "
+            f"Vortag Range: {mp.get('day_low')} â€“ {mp.get('day_high')}. "
             f"VIX={vix_price:.1f}."
         )
 
@@ -878,11 +902,11 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
 
         # Invalidierung
         if bias_str == "BULLISH":
-            invalidation = f"Kurs schliesst unter {mp.get('val')} — bullischer Bias negiert"
+            invalidation = f"Kurs schliesst unter {mp.get('val')} â€” bullischer Bias negiert"
         elif bias_str == "BEARISH":
-            invalidation = f"Kurs schliesst ueber {mp.get('vah')} — bearischer Bias negiert"
+            invalidation = f"Kurs schliesst ueber {mp.get('vah')} â€” bearischer Bias negiert"
         else:
-            invalidation = f"Kurs bricht aus Value Area ({mp.get('val')}–{mp.get('vah')}) aus"
+            invalidation = f"Kurs bricht aus Value Area ({mp.get('val')}â€“{mp.get('vah')}) aus"
 
         journal_instruments.append({
             "name":                display_name,
@@ -962,7 +986,7 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
     # journal-data.json schreiben
     jpath = os.path.join(script_dir, "journal-data.json")
     with open(jpath, "w", encoding="utf-8") as f:
-        json.dump(journal, f, indent=2, ensure_ascii=False, default=str)
+        json.dump(journal, f, indent=2, ensure_ascii=False, cls=SafeJSONEncoder)
     print(f"    -> {jpath}")
     print(f"    -> {len(journal_instruments)} Instrumente, {len(all_orders_for_sheet)} Orders")
 
@@ -972,8 +996,8 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
 def run_pipeline(journal, orders, script_dir):
     """
     Fuehrt die komplette Pipeline aus:
-    1. Orders → Google Sheet (journal.js write-multiple)
-    2. Report → Google Doc  (journal.js report)
+    1. Orders â†’ Google Sheet (journal.js write-multiple)
+    2. Report â†’ Google Doc  (journal.js report)
     3. git push
     """
     import subprocess
@@ -987,10 +1011,10 @@ def run_pipeline(journal, orders, script_dir):
 
     today = datetime.now().strftime("%Y-%m-%d")
 
-    # 1. Orders → Google Sheet
+    # 1. Orders â†’ Google Sheet
     if orders:
         print("\n>>> Google Sheet: Orders schreiben...")
-        orders_json = json.dumps(orders, ensure_ascii=False, default=str)
+        orders_json = json.dumps(orders, ensure_ascii=False, cls=SafeJSONEncoder)
         try:
             result = subprocess.run(
                 ["node", journal_js, "write-multiple", orders_json],
@@ -1005,7 +1029,7 @@ def run_pipeline(journal, orders, script_dir):
     else:
         print("\n>>> Google Sheet: Keine Orders (NEUTRAL Bias)")
 
-    # 2. Report → Google Doc
+    # 2. Report â†’ Google Doc
     print("\n>>> Google Docs: Morning Report erstellen...")
     report_payload = {
         "date":        today,
@@ -1014,7 +1038,7 @@ def run_pipeline(journal, orders, script_dir):
         "summary":     journal["summary"],
         "context":     {},
     }
-    report_json = json.dumps(report_payload, ensure_ascii=False, default=str)
+    report_json = json.dumps(report_payload, ensure_ascii=False, cls=SafeJSONEncoder)
     try:
         result = subprocess.run(
             ["node", journal_js, "report", report_json],
@@ -1051,7 +1075,7 @@ def run_pipeline(journal, orders, script_dir):
             ["git", "add", "-A"],
             capture_output=True, text=True, cwd=script_dir, encoding="utf-8"
         )
-        commit_msg = f"Morning Briefing {today} — GER40/US30/SPX500 Auto-Pipeline"
+        commit_msg = f"Morning Briefing {today} â€” GER40/US30/SPX500 Auto-Pipeline"
         commit_result = subprocess.run(
             ["git", "commit", "-m", commit_msg],
             capture_output=True, text=True, cwd=script_dir, encoding="utf-8"
@@ -1094,7 +1118,7 @@ def main():
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
-    # ── JOURNAL ZUERST (damit es ins HTML eingebettet werden kann) ─
+    # â”€â”€ JOURNAL ZUERST (damit es ins HTML eingebettet werden kann) â”€
     print("\n>>> journal-data.json generieren...")
     instruments_map = {"GER40": ger, "US30": dji, "SPX500": spx}
     journal, orders = generate_journal_data(instruments_map, ctx, cal, script_dir)
@@ -1110,7 +1134,7 @@ def main():
     print("\n>>> Schreibe data.json...")
     json_path = os.path.join(script_dir, "data.json")
     with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(out, f, indent=2, default=str)
+        json.dump(out, f, indent=2, cls=SafeJSONEncoder)
     print(f"    -> {json_path}")
 
     print(">>> Lese cockpit-dashboard.html...")
@@ -1124,7 +1148,7 @@ def main():
 
     data_tag = (
         "<script>window.__COCKPIT_DATA__ = "
-        + json.dumps(out, default=str)
+        + json.dumps(out, cls=SafeJSONEncoder)
         + ";</script>"
     )
     html_embedded = html.replace("</head>", data_tag + "\n</head>")
@@ -1168,6 +1192,7 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f"\n❌ UNERWARTETER FEHLER:")
+        print(f"\nâŒ UNERWARTETER FEHLER:")
         traceback.print_exc()
         sys.exit(1)
+
