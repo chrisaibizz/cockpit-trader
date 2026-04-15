@@ -8,214 +8,320 @@
   :root {
     --bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;
     --muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;
-    --blue:#3b82f6;--cyan:#06b6d4;--white:#f1f5f9;
+    --blue:#3b82f6;--cyan:#06b6d4;--white:#f1f5f9;--orange:#f97316;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;padding:20px;min-height:100vh;}
   .header{text-align:center;padding:20px 0 30px;border-bottom:1px solid var(--border);margin-bottom:30px;}
   .header h1{font-size:28px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
   .header .ts{color:var(--muted);font-size:13px;margin-top:8px;}
+  .nav{display:flex;justify-content:center;gap:8px;padding:12px 0 20px;border-bottom:1px solid var(--border);margin-bottom:30px;}
+  .nav a{color:var(--muted);text-decoration:none;padding:8px 20px;font-size:13px;border-radius:8px;border:1px solid var(--border);letter-spacing:1px;transition:all .2s;}
+  .nav a.active{color:var(--text);background:rgba(59,130,246,0.15);border-color:var(--blue);}
+  .nav a:hover{color:var(--text);border-color:var(--muted);}
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1400px;margin:0 auto;}
   .fw{grid-column:1/-1;}
   .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;}
   .ct{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px;}
+  /* Bias */
   .bias-wrap{display:flex;align-items:center;gap:24px;padding:10px 0;}
   .tlight{display:flex;flex-direction:column;gap:6px;background:#000;padding:10px 8px;border-radius:20px;border:2px solid #333;}
   .light{width:32px;height:32px;border-radius:50%;background:#1a1a1a;transition:all .3s;}
-  .ag{background:var(--green);box-shadow:0 0 20px var(--green);}
-  .ay{background:var(--yellow);box-shadow:0 0 20px var(--yellow);}
-  .ar{background:var(--red);box-shadow:0 0 20px var(--red);}
   .bi{flex:1;}
   .bl{font-size:28px;font-weight:700;letter-spacing:2px;}
   .bs{font-size:14px;color:var(--muted);margin-top:4px;}
+  /* Quote */
   .qrow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
   .qp{font-size:32px;font-weight:700;}
   .qc{font-size:16px;font-weight:600;}
   .pos{color:var(--green);}.neg{color:var(--red);}
+  /* Levels */
   .lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
   .lb{text-align:center;padding:12px 8px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid var(--border);}
   .ll{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
   .lv{font-size:18px;font-weight:600;}
-  .lpoc{border-color:var(--cyan);}.lpoc .lv{color:var(--cyan);}
-  .lvah{border-color:var(--green);}.lvah .lv{color:var(--green);}
-  .lval{border-color:var(--red);}.lval .lv{color:var(--red);}
-  .lvwap{border-color:var(--yellow);}.lvwap .lv{color:var(--yellow);}
+  .lpoc .lv{color:var(--cyan);} .lpoc{border-color:var(--cyan);}
+  .lvah .lv{color:var(--green);} .lvah{border-color:var(--green);}
+  .lval .lv{color:var(--red);} .lval{border-color:var(--red);}
+  .lvwap .lv{color:var(--yellow);} .lvwap{border-color:var(--yellow);}
+  /* Volume Profile */
   .vpc{width:100%;height:320px;}
   .vpc svg{width:100%;height:100%;}
+  /* Shape */
   .sbadge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:14px;font-weight:600;margin-bottom:8px;background:rgba(59,130,246,.15);color:var(--blue);}
   .sdesc{font-size:13px;color:var(--muted);line-height:1.5;}
+  /* Signals */
   .slist{list-style:none;}
   .slist li{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;}
   .sdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;}
   .ssc{font-weight:600;min-width:30px;text-align:right;}
+  /* Confluence bar */
+  .conf-bar-wrap{margin:12px 0 8px;}
+  .conf-bar-bg{background:rgba(255,255,255,.06);border-radius:6px;height:10px;overflow:hidden;}
+  .conf-bar-fill{height:100%;border-radius:6px;transition:width .6s ease;}
+  .conf-label{font-size:12px;color:var(--muted);margin-top:5px;}
+  /* Manual checks */
+  .manual-checks{margin-top:10px;padding:10px 12px;background:rgba(234,179,8,.06);border:1px solid rgba(234,179,8,.25);border-radius:8px;}
+  .manual-checks .mc-title{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--yellow);margin-bottom:6px;}
+  .manual-checks ul{list-style:none;}
+  .manual-checks li{font-size:12px;color:var(--muted);padding:3px 0;}
+  .manual-checks li::before{content:"□ ";color:var(--yellow);}
+  /* Context */
   .cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
   .ci{text-align:center;padding:16px 8px;background:rgba(255,255,255,.02);border-radius:8px;border:1px solid var(--border);}
   .cl2{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
   .cp2{font-size:20px;font-weight:600;}
   .cc2{font-size:12px;margin-top:4px;}
+  /* Calendar */
   .cale{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;align-items:center;}
   .cat{color:var(--cyan);min-width:55px;font-size:12px;}
   .can{flex:1;}
   .cac{color:var(--muted);min-width:30px;text-align:right;font-size:12px;}
-  .imp-high{color:var(--red);font-weight:700;min-width:20px;}
-  .imp-medium{color:var(--yellow);min-width:20px;}
+  .imp-high{color:var(--red);font-weight:700;}
+  .imp-medium{color:var(--yellow);}
   .day-label{padding:10px 0 4px;font-size:12px;letter-spacing:1px;border-top:1px solid var(--border);margin-top:4px;}
-  .kassa-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;
-               background:rgba(6,182,212,0.15);color:var(--cyan);border:1px solid var(--cyan);
-               margin-left:8px;letter-spacing:1px;vertical-align:middle;}
+  /* Misc */
+  .kassa-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;background:rgba(6,182,212,0.15);color:var(--cyan);border:1px solid var(--cyan);margin-left:8px;letter-spacing:1px;vertical-align:middle;}
   .loading{text-align:center;padding:60px;color:var(--muted);}
+  /* Orders */
+  .order-card{border-radius:8px;padding:10px;margin-top:8px;font-size:13px;}
+  /* Age bar */
+  #age-bar{margin-top:6px;font-size:12px;display:none;}
+  /* Backtest tab */
+  .bt-section{margin-bottom:24px;}
+  .bt-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+  .bt-kpi-box{text-align:center;padding:16px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.02);}
+  .bt-kpi-val{font-size:32px;font-weight:700;margin-bottom:4px;}
+  .bt-kpi-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+  .bt-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .bt-table th{text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:6px 8px;border-bottom:1px solid var(--border);}
+  .bt-table td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.04);}
+  .bt-bar{display:inline-block;height:8px;border-radius:4px;vertical-align:middle;margin-left:6px;}
+  .insight-item{padding:10px 12px;border-left:3px solid var(--cyan);background:rgba(6,182,212,.06);border-radius:0 8px 8px 0;margin-bottom:8px;font-size:13px;line-height:1.5;}
+  .no-data{color:var(--muted);font-size:13px;padding:20px 0;text-align:center;}
   @media(max-width:768px){
     .grid{grid-template-columns:1fr;}
     .lgrid{grid-template-columns:repeat(2,1fr);}
     .cgrid{grid-template-columns:repeat(2,1fr);}
+    .bt-kpi{grid-template-columns:1fr 1fr;}
   }
 </style>
-<script>window.__COCKPIT_DATA__ = {"timestamp": "2026-04-15T05:00:28.972869", "instruments": {"SPX": {"name": "S&P 500 (Kassa)", "ticker": "^GSPC", "quote": {"price": 6967.38, "change": 81.14, "change_pct": 1.18, "high": 6969.42, "low": 6905.17, "open": 6910.2, "prev_close": 6886.24, "source": "yahoo_eod"}, "market_profile": {"poc": 6817.9, "vah": 6867.6, "val": 6806.99, "vwap": 6842.56, "day_high": 6887.0, "day_low": 6790.02, "shape": {"name": "Trend Day (Up)", "description": "Starke direktionale Bewegung, Continuation wahrscheinlich"}, "volume_profile": [{"price": 6791.23, "volume": 192346833.0}, {"price": 6793.66, "volume": 192346833.0}, {"price": 6796.08, "volume": 192346833.0}, {"price": 6798.51, "volume": 192346833.0}, {"price": 6800.93, "volume": 192346833.0}, {"price": 6803.35, "volume": 192346833.0}, {"price": 6805.78, "volume": 192346833.0}, {"price": 6808.2, "volume": 370411364.0}, {"price": 6810.63, "volume": 370411364.0}, {"price": 6813.05, "volume": 499483878.0}, {"price": 6815.48, "volume": 637675744.0}, {"price": 6817.9, "volume": 960171408.0}, {"price": 6820.33, "volume": 960171408.0}, {"price": 6822.75, "volume": 767824575.0}, {"price": 6825.18, "volume": 589760044.0}, {"price": 6827.6, "volume": 451568178.0}, {"price": 6830.02, "volume": 451568178.0}, {"price": 6832.45, "volume": 270684514.0}, {"price": 6834.87, "volume": 270684514.0}, {"price": 6837.3, "volume": 270684514.0}, {"price": 6839.72, "volume": 270684514.0}, {"price": 6842.15, "volume": 257711000.0}, {"price": 6844.57, "volume": 488501000.0}, {"price": 6847.0, "volume": 614992000.0}, {"price": 6849.42, "volume": 614992000.0}, {"price": 6851.84, "volume": 378024000.0}, {"price": 6854.27, "volume": 279031000.0}, {"price": 6856.69, "volume": 279031000.0}, {"price": 6859.12, "volume": 279031000.0}, {"price": 6861.54, "volume": 595104000.0}, {"price": 6863.97, "volume": 442564000.0}, {"price": 6866.39, "volume": 442564000.0}, {"price": 6868.82, "volume": 442564000.0}, {"price": 6871.24, "volume": 442564000.0}, {"price": 6873.67, "volume": 442564000.0}, {"price": 6876.09, "volume": 442564000.0}, {"price": 6878.51, "volume": 442564000.0}, {"price": 6880.94, "volume": 442564000.0}, {"price": 6883.36, "volume": 442564000.0}, {"price": 6885.79, "volume": 442564000.0}]}, "cvd": null, "current_price": 6967.38, "bias": {"score": 100, "bias": "BULLISH", "color": "green", "signals": [{"label": "Preis > VWAP (6967 > 6843)", "score": 2, "direction": "bullish"}, {"label": "Ueber VAH \u00e2\u20ac\u201d Breakout (6967 > 6868)", "score": 2, "direction": "bullish"}, {"label": "Preis > POC (6967 > 6818)", "score": 1, "direction": "bullish"}, {"label": "Shape: Trend Day (Up)", "score": 2, "direction": "bullish"}, {"label": "Overnight Inventory: Long", "score": 1, "direction": "bullish"}, {"label": "VIX 18.36 \u00e2\u20ac\u201d Normal", "score": 1, "direction": "bullish"}, {"label": "VIX falling sharply", "score": 1, "direction": "bullish"}, {"label": "DXY neutral (98.19)", "score": 0, "direction": "neutral"}, {"label": "10Y Yields stabil (4.26%)", "score": 0, "direction": "neutral"}, {"label": "Daily OTF Check", "score": 0, "direction": "neutral"}, {"label": "Gap Analysis", "score": 0, "direction": "neutral"}, {"label": "Session Expectation", "score": 0, "direction": "neutral"}]}}, "DJI": {"name": "Dow Jones (Kassa)", "ticker": "^DJI", "quote": {"price": 48535.99, "change": 317.74, "change_pct": 0.66, "high": 48592.29, "low": 48192.3, "open": 48272.03, "prev_close": 48218.25, "source": "yahoo_eod"}, "market_profile": {"poc": 47711.65, "vah": 47988.87, "val": 47505.97, "vwap": 47869.61, "day_high": 48221.37, "day_low": 47505.97, "shape": {"name": "Trend Day (Up)", "description": "Starke direktionale Bewegung, Continuation wahrscheinlich"}, "volume_profile": [{"price": 47514.91, "volume": 34786337.0}, {"price": 47532.8, "volume": 34786337.0}, {"price": 47550.68, "volume": 34786337.0}, {"price": 47568.57, "volume": 34786337.0}, {"price": 47586.45, "volume": 34786337.0}, {"price": 47604.34, "volume": 34786337.0}, {"price": 47622.22, "volume": 114961279.0}, {"price": 47640.11, "volume": 114961279.0}, {"price": 47657.99, "volume": 136776805.0}, {"price": 47675.88, "volume": 136776805.0}, {"price": 47693.76, "volume": 136776805.0}, {"price": 47711.65, "volume": 142103885.0}, {"price": 47729.53, "volume": 142103885.0}, {"price": 47747.42, "volume": 80886904.0}, {"price": 47765.3, "volume": 80886904.0}, {"price": 47783.19, "volume": 49375580.0}, {"price": 47801.07, "volume": 21815526.0}, {"price": 47818.96, "volume": 42620064.0}, {"price": 47836.84, "volume": 42620064.0}, {"price": 47854.73, "volume": 20804538.0}, {"price": 47872.61, "volume": 20804538.0}, {"price": 47890.5, "volume": 20804538.0}, {"price": 47908.38, "volume": 53080972.0}, {"price": 47926.27, "volume": 69437380.0}, {"price": 47944.15, "volume": 69437380.0}, {"price": 47962.04, "volume": 69437380.0}, {"price": 47979.92, "volume": 51590128.0}, {"price": 47997.81, "volume": 35486190.0}, {"price": 48015.69, "volume": 40351480.0}, {"price": 48033.58, "volume": 40351480.0}, {"price": 48051.46, "volume": 79571569.0}, {"price": 48069.35, "volume": 79571569.0}, {"price": 48087.23, "volume": 58349871.0}, {"price": 48105.12, "volume": 58349871.0}, {"price": 48123.0, "volume": 58349871.0}, {"price": 48140.89, "volume": 58349871.0}, {"price": 48158.77, "volume": 58349871.0}, {"price": 48176.66, "volume": 58349871.0}, {"price": 48194.54, "volume": 58349871.0}, {"price": 48212.43, "volume": 58349871.0}]}, "cvd": null, "current_price": 48535.99, "bias": {"score": 100, "bias": "BULLISH", "color": "green", "signals": [{"label": "Preis > VWAP (48536 > 47870)", "score": 2, "direction": "bullish"}, {"label": "Ueber VAH \u00e2\u20ac\u201d Breakout (48536 > 47989)", "score": 2, "direction": "bullish"}, {"label": "Preis > POC (48536 > 47712)", "score": 1, "direction": "bullish"}, {"label": "Shape: Trend Day (Up)", "score": 2, "direction": "bullish"}, {"label": "Overnight Inventory: Long", "score": 1, "direction": "bullish"}, {"label": "VIX 18.36 \u00e2\u20ac\u201d Normal", "score": 1, "direction": "bullish"}, {"label": "VIX falling sharply", "score": 1, "direction": "bullish"}, {"label": "DXY neutral (98.19)", "score": 0, "direction": "neutral"}, {"label": "10Y Yields stabil (4.26%)", "score": 0, "direction": "neutral"}, {"label": "Daily OTF Check", "score": 0, "direction": "neutral"}, {"label": "Gap Analysis", "score": 0, "direction": "neutral"}, {"label": "Session Expectation", "score": 0, "direction": "neutral"}]}}, "GER": {"name": "DAX (Kassa)", "ticker": "^GDAXI", "quote": {"price": 24044.22, "change": 301.78, "change_pct": 1.27, "high": 24087.3, "low": 23938.11, "open": 23953.93, "prev_close": 23742.44, "source": "yahoo_eod"}, "market_profile": {"poc": 23574.77, "vah": 23619.43, "val": 23488.88, "vwap": 23574.77, "day_high": 23756.85, "day_low": 23482.01, "shape": {"name": "Normal Variation", "description": "Leichte Richtung \u00e2\u20ac\u201d Abwarten auf Breakout aus VA."}, "volume_profile": [{"price": 23485.45, "volume": 2.0}, {"price": 23492.32, "volume": 2.0}, {"price": 23499.19, "volume": 2.0}, {"price": 23506.06, "volume": 3.0}, {"price": 23512.93, "volume": 3.0}, {"price": 23519.8, "volume": 3.0}, {"price": 23526.67, "volume": 3.0}, {"price": 23533.54, "volume": 3.0}, {"price": 23540.41, "volume": 4.0}, {"price": 23547.28, "volume": 6.0}, {"price": 23554.16, "volume": 8.0}, {"price": 23561.03, "volume": 9.0}, {"price": 23567.9, "volume": 10.0}, {"price": 23574.77, "volume": 11.0}, {"price": 23581.64, "volume": 11.0}, {"price": 23588.51, "volume": 10.0}, {"price": 23595.38, "volume": 6.0}, {"price": 23602.25, "volume": 3.0}, {"price": 23609.12, "volume": 3.0}, {"price": 23615.99, "volume": 2.0}, {"price": 23622.87, "volume": 1.0}, {"price": 23629.74, "volume": 1.0}, {"price": 23636.61, "volume": 1.0}, {"price": 23643.48, "volume": 1.0}, {"price": 23650.35, "volume": 1.0}, {"price": 23657.22, "volume": 1.0}, {"price": 23664.09, "volume": 1.0}, {"price": 23670.96, "volume": 1.0}, {"price": 23677.83, "volume": 1.0}, {"price": 23684.7, "volume": 1.0}, {"price": 23691.58, "volume": 2.0}, {"price": 23698.45, "volume": 2.0}, {"price": 23705.32, "volume": 4.0}, {"price": 23712.19, "volume": 4.0}, {"price": 23719.06, "volume": 4.0}, {"price": 23725.93, "volume": 4.0}, {"price": 23732.8, "volume": 3.0}, {"price": 23739.67, "volume": 3.0}, {"price": 23746.54, "volume": 2.0}, {"price": 23753.41, "volume": 2.0}]}, "cvd": null, "current_price": 24044.22, "bias": {"score": 100, "bias": "BULLISH", "color": "green", "signals": [{"label": "Preis > VWAP (24044 > 23575)", "score": 2, "direction": "bullish"}, {"label": "Ueber VAH \u00e2\u20ac\u201d Breakout (24044 > 23619)", "score": 2, "direction": "bullish"}, {"label": "Preis > POC (24044 > 23575)", "score": 1, "direction": "bullish"}, {"label": "Shape: Normal Variation", "score": 0, "direction": "neutral"}, {"label": "Overnight Inventory: Long", "score": 1, "direction": "bullish"}, {"label": "VIX 18.36 \u00e2\u20ac\u201d Normal", "score": 1, "direction": "bullish"}, {"label": "VIX falling sharply", "score": 1, "direction": "bullish"}, {"label": "DXY neutral (98.19)", "score": 0, "direction": "neutral"}, {"label": "10Y Yields stabil (4.26%)", "score": 0, "direction": "neutral"}, {"label": "Daily OTF Check", "score": 0, "direction": "neutral"}, {"label": "Gap Analysis", "score": 0, "direction": "neutral"}, {"label": "Session Expectation", "score": 0, "direction": "neutral"}]}}}, "context": {"VIX": {"price": 18.36, "change": -0.76, "change_pct": -3.97, "high": 18.76, "low": 17.89, "open": 18.73, "prev_close": 19.12}, "DXY": {"price": 98.19, "change": -0.18, "change_pct": -0.18, "high": 98.23, "low": 98.05, "open": 98.07, "prev_close": 98.37}, "US10Y": {"price": 4.26, "change": -0.04, "change_pct": -0.95, "high": 4.3, "low": 4.25, "open": 4.3, "prev_close": 4.3}, "DAX": {"price": 24044.22, "change": 301.78, "change_pct": 1.27, "high": 24087.3, "low": 23938.11, "open": 23953.93, "prev_close": 23742.44}}, "calendar": [], "journal": {"date": "2026-04-15", "timestamp": "2026-04-15T05:00:28.966985", "debrief": {"orders_checked": 3, "fill_rate": "1.9%", "tp1_rate": "0.0%", "trend": "Stabil", "learnings": []}, "instruments": [{"name": "GER40", "bias": "Bullisch", "bias_color": "green", "bias_score": 100, "bias_pct": "95", "bias_signals": [{"label": "Preis > VWAP (24044 > 23575)", "score": 2, "direction": "bullish"}, {"label": "Ueber VAH \u00e2\u20ac\u201d Breakout (24044 > 23619)", "score": 2, "direction": "bullish"}, {"label": "Preis > POC (24044 > 23575)", "score": 1, "direction": "bullish"}, {"label": "Shape: Normal Variation", "score": 0, "direction": "neutral"}, {"label": "Overnight Inventory: Long", "score": 1, "direction": "bullish"}, {"label": "VIX 18.36 \u00e2\u20ac\u201d Normal", "score": 1, "direction": "bullish"}, {"label": "VIX falling sharply", "score": 1, "direction": "bullish"}, {"label": "DXY neutral (98.19)", "score": 0, "direction": "neutral"}, {"label": "10Y Yields stabil (4.26%)", "score": 0, "direction": "neutral"}, {"label": "Daily OTF Check", "score": 0, "direction": "neutral"}, {"label": "Gap Analysis", "score": 0, "direction": "neutral"}, {"label": "Session Expectation", "score": 0, "direction": "neutral"}], "cvd": {}, "quote": {"price": 24044.22, "change": 301.78, "change_pct": 1.27, "high": 24087.3, "low": 23938.11, "open": 23953.93, "prev_close": 23742.44, "source": "yahoo_eod"}, "market_profile": {"poc": 23574.77, "vah": 23619.43, "val": 23488.88, "vwap": 23574.77, "day_high": 23756.85, "day_low": 23482.01, "shape": {"name": "Normal Variation", "description": "Leichte Richtung \u00e2\u20ac\u201d Abwarten auf Breakout aus VA."}, "volume_profile": [{"price": 23485.45, "volume": 2.0}, {"price": 23492.32, "volume": 2.0}, {"price": 23499.19, "volume": 2.0}, {"price": 23506.06, "volume": 3.0}, {"price": 23512.93, "volume": 3.0}, {"price": 23519.8, "volume": 3.0}, {"price": 23526.67, "volume": 3.0}, {"price": 23533.54, "volume": 3.0}, {"price": 23540.41, "volume": 4.0}, {"price": 23547.28, "volume": 6.0}, {"price": 23554.16, "volume": 8.0}, {"price": 23561.03, "volume": 9.0}, {"price": 23567.9, "volume": 10.0}, {"price": 23574.77, "volume": 11.0}, {"price": 23581.64, "volume": 11.0}, {"price": 23588.51, "volume": 10.0}, {"price": 23595.38, "volume": 6.0}, {"price": 23602.25, "volume": 3.0}, {"price": 23609.12, "volume": 3.0}, {"price": 23615.99, "volume": 2.0}, {"price": 23622.87, "volume": 1.0}, {"price": 23629.74, "volume": 1.0}, {"price": 23636.61, "volume": 1.0}, {"price": 23643.48, "volume": 1.0}, {"price": 23650.35, "volume": 1.0}, {"price": 23657.22, "volume": 1.0}, {"price": 23664.09, "volume": 1.0}, {"price": 23670.96, "volume": 1.0}, {"price": 23677.83, "volume": 1.0}, {"price": 23684.7, "volume": 1.0}, {"price": 23691.58, "volume": 2.0}, {"price": 23698.45, "volume": 2.0}, {"price": 23705.32, "volume": 4.0}, {"price": 23712.19, "volume": 4.0}, {"price": 23719.06, "volume": 4.0}, {"price": 23725.93, "volume": 4.0}, {"price": 23732.8, "volume": 3.0}, {"price": 23739.67, "volume": 3.0}, {"price": 23746.54, "volume": 2.0}, {"price": 23753.41, "volume": 2.0}]}, "current_price": 24044.22, "daily_summary": "Bias Bullisch (Score 100). Vortag Range: 23482.01 \u00e2\u20ac\u201c 23756.85. VIX=18.4.", "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)", "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)", "h30m_summary": "Kurs 24044.22 ueber VWAP (23574.77), ausserhalb Value Area. POC=23574.77 VAH=23619.43 VAL=23488.88. Shape: Normal Variation.", "mp_shape_yesterday": "Normal Variation", "mp_shape_forecast": "Normal Variation", "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt", "key_levels": [{"level": "VAH Vortag", "price": "23619.43", "source": "Market Profile"}, {"level": "POC Vortag", "price": "23574.77", "source": "Market Profile"}, {"level": "VAL Vortag", "price": "23488.88", "source": "Market Profile"}, {"level": "VWAP 30M", "price": "23574.77", "source": "VWAP"}], "orders": [{"type": "Limit Buy", "entry": "23495.41", "sl": "23456.24", "tp1": "23619.43", "tp2": "23684.71", "rr": "3.17", "p_fill": "70", "p_tp1": "65", "tf": "30M", "confluence": "Preis > VWAP (24044 > 23575) + Ueber VAH \u00e2\u20ac\u201d Breakout (24044 > 23619) + Preis > POC (24044 > 23575)", "mp_shape_yesterday": "Normal Variation", "mp_shape_forecast": "Normal Variation", "vwap_position": "Preis ueber VWAP"}], "invalidation": "Kurs schliesst unter 23488.88 \u00e2\u20ac\u201d bullischer Bias negiert"}, {"name": "US30", "bias": "Bullisch", "bias_color": "green", "bias_score": 100, "bias_pct": "95", "bias_signals": [{"label": "Preis > VWAP (48536 > 47870)", "score": 2, "direction": "bullish"}, {"label": "Ueber VAH \u00e2\u20ac\u201d Breakout (48536 > 47989)", "score": 2, "direction": "bullish"}, {"label": "Preis > POC (48536 > 47712)", "score": 1, "direction": "bullish"}, {"label": "Shape: Trend Day (Up)", "score": 2, "direction": "bullish"}, {"label": "Overnight Inventory: Long", "score": 1, "direction": "bullish"}, {"label": "VIX 18.36 \u00e2\u20ac\u201d Normal", "score": 1, "direction": "bullish"}, {"label": "VIX falling sharply", "score": 1, "direction": "bullish"}, {"label": "DXY neutral (98.19)", "score": 0, "direction": "neutral"}, {"label": "10Y Yields stabil (4.26%)", "score": 0, "direction": "neutral"}, {"label": "Daily OTF Check", "score": 0, "direction": "neutral"}, {"label": "Gap Analysis", "score": 0, "direction": "neutral"}, {"label": "Session Expectation", "score": 0, "direction": "neutral"}], "cvd": {}, "quote": {"price": 48535.99, "change": 317.74, "change_pct": 0.66, "high": 48592.29, "low": 48192.3, "open": 48272.03, "prev_close": 48218.25, "source": "yahoo_eod"}, "market_profile": {"poc": 47711.65, "vah": 47988.87, "val": 47505.97, "vwap": 47869.61, "day_high": 48221.37, "day_low": 47505.97, "shape": {"name": "Trend Day (Up)", "description": "Starke direktionale Bewegung, Continuation wahrscheinlich"}, "volume_profile": [{"price": 47514.91, "volume": 34786337.0}, {"price": 47532.8, "volume": 34786337.0}, {"price": 47550.68, "volume": 34786337.0}, {"price": 47568.57, "volume": 34786337.0}, {"price": 47586.45, "volume": 34786337.0}, {"price": 47604.34, "volume": 34786337.0}, {"price": 47622.22, "volume": 114961279.0}, {"price": 47640.11, "volume": 114961279.0}, {"price": 47657.99, "volume": 136776805.0}, {"price": 47675.88, "volume": 136776805.0}, {"price": 47693.76, "volume": 136776805.0}, {"price": 47711.65, "volume": 142103885.0}, {"price": 47729.53, "volume": 142103885.0}, {"price": 47747.42, "volume": 80886904.0}, {"price": 47765.3, "volume": 80886904.0}, {"price": 47783.19, "volume": 49375580.0}, {"price": 47801.07, "volume": 21815526.0}, {"price": 47818.96, "volume": 42620064.0}, {"price": 47836.84, "volume": 42620064.0}, {"price": 47854.73, "volume": 20804538.0}, {"price": 47872.61, "volume": 20804538.0}, {"price": 47890.5, "volume": 20804538.0}, {"price": 47908.38, "volume": 53080972.0}, {"price": 47926.27, "volume": 69437380.0}, {"price": 47944.15, "volume": 69437380.0}, {"price": 47962.04, "volume": 69437380.0}, {"price": 47979.92, "volume": 51590128.0}, {"price": 47997.81, "volume": 35486190.0}, {"price": 48015.69, "volume": 40351480.0}, {"price": 48033.58, "volume": 40351480.0}, {"price": 48051.46, "volume": 79571569.0}, {"price": 48069.35, "volume": 79571569.0}, {"price": 48087.23, "volume": 58349871.0}, {"price": 48105.12, "volume": 58349871.0}, {"price": 48123.0, "volume": 58349871.0}, {"price": 48140.89, "volume": 58349871.0}, {"price": 48158.77, "volume": 58349871.0}, {"price": 48176.66, "volume": 58349871.0}, {"price": 48194.54, "volume": 58349871.0}, {"price": 48212.43, "volume": 58349871.0}]}, "current_price": 48535.99, "daily_summary": "Bias Bullisch (Score 100). Vortag Range: 47505.97 \u00e2\u20ac\u201c 48221.37. VIX=18.4.", "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)", "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)", "h30m_summary": "Kurs 48535.99 ueber VWAP (47869.61), ausserhalb Value Area. POC=47711.65 VAH=47988.87 VAL=47505.97. Shape: Trend Day (Up).", "mp_shape_yesterday": "Trend Day (Up)", "mp_shape_forecast": "Trend Day (Up)", "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt", "key_levels": [{"level": "VAH Vortag", "price": "47988.87", "source": "Market Profile"}, {"level": "POC Vortag", "price": "47711.65", "source": "Market Profile"}, {"level": "VAL Vortag", "price": "47505.97", "source": "Market Profile"}, {"level": "VWAP 30M", "price": "47869.61", "source": "VWAP"}], "orders": [{"type": "Limit Buy", "entry": "47530.11", "sl": "47385.24", "tp1": "47988.87", "tp2": "48230.32", "rr": "3.17", "p_fill": "70", "p_tp1": "65", "tf": "30M", "confluence": "Preis > VWAP (48536 > 47870) + Ueber VAH \u00e2\u20ac\u201d Breakout (48536 > 47989) + Preis > POC (48536 > 47712)", "mp_shape_yesterday": "Trend Day (Up)", "mp_shape_forecast": "Trend Day (Up)", "vwap_position": "Preis ueber VWAP"}], "invalidation": "Kurs schliesst unter 47505.97 \u00e2\u20ac\u201d bullischer Bias negiert"}, {"name": "SPX500", "bias": "Bullisch", "bias_color": "green", "bias_score": 100, "bias_pct": "95", "bias_signals": [{"label": "Preis > VWAP (6967 > 6843)", "score": 2, "direction": "bullish"}, {"label": "Ueber VAH \u00e2\u20ac\u201d Breakout (6967 > 6868)", "score": 2, "direction": "bullish"}, {"label": "Preis > POC (6967 > 6818)", "score": 1, "direction": "bullish"}, {"label": "Shape: Trend Day (Up)", "score": 2, "direction": "bullish"}, {"label": "Overnight Inventory: Long", "score": 1, "direction": "bullish"}, {"label": "VIX 18.36 \u00e2\u20ac\u201d Normal", "score": 1, "direction": "bullish"}, {"label": "VIX falling sharply", "score": 1, "direction": "bullish"}, {"label": "DXY neutral (98.19)", "score": 0, "direction": "neutral"}, {"label": "10Y Yields stabil (4.26%)", "score": 0, "direction": "neutral"}, {"label": "Daily OTF Check", "score": 0, "direction": "neutral"}, {"label": "Gap Analysis", "score": 0, "direction": "neutral"}, {"label": "Session Expectation", "score": 0, "direction": "neutral"}], "cvd": {}, "quote": {"price": 6967.38, "change": 81.14, "change_pct": 1.18, "high": 6969.42, "low": 6905.17, "open": 6910.2, "prev_close": 6886.24, "source": "yahoo_eod"}, "market_profile": {"poc": 6817.9, "vah": 6867.6, "val": 6806.99, "vwap": 6842.56, "day_high": 6887.0, "day_low": 6790.02, "shape": {"name": "Trend Day (Up)", "description": "Starke direktionale Bewegung, Continuation wahrscheinlich"}, "volume_profile": [{"price": 6791.23, "volume": 192346833.0}, {"price": 6793.66, "volume": 192346833.0}, {"price": 6796.08, "volume": 192346833.0}, {"price": 6798.51, "volume": 192346833.0}, {"price": 6800.93, "volume": 192346833.0}, {"price": 6803.35, "volume": 192346833.0}, {"price": 6805.78, "volume": 192346833.0}, {"price": 6808.2, "volume": 370411364.0}, {"price": 6810.63, "volume": 370411364.0}, {"price": 6813.05, "volume": 499483878.0}, {"price": 6815.48, "volume": 637675744.0}, {"price": 6817.9, "volume": 960171408.0}, {"price": 6820.33, "volume": 960171408.0}, {"price": 6822.75, "volume": 767824575.0}, {"price": 6825.18, "volume": 589760044.0}, {"price": 6827.6, "volume": 451568178.0}, {"price": 6830.02, "volume": 451568178.0}, {"price": 6832.45, "volume": 270684514.0}, {"price": 6834.87, "volume": 270684514.0}, {"price": 6837.3, "volume": 270684514.0}, {"price": 6839.72, "volume": 270684514.0}, {"price": 6842.15, "volume": 257711000.0}, {"price": 6844.57, "volume": 488501000.0}, {"price": 6847.0, "volume": 614992000.0}, {"price": 6849.42, "volume": 614992000.0}, {"price": 6851.84, "volume": 378024000.0}, {"price": 6854.27, "volume": 279031000.0}, {"price": 6856.69, "volume": 279031000.0}, {"price": 6859.12, "volume": 279031000.0}, {"price": 6861.54, "volume": 595104000.0}, {"price": 6863.97, "volume": 442564000.0}, {"price": 6866.39, "volume": 442564000.0}, {"price": 6868.82, "volume": 442564000.0}, {"price": 6871.24, "volume": 442564000.0}, {"price": 6873.67, "volume": 442564000.0}, {"price": 6876.09, "volume": 442564000.0}, {"price": 6878.51, "volume": 442564000.0}, {"price": 6880.94, "volume": 442564000.0}, {"price": 6883.36, "volume": 442564000.0}, {"price": 6885.79, "volume": 442564000.0}]}, "current_price": 6967.38, "daily_summary": "Bias Bullisch (Score 100). Vortag Range: 6790.02 \u00e2\u20ac\u201c 6887.0. VIX=18.4.", "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)", "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)", "h30m_summary": "Kurs 6967.38 ueber VWAP (6842.56), ausserhalb Value Area. POC=6817.9 VAH=6867.6 VAL=6806.99. Shape: Trend Day (Up).", "mp_shape_yesterday": "Trend Day (Up)", "mp_shape_forecast": "Trend Day (Up)", "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt", "key_levels": [{"level": "VAH Vortag", "price": "6867.6", "source": "Market Profile"}, {"level": "POC Vortag", "price": "6817.9", "source": "Market Profile"}, {"level": "VAL Vortag", "price": "6806.99", "source": "Market Profile"}, {"level": "VWAP 30M", "price": "6842.56", "source": "VWAP"}], "orders": [{"type": "Limit Buy", "entry": "6810.02", "sl": "6791.84", "tp1": "6867.6", "tp2": "6897.91", "rr": "3.17", "p_fill": "70", "p_tp1": "65", "tf": "30M", "confluence": "Preis > VWAP (6967 > 6843) + Ueber VAH \u00e2\u20ac\u201d Breakout (6967 > 6868) + Preis > POC (6967 > 6818)", "mp_shape_yesterday": "Trend Day (Up)", "mp_shape_forecast": "Trend Day (Up)", "vwap_position": "Preis ueber VWAP"}], "invalidation": "Kurs schliesst unter 6806.99 \u00e2\u20ac\u201d bullischer Bias negiert"}], "summary": {"best_instrument": "GER40", "total_orders": 3, "warnings": [], "notes": "Auto-generiert 05:00. VIX=18.4. Beste Konfluenz: GER40."}, "stats": {"total": 53, "fill_rate": "1.9%", "tp1_rate": "0.0%", "sl_rate": "100.0%", "trend": "Stabil", "debrief_manual": {"ger40_sell_23676": "Ja/Nein/Ja -84pts", "us30_sell_47846": "Ja/Nein/Ja -204pts", "sp500_buy_6739": "Nein/Nein/Nein 0", "dj30_buy_47580": "Ja/Ja/Nein +360pts BESTES SETUP", "sp500_buy_6766": "Nein/Nein/Nein 0"}}}};</script>
+<script>window.__COCKPIT_DATA__ = {"timestamp": "2026-04-16T00:16:42.588740", "instruments": {"SPX": {"name": "S&P 500 (Kassa)", "ticker": "^GSPC", "quote": {"price": 7022.95, "change": 55.57, "change_pct": 0.8, "high": 7026.24, "low": 6967.13, "open": 6978.17, "prev_close": 6967.38, "source": "yahoo_eod"}, "market_profile": {"poc": 6960.59, "vah": 6969.42, "val": 6932.48, "vwap": 6948.45, "day_high": 6969.42, "day_low": 6905.17, "shape": {"name": "Trend Day (Up)", "description": "Starke direktionale Bewegung, Continuation wahrscheinlich"}, "volume_profile": [{"price": 6905.97, "volume": 255020388.0}, {"price": 6907.58, "volume": 255020388.0}, {"price": 6909.19, "volume": 255020388.0}, {"price": 6910.79, "volume": 255020388.0}, {"price": 6912.4, "volume": 255020388.0}, {"price": 6914.0, "volume": 255020388.0}, {"price": 6915.61, "volume": 255020388.0}, {"price": 6917.22, "volume": 255020388.0}, {"price": 6918.82, "volume": 478630637.0}, {"price": 6920.43, "volume": 478630637.0}, {"price": 6922.04, "volume": 478630637.0}, {"price": 6923.64, "volume": 478630637.0}, {"price": 6925.25, "volume": 478630637.0}, {"price": 6926.85, "volume": 223610249.0}, {"price": 6928.46, "volume": 223610249.0}, {"price": 6930.07, "volume": 409369877.0}, {"price": 6931.67, "volume": 409369877.0}, {"price": 6933.28, "volume": 567883007.0}, {"price": 6934.89, "volume": 567883007.0}, {"price": 6936.49, "volume": 344272758.0}, {"price": 6938.1, "volume": 344272758.0}, {"price": 6939.7, "volume": 344272758.0}, {"price": 6941.31, "volume": 344272758.0}, {"price": 6942.92, "volume": 158513130.0}, {"price": 6944.52, "volume": 158513130.0}, {"price": 6946.13, "volume": 440835119.0}, {"price": 6947.74, "volume": 559955119.0}, {"price": 6949.34, "volume": 559955119.0}, {"price": 6950.95, "volume": 561210989.0}, {"price": 6952.55, "volume": 800420989.0}, {"price": 6954.16, "volume": 914168989.0}, {"price": 6955.77, "volume": 914168989.0}, {"price": 6957.37, "volume": 795048989.0}, {"price": 6958.98, "volume": 1063790000.0}, {"price": 6960.59, "volume": 1176985000.0}, {"price": 6962.19, "volume": 1176985000.0}, {"price": 6963.8, "volume": 937775000.0}, {"price": 6965.4, "volume": 692524000.0}, {"price": 6967.01, "volume": 579329000.0}, {"price": 6968.62, "volume": 419560000.0}]}, "cvd": null, "current_price": 7022.95, "bias": {"score": 100, "bias": "BULLISH", "color": "green", "signals": [{"label": "Preis > VWAP (7023 > 6948)", "score": 2, "direction": "bullish", "category": "vwap", "auto": true}, {"label": "Ueber VAH \u2013 Breakout (7023 > 6969)", "score": 2, "direction": "bullish", "category": "value_area", "auto": true}, {"label": "Preis > POC (7023 > 6961)", "score": 1, "direction": "bullish", "category": "poc", "auto": true}, {"label": "Shape: Trend Day (Up)", "score": 2, "direction": "bullish", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Long (Preis > VA-Mitte)", "score": 1, "direction": "bullish", "category": "inventory", "auto": true}, {"label": "VIX 18.17 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}], "confluence_score": 6, "confluence_against": 0, "confluence_total": 6, "confluence_pct": 100, "confluence_label": "6/6 (bullisch)", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"]}}, "DJI": {"name": "Dow Jones (Kassa)", "ticker": "^DJI", "quote": {"price": 48463.72, "change": -72.27, "change_pct": -0.15, "high": 48709.01, "low": 48281.62, "open": 48549.14, "prev_close": 48535.99, "source": "yahoo_eod"}, "market_profile": {"poc": 48517.29, "vah": 48562.29, "val": 48382.3, "vwap": 48478.09, "day_high": 48592.29, "day_low": 48192.3, "shape": {"name": "Trend Day (Up)", "description": "Starke direktionale Bewegung, Continuation wahrscheinlich"}, "volume_profile": [{"price": 48197.3, "volume": 51165428.0}, {"price": 48207.3, "volume": 51165428.0}, {"price": 48217.3, "volume": 51165428.0}, {"price": 48227.3, "volume": 51165428.0}, {"price": 48237.3, "volume": 51165428.0}, {"price": 48247.3, "volume": 51165428.0}, {"price": 48257.3, "volume": 51165428.0}, {"price": 48267.3, "volume": 51165428.0}, {"price": 48277.3, "volume": 51165428.0}, {"price": 48287.3, "volume": 51165428.0}, {"price": 48297.3, "volume": 51165428.0}, {"price": 48307.3, "volume": 51165428.0}, {"price": 48317.3, "volume": 51165428.0}, {"price": 48327.3, "volume": 51165428.0}, {"price": 48337.3, "volume": 51165428.0}, {"price": 48347.3, "volume": 51165428.0}, {"price": 48357.3, "volume": 51165428.0}, {"price": 48367.3, "volume": 88598661.0}, {"price": 48377.3, "volume": 118416503.0}, {"price": 48387.3, "volume": 118416503.0}, {"price": 48397.29, "volume": 118416503.0}, {"price": 48407.29, "volume": 118416503.0}, {"price": 48417.29, "volume": 118416503.0}, {"price": 48427.29, "volume": 164933357.0}, {"price": 48437.29, "volume": 164933357.0}, {"price": 48447.29, "volume": 189346239.0}, {"price": 48457.29, "volume": 178103340.0}, {"price": 48467.29, "volume": 178103340.0}, {"price": 48477.29, "volume": 178103340.0}, {"price": 48487.29, "volume": 250942720.0}, {"price": 48497.29, "volume": 250942720.0}, {"price": 48507.29, "volume": 192667855.0}, {"price": 48517.29, "volume": 251874456.0}, {"price": 48527.29, "volume": 231141213.0}, {"price": 48537.29, "volume": 206728331.0}, {"price": 48547.29, "volume": 145563629.0}, {"price": 48557.29, "volume": 119005311.0}, {"price": 48567.29, "volume": 90839815.0}, {"price": 48577.29, "volume": 59206601.0}, {"price": 48587.29, "volume": 59206601.0}]}, "cvd": null, "current_price": 48463.72, "bias": {"score": -14, "bias": "NEUTRAL", "color": "yellow", "signals": [{"label": "Preis < VWAP (48464 < 48478)", "score": -2, "direction": "bearish", "category": "vwap", "auto": true}, {"label": "In Value Area (48382 \u2013 48562)", "score": 0, "direction": "neutral", "category": "value_area", "auto": true}, {"label": "Preis < POC (48464 < 48517)", "score": -1, "direction": "bearish", "category": "poc", "auto": true}, {"label": "Shape: Trend Day (Up)", "score": 2, "direction": "bullish", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Short (Preis < VA-Mitte)", "score": -1, "direction": "bearish", "category": "inventory", "auto": true}, {"label": "VIX 18.17 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}], "confluence_score": 0, "confluence_against": 5, "confluence_total": 6, "confluence_pct": 50, "confluence_label": "2 bullisch / 3 bearisch / 1 neutral von 6", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"]}}, "GER": {"name": "DAX (Kassa)", "ticker": "^GDAXI", "quote": {"price": 24044.22, "change": 0.0, "change_pct": 0.0, "high": 24087.3, "low": 23938.11, "open": 23953.93, "prev_close": 24044.22, "source": "yahoo_eod"}, "market_profile": {"poc": 24010.84, "vah": 24053.73, "val": 23971.68, "vwap": 24010.84, "day_high": 24087.3, "day_low": 23938.11, "shape": {"name": "Normal Day", "description": "Ausbalanciert \u2013 Range-Trading um POC."}, "volume_profile": [{"price": 23939.97, "volume": 1.0}, {"price": 23943.7, "volume": 3.0}, {"price": 23947.43, "volume": 4.0}, {"price": 23951.16, "volume": 4.0}, {"price": 23954.89, "volume": 5.0}, {"price": 23958.62, "volume": 5.0}, {"price": 23962.35, "volume": 6.0}, {"price": 23966.08, "volume": 6.0}, {"price": 23969.81, "volume": 7.0}, {"price": 23973.54, "volume": 8.0}, {"price": 23977.27, "volume": 8.0}, {"price": 23981.0, "volume": 8.0}, {"price": 23984.73, "volume": 9.0}, {"price": 23988.46, "volume": 9.0}, {"price": 23992.19, "volume": 8.0}, {"price": 23995.92, "volume": 8.0}, {"price": 23999.65, "volume": 8.0}, {"price": 24003.38, "volume": 8.0}, {"price": 24007.11, "volume": 9.0}, {"price": 24010.84, "volume": 10.0}, {"price": 24014.57, "volume": 8.0}, {"price": 24018.3, "volume": 9.0}, {"price": 24022.03, "volume": 8.0}, {"price": 24025.76, "volume": 8.0}, {"price": 24029.49, "volume": 8.0}, {"price": 24033.22, "volume": 7.0}, {"price": 24036.95, "volume": 8.0}, {"price": 24040.68, "volume": 8.0}, {"price": 24044.41, "volume": 8.0}, {"price": 24048.14, "volume": 7.0}, {"price": 24051.87, "volume": 7.0}, {"price": 24055.6, "volume": 5.0}, {"price": 24059.33, "volume": 4.0}, {"price": 24063.06, "volume": 3.0}, {"price": 24066.79, "volume": 3.0}, {"price": 24070.52, "volume": 3.0}, {"price": 24074.25, "volume": 2.0}, {"price": 24077.98, "volume": 2.0}, {"price": 24081.71, "volume": 2.0}, {"price": 24085.44, "volume": 2.0}]}, "cvd": null, "current_price": 24044.22, "bias": {"score": 100, "bias": "BULLISH", "color": "green", "signals": [{"label": "Preis > VWAP (24044 > 24011)", "score": 2, "direction": "bullish", "category": "vwap", "auto": true}, {"label": "In Value Area (23972 \u2013 24054)", "score": 0, "direction": "neutral", "category": "value_area", "auto": true}, {"label": "Preis > POC (24044 > 24011)", "score": 1, "direction": "bullish", "category": "poc", "auto": true}, {"label": "Shape: Normal Day", "score": 0, "direction": "neutral", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Long (Preis > VA-Mitte)", "score": 1, "direction": "bullish", "category": "inventory", "auto": true}, {"label": "VIX 18.17 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}], "confluence_score": 4, "confluence_against": 0, "confluence_total": 6, "confluence_pct": 67, "confluence_label": "4/6 (bullisch)", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"]}}}, "context": {"VIX": {"price": 18.17, "change": -0.19, "change_pct": -1.03, "high": 18.5, "low": 17.4, "open": 18.18, "prev_close": 18.36}, "DXY": {"price": 98.05, "change": -0.07, "change_pct": -0.07, "high": 98.29, "low": 98.0, "open": 98.07, "prev_close": 98.12}, "US10Y": {"price": 4.28, "change": 0.03, "change_pct": 0.61, "high": 4.29, "low": 4.26, "open": 4.27, "prev_close": 4.26}, "DAX": {"price": 24044.22, "change": 0.0, "change_pct": 0.0, "high": 24087.3, "low": 23938.11, "open": 23953.93, "prev_close": 24044.22}}, "calendar": [], "journal": {"date": "2026-04-16", "timestamp": "2026-04-16T00:16:42.582151", "debrief": {"orders_checked": 3, "fill_rate": "12.3%", "tp1_rate": "12.5%", "trend": "Stabil", "learnings": []}, "instruments": [{"name": "GER40", "bias": "Bullisch", "bias_color": "green", "bias_score": 100, "bias_pct": "95", "bias_signals": [{"label": "Preis > VWAP (24044 > 24011)", "score": 2, "direction": "bullish", "category": "vwap", "auto": true}, {"label": "In Value Area (23972 \u2013 24054)", "score": 0, "direction": "neutral", "category": "value_area", "auto": true}, {"label": "Preis > POC (24044 > 24011)", "score": 1, "direction": "bullish", "category": "poc", "auto": true}, {"label": "Shape: Normal Day", "score": 0, "direction": "neutral", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Long (Preis > VA-Mitte)", "score": 1, "direction": "bullish", "category": "inventory", "auto": true}, {"label": "VIX 18.17 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}], "confluence_score": 4, "confluence_against": 0, "confluence_total": 6, "confluence_pct": 67, "confluence_label": "4/6 (bullisch)", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"], "cvd": {}, "quote": {"price": 24044.22, "change": 0.0, "change_pct": 0.0, "high": 24087.3, "low": 23938.11, "open": 23953.93, "prev_close": 24044.22, "source": "yahoo_eod"}, "market_profile": {"poc": 24010.84, "vah": 24053.73, "val": 23971.68, "vwap": 24010.84, "day_high": 24087.3, "day_low": 23938.11, "shape": {"name": "Normal Day", "description": "Ausbalanciert \u2013 Range-Trading um POC."}, "volume_profile": [{"price": 23939.97, "volume": 1.0}, {"price": 23943.7, "volume": 3.0}, {"price": 23947.43, "volume": 4.0}, {"price": 23951.16, "volume": 4.0}, {"price": 23954.89, "volume": 5.0}, {"price": 23958.62, "volume": 5.0}, {"price": 23962.35, "volume": 6.0}, {"price": 23966.08, "volume": 6.0}, {"price": 23969.81, "volume": 7.0}, {"price": 23973.54, "volume": 8.0}, {"price": 23977.27, "volume": 8.0}, {"price": 23981.0, "volume": 8.0}, {"price": 23984.73, "volume": 9.0}, {"price": 23988.46, "volume": 9.0}, {"price": 23992.19, "volume": 8.0}, {"price": 23995.92, "volume": 8.0}, {"price": 23999.65, "volume": 8.0}, {"price": 24003.38, "volume": 8.0}, {"price": 24007.11, "volume": 9.0}, {"price": 24010.84, "volume": 10.0}, {"price": 24014.57, "volume": 8.0}, {"price": 24018.3, "volume": 9.0}, {"price": 24022.03, "volume": 8.0}, {"price": 24025.76, "volume": 8.0}, {"price": 24029.49, "volume": 8.0}, {"price": 24033.22, "volume": 7.0}, {"price": 24036.95, "volume": 8.0}, {"price": 24040.68, "volume": 8.0}, {"price": 24044.41, "volume": 8.0}, {"price": 24048.14, "volume": 7.0}, {"price": 24051.87, "volume": 7.0}, {"price": 24055.6, "volume": 5.0}, {"price": 24059.33, "volume": 4.0}, {"price": 24063.06, "volume": 3.0}, {"price": 24066.79, "volume": 3.0}, {"price": 24070.52, "volume": 3.0}, {"price": 24074.25, "volume": 2.0}, {"price": 24077.98, "volume": 2.0}, {"price": 24081.71, "volume": 2.0}, {"price": 24085.44, "volume": 2.0}]}, "current_price": 24044.22, "daily_summary": "Bias Bullisch (Score 100, Confluence 67%). Vortag Range: 23938.11 \u2013 24087.3. VIX=18.2.", "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)", "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)", "h30m_summary": "Kurs 24044.22 ueber VWAP (24010.84), in Value Area. POC=24010.84 VAH=24053.73 VAL=23971.68. Shape: Normal Day. Confluence: 4/6 (bullisch).", "mp_shape_yesterday": "Normal Day", "mp_shape_forecast": "Normal Day", "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt", "key_levels": [{"level": "VAH Vortag", "price": "24053.73", "source": "Market Profile"}, {"level": "POC Vortag", "price": "24010.84", "source": "Market Profile"}, {"level": "VAL Vortag", "price": "23971.68", "source": "Market Profile"}, {"level": "VWAP 30M", "price": "24010.84", "source": "VWAP"}], "orders": [{"type": "Limit Buy", "entry": "23975.78", "sl": "23951.17", "tp1": "24053.73", "tp2": "24094.75", "rr": "3.17", "p_fill": "50", "p_tp1": "40", "tf": "30M", "confluence": "Preis > VWAP (24044 > 24011) + Preis > POC (24044 > 24011) + Overnight Inventory: Long (Preis > VA-Mitte)", "mp_shape_yesterday": "Normal Day", "mp_shape_forecast": "Normal Day", "vwap_position": "Preis ueber VWAP"}], "invalidation": "Kurs schliesst unter 23971.68 \u2013 bullischer Bias negiert"}, {"name": "US30", "bias": "Neutral", "bias_color": "yellow", "bias_score": -14, "bias_pct": "64", "bias_signals": [{"label": "Preis < VWAP (48464 < 48478)", "score": -2, "direction": "bearish", "category": "vwap", "auto": true}, {"label": "In Value Area (48382 \u2013 48562)", "score": 0, "direction": "neutral", "category": "value_area", "auto": true}, {"label": "Preis < POC (48464 < 48517)", "score": -1, "direction": "bearish", "category": "poc", "auto": true}, {"label": "Shape: Trend Day (Up)", "score": 2, "direction": "bullish", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Short (Preis < VA-Mitte)", "score": -1, "direction": "bearish", "category": "inventory", "auto": true}, {"label": "VIX 18.17 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}], "confluence_score": 0, "confluence_against": 5, "confluence_total": 6, "confluence_pct": 50, "confluence_label": "2 bullisch / 3 bearisch / 1 neutral von 6", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"], "cvd": {}, "quote": {"price": 48463.72, "change": -72.27, "change_pct": -0.15, "high": 48709.01, "low": 48281.62, "open": 48549.14, "prev_close": 48535.99, "source": "yahoo_eod"}, "market_profile": {"poc": 48517.29, "vah": 48562.29, "val": 48382.3, "vwap": 48478.09, "day_high": 48592.29, "day_low": 48192.3, "shape": {"name": "Trend Day (Up)", "description": "Starke direktionale Bewegung, Continuation wahrscheinlich"}, "volume_profile": [{"price": 48197.3, "volume": 51165428.0}, {"price": 48207.3, "volume": 51165428.0}, {"price": 48217.3, "volume": 51165428.0}, {"price": 48227.3, "volume": 51165428.0}, {"price": 48237.3, "volume": 51165428.0}, {"price": 48247.3, "volume": 51165428.0}, {"price": 48257.3, "volume": 51165428.0}, {"price": 48267.3, "volume": 51165428.0}, {"price": 48277.3, "volume": 51165428.0}, {"price": 48287.3, "volume": 51165428.0}, {"price": 48297.3, "volume": 51165428.0}, {"price": 48307.3, "volume": 51165428.0}, {"price": 48317.3, "volume": 51165428.0}, {"price": 48327.3, "volume": 51165428.0}, {"price": 48337.3, "volume": 51165428.0}, {"price": 48347.3, "volume": 51165428.0}, {"price": 48357.3, "volume": 51165428.0}, {"price": 48367.3, "volume": 88598661.0}, {"price": 48377.3, "volume": 118416503.0}, {"price": 48387.3, "volume": 118416503.0}, {"price": 48397.29, "volume": 118416503.0}, {"price": 48407.29, "volume": 118416503.0}, {"price": 48417.29, "volume": 118416503.0}, {"price": 48427.29, "volume": 164933357.0}, {"price": 48437.29, "volume": 164933357.0}, {"price": 48447.29, "volume": 189346239.0}, {"price": 48457.29, "volume": 178103340.0}, {"price": 48467.29, "volume": 178103340.0}, {"price": 48477.29, "volume": 178103340.0}, {"price": 48487.29, "volume": 250942720.0}, {"price": 48497.29, "volume": 250942720.0}, {"price": 48507.29, "volume": 192667855.0}, {"price": 48517.29, "volume": 251874456.0}, {"price": 48527.29, "volume": 231141213.0}, {"price": 48537.29, "volume": 206728331.0}, {"price": 48547.29, "volume": 145563629.0}, {"price": 48557.29, "volume": 119005311.0}, {"price": 48567.29, "volume": 90839815.0}, {"price": 48577.29, "volume": 59206601.0}, {"price": 48587.29, "volume": 59206601.0}]}, "current_price": 48463.72, "daily_summary": "Bias Neutral (Score -14, Confluence 50%). Vortag Range: 48192.3 \u2013 48592.29. VIX=18.2.", "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)", "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)", "h30m_summary": "Kurs 48463.72 unter VWAP (48478.09), in Value Area. POC=48517.29 VAH=48562.29 VAL=48382.3. Shape: Trend Day (Up). Confluence: 2 bullisch / 3 bearisch / 1 neutral von 6.", "mp_shape_yesterday": "Trend Day (Up)", "mp_shape_forecast": "Trend Day (Up)", "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt", "key_levels": [{"level": "VAH Vortag", "price": "48562.29", "source": "Market Profile"}, {"level": "POC Vortag", "price": "48517.29", "source": "Market Profile"}, {"level": "VAL Vortag", "price": "48382.3", "source": "Market Profile"}, {"level": "VWAP 30M", "price": "48478.09", "source": "VWAP"}], "orders": [{"type": "Limit Sell", "entry": "48553.29", "sl": "48607.29", "tp1": "48382.3", "tp2": "48292.31", "rr": "3.17", "p_fill": "22", "p_tp1": "15", "tf": "30M", "confluence": "Preis < VWAP (48464 < 48478) + Preis < POC (48464 < 48517) + Overnight Inventory: Short (Preis < VA-Mitte) (NEUTRAL Bias \u2013 geringere Konfluenz)", "mp_shape_yesterday": "Trend Day (Up)", "mp_shape_forecast": "Trend Day (Up)", "vwap_position": "Preis unter VWAP"}], "invalidation": "Kurs bricht aus Value Area (48382.3\u201348562.29) aus"}, {"name": "SPX500", "bias": "Bullisch", "bias_color": "green", "bias_score": 100, "bias_pct": "95", "bias_signals": [{"label": "Preis > VWAP (7023 > 6948)", "score": 2, "direction": "bullish", "category": "vwap", "auto": true}, {"label": "Ueber VAH \u2013 Breakout (7023 > 6969)", "score": 2, "direction": "bullish", "category": "value_area", "auto": true}, {"label": "Preis > POC (7023 > 6961)", "score": 1, "direction": "bullish", "category": "poc", "auto": true}, {"label": "Shape: Trend Day (Up)", "score": 2, "direction": "bullish", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Long (Preis > VA-Mitte)", "score": 1, "direction": "bullish", "category": "inventory", "auto": true}, {"label": "VIX 18.17 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}], "confluence_score": 6, "confluence_against": 0, "confluence_total": 6, "confluence_pct": 100, "confluence_label": "6/6 (bullisch)", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"], "cvd": {}, "quote": {"price": 7022.95, "change": 55.57, "change_pct": 0.8, "high": 7026.24, "low": 6967.13, "open": 6978.17, "prev_close": 6967.38, "source": "yahoo_eod"}, "market_profile": {"poc": 6960.59, "vah": 6969.42, "val": 6932.48, "vwap": 6948.45, "day_high": 6969.42, "day_low": 6905.17, "shape": {"name": "Trend Day (Up)", "description": "Starke direktionale Bewegung, Continuation wahrscheinlich"}, "volume_profile": [{"price": 6905.97, "volume": 255020388.0}, {"price": 6907.58, "volume": 255020388.0}, {"price": 6909.19, "volume": 255020388.0}, {"price": 6910.79, "volume": 255020388.0}, {"price": 6912.4, "volume": 255020388.0}, {"price": 6914.0, "volume": 255020388.0}, {"price": 6915.61, "volume": 255020388.0}, {"price": 6917.22, "volume": 255020388.0}, {"price": 6918.82, "volume": 478630637.0}, {"price": 6920.43, "volume": 478630637.0}, {"price": 6922.04, "volume": 478630637.0}, {"price": 6923.64, "volume": 478630637.0}, {"price": 6925.25, "volume": 478630637.0}, {"price": 6926.85, "volume": 223610249.0}, {"price": 6928.46, "volume": 223610249.0}, {"price": 6930.07, "volume": 409369877.0}, {"price": 6931.67, "volume": 409369877.0}, {"price": 6933.28, "volume": 567883007.0}, {"price": 6934.89, "volume": 567883007.0}, {"price": 6936.49, "volume": 344272758.0}, {"price": 6938.1, "volume": 344272758.0}, {"price": 6939.7, "volume": 344272758.0}, {"price": 6941.31, "volume": 344272758.0}, {"price": 6942.92, "volume": 158513130.0}, {"price": 6944.52, "volume": 158513130.0}, {"price": 6946.13, "volume": 440835119.0}, {"price": 6947.74, "volume": 559955119.0}, {"price": 6949.34, "volume": 559955119.0}, {"price": 6950.95, "volume": 561210989.0}, {"price": 6952.55, "volume": 800420989.0}, {"price": 6954.16, "volume": 914168989.0}, {"price": 6955.77, "volume": 914168989.0}, {"price": 6957.37, "volume": 795048989.0}, {"price": 6958.98, "volume": 1063790000.0}, {"price": 6960.59, "volume": 1176985000.0}, {"price": 6962.19, "volume": 1176985000.0}, {"price": 6963.8, "volume": 937775000.0}, {"price": 6965.4, "volume": 692524000.0}, {"price": 6967.01, "volume": 579329000.0}, {"price": 6968.62, "volume": 419560000.0}]}, "current_price": 7022.95, "daily_summary": "Bias Bullisch (Score 100, Confluence 100%). Vortag Range: 6905.17 \u2013 6969.42. VIX=18.2.", "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)", "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)", "h30m_summary": "Kurs 7022.95 ueber VWAP (6948.45), ausserhalb Value Area. POC=6960.59 VAH=6969.42 VAL=6932.48. Shape: Trend Day (Up). Confluence: 6/6 (bullisch).", "mp_shape_yesterday": "Trend Day (Up)", "mp_shape_forecast": "Trend Day (Up)", "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt", "key_levels": [{"level": "VAH Vortag", "price": "6969.42", "source": "Market Profile"}, {"level": "POC Vortag", "price": "6960.59", "source": "Market Profile"}, {"level": "VAL Vortag", "price": "6932.48", "source": "Market Profile"}, {"level": "VWAP 30M", "price": "6948.45", "source": "VWAP"}], "orders": [{"type": "Limit Buy", "entry": "6934.33", "sl": "6923.25", "tp1": "6969.42", "tp2": "6987.89", "rr": "3.17", "p_fill": "75", "p_tp1": "60", "tf": "30M", "confluence": "Preis > VWAP (7023 > 6948) + Ueber VAH \u2013 Breakout (7023 > 6969) + Preis > POC (7023 > 6961)", "mp_shape_yesterday": "Trend Day (Up)", "mp_shape_forecast": "Trend Day (Up)", "vwap_position": "Preis ueber VWAP"}], "invalidation": "Kurs schliesst unter 6932.48 \u2013 bullischer Bias negiert"}], "summary": {"best_instrument": "GER40", "total_orders": 3, "warnings": [], "notes": "Auto-generiert 00:16. VIX=18.2. Beste Konfluenz: GER40."}, "stats": {"total": 65, "fill_rate": "12.3%", "tp1_rate": "12.5%", "sl_rate": "87.5%", "trend": "Stabil", "best_confluence": "DJ30: MP VAL + VWAP + SMC + Kumo (100% TP1-Rate)"}}};</script>
 </head>
 <body>
 <div class="header">
   <h1>✈ Cockpit-Trader</h1>
   <div class="ts" id="ts">Lade Daten...</div>
-  <div id="age-bar" style="margin-top:6px;font-size:12px;display:none;">
+  <div id="age-bar">
     <span id="age-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
     <span id="age-txt"></span>
   </div>
 </div>
-<div style="display:flex;justify-content:center;gap:8px;padding:12px 0 20px;border-bottom:1px solid #1e2a3a;margin-bottom:30px;">
-  <a href="index.html" style="color:#e2e8f0;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;background:rgba(59,130,246,0.15);border:1px solid #3b82f6;letter-spacing:1px;">Dashboard</a>
-  <a href="journal.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Journal</a>
-  <a href="orders.html" style="color:#64748b;text-decoration:none;padding:8px 20px;font-size:13px;font-family:'SF Mono','Fira Code',monospace;border-radius:8px;border:1px solid #1e2a3a;letter-spacing:1px;">Orders</a>
+
+<div class="nav">
+  <a href="#dashboard" class="active" onclick="showTab('dashboard',this)">Dashboard</a>
+  <a href="#backtest" onclick="showTab('backtest',this)">Backtest</a>
+  <a href="journal.html">Journal</a>
+  <a href="orders.html">Orders</a>
 </div>
-<div class="grid" id="dash">
-  <div class="loading fw">
-    ⏳ Lade Daten...<br>
-    <small style="font-size:12px;margin-top:8px;display:block;">
-      Zuerst: <code>python cockpit-morning.py</code> ausführen
-    </small>
+
+<!-- ═══════════════════ TAB: DASHBOARD ═══════════════════ -->
+<div id="tab-dashboard">
+  <div class="grid" id="dash">
+    <div class="loading fw">⏳ Lade Daten...<br>
+      <small style="font-size:12px;margin-top:8px;display:block;">
+        Zuerst: <code>python cockpit-morning.py</code> ausführen
+      </small>
+    </div>
   </div>
 </div>
+
+<!-- ═══════════════════ TAB: BACKTEST ════════════════════ -->
+<div id="tab-backtest" style="display:none;max-width:1400px;margin:0 auto;">
+  <div id="bt-content">
+    <div class="no-data">
+      Backtest-Daten werden nach dem ersten vollständigen Tag geladen.<br>
+      <code style="font-size:12px;margin-top:8px;display:block;">python backtest-collector.py</code>
+    </div>
+  </div>
+</div>
+
 <script>
-function load(){
-  if(window.__COCKPIT_DATA__){
-    render(window.__COCKPIT_DATA__);
-    return;
-  }
+// ── Tab-Navigation ─────────────────────────────────────────────────────────
+function showTab(name, el) {
+  document.getElementById('tab-dashboard').style.display = name==='dashboard' ? '' : 'none';
+  document.getElementById('tab-backtest').style.display  = name==='backtest'  ? '' : 'none';
+  document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
+  if (el) el.classList.add('active');
+  if (name === 'backtest') loadBacktest();
+}
+
+// ── Data Loading ───────────────────────────────────────────────────────────
+let _analysisTs = null;
+
+function fmtAge(ts) {
+  const mins = Math.floor((Date.now() - ts.getTime()) / 60000);
+  if (mins < 1)  return {txt:'gerade aktualisiert', color:'#22c55e'};
+  if (mins < 60) return {txt:`vor ${mins} Min`, color:'#22c55e'};
+  const h = Math.floor(mins/60), m = mins%60;
+  if (h < 4)  return {txt:`vor ${h}h ${m}min`, color:'#eab308'};
+  if (h < 8)  return {txt:`vor ${h}h — bitte neu starten`, color:'#f97316'};
+  return             {txt:`${h}h alt — VERALTET`, color:'#ef4444'};
+}
+
+function updateAge() {
+  if (!_analysisTs) return;
+  const {txt, color} = fmtAge(_analysisTs);
+  document.getElementById('age-txt').textContent  = txt;
+  document.getElementById('age-txt').style.color  = color;
+  document.getElementById('age-dot').style.background  = color;
+  document.getElementById('age-dot').style.boxShadow   = `0 0 6px ${color}`;
+}
+
+function load() {
+  if (window.__COCKPIT_DATA__) { render(window.__COCKPIT_DATA__); return; }
   fetch('data.json')
-    .then(r=>{ if(!r.ok) throw new Error('data.json nicht gefunden'); return r.json(); })
+    .then(r => { if (!r.ok) throw new Error('data.json nicht gefunden'); return r.json(); })
     .then(render)
-    .catch(e=>{
-      document.getElementById('dash').innerHTML=
-        `<div class="loading fw">❌ ${e.message}<br><small>python cockpit-morning.py ausführen — öffne cockpit-briefing.html</small></div>`;
+    .catch(e => {
+      document.getElementById('dash').innerHTML =
+        `<div class="loading fw">❌ ${e.message}<br>
+         <small>python cockpit-morning.py ausführen</small></div>`;
     });
 }
 
-let _analysisTs=null;
-
-function fmtAge(ts){
-  const mins=Math.floor((Date.now()-ts.getTime())/60000);
-  if(mins<1)  return {txt:'gerade eben aktualisiert', color:'#22c55e'};
-  if(mins<60) return {txt:`vor ${mins} Min aktualisiert`, color:'#22c55e'};
-  const h=Math.floor(mins/60), m=mins%60;
-  if(h<4)     return {txt:`vor ${h}h ${m}min aktualisiert`, color:'#eab308'};
-  if(h<8)     return {txt:`vor ${h}h aktualisiert — bitte neu starten`, color:'#f97316'};
-  return       {txt:`Analyse ${h}h alt — VERALTET`, color:'#ef4444'};
-}
-
-function updateAge(){
-  if(!_analysisTs) return;
-  const {txt,color}=fmtAge(_analysisTs);
-  document.getElementById('age-txt').textContent=txt;
-  document.getElementById('age-txt').style.color=color;
-  document.getElementById('age-dot').style.background=color;
-  document.getElementById('age-dot').style.boxShadow=`0 0 6px ${color}`;
-}
-
-function render(d){
-  _analysisTs=new Date(d.timestamp);
-  const ts=_analysisTs;
-  document.getElementById('ts').textContent=
-    `Pre-Flight Briefing — ${ts.toLocaleDateString('de-DE')} ${ts.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})} Uhr`;
-  document.getElementById('age-bar').style.display='block';
+function render(d) {
+  _analysisTs = new Date(d.timestamp);
+  document.getElementById('ts').textContent =
+    `Pre-Flight Briefing — ${_analysisTs.toLocaleDateString('de-DE')} ` +
+    `${_analysisTs.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})} Uhr`;
+  document.getElementById('age-bar').style.display = 'block';
   updateAge();
   setInterval(updateAge, 60000);
-  let html='';
-  html+=renderCtx(d.context);
-  html+=renderCal(d.calendar);
-  const insts=(d.journal&&d.journal.instruments)||[];
-  if(insts.length){
-    insts.forEach(ji=>{ html+=renderInst(ji); });
+
+  let html = '';
+  // Reihenfolge: Context → Instrumente → Kalender (ganz am Ende)
+  html += renderCtx(d.context);
+
+  const insts = (d.journal && d.journal.instruments) || [];
+  if (insts.length) {
+    insts.forEach(ji => { html += renderInst(ji); });
   } else {
-    for(const[k,inst] of Object.entries(d.instruments||{})){
-      if(!inst.error) html+=renderInstLegacy(k,inst);
+    for (const [k, inst] of Object.entries(d.instruments || {})) {
+      if (!inst.error) html += renderInstLegacy(k, inst);
     }
   }
-  document.getElementById('dash').innerHTML=html;
+
+  html += renderCal(d.calendar);
+  document.getElementById('dash').innerHTML = html;
 }
 
-function biasColor(c){
-  return c==='green'?'#22c55e':c==='red'?'#ef4444':'#eab308';
+// ── Helpers ────────────────────────────────────────────────────────────────
+function f(v, dec=2) {
+  if (v === null || v === undefined) return '—';
+  return typeof v === 'number'
+    ? v.toLocaleString('de-DE', {minimumFractionDigits:dec, maximumFractionDigits:dec})
+    : v;
 }
 
-function tlight(color){
-  const gc=biasColor(color);
+function biasColor(c) {
+  return c==='green' ? '#22c55e' : c==='red' ? '#ef4444' : '#eab308';
+}
+
+function tlight(color) {
   return `<div class="tlight">
-    <div class="light" style="${color==='green'?`background:#22c55e;box-shadow:0 0 20px #22c55e`:''}" ></div>
-    <div class="light" style="${color==='yellow'?`background:#eab308;box-shadow:0 0 20px #eab308`:''}" ></div>
-    <div class="light" style="${color==='red'?`background:#ef4444;box-shadow:0 0 20px #ef4444`:''}" ></div>
+    <div class="light" style="${color==='green'?'background:#22c55e;box-shadow:0 0 20px #22c55e':''}"></div>
+    <div class="light" style="${color==='yellow'?'background:#eab308;box-shadow:0 0 20px #eab308':''}"></div>
+    <div class="light" style="${color==='red'?'background:#ef4444;box-shadow:0 0 20px #ef4444':''}"></div>
   </div>`;
 }
 
-function renderInst(ji){
-  const mp    = ji.market_profile||{};
-  const q     = ji.quote||{};
-  const cvd   = ji.cvd||{};
-  const price = ji.current_price;
-  const color = ji.bias_color||'yellow';
-  const gc    = biasColor(color);
-  const cc    = (q.change||0)>=0?'pos':'neg';
-  const cs    = (q.change||0)>=0?'+':'';
-  const shape = mp.shape||{};
+function confBar(pct, label) {
+  const col = pct >= 70 ? '#22c55e' : pct >= 45 ? '#eab308' : '#ef4444';
+  return `<div class="conf-bar-wrap">
+    <div class="conf-bar-bg">
+      <div class="conf-bar-fill" style="width:${pct}%;background:${col}"></div>
+    </div>
+    <div class="conf-label">Confluence: <strong style="color:${col}">${label||pct+'%'}</strong></div>
+  </div>`;
+}
 
-  // Key Levels: aus journal key_levels
-  const klRows=(ji.key_levels||[]).map(kl=>`
+function manualChecks(checks) {
+  if (!checks || !checks.length) return '';
+  const items = checks.map(c => `<li>${c}</li>`).join('');
+  return `<div class="manual-checks">
+    <div class="mc-title">✋ Manuell prüfen</div>
+    <ul>${items}</ul>
+  </div>`;
+}
+
+// ── Instrument Card ────────────────────────────────────────────────────────
+function renderInst(ji) {
+  const mp    = ji.market_profile || {};
+  const q     = ji.quote || {};
+  const cvd   = ji.cvd || {};
+  const price = ji.current_price;
+  const color = ji.bias_color || 'yellow';
+  const gc    = biasColor(color);
+  const cc    = (q.change || 0) >= 0 ? 'pos' : 'neg';
+  const cs    = (q.change || 0) >= 0 ? '+' : '';
+  const shape = mp.shape || {};
+
+  // Confluence
+  const confPct   = ji.confluence_pct   || 0;
+  const confLabel = ji.confluence_label || '—';
+  const confBar_  = confBar(confPct, confLabel);
+
+  // Manual checks
+  const manualHtml = manualChecks(ji.manual_checks);
+
+  // Key levels
+  const klRows = (ji.key_levels || []).map(kl => `
     <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;">
       <span style="color:var(--muted)">${kl.level}</span>
-      <span style="font-weight:600;color:#f1f5f9">${kl.price}</span>
+      <span style="font-weight:600">${kl.price}</span>
       <span style="color:var(--muted);font-size:11px">${kl.source||''}</span>
     </div>`).join('');
 
   // Orders
-  const orderCards=(ji.orders||[]).map(o=>{
-    const oc=o.type&&o.type.includes('Buy')?'var(--green)':'var(--red)';
-    return `<div style="border:1px solid ${oc};border-radius:8px;padding:10px;margin-top:8px;font-size:13px;">
+  const orderCards = (ji.orders || []).map(o => {
+    const oc = o.type && o.type.includes('Buy') ? 'var(--green)' : 'var(--red)';
+    return `<div class="order-card" style="border:1px solid ${oc}">
       <div style="color:${oc};font-weight:700;margin-bottom:6px">${o.type||'—'}</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px 12px;">
-        <span style="color:var(--muted)">Entry</span><span style="color:var(--muted)">SL</span><span style="color:var(--muted)">TP1</span>
-        <span style="font-weight:600">${o.entry||'—'}</span><span style="font-weight:600;color:var(--red)">${o.sl||'—'}</span><span style="font-weight:600;color:var(--green)">${o.tp1||'—'}</span>
+        <span style="color:var(--muted)">Entry</span>
+        <span style="color:var(--muted)">SL</span>
+        <span style="color:var(--muted)">TP1</span>
+        <span style="font-weight:600">${o.entry||'—'}</span>
+        <span style="font-weight:600;color:var(--red)">${o.sl||'—'}</span>
+        <span style="font-weight:600;color:var(--green)">${o.tp1||'—'}</span>
       </div>
-      <div style="margin-top:6px;color:var(--muted)">R:R <span style="color:#f1f5f9;font-weight:600">${o.rr||'—'}</span>
-        &nbsp;|&nbsp; P(Fill) <span style="color:#f1f5f9">${o.p_fill||'—'}%</span>
-        &nbsp;|&nbsp; P(TP1) <span style="color:#f1f5f9">${o.p_tp1||'—'}%</span>
-        &nbsp;|&nbsp; TF <span style="color:#f1f5f9">${o.tf||'—'}</span>
+      <div style="margin-top:6px;color:var(--muted)">
+        R:R <strong style="color:#f1f5f9">${o.rr||'—'}</strong>
+        &nbsp;|&nbsp; P(Fill) <strong>${o.p_fill||'—'}%</strong>
+        &nbsp;|&nbsp; P(TP1) <strong>${o.p_tp1||'—'}%</strong>
       </div>
       <div style="margin-top:4px;font-size:11px;color:var(--muted)">${o.confluence||''}</div>
     </div>`;
   }).join('');
 
-  // Bias Signals
-  const sigRows=(ji.bias_signals||[]).map(s=>`
-    <li>
-      <span>
-        <span class="sdot" style="background:${s.direction==='bullish'?'var(--green)':s.direction==='bearish'?'var(--red)':'var(--muted)'}"></span>
-        ${s.label}
-      </span>
+  // Signals
+  const sigRows = (ji.bias_signals || []).map(s => {
+    const dc = s.direction==='bullish'?'var(--green)':s.direction==='bearish'?'var(--red)':'var(--muted)';
+    return `<li>
+      <span><span class="sdot" style="background:${dc}"></span>${s.label}</span>
       <span class="ssc ${s.score>0?'pos':s.score<0?'neg':''}">${s.score>0?'+'+s.score:s.score}</span>
-    </li>`).join('');
+    </li>`;
+  }).join('');
 
   // CVD
-  const cvdHtml=cvd.value!=null
-    ?`<div style="margin-top:6px;font-size:12px">CVD <span style="font-weight:600;color:${cvd.value>0?'var(--green)':'var(--red)'}">${cvd.value>0?'+':''}${Math.round(cvd.value).toLocaleString('de-DE')}</span> <span style="color:var(--muted)">${cvd.direction||''}</span></div>`
-    :'';
+  const cvdHtml = cvd.value != null
+    ? `<div style="margin-top:6px;font-size:12px">CVD
+        <span style="font-weight:600;color:${cvd.value>0?'var(--green)':'var(--red)'}">
+          ${cvd.value>0?'+':''}${Math.round(cvd.value).toLocaleString('de-DE')}
+        </span>
+        <span style="color:var(--muted)">${cvd.direction||''}</span>
+       </div>` : '';
 
   return `
 <div class="card">
@@ -231,14 +337,17 @@ function renderInst(ji){
     ${tlight(color)}
     <div class="bi">
       <div class="bl" style="color:${gc}">${ji.bias||'—'}</div>
-      <div class="bs">Score: ${ji.bias_score??'—'} &nbsp;|&nbsp; Konfluenz: ${ji.bias_pct||'—'}%</div>
+      <div class="bs">Score: ${ji.bias_score??'—'}</div>
       ${cvdHtml}
     </div>
   </div>
+  ${confBar_}
+  ${manualHtml}
   <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">
     ${ji.h30m_summary||''}
   </div>
 </div>
+
 <div class="card">
   <div class="ct">🎯 Key Levels — ${ji.name}</div>
   <div class="lgrid" style="margin-bottom:12px">
@@ -255,8 +364,11 @@ function renderInst(ji){
   <div style="margin-top:6px;font-size:11px;color:var(--muted)">
     Range Vortag: ${f(mp.day_low)} – ${f(mp.day_high)}
   </div>
-  ${ji.invalidation?`<div style="margin-top:8px;padding:6px 10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:6px;font-size:12px;color:#ef4444">Invalidierung: ${ji.invalidation}</div>`:''}
+  ${ji.invalidation
+    ? `<div style="margin-top:8px;padding:6px 10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:6px;font-size:12px;color:#ef4444">Invalidierung: ${ji.invalidation}</div>`
+    : ''}
 </div>
+
 <div class="card">
   <div class="ct">📊 Levels Chart — ${ji.name}
     <span style="margin-left:8px;color:#f1f5f9;font-size:10px">── Kurs</span>
@@ -266,14 +378,21 @@ function renderInst(ji){
   </div>
   <div class="vpc">${drawVP(mp, price)}</div>
 </div>
+
 <div class="card">
   <div class="ct">🔍 Bias Signals — ${ji.name}</div>
   <ul class="slist">${sigRows}</ul>
-  ${orderCards?`<div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px"><div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:4px">Order Setup</div>${orderCards}</div>`:''}
+  ${orderCards
+    ? `<div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:4px">Order Setup</div>
+        ${orderCards}
+       </div>`
+    : ''}
 </div>`;
 }
 
-function renderInstLegacy(k,inst){
+// ── Legacy (fallback) ──────────────────────────────────────────────────────
+function renderInstLegacy(k, inst) {
   const q=inst.quote||{}, mp=inst.market_profile||{}, b=inst.bias||{};
   const cc=(q.change||0)>=0?'pos':'neg', cs=(q.change||0)>=0?'+':'';
   return `
@@ -293,100 +412,101 @@ function renderInstLegacy(k,inst){
 </div>`;
 }
 
-function drawVPFromLevels(mp, currentPrice){
-  if(!mp||!mp.poc) return '<div style="text-align:center;color:var(--muted);padding:40px">Kein Volume Profile verfuegbar</div>';
-  const h=200, w=520, margin=80, rightPad=20;
-  const levels=[
-    {label:'VAH', price:mp.vah, color:'#22c55e'},
-    {label:'POC', price:mp.poc, color:'#06b6d4'},
-    {label:'VWAP',price:mp.vwap,color:'#eab308'},
-    {label:'VAL', price:mp.val, color:'#ef4444'},
-  ].filter(l=>l.price!=null).sort((a,b)=>b.price-a.price);
-  if(currentPrice) levels.push({label:'Kurs',price:currentPrice,color:'#f1f5f9',bold:true});
-  const allPrices=levels.map(l=>l.price);
-  const minP=Math.min(...allPrices), maxP=Math.max(...allPrices);
-  const range=maxP-minP||1;
-  const p2y=p=>10+(1-(p-minP)/range)*(h-20);
-  let lines='';
-  levels.forEach(l=>{
-    const y=p2y(l.price);
-    const dash=l.bold?'':' stroke-dasharray="6,3"';
-    const sw=l.bold?2.5:1.5;
-    lines+=`<line x1="${margin}" y1="${y}" x2="${w-rightPad}" y2="${y}" stroke="${l.color}" stroke-width="${sw}"${dash}/>`;
-    lines+=`<text x="${margin-6}" y="${y+4}" text-anchor="end" fill="${l.color}" font-size="11" font-family="monospace"${l.bold?' font-weight="bold"':''}>${l.price.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})}</text>`;
-    lines+=`<text x="${w-rightPad+4}" y="${y+4}" fill="${l.color}" font-size="10" font-family="monospace">${l.label}</text>`;
-  });
-  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:${h}px">${lines}</svg>`;
-}
-
-function drawVP(mp, currentPrice){
-  if(!mp||!mp.volume_profile||!mp.volume_profile.length)
+// ── VP Chart ───────────────────────────────────────────────────────────────
+function drawVP(mp, currentPrice) {
+  if (!mp || !mp.volume_profile || !mp.volume_profile.length)
     return drawVPFromLevels(mp, currentPrice);
 
-  const vps    = mp.volume_profile;
-  const maxV   = Math.max(...vps.map(b=>b.volume));
+  const vps  = mp.volume_profile;
+  const maxV = Math.max(...vps.map(b => b.volume));
   const h=320, w=520, bH=h/vps.length, margin=70, rightPad=20;
-  const minP   = vps[0].price;
-  const maxP   = vps[vps.length-1].price;
+  const minP = vps[0].price, maxP = vps[vps.length-1].price;
   const priceRange = maxP - minP || 1;
-  const p2y    = p => h - ((p - minP) / priceRange) * h;
-  const tick   = (vps[1]?.price - vps[0]?.price) || 1;
+  const p2y = p => h - ((p - minP) / priceRange) * h;
+  const tick = (vps[1]?.price - vps[0]?.price) || 1;
+  const inRange = currentPrice !== null &&
+                  currentPrice >= minP - priceRange*0.3 &&
+                  currentPrice <= maxP + priceRange*0.3;
 
-  const priceInRange = currentPrice !== null &&
-                       currentPrice >= minP - priceRange * 0.3 &&
-                       currentPrice <= maxP + priceRange * 0.3;
   let bars = '';
-
-  vps.forEach((bin,i)=>{
+  vps.forEach((bin, i) => {
     const bW = maxV > 0 ? (bin.volume / maxV) * (w - margin - rightPad) : 0;
     const y  = h - (i+1) * bH;
-    let col  = 'rgba(59,130,246,0.4)';
-    if(mp.poc && Math.abs(bin.price - mp.poc) < tick * 0.6)
-      col = 'rgba(6,182,212,0.8)';
-    else if(mp.vah && mp.val && bin.price >= mp.val && bin.price <= mp.vah)
-      col = 'rgba(59,130,246,0.6)';
+    let col = 'rgba(59,130,246,0.4)';
+    if (mp.poc && Math.abs(bin.price - mp.poc) < tick * 0.6) col = 'rgba(6,182,212,0.8)';
+    else if (mp.vah && mp.val && bin.price >= mp.val && bin.price <= mp.vah) col = 'rgba(59,130,246,0.6)';
     bars += `<rect x="${margin}" y="${y}" width="${bW}" height="${bH-1}" fill="${col}" rx="2"/>`;
-    if(i % 4 === 0)
+    if (i % 4 === 0)
       bars += `<text x="${margin-6}" y="${y+bH/2+4}" text-anchor="end" fill="#64748b" font-size="10" font-family="monospace">${bin.price.toFixed(0)}</text>`;
   });
 
-  if(mp.poc){const y=p2y(mp.poc);
-    bars+=`<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#06b6d4" stroke-width="2" stroke-dasharray="6,3"/>`;
-    bars+=`<text x="${w-4}" y="${y-4}" text-anchor="end" fill="#06b6d4" font-size="11" font-family="monospace">POC ${mp.poc}</text>`;}
-  if(mp.vah){const y=p2y(mp.vah);
-    bars+=`<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4"/>`;
-    bars+=`<text x="${w-4}" y="${y-4}" text-anchor="end" fill="#22c55e" font-size="10" font-family="monospace">VAH ${mp.vah}</text>`;}
-  if(mp.val){const y=p2y(mp.val);
-    bars+=`<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,4"/>`;
-    bars+=`<text x="${w-4}" y="${y+14}" text-anchor="end" fill="#ef4444" font-size="10" font-family="monospace">VAL ${mp.val}</text>`;}
-
-  if(priceInRange){
+  if (mp.poc) {
+    const y = p2y(mp.poc);
+    bars += `<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#06b6d4" stroke-width="2" stroke-dasharray="6,3"/>`;
+    bars += `<text x="${w-4}" y="${y-4}" text-anchor="end" fill="#06b6d4" font-size="11" font-family="monospace">POC ${mp.poc}</text>`;
+  }
+  if (mp.vah) {
+    const y = p2y(mp.vah);
+    bars += `<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4"/>`;
+    bars += `<text x="${w-4}" y="${y-4}" text-anchor="end" fill="#22c55e" font-size="10" font-family="monospace">VAH ${mp.vah}</text>`;
+  }
+  if (mp.val) {
+    const y = p2y(mp.val);
+    bars += `<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,4"/>`;
+    bars += `<text x="${w-4}" y="${y+14}" text-anchor="end" fill="#ef4444" font-size="10" font-family="monospace">VAL ${mp.val}</text>`;
+  }
+  if (inRange) {
     const y = p2y(currentPrice);
-    bars += `<rect x="${margin}" y="${y-9}" width="92" height="18" fill="rgba(241,245,249,0.15)" rx="3"/>`;
     bars += `<line x1="${margin}" y1="${y}" x2="${w-100}" y2="${y}" stroke="#f1f5f9" stroke-width="2"/>`;
-    const ax = w-102;
-    bars += `<polygon points="${ax},${y-5} ${ax+10},${y} ${ax},${y+5}" fill="#f1f5f9"/>`;
+    bars += `<polygon points="${w-102},${y-5} ${w-92},${y} ${w-102},${y+5}" fill="#f1f5f9"/>`;
+    bars += `<rect x="${margin}" y="${y-9}" width="92" height="18" fill="rgba(241,245,249,0.15)" rx="3"/>`;
     bars += `<text x="${margin+4}" y="${y+5}" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">▶ ${currentPrice.toFixed(2)}</text>`;
     bars += `<text x="${w-4}" y="${y+5}" text-anchor="end" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">${currentPrice.toFixed(2)}</text>`;
-  } else if(currentPrice !== null){
-    const aboveRange = currentPrice > maxP;
-    const arrowY     = aboveRange ? 16 : h-6;
-    const arrowChar  = aboveRange ? '▲' : '▼';
-    bars += `<text x="${margin+4}" y="${arrowY}" fill="#f1f5f9" font-size="12" font-family="monospace">${arrowChar} Kurs ${currentPrice.toFixed(2)} (ausserhalb Vortags-Range)</text>`;
+  } else if (currentPrice !== null) {
+    const above = currentPrice > maxP;
+    bars += `<text x="${margin+4}" y="${above?16:h-6}" fill="#f1f5f9" font-size="12" font-family="monospace">${above?'▲':'▼'} Kurs ${currentPrice.toFixed(2)} (ausserhalb Range)</text>`;
   }
 
   return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet">${bars}</svg>`;
 }
 
-function renderCtx(ctx){
-  if(!ctx) return '';
+function drawVPFromLevels(mp, currentPrice) {
+  if (!mp || !mp.poc)
+    return '<div style="text-align:center;color:var(--muted);padding:40px">Kein Volume Profile verfügbar</div>';
+  const h=200, w=520, margin=80, rightPad=20;
+  const levels = [
+    {label:'VAH',  price:mp.vah,  color:'#22c55e'},
+    {label:'POC',  price:mp.poc,  color:'#06b6d4'},
+    {label:'VWAP', price:mp.vwap, color:'#eab308'},
+    {label:'VAL',  price:mp.val,  color:'#ef4444'},
+  ].filter(l => l.price != null).sort((a,b) => b.price - a.price);
+  if (currentPrice) levels.push({label:'Kurs', price:currentPrice, color:'#f1f5f9', bold:true});
+  const allPrices = levels.map(l => l.price);
+  const minP = Math.min(...allPrices), maxP = Math.max(...allPrices);
+  const range = maxP - minP || 1;
+  const p2y = p => 10 + (1 - (p - minP) / range) * (h - 20);
+  let lines = '';
+  levels.forEach(l => {
+    const y   = p2y(l.price);
+    const dash = l.bold ? '' : ' stroke-dasharray="6,3"';
+    const sw   = l.bold ? 2.5 : 1.5;
+    lines += `<line x1="${margin}" y1="${y}" x2="${w-rightPad}" y2="${y}" stroke="${l.color}" stroke-width="${sw}"${dash}/>`;
+    lines += `<text x="${margin-6}" y="${y+4}" text-anchor="end" fill="${l.color}" font-size="11" font-family="monospace"${l.bold?' font-weight="bold"':''}>${l.price.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})}</text>`;
+    lines += `<text x="${w-rightPad+4}" y="${y+4}" fill="${l.color}" font-size="10" font-family="monospace">${l.label}</text>`;
+  });
+  return `<svg viewBox="0 0 ${w} ${h}">${lines}</svg>`;
+}
+
+// ── Context & Calendar ─────────────────────────────────────────────────────
+function renderCtx(ctx) {
+  if (!ctx) return '';
   return `<div class="card fw">
     <div class="ct">🌍 Macro Context</div>
     <div class="cgrid">
-      ${['VIX','DXY','US10Y','DAX'].map(k=>{
-        const d=ctx[k];
-        if(!d) return `<div class="ci"><div class="cl2">${k}</div><div class="cp2">—</div></div>`;
-        const cc=(d.change||0)>=0?'pos':'neg', cs=(d.change||0)>=0?'+':'';
+      ${['VIX','DXY','US10Y','DAX'].map(k => {
+        const d = ctx[k];
+        if (!d) return `<div class="ci"><div class="cl2">${k}</div><div class="cp2">—</div></div>`;
+        const cc = (d.change||0)>=0?'pos':'neg', cs=(d.change||0)>=0?'+':'';
         return `<div class="ci">
           <div class="cl2">${k}</div>
           <div class="cp2">${f(d.price)}</div>
@@ -397,57 +517,162 @@ function renderCtx(ctx){
   </div>`;
 }
 
-function renderCal(cal){
-  if(!cal||!cal.length)
-    return `<div class="card fw">
-      <div class="ct">📅 Macro Kalender</div>
-      <div style="color:var(--muted);font-size:13px;padding:8px 0">Keine High-Impact Events gefunden</div>
-    </div>`;
+function fmtDate(d) {
+  try { return new Date(d).toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'}); }
+  catch(e) { return d; }
+}
 
-  const grouped={};
-  cal.forEach(e=>{
-    const d=e.date||String(e.time||'').slice(0,10)||'unbekannt';
-    if(!grouped[d]) grouped[d]=[];
+function renderCal(cal) {
+  // Nur US und DE, nur high impact — als zweite Filterlinie (erste ist in cockpit-morning.py)
+  const filtered = (cal || []).filter(e =>
+    e.impact === 'high' &&
+    ['US','DE'].includes((e.country||'').toUpperCase())
+  );
+  const flagMap = {'US':'🇺🇸','DE':'🇩🇪'};
+
+  if (!filtered.length)
+    return `<div class="card fw"><div class="ct">📅 Macro Kalender — US &amp; DE High Impact</div>
+      <div style="color:var(--muted);font-size:13px;padding:12px 0;text-align:center">
+        Keine High-Impact Events für US/DE
+      </div></div>`;
+
+  const grouped = {};
+  filtered.forEach(e => {
+    const d = e.date || String(e.time||'').slice(0,10) || 'unbekannt';
+    if (!grouped[d]) grouped[d] = [];
     grouped[d].push(e);
   });
 
-  const today=new Date().toISOString().slice(0,10);
-  let rows='';
-
-  for(const[date,events] of Object.entries(grouped)){
-    const isToday  = date===today;
-    const labelCol = isToday?'var(--cyan)':'var(--yellow)';
-    const labelTxt = isToday?`Heute — ${fmtDate(date)}`:`Nächster Tag — ${fmtDate(date)}`;
-    rows+=`<div class="day-label" style="color:${labelCol}">${labelTxt}</div>`;
-    rows+=events.map(e=>`
+  const today = new Date().toISOString().slice(0,10);
+  let rows = '';
+  for (const [date, events] of Object.entries(grouped)) {
+    const isToday = date === today;
+    rows += `<div class="day-label" style="color:${isToday?'var(--cyan)':'var(--yellow)'}">
+      ${isToday?'Heute':'Nächster Tag'} — ${fmtDate(date)}
+    </div>`;
+    rows += events.map(e => `
     <div class="cale">
       <span class="cat">${String(e.time||'').slice(11,16)||'—'}</span>
       <span class="can">${e.event}</span>
-      <span class="imp-${e.impact==='high'?'high':'medium'}">${e.impact==='high'?'●●':'●'}</span>
-      <span class="cac">${e.country}</span>
+      <span class="imp-high">●●</span>
+      <span class="cac">${flagMap[e.country]||''} ${e.country}</span>
     </div>`).join('');
   }
-
   return `<div class="card fw">
-    <div class="ct">📅 Macro Kalender — High &amp; Medium Impact</div>
+    <div class="ct">📅 Macro Kalender — US &amp; DE · High Impact only</div>
     ${rows}
   </div>`;
 }
 
-function fmtDate(d){
-  if(!d||d==='unbekannt') return d;
-  try{
-    return new Date(d).toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
-  }catch(e){ return d; }
+// ── Backtest Tab ───────────────────────────────────────────────────────────
+function loadBacktest() {
+  fetch('snapshots/backtest-report.json')
+    .then(r => { if (!r.ok) throw new Error('Noch kein Report'); return r.json(); })
+    .then(renderBacktest)
+    .catch(() => {
+      document.getElementById('bt-content').innerHTML =
+        `<div class="no-data">
+          Noch kein Backtest-Report vorhanden.<br>
+          <code style="display:block;margin-top:8px;font-size:12px">python backtest-collector.py</code>
+        </div>`;
+    });
 }
 
-function f(v){
-  if(v===null||v===undefined) return '—';
-  return typeof v==='number'
-    ? v.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})
-    : v;
+function renderBacktest(r) {
+  const wrong = r.total_signals - r.total_correct - r.total_partial;
+  const pctCol = p => p >= 60 ? '#22c55e' : p >= 45 ? '#eab308' : '#ef4444';
+
+  // KPI
+  const kpiHtml = `
+  <div class="bt-kpi">
+    <div class="bt-kpi-box">
+      <div class="bt-kpi-val" style="color:${pctCol(r.overall_pct)}">${r.overall_pct}%</div>
+      <div class="bt-kpi-lbl">Trefferquote</div>
+    </div>
+    <div class="bt-kpi-box">
+      <div class="bt-kpi-val">${r.total_signals}</div>
+      <div class="bt-kpi-lbl">Signale gesamt</div>
+    </div>
+    <div class="bt-kpi-box">
+      <div class="bt-kpi-val" style="color:#22c55e">${r.total_correct}</div>
+      <div class="bt-kpi-lbl">✅ Korrekt</div>
+    </div>
+  </div>
+  <div style="font-size:12px;color:var(--muted);margin-bottom:20px">
+    ⚡ Partial: ${r.total_partial} &nbsp;|&nbsp; ❌ Falsch: ${wrong}
+    &nbsp;|&nbsp; Zeitraum: ${r.snapshots_used} Handelstage
+    &nbsp;|&nbsp; Stand: ${(r.generated_at||'').slice(0,16)}
+  </div>`;
+
+  // Tabellen-Builder
+  function tableOf(data, title) {
+    if (!data || !Object.keys(data).length) return '';
+    const rows = Object.entries(data).map(([k, v]) => {
+      const barW = Math.round(v.pct * 1.4);
+      const col  = pctCol(v.pct);
+      return `<tr>
+        <td>${k}</td>
+        <td><strong style="color:${col}">${v.pct}%</strong>
+          <span class="bt-bar" style="width:${barW}px;background:${col}"></span></td>
+        <td style="color:var(--muted)">${v.correct}/${v.total}</td>
+      </tr>`;
+    }).join('');
+    return `
+    <div class="bt-section card">
+      <div class="ct">${title}</div>
+      <table class="bt-table">
+        <thead><tr><th>Kategorie</th><th>Trefferquote</th><th>n</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+  }
+
+  // Wochenverlauf
+  let weekHtml = '';
+  if (r.by_week && Object.keys(r.by_week).length) {
+    const rows = Object.entries(r.by_week).map(([k, v]) => {
+      const col = pctCol(v.pct);
+      const barW = Math.round(v.pct * 1.4);
+      return `<tr>
+        <td>${k}</td>
+        <td><strong style="color:${col}">${v.pct}%</strong>
+          <span class="bt-bar" style="width:${barW}px;background:${col}"></span></td>
+        <td style="color:var(--muted)">${v.correct}/${v.total}</td>
+      </tr>`;
+    }).join('');
+    weekHtml = `
+    <div class="bt-section card">
+      <div class="ct">📅 Wochenverlauf</div>
+      <table class="bt-table">
+        <thead><tr><th>Woche</th><th>Trefferquote</th><th>n</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+  }
+
+  // Erkenntnisse
+  const insightsHtml = (r.insights || []).length
+    ? `<div class="bt-section card">
+        <div class="ct">💡 Erkenntnisse</div>
+        ${r.insights.map(i => `<div class="insight-item">${i}</div>`).join('')}
+       </div>`
+    : '';
+
+  document.getElementById('bt-content').innerHTML = `
+  <div style="max-width:1400px;margin:0 auto">
+    ${kpiHtml}
+    <div class="grid">
+      ${tableOf(r.by_instrument, '📈 Nach Instrument')}
+      ${tableOf(r.by_bias,       '🎯 Nach Bias')}
+      ${tableOf(r.by_confluence, '🔗 Confluence-Tier')}
+      ${tableOf(r.by_shape,      '📐 Nach Shape')}
+    </div>
+    ${weekHtml}
+    ${insightsHtml}
+  </div>`;
 }
 
+// ── Start ──────────────────────────────────────────────────────────────────
 load();
 </script>
 </body>
