@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-16T00:43:42.297373",
+  "timestamp": "2026-04-16T00:46:36.783062",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
@@ -191,7 +191,7 @@
       "cvd": null,
       "current_price": 7022.95,
       "bias": {
-        "score": 100,
+        "score": 69,
         "bias": "BULLISH",
         "color": "green",
         "signals": [
@@ -236,13 +236,34 @@
             "direction": "bullish",
             "category": "vix",
             "auto": true
+          },
+          {
+            "label": "Yield Curve positiv (0.53%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_yieldcurve",
+            "auto": true
+          },
+          {
+            "label": "CPI 330.29% \u2014 Fed unter Druck",
+            "score": -2,
+            "direction": "bearish",
+            "category": "fred_cpi",
+            "auto": true
+          },
+          {
+            "label": "Arbeitslosigkeit sinkt (4.3%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_unrate",
+            "auto": true
           }
         ],
-        "confluence_score": 6,
-        "confluence_against": 0,
-        "confluence_total": 6,
-        "confluence_pct": 100,
-        "confluence_label": "6/6 (bullisch)",
+        "confluence_score": 8,
+        "confluence_against": 1,
+        "confluence_total": 9,
+        "confluence_pct": 89,
+        "confluence_label": "8/9 (bullisch)",
         "manual_checks": [
           "Daily OTF Check (4H/Daily Trend manuell pruefen)",
           "Gap Analysis (Gap vom Vortag open/close pruefen)",
@@ -440,7 +461,7 @@
       "cvd": null,
       "current_price": 48463.72,
       "bias": {
-        "score": -14,
+        "score": -9,
         "bias": "NEUTRAL",
         "color": "yellow",
         "signals": [
@@ -485,13 +506,34 @@
             "direction": "bullish",
             "category": "vix",
             "auto": true
+          },
+          {
+            "label": "Yield Curve positiv (0.53%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_yieldcurve",
+            "auto": true
+          },
+          {
+            "label": "CPI 330.29% \u2014 Fed unter Druck",
+            "score": -2,
+            "direction": "bearish",
+            "category": "fred_cpi",
+            "auto": true
+          },
+          {
+            "label": "Arbeitslosigkeit sinkt (4.3%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_unrate",
+            "auto": true
           }
         ],
         "confluence_score": 0,
-        "confluence_against": 5,
-        "confluence_total": 6,
+        "confluence_against": 8,
+        "confluence_total": 9,
         "confluence_pct": 50,
-        "confluence_label": "2 bullisch / 3 bearisch / 1 neutral von 6",
+        "confluence_label": "4 bullisch / 4 bearisch / 1 neutral von 9",
         "manual_checks": [
           "Daily OTF Check (4H/Daily Trend manuell pruefen)",
           "Gap Analysis (Gap vom Vortag open/close pruefen)",
@@ -689,7 +731,7 @@
       "cvd": null,
       "current_price": 24044.22,
       "bias": {
-        "score": 100,
+        "score": 56,
         "bias": "BULLISH",
         "color": "green",
         "signals": [
@@ -734,13 +776,34 @@
             "direction": "bullish",
             "category": "vix",
             "auto": true
+          },
+          {
+            "label": "Yield Curve positiv (0.53%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_yieldcurve",
+            "auto": true
+          },
+          {
+            "label": "CPI 330.29% \u2014 Fed unter Druck",
+            "score": -2,
+            "direction": "bearish",
+            "category": "fred_cpi",
+            "auto": true
+          },
+          {
+            "label": "Arbeitslosigkeit sinkt (4.3%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_unrate",
+            "auto": true
           }
         ],
-        "confluence_score": 4,
-        "confluence_against": 0,
-        "confluence_total": 6,
+        "confluence_score": 6,
+        "confluence_against": 1,
+        "confluence_total": 9,
         "confluence_pct": 67,
-        "confluence_label": "4/6 (bullisch)",
+        "confluence_label": "6/9 (bullisch)",
         "manual_checks": [
           "Daily OTF Check (4H/Daily Trend manuell pruefen)",
           "Gap Analysis (Gap vom Vortag open/close pruefen)",
@@ -787,11 +850,72 @@
       "prev_close": 24044.22
     }
   },
-  "fred": null,
-  "calendar": [],
+  "fred": {
+    "FEDFUNDS": {
+      "name": "Fed Funds Rate",
+      "value": 3.64,
+      "prev": 3.64,
+      "change": 0.0,
+      "unit": "%",
+      "date": "2026-03-01"
+    },
+    "T10Y2Y": {
+      "name": "Yield Curve 10Y-2Y",
+      "value": 0.53,
+      "prev": 0.5,
+      "change": 0.03,
+      "unit": "%",
+      "date": "2026-04-15"
+    },
+    "CPIAUCSL": {
+      "name": "CPI Inflation YoY",
+      "value": 330.29,
+      "prev": 327.46,
+      "change": 2.83,
+      "unit": "% YoY",
+      "date": "2026-03-01"
+    },
+    "UNRATE": {
+      "name": "Arbeitslosenquote",
+      "value": 4.3,
+      "prev": 4.4,
+      "change": -0.1,
+      "unit": "%",
+      "date": "2026-03-01"
+    }
+  },
+  "calendar": [
+    {
+      "time": "2026-04-17 12:30:00",
+      "event": "Building Permits Prel",
+      "country": "US",
+      "impact": "high",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-17"
+    },
+    {
+      "time": "2026-04-21 09:00:00",
+      "event": "ZEW Economic Sentiment Index",
+      "country": "DE",
+      "impact": "high",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-21"
+    },
+    {
+      "time": "2026-04-21 12:30:00",
+      "event": "Retail Sales MoM",
+      "country": "US",
+      "impact": "high",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-21"
+    }
+  ],
   "journal": {
     "date": "2026-04-16",
-    "timestamp": "2026-04-16T00:43:42.289365",
+    "timestamp": "2026-04-16T00:46:36.770055",
     "debrief": {
       "orders_checked": 3,
       "fill_rate": "12.3%",
@@ -804,7 +928,7 @@
         "name": "GER40",
         "bias": "Bullisch",
         "bias_color": "green",
-        "bias_score": 100,
+        "bias_score": 56,
         "bias_pct": "95",
         "bias_signals": [
           {
@@ -848,13 +972,34 @@
             "direction": "bullish",
             "category": "vix",
             "auto": true
+          },
+          {
+            "label": "Yield Curve positiv (0.53%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_yieldcurve",
+            "auto": true
+          },
+          {
+            "label": "CPI 330.29% \u2014 Fed unter Druck",
+            "score": -2,
+            "direction": "bearish",
+            "category": "fred_cpi",
+            "auto": true
+          },
+          {
+            "label": "Arbeitslosigkeit sinkt (4.3%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_unrate",
+            "auto": true
           }
         ],
-        "confluence_score": 4,
-        "confluence_against": 0,
-        "confluence_total": 6,
+        "confluence_score": 6,
+        "confluence_against": 1,
+        "confluence_total": 9,
         "confluence_pct": 67,
-        "confluence_label": "4/6 (bullisch)",
+        "confluence_label": "6/9 (bullisch)",
         "manual_checks": [
           "Daily OTF Check (4H/Daily Trend manuell pruefen)",
           "Gap Analysis (Gap vom Vortag open/close pruefen)",
@@ -1046,10 +1191,10 @@
           ]
         },
         "current_price": 24044.22,
-        "daily_summary": "Bias Bullisch (Score 100, Confluence 67%). Vortag Range: 23938.11 \u2013 24087.3. VIX=18.2.",
+        "daily_summary": "Bias Bullisch (Score 56, Confluence 67%). Vortag Range: 23938.11 \u2013 24087.3. VIX=18.2.",
         "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
         "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-        "h30m_summary": "Kurs 24044.22 ueber VWAP (24010.84), in Value Area. POC=24010.84 VAH=24053.73 VAL=23971.68. Shape: Normal Day. Confluence: 4/6 (bullisch).",
+        "h30m_summary": "Kurs 24044.22 ueber VWAP (24010.84), in Value Area. POC=24010.84 VAH=24053.73 VAL=23971.68. Shape: Normal Day. Confluence: 6/9 (bullisch).",
         "mp_shape_yesterday": "Normal Day",
         "mp_shape_forecast": "Normal Day",
         "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -1098,8 +1243,8 @@
         "name": "US30",
         "bias": "Neutral",
         "bias_color": "yellow",
-        "bias_score": -14,
-        "bias_pct": "64",
+        "bias_score": -9,
+        "bias_pct": "59",
         "bias_signals": [
           {
             "label": "Preis < VWAP (48464 < 48478)",
@@ -1142,13 +1287,34 @@
             "direction": "bullish",
             "category": "vix",
             "auto": true
+          },
+          {
+            "label": "Yield Curve positiv (0.53%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_yieldcurve",
+            "auto": true
+          },
+          {
+            "label": "CPI 330.29% \u2014 Fed unter Druck",
+            "score": -2,
+            "direction": "bearish",
+            "category": "fred_cpi",
+            "auto": true
+          },
+          {
+            "label": "Arbeitslosigkeit sinkt (4.3%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_unrate",
+            "auto": true
           }
         ],
         "confluence_score": 0,
-        "confluence_against": 5,
-        "confluence_total": 6,
+        "confluence_against": 8,
+        "confluence_total": 9,
         "confluence_pct": 50,
-        "confluence_label": "2 bullisch / 3 bearisch / 1 neutral von 6",
+        "confluence_label": "4 bullisch / 4 bearisch / 1 neutral von 9",
         "manual_checks": [
           "Daily OTF Check (4H/Daily Trend manuell pruefen)",
           "Gap Analysis (Gap vom Vortag open/close pruefen)",
@@ -1340,10 +1506,10 @@
           ]
         },
         "current_price": 48463.72,
-        "daily_summary": "Bias Neutral (Score -14, Confluence 50%). Vortag Range: 48192.3 \u2013 48592.29. VIX=18.2.",
+        "daily_summary": "Bias Neutral (Score -9, Confluence 50%). Vortag Range: 48192.3 \u2013 48592.29. VIX=18.2.",
         "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
         "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-        "h30m_summary": "Kurs 48463.72 unter VWAP (48478.09), in Value Area. POC=48517.29 VAH=48562.29 VAL=48382.3. Shape: Trend Day (Up). Confluence: 2 bullisch / 3 bearisch / 1 neutral von 6.",
+        "h30m_summary": "Kurs 48463.72 unter VWAP (48478.09), in Value Area. POC=48517.29 VAH=48562.29 VAL=48382.3. Shape: Trend Day (Up). Confluence: 4 bullisch / 4 bearisch / 1 neutral von 9.",
         "mp_shape_yesterday": "Trend Day (Up)",
         "mp_shape_forecast": "Trend Day (Up)",
         "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -1392,7 +1558,7 @@
         "name": "SPX500",
         "bias": "Bullisch",
         "bias_color": "green",
-        "bias_score": 100,
+        "bias_score": 69,
         "bias_pct": "95",
         "bias_signals": [
           {
@@ -1436,13 +1602,34 @@
             "direction": "bullish",
             "category": "vix",
             "auto": true
+          },
+          {
+            "label": "Yield Curve positiv (0.53%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_yieldcurve",
+            "auto": true
+          },
+          {
+            "label": "CPI 330.29% \u2014 Fed unter Druck",
+            "score": -2,
+            "direction": "bearish",
+            "category": "fred_cpi",
+            "auto": true
+          },
+          {
+            "label": "Arbeitslosigkeit sinkt (4.3%)",
+            "score": 1,
+            "direction": "bullish",
+            "category": "fred_unrate",
+            "auto": true
           }
         ],
-        "confluence_score": 6,
-        "confluence_against": 0,
-        "confluence_total": 6,
-        "confluence_pct": 100,
-        "confluence_label": "6/6 (bullisch)",
+        "confluence_score": 8,
+        "confluence_against": 1,
+        "confluence_total": 9,
+        "confluence_pct": 89,
+        "confluence_label": "8/9 (bullisch)",
         "manual_checks": [
           "Daily OTF Check (4H/Daily Trend manuell pruefen)",
           "Gap Analysis (Gap vom Vortag open/close pruefen)",
@@ -1634,10 +1821,10 @@
           ]
         },
         "current_price": 7022.95,
-        "daily_summary": "Bias Bullisch (Score 100, Confluence 100%). Vortag Range: 6905.17 \u2013 6969.42. VIX=18.2.",
+        "daily_summary": "Bias Bullisch (Score 69, Confluence 89%). Vortag Range: 6905.17 \u2013 6969.42. VIX=18.2.",
         "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
         "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-        "h30m_summary": "Kurs 7022.95 ueber VWAP (6948.45), ausserhalb Value Area. POC=6960.59 VAH=6969.42 VAL=6932.48. Shape: Trend Day (Up). Confluence: 6/6 (bullisch).",
+        "h30m_summary": "Kurs 7022.95 ueber VWAP (6948.45), ausserhalb Value Area. POC=6960.59 VAH=6969.42 VAL=6932.48. Shape: Trend Day (Up). Confluence: 8/9 (bullisch).",
         "mp_shape_yesterday": "Trend Day (Up)",
         "mp_shape_forecast": "Trend Day (Up)",
         "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -1671,8 +1858,8 @@
             "tp1": "6969.42",
             "tp2": "6987.89",
             "rr": "3.17",
-            "p_fill": "75",
-            "p_tp1": "60",
+            "p_fill": "66",
+            "p_tp1": "53",
             "tf": "30M",
             "confluence": "Preis > VWAP (7023 > 6948) + Ueber VAH \u2013 Breakout (7023 > 6969) + Preis > POC (7023 > 6961)",
             "mp_shape_yesterday": "Trend Day (Up)",
@@ -1684,10 +1871,10 @@
       }
     ],
     "summary": {
-      "best_instrument": "GER40",
+      "best_instrument": "SPX500",
       "total_orders": 3,
       "warnings": [],
-      "notes": "Auto-generiert 00:43. VIX=18.2. Beste Konfluenz: GER40."
+      "notes": "Auto-generiert 00:46. VIX=18.2. Beste Konfluenz: SPX500."
     },
     "stats": {
       "total": 65,

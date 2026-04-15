@@ -8,6 +8,8 @@ iPhone URL: https://chrisaibizz.github.io/cockpit-trader/
 """
 
 import json, os, sys, traceback, math, logging, shutil
+from dotenv import load_dotenv
+load_dotenv()
 import numpy as np
 from datetime import datetime, timedelta
 import yfinance as yf
