@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-16T00:37:26.277845",
+  "timestamp": "2026-04-16T00:43:42.297373",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
@@ -787,10 +787,11 @@
       "prev_close": 24044.22
     }
   },
+  "fred": null,
   "calendar": [],
   "journal": {
     "date": "2026-04-16",
-    "timestamp": "2026-04-16T00:37:26.267850",
+    "timestamp": "2026-04-16T00:43:42.289365",
     "debrief": {
       "orders_checked": 3,
       "fill_rate": "12.3%",
@@ -1686,7 +1687,7 @@
       "best_instrument": "GER40",
       "total_orders": 3,
       "warnings": [],
-      "notes": "Auto-generiert 00:37. VIX=18.2. Beste Konfluenz: GER40."
+      "notes": "Auto-generiert 00:43. VIX=18.2. Beste Konfluenz: GER40."
     },
     "stats": {
       "total": 65,
