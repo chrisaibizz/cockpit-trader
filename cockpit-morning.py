@@ -55,6 +55,15 @@ except ImportError:
     fh = None
     print(">>> Finnhub nicht installiert - Kalender deaktiviert")
 
+try:
+    from fredapi import Fred
+    FRED_KEY = os.environ.get("FRED_API_KEY", "")
+    fred = Fred(api_key=FRED_KEY) if FRED_KEY else None
+    print(f">>> FRED: {'OK (Key vorhanden)' if FRED_KEY else 'Kein Key - FRED deaktiviert'}")
+except ImportError:
+    fred = None
+    print(">>> fredapi nicht installiert - pip install fredapi")
+
 # ============================================================
 # 1. DATEN HOLEN
 # ============================================================
@@ -138,6 +147,59 @@ def fetch_calendar():
     except Exception as e:
         print(f"    Kalender FEHLER: {e}")
         return []
+
+def fetch_fred_data():
+    """
+    Holt makrooekonomische Daten von FRED:
+      FEDFUNDS  - US Leitzins (monatlich)
+      T10Y2Y    - Yield Curve Spread 10J-2J (taeglich)
+      CPIAUCSL  - US CPI Inflation YoY (monatlich)
+      UNRATE    - US Arbeitslosenquote (monatlich)
+    """
+    if not fred:
+        print("    FRED: kein Key -- uebersprungen")
+        return None
+    try:
+        from datetime import timedelta
+        result = {}
+        series_config = {
+            "FEDFUNDS": {"name": "Fed Funds Rate",     "unit": "%"},
+            "T10Y2Y":   {"name": "Yield Curve 10Y-2Y", "unit": "%"},
+            "CPIAUCSL": {"name": "CPI Inflation YoY",  "unit": "% YoY"},
+            "UNRATE":   {"name": "Arbeitslosenquote",  "unit": "%"},
+        }
+        for series_id, cfg in series_config.items():
+            try:
+                end   = datetime.now()
+                start = end - timedelta(days=120)
+                data  = fred.get_series(series_id, observation_start=start, observation_end=end)
+                data  = data.dropna()
+                if len(data) < 1:
+                    continue
+                current = round(float(data.iloc[-1]), 2)
+                prev    = round(float(data.iloc[-2]), 2) if len(data) >= 2 else current
+                # CPI: YoY berechnen
+                if series_id == "CPIAUCSL" and len(data) >= 13:
+                    current = round((float(data.iloc[-1]) / float(data.iloc[-13]) - 1) * 100, 2)
+                    prev    = round((float(data.iloc[-2]) / float(data.iloc[-14]) - 1) * 100, 2) if len(data) >= 14 else current
+                change = round(current - prev, 2)
+                result[series_id] = {
+                    "name":   cfg["name"],
+                    "value":  current,
+                    "prev":   prev,
+                    "change": change,
+                    "unit":   cfg["unit"],
+                    "date":   str(data.index[-1].date()),
+                }
+                print(f"    FRED {series_id}: {current}{cfg['unit']} (prev {prev}, delta {change:+.2f})")
+            except Exception as e:
+                print(f"    FRED {series_id} FEHLER: {e}")
+                continue
+        print(f"    FRED: {len(result)}/4 Serien geladen")
+        return result if result else None
+    except Exception as e:
+        print(f"    FRED FEHLER: {e}")
+        return None
 
 # ============================================================
 # 2. MARKET PROFILE
@@ -559,7 +621,7 @@ def detect_mp_shape(vol_profile, poc_idx, num_bins, df_day):
 #   Manuelle Kriterien (OTF, Gap, Session Expectation) werden separat
 #   als "manuell_offen" gelistet – sie erinnern den Trader was noch zu pruefen ist.
 
-def compute_bias(mp, price, context, cvd=None):
+def compute_bias(mp, price, context, cvd=None, fred_data=None):
     """
     Berechnet Bias-Ampel mit Confluence-Score.
 
@@ -708,6 +770,46 @@ def compute_bias(mp, price, context, cvd=None):
         ypy = f" ({ypx:.2f}%)" if ypx else ""
         if   cp >  2: signals.append({"label": f"Yields steigen stark{ypy}", "score": -1, "direction": "bearish", "category": "yields", "auto": True})
         elif cp < -2: signals.append({"label": f"Yields fallen stark{ypy}",  "score":  1, "direction": "bullish", "category": "yields", "auto": True})
+
+    # ── FRED: Makrooekonomische Signale ─────────────────────────────────────────
+    if fred_data:
+        # Fed Funds Rate
+        ff = fred_data.get("FEDFUNDS")
+        if ff and ff.get("value") is not None:
+            v, p = ff["value"], ff["prev"]
+            if   v > 5.0: signals.append({"label": f"Fed Funds {v}% — restriktiv",         "score": -2, "direction": "bearish", "category": "fred_fedfunds", "auto": True})
+            elif v > 4.0: signals.append({"label": f"Fed Funds {v}% — erhoeht",             "score": -1, "direction": "bearish", "category": "fred_fedfunds", "auto": True})
+            elif v < 2.0: signals.append({"label": f"Fed Funds {v}% — akkommodativ",        "score":  1, "direction": "bullish", "category": "fred_fedfunds", "auto": True})
+            elif v < p:   signals.append({"label": f"Fed Funds sinkend ({v}%)",             "score":  1, "direction": "bullish", "category": "fred_fedfunds", "auto": True})
+            elif v > p:   signals.append({"label": f"Fed Funds steigend ({v}%)",            "score": -1, "direction": "bearish", "category": "fred_fedfunds", "auto": True})
+
+        # Yield Curve
+        yc = fred_data.get("T10Y2Y")
+        if yc and yc.get("value") is not None:
+            v, p = yc["value"], yc["prev"]
+            if   v < -0.5: signals.append({"label": f"Yield Curve stark invertiert ({v}%)", "score": -2, "direction": "bearish", "category": "fred_yieldcurve", "auto": True})
+            elif v < 0:    signals.append({"label": f"Yield Curve invertiert ({v}%)",       "score": -1, "direction": "bearish", "category": "fred_yieldcurve", "auto": True})
+            elif v > 0.5:  signals.append({"label": f"Yield Curve positiv ({v}%)",          "score":  1, "direction": "bullish", "category": "fred_yieldcurve", "auto": True})
+            elif v > p:    signals.append({"label": f"Yield Curve steilt auf ({v}%)",       "score":  1, "direction": "bullish", "category": "fred_yieldcurve", "auto": True})
+
+        # CPI
+        cpi = fred_data.get("CPIAUCSL")
+        if cpi and cpi.get("value") is not None:
+            v, p = cpi["value"], cpi["prev"]
+            if   v > 4.0: signals.append({"label": f"CPI {v}% — Fed unter Druck",          "score": -2, "direction": "bearish", "category": "fred_cpi", "auto": True})
+            elif v > 3.0: signals.append({"label": f"CPI {v}% — erhoeht",                  "score": -1, "direction": "bearish", "category": "fred_cpi", "auto": True})
+            elif v < 2.5: signals.append({"label": f"CPI {v}% — nahe Ziel",                "score":  1, "direction": "bullish", "category": "fred_cpi", "auto": True})
+            elif v < p:   signals.append({"label": f"CPI sinkend ({v}%)",                  "score":  1, "direction": "bullish", "category": "fred_cpi", "auto": True})
+            elif v > p:   signals.append({"label": f"CPI steigend ({v}%)",                 "score": -1, "direction": "bearish", "category": "fred_cpi", "auto": True})
+
+        # Arbeitslosenquote
+        ur = fred_data.get("UNRATE")
+        if ur and ur.get("value") is not None:
+            v, p = ur["value"], ur["prev"]
+            if   v < 4.0: signals.append({"label": f"Arbeitslosigkeit {v}% — stark",       "score":  1, "direction": "bullish", "category": "fred_unrate", "auto": True})
+            elif v > 5.0: signals.append({"label": f"Arbeitslosigkeit {v}% — schwach",     "score": -1, "direction": "bearish", "category": "fred_unrate", "auto": True})
+            elif v > p:   signals.append({"label": f"Arbeitslosigkeit steigt ({v}%)",      "score": -1, "direction": "bearish", "category": "fred_unrate", "auto": True})
+            elif v < p:   signals.append({"label": f"Arbeitslosigkeit sinkt ({v}%)",       "score":  1, "direction": "bullish", "category": "fred_unrate", "auto": True})
 
     # ── FIX #2: Manuelle Checks NICHT im Score – separat zurueckgeben ─────────
     manual_checks = [
@@ -1199,10 +1301,13 @@ def main():
         "DAX":   fetch_quote("^GDAXI"),
     }
 
+    print("\n>>> FRED Daten holen...")
+    fred_data = fetch_fred_data()
+
     print("\n>>> Bias berechnen...")
-    spx["bias"] = compute_bias(spx.get("market_profile"), spx.get("current_price"), ctx, spx.get("cvd"))
-    dji["bias"] = compute_bias(dji.get("market_profile"), dji.get("current_price"), ctx, dji.get("cvd"))
-    ger["bias"] = compute_bias(ger.get("market_profile"), ger.get("current_price"), ctx, ger.get("cvd"))
+    spx["bias"] = compute_bias(spx.get("market_profile"), spx.get("current_price"), ctx, spx.get("cvd"), fred_data)
+    dji["bias"] = compute_bias(dji.get("market_profile"), dji.get("current_price"), ctx, dji.get("cvd"), fred_data)
+    ger["bias"] = compute_bias(ger.get("market_profile"), ger.get("current_price"), ctx, ger.get("cvd"), fred_data)
 
     print("\n>>> Kalender holen...")
     cal = fetch_calendar()
@@ -1217,6 +1322,7 @@ def main():
         "timestamp":   datetime.now().isoformat(),
         "instruments": {"SPX": spx, "DJI": dji, "GER": ger},
         "context":     ctx,
+        "fred":        fred_data,
         "calendar":    cal,
         "journal":     journal,
     }

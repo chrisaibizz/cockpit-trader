@@ -212,6 +212,7 @@ function render(d) {
   }
 
   html += renderCal(d.calendar);
+  html += renderFred(d.fred);
   document.getElementById('dash').innerHTML = html;
 }
 
@@ -560,6 +561,103 @@ function renderCal(cal) {
   return `<div class="card fw">
     <div class="ct">📅 Macro Kalender — US &amp; DE · High Impact only</div>
     ${rows}
+  </div>`;
+}
+
+// ── FRED Macro Data ───────────────────────────────────────────────────────
+function renderFred(fred) {
+  const series = [
+    { id:'FEDFUNDS', icon:'🏦', label:'Fed Funds Rate',    warn_high:5.0, warn_low:2.0, invert:true  },
+    { id:'T10Y2Y',   icon:'📐', label:'Yield Curve 10Y-2Y', warn_high:0.5, warn_low:-0.5, invert:true },
+    { id:'CPIAUCSL', icon:'🛒', label:'CPI Inflation',      warn_high:4.0, warn_low:2.0, invert:true  },
+    { id:'UNRATE',   icon:'👷', label:'Arbeitslosenquote',  warn_high:5.0, warn_low:3.5, invert:false },
+  ];
+
+  if (!fred || !Object.keys(fred).length)
+    return `<div class="card fw">
+      <div class="ct">📊 FRED Macro — US Federal Reserve Data</div>
+      <div style="color:var(--muted);font-size:13px;padding:12px 0;text-align:center">
+        FRED-Daten nicht verfuegbar — FRED_API_KEY pruefen
+      </div></div>`;
+
+  // Kacheln
+  const tiles = series.map(s => {
+    const d = fred[s.id];
+    if (!d) return `<div class="ci"><div class="cl2">${s.icon} ${s.label}</div><div class="cp2">—</div></div>`;
+    const chg    = d.change || 0;
+    const chgCol = chg === 0 ? 'var(--muted)' : (
+      s.invert
+        ? (chg < 0 ? 'var(--green)' : 'var(--red)')
+        : (chg > 0 ? 'var(--green)' : 'var(--red)')
+    );
+    // Ampel-Farbe fuer den Wert
+    let valCol = 'var(--text)';
+    if (s.id === 'T10Y2Y') {
+      valCol = d.value < -0.5 ? 'var(--red)' : d.value < 0 ? 'var(--yellow)' : 'var(--green)';
+    } else if (s.id === 'UNRATE') {
+      valCol = d.value < 4.0 ? 'var(--green)' : d.value > 5.0 ? 'var(--red)' : 'var(--yellow)';
+    } else {
+      valCol = d.value > s.warn_high ? 'var(--red)' : d.value < s.warn_low ? 'var(--green)' : 'var(--yellow)';
+    }
+    return `<div class="ci">
+      <div class="cl2">${s.icon} ${s.label}</div>
+      <div class="cp2" style="color:${valCol}">${d.value}${d.unit||'%'}</div>
+      <div class="cc2" style="color:${chgCol}">${chg >= 0 ? '+' : ''}${chg} vs Vormonat</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:3px">${d.date||''}</div>
+    </div>`;
+  }).join('');
+
+  // Detail-Tabelle
+  const rows = series.map(s => {
+    const d = fred[s.id];
+    if (!d) return '';
+    const chg    = d.change || 0;
+    const chgCol = chg === 0 ? 'var(--muted)' :
+      (s.invert ? (chg < 0 ? 'var(--green)' : 'var(--red)') : (chg > 0 ? 'var(--green)' : 'var(--red)'));
+
+    // Bias-Einschätzung
+    let bias = '—', biasCol = 'var(--muted)';
+    if (s.id === 'FEDFUNDS') {
+      if      (d.value > 5.0) { bias='Restriktiv';    biasCol='var(--red)';    }
+      else if (d.value > 4.0) { bias='Erhoeht';       biasCol='var(--yellow)'; }
+      else if (d.value < 2.0) { bias='Akkommodativ';  biasCol='var(--green)';  }
+      else if (chg < 0)       { bias='Sinkend ↓';     biasCol='var(--green)';  }
+      else if (chg > 0)       { bias='Steigend ↑';    biasCol='var(--red)';    }
+      else                    { bias='Stabil';         biasCol='var(--muted)';  }
+    } else if (s.id === 'T10Y2Y') {
+      if      (d.value < -0.5) { bias='Stark inv. ⚠'; biasCol='var(--red)';    }
+      else if (d.value < 0)    { bias='Invertiert';   biasCol='var(--yellow)'; }
+      else if (d.value > 0.5)  { bias='Positiv ✓';   biasCol='var(--green)';  }
+      else                     { bias='Flach';         biasCol='var(--muted)';  }
+    } else if (s.id === 'CPIAUCSL') {
+      if      (d.value > 4.0) { bias='Hoch ⚠';       biasCol='var(--red)';    }
+      else if (d.value > 3.0) { bias='Erhoeht';       biasCol='var(--yellow)'; }
+      else if (d.value < 2.5) { bias='Nahe Ziel ✓';  biasCol='var(--green)';  }
+      else                    { bias='Moderat';        biasCol='var(--muted)';  }
+    } else if (s.id === 'UNRATE') {
+      if      (d.value < 4.0) { bias='Stark ✓';      biasCol='var(--green)';  }
+      else if (d.value > 5.0) { bias='Schwach ⚠';    biasCol='var(--red)';    }
+      else                    { bias='Normal';         biasCol='var(--muted)';  }
+    }
+
+    return `<div style="display:flex;justify-content:space-between;align-items:center;
+      padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;">
+      <span style="color:var(--muted);min-width:160px">${s.icon} ${s.label}</span>
+      <span style="font-weight:600;min-width:80px">${d.value}${d.unit||'%'}</span>
+      <span style="color:${chgCol};min-width:80px">${chg >= 0 ? '+' : ''}${chg}</span>
+      <span style="color:${biasCol};font-weight:600">${bias}</span>
+    </div>`;
+  }).join('');
+
+  return `<div class="card fw">
+    <div class="ct">📊 FRED Macro — US Federal Reserve Data</div>
+    <div class="cgrid" style="margin-bottom:16px">${tiles}</div>
+    <div style="border-top:1px solid var(--border);padding-top:12px">
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:8px">
+        Detail — Wert / Veraenderung / Einschaetzung
+      </div>
+      ${rows}
+    </div>
   </div>`;
 }
 
