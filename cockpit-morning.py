@@ -7,7 +7,7 @@ GitHub Actions: laeuft automatisch Mo-Fr 07:00 Uhr
 iPhone URL: https://chrisaibizz.github.io/cockpit-trader/
 """
 
-import json, os, sys, traceback, math
+import json, os, sys, traceback, math, logging
 import numpy as np
 from datetime import datetime, timedelta
 import yfinance as yf
@@ -36,6 +36,15 @@ class SafeJSONEncoder(json.JSONEncoder):
         return obj
 
 
+_log_path = os.path.join(os.path.dirname(__file__), 'logs', 'cockpit-morning.log')
+os.makedirs(os.path.dirname(_log_path), exist_ok=True)
+logging.basicConfig(
+    filename=_log_path,
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logging.info("cockpit-morning.py gestartet")
 print(">>> Script gestartet")
 
 try:
@@ -1184,6 +1193,7 @@ def main():
     print("\n>>> Pipeline starten (Sheet / Doc / git)...")
     run_pipeline(journal, orders, script_dir)
 
+    logging.info(f"Fertig. Instrumente: {list(instruments_map.keys())}")
     print("\nFertig!")
     print("   Lokal:  cockpit-briefing.html per Doppelklick oeffnen")
     print("   iPhone: https://chrisaibizz.github.io/cockpit-trader/")
@@ -1194,5 +1204,6 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"\nâŒ UNERWARTETER FEHLER:")
         traceback.print_exc()
+        logging.error(f"UNERWARTETER FEHLER: {e}", exc_info=True)
         sys.exit(1)
-
+    sys.exit(0)
