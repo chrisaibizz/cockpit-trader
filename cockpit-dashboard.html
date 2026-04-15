@@ -199,8 +199,8 @@ function render(d) {
   setInterval(updateAge, 60000);
 
   let html = '';
+  // Reihenfolge: Context → Instrumente → Kalender (ganz am Ende)
   html += renderCtx(d.context);
-  html += renderCal(d.calendar);
 
   const insts = (d.journal && d.journal.instruments) || [];
   if (insts.length) {
@@ -210,6 +210,8 @@ function render(d) {
       if (!inst.error) html += renderInstLegacy(k, inst);
     }
   }
+
+  html += renderCal(d.calendar);
   document.getElementById('dash').innerHTML = html;
 }
 
@@ -520,29 +522,45 @@ function fmtDate(d) {
 }
 
 function renderCal(cal) {
-  if (!cal || !cal.length)
-    return `<div class="card fw"><div class="ct">📅 Macro Kalender</div>
-      <div style="color:var(--muted);font-size:13px;padding:8px 0">Keine High-Impact Events</div></div>`;
+  // Nur US und DE, nur high impact — als zweite Filterlinie (erste ist in cockpit-morning.py)
+  const filtered = (cal || []).filter(e =>
+    e.impact === 'high' &&
+    ['US','DE'].includes((e.country||'').toUpperCase())
+  );
+  const flagMap = {'US':'🇺🇸','DE':'🇩🇪'};
+
+  if (!filtered.length)
+    return `<div class="card fw"><div class="ct">📅 Macro Kalender — US &amp; DE High Impact</div>
+      <div style="color:var(--muted);font-size:13px;padding:12px 0;text-align:center">
+        Keine High-Impact Events für US/DE
+      </div></div>`;
+
   const grouped = {};
-  cal.forEach(e => {
+  filtered.forEach(e => {
     const d = e.date || String(e.time||'').slice(0,10) || 'unbekannt';
     if (!grouped[d]) grouped[d] = [];
     grouped[d].push(e);
   });
+
   const today = new Date().toISOString().slice(0,10);
   let rows = '';
   for (const [date, events] of Object.entries(grouped)) {
     const isToday = date === today;
-    rows += `<div class="day-label" style="color:${isToday?'var(--cyan)':'var(--yellow)'}">${isToday?'Heute':'Nächster Tag'} — ${fmtDate(date)}</div>`;
+    rows += `<div class="day-label" style="color:${isToday?'var(--cyan)':'var(--yellow)'}">
+      ${isToday?'Heute':'Nächster Tag'} — ${fmtDate(date)}
+    </div>`;
     rows += events.map(e => `
     <div class="cale">
       <span class="cat">${String(e.time||'').slice(11,16)||'—'}</span>
       <span class="can">${e.event}</span>
-      <span class="imp-${e.impact==='high'?'high':'medium'}">${e.impact==='high'?'●●':'●'}</span>
-      <span class="cac">${e.country}</span>
+      <span class="imp-high">●●</span>
+      <span class="cac">${flagMap[e.country]||''} ${e.country}</span>
     </div>`).join('');
   }
-  return `<div class="card fw"><div class="ct">📅 Macro Kalender</div>${rows}</div>`;
+  return `<div class="card fw">
+    <div class="ct">📅 Macro Kalender — US &amp; DE · High Impact only</div>
+    ${rows}
+  </div>`;
 }
 
 // ── Backtest Tab ───────────────────────────────────────────────────────────
