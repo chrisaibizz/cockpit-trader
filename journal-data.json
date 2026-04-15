@@ -1,6 +1,6 @@
 {
   "date": "2026-04-16",
-  "timestamp": "2026-04-16T00:46:36.770055",
+  "timestamp": "2026-04-16T00:49:05.651501",
   "debrief": {
     "orders_checked": 3,
     "fill_rate": "12.3%",
@@ -13,7 +13,7 @@
       "name": "GER40",
       "bias": "Bullisch",
       "bias_color": "green",
-      "bias_score": 56,
+      "bias_score": 75,
       "bias_pct": "95",
       "bias_signals": [
         {
@@ -66,8 +66,8 @@
           "auto": true
         },
         {
-          "label": "CPI 330.29% — Fed unter Druck",
-          "score": -2,
+          "label": "CPI 3.32% — erhoeht",
+          "score": -1,
           "direction": "bearish",
           "category": "fred_cpi",
           "auto": true
@@ -276,7 +276,7 @@
         ]
       },
       "current_price": 24044.22,
-      "daily_summary": "Bias Bullisch (Score 56, Confluence 67%). Vortag Range: 23938.11 – 24087.3. VIX=18.2.",
+      "daily_summary": "Bias Bullisch (Score 75, Confluence 67%). Vortag Range: 23938.11 – 24087.3. VIX=18.2.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
       "h30m_summary": "Kurs 24044.22 ueber VWAP (24010.84), in Value Area. POC=24010.84 VAH=24053.73 VAL=23971.68. Shape: Normal Day. Confluence: 6/9 (bullisch).",
@@ -328,8 +328,8 @@
       "name": "US30",
       "bias": "Neutral",
       "bias_color": "yellow",
-      "bias_score": -9,
-      "bias_pct": "59",
+      "bias_score": 0,
+      "bias_pct": "50",
       "bias_signals": [
         {
           "label": "Preis < VWAP (48464 < 48478)",
@@ -381,8 +381,8 @@
           "auto": true
         },
         {
-          "label": "CPI 330.29% — Fed unter Druck",
-          "score": -2,
+          "label": "CPI 3.32% — erhoeht",
+          "score": -1,
           "direction": "bearish",
           "category": "fred_cpi",
           "auto": true
@@ -591,7 +591,7 @@
         ]
       },
       "current_price": 48463.72,
-      "daily_summary": "Bias Neutral (Score -9, Confluence 50%). Vortag Range: 48192.3 – 48592.29. VIX=18.2.",
+      "daily_summary": "Bias Neutral (Score 0, Confluence 50%). Vortag Range: 48192.3 – 48592.29. VIX=18.2.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
       "h30m_summary": "Kurs 48463.72 unter VWAP (48478.09), in Value Area. POC=48517.29 VAH=48562.29 VAL=48382.3. Shape: Trend Day (Up). Confluence: 4 bullisch / 4 bearisch / 1 neutral von 9.",
@@ -643,7 +643,7 @@
       "name": "SPX500",
       "bias": "Bullisch",
       "bias_color": "green",
-      "bias_score": 69,
+      "bias_score": 83,
       "bias_pct": "95",
       "bias_signals": [
         {
@@ -696,8 +696,8 @@
           "auto": true
         },
         {
-          "label": "CPI 330.29% — Fed unter Druck",
-          "score": -2,
+          "label": "CPI 3.32% — erhoeht",
+          "score": -1,
           "direction": "bearish",
           "category": "fred_cpi",
           "auto": true
@@ -906,7 +906,7 @@
         ]
       },
       "current_price": 7022.95,
-      "daily_summary": "Bias Bullisch (Score 69, Confluence 89%). Vortag Range: 6905.17 – 6969.42. VIX=18.2.",
+      "daily_summary": "Bias Bullisch (Score 83, Confluence 89%). Vortag Range: 6905.17 – 6969.42. VIX=18.2.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
       "h30m_summary": "Kurs 7022.95 ueber VWAP (6948.45), ausserhalb Value Area. POC=6960.59 VAH=6969.42 VAL=6932.48. Shape: Trend Day (Up). Confluence: 8/9 (bullisch).",
@@ -959,7 +959,7 @@
     "best_instrument": "SPX500",
     "total_orders": 3,
     "warnings": [],
-    "notes": "Auto-generiert 00:46. VIX=18.2. Beste Konfluenz: SPX500."
+    "notes": "Auto-generiert 00:49. VIX=18.2. Beste Konfluenz: SPX500."
   },
   "stats": {
     "total": 65,

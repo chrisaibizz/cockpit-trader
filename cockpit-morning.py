@@ -8,8 +8,6 @@ iPhone URL: https://chrisaibizz.github.io/cockpit-trader/
 """
 
 import json, os, sys, traceback, math, logging, shutil
-from dotenv import load_dotenv
-load_dotenv()
 import numpy as np
 from datetime import datetime, timedelta
 import yfinance as yf
@@ -173,17 +171,24 @@ def fetch_fred_data():
         for series_id, cfg in series_config.items():
             try:
                 end   = datetime.now()
-                start = end - timedelta(days=120)
+                # CPI braucht 14 Monate fuer YoY-Berechnung
+                lookback = 450 if series_id == "CPIAUCSL" else 120
+                start = end - timedelta(days=lookback)
                 data  = fred.get_series(series_id, observation_start=start, observation_end=end)
                 data  = data.dropna()
                 if len(data) < 1:
                     continue
                 current = round(float(data.iloc[-1]), 2)
                 prev    = round(float(data.iloc[-2]), 2) if len(data) >= 2 else current
-                # CPI: YoY berechnen
-                if series_id == "CPIAUCSL" and len(data) >= 13:
-                    current = round((float(data.iloc[-1]) / float(data.iloc[-13]) - 1) * 100, 2)
-                    prev    = round((float(data.iloc[-2]) / float(data.iloc[-14]) - 1) * 100, 2) if len(data) >= 14 else current
+                # CPI: echte YoY-Veraenderung berechnen (aktueller Monat vs. Vorjahresmonat)
+                if series_id == "CPIAUCSL":
+                    if len(data) >= 13:
+                        current = round((float(data.iloc[-1]) / float(data.iloc[-13]) - 1) * 100, 2)
+                        prev    = round((float(data.iloc[-2]) / float(data.iloc[-14]) - 1) * 100, 2) if len(data) >= 14 else current
+                    else:
+                        # Nicht genug Daten fuer YoY -- Monatswert als Fallback
+                        print(f"    FRED CPIAUCSL: nur {len(data)} Datenpunkte -- YoY nicht moeglich")
+                        continue
                 change = round(current - prev, 2)
                 result[series_id] = {
                     "name":   cfg["name"],
