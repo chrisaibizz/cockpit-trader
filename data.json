@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-15T05:00:28.972869",
+  "timestamp": "2026-04-15T07:20:17.379186",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
@@ -226,12 +226,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX falling sharply",
-            "score": 1,
-            "direction": "bullish"
-          },
-          {
-            "label": "DXY neutral (98.19)",
+            "label": "DXY neutral (98.16)",
             "score": 0,
             "direction": "neutral"
           },
@@ -483,12 +478,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX falling sharply",
-            "score": 1,
-            "direction": "bullish"
-          },
-          {
-            "label": "DXY neutral (98.19)",
+            "label": "DXY neutral (98.16)",
             "score": 0,
             "direction": "neutral"
           },
@@ -519,213 +509,213 @@
       "name": "DAX (Kassa)",
       "ticker": "^GDAXI",
       "quote": {
-        "price": 24044.22,
-        "change": 301.78,
-        "change_pct": 1.27,
-        "high": 24087.3,
-        "low": 23938.11,
-        "open": 23953.93,
-        "prev_close": 23742.44,
+        "price": 24063.77,
+        "change": 19.55,
+        "change_pct": 0.08,
+        "high": 24065.91,
+        "low": 24042.19,
+        "open": 24060.97,
+        "prev_close": 24044.22,
         "source": "yahoo_eod"
       },
       "market_profile": {
-        "poc": 23574.77,
-        "vah": 23619.43,
-        "val": 23488.88,
-        "vwap": 23574.77,
-        "day_high": 23756.85,
-        "day_low": 23482.01,
+        "poc": 24010.84,
+        "vah": 24053.73,
+        "val": 23971.68,
+        "vwap": 24010.84,
+        "day_high": 24087.3,
+        "day_low": 23938.11,
         "shape": {
-          "name": "Normal Variation",
-          "description": "Leichte Richtung \u00e2\u20ac\u201d Abwarten auf Breakout aus VA."
+          "name": "Normal Day",
+          "description": "Ausbalanciert \u00e2\u20ac\u201d Range-Trading um POC."
         },
         "volume_profile": [
           {
-            "price": 23485.45,
-            "volume": 2.0
+            "price": 23939.97,
+            "volume": 1.0
           },
           {
-            "price": 23492.32,
-            "volume": 2.0
-          },
-          {
-            "price": 23499.19,
-            "volume": 2.0
-          },
-          {
-            "price": 23506.06,
+            "price": 23943.7,
             "volume": 3.0
           },
           {
-            "price": 23512.93,
-            "volume": 3.0
-          },
-          {
-            "price": 23519.8,
-            "volume": 3.0
-          },
-          {
-            "price": 23526.67,
-            "volume": 3.0
-          },
-          {
-            "price": 23533.54,
-            "volume": 3.0
-          },
-          {
-            "price": 23540.41,
+            "price": 23947.43,
             "volume": 4.0
           },
           {
-            "price": 23547.28,
+            "price": 23951.16,
+            "volume": 4.0
+          },
+          {
+            "price": 23954.89,
+            "volume": 5.0
+          },
+          {
+            "price": 23958.62,
+            "volume": 5.0
+          },
+          {
+            "price": 23962.35,
             "volume": 6.0
           },
           {
-            "price": 23554.16,
+            "price": 23966.08,
+            "volume": 6.0
+          },
+          {
+            "price": 23969.81,
+            "volume": 7.0
+          },
+          {
+            "price": 23973.54,
             "volume": 8.0
           },
           {
-            "price": 23561.03,
+            "price": 23977.27,
+            "volume": 8.0
+          },
+          {
+            "price": 23981.0,
+            "volume": 8.0
+          },
+          {
+            "price": 23984.73,
             "volume": 9.0
           },
           {
-            "price": 23567.9,
+            "price": 23988.46,
+            "volume": 9.0
+          },
+          {
+            "price": 23992.19,
+            "volume": 8.0
+          },
+          {
+            "price": 23995.92,
+            "volume": 8.0
+          },
+          {
+            "price": 23999.65,
+            "volume": 8.0
+          },
+          {
+            "price": 24003.38,
+            "volume": 8.0
+          },
+          {
+            "price": 24007.11,
+            "volume": 9.0
+          },
+          {
+            "price": 24010.84,
             "volume": 10.0
           },
           {
-            "price": 23574.77,
-            "volume": 11.0
+            "price": 24014.57,
+            "volume": 8.0
           },
           {
-            "price": 23581.64,
-            "volume": 11.0
+            "price": 24018.3,
+            "volume": 9.0
           },
           {
-            "price": 23588.51,
-            "volume": 10.0
+            "price": 24022.03,
+            "volume": 8.0
           },
           {
-            "price": 23595.38,
-            "volume": 6.0
+            "price": 24025.76,
+            "volume": 8.0
           },
           {
-            "price": 23602.25,
-            "volume": 3.0
+            "price": 24029.49,
+            "volume": 8.0
           },
           {
-            "price": 23609.12,
-            "volume": 3.0
+            "price": 24033.22,
+            "volume": 7.0
           },
           {
-            "price": 23615.99,
-            "volume": 2.0
+            "price": 24036.95,
+            "volume": 8.0
           },
           {
-            "price": 23622.87,
-            "volume": 1.0
+            "price": 24040.68,
+            "volume": 8.0
           },
           {
-            "price": 23629.74,
-            "volume": 1.0
+            "price": 24044.41,
+            "volume": 8.0
           },
           {
-            "price": 23636.61,
-            "volume": 1.0
+            "price": 24048.14,
+            "volume": 7.0
           },
           {
-            "price": 23643.48,
-            "volume": 1.0
+            "price": 24051.87,
+            "volume": 7.0
           },
           {
-            "price": 23650.35,
-            "volume": 1.0
+            "price": 24055.6,
+            "volume": 5.0
           },
           {
-            "price": 23657.22,
-            "volume": 1.0
-          },
-          {
-            "price": 23664.09,
-            "volume": 1.0
-          },
-          {
-            "price": 23670.96,
-            "volume": 1.0
-          },
-          {
-            "price": 23677.83,
-            "volume": 1.0
-          },
-          {
-            "price": 23684.7,
-            "volume": 1.0
-          },
-          {
-            "price": 23691.58,
-            "volume": 2.0
-          },
-          {
-            "price": 23698.45,
-            "volume": 2.0
-          },
-          {
-            "price": 23705.32,
+            "price": 24059.33,
             "volume": 4.0
           },
           {
-            "price": 23712.19,
-            "volume": 4.0
-          },
-          {
-            "price": 23719.06,
-            "volume": 4.0
-          },
-          {
-            "price": 23725.93,
-            "volume": 4.0
-          },
-          {
-            "price": 23732.8,
+            "price": 24063.06,
             "volume": 3.0
           },
           {
-            "price": 23739.67,
+            "price": 24066.79,
             "volume": 3.0
           },
           {
-            "price": 23746.54,
+            "price": 24070.52,
+            "volume": 3.0
+          },
+          {
+            "price": 24074.25,
             "volume": 2.0
           },
           {
-            "price": 23753.41,
+            "price": 24077.98,
+            "volume": 2.0
+          },
+          {
+            "price": 24081.71,
+            "volume": 2.0
+          },
+          {
+            "price": 24085.44,
             "volume": 2.0
           }
         ]
       },
       "cvd": null,
-      "current_price": 24044.22,
+      "current_price": 24063.77,
       "bias": {
         "score": 100,
         "bias": "BULLISH",
         "color": "green",
         "signals": [
           {
-            "label": "Preis > VWAP (24044 > 23575)",
+            "label": "Preis > VWAP (24064 > 24011)",
             "score": 2,
             "direction": "bullish"
           },
           {
-            "label": "Ueber VAH \u00e2\u20ac\u201d Breakout (24044 > 23619)",
+            "label": "Ueber VAH \u00e2\u20ac\u201d Breakout (24064 > 24054)",
             "score": 2,
             "direction": "bullish"
           },
           {
-            "label": "Preis > POC (24044 > 23575)",
+            "label": "Preis > POC (24064 > 24011)",
             "score": 1,
             "direction": "bullish"
           },
           {
-            "label": "Shape: Normal Variation",
+            "label": "Shape: Normal Day",
             "score": 0,
             "direction": "neutral"
           },
@@ -740,12 +730,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX falling sharply",
-            "score": 1,
-            "direction": "bullish"
-          },
-          {
-            "label": "DXY neutral (98.19)",
+            "label": "DXY neutral (98.16)",
             "score": 0,
             "direction": "neutral"
           },
@@ -776,21 +761,21 @@
   "context": {
     "VIX": {
       "price": 18.36,
-      "change": -0.76,
-      "change_pct": -3.97,
+      "change": 0.0,
+      "change_pct": 0.0,
       "high": 18.76,
       "low": 17.89,
       "open": 18.73,
-      "prev_close": 19.12
+      "prev_close": 18.36
     },
     "DXY": {
-      "price": 98.19,
-      "change": -0.18,
-      "change_pct": -0.18,
+      "price": 98.16,
+      "change": 0.04,
+      "change_pct": 0.04,
       "high": 98.23,
       "low": 98.05,
       "open": 98.07,
-      "prev_close": 98.37
+      "prev_close": 98.12
     },
     "US10Y": {
       "price": 4.26,
@@ -802,23 +787,456 @@
       "prev_close": 4.3
     },
     "DAX": {
-      "price": 24044.22,
-      "change": 301.78,
-      "change_pct": 1.27,
-      "high": 24087.3,
-      "low": 23938.11,
-      "open": 23953.93,
-      "prev_close": 23742.44
+      "price": 24063.77,
+      "change": 19.55,
+      "change_pct": 0.08,
+      "high": 24065.91,
+      "low": 24042.19,
+      "open": 24060.97,
+      "prev_close": 24044.22
     }
   },
-  "calendar": [],
+  "calendar": [
+    {
+      "time": "2026-04-15 06:00:00",
+      "event": "Average Earnings incl. Bonus (3Mo/Yr)",
+      "country": "GB",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 06:00:00",
+      "event": "Employment Change",
+      "country": "GB",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 06:00:00",
+      "event": "Unemployment Rate",
+      "country": "GB",
+      "impact": "high",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 09:00:00",
+      "event": "Balance of Trade",
+      "country": "IN",
+      "impact": "medium",
+      "estimate": -32.75,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 09:00:00",
+      "event": "Industrial Production MoM",
+      "country": "EU",
+      "impact": "medium",
+      "estimate": 0.3,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 10:30:00",
+      "event": "Inflation Rate YoY",
+      "country": "IN",
+      "impact": "medium",
+      "estimate": 3.48,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 11:00:00",
+      "event": "MBA 30-Year Mortgage Rate",
+      "country": "US",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 12:00:00",
+      "event": "Retail Sales MoM",
+      "country": "BR",
+      "impact": "medium",
+      "estimate": 1,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 12:30:00",
+      "event": "Export Prices MoM",
+      "country": "US",
+      "impact": "medium",
+      "estimate": 1.5,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 12:30:00",
+      "event": "Fed Barr Speech",
+      "country": "US",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 12:30:00",
+      "event": "Import Prices MoM",
+      "country": "US",
+      "impact": "medium",
+      "estimate": 2,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 12:30:00",
+      "event": "NY Empire State Manufacturing Index",
+      "country": "US",
+      "impact": "medium",
+      "estimate": -0.5,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 14:00:00",
+      "event": "Business Confidence",
+      "country": "BR",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 14:00:00",
+      "event": "NAHB Housing Market Index",
+      "country": "US",
+      "impact": "medium",
+      "estimate": 37,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 14:30:00",
+      "event": "EIA Crude Oil Stocks Change",
+      "country": "US",
+      "impact": "medium",
+      "estimate": 2.1,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 14:30:00",
+      "event": "EIA Gasoline Stocks Change",
+      "country": "US",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 17:45:00",
+      "event": "Fed Bowman Speech",
+      "country": "US",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 18:00:00",
+      "event": "BoE Gov Bailey Speech",
+      "country": "GB",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 19:30:00",
+      "event": "ECB President Lagarde Speech",
+      "country": "EU",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 20:00:00",
+      "event": "Net Long-term TIC Flows",
+      "country": "US",
+      "impact": "medium",
+      "estimate": 36.6,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 20:00:00",
+      "event": "RBA Hauser Speech",
+      "country": "AU",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 23:50:00",
+      "event": "Machinery Orders MoM",
+      "country": "JP",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-15 23:50:00",
+      "event": "Machinery Orders YoY",
+      "country": "JP",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-15"
+    },
+    {
+      "time": "2026-04-16 01:30:00",
+      "event": "Employment Change",
+      "country": "AU",
+      "impact": "medium",
+      "estimate": 20,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 01:30:00",
+      "event": "Full Time Employment Chg",
+      "country": "AU",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 01:30:00",
+      "event": "House Price Index YoY",
+      "country": "CN",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 01:30:00",
+      "event": "Unemployment Rate",
+      "country": "AU",
+      "impact": "medium",
+      "estimate": 4.3,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 02:00:00",
+      "event": "Fixed Asset Investment (YTD) YoY",
+      "country": "CN",
+      "impact": "medium",
+      "estimate": 1.9,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 02:00:00",
+      "event": "GDP Growth Rate QoQ",
+      "country": "CN",
+      "impact": "medium",
+      "estimate": 1.4,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 02:00:00",
+      "event": "GDP Growth Rate YoY",
+      "country": "CN",
+      "impact": "high",
+      "estimate": 4.8,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 02:00:00",
+      "event": "Industrial Production YoY",
+      "country": "CN",
+      "impact": "high",
+      "estimate": 5.6,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 02:00:00",
+      "event": "Retail Sales YoY",
+      "country": "CN",
+      "impact": "high",
+      "estimate": 2.3,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 04:30:00",
+      "event": "Unemployment Rate",
+      "country": "NL",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 06:00:00",
+      "event": "GDP 3-Month Avg",
+      "country": "GB",
+      "impact": "medium",
+      "estimate": 0.2,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 06:00:00",
+      "event": "GDP MoM",
+      "country": "GB",
+      "impact": "high",
+      "estimate": 0.1,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 06:00:00",
+      "event": "Goods Trade Balance",
+      "country": "GB",
+      "impact": "medium",
+      "estimate": -20.2,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 06:00:00",
+      "event": "Goods Trade Balance Non-EU",
+      "country": "GB",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 06:00:00",
+      "event": "Industrial Production MoM",
+      "country": "GB",
+      "impact": "medium",
+      "estimate": 0.3,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 06:00:00",
+      "event": "Manufacturing Production MoM",
+      "country": "GB",
+      "impact": "medium",
+      "estimate": 0.2,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 07:30:00",
+      "event": "SNB Monetary Policy Meeting Minutes",
+      "country": "CH",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 09:00:00",
+      "event": "FDI (YTD) YoY",
+      "country": "CN",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 11:30:00",
+      "event": "ECB Monetary Policy Meeting Accounts",
+      "country": "EU",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 12:30:00",
+      "event": "Initial Jobless Claims",
+      "country": "US",
+      "impact": "medium",
+      "estimate": 215,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 12:30:00",
+      "event": "Philadelphia Fed Manufacturing Index",
+      "country": "US",
+      "impact": "medium",
+      "estimate": 9,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 12:35:00",
+      "event": "Fed Williams Speech",
+      "country": "US",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 13:15:00",
+      "event": "Industrial Production MoM",
+      "country": "US",
+      "impact": "medium",
+      "estimate": 0.1,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 14:35:00",
+      "event": "Fed Miran Speech",
+      "country": "US",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-16"
+    },
+    {
+      "time": "2026-04-16 18:30:00",
+      "event": "RBA Hunter Speech",
+      "country": "AU",
+      "impact": "medium",
+      "estimate": null,
+      "prior": null,
+      "date": "2026-04-16"
+    }
+  ],
   "journal": {
     "date": "2026-04-15",
-    "timestamp": "2026-04-15T05:00:28.966985",
+    "timestamp": "2026-04-15T07:20:17.377486",
     "debrief": {
       "orders_checked": 3,
-      "fill_rate": "1.9%",
-      "tp1_rate": "0.0%",
+      "fill_rate": "12.3%",
+      "tp1_rate": "12.5%",
       "trend": "Stabil",
       "learnings": []
     },
@@ -831,22 +1249,22 @@
         "bias_pct": "95",
         "bias_signals": [
           {
-            "label": "Preis > VWAP (24044 > 23575)",
+            "label": "Preis > VWAP (24064 > 24011)",
             "score": 2,
             "direction": "bullish"
           },
           {
-            "label": "Ueber VAH \u00e2\u20ac\u201d Breakout (24044 > 23619)",
+            "label": "Ueber VAH \u00e2\u20ac\u201d Breakout (24064 > 24054)",
             "score": 2,
             "direction": "bullish"
           },
           {
-            "label": "Preis > POC (24044 > 23575)",
+            "label": "Preis > POC (24064 > 24011)",
             "score": 1,
             "direction": "bullish"
           },
           {
-            "label": "Shape: Normal Variation",
+            "label": "Shape: Normal Day",
             "score": 0,
             "direction": "neutral"
           },
@@ -861,12 +1279,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX falling sharply",
-            "score": 1,
-            "direction": "bullish"
-          },
-          {
-            "label": "DXY neutral (98.19)",
+            "label": "DXY neutral (98.16)",
             "score": 0,
             "direction": "neutral"
           },
@@ -893,237 +1306,237 @@
         ],
         "cvd": {},
         "quote": {
-          "price": 24044.22,
-          "change": 301.78,
-          "change_pct": 1.27,
-          "high": 24087.3,
-          "low": 23938.11,
-          "open": 23953.93,
-          "prev_close": 23742.44,
+          "price": 24063.77,
+          "change": 19.55,
+          "change_pct": 0.08,
+          "high": 24065.91,
+          "low": 24042.19,
+          "open": 24060.97,
+          "prev_close": 24044.22,
           "source": "yahoo_eod"
         },
         "market_profile": {
-          "poc": 23574.77,
-          "vah": 23619.43,
-          "val": 23488.88,
-          "vwap": 23574.77,
-          "day_high": 23756.85,
-          "day_low": 23482.01,
+          "poc": 24010.84,
+          "vah": 24053.73,
+          "val": 23971.68,
+          "vwap": 24010.84,
+          "day_high": 24087.3,
+          "day_low": 23938.11,
           "shape": {
-            "name": "Normal Variation",
-            "description": "Leichte Richtung \u00e2\u20ac\u201d Abwarten auf Breakout aus VA."
+            "name": "Normal Day",
+            "description": "Ausbalanciert \u00e2\u20ac\u201d Range-Trading um POC."
           },
           "volume_profile": [
             {
-              "price": 23485.45,
-              "volume": 2.0
+              "price": 23939.97,
+              "volume": 1.0
             },
             {
-              "price": 23492.32,
-              "volume": 2.0
-            },
-            {
-              "price": 23499.19,
-              "volume": 2.0
-            },
-            {
-              "price": 23506.06,
+              "price": 23943.7,
               "volume": 3.0
             },
             {
-              "price": 23512.93,
-              "volume": 3.0
-            },
-            {
-              "price": 23519.8,
-              "volume": 3.0
-            },
-            {
-              "price": 23526.67,
-              "volume": 3.0
-            },
-            {
-              "price": 23533.54,
-              "volume": 3.0
-            },
-            {
-              "price": 23540.41,
+              "price": 23947.43,
               "volume": 4.0
             },
             {
-              "price": 23547.28,
+              "price": 23951.16,
+              "volume": 4.0
+            },
+            {
+              "price": 23954.89,
+              "volume": 5.0
+            },
+            {
+              "price": 23958.62,
+              "volume": 5.0
+            },
+            {
+              "price": 23962.35,
               "volume": 6.0
             },
             {
-              "price": 23554.16,
+              "price": 23966.08,
+              "volume": 6.0
+            },
+            {
+              "price": 23969.81,
+              "volume": 7.0
+            },
+            {
+              "price": 23973.54,
               "volume": 8.0
             },
             {
-              "price": 23561.03,
+              "price": 23977.27,
+              "volume": 8.0
+            },
+            {
+              "price": 23981.0,
+              "volume": 8.0
+            },
+            {
+              "price": 23984.73,
               "volume": 9.0
             },
             {
-              "price": 23567.9,
+              "price": 23988.46,
+              "volume": 9.0
+            },
+            {
+              "price": 23992.19,
+              "volume": 8.0
+            },
+            {
+              "price": 23995.92,
+              "volume": 8.0
+            },
+            {
+              "price": 23999.65,
+              "volume": 8.0
+            },
+            {
+              "price": 24003.38,
+              "volume": 8.0
+            },
+            {
+              "price": 24007.11,
+              "volume": 9.0
+            },
+            {
+              "price": 24010.84,
               "volume": 10.0
             },
             {
-              "price": 23574.77,
-              "volume": 11.0
+              "price": 24014.57,
+              "volume": 8.0
             },
             {
-              "price": 23581.64,
-              "volume": 11.0
+              "price": 24018.3,
+              "volume": 9.0
             },
             {
-              "price": 23588.51,
-              "volume": 10.0
+              "price": 24022.03,
+              "volume": 8.0
             },
             {
-              "price": 23595.38,
-              "volume": 6.0
+              "price": 24025.76,
+              "volume": 8.0
             },
             {
-              "price": 23602.25,
-              "volume": 3.0
+              "price": 24029.49,
+              "volume": 8.0
             },
             {
-              "price": 23609.12,
-              "volume": 3.0
+              "price": 24033.22,
+              "volume": 7.0
             },
             {
-              "price": 23615.99,
-              "volume": 2.0
+              "price": 24036.95,
+              "volume": 8.0
             },
             {
-              "price": 23622.87,
-              "volume": 1.0
+              "price": 24040.68,
+              "volume": 8.0
             },
             {
-              "price": 23629.74,
-              "volume": 1.0
+              "price": 24044.41,
+              "volume": 8.0
             },
             {
-              "price": 23636.61,
-              "volume": 1.0
+              "price": 24048.14,
+              "volume": 7.0
             },
             {
-              "price": 23643.48,
-              "volume": 1.0
+              "price": 24051.87,
+              "volume": 7.0
             },
             {
-              "price": 23650.35,
-              "volume": 1.0
+              "price": 24055.6,
+              "volume": 5.0
             },
             {
-              "price": 23657.22,
-              "volume": 1.0
-            },
-            {
-              "price": 23664.09,
-              "volume": 1.0
-            },
-            {
-              "price": 23670.96,
-              "volume": 1.0
-            },
-            {
-              "price": 23677.83,
-              "volume": 1.0
-            },
-            {
-              "price": 23684.7,
-              "volume": 1.0
-            },
-            {
-              "price": 23691.58,
-              "volume": 2.0
-            },
-            {
-              "price": 23698.45,
-              "volume": 2.0
-            },
-            {
-              "price": 23705.32,
+              "price": 24059.33,
               "volume": 4.0
             },
             {
-              "price": 23712.19,
-              "volume": 4.0
-            },
-            {
-              "price": 23719.06,
-              "volume": 4.0
-            },
-            {
-              "price": 23725.93,
-              "volume": 4.0
-            },
-            {
-              "price": 23732.8,
+              "price": 24063.06,
               "volume": 3.0
             },
             {
-              "price": 23739.67,
+              "price": 24066.79,
               "volume": 3.0
             },
             {
-              "price": 23746.54,
+              "price": 24070.52,
+              "volume": 3.0
+            },
+            {
+              "price": 24074.25,
               "volume": 2.0
             },
             {
-              "price": 23753.41,
+              "price": 24077.98,
+              "volume": 2.0
+            },
+            {
+              "price": 24081.71,
+              "volume": 2.0
+            },
+            {
+              "price": 24085.44,
               "volume": 2.0
             }
           ]
         },
-        "current_price": 24044.22,
-        "daily_summary": "Bias Bullisch (Score 100). Vortag Range: 23482.01 \u00e2\u20ac\u201c 23756.85. VIX=18.4.",
+        "current_price": 24063.77,
+        "daily_summary": "Bias Bullisch (Score 100). Vortag Range: 23938.11 \u00e2\u20ac\u201c 24087.3. VIX=18.4.",
         "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
         "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-        "h30m_summary": "Kurs 24044.22 ueber VWAP (23574.77), ausserhalb Value Area. POC=23574.77 VAH=23619.43 VAL=23488.88. Shape: Normal Variation.",
-        "mp_shape_yesterday": "Normal Variation",
-        "mp_shape_forecast": "Normal Variation",
+        "h30m_summary": "Kurs 24063.77 ueber VWAP (24010.84), ausserhalb Value Area. POC=24010.84 VAH=24053.73 VAL=23971.68. Shape: Normal Day.",
+        "mp_shape_yesterday": "Normal Day",
+        "mp_shape_forecast": "Normal Day",
         "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
         "key_levels": [
           {
             "level": "VAH Vortag",
-            "price": "23619.43",
+            "price": "24053.73",
             "source": "Market Profile"
           },
           {
             "level": "POC Vortag",
-            "price": "23574.77",
+            "price": "24010.84",
             "source": "Market Profile"
           },
           {
             "level": "VAL Vortag",
-            "price": "23488.88",
+            "price": "23971.68",
             "source": "Market Profile"
           },
           {
             "level": "VWAP 30M",
-            "price": "23574.77",
+            "price": "24010.84",
             "source": "VWAP"
           }
         ],
         "orders": [
           {
             "type": "Limit Buy",
-            "entry": "23495.41",
-            "sl": "23456.24",
-            "tp1": "23619.43",
-            "tp2": "23684.71",
+            "entry": "23975.78",
+            "sl": "23951.17",
+            "tp1": "24053.73",
+            "tp2": "24094.75",
             "rr": "3.17",
             "p_fill": "70",
             "p_tp1": "65",
             "tf": "30M",
-            "confluence": "Preis > VWAP (24044 > 23575) + Ueber VAH \u00e2\u20ac\u201d Breakout (24044 > 23619) + Preis > POC (24044 > 23575)",
-            "mp_shape_yesterday": "Normal Variation",
-            "mp_shape_forecast": "Normal Variation",
+            "confluence": "Preis > VWAP (24064 > 24011) + Ueber VAH \u00e2\u20ac\u201d Breakout (24064 > 24054) + Preis > POC (24064 > 24011)",
+            "mp_shape_yesterday": "Normal Day",
+            "mp_shape_forecast": "Normal Day",
             "vwap_position": "Preis ueber VWAP"
           }
         ],
-        "invalidation": "Kurs schliesst unter 23488.88 \u00e2\u20ac\u201d bullischer Bias negiert"
+        "invalidation": "Kurs schliesst unter 23971.68 \u00e2\u20ac\u201d bullischer Bias negiert"
       },
       {
         "name": "US30",
@@ -1163,12 +1576,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX falling sharply",
-            "score": 1,
-            "direction": "bullish"
-          },
-          {
-            "label": "DXY neutral (98.19)",
+            "label": "DXY neutral (98.16)",
             "score": 0,
             "direction": "neutral"
           },
@@ -1465,12 +1873,7 @@
             "direction": "bullish"
           },
           {
-            "label": "VIX falling sharply",
-            "score": 1,
-            "direction": "bullish"
-          },
-          {
-            "label": "DXY neutral (98.19)",
+            "label": "DXY neutral (98.16)",
             "score": 0,
             "direction": "neutral"
           },
@@ -1734,21 +2137,15 @@
       "best_instrument": "GER40",
       "total_orders": 3,
       "warnings": [],
-      "notes": "Auto-generiert 05:00. VIX=18.4. Beste Konfluenz: GER40."
+      "notes": "Auto-generiert 07:20. VIX=18.4. Beste Konfluenz: GER40."
     },
     "stats": {
-      "total": 53,
-      "fill_rate": "1.9%",
-      "tp1_rate": "0.0%",
-      "sl_rate": "100.0%",
+      "total": 65,
+      "fill_rate": "12.3%",
+      "tp1_rate": "12.5%",
+      "sl_rate": "87.5%",
       "trend": "Stabil",
-      "debrief_manual": {
-        "ger40_sell_23676": "Ja/Nein/Ja -84pts",
-        "us30_sell_47846": "Ja/Nein/Ja -204pts",
-        "sp500_buy_6739": "Nein/Nein/Nein 0",
-        "dj30_buy_47580": "Ja/Ja/Nein +360pts BESTES SETUP",
-        "sp500_buy_6766": "Nein/Nein/Nein 0"
-      }
+      "best_confluence": "DJ30: MP VAL + VWAP + SMC + Kumo (100% TP1-Rate)"
     }
   }
 }
