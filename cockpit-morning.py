@@ -119,7 +119,8 @@ def fetch_calendar():
                      "prior":    e.get("prior"),
                      "date":     date_str}
                     for e in cal.get("economicCalendar", [])
-                    if e.get("impact") in ("high", "medium")
+                    if e.get("impact") == "high"
+                    and e.get("country", "").upper() in ("US", "DE")
                 ]
                 if events:
                     all_events.append({"date": date_str, "events": events})
