@@ -1,6 +1,6 @@
 {
   "date": "2026-04-16",
-  "timestamp": "2026-04-16T00:49:05.651501",
+  "timestamp": "2026-04-16T05:00:28.307080",
   "debrief": {
     "orders_checked": 3,
     "fill_rate": "12.3%",
@@ -13,25 +13,25 @@
       "name": "GER40",
       "bias": "Bullisch",
       "bias_color": "green",
-      "bias_score": 75,
+      "bias_score": 100,
       "bias_pct": "95",
       "bias_signals": [
         {
-          "label": "Preis > VWAP (24044 > 24011)",
+          "label": "Preis > VWAP (24067 > 24011)",
           "score": 2,
           "direction": "bullish",
           "category": "vwap",
           "auto": true
         },
         {
-          "label": "In Value Area (23972 – 24054)",
-          "score": 0,
-          "direction": "neutral",
+          "label": "Ueber VAH – Breakout (24067 > 24054)",
+          "score": 2,
+          "direction": "bullish",
           "category": "value_area",
           "auto": true
         },
         {
-          "label": "Preis > POC (24044 > 24011)",
+          "label": "Preis > POC (24067 > 24011)",
           "score": 1,
           "direction": "bullish",
           "category": "poc",
@@ -57,34 +57,13 @@
           "direction": "bullish",
           "category": "vix",
           "auto": true
-        },
-        {
-          "label": "Yield Curve positiv (0.53%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_yieldcurve",
-          "auto": true
-        },
-        {
-          "label": "CPI 3.32% — erhoeht",
-          "score": -1,
-          "direction": "bearish",
-          "category": "fred_cpi",
-          "auto": true
-        },
-        {
-          "label": "Arbeitslosigkeit sinkt (4.3%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_unrate",
-          "auto": true
         }
       ],
-      "confluence_score": 6,
-      "confluence_against": 1,
-      "confluence_total": 9,
-      "confluence_pct": 67,
-      "confluence_label": "6/9 (bullisch)",
+      "confluence_score": 5,
+      "confluence_against": 0,
+      "confluence_total": 6,
+      "confluence_pct": 83,
+      "confluence_label": "5/6 (bullisch)",
       "manual_checks": [
         "Daily OTF Check (4H/Daily Trend manuell pruefen)",
         "Gap Analysis (Gap vom Vortag open/close pruefen)",
@@ -92,12 +71,12 @@
       ],
       "cvd": {},
       "quote": {
-        "price": 24044.22,
-        "change": 0.0,
-        "change_pct": 0.0,
-        "high": 24087.3,
-        "low": 23938.11,
-        "open": 23953.93,
+        "price": 24066.7,
+        "change": 22.48,
+        "change_pct": 0.09,
+        "high": 24127.01,
+        "low": 23996.8,
+        "open": 24060.97,
         "prev_close": 24044.22,
         "source": "yahoo_eod"
       },
@@ -275,11 +254,11 @@
           }
         ]
       },
-      "current_price": 24044.22,
-      "daily_summary": "Bias Bullisch (Score 75, Confluence 67%). Vortag Range: 23938.11 – 24087.3. VIX=18.2.",
+      "current_price": 24066.7,
+      "daily_summary": "Bias Bullisch (Score 100, Confluence 83%). Vortag Range: 23938.11 – 24087.3. VIX=18.2.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 24044.22 ueber VWAP (24010.84), in Value Area. POC=24010.84 VAH=24053.73 VAL=23971.68. Shape: Normal Day. Confluence: 6/9 (bullisch).",
+      "h30m_summary": "Kurs 24066.7 ueber VWAP (24010.84), ausserhalb Value Area. POC=24010.84 VAH=24053.73 VAL=23971.68. Shape: Normal Day. Confluence: 5/6 (bullisch).",
       "mp_shape_yesterday": "Normal Day",
       "mp_shape_forecast": "Normal Day",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -313,10 +292,10 @@
           "tp1": "24053.73",
           "tp2": "24094.75",
           "rr": "3.17",
-          "p_fill": "50",
-          "p_tp1": "40",
+          "p_fill": "62",
+          "p_tp1": "49",
           "tf": "30M",
-          "confluence": "Preis > VWAP (24044 > 24011) + Preis > POC (24044 > 24011) + Overnight Inventory: Long (Preis > VA-Mitte)",
+          "confluence": "Preis > VWAP (24067 > 24011) + Ueber VAH – Breakout (24067 > 24054) + Preis > POC (24067 > 24011)",
           "mp_shape_yesterday": "Normal Day",
           "mp_shape_forecast": "Normal Day",
           "vwap_position": "Preis ueber VWAP"
@@ -328,8 +307,8 @@
       "name": "US30",
       "bias": "Neutral",
       "bias_color": "yellow",
-      "bias_score": 0,
-      "bias_pct": "50",
+      "bias_score": -14,
+      "bias_pct": "64",
       "bias_signals": [
         {
           "label": "Preis < VWAP (48464 < 48478)",
@@ -372,34 +351,13 @@
           "direction": "bullish",
           "category": "vix",
           "auto": true
-        },
-        {
-          "label": "Yield Curve positiv (0.53%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_yieldcurve",
-          "auto": true
-        },
-        {
-          "label": "CPI 3.32% — erhoeht",
-          "score": -1,
-          "direction": "bearish",
-          "category": "fred_cpi",
-          "auto": true
-        },
-        {
-          "label": "Arbeitslosigkeit sinkt (4.3%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_unrate",
-          "auto": true
         }
       ],
       "confluence_score": 0,
-      "confluence_against": 8,
-      "confluence_total": 9,
+      "confluence_against": 5,
+      "confluence_total": 6,
       "confluence_pct": 50,
-      "confluence_label": "4 bullisch / 4 bearisch / 1 neutral von 9",
+      "confluence_label": "2 bullisch / 3 bearisch / 1 neutral von 6",
       "manual_checks": [
         "Daily OTF Check (4H/Daily Trend manuell pruefen)",
         "Gap Analysis (Gap vom Vortag open/close pruefen)",
@@ -591,10 +549,10 @@
         ]
       },
       "current_price": 48463.72,
-      "daily_summary": "Bias Neutral (Score 0, Confluence 50%). Vortag Range: 48192.3 – 48592.29. VIX=18.2.",
+      "daily_summary": "Bias Neutral (Score -14, Confluence 50%). Vortag Range: 48192.3 – 48592.29. VIX=18.2.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 48463.72 unter VWAP (48478.09), in Value Area. POC=48517.29 VAH=48562.29 VAL=48382.3. Shape: Trend Day (Up). Confluence: 4 bullisch / 4 bearisch / 1 neutral von 9.",
+      "h30m_summary": "Kurs 48463.72 unter VWAP (48478.09), in Value Area. POC=48517.29 VAH=48562.29 VAL=48382.3. Shape: Trend Day (Up). Confluence: 2 bullisch / 3 bearisch / 1 neutral von 6.",
       "mp_shape_yesterday": "Trend Day (Up)",
       "mp_shape_forecast": "Trend Day (Up)",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -643,7 +601,7 @@
       "name": "SPX500",
       "bias": "Bullisch",
       "bias_color": "green",
-      "bias_score": 83,
+      "bias_score": 100,
       "bias_pct": "95",
       "bias_signals": [
         {
@@ -687,34 +645,13 @@
           "direction": "bullish",
           "category": "vix",
           "auto": true
-        },
-        {
-          "label": "Yield Curve positiv (0.53%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_yieldcurve",
-          "auto": true
-        },
-        {
-          "label": "CPI 3.32% — erhoeht",
-          "score": -1,
-          "direction": "bearish",
-          "category": "fred_cpi",
-          "auto": true
-        },
-        {
-          "label": "Arbeitslosigkeit sinkt (4.3%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_unrate",
-          "auto": true
         }
       ],
-      "confluence_score": 8,
-      "confluence_against": 1,
-      "confluence_total": 9,
-      "confluence_pct": 89,
-      "confluence_label": "8/9 (bullisch)",
+      "confluence_score": 6,
+      "confluence_against": 0,
+      "confluence_total": 6,
+      "confluence_pct": 100,
+      "confluence_label": "6/6 (bullisch)",
       "manual_checks": [
         "Daily OTF Check (4H/Daily Trend manuell pruefen)",
         "Gap Analysis (Gap vom Vortag open/close pruefen)",
@@ -906,10 +843,10 @@
         ]
       },
       "current_price": 7022.95,
-      "daily_summary": "Bias Bullisch (Score 83, Confluence 89%). Vortag Range: 6905.17 – 6969.42. VIX=18.2.",
+      "daily_summary": "Bias Bullisch (Score 100, Confluence 100%). Vortag Range: 6905.17 – 6969.42. VIX=18.2.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 7022.95 ueber VWAP (6948.45), ausserhalb Value Area. POC=6960.59 VAH=6969.42 VAL=6932.48. Shape: Trend Day (Up). Confluence: 8/9 (bullisch).",
+      "h30m_summary": "Kurs 7022.95 ueber VWAP (6948.45), ausserhalb Value Area. POC=6960.59 VAH=6969.42 VAL=6932.48. Shape: Trend Day (Up). Confluence: 6/6 (bullisch).",
       "mp_shape_yesterday": "Trend Day (Up)",
       "mp_shape_forecast": "Trend Day (Up)",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -943,8 +880,8 @@
           "tp1": "6969.42",
           "tp2": "6987.89",
           "rr": "3.17",
-          "p_fill": "66",
-          "p_tp1": "53",
+          "p_fill": "75",
+          "p_tp1": "60",
           "tf": "30M",
           "confluence": "Preis > VWAP (7023 > 6948) + Ueber VAH – Breakout (7023 > 6969) + Preis > POC (7023 > 6961)",
           "mp_shape_yesterday": "Trend Day (Up)",
@@ -956,10 +893,10 @@
     }
   ],
   "summary": {
-    "best_instrument": "SPX500",
+    "best_instrument": "GER40",
     "total_orders": 3,
     "warnings": [],
-    "notes": "Auto-generiert 00:49. VIX=18.2. Beste Konfluenz: SPX500."
+    "notes": "Auto-generiert 05:00. VIX=18.2. Beste Konfluenz: GER40."
   },
   "stats": {
     "total": 65,
