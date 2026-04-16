@@ -240,11 +240,9 @@ function fmtTs(ts) {
 
 // Card-Titel mit optionalem Zeitstempel rechts
 function ctTitle(icon, label, ts) {
-  const tsHtml = ts ? `<span class="ct-ts">Stand: ${fmtTs(ts)}</span>` : '';
-  return `<div class="ct">
-    <span class="ct-left">${icon ? icon+' ' : ''}${label}</span>
-    ${tsHtml}
-  </div>`;
+  const tsHtml = ts ? '<span class="ct-ts">Stand: ' + fmtTs(ts) + '</span>' : '';
+  const iconHtml = icon ? '<span style="margin-right:4px">' + icon + '</span>' : '';
+  return '<div class="ct"><span class="ct-left">' + iconHtml + label + '</span>' + tsHtml + '</div>';
 }
 
 function biasColor(c) {
@@ -532,7 +530,7 @@ function renderCtx(ctx) {
   if (!ctx) return '';
   const ts = _analysisTs ? _analysisTs.toISOString() : null;
   return `<div class="card fw">
-    ${ctTitle('🌍', 'Macro Context', ts)}
+    ${ctTitle('Ctx', 'Macro Context', ts)}
     <div class="cgrid">
       ${['VIX','DXY','US10Y','DAX'].map(k => {
         const d = ctx[k];
@@ -559,14 +557,15 @@ function renderCal(cal) {
     e.impact === 'high' &&
     ['US','DE'].includes((e.country||'').toUpperCase())
   );
-  const flagMap = {'US':'🇺🇸','DE':'🇩🇪'};
+  const flagMap = {'US':'US','DE':'DE'};
 
-  if (!filtered.length)
+  if (!filtered.length) {
     const tsE = _analysisTs ? _analysisTs.toISOString() : null;
-    return `<div class="card fw">${ctTitle('📅','Macro Kalender — US &amp; DE High Impact', tsE)}
+    return `<div class="card fw">${ctTitle('','Macro Kalender &mdash; US &amp; DE High Impact', tsE)}
       <div style="color:var(--muted);font-size:13px;padding:12px 0;text-align:center">
-        Keine High-Impact Events für US/DE
+        Keine High-Impact Events f&uuml;r US/DE
       </div></div>`;
+  }
 
   const grouped = {};
   filtered.forEach(e => {
@@ -580,7 +579,7 @@ function renderCal(cal) {
   for (const [date, events] of Object.entries(grouped)) {
     const isToday = date === today;
     rows += `<div class="day-label" style="color:${isToday?'var(--cyan)':'var(--yellow)'}">
-      ${isToday?'Heute':'Nächster Tag'} — ${fmtDate(date)}
+      ${isToday?'Heute':'N&auml;chster Tag'} — ${fmtDate(date)}
     </div>`;
     rows += events.map(e => `
     <div class="cale">
@@ -592,7 +591,7 @@ function renderCal(cal) {
   }
   const tsStr = _analysisTs ? _analysisTs.toISOString() : null;
   return `<div class="card fw">
-    ${ctTitle('📅', 'Macro Kalender — US &amp; DE · High Impact only', tsStr)}
+    ${ctTitle('Cal', 'Macro Kalender — US &amp; DE · High Impact only', tsStr)}
     ${rows}
   </div>`;
 }
@@ -600,19 +599,20 @@ function renderCal(cal) {
 // ── FRED Macro Data ───────────────────────────────────────────────────────
 function renderFred(fred) {
   const series = [
-    { id:'FEDFUNDS', icon:'🏦', label:'Fed Funds Rate',    warn_high:5.0, warn_low:2.0, invert:true  },
-    { id:'T10Y2Y',   icon:'📐', label:'Yield Curve 10Y-2Y', warn_high:0.5, warn_low:-0.5, invert:true },
-    { id:'CPIAUCSL', icon:'🛒', label:'CPI Inflation',      warn_high:4.0, warn_low:2.0, invert:true  },
-    { id:'UNRATE',   icon:'👷', label:'Arbeitslosenquote',  warn_high:5.0, warn_low:3.5, invert:false },
+    { id:'FEDFUNDS', icon:'Bank', label:'Fed Funds Rate',    warn_high:5.0, warn_low:2.0, invert:true  },
+    { id:'T10Y2Y',   icon:'Yld', label:'Yield Curve 10Y-2Y', warn_high:0.5, warn_low:-0.5, invert:true },
+    { id:'CPIAUCSL', icon:'CPI', label:'CPI Inflation',      warn_high:4.0, warn_low:2.0, invert:true  },
+    { id:'UNRATE',   icon:'Work', label:'Arbeitslosenquote',  warn_high:5.0, warn_low:3.5, invert:false },
   ];
 
-  if (!fred || !Object.keys(fred).length)
+  if (!fred || !Object.keys(fred).length) {
     const tsF0 = _analysisTs ? _analysisTs.toISOString() : null;
     return `<div class="card fw">
-      ${ctTitle('📊','FRED Macro — US Federal Reserve Data', tsF0)}
+      ${ctTitle('','FRED Macro &mdash; US Federal Reserve Data', tsF0)}
       <div style="color:var(--muted);font-size:13px;padding:12px 0;text-align:center">
-        FRED-Daten nicht verfuegbar — FRED_API_KEY pruefen
+        FRED-Daten nicht verfuegbar &mdash; FRED_API_KEY pr&uuml;fen
       </div></div>`;
+  }
 
   // Kacheln
   const tiles = series.map(s => {
@@ -685,7 +685,7 @@ function renderFred(fred) {
 
   const tsF = _analysisTs ? _analysisTs.toISOString() : null;
   return `<div class="card fw">
-    ${ctTitle('📊','FRED Macro — US Federal Reserve Data', tsF)}
+    ${ctTitle('FRED','FRED Macro — US Federal Reserve Data', tsF)}
     <div class="cgrid" style="margin-bottom:16px">${tiles}</div>
     <div style="border-top:1px solid var(--border);padding-top:12px">
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:8px">
