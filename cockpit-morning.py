@@ -1527,7 +1527,7 @@ def main():
 
     data_tag = (
         "<script>window.__COCKPIT_DATA__ = "
-        + json.dumps(out, cls=SafeJSONEncoder)
+        + json.dumps(out, cls=SafeJSONEncoder, ensure_ascii=True)
         + ";</script>"
     )
     html_embedded = html.replace("</head>", data_tag + "\n</head>")
@@ -1583,3 +1583,4 @@ if __name__ == "__main__":
         logging.error(f"UNERWARTETER FEHLER: {e}", exc_info=True)
         sys.exit(1)
     sys.exit(0)
+

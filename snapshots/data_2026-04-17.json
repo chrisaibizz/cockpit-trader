@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-04-17T00:16:49.448418",
+  "timestamp": "2026-04-17T00:26:01.008026",
   "instruments": {
     "SPX": {
       "name": "S&P 500 (Kassa)",
       "ticker": "^GSPC",
       "quote": {
-        "price": 7050.8,
-        "change": 27.85,
+        "price": 7050.78,
+        "change": 27.83,
         "change_pct": 0.4,
         "high": 7051.23,
         "low": 7008.52,
@@ -18,7 +18,7 @@
         "poc": 7039.93,
         "vah": 7047.51,
         "val": 7032.34,
-        "vwap": 7048.59,
+        "vwap": 7048.71,
         "day_high": 7047.51,
         "day_low": 7032.34,
         "shape": {
@@ -45,7 +45,7 @@
         "value": 1222.31,
         "direction": "bullish"
       },
-      "current_price": 7050.8,
+      "current_price": 7050.78,
       "bias": {
         "score": 38,
         "bias": "BULLISH",
@@ -159,8 +159,8 @@
       "name": "Dow Jones (Kassa)",
       "ticker": "^DJI",
       "quote": {
-        "price": 48673.48,
-        "change": 209.76,
+        "price": 48672.68,
+        "change": 208.96,
         "change_pct": 0.43,
         "high": 48683.45,
         "low": 48337.38,
@@ -198,7 +198,7 @@
         "value": 139227.07,
         "direction": "bullish"
       },
-      "current_price": 48673.48,
+      "current_price": 48672.68,
       "bias": {
         "score": 47,
         "bias": "BULLISH",
@@ -551,7 +551,7 @@
   ],
   "journal": {
     "date": "2026-04-17",
-    "timestamp": "2026-04-17T00:16:49.437433",
+    "timestamp": "2026-04-17T00:26:00.999009",
     "debrief": {
       "orders_checked": 3,
       "fill_rate": "11.8%",
@@ -883,8 +883,8 @@
           "direction": "bullish"
         },
         "quote": {
-          "price": 48673.48,
-          "change": 209.76,
+          "price": 48672.68,
+          "change": 208.96,
           "change_pct": 0.43,
           "high": 48683.45,
           "low": 48337.38,
@@ -918,11 +918,11 @@
           "poor_high": null,
           "poor_low": null
         },
-        "current_price": 48673.48,
+        "current_price": 48672.68,
         "daily_summary": "Bias Bullisch (Score 47, Confluence 75%). Vortag Range: 48499.08 \u2013 48617.73. VIX=17.9.",
         "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
         "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-        "h30m_summary": "Kurs 48673.48 ueber VWAP (48661.01), ausserhalb Value Area. POC=48575.36 VAH=48617.73 VAL=48499.08. CVD +139227 (Kaufdruck). Shape: Normal Variation (Up). Confluence: 9/12 (bullisch).",
+        "h30m_summary": "Kurs 48672.68 ueber VWAP (48661.01), ausserhalb Value Area. POC=48575.36 VAH=48617.73 VAL=48499.08. CVD +139227 (Kaufdruck). Shape: Normal Variation (Up). Confluence: 9/12 (bullisch).",
         "mp_shape_yesterday": "Normal Variation (Up)",
         "mp_shape_forecast": "Normal Variation (Up)",
         "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -1091,8 +1091,8 @@
           "direction": "bullish"
         },
         "quote": {
-          "price": 7050.8,
-          "change": 27.85,
+          "price": 7050.78,
+          "change": 27.83,
           "change_pct": 0.4,
           "high": 7051.23,
           "low": 7008.52,
@@ -1104,7 +1104,7 @@
           "poc": 7039.93,
           "vah": 7047.51,
           "val": 7032.34,
-          "vwap": 7048.59,
+          "vwap": 7048.71,
           "day_high": 7047.51,
           "day_low": 7032.34,
           "shape": {
@@ -1127,11 +1127,11 @@
           "poor_high": 7048,
           "poor_low": 7044
         },
-        "current_price": 7050.8,
+        "current_price": 7050.78,
         "daily_summary": "Bias Bullisch (Score 38, Confluence 69%). Vortag Range: 7032.34 \u2013 7047.51. VIX=17.9.",
         "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
         "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-        "h30m_summary": "Kurs 7050.8 ueber VWAP (7048.59), ausserhalb Value Area. POC=7039.93 VAH=7047.51 VAL=7032.34. CVD +1222 (Kaufdruck). Shape: Normal Variation (Up). Confluence: 9/13 (bullisch).",
+        "h30m_summary": "Kurs 7050.78 ueber VWAP (7048.71), ausserhalb Value Area. POC=7039.93 VAH=7047.51 VAL=7032.34. CVD +1222 (Kaufdruck). Shape: Normal Variation (Up). Confluence: 9/13 (bullisch).",
         "mp_shape_yesterday": "Normal Variation (Up)",
         "mp_shape_forecast": "Normal Variation (Up)",
         "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -1153,7 +1153,7 @@
           },
           {
             "level": "VWAP 30M",
-            "price": "7048.59",
+            "price": "7048.71",
             "source": "VWAP"
           },
           {
@@ -1201,7 +1201,7 @@
       "best_instrument": "US30",
       "total_orders": 3,
       "warnings": [],
-      "notes": "Auto-generiert 00:16. VIX=17.9. Beste Konfluenz: US30."
+      "notes": "Auto-generiert 00:26. VIX=17.9. Beste Konfluenz: US30."
     },
     "stats": {
       "total": 102,
