@@ -416,6 +416,61 @@ def get_tv_data(ticker, timeframe="30"):
             })()
         """)
 
+        stpo_items = _eval("""
+            (function() {
+              try {
+                var chart = window.TradingViewApi._activeChartWidgetWV.value()._chartWidget;
+                var sources = chart.model().model().dataSources();
+                for (var si = 0; si < sources.length; si++) {
+                  var s = sources[si];
+                  if (!s.metaInfo) continue;
+                  var name = s.metaInfo().description || s.metaInfo().shortDescription || '';
+                  if (name.indexOf('Session Time Price') === -1) continue;
+                  var renderers = s._paneViews[0]._renderer._renderers;
+
+                  // Naked POC: grau + kein Label in renderer[3], Formel rowValue * 4
+                  var levels = renderers[3]._data.levels || [];
+                  var nakedPoc = [];
+                  levels.forEach(function(l) {
+                    if (!l.labelText && l.color && l.color.indexOf('128, 128, 128') !== -1) {
+                      nakedPoc.push(Math.round(l.rowOrCoordinate * 4 * 100) / 100);
+                    }
+                  });
+
+                  // Single Prints: grau hinterlegte Hintergrund-Rows in renderer[4]
+                  var bgRows = renderers[4]._data.rows || [];
+                  var singlePrints = bgRows
+                    .filter(function(r){ return r.color && r.color.indexOf('219, 219, 219') !== -1; })
+                    .map(function(r){ return Math.round(r.rowIndex * 4 * 100) / 100; });
+
+                  // Poor High / Poor Low: letzter Block (juengste Session), Extremzeilen mit 1 Zelle
+                  var blocks = renderers[1]._data.blocks || [];
+                  var poorHigh = null, poorLow = null;
+                  if (blocks.length > 0) {
+                    var lastBlock = blocks[blocks.length - 1];
+                    var rows = lastBlock.rows || [];
+                    var rowIndices = rows.map(function(r){ return r.row; });
+                    if (rowIndices.length > 0) {
+                      var maxRow = Math.max.apply(null, rowIndices);
+                      var minRow = Math.min.apply(null, rowIndices);
+                      var topRow = rows.filter(function(r){ return r.row === maxRow; })[0];
+                      var botRow = rows.filter(function(r){ return r.row === minRow; })[0];
+                      if (topRow && topRow.cells && topRow.cells.length === 1) poorHigh = maxRow * 4;
+                      if (botRow && botRow.cells && botRow.cells.length === 1) poorLow  = minRow * 4;
+                    }
+                  }
+
+                  return {naked_poc: nakedPoc, single_prints: singlePrints,
+                          poor_high: poorHigh, poor_low: poorLow};
+                }
+                return {naked_poc: [], single_prints: [], poor_high: null, poor_low: null};
+              } catch(e) {
+                return {naked_poc: [], single_prints: [], poor_high: null, poor_low: null,
+                        error: e.message};
+              }
+            })()
+        """)
+
         tv_price_raw = _eval("""
             (function() {
               try {
@@ -459,6 +514,14 @@ def get_tv_data(ticker, timeframe="30"):
 
         ws.close()
 
+        stpo = None
+        if stpo_items and not stpo_items.get("error"):
+            stpo = stpo_items
+            print(f"    STPO: naked_poc={stpo['naked_poc']} single_prints={stpo['single_prints']} "
+                  f"poor_high={stpo['poor_high']} poor_low={stpo['poor_low']}")
+        elif stpo_items and stpo_items.get("error"):
+            print(f"    STPO Fehler: {stpo_items['error']}")
+
         mp = None
         if mp_items:
             x1_vals = sorted(set(l["x1"] for l in mp_items))
@@ -480,7 +543,11 @@ def get_tv_data(ticker, timeframe="30"):
                 mp = {"poc": poc, "vah": vah, "val": val, "vwap": vwap_rounded,
                       "day_high": vah, "day_low": val,
                       "shape": shape,
-                      "volume_profile": [], "source": "tradingview"}
+                      "volume_profile": [], "source": "tradingview",
+                      "naked_poc":    stpo["naked_poc"]    if stpo else [],
+                      "single_prints": stpo["single_prints"] if stpo else [],
+                      "poor_high":    stpo["poor_high"]    if stpo else None,
+                      "poor_low":     stpo["poor_low"]     if stpo else None}
             else:
                 print("    TV CDP: MP – POC oder VA Lines fehlen")
 
@@ -746,6 +813,59 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
                 signals.append({"label":    "CVD-Divergenz: Preis in VA, starker Kaufdruck",
                                  "score":    2, "direction": "bullish",
                                  "category": "cvd_divergenz", "auto": True})
+
+    # ── STPO: Naked POC ──────────────────────────────────────────────────────
+    naked_poc = mp.get("naked_poc", []) or []
+    if naked_poc:
+        above_nkd = sorted([p for p in naked_poc if p > price])
+        below_nkd = sorted([p for p in naked_poc if p < price], reverse=True)
+        if above_nkd and not below_nkd:
+            signals.append({"label":    f"Naked POC ueber Preis ({above_nkd[0]:.0f}) – Magnet oben",
+                             "score":    2, "direction": "bullish",
+                             "category": "naked_poc", "auto": True})
+        elif below_nkd and not above_nkd:
+            signals.append({"label":    f"Naked POC unter Preis ({below_nkd[0]:.0f}) – Magnet unten",
+                             "score":   -2, "direction": "bearish",
+                             "category": "naked_poc", "auto": True})
+        elif above_nkd and below_nkd:
+            # Naehere Seite bestimmt Richtung
+            dist_above = above_nkd[0] - price
+            dist_below = price - below_nkd[0]
+            if dist_above < dist_below:
+                signals.append({"label":    f"Naked POC naeher oben ({above_nkd[0]:.0f} vs {below_nkd[0]:.0f})",
+                                 "score":    1, "direction": "bullish",
+                                 "category": "naked_poc", "auto": True})
+            else:
+                signals.append({"label":    f"Naked POC naeher unten ({below_nkd[0]:.0f} vs {above_nkd[0]:.0f})",
+                                 "score":   -1, "direction": "bearish",
+                                 "category": "naked_poc", "auto": True})
+
+    # ── STPO: Single Prints ────────────────────────────────────────────────────
+    single_prints = mp.get("single_prints", []) or []
+    if single_prints:
+        above_sp = [p for p in single_prints if p > price]
+        below_sp = [p for p in single_prints if p < price]
+        if above_sp and not below_sp:
+            signals.append({"label":    f"Single Prints ueber Preis ({len(above_sp)}x, naeheste {min(above_sp):.0f}) – Magnet oben",
+                             "score":    1, "direction": "bullish",
+                             "category": "single_prints", "auto": True})
+        elif below_sp and not above_sp:
+            signals.append({"label":    f"Single Prints unter Preis ({len(below_sp)}x, naeheste {max(below_sp):.0f}) – Magnet unten",
+                             "score":   -1, "direction": "bearish",
+                             "category": "single_prints", "auto": True})
+        # beide Seiten → neutral, kein Signal
+
+    # ── STPO: Poor High / Poor Low ─────────────────────────────────────────────
+    poor_high = mp.get("poor_high")
+    poor_low  = mp.get("poor_low")
+    if poor_high and price < poor_high:
+        signals.append({"label":    f"Poor High ueber Preis ({poor_high:.0f}) – Schwaches Hoch, Revisit wahrscheinlich",
+                         "score":    1, "direction": "bullish",
+                         "category": "poor_high", "auto": True})
+    if poor_low and price > poor_low:
+        signals.append({"label":    f"Poor Low unter Preis ({poor_low:.0f}) – Schwaches Tief, Revisit wahrscheinlich",
+                         "score":   -1, "direction": "bearish",
+                         "category": "poor_low", "auto": True})
 
     # ── Context: VIX ──────────────────────────────────────────────────────────
     vix = context.get("VIX",   {}) or {}
@@ -1074,6 +1194,12 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
         if mp.get("poc"):  key_levels.append({"level": "POC Vortag", "price": str(mp["poc"]), "source": "Market Profile"})
         if mp.get("val"):  key_levels.append({"level": "VAL Vortag", "price": str(mp["val"]), "source": "Market Profile"})
         if mp.get("vwap"): key_levels.append({"level": "VWAP 30M",  "price": str(mp["vwap"]), "source": "VWAP"})
+        for nkd in (mp.get("naked_poc") or []):
+            key_levels.append({"level": "Naked POC", "price": str(nkd), "source": "STPO"})
+        if mp.get("poor_high"):
+            key_levels.append({"level": "Poor High", "price": str(mp["poor_high"]), "source": "STPO"})
+        if mp.get("poor_low"):
+            key_levels.append({"level": "Poor Low",  "price": str(mp["poor_low"]),  "source": "STPO"})
 
         vwap     = mp.get("vwap") or mp.get("poc", 0)
         vwap_txt = ("ueber VWAP" if price and price > vwap else "unter VWAP") if price else "?"
