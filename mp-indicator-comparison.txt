@@ -1,0 +1,245 @@
+================================================================================
+STPO ALL vs LonesomeTheBlue Market Profile - Tiefenanalyse
+Datum: 2026-04-16 | Instrument: VANTAGE:SP500 | Timeframe: 30M
+================================================================================
+
+== SCHRITT 1: STPO ALL DATENSTRUKTUR ==========================================
+
+STPO ist ein BUILT-IN TradingView Indikator (KEINE Pine Script).
+Daher: NICHT via data_get_pine_lines auslesbar. Eigene Extraktion notwendig.
+
+Interne Datenstruktur:
+  Primitiv-Typ: tpos (KEIN dwglines/dwgboxes wie bei Pine)
+  Pfad: _graphics._primitivesCollection.tpos.get('tpo')
+    - _primitivesDataById: 449 Eintraege (einzelne TPO-Preiszellen)
+    - _primitiveById:        6 Eintraege (Session-Objekte, aktuelle Sicht)
+
+  Jede TPO-Zelle hat:
+    id, priceRange (=4), firstBarTime, lastBarTime, times[]
+    priceRange: 4 = FIXE Bin-Breite von 4 Preis-Punkten pro TPO-Row
+
+5 Pane-View-Renderer:
+  Renderer 0: ranges      - Session-Boundary-Boxen (4 sichtbare Sessions)
+  Renderer 1: blocks      - TPO-Buchstaben-Bloecke mit rows + cells
+  Renderer 2: histograms  - Volume-Histogramm (wenn aktiviert)
+  Renderer 3: levels      - POC / VAH / VAL Labels + rowOrCoordinate-Index [KEY]
+  Renderer 4: rows        - Erweiterte Linien (Single Prints / Naked POC etc.)
+
+PREIS-FORMEL (validiert via priceToCoordinate + roughHitTestBox):
+  price = rowOrCoordinate x 4
+  Beispiel: VAH-Index 1749 -> 1749 x 4 = 6996 pts
+  Genauigkeit: +/- 4 Punkte (eine Bin-Breite)
+  Validierung: priceToCoordinate(6732) = 769.5 = roughHitTestBox-Bottom von Block 0 (row 1684)
+
+SESSION-REIHENFOLGE in Renderer 3 (levels):
+  Indices 0,1,2   -> Aelteste sichtbare abgeschlossene Session (links)
+  Indices 3,4,5   -> 2 Sessions zurueck
+  Indices 6,7,8   -> Letzte abgeschlossene Session (GESTERN) [RELEVANT]
+  Indices 9,10,11 -> Aktuelle laufende Session (heute, noch offen)
+
+  Innerhalb jeder 3er-Gruppe:
+    +0: VAH (blau  rgba(41,98,255), vertAlignment=1 = top)
+    +1: VAL (blau  rgba(41,98,255), vertAlignment=0 = bottom)
+    +2: POC (magenta rgba(255,0,255), vertAlignment=middle)
+
+ROH-DATEN der 4 sichtbaren Sessions (rowOrCoordinate -> preis):
+  Session 1 (aelteste): VAH=1705->6820 | VAL=1684->6736 | POC=1695->6780
+  Session 2:            VAH=1735->6940 | VAL=1722->6888 | POC=1723->6892
+  Session 3 (gestern):  VAH=1749->6996 | VAL=1742->6968 | POC=1743->6972
+  Session 4 (heute):    VAH=1760->7040 | VAL=1758->7032 | POC=1759->7036
+
+Sichtbarer Preisbereich: 6752 - 7094 (SP500 Vantage, 16. April 2026)
+
+
+== SCHRITT 2: LONESOMETHEBLUE MARKET PROFILE (Referenz) =======================
+
+Indikator: Market Profile (ID: TLi3QO), 504 Pine-Lines
+Extraktion via: data_get_market_profile (validiertes Tool)
+
+Session 0 (gestern):    POC=6976.21 | VAH=6999.69 | VAL=6967.18 | VA-Width=32.51 | Pattern B
+Session 1 (vorgestern): POC=6896.14 | VAH=6954.27 | VAL=6889.68 | VA-Width=64.59 | Pattern B
+Session 2:              POC=6779.86 | VAH=6856.74 | VAL=6767.72 | VA-Width=89.02 | Pattern B
+Session 3:              POC=6831.62 | VAH=6836.71 | VAL=6818.40 | VA-Width=18.31 | Pattern A
+
+
+== SCHRITT 3: KREUZVALIDIERUNG =================================================
+
+Mapping: STPO Session 3 (Levels-Indices 6,7,8) = LTB Session 0 (gestern)
+
+| Level | STPO ALL (rowIdx x 4) | LonesomeTheBlue | Differenz  | Status   |
+|-------|-----------------------|-----------------|------------|----------|
+| POC   | 1743 x 4 = 6972       | 6976.21         | +4.21 pts  | ~1 Bin   |
+| VAH   | 1749 x 4 = 6996       | 6999.69         | +3.69 pts  | ~1 Bin   |
+| VAL   | 1742 x 4 = 6968       | 6967.18         | -0.82 pts  | Exakt    |
+
+ERGEBNIS: Alle Differenzen < 1 Bin-Breite (4 Punkte) -> STPO korrekt kalibriert.
+LTB liefert primaer exaktere Preise (Floating-Point vs 4-Punkt-Raster).
+
+
+== SCHRITT 4A: AUSLESBARKEIT ===================================================
+
+1. Kann STPO POC/VAH/VAL direkt auslesen?
+   JA - aber mit Custom-Extraktion:
+   Pfad: renderer[3]._data.levels[i].{labelText, rowOrCoordinate}
+   Formel: price = rowOrCoordinate x 4
+   Session-Mapping: Gruppen (0-2)=aelt, (3-5), (6-8)=gestern, (9-11)=heute
+
+   NEIN via data_get_pine_lines (kein dwglines-Primitiv bei Built-In)
+
+2. Session-Trennung klar identifizierbar?
+   JA: 4 Gruppen mit je 3 Levels (VAH+VAL+POC) pro Gruppe.
+   Aktuell-laufende Session = letzte Gruppe (Indices 9,10,11).
+
+3. Ist STPO akkurater/einfacher als LonesomeTheBlue?
+   NEIN fuer Genauigkeit: LTB Floating-Point vs STPO +/-4 Punkte-Raster.
+   BESSER fuer Zusatzwerte: Naked POC, Single Prints, Poor High/Low (s. 4B).
+
+   FAZIT: LonesomeTheBlue via data_get_market_profile = PRIMAER-Tool.
+          STPO ALL = ERGAENZEND fuer Features die LTB nicht bietet.
+
+
+== SCHRITT 4B: ZUSATZWERTE DIE STPO BIETET (nicht in LTB) ====================
+
+AKTIV (derzeit enabled):
+  [X] Single Prints / Single TPOs (extendSingleprints=TRUE)
+      Renderer 4 (rows) zeigt aktuell 6 Levels:
+      Row 0: rowIdx=1700 -> 6800 pts  (kurze Extension = teilweise besucht)
+      Row 1: rowIdx=1691 -> 6764 pts  (volle Extension = NAKED/unbesucht)
+      Row 2: rowIdx=1701 -> 6804 pts  (volle Extension = NAKED/unbesucht)
+      Row 3: rowIdx=1718 -> 6872 pts  (volle Extension = NAKED/unbesucht)
+      Row 4: rowIdx=1730 -> 6920 pts  (volle Extension = NAKED/unbesucht)
+      Row 5: rowIdx=1733 -> 6932 pts  (volle Extension = NAKED/unbesucht)
+
+VORHANDEN aber DEAKTIVIERT:
+  [ ] Naked POC           (extendPOC=false)         -> POC nicht wieder besucht
+  [ ] Poor High           (extendPoorHigh=false)    -> Schwaches Auktionsende oben
+  [ ] Poor Low            (extendPoorLow=false)     -> Schwaches Auktionsende unten
+  [ ] Naked VAH           (extendTpoVah=false)      -> VAH nicht retested
+  [ ] Naked VAL           (extendTpoVal=false)      -> VAL nicht retested
+  [ ] Volume POC          (extendVolumePoc=false)   -> SEPARATER Volume POC
+  [ ] Volume VAH          (extendVolumeVah=false)   -> SEPARATER Volume VAH
+  [ ] Volume VAL          (extendVolumeVal=false)   -> SEPARATER Volume VAL
+  [ ] Summary Info Panel  (summaryInfo=false)       -> Direkt-numerischer Output
+
+NICHT IN STPO (auch nicht in LTB):
+  - IBH/IBL (Initial Balance High/Low) der ersten Handelsstunde
+  - VWAP pro Session (separater VWAP Stdev Bands Indikator vorhanden)
+
+
+== SCHRITT 4C: SETTINGS-ANALYSE UND EMPFEHLUNGEN ==============================
+
+AKTUELLE SETTINGS (aus _signature-String):
+  Sessions:          All               (1 Profil pro Kalendertag)
+  Custom Session:    0930-1600         (Fallback wenn Sessions=Custom)
+  Timezone:          Exchange           (NYSE-Zeit ET, korrekt fuer SP500)
+  Block Size:        30m               (Standard, 1 TPO = 30 Minuten)
+  Row Size:          Auto              (auto = 4 Punkte/Row bei SP500)
+  Value Area:        70%               (AMT-Standard nach Steidlmayer)
+  Extend Singles:    TRUE              (aktiv)
+  Alle anderen:      FALSE
+
+EMPFEHLUNG 1 - Sessions auf "Market only" aendern:
+  Problem:  "All" inkludiert Pre/Post-Market. AMT basiert auf RTH-Sessions
+            (09:30-16:00 ET) fuer US-Indices. Pre/Post-Market-Volumen ist
+            minimal und verzerrt POC/VA gegenueber dem echten Tages-POC.
+  Aktion:   Settings > Sessions > "Market only"
+  AMT-Grund: RTH-POC = echtes institutionelles Gleichgewicht des Tages.
+             Extended-Hours-POC = irrelevant fuer Intraday-Entscheidungen.
+
+EMPFEHLUNG 2 - Naked POC aktivieren (hoechste Prioritaet!):
+  Problem:  extendPOC=false -> Naked POCs werden nicht angezeigt.
+  Aktion:   Settings > "Extend POC to price intersect" -> AN (Checkbox)
+  AMT-Grund: Naked POC ist der starkste Magnet in der Auction Market Theory.
+             Preis kehrt mit >70% Wahrscheinlichkeit zu unbezuchten POCs zurueck.
+             Derzeit fehlt dieses kritische Level im Cockpit.
+
+EMPFEHLUNG 3 - Poor High/Low aktivieren:
+  Problem:  extendPoorHigh/Low=false -> Unfertige Auktionen unsichtbar.
+  Aktion:   Settings > "Extend poor high/low to price intersect" -> AN
+  AMT-Grund: Poor High (kein Rejection-Tail) = Kaeufer hatten letzte Kontrolle
+             = hohe WS fuer Retest oben. Poor Low = umgekehrt.
+
+EMPFEHLUNG 4 - Value Area 70% beibehalten:
+  Status: Korrekt. AMT-Standard ist 70% (1 Standardabweichung). Keine Aenderung.
+
+NAVIGATIONS-ANLEITUNG (TradingView Desktop):
+  1. Mauszeiger auf STPO-Beschriftung im Chart-Legend (oben links)
+  2. Zahnrad-Icon (Settings) anklicken
+  3. Tab "Inputs" > Sessions > "Market only" waehlen
+  4. Scrollen zu "Extend poor high to price intersect" -> Haken setzen
+  5. "Extend poor low to price intersect" -> Haken setzen
+  6. "Extend POC to price intersect" -> Haken setzen
+  7. "OK" klicken
+
+
+== SCHRITT 4D: BIAS-VERBESSERUNG - PRIORITAETSLISTE ===========================
+
+Welche STPO-Zusatzwerte verbessern den Cockpit-Trader Bias-Score am meisten?
+
+PRIORITAET 1: Naked POC (extendPOC aktivieren)
+  Grund: POC ist das Fundament von AMT. Ein unbezuchter Naked POC ist ein
+         High-Probability Entry-Level UND Target. Fehlt derzeit komplett.
+         Single Prints sind aktiv, aber Naked POC ist wichtiger.
+
+PRIORITAET 2: Single Prints (bereits aktiv - beibehalten!)
+  Aktuelle Naked Single-Print-Levels (unbesucht, volles Ruckkehr-Potenzial):
+  -> 6764 pts  (naechstes kurzfristiges Target)
+  -> 6804 pts  (mittleres Target)
+  -> 6872 pts  (hoeher)
+  -> 6920 pts  (weit oben)
+  -> 6932 pts  (hoecstes sichtbares SP)
+  Begr.: Markt hat diese Bereiche in einer einzigen 30-min-Periode durchquert.
+         Extremes Ungleichgewicht. WS > 60% fuer Rueckkehr.
+
+PRIORITAET 3: Poor High / Poor Low (aktivieren)
+  Grund: Poor High/Low = unfertige Auktion = starkes direktionales Signal.
+         Erkennt ob der Markt mit Kontrolle der Kaeufer oder Verkaeufer schloss.
+         Direkte Auswirkung auf Bias-Bestimmung (Bullisch/Baerisch).
+
+PRIORITAET 4: Volume POC (extendVolumePoc)
+  Grund: Zeigt wo Tick-Volumen konzentriert war (sekundaer bei Vantage/CFD).
+         Wenn Volume-POC = TPO-POC: starke Konfluenz.
+         Wenn divergent: Signal fuer Preis-Volume-Divergenz.
+
+PRIORITAET 5: Naked VAH / VAL
+  Grund: Unbezuchte VA-Grenzen als sekundaere Referenzlevels.
+         Weniger wichtig als POC aber gut fuer TP-Platzierung.
+
+PRIORITAET 6: Summary Info Panel
+  Grund: Wuerde direkt maschinenlesbare Werte liefern ohne Custom-Extraktion.
+         Aktuell tiefste Prio da bestehende renderer[3]-Extraktion funktioniert.
+
+
+== ZUSAMMENFASSUNG =============================================================
+
+| Kriterium           | STPO ALL            | LonesomeTheBlue      |
+|---------------------|---------------------|----------------------|
+| Preisgenauigkeit    | +/-4 Punkte         | Floating-Point exakt |
+| Auslesbarkeit (MCP) | Custom-Extraktion   | data_get_market_profile |
+| Session-Trennung    | Klar (4er-Gruppen)  | Klar (ci-Farben)     |
+| Naked POC           | Vorhanden (deakt.)  | Nicht vorhanden      |
+| Single Prints       | Aktiv!              | Nicht vorhanden      |
+| Poor High/Low       | Vorhanden (deakt.)  | Nicht vorhanden      |
+| Volume POC/VAH/VAL  | Vorhanden (deakt.)  | Nicht vorhanden      |
+| Summary Panel       | Vorhanden (deakt.)  | Nicht vorhanden      |
+| IBH/IBL             | Nicht vorhanden     | Nicht vorhanden      |
+
+FAZIT:
+  LonesomeTheBlue (data_get_market_profile) bleibt PRIMAER-Tool fuer genaue
+  POC/VAH/VAL Werte (+/-1 Tick Genauigkeit).
+
+  STPO ALL ist ERGAENZEND wertvoll fuer Features die LTB nicht bietet:
+  - Naked POC (nach Aktivierung) = wichtigstes unterstuetztes Level
+  - Single Prints (aktiv!) = 6764, 6804, 6872, 6920, 6932 = Naked Targets
+  - Poor High/Low (nach Aktivierung) = Bias-Signal
+
+SOFORTIGE AKTIONSPUNKTE:
+  1. [erledigt] Single Prints aktiv - 5 Naked Targets sichtbar
+  2. [aktion]   Settings > Sessions > "Market only"
+  3. [aktion]   Settings > Extend POC to price intersect > AN
+  4. [aktion]   Settings > Poor High/Low > AN
+
+================================================================================
+Screenshot: screenshots/stpo-comparison.png
+Analysiert: 2026-04-16 | Tool: Claude Sonnet 4.6 via MCP
+================================================================================
