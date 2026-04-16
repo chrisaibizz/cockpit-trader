@@ -3,258 +3,329 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Trading Floor — Journal</title>
+<title>Cockpit-Trader — Journal</title>
 <style>
-:root{--bg:#0d1117;--card:#161b22;--border:#21262d;--text:#e2e8f0;--muted:#8b949e;--dim:#30363d;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#38bdf8}
+:root{
+  --bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;
+  --muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;
+  --blue:#3b82f6;--cyan:#06b6d4;--white:#f1f5f9;--dim:#30363d;
+}
 *{margin:0;padding:0;box-sizing:border-box}
 html{font-size:clamp(13px,1.1vw,16px)}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:0;min-height:100vh;font-size:1rem}
-nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{font-weight:800;font-size:13px;letter-spacing:1px;display:flex;align-items:center;gap:6px}
-.nav-brand .ico{font-size:15px;opacity:.85}
-.nav-brand .name{color:var(--cyan)}
-.nav-links{display:flex;gap:2px}
-.nav-links a{color:var(--muted);text-decoration:none;padding:5px 10px;font-size:11px;font-weight:600;border-radius:6px;letter-spacing:.5px;transition:all .15s}
-.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
-.nav-links a.active{color:var(--cyan);background:rgba(56,189,248,.1)}
-main{padding:16px;max-width:600px;margin:0 auto}
-.page-title{font-size:18px;font-weight:700;margin-bottom:4px}
-.page-sub{font-size:11px;color:var(--muted);margin-bottom:16px}
-.ts{font-size:10px;color:var(--dim);margin-bottom:16px;font-family:monospace}
+body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;padding:20px;min-height:100vh;}
 
-/* Debrief */
-.debrief{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:12px}
-.debrief-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.debrief-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
-.d-stat{text-align:center;background:rgba(255,255,255,0.02);border-radius:6px;padding:8px 4px}
-.d-stat-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px}
-.d-stat-value{font-size:16px;font-weight:700;font-family:monospace;margin-top:2px}
-.d-learnings{font-size:12px;color:var(--muted);line-height:1.5;border-top:1px solid var(--border);padding-top:8px;margin-top:4px}
-.d-learn{padding:2px 0}
-.d-learn::before{content:"→ ";color:var(--cyan)}
+/* ── Shared Header ────────────────────────────────────────────────── */
+.site-header{text-align:center;padding:20px 0 24px;border-bottom:1px solid var(--border);margin-bottom:0;}
+.site-header h1{font-size:28px;letter-spacing:4px;text-transform:uppercase;
+  background:linear-gradient(90deg,var(--cyan),var(--blue));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.site-header .ts{color:var(--muted);font-size:13px;margin-top:8px;}
+.site-nav{display:flex;justify-content:center;gap:8px;padding:12px 0 20px;
+  border-bottom:1px solid var(--border);margin-bottom:24px;}
+.site-nav a{color:var(--muted);text-decoration:none;padding:8px 20px;font-size:13px;
+  border-radius:8px;border:1px solid var(--border);letter-spacing:1px;transition:all .2s;}
+.site-nav a.active{color:var(--text);background:rgba(59,130,246,0.15);border-color:var(--blue);}
+.site-nav a:hover{color:var(--text);border-color:var(--muted);}
+#age-bar{margin-top:6px;font-size:12px;}
 
-/* Instrument */
-.inst{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:12px}
-.inst-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.inst-name{font-size:15px;font-weight:700}
-.inst-bias{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
-.bias-bull{background:rgba(34,197,94,0.12);color:var(--green)}
-.bias-bear{background:rgba(239,68,68,0.12);color:var(--red)}
-.bias-neutral{background:rgba(234,179,8,0.12);color:var(--yellow)}
+/* ── Card Zeitstempel ─────────────────────────────────────────────── */
+.ct{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;
+  font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px;}
+.ct-left{display:flex;align-items:center;gap:8px;}
+.ct-ts{font-size:10px;color:var(--muted);letter-spacing:0;text-transform:none;opacity:0.7;white-space:nowrap;}
 
-.inst-summary{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:8px}
-.tf-label{display:inline-block;font-size:9px;font-weight:700;color:var(--blue);background:rgba(59,130,246,0.1);padding:2px 6px;border-radius:3px;margin-right:4px;font-family:monospace}
+/* ── Layout ───────────────────────────────────────────────────────── */
+main{max-width:860px;margin:0 auto;}
 
-/* MP Section */
-.mp-section{border-top:1px solid var(--border);padding-top:8px;margin-top:8px}
-.mp-title{font-size:10px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:700}
-.mp-row{display:flex;justify-content:space-between;font-size:12px;padding:2px 0}
-.mp-label{color:var(--dim)}
-.mp-value{font-family:monospace;font-weight:600}
-.shape-badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 8px;border-radius:4px;background:rgba(59,130,246,0.1);color:var(--blue);margin-top:4px}
+/* ── Cards ────────────────────────────────────────────────────────── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px;}
 
-/* Key Levels */
-.levels-section{border-top:1px solid var(--border);padding-top:8px;margin-top:8px}
-.levels-title{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.level-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.03)}
-.level-name{color:var(--muted);min-width:60px}
-.level-price{font-family:monospace;font-weight:600}
-.level-source{font-size:10px;color:var(--dim);text-align:right}
+/* ── Debrief ──────────────────────────────────────────────────────── */
+.debrief-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;}
+.d-stat{text-align:center;background:rgba(255,255,255,0.02);border-radius:8px;padding:10px 4px;}
+.d-stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.d-stat-value{font-size:18px;font-weight:700;margin-top:4px;}
+.d-learnings{font-size:12px;color:var(--muted);line-height:1.6;border-top:1px solid var(--border);padding-top:8px;margin-top:8px;}
+.d-learn{padding:2px 0;}
+.d-learn::before{content:"→ ";color:var(--cyan);}
 
-/* Invalidation */
-.invalidation{font-size:11px;color:var(--yellow);background:rgba(234,179,8,0.08);padding:6px 8px;border-radius:6px;margin-top:8px}
+/* ── Instrument ───────────────────────────────────────────────────── */
+.inst-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.inst-name{font-size:16px;font-weight:700;}
+.inst-bias{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;}
+.bias-bull{background:rgba(34,197,94,0.12);color:var(--green);}
+.bias-bear{background:rgba(239,68,68,0.12);color:var(--red);}
+.bias-neutral{background:rgba(234,179,8,0.12);color:var(--yellow);}
 
-/* Summary */
-.summary{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:12px}
-.summary-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.summary-best{font-size:14px;font-weight:700;margin-bottom:4px}
-.summary-best strong{color:var(--green)}
-.summary-warn{font-size:11px;color:var(--yellow);padding:2px 0}
-.summary-warn::before{content:"⚠ "}
+.inst-summary{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px;}
+.tf-label{display:inline-block;font-size:9px;font-weight:700;color:var(--blue);
+  background:rgba(59,130,246,0.1);padding:2px 6px;border-radius:3px;margin-right:4px;}
 
-/* Loading / Empty */
-.empty{text-align:center;padding:60px 20px;color:var(--dim)}
-.empty h3{color:var(--muted);font-size:14px;margin-bottom:8px}
-.empty p{font-size:12px;line-height:1.6}
-footer{text-align:center;padding:20px;font-size:10px;color:var(--dim);border-top:1px solid var(--border)}
+/* ── MP Section ───────────────────────────────────────────────────── */
+.mp-section{border-top:1px solid var(--border);padding-top:10px;margin-top:10px;}
+.mp-title{font-size:10px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:700;}
+.mp-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;}
+.mp-label{color:var(--muted);}
+.mp-value{font-weight:600;}
+.shape-badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;
+  border-radius:20px;background:rgba(59,130,246,0.1);color:var(--blue);margin-top:6px;}
 
-/* ── DESKTOP ≥ 1200px ────────────────────────────────────────────── */
-@media(min-width:1200px){
-  .nav-brand{font-size:14px}.nav-links a{font-size:12px;padding:6px 12px}
-  main{max-width:860px;padding:24px}
-  .page-title{font-size:22px}.page-sub{font-size:12px}
-  .debrief{padding:16px}.debrief-title{font-size:12px}
-  .d-stat-label{font-size:10px}.d-stat-value{font-size:18px}
-  .d-learnings{font-size:13px}
-  .inst{padding:16px}.inst-name{font-size:17px}
-  .inst-bias{font-size:12px}
-  .inst-summary{font-size:13px}
-  .tf-label{font-size:10px}
-  .mp-title{font-size:11px}.mp-row{font-size:13px}.shape-badge{font-size:12px}
-  .levels-title{font-size:11px}.level-row{font-size:13px}
-  .invalidation{font-size:12px}
-  .summary-best{font-size:16px}.summary-warn{font-size:12px}
-}
-/* ── TABLET 768–1199px ───────────────────────────────────────────── */
-@media(min-width:768px) and (max-width:1199px){
-  main{max-width:720px}
-  .inst-summary{font-size:12px}
+/* ── Key Levels ───────────────────────────────────────────────────── */
+.levels-section{border-top:1px solid var(--border);padding-top:10px;margin-top:10px;}
+.levels-title{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.level-row{display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.03);}
+.level-name{color:var(--muted);min-width:80px;}
+.level-price{font-weight:600;}
+.level-source{font-size:10px;color:var(--muted);text-align:right;}
+
+/* ── Confluence Bar ───────────────────────────────────────────────── */
+.conf-bar-wrap{margin:10px 0 6px;}
+.conf-bar-bg{background:rgba(255,255,255,.06);border-radius:6px;height:8px;overflow:hidden;}
+.conf-bar-fill{height:100%;border-radius:6px;}
+.conf-label{font-size:11px;color:var(--muted);margin-top:4px;}
+
+/* ── Invalidation ─────────────────────────────────────────────────── */
+.invalidation{font-size:11px;color:var(--red);background:rgba(239,68,68,0.08);
+  padding:6px 10px;border-radius:6px;margin-top:8px;border:1px solid rgba(239,68,68,0.2);}
+
+/* ── Summary ──────────────────────────────────────────────────────── */
+.summary-best{font-size:14px;font-weight:700;margin-bottom:6px;}
+.summary-best strong{color:var(--green);}
+.summary-warn{font-size:11px;color:var(--yellow);padding:2px 0;}
+.summary-warn::before{content:"⚠ ";}
+
+/* ── Signals ──────────────────────────────────────────────────────── */
+.slist{list-style:none;}
+.slist li{display:flex;justify-content:space-between;align-items:center;
+  padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;}
+.sdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;}
+.ssc{font-weight:600;min-width:28px;text-align:right;}
+
+/* ── Empty ────────────────────────────────────────────────────────── */
+.empty{text-align:center;padding:60px 20px;color:var(--muted);}
+.empty h3{font-size:14px;margin-bottom:8px;}
+footer{text-align:center;padding:20px;font-size:10px;color:var(--muted);border-top:1px solid var(--border);margin-top:16px;}
+
+@media(max-width:768px){
+  body{padding:12px;}
+  .site-nav a{padding:6px 12px;font-size:12px;}
 }
 </style>
 </head>
 <body>
-<nav>
-  <div class="nav-brand">
-    <span class="ico">✈</span>
-    <span>COCKPIT-<span class="name">TRADER</span></span>
-  </div>
-  <div class="nav-links">
-    <a href="index.html">Dashboard</a>
-    <a href="journal.html" class="active">Journal</a>
-    <a href="orders.html">Orders</a>
-  </div>
-</nav>
 
-<header style="text-align:center;padding:22px 16px 18px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(56,189,248,.06) 0%,transparent 100%)">
-  <div style="font-size:26px;margin-bottom:4px;opacity:.7">✈</div>
-  <div style="font-size:20px;font-weight:800;letter-spacing:6px;color:var(--cyan);text-transform:uppercase">Cockpit-Trader</div>
-  <div style="font-size:11px;color:var(--muted);margin-top:5px"><span id="ts">Analyse Journal</span></div>
-  <div style="margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:10px;padding:3px 12px;border-radius:20px;background:rgba(255,255,255,.02);border:1px solid var(--border)" id="age-bar">
-    <span id="age-dot" style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;flex-shrink:0"></span>
-    <span id="age-txt" style="color:var(--green)"></span>
+<div class="site-header">
+  <h1>✈ Cockpit-Trader</h1>
+  <div class="ts" id="ts">Lade Daten...</div>
+  <div id="age-bar" style="display:none">
+    <span id="age-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
+    <span id="age-txt"></span>
   </div>
-</header>
+</div>
+
+<div class="site-nav">
+  <a href="index.html">Dashboard</a>
+  <a href="index.html#backtest" onclick="sessionStorage.setItem('tab','backtest')">Backtest</a>
+  <a href="journal.html" class="active">Journal</a>
+  <a href="orders.html">Orders</a>
+</div>
 
 <main>
-  <div class="page-title">Analyse Journal</div>
-  <div class="page-sub">Morning Briefing — Zusammenfassung</div>
   <div id="content">
-    <div class="empty">
-      <h3>Lade Journal...</h3>
-    </div>
+    <div class="empty"><h3>Lade Journal...</h3></div>
   </div>
 </main>
+
 <footer>The Trading Floor · Cockpit Trader · Auction Market Theory</footer>
+
 <script>
-async function load(){
-  try{
-    const r=await fetch('journal-data.json?t='+Date.now());
-    if(!r.ok) throw new Error();
+var _analysisTs = null;
+
+function fmtTs(ts) {
+  if (!ts) return '';
+  const d = new Date(ts);
+  if (isNaN(d)) return '';
+  return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}) + ' ' +
+         d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}) + ' Uhr';
+}
+
+function fmtAge(ts) {
+  const mins = Math.floor((Date.now() - ts.getTime()) / 60000);
+  if (mins < 1)  return {txt:'gerade aktualisiert',    color:'#22c55e'};
+  if (mins < 60) return {txt:'vor '+mins+' Min',        color:'#22c55e'};
+  const h = Math.floor(mins/60), m = mins%60;
+  if (h < 4)  return {txt:'vor '+h+'h '+m+'min',           color:'#eab308'};
+  if (h < 8)  return {txt:'vor '+h+'h — bitte neu starten', color:'#f97316'};
+  return           {txt:h+'h alt — VERALTET',                color:'#ef4444'};
+}
+
+function updateAge() {
+  if (!_analysisTs) return;
+  const {txt, color} = fmtAge(_analysisTs);
+  document.getElementById('age-txt').textContent = txt;
+  document.getElementById('age-txt').style.color = color;
+  document.getElementById('age-dot').style.background = color;
+  document.getElementById('age-dot').style.boxShadow = '0 0 6px ' + color;
+}
+
+function ct(icon, label, ts) {
+  const tsHtml = ts ? `<span class="ct-ts">Stand: ${fmtTs(ts)}</span>` : '';
+  return `<div class="ct"><span class="ct-left">${icon} ${label}</span>${tsHtml}</div>`;
+}
+
+function bc(b) {
+  if (!b) return 'bias-neutral';
+  const l = b.toLowerCase();
+  return l.includes('bull') ? 'bias-bull' : (l.includes('bear')||l.includes('bär')) ? 'bias-bear' : 'bias-neutral';
+}
+
+async function load() {
+  try {
+    const r = await fetch('journal-data.json?t=' + Date.now());
+    if (!r.ok) throw new Error();
     return await r.json();
-  }catch(e){
-    document.getElementById('content').innerHTML='<div class="empty"><h3>Kein Journal vorhanden</h3><p>Wird nach der Morning-Analyse erstellt.</p></div>';
+  } catch(e) {
+    document.getElementById('content').innerHTML =
+      '<div class="empty"><h3>Kein Journal vorhanden</h3><p>Wird nach der Morning-Analyse erstellt.</p></div>';
     return null;
   }
 }
-function bc(b){
-  if(!b)return'bias-neutral';
-  const l=b.toLowerCase();
-  return l.includes('bull')?'bias-bull':l.includes('bear')||l.includes('bär')?'bias-bear':'bias-neutral';
-}
-var _analysisTs=null;
-function fmtAge(ts){
-  const mins=Math.floor((Date.now()-ts.getTime())/60000);
-  if(mins<1)  return {txt:'gerade eben aktualisiert',color:'#22c55e'};
-  if(mins<60) return {txt:'vor '+mins+' Min aktualisiert',color:'#22c55e'};
-  const h=Math.floor(mins/60),m=mins%60;
-  if(h<4)     return {txt:'vor '+h+'h '+m+'min aktualisiert',color:'#eab308'};
-  if(h<8)     return {txt:'vor '+h+'h aktualisiert - bitte neu starten',color:'#f97316'};
-  return       {txt:'Analyse '+h+'h alt - VERALTET',color:'#ef4444'};
-}
-function updateAge(){
-  if(!_analysisTs)return;
-  const r=fmtAge(_analysisTs);
-  document.getElementById('age-txt').textContent=r.txt;
-  document.getElementById('age-txt').style.color=r.color;
-  document.getElementById('age-dot').style.background=r.color;
-  document.getElementById('age-dot').style.boxShadow='0 0 6px '+r.color;
-}
-function render(d){
-  if(!d)return;
-  if(d.timestamp){
-    _analysisTs=new Date(d.timestamp);
-    document.getElementById('ts').textContent='Analyse Journal — '+_analysisTs.toLocaleDateString('de-DE')+' '+_analysisTs.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr';
-    document.getElementById('age-bar').style.display='block';
+
+function render(d) {
+  if (!d) return;
+  const ts = d.timestamp || null;
+
+  if (ts) {
+    _analysisTs = new Date(ts);
+    document.getElementById('ts').textContent =
+      'Analyse Journal — ' + _analysisTs.toLocaleDateString('de-DE') + ' ' +
+      _analysisTs.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}) + ' Uhr';
+    document.title = 'Cockpit-Trader — Journal ' + _analysisTs.toLocaleDateString('de-DE');
+    document.getElementById('age-bar').style.display = 'block';
     updateAge();
-    setInterval(updateAge,60000);
+    setInterval(updateAge, 60000);
   }
-  let h='';
 
-  // Debrief
-  if(d.debrief){
-    const db=d.debrief;
-    h+='<div class="debrief"><div class="debrief-title">Debrief Vortag</div>';
-    h+='<div class="debrief-grid">';
-    h+='<div class="d-stat"><div class="d-stat-label">Fill Rate</div><div class="d-stat-value">'+(db.fill_rate||'—')+'</div></div>';
-    h+='<div class="d-stat"><div class="d-stat-label">TP1 Rate</div><div class="d-stat-value">'+(db.tp1_rate||'—')+'</div></div>';
-    h+='<div class="d-stat"><div class="d-stat-label">Trend</div><div class="d-stat-value" style="font-size:11px">'+(db.trend||'—')+'</div></div>';
-    h+='</div>';
-    if(db.learnings&&db.learnings.length){
-      h+='<div class="d-learnings">';
-      db.learnings.forEach(l=>{h+='<div class="d-learn">'+l+'</div>';});
-      h+='</div>';
+  let h = '';
+
+  // ── Debrief ──────────────────────────────────────────────────────
+  if (d.debrief) {
+    const db = d.debrief;
+    h += `<div class="card">
+      ${ct('📋', 'Debrief Vortag', ts)}
+      <div class="debrief-grid">
+        <div class="d-stat"><div class="d-stat-label">Fill Rate</div><div class="d-stat-value">${db.fill_rate||'—'}</div></div>
+        <div class="d-stat"><div class="d-stat-label">TP1 Rate</div><div class="d-stat-value">${db.tp1_rate||'—'}</div></div>
+        <div class="d-stat"><div class="d-stat-label">Trend</div><div class="d-stat-value" style="font-size:12px">${db.trend||'—'}</div></div>
+      </div>`;
+    if (db.learnings && db.learnings.length) {
+      h += '<div class="d-learnings">';
+      db.learnings.forEach(l => { h += `<div class="d-learn">${l}</div>`; });
+      h += '</div>';
     }
-    h+='</div>';
+    h += '</div>';
   }
 
-  // Instruments
-  const insts=d.instruments||[];
-  insts.forEach(inst=>{
-    const bias=inst.bias||'';
-    const cls=bc(bias);
-    h+='<div class="inst">';
-    h+='<div class="inst-header"><div class="inst-name">'+inst.name+'</div>';
-    h+='<div class="inst-bias '+cls+'">'+(bias||'—')+' '+(inst.bias_pct||inst.bias_score||'')+'</div></div>';
+  // ── Instruments ───────────────────────────────────────────────────
+  const insts = d.instruments || [];
+  insts.forEach(inst => {
+    const bias = inst.bias || '';
+    const cls  = bc(bias);
+    const mp   = inst.market_profile || {};
+    const confPct   = inst.confluence_pct || 0;
+    const confLabel = inst.confluence_label || '';
+    const confCol   = confPct >= 70 ? '#22c55e' : confPct >= 45 ? '#eab308' : '#ef4444';
+
+    // Bias Signals
+    const signals = (inst.bias_signals || []).map(s => {
+      const dc = s.direction==='bullish'?'var(--green)':s.direction==='bearish'?'var(--red)':'var(--muted)';
+      return `<li>
+        <span><span class="sdot" style="background:${dc}"></span>${s.label}</span>
+        <span class="ssc ${s.score>0?'pos':s.score<0?'neg':''}" style="color:${s.score>0?'var(--green)':s.score<0?'var(--red)':'var(--muted)'}">${s.score>0?'+'+s.score:s.score}</span>
+      </li>`;
+    }).join('');
+
+    h += `<div class="card">
+      ${ct('📈', inst.name + ' — Analyse', ts)}
+      <div class="inst-header">
+        <div class="inst-name">${inst.name}</div>
+        <div class="inst-bias ${cls}">${bias||'—'} ${inst.bias_pct||''}</div>
+      </div>`;
+
+    // Confluence Bar
+    if (confPct > 0) {
+      h += `<div class="conf-bar-wrap">
+        <div class="conf-bar-bg"><div class="conf-bar-fill" style="width:${confPct}%;background:${confCol}"></div></div>
+        <div class="conf-label">Confluence: <strong style="color:${confCol}">${confLabel||confPct+'%'}</strong></div>
+      </div>`;
+    }
 
     // TF Summaries
-    h+='<div class="inst-summary">';
-    if(inst.daily_summary) h+='<div><span class="tf-label">D</span>'+inst.daily_summary+'</div>';
-    if(inst.h4_summary) h+='<div><span class="tf-label">4H</span>'+inst.h4_summary+'</div>';
-    if(inst.h1_summary) h+='<div><span class="tf-label">1H</span>'+inst.h1_summary+'</div>';
-    if(inst.h30m_summary) h+='<div><span class="tf-label">30M</span>'+inst.h30m_summary+'</div>';
-    h+='</div>';
+    h += '<div class="inst-summary">';
+    if (inst.daily_summary) h += `<div><span class="tf-label">D</span>${inst.daily_summary}</div>`;
+    if (inst.h4_summary)    h += `<div><span class="tf-label">4H</span>${inst.h4_summary}</div>`;
+    if (inst.h1_summary)    h += `<div><span class="tf-label">1H</span>${inst.h1_summary}</div>`;
+    if (inst.h30m_summary)  h += `<div><span class="tf-label">30M</span>${inst.h30m_summary}</div>`;
+    h += '</div>';
 
     // MP
-    const mp=inst.market_profile||{};
-    if(inst.mp_shape_yesterday||mp.poc||mp.shape){
-      h+='<div class="mp-section"><div class="mp-title">Market Profile</div>';
-      if(mp.poc) h+='<div class="mp-row"><span class="mp-label">POC</span><span class="mp-value" style="color:var(--cyan)">'+mp.poc+'</span></div>';
-      if(mp.vah) h+='<div class="mp-row"><span class="mp-label">VAH</span><span class="mp-value" style="color:var(--green)">'+mp.vah+'</span></div>';
-      if(mp.val) h+='<div class="mp-row"><span class="mp-label">VAL</span><span class="mp-value" style="color:var(--red)">'+mp.val+'</span></div>';
-      if(mp.vwap) h+='<div class="mp-row"><span class="mp-label">VWAP</span><span class="mp-value" style="color:var(--yellow)">'+mp.vwap+'</span></div>';
-      const shape=inst.mp_shape_yesterday||(mp.shape?mp.shape.name||mp.shape:null);
-      if(shape) h+='<div class="shape-badge">'+shape+'</div>';
-      if(inst.mp_shape_forecast) h+=' <div class="shape-badge" style="background:rgba(34,197,94,0.1);color:var(--green)">→ '+inst.mp_shape_forecast+'</div>';
-      h+='</div>';
+    if (mp.poc || mp.vah || mp.val) {
+      h += `<div class="mp-section">
+        ${ct('📊', 'Market Profile', ts)}`;
+      if (mp.poc)  h += `<div class="mp-row"><span class="mp-label">POC</span><span class="mp-value" style="color:var(--cyan)">${mp.poc}</span></div>`;
+      if (mp.vah)  h += `<div class="mp-row"><span class="mp-label">VAH</span><span class="mp-value" style="color:var(--green)">${mp.vah}</span></div>`;
+      if (mp.val)  h += `<div class="mp-row"><span class="mp-label">VAL</span><span class="mp-value" style="color:var(--red)">${mp.val}</span></div>`;
+      if (mp.vwap) h += `<div class="mp-row"><span class="mp-label">VWAP</span><span class="mp-value" style="color:var(--yellow)">${mp.vwap}</span></div>`;
+      const shape = inst.mp_shape_yesterday || (mp.shape ? mp.shape.name || mp.shape : null);
+      if (shape) h += `<div style="margin-top:6px"><span class="shape-badge">${shape}</span></div>`;
+      h += '</div>';
     }
 
     // Key Levels
-    if(inst.key_levels&&inst.key_levels.length){
-      h+='<div class="levels-section"><div class="levels-title">Key Levels</div>';
-      inst.key_levels.forEach(l=>{
-        h+='<div class="level-row"><span class="level-name">'+l.level+'</span><span class="level-price">'+l.price+'</span><span class="level-source">'+l.source+'</span></div>';
+    if (inst.key_levels && inst.key_levels.length) {
+      h += `<div class="levels-section">
+        ${ct('🎯', 'Key Levels', ts)}`;
+      inst.key_levels.forEach(l => {
+        h += `<div class="level-row">
+          <span class="level-name">${l.level}</span>
+          <span class="level-price">${l.price}</span>
+          <span class="level-source">${l.source||''}</span>
+        </div>`;
       });
-      h+='</div>';
+      h += '</div>';
+    }
+
+    // Bias Signals
+    if (signals) {
+      h += `<div class="mp-section">
+        ${ct('🔍', 'Bias Signals', ts)}
+        <ul class="slist">${signals}</ul>
+      </div>`;
     }
 
     // Invalidation
-    if(inst.invalidation) h+='<div class="invalidation">'+inst.invalidation+'</div>';
+    if (inst.invalidation) {
+      h += `<div class="invalidation">⚠ Invalidierung: ${inst.invalidation}</div>`;
+    }
 
-    h+='</div>';
+    h += '</div>';
   });
 
-  // Summary
-  if(d.summary){
-    h+='<div class="summary"><div class="summary-title">Gesamtübersicht</div>';
-    if(d.summary.best_instrument) h+='<div class="summary-best">Bestes Setup: <strong>'+d.summary.best_instrument+'</strong></div>';
-    if(d.summary.total_orders) h+='<div style="font-size:12px;color:var(--muted)">Orders heute: '+d.summary.total_orders+'</div>';
-    if(d.summary.warnings) d.summary.warnings.forEach(w=>{h+='<div class="summary-warn">'+w+'</div>';});
-    if(d.summary.notes) h+='<div style="font-size:11px;color:var(--dim);margin-top:4px">'+d.summary.notes+'</div>';
-    h+='</div>';
+  // ── Summary ───────────────────────────────────────────────────────
+  if (d.summary) {
+    h += `<div class="card">
+      ${ct('📋', 'Gesamtübersicht', ts)}`;
+    if (d.summary.best_instrument) h += `<div class="summary-best">Bestes Setup: <strong>${d.summary.best_instrument}</strong></div>`;
+    if (d.summary.total_orders)    h += `<div style="font-size:12px;color:var(--muted)">Orders heute: ${d.summary.total_orders}</div>`;
+    if (d.summary.warnings)        d.summary.warnings.forEach(w => { h += `<div class="summary-warn">${w}</div>`; });
+    if (d.summary.notes)           h += `<div style="font-size:11px;color:var(--muted);margin-top:4px">${d.summary.notes}</div>`;
+    h += '</div>';
   }
 
-  document.getElementById('content').innerHTML=h;
+  document.getElementById('content').innerHTML = h;
 }
+
 load().then(render);
 </script>
 </body>

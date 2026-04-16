@@ -6,246 +6,253 @@
 <title>Cockpit-Trader — Orders</title>
 <style>
 :root{
-  --bg:#0d1117;--card:#161b22;--border:#21262d;
-  --text:#e2e8f0;--muted:#8b949e;--dim:#30363d;
-  --green:#22c55e;--red:#ef4444;--yellow:#eab308;
-  --blue:#3b82f6;--cyan:#38bdf8;--magenta:#d946ef;
+  --bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;
+  --muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;
+  --blue:#3b82f6;--cyan:#06b6d4;--white:#f1f5f9;--dim:#30363d;--magenta:#d946ef;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{font-size:clamp(13px,1.1vw,16px)}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:1rem;min-height:100vh}
+body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;padding:20px;min-height:100vh;}
 
-/* ── NAV ─────────────────────────────────────────────────────────── */
-nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{font-weight:800;font-size:13px;letter-spacing:1px;display:flex;align-items:center;gap:6px}
-.nav-brand .ico{font-size:15px;opacity:.85}
-.nav-brand .name{color:var(--cyan)}
-.nav-links{display:flex;gap:2px}
-.nav-links a{color:var(--muted);text-decoration:none;padding:5px 10px;font-size:11px;font-weight:600;border-radius:6px;letter-spacing:.5px;transition:all .15s}
-.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
-.nav-links a.active{color:var(--cyan);background:rgba(56,189,248,.1)}
+/* ── Shared Header ────────────────────────────────────────────────── */
+.site-header{text-align:center;padding:20px 0 24px;border-bottom:1px solid var(--border);margin-bottom:0;}
+.site-header h1{font-size:28px;letter-spacing:4px;text-transform:uppercase;
+  background:linear-gradient(90deg,var(--cyan),var(--blue));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.site-header .ts{color:var(--muted);font-size:13px;margin-top:8px;}
+.site-nav{display:flex;justify-content:center;gap:8px;padding:12px 0 20px;
+  border-bottom:1px solid var(--border);margin-bottom:24px;}
+.site-nav a{color:var(--muted);text-decoration:none;padding:8px 20px;font-size:13px;
+  border-radius:8px;border:1px solid var(--border);letter-spacing:1px;transition:all .2s;}
+.site-nav a.active{color:var(--text);background:rgba(59,130,246,0.15);border-color:var(--blue);}
+.site-nav a:hover{color:var(--text);border-color:var(--muted);}
+#age-bar{margin-top:6px;font-size:12px;}
 
-/* ── HEADER ──────────────────────────────────────────────────────── */
-header{text-align:center;padding:22px 16px 18px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(56,189,248,.06) 0%,transparent 100%)}
-.h-icon{font-size:26px;margin-bottom:4px;opacity:.7}
-.h-title{font-size:20px;font-weight:800;letter-spacing:6px;color:var(--cyan);text-transform:uppercase}
-.h-sub{font-size:11px;color:var(--muted);margin-top:5px;letter-spacing:.5px}
-.status-line{margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:10px;padding:3px 12px;border-radius:20px;background:rgba(255,255,255,.02);border:1px solid var(--border)}
-.status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
-.status-dot.stale{background:var(--red);animation:blink 1.4s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+/* ── Card Zeitstempel ─────────────────────────────────────────────── */
+.ct{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;
+  font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px;}
+.ct-left{display:flex;align-items:center;gap:8px;}
+.ct-ts{font-size:10px;color:var(--muted);letter-spacing:0;text-transform:none;opacity:0.7;white-space:nowrap;}
 
-/* ── STATS BAR ───────────────────────────────────────────────────── */
-main{padding:16px;max-width:1400px;margin:0 auto}
-.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
-.stat{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px 6px}
-.stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.stat-value{font-size:20px;font-weight:800;font-family:monospace;margin-top:2px}
+/* ── Layout ───────────────────────────────────────────────────────── */
+main{max-width:1400px;margin:0 auto;}
 
-/* ── TABLE WRAPPER ───────────────────────────────────────────────── */
-.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border)}
-table{width:100%;border-collapse:collapse;font-size:12px}
-thead tr{background:rgba(255,255,255,.03);border-bottom:2px solid var(--border)}
-thead th{padding:10px 12px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:700;white-space:nowrap}
-tbody tr{border-bottom:1px solid var(--border);transition:background .1s}
-tbody tr:last-child{border-bottom:none}
-tbody tr:hover{background:rgba(255,255,255,.02)}
-tbody tr:first-child{border-left:3px solid var(--cyan)}
-td{padding:10px 12px;vertical-align:middle;white-space:nowrap}
+/* ── Stats Bar ────────────────────────────────────────────────────── */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.stat{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 8px;}
+.stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.stat-value{font-size:22px;font-weight:700;margin-top:4px;}
 
-/* Column-specific styles */
-.td-inst{font-weight:700;font-size:13px}
-.td-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:10px;display:inline-block}
-.type-buy{background:rgba(34,197,94,.1);color:var(--green)}
-.type-sell{background:rgba(239,68,68,.1);color:var(--red)}
-.td-price{font-family:monospace;font-weight:600;font-size:13px}
-.td-sl{color:var(--red)}
-.td-tp{color:var(--green)}
-.td-rr{font-family:monospace;font-weight:700;color:var(--cyan)}
-.td-pct{font-family:monospace;font-weight:700}
-.td-conf{font-size:11px;color:var(--muted);max-width:200px;white-space:normal;line-height:1.3}
+/* ── Card ─────────────────────────────────────────────────────────── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;}
 
-/* P_Fill% bar */
-.pct-cell{display:flex;align-items:center;gap:6px}
-.pct-bar-bg{width:40px;height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;flex-shrink:0}
-.pct-bar{height:4px;border-radius:4px}
+/* ── Table ────────────────────────────────────────────────────────── */
+.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border);}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+thead tr{background:rgba(255,255,255,.03);border-bottom:2px solid var(--border);}
+thead th{padding:10px 12px;text-align:left;font-size:9px;text-transform:uppercase;
+  letter-spacing:1px;color:var(--muted);font-weight:700;white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--border);transition:background .1s;}
+tbody tr:last-child{border-bottom:none;}
+tbody tr:hover{background:rgba(255,255,255,.02);}
+tbody tr.top-pick{border-left:3px solid var(--cyan);}
+td{padding:10px 12px;vertical-align:middle;white-space:nowrap;}
 
-/* Empty state */
-.empty{text-align:center;padding:60px 20px;color:var(--dim)}
-.empty h3{color:var(--muted);font-size:14px;margin-bottom:8px}
-.empty p{font-size:12px;line-height:1.6}
+/* Column styles */
+.td-inst{font-weight:700;font-size:13px;}
+.td-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  padding:3px 8px;border-radius:10px;display:inline-block;}
+.type-buy{background:rgba(34,197,94,.1);color:var(--green);}
+.type-sell{background:rgba(239,68,68,.1);color:var(--red);}
+.td-price{font-weight:600;font-size:13px;}
+.td-sl{color:var(--red);}
+.td-tp{color:var(--green);}
+.td-rr{font-weight:700;color:var(--cyan);}
+.td-conf{font-size:11px;color:var(--muted);max-width:220px;white-space:normal;line-height:1.4;}
 
-footer{text-align:center;padding:20px;font-size:10px;color:var(--dim);border-top:1px solid var(--border);margin-top:32px}
+/* P% bar */
+.pct-cell{display:flex;align-items:center;gap:6px;}
+.pct-bar-bg{width:44px;height:5px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;flex-shrink:0;}
+.pct-bar{height:5px;border-radius:4px;}
 
-/* ── DESKTOP ≥ 1200px ────────────────────────────────────────────── */
-@media(min-width:1200px){
-  .nav-brand{font-size:14px}.nav-links a{font-size:12px;padding:6px 12px}
-  .h-title{font-size:24px}.h-sub{font-size:12px}.status-line{font-size:11px}
-  main{padding:24px}
-  .stats-bar{gap:12px;margin-bottom:24px}
-  .stat{padding:12px 8px}.stat-label{font-size:10px}.stat-value{font-size:22px}
-  thead th{font-size:10px;padding:12px 14px}
-  td{font-size:13px;padding:12px 14px}
-  .td-inst{font-size:15px}
-  .td-type{font-size:11px;padding:4px 10px}
-  .td-price{font-size:14px}
-  .td-rr{font-size:14px}
-  .td-conf{font-size:12px}
-  .pct-bar-bg{width:52px}
+/* ── Empty ────────────────────────────────────────────────────────── */
+.empty{text-align:center;padding:60px 20px;color:var(--muted);}
+.empty h3{font-size:14px;margin-bottom:8px;}
+
+footer{text-align:center;padding:20px;font-size:10px;color:var(--muted);
+  border-top:1px solid var(--border);margin-top:16px;}
+
+@media(max-width:768px){
+  body{padding:12px;}
+  .site-nav a{padding:6px 12px;font-size:12px;}
+  .stats-bar{grid-template-columns:repeat(2,1fr);}
 }
-/* ── TABLET 768–1199px ───────────────────────────────────────────── */
-@media(min-width:768px) and (max-width:1199px){
-  td{font-size:12px;padding:9px 10px}
-  .td-price{font-size:13px}
+@media(min-width:1200px){
+  thead th{font-size:10px;padding:12px 14px;}
+  td{font-size:13px;padding:12px 14px;}
+  .td-inst{font-size:15px;}
+  .td-type{font-size:11px;padding:4px 10px;}
+  .td-price{font-size:14px;}
+  .td-conf{font-size:12px;}
+  .pct-bar-bg{width:56px;}
 }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-brand">
-    <span class="ico">✈</span>
-    <span>COCKPIT-<span class="name">TRADER</span></span>
+<div class="site-header">
+  <h1>✈ Cockpit-Trader</h1>
+  <div class="ts" id="ts">Lade Daten...</div>
+  <div id="age-bar" style="display:none">
+    <span id="age-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
+    <span id="age-txt"></span>
   </div>
-  <div class="nav-links">
-    <a href="index.html">Dashboard</a>
-    <a href="journal.html">Journal</a>
-    <a href="orders.html" class="active">Orders</a>
-  </div>
-</nav>
+</div>
 
-<header>
-  <div class="h-icon">✈</div>
-  <div class="h-title">Cockpit-Trader</div>
-  <div class="h-sub">Limit Orders — <span id="ts-display">–</span></div>
-  <div class="status-line">
-    <span class="status-dot" id="status-dot"></span>
-    <span id="status-text">Lade Daten…</span>
-  </div>
-</header>
+<div class="site-nav">
+  <a href="index.html">Dashboard</a>
+  <a href="index.html#backtest" onclick="sessionStorage.setItem('tab','backtest')">Backtest</a>
+  <a href="journal.html">Journal</a>
+  <a href="orders.html" class="active">Orders</a>
+</div>
 
 <main>
-  <div class="stats-bar" id="stats-bar" style="display:none">
+  <div id="stats-bar" class="stats-bar" style="display:none">
     <div class="stat"><div class="stat-label">Total</div><div class="stat-value" id="s-total">0</div></div>
     <div class="stat"><div class="stat-label">Long</div><div class="stat-value" style="color:var(--green)" id="s-long">0</div></div>
     <div class="stat"><div class="stat-label">Short</div><div class="stat-value" style="color:var(--red)" id="s-short">0</div></div>
     <div class="stat"><div class="stat-label">Ø R:R</div><div class="stat-value" style="color:var(--cyan)" id="s-rr">—</div></div>
   </div>
   <div id="content">
-    <div class="empty"><h3>Lade Orders…</h3></div>
+    <div class="empty"><h3>Lade Orders...</h3></div>
   </div>
 </main>
 
 <footer>The Trading Floor · Cockpit Trader · Auction Market Theory</footer>
 
 <script>
+var _analysisTs = null;
+
+function fmtTs(ts) {
+  if (!ts) return '';
+  const d = new Date(ts);
+  if (isNaN(d)) return '';
+  return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}) + ' ' +
+         d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}) + ' Uhr';
+}
+
+function fmtAge(ts) {
+  const mins = Math.floor((Date.now() - ts.getTime()) / 60000);
+  if (mins < 1)  return {txt:'gerade aktualisiert',    color:'#22c55e'};
+  if (mins < 60) return {txt:'vor '+mins+' Min',        color:'#22c55e'};
+  const h = Math.floor(mins/60), m = mins%60;
+  if (h < 4)  return {txt:'vor '+h+'h '+m+'min',           color:'#eab308'};
+  if (h < 8)  return {txt:'vor '+h+'h — bitte neu starten', color:'#f97316'};
+  return           {txt:h+'h alt — VERALTET',                color:'#ef4444'};
+}
+
+function updateAge() {
+  if (!_analysisTs) return;
+  const {txt, color} = fmtAge(_analysisTs);
+  document.getElementById('age-txt').textContent = txt;
+  document.getElementById('age-txt').style.color = color;
+  document.getElementById('age-dot').style.background = color;
+  document.getElementById('age-dot').style.boxShadow = '0 0 6px ' + color;
+}
+
+function ct(icon, label, ts) {
+  const tsHtml = ts ? `<span class="ct-ts">Stand: ${fmtTs(ts)}</span>` : '';
+  return `<div class="ct"><span class="ct-left">${icon} ${label}</span>${tsHtml}</div>`;
+}
+
 async function loadOrders() {
   try {
     const res = await fetch('journal-data.json?t=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const d = await res.json();
+    const ts = d.timestamp || null;
 
-    // Header status
-    const ts    = new Date(d.timestamp);
-    const ageH  = (Date.now() - ts) / 3600000;
-    const tsStr = ts.toLocaleDateString('de-DE') + ' ' +
-                  ts.toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'});
-    document.getElementById('ts-display').textContent = tsStr;
-    const dot  = document.getElementById('status-dot');
-    const stxt = document.getElementById('status-text');
-    if (ageH > 4) {
-      dot.classList.add('stale');
-      stxt.textContent = `VERALTET — ${Math.round(ageH)}h alt`;
-      stxt.style.color = 'var(--red)';
-    } else {
-      stxt.textContent = `OK — ${Math.round(ageH * 60)}min`;
-      stxt.style.color = 'var(--green)';
+    if (ts) {
+      _analysisTs = new Date(ts);
+      document.getElementById('ts').textContent =
+        'Limit Orders — ' + _analysisTs.toLocaleDateString('de-DE') + ' ' +
+        _analysisTs.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}) + ' Uhr';
+      document.title = 'Cockpit-Trader — Orders ' + _analysisTs.toLocaleDateString('de-DE');
+      document.getElementById('age-bar').style.display = 'block';
+      updateAge();
+      setInterval(updateAge, 60000);
     }
 
-    // Collect all orders from all instruments
+    // Alle Orders sammeln
     let all = [];
     (d.instruments || []).forEach(inst => {
       (inst.orders || []).forEach(o => {
-        all.push({ ...o, instrument: inst.name, bias: inst.bias });
+        all.push({...o, instrument: inst.name, bias: inst.bias});
       });
     });
 
-    // Sort by P_Fill% descending
-    all.sort((a, b) => parseFloat(b.p_fill || 0) - parseFloat(a.p_fill || 0));
+    all.sort((a, b) => parseFloat(b.p_fill||0) - parseFloat(a.p_fill||0));
 
     if (!all.length) {
       document.getElementById('content').innerHTML =
-        '<div class="empty"><h3>Keine Orders für heute</h3><p>Kein Setup mit ausreichender Konfluenz gefunden.</p></div>';
+        '<div class="empty"><h3>Keine Orders für heute</h3><p>Kein Setup mit ausreichender Konfluenz.</p></div>';
       return;
     }
 
     // Stats
-    const longs  = all.filter(o => (o.type || '').toLowerCase().includes('buy')).length;
+    const longs  = all.filter(o => (o.type||'').toLowerCase().includes('buy')).length;
     const shorts = all.length - longs;
-    const avgRR  = (all.reduce((s, o) => s + (parseFloat(o.rr) || 0), 0) / all.length).toFixed(1);
+    const avgRR  = (all.reduce((s,o) => s + (parseFloat(o.rr)||0), 0) / all.length).toFixed(1);
     document.getElementById('stats-bar').style.display = 'grid';
     document.getElementById('s-total').textContent = all.length;
     document.getElementById('s-long').textContent  = longs;
     document.getElementById('s-short').textContent = shorts;
     document.getElementById('s-rr').textContent    = avgRR;
 
-    // Build table
+    // Tabelle
     const rows = all.map((o, i) => {
-      const isBuy   = (o.type || '').toLowerCase().includes('buy');
+      const isBuy   = (o.type||'').toLowerCase().includes('buy');
       const typeCls = isBuy ? 'type-buy' : 'type-sell';
       const pFill   = parseFloat(o.p_fill) || 0;
       const pTp1    = parseFloat(o.p_tp1)  || 0;
       const fillCol = pFill >= 60 ? 'var(--green)' : pFill >= 40 ? 'var(--yellow)' : 'var(--muted)';
       const tp1Col  = pTp1  >= 60 ? 'var(--green)' : pTp1  >= 40 ? 'var(--yellow)' : 'var(--muted)';
-      return `
-        <tr>
-          <td class="td-inst">${o.instrument || '—'}${i === 0 ? ' ⭐' : ''}</td>
-          <td><span class="td-type ${typeCls}">${o.type || '—'}</span></td>
-          <td class="td-price">${o.entry || '—'}</td>
-          <td class="td-price td-sl">${o.sl || '—'}</td>
-          <td class="td-price td-tp">${o.tp1 || '—'}</td>
-          <td class="td-price td-tp">${o.tp2 || '—'}</td>
-          <td class="td-rr">${o.rr || '—'}</td>
-          <td>
-            <div class="pct-cell">
-              <div class="pct-bar-bg"><div class="pct-bar" style="width:${pFill}%;background:${fillCol}"></div></div>
-              <span class="td-pct" style="color:${fillCol}">${pFill}%</span>
-            </div>
-          </td>
-          <td>
-            <div class="pct-cell">
-              <div class="pct-bar-bg"><div class="pct-bar" style="width:${pTp1}%;background:${tp1Col}"></div></div>
-              <span class="td-pct" style="color:${tp1Col}">${pTp1}%</span>
-            </div>
-          </td>
-          <td class="td-conf">${o.confluence || '—'}</td>
-        </tr>`;
+      return `<tr class="${i===0?'top-pick':''}">
+        <td class="td-inst">${o.instrument||'—'}${i===0?' ⭐':''}</td>
+        <td><span class="td-type ${typeCls}">${o.type||'—'}</span></td>
+        <td class="td-price">${o.entry||'—'}</td>
+        <td class="td-price td-sl">${o.sl||'—'}</td>
+        <td class="td-price td-tp">${o.tp1||'—'}</td>
+        <td class="td-price td-tp">${o.tp2||'—'}</td>
+        <td class="td-rr">${o.rr||'—'}</td>
+        <td><div class="pct-cell">
+          <div class="pct-bar-bg"><div class="pct-bar" style="width:${pFill}%;background:${fillCol}"></div></div>
+          <span style="color:${fillCol};font-weight:600">${pFill}%</span>
+        </div></td>
+        <td><div class="pct-cell">
+          <div class="pct-bar-bg"><div class="pct-bar" style="width:${pTp1}%;background:${tp1Col}"></div></div>
+          <span style="color:${tp1Col};font-weight:600">${pTp1}%</span>
+        </div></td>
+        <td class="td-conf">${o.confluence||'—'}</td>
+      </tr>`;
     }).join('');
 
     document.getElementById('content').innerHTML = `
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Instrument</th>
-              <th>Typ</th>
-              <th>Entry</th>
-              <th>SL</th>
-              <th>TP1</th>
-              <th>TP2</th>
-              <th>R:R</th>
-              <th>P_Fill%</th>
-              <th>P_TP1%</th>
-              <th>Konfluenz</th>
-            </tr>
-          </thead>
-          <tbody>${rows}</tbody>
-        </table>
+      <div class="card">
+        ${ct('📋', 'Limit Orders — Heute', ts)}
+        <div class="table-wrap">
+          <table>
+            <thead><tr>
+              <th>Instrument</th><th>Typ</th><th>Entry</th>
+              <th>SL</th><th>TP1</th><th>TP2</th><th>R:R</th>
+              <th>P_Fill%</th><th>P_TP1%</th><th>Konfluenz</th>
+            </tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
       </div>`;
 
-  } catch (err) {
-    document.getElementById('status-text').textContent = 'Fehler: ' + err.message;
-    document.getElementById('status-dot').classList.add('stale');
+  } catch(err) {
     document.getElementById('content').innerHTML =
       `<div class="empty"><h3>Fehler beim Laden</h3><p>${err.message}</p></div>`;
   }
