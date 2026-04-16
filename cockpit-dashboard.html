@@ -87,6 +87,10 @@
   .order-card{border-radius:8px;padding:10px;margin-top:8px;font-size:13px;}
   /* Age bar */
   #age-bar{margin-top:6px;font-size:12px;display:none;}
+  /* Zeitstempel in Card-Titeln */
+  .ct{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;}
+  .ct-left{display:flex;align-items:center;gap:8px;}
+  .ct-ts{font-size:10px;color:var(--muted);letter-spacing:0;text-transform:none;opacity:0.7;white-space:nowrap;}
   /* Backtest tab */
   .bt-section{margin-bottom:24px;}
   .bt-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
@@ -194,6 +198,7 @@ function render(d) {
   document.getElementById('ts').textContent =
     `Pre-Flight Briefing — ${_analysisTs.toLocaleDateString('de-DE')} ` +
     `${_analysisTs.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})} Uhr`;
+  document.title = `Cockpit-Trader — ${_analysisTs.toLocaleDateString('de-DE')}`; 
   document.getElementById('age-bar').style.display = 'block';
   updateAge();
   setInterval(updateAge, 60000);
@@ -222,6 +227,24 @@ function f(v, dec=2) {
   return typeof v === 'number'
     ? v.toLocaleString('de-DE', {minimumFractionDigits:dec, maximumFractionDigits:dec})
     : v;
+}
+
+// Zeitstempel formatieren: "16.04.2026 05:02 Uhr"
+function fmtTs(ts) {
+  if (!ts) return '';
+  const d = new Date(ts);
+  if (isNaN(d)) return '';
+  return d.toLocaleDateString('de-DE', {day:'2-digit',month:'2-digit',year:'numeric'}) + ' ' +
+         d.toLocaleTimeString('de-DE', {hour:'2-digit',minute:'2-digit'}) + ' Uhr';
+}
+
+// Card-Titel mit optionalem Zeitstempel rechts
+function ctTitle(icon, label, ts) {
+  const tsHtml = ts ? `<span class="ct-ts">Stand: ${fmtTs(ts)}</span>` : '';
+  return `<div class="ct">
+    <span class="ct-left">${icon ? icon+' ' : ''}${label}</span>
+    ${tsHtml}
+  </div>`;
 }
 
 function biasColor(c) {
@@ -323,9 +346,13 @@ function renderInst(ji) {
         <span style="color:var(--muted)">${cvd.direction||''}</span>
        </div>` : '';
 
+  const ts = _analysisTs ? _analysisTs.toISOString() : null;
   return `
 <div class="card">
-  <div class="ct">📈 ${ji.name} <span class="kassa-badge">KASSA</span></div>
+  <div class="ct">
+    <span class="ct-left">📈 ${ji.name} <span class="kassa-badge">KASSA</span></span>
+    ${ts ? `<span class="ct-ts">Stand: ${fmtTs(ts)}</span>` : ''}
+  </div>
   <div class="qrow">
     <span class="qp">${f(q.price)}</span>
     <span class="qc ${cc}">${cs}${f(q.change)} (${cs}${f(q.change_pct)}%)</span>
@@ -349,7 +376,7 @@ function renderInst(ji) {
 </div>
 
 <div class="card">
-  <div class="ct">🎯 Key Levels — ${ji.name}</div>
+  ${ctTitle("🎯", `Key Levels — ${ji.name}`, ts)}
   <div class="lgrid" style="margin-bottom:12px">
     <div class="lb lpoc"><div class="ll">POC</div><div class="lv">${f(mp.poc)}</div></div>
     <div class="lb lvah"><div class="ll">VAH</div><div class="lv">${f(mp.vah)}</div></div>
@@ -370,17 +397,20 @@ function renderInst(ji) {
 </div>
 
 <div class="card">
-  <div class="ct">📊 Levels Chart — ${ji.name}
-    <span style="margin-left:8px;color:#f1f5f9;font-size:10px">── Kurs</span>
-    <span style="margin-left:6px;color:#06b6d4;font-size:10px">╌ POC</span>
-    <span style="margin-left:6px;color:#22c55e;font-size:10px">╌ VAH</span>
-    <span style="margin-left:6px;color:#ef4444;font-size:10px">╌ VAL</span>
+  <div class="ct">
+    <span class="ct-left">📊 Levels Chart — ${ji.name}
+      <span style="margin-left:8px;color:#f1f5f9;font-size:10px">── Kurs</span>
+      <span style="margin-left:6px;color:#06b6d4;font-size:10px">╌ POC</span>
+      <span style="margin-left:6px;color:#22c55e;font-size:10px">╌ VAH</span>
+      <span style="margin-left:6px;color:#ef4444;font-size:10px">╌ VAL</span>
+    </span>
+    ${ts ? `<span class="ct-ts">Stand: ${fmtTs(ts)}</span>` : ''}
   </div>
   <div class="vpc">${drawVP(mp, price)}</div>
 </div>
 
 <div class="card">
-  <div class="ct">🔍 Bias Signals — ${ji.name}</div>
+  ${ctTitle("🔍", `Bias Signals — ${ji.name}`, ts)}
   <ul class="slist">${sigRows}</ul>
   ${orderCards
     ? `<div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px">
@@ -500,8 +530,9 @@ function drawVPFromLevels(mp, currentPrice) {
 // ── Context & Calendar ─────────────────────────────────────────────────────
 function renderCtx(ctx) {
   if (!ctx) return '';
+  const ts = _analysisTs ? _analysisTs.toISOString() : null;
   return `<div class="card fw">
-    <div class="ct">🌍 Macro Context</div>
+    ${ctTitle('🌍', 'Macro Context', ts)}
     <div class="cgrid">
       ${['VIX','DXY','US10Y','DAX'].map(k => {
         const d = ctx[k];
@@ -531,7 +562,8 @@ function renderCal(cal) {
   const flagMap = {'US':'🇺🇸','DE':'🇩🇪'};
 
   if (!filtered.length)
-    return `<div class="card fw"><div class="ct">📅 Macro Kalender — US &amp; DE High Impact</div>
+    const tsE = _analysisTs ? _analysisTs.toISOString() : null;
+    return `<div class="card fw">${ctTitle('📅','Macro Kalender — US &amp; DE High Impact', tsE)}
       <div style="color:var(--muted);font-size:13px;padding:12px 0;text-align:center">
         Keine High-Impact Events für US/DE
       </div></div>`;
@@ -558,8 +590,9 @@ function renderCal(cal) {
       <span class="cac">${flagMap[e.country]||''} ${e.country}</span>
     </div>`).join('');
   }
+  const tsStr = _analysisTs ? _analysisTs.toISOString() : null;
   return `<div class="card fw">
-    <div class="ct">📅 Macro Kalender — US &amp; DE · High Impact only</div>
+    ${ctTitle('📅', 'Macro Kalender — US &amp; DE · High Impact only', tsStr)}
     ${rows}
   </div>`;
 }
@@ -574,8 +607,9 @@ function renderFred(fred) {
   ];
 
   if (!fred || !Object.keys(fred).length)
+    const tsF0 = _analysisTs ? _analysisTs.toISOString() : null;
     return `<div class="card fw">
-      <div class="ct">📊 FRED Macro — US Federal Reserve Data</div>
+      ${ctTitle('📊','FRED Macro — US Federal Reserve Data', tsF0)}
       <div style="color:var(--muted);font-size:13px;padding:12px 0;text-align:center">
         FRED-Daten nicht verfuegbar — FRED_API_KEY pruefen
       </div></div>`;
@@ -649,8 +683,9 @@ function renderFred(fred) {
     </div>`;
   }).join('');
 
+  const tsF = _analysisTs ? _analysisTs.toISOString() : null;
   return `<div class="card fw">
-    <div class="ct">📊 FRED Macro — US Federal Reserve Data</div>
+    ${ctTitle('📊','FRED Macro — US Federal Reserve Data', tsF)}
     <div class="cgrid" style="margin-bottom:16px">${tiles}</div>
     <div style="border-top:1px solid var(--border);padding-top:12px">
       <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:8px">
