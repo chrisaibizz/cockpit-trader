@@ -174,7 +174,22 @@ function render(s){
     h+='</div></div>';
   }
 
-  // ── 2. MARKTPHASE ───────────────────────────────────────────────────
+  // ── 2. CAPTAIN BRIEFING (oben) ─────────────────────────────────────
+  if(cap.trade_plan||cap.session_bias){
+    h+='<div class="card">';
+    h+='<div class="card-header"><span class="card-title">✈ Captain Briefing</span><span class="card-ts">'+tsStr+'</span></div>';
+    h+='<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:10px;">';
+    if(cap.session_bias)h+='<span style="font-size:14px;font-weight:700;color:'+(cap.session_bias.includes('LONG')?'var(--green)':cap.session_bias.includes('SHORT')?'var(--red)':'var(--yellow)')+'">'+cap.session_bias+'</span>';
+    if(cap.aktive_strategie)h+='<span style="font-size:12px;color:var(--muted)">'+cap.aktive_strategie+'</span>';
+    if(cap.max_risk_today)h+='<span style="font-size:11px;color:var(--muted)">Max Risk: <strong style="color:var(--text)">'+cap.max_risk_today+'</strong></span>';
+    if(cap.max_trades_heute)h+='<span style="font-size:11px;color:var(--muted)">Max Trades: <strong style="color:var(--text)">'+cap.max_trades_heute+'</strong></span>';
+    h+='</div>';
+    if(cap.trade_plan)h+='<div style="font-size:12px;line-height:1.7;color:var(--muted)">'+cap.trade_plan.replace(/\n/g,'<br>')+'</div>';
+    if(cap.notes)h+='<div style="margin-top:8px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:8px">'+cap.notes+'</div>';
+    h+='</div>';
+  }
+
+  // ── 3. MARKTPHASE ───────────────────────────────────────────────────
   var phase=an.marktphase||{};
   var regime=an.regime||'—';
   var risk=an.risk_level||'—';
@@ -353,14 +368,7 @@ function render(s){
     h+='</div>'; // card
   });
 
-  // ── 4. CAPTAIN BRIEFING ─────────────────────────────────────────────
-  if(cap.trade_plan){
-    h+='<div class="card">';
-    h+='<div class="card-header"><span class="card-title">✈ Captain Briefing</span><span class="card-ts">'+tsStr+'</span></div>';
-    h+='<div style="font-size:12px;line-height:1.7;color:var(--muted)">'+cap.trade_plan.replace(/\n/g,'<br>')+'</div>';
-    if(cap.notes)h+='<div style="margin-top:8px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:8px">'+cap.notes+'</div>';
-    h+='</div>';
-  }
+
 
   document.getElementById('main').innerHTML=h;
 }
