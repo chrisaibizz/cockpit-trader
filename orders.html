@@ -2,66 +2,41 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cockpit-Trader — Orders</title>
+<script>window.__STATE_DATA__ = {"pipeline":{"started":"2026-04-19T18:25:24","status":"completed"},"orders":{"_status":"ready","orders":[{"instrument":"DJ30","richtung":"LONG","entry":48620.0,"sl":48474.0,"tp1":48839.0,"tp2":49100.0,"rr":1.5,"konfluenz_score":7,"p_fill":15,"p_tp1":55,"bestaedigungen":["VAH-Retest 48617.73","POC 48575.36","Regime RISK-ON","Inter-Market BULLISH","Bias-Score +5","Makro LEICHT_RISK_ON"]},{"instrument":"SPX500","richtung":"LONG","entry":7048.0,"sl":7025.0,"tp1":7082.5,"tp2":7134.0,"rr":1.5,"konfluenz_score":6,"p_fill":12,"p_tp1":55,"bestaedigungen":["VAH-Retest 7047.51","POC 7039.93","Regime RISK-ON","Bias-Score +5"]},{"instrument":"GER40","richtung":"LONG","entry":24185.0,"sl":24056.0,"tp1":24443.0,"tp2":24647.0,"rr":2.0,"konfluenz_score":5,"p_fill":18,"p_tp1":50,"bestaedigungen":["VAH-Retest 24184.78","POC 24127.58","Regime RISK-ON","Bias-Score +4"]}],"summary":{"best_instrument":"DJ30","total_orders":3,"warnings":["GAP-UP: P_Fill niedrig (12-18%)","VWAP nicht verfuegbar"],"notes":"3 Limit-Buy Orders an gestrigen VAH-Levels. Bei Trend-Fortsetzung ohne Retest: Orders verfallen lassen."}}};</script>
 <style>
-:root{
-  --bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;
-  --muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;
-  --blue:#3b82f6;--cyan:#06b6d4;--white:#f1f5f9;--dim:#30363d;--magenta:#d946ef;
-}
+:root{--bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;--muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#06b6d4;}
 *{margin:0;padding:0;box-sizing:border-box}
-html{font-size:clamp(13px,1.1vw,16px)}
 body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;padding:20px;min-height:100vh;}
-
-/* ── Shared Header ────────────────────────────────────────────────── */
-.site-header{text-align:center;padding:20px 0 24px;border-bottom:1px solid var(--border);margin-bottom:0;}
-.site-header h1{font-size:28px;letter-spacing:4px;text-transform:uppercase;
-  background:linear-gradient(90deg,var(--cyan),var(--blue));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.site-header .ts{color:var(--muted);font-size:13px;margin-top:8px;}
-.site-nav{display:flex;justify-content:center;gap:8px;padding:12px 0 20px;
-  border-bottom:1px solid var(--border);margin-bottom:24px;}
-.site-nav a{color:var(--muted);text-decoration:none;padding:8px 20px;font-size:13px;
-  border-radius:8px;border:1px solid var(--border);letter-spacing:1px;transition:all .2s;}
-.site-nav a.active{color:var(--text);background:rgba(59,130,246,0.15);border-color:var(--blue);}
-.site-nav a:hover{color:var(--text);border-color:var(--muted);}
-#age-bar{margin-top:6px;font-size:12px;}
-
-/* ── Card Zeitstempel ─────────────────────────────────────────────── */
-.ct{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;
-  font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px;}
-.ct-left{display:flex;align-items:center;gap:8px;}
-.ct-ts{font-size:10px;color:var(--muted);letter-spacing:0;text-transform:none;opacity:0.7;white-space:nowrap;}
-
-/* ── Layout ───────────────────────────────────────────────────────── */
-main{max-width:1400px;margin:0 auto;}
-
-/* ── Stats Bar ────────────────────────────────────────────────────── */
+.header{text-align:center;padding:20px 0 14px;border-bottom:1px solid var(--border);}
+.header h1{font-size:22px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.header .ts{color:var(--muted);font-size:12px;margin-top:5px;}
+#age-bar{margin-top:4px;font-size:11px;display:none;}
+.nav{display:flex;justify-content:center;gap:8px;padding:10px 20px;border-bottom:1px solid var(--border);}
+.nav a{color:var(--muted);text-decoration:none;padding:6px 16px;font-size:12px;border-radius:6px;border:1px solid var(--border);letter-spacing:1px;transition:all .2s;}
+.nav a.active{color:var(--text);background:rgba(59,130,246,0.15);border-color:var(--blue);}
+.nav a:hover{color:var(--text);border-color:var(--muted);}
+main{max-width:1400px;margin:0 auto;padding:20px;}
 .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
 .stat{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 8px;}
-.stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
-.stat-value{font-size:22px;font-weight:700;margin-top:4px;}
-
-/* ── Card ─────────────────────────────────────────────────────────── */
+.stat-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.stat-val{font-size:22px;font-weight:700;margin-top:4px;}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;}
-
-/* ── Table ────────────────────────────────────────────────────────── */
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:6px;}
+.card-title{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);}
+.card-ts{font-size:10px;color:var(--muted);}
 .table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border);}
 table{width:100%;border-collapse:collapse;font-size:12px;}
 thead tr{background:rgba(255,255,255,.03);border-bottom:2px solid var(--border);}
-thead th{padding:10px 12px;text-align:left;font-size:9px;text-transform:uppercase;
-  letter-spacing:1px;color:var(--muted);font-weight:700;white-space:nowrap;}
+thead th{padding:10px 12px;text-align:left;font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:700;white-space:nowrap;}
 tbody tr{border-bottom:1px solid var(--border);transition:background .1s;}
 tbody tr:last-child{border-bottom:none;}
 tbody tr:hover{background:rgba(255,255,255,.02);}
 tbody tr.top-pick{border-left:3px solid var(--cyan);}
 td{padding:10px 12px;vertical-align:middle;white-space:nowrap;}
-
-/* Column styles */
 .td-inst{font-weight:700;font-size:13px;}
-.td-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
-  padding:3px 8px;border-radius:10px;display:inline-block;}
+.td-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 8px;border-radius:10px;display:inline-block;}
 .type-buy{background:rgba(34,197,94,.1);color:var(--green);}
 .type-sell{background:rgba(239,68,68,.1);color:var(--red);}
 .td-price{font-weight:600;font-size:13px;}
@@ -69,196 +44,184 @@ td{padding:10px 12px;vertical-align:middle;white-space:nowrap;}
 .td-tp{color:var(--green);}
 .td-rr{font-weight:700;color:var(--cyan);}
 .td-conf{font-size:11px;color:var(--muted);max-width:220px;white-space:normal;line-height:1.4;}
-
-/* P% bar */
 .pct-cell{display:flex;align-items:center;gap:6px;}
 .pct-bar-bg{width:44px;height:5px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;flex-shrink:0;}
 .pct-bar{height:5px;border-radius:4px;}
-
-/* ── Empty ────────────────────────────────────────────────────────── */
+.warn{font-size:11px;color:var(--yellow);padding:2px 0;}
+.notes{font-size:11px;color:var(--muted);margin-top:6px;}
 .empty{text-align:center;padding:60px 20px;color:var(--muted);}
-.empty h3{font-size:14px;margin-bottom:8px;}
-
-footer{text-align:center;padding:20px;font-size:10px;color:var(--muted);
-  border-top:1px solid var(--border);margin-top:16px;}
-
-@media(max-width:768px){
-  body{padding:12px;}
-  .site-nav a{padding:6px 12px;font-size:12px;}
-  .stats-bar{grid-template-columns:repeat(2,1fr);}
-}
-@media(min-width:1200px){
-  thead th{font-size:10px;padding:12px 14px;}
-  td{font-size:13px;padding:12px 14px;}
-  .td-inst{font-size:15px;}
-  .td-type{font-size:11px;padding:4px 10px;}
-  .td-price{font-size:14px;}
-  .td-conf{font-size:12px;}
-  .pct-bar-bg{width:56px;}
-}
+footer{text-align:center;padding:20px;font-size:10px;color:var(--muted);border-top:1px solid var(--border);margin-top:8px;}
+@media(max-width:768px){.stats-bar{grid-template-columns:repeat(2,1fr);}main{padding:12px;}}
 </style>
 </head>
 <body>
-
-<div class="site-header">
-  <h1>✈ Cockpit-Trader</h1>
-  <div class="ts" id="ts">Lade Daten...</div>
-  <div id="age-bar" style="display:none">
-    <span id="age-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
+<div class="header">
+  <h1>&#x2708; Cockpit-Trader</h1>
+  <div class="ts" id="ts">Lade Orders...</div>
+  <div id="age-bar">
+    <span id="age-dot" style="display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle;"></span>
     <span id="age-txt"></span>
   </div>
 </div>
-
-<div class="site-nav">
+<div class="nav">
   <a href="index.html">Dashboard</a>
-  <a href="index.html#backtest" onclick="sessionStorage.setItem('tab','backtest')">Backtest</a>
   <a href="journal.html">Journal</a>
   <a href="orders.html" class="active">Orders</a>
+  <a href="index.html" onclick="sessionStorage.setItem('tab','backtest')">Backtest</a>
+  <a href="wiki.html">Wiki</a>
 </div>
-
 <main>
-  <div id="stats-bar" class="stats-bar" style="display:none">
-    <div class="stat"><div class="stat-label">Total</div><div class="stat-value" id="s-total">0</div></div>
-    <div class="stat"><div class="stat-label">Long</div><div class="stat-value" style="color:var(--green)" id="s-long">0</div></div>
-    <div class="stat"><div class="stat-label">Short</div><div class="stat-value" style="color:var(--red)" id="s-short">0</div></div>
-    <div class="stat"><div class="stat-label">Ø R:R</div><div class="stat-value" style="color:var(--cyan)" id="s-rr">—</div></div>
+  <div class="stats-bar" id="stats-bar" style="display:none">
+    <div class="stat"><div class="stat-lbl">Total</div><div class="stat-val" id="s-total">0</div></div>
+    <div class="stat"><div class="stat-lbl">Long</div><div class="stat-val" style="color:var(--green)" id="s-long">0</div></div>
+    <div class="stat"><div class="stat-lbl">Short</div><div class="stat-val" style="color:var(--red)" id="s-short">0</div></div>
+    <div class="stat"><div class="stat-lbl">&#216; R:R</div><div class="stat-val" style="color:var(--cyan)" id="s-rr">&#8212;</div></div>
   </div>
-  <div id="content">
-    <div class="empty"><h3>Lade Orders...</h3></div>
-  </div>
+  <div id="content"><div class="empty"><h3>Lade Orders...</h3></div></div>
 </main>
-
-<footer>The Trading Floor · Cockpit Trader · Auction Market Theory</footer>
-
+<footer>The Trading Floor &middot; Cockpit Trader &middot; Auction Market Theory</footer>
 <script>
-var _analysisTs = null;
+var _ts = null;
 
 function fmtTs(ts) {
   if (!ts) return '';
-  const d = new Date(ts);
+  var d = new Date(ts);
   if (isNaN(d)) return '';
   return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}) + ' ' +
          d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}) + ' Uhr';
 }
 
 function fmtAge(ts) {
-  const mins = Math.floor((Date.now() - ts.getTime()) / 60000);
-  if (mins < 1)  return {txt:'gerade aktualisiert',    color:'#22c55e'};
-  if (mins < 60) return {txt:'vor '+mins+' Min',        color:'#22c55e'};
-  const h = Math.floor(mins/60), m = mins%60;
-  if (h < 4)  return {txt:'vor '+h+'h '+m+'min',           color:'#eab308'};
-  if (h < 8)  return {txt:'vor '+h+'h — bitte neu starten', color:'#f97316'};
-  return           {txt:h+'h alt — VERALTET',                color:'#ef4444'};
+  var m = Math.floor((Date.now() - ts.getTime()) / 60000);
+  if (m < 1)  return {t:'gerade aktualisiert', c:'#22c55e'};
+  if (m < 60) return {t:'vor ' + m + ' Min', c:'#22c55e'};
+  var h = Math.floor(m/60), mm = m%60;
+  if (h < 4) return {t:'vor ' + h + 'h ' + mm + 'min', c:'#eab308'};
+  if (h < 8) return {t:'vor ' + h + 'h \u2014 bitte neu starten', c:'#f97316'};
+  return {t:h + 'h alt \u2014 VERALTET', c:'#ef4444'};
 }
 
 function updateAge() {
-  if (!_analysisTs) return;
-  const {txt, color} = fmtAge(_analysisTs);
-  document.getElementById('age-txt').textContent = txt;
-  document.getElementById('age-txt').style.color = color;
-  document.getElementById('age-dot').style.background = color;
-  document.getElementById('age-dot').style.boxShadow = '0 0 6px ' + color;
+  if (!_ts) return;
+  var a = fmtAge(_ts);
+  document.getElementById('age-txt').textContent = a.t;
+  document.getElementById('age-txt').style.color = a.c;
+  document.getElementById('age-dot').style.background = a.c;
+  document.getElementById('age-dot').style.boxShadow = '0 0 6px ' + a.c;
 }
 
-function ct(icon, label, ts) {
-  const tsHtml = ts ? `<span class="ct-ts">Stand: ${fmtTs(ts)}</span>` : '';
-  return `<div class="ct"><span class="ct-left">${icon} ${label}</span>${tsHtml}</div>`;
+function pctBar(pct) {
+  var col = pct >= 60 ? 'var(--green)' : pct >= 40 ? 'var(--yellow)' : 'var(--muted)';
+  return '<div class="pct-cell">' +
+    '<div class="pct-bar-bg"><div class="pct-bar" style="width:' + pct + '%;background:' + col + '"></div></div>' +
+    '<span style="color:' + col + ';font-weight:600">' + pct + '%</span></div>';
 }
 
-async function loadOrders() {
-  try {
-    const res = await fetch('journal-data.json?t=' + Date.now());
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const d = await res.json();
-    const ts = d.timestamp || null;
-
-    if (ts) {
-      _analysisTs = new Date(ts);
-      document.getElementById('ts').textContent =
-        'Limit Orders — ' + _analysisTs.toLocaleDateString('de-DE') + ' ' +
-        _analysisTs.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}) + ' Uhr';
-      document.title = 'Cockpit-Trader — Orders ' + _analysisTs.toLocaleDateString('de-DE');
-      document.getElementById('age-bar').style.display = 'block';
-      updateAge();
-      setInterval(updateAge, 60000);
-    }
-
-    // Alle Orders sammeln
-    let all = [];
-    (d.instruments || []).forEach(inst => {
-      (inst.orders || []).forEach(o => {
-        all.push({...o, instrument: inst.name, bias: inst.bias});
-      });
-    });
-
-    all.sort((a, b) => parseFloat(b.p_fill||0) - parseFloat(a.p_fill||0));
-
-    if (!all.length) {
-      document.getElementById('content').innerHTML =
-        '<div class="empty"><h3>Keine Orders für heute</h3><p>Kein Setup mit ausreichender Konfluenz.</p></div>';
-      return;
-    }
-
-    // Stats
-    const longs  = all.filter(o => (o.type||'').toLowerCase().includes('buy')).length;
-    const shorts = all.length - longs;
-    const avgRR  = (all.reduce((s,o) => s + (parseFloat(o.rr)||0), 0) / all.length).toFixed(1);
-    document.getElementById('stats-bar').style.display = 'grid';
-    document.getElementById('s-total').textContent = all.length;
-    document.getElementById('s-long').textContent  = longs;
-    document.getElementById('s-short').textContent = shorts;
-    document.getElementById('s-rr').textContent    = avgRR;
-
-    // Tabelle
-    const rows = all.map((o, i) => {
-      const isBuy   = (o.type||'').toLowerCase().includes('buy');
-      const typeCls = isBuy ? 'type-buy' : 'type-sell';
-      const pFill   = parseFloat(o.p_fill) || 0;
-      const pTp1    = parseFloat(o.p_tp1)  || 0;
-      const fillCol = pFill >= 60 ? 'var(--green)' : pFill >= 40 ? 'var(--yellow)' : 'var(--muted)';
-      const tp1Col  = pTp1  >= 60 ? 'var(--green)' : pTp1  >= 40 ? 'var(--yellow)' : 'var(--muted)';
-      return `<tr class="${i===0?'top-pick':''}">
-        <td class="td-inst">${o.instrument||'—'}${i===0?' ⭐':''}</td>
-        <td><span class="td-type ${typeCls}">${o.type||'—'}</span></td>
-        <td class="td-price">${o.entry||'—'}</td>
-        <td class="td-price td-sl">${o.sl||'—'}</td>
-        <td class="td-price td-tp">${o.tp1||'—'}</td>
-        <td class="td-price td-tp">${o.tp2||'—'}</td>
-        <td class="td-rr">${o.rr||'—'}</td>
-        <td><div class="pct-cell">
-          <div class="pct-bar-bg"><div class="pct-bar" style="width:${pFill}%;background:${fillCol}"></div></div>
-          <span style="color:${fillCol};font-weight:600">${pFill}%</span>
-        </div></td>
-        <td><div class="pct-cell">
-          <div class="pct-bar-bg"><div class="pct-bar" style="width:${pTp1}%;background:${tp1Col}"></div></div>
-          <span style="color:${tp1Col};font-weight:600">${pTp1}%</span>
-        </div></td>
-        <td class="td-conf">${o.confluence||'—'}</td>
-      </tr>`;
-    }).join('');
-
-    document.getElementById('content').innerHTML = `
-      <div class="card">
-        ${ct('📋', 'Limit Orders — Heute', ts)}
-        <div class="table-wrap">
-          <table>
-            <thead><tr>
-              <th>Instrument</th><th>Typ</th><th>Entry</th>
-              <th>SL</th><th>TP1</th><th>TP2</th><th>R:R</th>
-              <th>P_Fill%</th><th>P_TP1%</th><th>Konfluenz</th>
-            </tr></thead>
-            <tbody>${rows}</tbody>
-          </table>
-        </div>
-      </div>`;
-
-  } catch(err) {
-    document.getElementById('content').innerHTML =
-      `<div class="empty"><h3>Fehler beim Laden</h3><p>${err.message}</p></div>`;
+function render(d) {
+  var ts = d.pipeline && d.pipeline.started || null;
+  if (ts) {
+    _ts = new Date(ts);
+    document.getElementById('ts').textContent = 'Limit Orders \u2014 ' +
+      _ts.toLocaleDateString('de-DE') + ' ' +
+      _ts.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}) + ' Uhr';
+    document.getElementById('age-bar').style.display = 'block';
+    updateAge();
+    setInterval(updateAge, 60000);
   }
+
+  var rawOrders = d.orders && d.orders.orders || [];
+  var summary = d.orders && d.orders.summary || {};
+
+  if (!rawOrders.length) {
+    document.getElementById('content').innerHTML =
+      '<div class="empty"><h3>Keine Orders f\u00fcr heute</h3><p>Kein Setup mit ausreichender Konfluenz.</p></div>';
+    return;
+  }
+
+  // Map to display format
+  var all = rawOrders.map(function(o) {
+    return {
+      instrument: o.instrument || '—',
+      type: o.richtung === 'LONG' ? 'Limit Buy' : 'Limit Sell',
+      entry: o.entry,
+      sl: o.sl,
+      tp1: o.tp1,
+      tp2: o.tp2,
+      rr: o.rr,
+      p_fill: o.p_fill || 0,
+      p_tp1: o.p_tp1 || 0,
+      score: o.konfluenz_score || 0,
+      confluence: (o.bestaedigungen || []).join(' + ')
+    };
+  });
+
+  // Sort by p_fill desc
+  all.sort(function(a,b){ return b.p_fill - a.p_fill; });
+
+  // Stats
+  var longs = all.filter(function(o){ return o.type.includes('Buy'); }).length;
+  var avgRR = (all.reduce(function(s,o){ return s + (o.rr||0); }, 0) / all.length).toFixed(1);
+  document.getElementById('stats-bar').style.display = 'grid';
+  document.getElementById('s-total').textContent = all.length;
+  document.getElementById('s-long').textContent = longs;
+  document.getElementById('s-short').textContent = all.length - longs;
+  document.getElementById('s-rr').textContent = avgRR;
+
+  // Rows
+  var rows = all.map(function(o, i) {
+    var isBuy = o.type.includes('Buy');
+    var f = function(v) { return v != null ? Number(v).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2}) : '—'; };
+    return '<tr class="' + (i===0?'top-pick':'') + '">' +
+      '<td class="td-inst">' + o.instrument + (i===0?' &#11088;':'') + '</td>' +
+      '<td><span class="td-type ' + (isBuy?'type-buy':'type-sell') + '">' + o.type + '</span></td>' +
+      '<td class="td-price">' + f(o.entry) + '</td>' +
+      '<td class="td-price td-sl">' + f(o.sl) + '</td>' +
+      '<td class="td-price td-tp">' + f(o.tp1) + '</td>' +
+      '<td class="td-price td-tp">' + f(o.tp2) + '</td>' +
+      '<td class="td-rr">' + (o.rr||'—') + '</td>' +
+      '<td>' + pctBar(o.p_fill) + '</td>' +
+      '<td>' + pctBar(o.p_tp1) + '</td>' +
+      '<td><span style="font-size:11px;color:var(--cyan);font-weight:700">' + o.score + '/10</span></td>' +
+      '<td class="td-conf">' + o.confluence + '</td>' +
+    '</tr>';
+  }).join('');
+
+  var tsStr = ts ? 'Stand: ' + fmtTs(ts) : '';
+  var warnsHtml = (summary.warnings||[]).map(function(w){
+    return '<div class="warn">\u26a0 ' + w + '</div>';
+  }).join('');
+  var notesHtml = summary.notes ? '<div class="notes">' + summary.notes + '</div>' : '';
+
+  document.getElementById('content').innerHTML =
+    '<div class="card">' +
+      '<div class="card-header"><span class="card-title">&#128203; Limit Orders \u2014 Heute</span><span class="card-ts">' + tsStr + '</span></div>' +
+      '<div class="table-wrap">' +
+        '<table>' +
+          '<thead><tr>' +
+            '<th>Instrument</th><th>Typ</th><th>Entry</th>' +
+            '<th>SL</th><th>TP1</th><th>TP2</th><th>R:R</th>' +
+            '<th>P_Fill%</th><th>P_TP1%</th><th>Score</th><th>Konfluenz</th>' +
+          '</tr></thead>' +
+          '<tbody>' + rows + '</tbody>' +
+        '</table>' +
+      '</div>' +
+      (warnsHtml ? '<div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border)">' + warnsHtml + '</div>' : '') +
+      notesHtml +
+    '</div>';
 }
 
-loadOrders();
+function load() {
+  if (window.__STATE_DATA__) { render(window.__STATE_DATA__); return; }
+  fetch('state.json?t=' + Date.now())
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(render)
+    .catch(function(e){
+      document.getElementById('content').innerHTML =
+        '<div class="empty"><h3>Fehler beim Laden</h3><p>' + e.message + '</p></div>';
+    });
+}
+
+load();
 </script>
 </body>
 </html>
