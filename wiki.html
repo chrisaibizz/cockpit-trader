@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cockpit-Trader — Wiki</title>
+<style>
+:root{--bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;--muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#06b6d4;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;min-height:100vh;}
+.header{text-align:center;padding:20px 20px 14px;border-bottom:1px solid var(--border);}
+.header h1{font-size:22px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.header .ts{color:var(--muted);font-size:12px;margin-top:5px;}
+.nav{display:flex;justify-content:center;gap:8px;padding:10px 20px;border-bottom:1px solid var(--border);}
+.nav a{color:var(--muted);text-decoration:none;padding:6px 16px;font-size:12px;border-radius:6px;border:1px solid var(--border);letter-spacing:1px;transition:all .2s;}
+.nav a.active{color:var(--text);background:rgba(59,130,246,0.15);border-color:var(--blue);}
+.nav a:hover{color:var(--text);border-color:var(--muted);}
+.main{max-width:900px;margin:0 auto;padding:20px;}
+
+/* TOC */
+.toc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:24px;}
+.toc-title{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px;}
+.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;}
+.toc a{color:var(--cyan);text-decoration:none;font-size:12px;padding:3px 0;display:block;}
+.toc a:hover{color:var(--text);}
+
+/* Sections */
+.section{margin-bottom:24px;}
+.section-title{font-size:16px;font-weight:700;color:var(--cyan);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.section-title .num{font-size:11px;background:rgba(6,182,212,.15);border:1px solid rgba(6,182,212,.3);color:var(--cyan);padding:2px 8px;border-radius:4px;}
+
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:12px;}
+.card-title{font-size:11px;font-weight:700;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.card-body{font-size:12px;color:var(--muted);line-height:1.7;}
+.card-body p{margin-bottom:8px;}
+.card-body p:last-child{margin-bottom:0;}
+
+/* Score table */
+.score-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0;}
+.score-table th{text-align:left;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:1px;padding:5px 8px;border-bottom:1px solid var(--border);}
+.score-table td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.04);}
+.score-table tr:last-child td{border-bottom:none;}
+.pos{color:var(--green);font-weight:700;}
+.neg{color:var(--red);font-weight:700;}
+.neu{color:var(--muted);}
+
+/* Signal example */
+.sig-ex{display:flex;justify-content:space-between;align-items:center;padding:5px 8px;border-radius:5px;margin-bottom:3px;font-size:12px;}
+.sig-g{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);}
+.sig-r{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);}
+.sig-n{background:rgba(255,255,255,.02);border:1px solid var(--border);}
+
+/* Ampel demo */
+.ampel-demo{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin:10px 0;}
+.ampel-item{display:flex;align-items:center;gap:10px;}
+.tl-demo{display:flex;flex-direction:column;gap:4px;background:#000;padding:6px 5px;border-radius:14px;border:1px solid #333;}
+.lb-demo{width:10px;height:10px;border-radius:50%;background:#1a1a1a;}
+.ampel-desc{font-size:11px;color:var(--muted);max-width:160px;line-height:1.5;}
+
+/* Pill examples */
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
+.pill{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;}
+.pill-g{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);}
+.pill-r{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.3);}
+.pill-y{background:rgba(234,179,8,.12);color:var(--yellow);border:1px solid rgba(234,179,8,.3);}
+.pill-b{background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.3);}
+.pill-c{background:rgba(6,182,212,.12);color:var(--cyan);border:1px solid rgba(6,182,212,.3);}
+
+/* Formula */
+.formula{background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.2);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--cyan);margin:8px 0;font-family:'SF Mono',monospace;}
+
+/* Highlight */
+.hl{color:var(--text);font-weight:600;}
+.hl-g{color:var(--green);font-weight:600;}
+.hl-r{color:var(--red);font-weight:600;}
+.hl-y{color:var(--yellow);font-weight:600;}
+.hl-c{color:var(--cyan);font-weight:600;}
+
+/* Divider */
+hr{border:none;border-top:1px solid var(--border);margin:20px 0;}
+
+footer{text-align:center;padding:20px;font-size:10px;color:var(--muted);border-top:1px solid var(--border);margin-top:8px;}
+@media(max-width:768px){.main{padding:12px;}.toc-grid{grid-template-columns:1fr;}.ampel-demo{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>✈ Cockpit-Trader</h1>
+  <div class="ts">Wiki — So werden die Werte berechnet</div>
+</div>
+<div class="nav">
+  <a href="index.html">Dashboard</a>
+  <a href="journal.html">Journal</a>
+  <a href="orders.html">Orders</a>
+  <a href="index.html" onclick="sessionStorage.setItem('tab','backtest')">Backtest</a>
+  <a href="wiki.html" class="active">Wiki</a>
+</div>
+<div class="main">
+
+<!-- TOC -->
+<div class="toc">
+  <div class="toc-title">📚 Inhalt</div>
+  <div class="toc-grid">
+    <a href="#makro-score">1. Makro Score (Dashboard)</a>
+    <a href="#bias-ampel">2. Bias Ampel (Dashboard)</a>
+    <a href="#confluence">3. Confluence Score (Dashboard & Journal)</a>
+    <a href="#marktphase">4. Marktphase (Journal)</a>
+    <a href="#regime">5. Regime (Journal)</a>
+    <a href="#alignment">6. Alignment Score (Journal)</a>
+    <a href="#mp-levels">7. Market Profile Levels</a>
+    <a href="#shapes">8. MP Shapes & Prognose</a>
+  </div>
+</div>
+
+<!-- 1. MAKRO SCORE -->
+<div class="section" id="makro-score">
+  <div class="section-title"><span class="num">1</span> Makro Score — Dashboard</div>
+
+  <div class="card">
+    <div class="card-title">Was zeigt der Score?</div>
+    <div class="card-body">
+      <p>Der Makro Score fasst alle globalen Marktfaktoren in einer einzigen Zahl zusammen. Er zeigt ob das wirtschaftliche Umfeld gerade <span class="hl-g">risikofreudig (Risk On)</span> oder <span class="hl-r">risikoavers (Risk Off)</span> ist.</p>
+      <div class="formula">Beispiel: 6/8 → 6 von 8 Faktoren bullish → RISK ON</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Wie wird gerechnet?</div>
+    <div class="card-body">
+      <p>Jeder Faktor bekommt <span class="hl-g">+1 (bullish)</span>, <span class="hl-y">+0.5 (neutral)</span> oder <span class="hl">0 (kein Signal)</span>:</p>
+      <table class="score-table">
+        <thead><tr><th>Faktor</th><th>Bullish (+1)</th><th>Neutral (+0.5)</th><th>Kein Signal (0)</th></tr></thead>
+        <tbody>
+          <tr><td>VIX Niveau</td><td class="pos">VIX &lt; 15</td><td class="neu">VIX 15–20</td><td>VIX &gt; 20</td></tr>
+          <tr><td>VIX Richtung</td><td class="pos">VIX fallend</td><td>—</td><td>VIX steigend</td></tr>
+          <tr><td>DXY (Dollar)</td><td class="pos">DXY fallend</td><td class="neu">DXY leicht steigend</td><td>DXY stark steigend</td></tr>
+          <tr><td>Bonds 10Y</td><td class="pos">Rendite &lt; 4.0%</td><td class="neu">4.0–4.5%</td><td>&gt; 4.5%</td></tr>
+          <tr><td>Fed Funds Rate</td><td class="pos">Rate ≤ 4.0%</td><td>—</td><td>&gt; 4.0%</td></tr>
+          <tr><td>CPI Inflation</td><td class="pos">CPI &lt; 2.5%</td><td class="neu">2.5–3.5%</td><td>&gt; 3.5%</td></tr>
+          <tr><td>Yield Curve</td><td class="pos">10Y-2Y &gt; 0.3%</td><td>—</td><td>Invertiert</td></tr>
+          <tr><td>Arbeitslosigkeit</td><td class="pos">U-Rate &lt; 4.5%</td><td>—</td><td>&gt; 5.5%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Wie lese ich das Label?</div>
+    <div class="card-body">
+      <div class="pills">
+        <span class="pill pill-g">RISK ON ≥ 65%</span>
+        <span class="pill pill-y">NEUTRAL 45–65%</span>
+        <span class="pill pill-r">RISK OFF &lt; 45%</span>
+      </div>
+      <p><span class="hl-g">RISK ON</span> = gutes Umfeld für Long-Positionen. Institutionelle Anleger sind risikobereit.</p>
+      <p><span class="hl-y">NEUTRAL</span> = gemischte Signale, Vorsicht empfohlen.</p>
+      <p><span class="hl-r">RISK OFF</span> = Anleger flüchten in sichere Häfen (Gold, Anleihen). Vorsicht bei Longs.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 2. BIAS AMPEL -->
+<div class="section" id="bias-ampel">
+  <div class="section-title"><span class="num">2</span> Bias Ampel — Dashboard</div>
+
+  <div class="card">
+    <div class="card-title">Was zeigt die Ampel?</div>
+    <div class="card-body">
+      <p>Die Ampel zeigt den <span class="hl">Tages-Bias</span> eines Instruments — also ob der Markt heute eher nach oben, unten oder seitwärts tendiert, basierend auf der Market Profile Analyse.</p>
+      <div class="ampel-demo">
+        <div class="ampel-item">
+          <div class="tl-demo">
+            <div class="lb-demo" style="background:#22c55e;box-shadow:0 0 10px #22c55e"></div>
+            <div class="lb-demo"></div>
+            <div class="lb-demo"></div>
+          </div>
+          <div class="ampel-desc"><span class="hl-g">BULLISH</span> — Kurs über VAH oder POC. Käufer dominieren. Long-Setup bevorzugt.</div>
+        </div>
+        <div class="ampel-item">
+          <div class="tl-demo">
+            <div class="lb-demo"></div>
+            <div class="lb-demo" style="background:#eab308;box-shadow:0 0 10px #eab308"></div>
+            <div class="lb-demo"></div>
+          </div>
+          <div class="ampel-desc"><span class="hl-y">NEUTRAL</span> — Kurs in der Value Area. Kein klarer Bias. Abwarten.</div>
+        </div>
+        <div class="ampel-item">
+          <div class="tl-demo">
+            <div class="lb-demo"></div>
+            <div class="lb-demo"></div>
+            <div class="lb-demo" style="background:#ef4444;box-shadow:0 0 10px #ef4444"></div>
+          </div>
+          <div class="ampel-desc"><span class="hl-r">BEARISH</span> — Kurs unter VAL oder POC. Verkäufer dominieren. Short-Setup bevorzugt.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Confluence Score neben der Ampel</div>
+    <div class="card-body">
+      <p>Die Zahl neben der Ampel (z.B. <span class="hl">7/9</span>) zeigt wie viele von allen berechneten Signalen in dieselbe Richtung zeigen.</p>
+      <div class="formula">7/9 → 7 bullische Signale von 9 möglichen → 78% Confluence</div>
+      <table class="score-table">
+        <thead><tr><th>Score</th><th>Farbe</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td class="pos">≥ 70%</td><td><span class="hl-g">Grün</span></td><td>Starke Übereinstimmung — gutes Setup</td></tr>
+          <tr><td class="neu">45–70%</td><td><span class="hl-y">Gelb</span></td><td>Gemischte Signale — mit Vorsicht</td></tr>
+          <tr><td class="neg">&lt; 45%</td><td><span class="hl-r">Rot</span></td><td>Widersprüchliche Signale — kein Trade</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 3. CONFLUENCE SCORE -->
+<div class="section" id="confluence">
+  <div class="section-title"><span class="num">3</span> Confluence Score — Dashboard & Journal</div>
+
+  <div class="card">
+    <div class="card-title">Was ist Confluence?</div>
+    <div class="card-body">
+      <p>Confluence bedeutet <span class="hl">Zusammentreffen mehrerer Bestätigungen</span>. Je mehr unabhängige Signale in dieselbe Richtung zeigen, desto wahrscheinlicher ist die Bewegung.</p>
+      <p>Im Journal wird der Score von <span class="hl">-7 bis +7</span> berechnet:</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Die 7 Signale im Detail</div>
+    <div class="card-body">
+      <div class="sig-ex sig-g"><span>Preis &gt; VAH (Breakout nach oben)</span><span class="pos">+2</span></div>
+      <div class="sig-ex sig-g"><span>Preis zwischen POC und VAH</span><span class="pos">+1</span></div>
+      <div class="sig-ex sig-n"><span>Preis ± 0.1% um POC (Gleichgewicht)</span><span class="neu">0</span></div>
+      <div class="sig-ex sig-r"><span>Preis zwischen VAL und POC</span><span class="neg">-1</span></div>
+      <div class="sig-ex sig-r"><span>Preis &lt; VAL (Breakout nach unten)</span><span class="neg">-2</span></div>
+      <div class="sig-ex sig-g" style="margin-top:6px"><span>Preis &gt; VWAP</span><span class="pos">+1</span></div>
+      <div class="sig-ex sig-r"><span>Preis &lt; VWAP</span><span class="neg">-1</span></div>
+      <div class="sig-ex sig-g" style="margin-top:6px"><span>Tages-Momentum &gt; +0.5%</span><span class="pos">+1</span></div>
+      <div class="sig-ex sig-r"><span>Tages-Momentum &lt; -0.5%</span><span class="neg">-1</span></div>
+      <div class="sig-ex sig-g" style="margin-top:6px"><span>Kurs im oberen Drittel der Tages-Range</span><span class="pos">+1</span></div>
+      <div class="sig-ex sig-r"><span>Kurs im unteren Drittel der Tages-Range</span><span class="neg">-1</span></div>
+      <div class="sig-ex sig-g" style="margin-top:6px"><span>ER &gt; 10 + bullische Richtung</span><span class="pos">+1</span></div>
+      <div class="sig-ex sig-r"><span>ER &lt; -10 + bearische Richtung</span><span class="neg">-1</span></div>
+      <table class="score-table" style="margin-top:10px">
+        <thead><tr><th>Gesamt-Score</th><th>Bias</th></tr></thead>
+        <tbody>
+          <tr><td class="pos">+4 bis +7</td><td class="pos">BULLISH</td></tr>
+          <tr><td class="pos">+2 bis +3</td><td style="color:#86efac">LEICHT BULLISH</td></tr>
+          <tr><td class="neu">-1 bis +1</td><td class="neu">NEUTRAL</td></tr>
+          <tr><td class="neg">-2 bis -3</td><td style="color:#fca5a5">LEICHT BEARISH</td></tr>
+          <tr><td class="neg">-4 bis -7</td><td class="neg">BEARISH</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 4. MARKTPHASE -->
+<div class="section" id="marktphase">
+  <div class="section-title"><span class="num">4</span> Marktphase — Journal</div>
+
+  <div class="card">
+    <div class="card-title">Was ist die Marktphase?</div>
+    <div class="card-body">
+      <p>Die Marktphase beschreibt <span class="hl">wie sich der Markt gerade verhält</span> — nicht wohin er geht, sondern welche Dynamik vorherrscht. Das bestimmt welche Strategie eingesetzt wird.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Die 4 Phasen</div>
+    <div class="card-body">
+      <table class="score-table">
+        <thead><tr><th>Phase</th><th>Kriterien</th><th>Strategie</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="pill pill-b">TREND</span></td>
+            <td>Kurs klar außerhalb Value Area + Makro unterstützt + ER &gt; 10</td>
+            <td class="hl">Trend-Following — Pullbacks kaufen/shorten</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-y">BALANCE</span></td>
+            <td>Kurs innerhalb Value Area, ER zwischen -5 und +5</td>
+            <td class="hl">Mean-Reversion — VAL kaufen, VAH shorten</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-c">AUSBRUCH</span></td>
+            <td>Kurs bricht gerade aus VA aus, ER steigend</td>
+            <td class="hl">Breakout — Ausbruch mitgehen mit Volumen</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-r">EXTREM</span></td>
+            <td>Fear&Greed &lt;25 oder &gt;75, Put/Call &gt;1.2, weit von VWAP</td>
+            <td class="hl">Counter-Trend — Reversal an Confluence</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px"><span class="hl-y">Wichtig:</span> Wenn ER &lt; 5 aber Kurs außerhalb VA → trotzdem BALANCE (Chop, kein echter Trend)</p>
+    </div>
+  </div>
+</div>
+
+<!-- 5. REGIME -->
+<div class="section" id="regime">
+  <div class="section-title"><span class="num">5</span> Regime — Journal</div>
+
+  <div class="card">
+    <div class="card-title">Was ist der Unterschied zu Makro-Bias?</div>
+    <div class="card-body">
+      <table class="score-table">
+        <thead><tr><th></th><th>Makro-Bias</th><th>Regime</th></tr></thead>
+        <tbody>
+          <tr><td class="hl">Berechnet von</td><td>MACRO Agent</td><td>ANALYST Agent</td></tr>
+          <tr><td class="hl">Basis</td><td>VIX, DXY, Bonds, F&G, Gold</td><td>Makro + Preis-Position zu MP-Levels</td></tr>
+          <tr><td class="hl">Beispiel</td><td>LEICHT_RISK_ON</td><td>RISK-ON</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px">Beide können divergieren — z.B. Makro bearish aber Preis bullisch. Der <span class="hl">CAPTAIN</span> beachtet beide.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Regime Kriterien</div>
+    <div class="card-body">
+      <table class="score-table">
+        <thead><tr><th>Regime</th><th>Kriterien</th></tr></thead>
+        <tbody>
+          <tr><td><span class="hl-g">RISK-ON</span></td><td>VIX &lt; 18 + DXY schwach + Preis &gt; VAH</td></tr>
+          <tr><td><span class="hl-r">RISK-OFF</span></td><td>VIX &gt; 22 + DXY stark + Preis &lt; VAL</td></tr>
+          <tr><td><span class="hl-y">NEUTRAL</span></td><td>VIX 18–22 + Preis in Value Area</td></tr>
+          <tr><td><span class="hl-c">EVENT-DRIVEN</span></td><td>High-Impact Event innerhalb 4h</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:8px"><span class="hl-r">Hard Rule:</span> VIX &gt; 25 → immer RISK-OFF, egal was andere Signale sagen.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 6. ALIGNMENT SCORE -->
+<div class="section" id="alignment">
+  <div class="section-title"><span class="num">6</span> Alignment Score — Journal</div>
+
+  <div class="card">
+    <div class="card-title">Was bedeutet 5/7?</div>
+    <div class="card-body">
+      <p>Der Alignment Score zeigt wie viele der <span class="hl">7 Timeframes und Signale</span> in dieselbe Richtung zeigen. Er ist das wichtigste Kriterium für eine Trade-Freigabe.</p>
+      <div class="formula">Minimum 3/7 → Trade erlaubt &nbsp;|&nbsp; 5+/7 → starkes Setup</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Die 7 Punkte</div>
+    <div class="card-body">
+      <table class="score-table">
+        <thead><tr><th>#</th><th>Signal</th><th>+1 wenn...</th></tr></thead>
+        <tbody>
+          <tr><td class="hl-c">1</td><td>Weekly Trend</td><td>Weekly MP Trend stimmt mit Daily Bias überein</td></tr>
+          <tr><td class="hl-c">2</td><td>4H Trend</td><td>4H Trend stimmt mit Daily Bias überein</td></tr>
+          <tr><td class="hl-c">3</td><td>1H Struktur</td><td>1H Key Levels bestätigen Entry-Zone</td></tr>
+          <tr><td class="hl-c">4</td><td>30M Entry-Zone</td><td>30M Confluence in Entry-Zone vorhanden</td></tr>
+          <tr><td class="hl-c">5</td><td>CVD</td><td>Volumen bestätigt Trade-Richtung</td></tr>
+          <tr><td class="hl-c">6</td><td>ER Filter</td><td>ER &gt; 10 (Trend effizient, kein Chop)</td></tr>
+          <tr><td class="hl-c">7</td><td>Makro-Bias</td><td>Makro unterstützt Preis-Richtung</td></tr>
+        </tbody>
+      </table>
+      <table class="score-table" style="margin-top:10px">
+        <thead><tr><th>Score</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td class="neg">0–2 / 7</td><td>Kein Trade — zu wenige Bestätigungen</td></tr>
+          <tr><td class="neu">3–4 / 7</td><td>Trade möglich — mit reduziertem Risiko</td></tr>
+          <tr><td class="pos">5–6 / 7</td><td>Gutes Setup — normales Risiko</td></tr>
+          <tr><td class="pos">7 / 7</td><td>Optimales Setup — volle Position</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 7. MP LEVELS -->
+<div class="section" id="mp-levels">
+  <div class="section-title"><span class="num">7</span> Market Profile Levels</div>
+
+  <div class="card">
+    <div class="card-title">Die wichtigsten Levels auf einen Blick</div>
+    <div class="card-body">
+      <table class="score-table">
+        <thead><tr><th>Level</th><th>Farbe</th><th>Bedeutung</th><th>Nutzung</th></tr></thead>
+        <tbody>
+          <tr><td><span class="hl-c">POC</span></td><td>Cyan</td><td>Point of Control — meistgehandelter Preis des Vortages</td><td>Starker Magnet, oft Retest nach Gap</td></tr>
+          <tr><td><span class="hl-g">VAH</span></td><td>Grün</td><td>Value Area High — obere Grenze des fairen Werts</td><td>Resistance bei Long, Support nach Breakout</td></tr>
+          <tr><td><span class="hl-r">VAL</span></td><td>Rot</td><td>Value Area Low — untere Grenze des fairen Werts</td><td>Support bei Long, Resistance nach Breakdown</td></tr>
+          <tr><td><span class="hl-y">VWAP</span></td><td>Gelb</td><td>Volume Weighted Average Price — durchschnittlicher Handelspreis</td><td>Intraday Bias: über VWAP = bullish</td></tr>
+          <tr><td><span class="hl-g">ONH</span></td><td>Hellgrün</td><td>Overnight High — Hoch der Overnight-Session</td><td>Resistance, oft bei Marktöffnung getestet</td></tr>
+          <tr><td><span class="hl-r">ONL</span></td><td>Hellrot</td><td>Overnight Low — Tief der Overnight-Session</td><td>Support, Stop-Referenz für Longs</td></tr>
+          <tr><td><span class="hl-g">PDH</span></td><td>Grün (gedimmt)</td><td>Previous Day High — gestriges Tageshoch</td><td>Klassisches Target bei Trend nach oben</td></tr>
+          <tr><td><span class="hl-r">PDL</span></td><td>Rot (gedimmt)</td><td>Previous Day Low — gestriges Tagestief</td><td>Klassisches Target bei Trend nach unten</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 8. SHAPES -->
+<div class="section" id="shapes">
+  <div class="section-title"><span class="num">8</span> MP Shapes &amp; Prognose</div>
+
+  <div class="card">
+    <div class="card-title">Was ist ein MP Shape?</div>
+    <div class="card-body">
+      <p>Der MP Shape beschreibt die <span class="hl">Form des gestrigen Handelstages</span> — wie und wo das Volumen verteilt war. Er gibt einen Hinweis auf die wahrscheinliche Fortsetzung.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Die wichtigsten Shapes</div>
+    <div class="card-body">
+      <table class="score-table">
+        <thead><tr><th>Shape</th><th>Beschreibung</th><th>Prognose</th></tr></thead>
+        <tbody>
+          <tr><td><span class="hl">Normal Day</span></td><td>Ausgewogene Glockenform. Käufer und Verkäufer im Gleichgewicht.</td><td>Range-Trading um POC. VAH/VAL als Grenzen.</td></tr>
+          <tr><td><span class="hl-g">Trend Day Up</span></td><td>Starker Aufwärtstrend, Schlusskurs nahe Tageshoch. Einseitige Auktion.</td><td>Pullbacks an VAH kaufen. Trend-Following.</td></tr>
+          <tr><td><span class="hl-r">Trend Day Down</span></td><td>Starker Abwärtstrend, Schlusskurs nahe Tagestief.</td><td>Bounces an VAL shorten. Trend-Following.</td></tr>
+          <tr><td><span class="hl-c">Double Distribution</span></td><td>Zwei getrennte Value Areas — Markt hat zweimal Balance gefunden.</td><td>Lücke zwischen den Distributions als Magnet.</td></tr>
+          <tr><td><span class="hl-g">P-Shape</span></td><td>Aufwärtsbewegung mit Konsolidierung oben. Starke Käufer.</td><td>Long-Bias. Pullbacks in oberen Bereich kaufen.</td></tr>
+          <tr><td><span class="hl-r">b-Shape</span></td><td>Abwärtsbewegung mit Konsolidierung unten. Starke Verkäufer.</td><td>Short-Bias. Bounces in unteren Bereich shorten.</td></tr>
+          <tr><td><span class="hl-y">Neutral Day</span></td><td>Keine klare Richtung — Markt testet beide Extreme ohne Folge.</td><td>Abwarten. Ausbruch über VAH oder unter VAL abwarten.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- main -->
+<footer>The Trading Floor · Cockpit Trader · Auction Market Theory</footer>
+</body>
+</html>

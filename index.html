@@ -4,808 +4,269 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cockpit-Trader — Morning Briefing</title>
-<style>
-  :root {
-    --bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;
-    --muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;
-    --blue:#3b82f6;--cyan:#06b6d4;--white:#f1f5f9;--orange:#f97316;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;padding:20px;min-height:100vh;}
-  .header{text-align:center;padding:20px 0 30px;border-bottom:1px solid var(--border);margin-bottom:30px;}
-  .header h1{font-size:28px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-  .header .ts{color:var(--muted);font-size:13px;margin-top:8px;}
-  .nav{display:flex;justify-content:center;gap:8px;padding:12px 0 20px;border-bottom:1px solid var(--border);margin-bottom:30px;}
-  .nav a{color:var(--muted);text-decoration:none;padding:8px 20px;font-size:13px;border-radius:8px;border:1px solid var(--border);letter-spacing:1px;transition:all .2s;}
-  .nav a.active{color:var(--text);background:rgba(59,130,246,0.15);border-color:var(--blue);}
-  .nav a:hover{color:var(--text);border-color:var(--muted);}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1400px;margin:0 auto;}
-  .fw{grid-column:1/-1;}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;}
-  .ct{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:16px;}
-  /* Bias */
-  .bias-wrap{display:flex;align-items:center;gap:24px;padding:10px 0;}
-  .tlight{display:flex;flex-direction:column;gap:6px;background:#000;padding:10px 8px;border-radius:20px;border:2px solid #333;}
-  .light{width:32px;height:32px;border-radius:50%;background:#1a1a1a;transition:all .3s;}
-  .bi{flex:1;}
-  .bl{font-size:28px;font-weight:700;letter-spacing:2px;}
-  .bs{font-size:14px;color:var(--muted);margin-top:4px;}
-  /* Quote */
-  .qrow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
-  .qp{font-size:32px;font-weight:700;}
-  .qc{font-size:16px;font-weight:600;}
-  .pos{color:var(--green);}.neg{color:var(--red);}
-  /* Levels */
-  .lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-  .lb{text-align:center;padding:12px 8px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid var(--border);}
-  .ll{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px;}
-  .lv{font-size:18px;font-weight:600;}
-  .lpoc .lv{color:var(--cyan);} .lpoc{border-color:var(--cyan);}
-  .lvah .lv{color:var(--green);} .lvah{border-color:var(--green);}
-  .lval .lv{color:var(--red);} .lval{border-color:var(--red);}
-  .lvwap .lv{color:var(--yellow);} .lvwap{border-color:var(--yellow);}
-  /* Volume Profile */
-  .vpc{width:100%;height:320px;}
-  .vpc svg{width:100%;height:100%;}
-  /* Shape */
-  .sbadge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:14px;font-weight:600;margin-bottom:8px;background:rgba(59,130,246,.15);color:var(--blue);}
-  .sdesc{font-size:13px;color:var(--muted);line-height:1.5;}
-  /* Signals */
-  .slist{list-style:none;}
-  .slist li{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;}
-  .sdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;}
-  .ssc{font-weight:600;min-width:30px;text-align:right;}
-  /* Confluence bar */
-  .conf-bar-wrap{margin:12px 0 8px;}
-  .conf-bar-bg{background:rgba(255,255,255,.06);border-radius:6px;height:10px;overflow:hidden;}
-  .conf-bar-fill{height:100%;border-radius:6px;transition:width .6s ease;}
-  .conf-label{font-size:12px;color:var(--muted);margin-top:5px;}
-  /* Manual checks */
-  .manual-checks{margin-top:10px;padding:10px 12px;background:rgba(234,179,8,.06);border:1px solid rgba(234,179,8,.25);border-radius:8px;}
-  .manual-checks .mc-title{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--yellow);margin-bottom:6px;}
-  .manual-checks ul{list-style:none;}
-  .manual-checks li{font-size:12px;color:var(--muted);padding:3px 0;}
-  .manual-checks li::before{content:"□ ";color:var(--yellow);}
-  /* Context */
-  .cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-  .ci{text-align:center;padding:16px 8px;background:rgba(255,255,255,.02);border-radius:8px;border:1px solid var(--border);}
-  .cl2{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
-  .cp2{font-size:20px;font-weight:600;}
-  .cc2{font-size:12px;margin-top:4px;}
-  /* Calendar */
-  .cale{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;align-items:center;}
-  .cat{color:var(--cyan);min-width:55px;font-size:12px;}
-  .can{flex:1;}
-  .cac{color:var(--muted);min-width:30px;text-align:right;font-size:12px;}
-  .imp-high{color:var(--red);font-weight:700;}
-  .imp-medium{color:var(--yellow);}
-  .day-label{padding:10px 0 4px;font-size:12px;letter-spacing:1px;border-top:1px solid var(--border);margin-top:4px;}
-  /* Misc */
-  .kassa-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;background:rgba(6,182,212,0.15);color:var(--cyan);border:1px solid var(--cyan);margin-left:8px;letter-spacing:1px;vertical-align:middle;}
-  .loading{text-align:center;padding:60px;color:var(--muted);}
-  /* Orders */
-  .order-card{border-radius:8px;padding:10px;margin-top:8px;font-size:13px;}
-  /* Age bar */
-  #age-bar{margin-top:6px;font-size:12px;display:none;}
-  /* Zeitstempel in Card-Titeln */
-  .ct{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;}
-  .ct-left{display:flex;align-items:center;gap:8px;}
-  .ct-ts{font-size:10px;color:var(--muted);letter-spacing:0;text-transform:none;opacity:0.7;white-space:nowrap;}
-  /* Backtest tab */
-  .bt-section{margin-bottom:24px;}
-  .bt-kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
-  .bt-kpi-box{text-align:center;padding:16px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.02);}
-  .bt-kpi-val{font-size:32px;font-weight:700;margin-bottom:4px;}
-  .bt-kpi-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
-  .bt-table{width:100%;border-collapse:collapse;font-size:13px;}
-  .bt-table th{text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:6px 8px;border-bottom:1px solid var(--border);}
-  .bt-table td{padding:7px 8px;border-bottom:1px solid rgba(255,255,255,.04);}
-  .bt-bar{display:inline-block;height:8px;border-radius:4px;vertical-align:middle;margin-left:6px;}
-  .insight-item{padding:10px 12px;border-left:3px solid var(--cyan);background:rgba(6,182,212,.06);border-radius:0 8px 8px 0;margin-bottom:8px;font-size:13px;line-height:1.5;}
-  .no-data{color:var(--muted);font-size:13px;padding:20px 0;text-align:center;}
-  @media(max-width:768px){
-    .grid{grid-template-columns:1fr;}
-    .lgrid{grid-template-columns:repeat(2,1fr);}
-    .cgrid{grid-template-columns:repeat(2,1fr);}
-    .bt-kpi{grid-template-columns:1fr 1fr;}
-  }
-</style>
 <script>window.__COCKPIT_DATA__ = {"timestamp": "2026-04-17T00:34:55.951349", "instruments": {"SPX": {"name": "S&P 500 (Kassa)", "ticker": "^GSPC", "quote": {"price": 7041.28, "change": 18.33, "change_pct": 0.26, "high": 7051.23, "low": 7008.52, "open": 7037.78, "prev_close": 7022.95, "source": "yahoo_eod"}, "market_profile": {"poc": 6995.95, "vah": 7004.07, "val": 6973.04, "vwap": 7000.83, "day_high": 7026.24, "day_low": 6967.13, "shape": {"name": "Normal Day", "description": "Ausbalanciert \u2013 Range-Trading um POC."}, "volume_profile": [{"price": 6967.87, "volume": 243594465.0}, {"price": 6969.35, "volume": 243594465.0}, {"price": 6970.82, "volume": 243594465.0}, {"price": 6972.3, "volume": 243594465.0}, {"price": 6973.78, "volume": 456764410.0}, {"price": 6975.26, "volume": 456764410.0}, {"price": 6976.74, "volume": 456764410.0}, {"price": 6978.21, "volume": 456764410.0}, {"price": 6979.69, "volume": 613173410.0}, {"price": 6981.17, "volume": 613173410.0}, {"price": 6982.65, "volume": 793401467.0}, {"price": 6984.12, "volume": 793401467.0}, {"price": 6985.6, "volume": 793401467.0}, {"price": 6987.08, "volume": 908985467.0}, {"price": 6988.56, "volume": 1084892901.0}, {"price": 6990.04, "volume": 841298436.0}, {"price": 6991.51, "volume": 976168436.0}, {"price": 6992.99, "volume": 1136396021.0}, {"price": 6994.47, "volume": 923226076.0}, {"price": 6995.95, "volume": 1171564076.0}, {"price": 6997.42, "volume": 991336019.0}, {"price": 6998.9, "volume": 991336019.0}, {"price": 7000.38, "volume": 559115434.0}, {"price": 7001.86, "volume": 383208000.0}, {"price": 7003.33, "volume": 248338000.0}, {"price": 7004.81, "volume": 134112000.0}, {"price": 7006.29, "volume": 134112000.0}, {"price": 7007.77, "volume": 134112000.0}, {"price": 7009.25, "volume": 268228000.0}, {"price": 7010.72, "volume": 134116000.0}, {"price": 7012.2, "volume": 134116000.0}, {"price": 7013.68, "volume": 134116000.0}, {"price": 7015.16, "volume": 134116000.0}, {"price": 7016.63, "volume": 576080000.0}, {"price": 7018.11, "volume": 737989000.0}, {"price": 7019.59, "volume": 737989000.0}, {"price": 7021.07, "volume": 737989000.0}, {"price": 7022.55, "volume": 603873000.0}, {"price": 7024.02, "volume": 603873000.0}, {"price": 7025.5, "volume": 441964000.0}]}, "cvd": null, "current_price": 7041.28, "bias": {"score": 80, "bias": "BULLISH", "color": "green", "signals": [{"label": "Preis > VWAP (7041 > 7001)", "score": 2, "direction": "bullish", "category": "vwap", "auto": true}, {"label": "Ueber VAH \u2013 Breakout (7041 > 7004)", "score": 2, "direction": "bullish", "category": "value_area", "auto": true}, {"label": "Preis > POC (7041 > 6996)", "score": 1, "direction": "bullish", "category": "poc", "auto": true}, {"label": "Shape: Normal Day", "score": 0, "direction": "neutral", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Long (Preis > VA-Mitte)", "score": 1, "direction": "bullish", "category": "inventory", "auto": true}, {"label": "VIX 17.94 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}, {"label": "Yield Curve positiv (0.54%)", "score": 1, "direction": "bullish", "category": "fred_yieldcurve", "auto": true}, {"label": "CPI 3.32% \u2014 erhoeht", "score": -1, "direction": "bearish", "category": "fred_cpi", "auto": true}, {"label": "Arbeitslosigkeit sinkt (4.3%)", "score": 1, "direction": "bullish", "category": "fred_unrate", "auto": true}], "confluence_score": 7, "confluence_against": 1, "confluence_total": 9, "confluence_pct": 78, "confluence_label": "7/9 (bullisch)", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"]}}, "DJI": {"name": "Dow Jones (Kassa)", "ticker": "^DJI", "quote": {"price": 48578.72, "change": 115.0, "change_pct": 0.24, "high": 48683.45, "low": 48337.38, "open": 48557.82, "prev_close": 48463.72, "source": "yahoo_eod"}, "market_profile": {"poc": 48457.92, "vah": 48506.0, "val": 48324.36, "vwap": 48411.6, "day_high": 48709.01, "day_low": 48281.62, "shape": {"name": "Normal Day", "description": "Ausbalanciert \u2013 Range-Trading um POC."}, "volume_profile": [{"price": 48286.96, "volume": 53092296.0}, {"price": 48297.65, "volume": 84762425.0}, {"price": 48308.33, "volume": 84762425.0}, {"price": 48319.02, "volume": 117001627.0}, {"price": 48329.7, "volume": 169134687.0}, {"price": 48340.39, "volume": 169134687.0}, {"price": 48351.07, "volume": 156082903.0}, {"price": 48361.76, "volume": 175159073.0}, {"price": 48372.44, "volume": 197500284.0}, {"price": 48383.13, "volume": 165830155.0}, {"price": 48393.81, "volume": 166943869.0}, {"price": 48404.5, "volume": 214855833.0}, {"price": 48415.18, "volume": 163540461.0}, {"price": 48425.87, "volume": 223667834.0}, {"price": 48436.55, "volume": 223667834.0}, {"price": 48447.23, "volume": 223667834.0}, {"price": 48457.92, "volume": 225439014.0}, {"price": 48468.6, "volume": 192894828.0}, {"price": 48479.29, "volume": 192894828.0}, {"price": 48489.97, "volume": 152854316.0}, {"price": 48500.66, "volume": 132151728.0}, {"price": 48511.34, "volume": 72024355.0}, {"price": 48522.03, "volume": 47911964.0}, {"price": 48532.71, "volume": 47911964.0}, {"price": 48543.4, "volume": 47911964.0}, {"price": 48554.08, "volume": 47911964.0}, {"price": 48564.77, "volume": 47911964.0}, {"price": 48575.45, "volume": 47911964.0}, {"price": 48586.14, "volume": 47911964.0}, {"price": 48596.82, "volume": 47911964.0}, {"price": 48607.51, "volume": 47911964.0}, {"price": 48618.19, "volume": 47911964.0}, {"price": 48628.88, "volume": 47911964.0}, {"price": 48639.56, "volume": 47911964.0}, {"price": 48650.25, "volume": 47911964.0}, {"price": 48660.93, "volume": 47911964.0}, {"price": 48671.62, "volume": 47911964.0}, {"price": 48682.3, "volume": 47911964.0}, {"price": 48692.98, "volume": 47911964.0}, {"price": 48703.67, "volume": 47911964.0}]}, "cvd": null, "current_price": 48578.72, "bias": {"score": 80, "bias": "BULLISH", "color": "green", "signals": [{"label": "Preis > VWAP (48579 > 48412)", "score": 2, "direction": "bullish", "category": "vwap", "auto": true}, {"label": "Ueber VAH \u2013 Breakout (48579 > 48506)", "score": 2, "direction": "bullish", "category": "value_area", "auto": true}, {"label": "Preis > POC (48579 > 48458)", "score": 1, "direction": "bullish", "category": "poc", "auto": true}, {"label": "Shape: Normal Day", "score": 0, "direction": "neutral", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Long (Preis > VA-Mitte)", "score": 1, "direction": "bullish", "category": "inventory", "auto": true}, {"label": "VIX 17.94 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}, {"label": "Yield Curve positiv (0.54%)", "score": 1, "direction": "bullish", "category": "fred_yieldcurve", "auto": true}, {"label": "CPI 3.32% \u2014 erhoeht", "score": -1, "direction": "bearish", "category": "fred_cpi", "auto": true}, {"label": "Arbeitslosigkeit sinkt (4.3%)", "score": 1, "direction": "bullish", "category": "fred_unrate", "auto": true}], "confluence_score": 7, "confluence_against": 1, "confluence_total": 9, "confluence_pct": 78, "confluence_label": "7/9 (bullisch)", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"]}}, "GER": {"name": "DAX (Kassa)", "ticker": "^GDAXI", "quote": {"price": 24066.7, "change": 0.0, "change_pct": 0.0, "high": 24127.01, "low": 23996.8, "open": 24060.97, "prev_close": 24066.7, "source": "yahoo_eod"}, "market_profile": {"poc": 24047.26, "vah": 24097.71, "val": 24039.12, "vwap": 24047.26, "day_high": 24127.01, "day_low": 23996.8, "shape": {"name": "Normal Day", "description": "Ausbalanciert \u2013 Range-Trading um POC."}, "volume_profile": [{"price": 23998.43, "volume": 1.0}, {"price": 24001.68, "volume": 2.0}, {"price": 24004.94, "volume": 2.0}, {"price": 24008.19, "volume": 2.0}, {"price": 24011.45, "volume": 2.0}, {"price": 24014.7, "volume": 2.0}, {"price": 24017.96, "volume": 3.0}, {"price": 24021.21, "volume": 3.0}, {"price": 24024.47, "volume": 3.0}, {"price": 24027.73, "volume": 4.0}, {"price": 24030.98, "volume": 4.0}, {"price": 24034.24, "volume": 7.0}, {"price": 24037.49, "volume": 8.0}, {"price": 24040.75, "volume": 11.0}, {"price": 24044.0, "volume": 11.0}, {"price": 24047.26, "volume": 12.0}, {"price": 24050.51, "volume": 12.0}, {"price": 24053.77, "volume": 12.0}, {"price": 24057.02, "volume": 12.0}, {"price": 24060.28, "volume": 12.0}, {"price": 24063.53, "volume": 12.0}, {"price": 24066.79, "volume": 12.0}, {"price": 24070.04, "volume": 10.0}, {"price": 24073.3, "volume": 10.0}, {"price": 24076.55, "volume": 10.0}, {"price": 24079.81, "volume": 10.0}, {"price": 24083.06, "volume": 10.0}, {"price": 24086.32, "volume": 10.0}, {"price": 24089.57, "volume": 9.0}, {"price": 24092.83, "volume": 8.0}, {"price": 24096.09, "volume": 8.0}, {"price": 24099.34, "volume": 7.0}, {"price": 24102.6, "volume": 7.0}, {"price": 24105.85, "volume": 5.0}, {"price": 24109.11, "volume": 4.0}, {"price": 24112.36, "volume": 4.0}, {"price": 24115.62, "volume": 4.0}, {"price": 24118.87, "volume": 3.0}, {"price": 24122.13, "volume": 1.0}, {"price": 24125.38, "volume": 1.0}]}, "cvd": null, "current_price": 24066.7, "bias": {"score": 50, "bias": "BULLISH", "color": "green", "signals": [{"label": "Preis > VWAP (24067 > 24047)", "score": 2, "direction": "bullish", "category": "vwap", "auto": true}, {"label": "In Value Area (24039 \u2013 24098)", "score": 0, "direction": "neutral", "category": "value_area", "auto": true}, {"label": "Preis > POC (24067 > 24047)", "score": 1, "direction": "bullish", "category": "poc", "auto": true}, {"label": "Shape: Normal Day", "score": 0, "direction": "neutral", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Short (Preis < VA-Mitte)", "score": -1, "direction": "bearish", "category": "inventory", "auto": true}, {"label": "VIX 17.94 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}, {"label": "Yield Curve positiv (0.54%)", "score": 1, "direction": "bullish", "category": "fred_yieldcurve", "auto": true}, {"label": "CPI 3.32% \u2014 erhoeht", "score": -1, "direction": "bearish", "category": "fred_cpi", "auto": true}, {"label": "Arbeitslosigkeit sinkt (4.3%)", "score": 1, "direction": "bullish", "category": "fred_unrate", "auto": true}], "confluence_score": 5, "confluence_against": 2, "confluence_total": 9, "confluence_pct": 56, "confluence_label": "5/9 (bullisch)", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"]}}}, "context": {"VIX": {"price": 17.94, "change": -0.23, "change_pct": -1.27, "high": 19.09, "low": 17.76, "open": 18.04, "prev_close": 18.17}, "DXY": {"price": 98.18, "change": 0.12, "change_pct": 0.12, "high": 98.29, "low": 97.83, "open": 98.01, "prev_close": 98.06}, "US10Y": {"price": 4.31, "change": 0.03, "change_pct": 0.63, "high": 4.32, "low": 4.27, "open": 4.28, "prev_close": 4.28}, "DAX": {"price": 24066.7, "change": 0.0, "change_pct": 0.0, "high": 24127.01, "low": 23996.8, "open": 24060.97, "prev_close": 24066.7}}, "fred": {"FEDFUNDS": {"name": "Fed Funds Rate", "value": 3.64, "prev": 3.64, "change": 0.0, "unit": "%", "date": "2026-03-01"}, "T10Y2Y": {"name": "Yield Curve 10Y-2Y", "value": 0.54, "prev": 0.53, "change": 0.01, "unit": "%", "date": "2026-04-16"}, "CPIAUCSL": {"name": "CPI Inflation YoY", "value": 3.32, "prev": 2.66, "change": 0.66, "unit": "% YoY", "date": "2026-03-01"}, "UNRATE": {"name": "Arbeitslosenquote", "value": 4.3, "prev": 4.4, "change": -0.1, "unit": "%", "date": "2026-03-01"}}, "calendar": [{"time": "2026-04-17 12:30:00", "event": "Building Permits Prel", "country": "US", "impact": "high", "estimate": null, "prior": null, "date": "2026-04-17"}, {"time": "2026-04-21 09:00:00", "event": "ZEW Economic Sentiment Index", "country": "DE", "impact": "high", "estimate": null, "prior": null, "date": "2026-04-21"}, {"time": "2026-04-21 12:30:00", "event": "Retail Sales MoM", "country": "US", "impact": "high", "estimate": null, "prior": null, "date": "2026-04-21"}], "journal": {"date": "2026-04-17", "timestamp": "2026-04-17T00:34:55.938370", "debrief": {"orders_checked": 3, "fill_rate": "11.8%", "tp1_rate": "8.3%", "trend": "SL-Dominant", "learnings": []}, "instruments": [{"name": "GER40", "bias": "Bullisch", "bias_color": "green", "bias_score": 50, "bias_pct": "95", "bias_signals": [{"label": "Preis > VWAP (24067 > 24047)", "score": 2, "direction": "bullish", "category": "vwap", "auto": true}, {"label": "In Value Area (24039 \u2013 24098)", "score": 0, "direction": "neutral", "category": "value_area", "auto": true}, {"label": "Preis > POC (24067 > 24047)", "score": 1, "direction": "bullish", "category": "poc", "auto": true}, {"label": "Shape: Normal Day", "score": 0, "direction": "neutral", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Short (Preis < VA-Mitte)", "score": -1, "direction": "bearish", "category": "inventory", "auto": true}, {"label": "VIX 17.94 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}, {"label": "Yield Curve positiv (0.54%)", "score": 1, "direction": "bullish", "category": "fred_yieldcurve", "auto": true}, {"label": "CPI 3.32% \u2014 erhoeht", "score": -1, "direction": "bearish", "category": "fred_cpi", "auto": true}, {"label": "Arbeitslosigkeit sinkt (4.3%)", "score": 1, "direction": "bullish", "category": "fred_unrate", "auto": true}], "confluence_score": 5, "confluence_against": 2, "confluence_total": 9, "confluence_pct": 56, "confluence_label": "5/9 (bullisch)", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"], "cvd": {}, "quote": {"price": 24066.7, "change": 0.0, "change_pct": 0.0, "high": 24127.01, "low": 23996.8, "open": 24060.97, "prev_close": 24066.7, "source": "yahoo_eod"}, "market_profile": {"poc": 24047.26, "vah": 24097.71, "val": 24039.12, "vwap": 24047.26, "day_high": 24127.01, "day_low": 23996.8, "shape": {"name": "Normal Day", "description": "Ausbalanciert \u2013 Range-Trading um POC."}, "volume_profile": [{"price": 23998.43, "volume": 1.0}, {"price": 24001.68, "volume": 2.0}, {"price": 24004.94, "volume": 2.0}, {"price": 24008.19, "volume": 2.0}, {"price": 24011.45, "volume": 2.0}, {"price": 24014.7, "volume": 2.0}, {"price": 24017.96, "volume": 3.0}, {"price": 24021.21, "volume": 3.0}, {"price": 24024.47, "volume": 3.0}, {"price": 24027.73, "volume": 4.0}, {"price": 24030.98, "volume": 4.0}, {"price": 24034.24, "volume": 7.0}, {"price": 24037.49, "volume": 8.0}, {"price": 24040.75, "volume": 11.0}, {"price": 24044.0, "volume": 11.0}, {"price": 24047.26, "volume": 12.0}, {"price": 24050.51, "volume": 12.0}, {"price": 24053.77, "volume": 12.0}, {"price": 24057.02, "volume": 12.0}, {"price": 24060.28, "volume": 12.0}, {"price": 24063.53, "volume": 12.0}, {"price": 24066.79, "volume": 12.0}, {"price": 24070.04, "volume": 10.0}, {"price": 24073.3, "volume": 10.0}, {"price": 24076.55, "volume": 10.0}, {"price": 24079.81, "volume": 10.0}, {"price": 24083.06, "volume": 10.0}, {"price": 24086.32, "volume": 10.0}, {"price": 24089.57, "volume": 9.0}, {"price": 24092.83, "volume": 8.0}, {"price": 24096.09, "volume": 8.0}, {"price": 24099.34, "volume": 7.0}, {"price": 24102.6, "volume": 7.0}, {"price": 24105.85, "volume": 5.0}, {"price": 24109.11, "volume": 4.0}, {"price": 24112.36, "volume": 4.0}, {"price": 24115.62, "volume": 4.0}, {"price": 24118.87, "volume": 3.0}, {"price": 24122.13, "volume": 1.0}, {"price": 24125.38, "volume": 1.0}]}, "current_price": 24066.7, "daily_summary": "Bias Bullisch (Score 50, Confluence 56%). Vortag Range: 23996.8 \u2013 24127.01. VIX=17.9.", "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)", "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)", "h30m_summary": "Kurs 24066.7 ueber VWAP (24047.26), in Value Area. POC=24047.26 VAH=24097.71 VAL=24039.12. Shape: Normal Day. Confluence: 5/9 (bullisch).", "mp_shape_yesterday": "Normal Day", "mp_shape_forecast": "Normal Day", "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt", "key_levels": [{"level": "VAH Vortag", "price": "24097.71", "source": "Market Profile"}, {"level": "POC Vortag", "price": "24047.26", "source": "Market Profile"}, {"level": "VAL Vortag", "price": "24039.12", "source": "Market Profile"}, {"level": "VWAP 30M", "price": "24047.26", "source": "VWAP"}], "orders": [{"type": "Limit Buy", "entry": "24042.05", "sl": "24024.47", "tp1": "24097.71", "tp2": "24127.0", "rr": "3.17", "p_fill": "42", "p_tp1": "33", "tf": "30M", "confluence": "Preis > VWAP (24067 > 24047) + Preis > POC (24067 > 24047) + VIX 17.94 \u2013 Normal", "mp_shape_yesterday": "Normal Day", "mp_shape_forecast": "Normal Day", "vwap_position": "Preis ueber VWAP"}], "invalidation": "Kurs schliesst unter 24039.12 \u2013 bullischer Bias negiert"}, {"name": "US30", "bias": "Bullisch", "bias_color": "green", "bias_score": 80, "bias_pct": "95", "bias_signals": [{"label": "Preis > VWAP (48579 > 48412)", "score": 2, "direction": "bullish", "category": "vwap", "auto": true}, {"label": "Ueber VAH \u2013 Breakout (48579 > 48506)", "score": 2, "direction": "bullish", "category": "value_area", "auto": true}, {"label": "Preis > POC (48579 > 48458)", "score": 1, "direction": "bullish", "category": "poc", "auto": true}, {"label": "Shape: Normal Day", "score": 0, "direction": "neutral", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Long (Preis > VA-Mitte)", "score": 1, "direction": "bullish", "category": "inventory", "auto": true}, {"label": "VIX 17.94 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}, {"label": "Yield Curve positiv (0.54%)", "score": 1, "direction": "bullish", "category": "fred_yieldcurve", "auto": true}, {"label": "CPI 3.32% \u2014 erhoeht", "score": -1, "direction": "bearish", "category": "fred_cpi", "auto": true}, {"label": "Arbeitslosigkeit sinkt (4.3%)", "score": 1, "direction": "bullish", "category": "fred_unrate", "auto": true}], "confluence_score": 7, "confluence_against": 1, "confluence_total": 9, "confluence_pct": 78, "confluence_label": "7/9 (bullisch)", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"], "cvd": {}, "quote": {"price": 48578.72, "change": 115.0, "change_pct": 0.24, "high": 48683.45, "low": 48337.38, "open": 48557.82, "prev_close": 48463.72, "source": "yahoo_eod"}, "market_profile": {"poc": 48457.92, "vah": 48506.0, "val": 48324.36, "vwap": 48411.6, "day_high": 48709.01, "day_low": 48281.62, "shape": {"name": "Normal Day", "description": "Ausbalanciert \u2013 Range-Trading um POC."}, "volume_profile": [{"price": 48286.96, "volume": 53092296.0}, {"price": 48297.65, "volume": 84762425.0}, {"price": 48308.33, "volume": 84762425.0}, {"price": 48319.02, "volume": 117001627.0}, {"price": 48329.7, "volume": 169134687.0}, {"price": 48340.39, "volume": 169134687.0}, {"price": 48351.07, "volume": 156082903.0}, {"price": 48361.76, "volume": 175159073.0}, {"price": 48372.44, "volume": 197500284.0}, {"price": 48383.13, "volume": 165830155.0}, {"price": 48393.81, "volume": 166943869.0}, {"price": 48404.5, "volume": 214855833.0}, {"price": 48415.18, "volume": 163540461.0}, {"price": 48425.87, "volume": 223667834.0}, {"price": 48436.55, "volume": 223667834.0}, {"price": 48447.23, "volume": 223667834.0}, {"price": 48457.92, "volume": 225439014.0}, {"price": 48468.6, "volume": 192894828.0}, {"price": 48479.29, "volume": 192894828.0}, {"price": 48489.97, "volume": 152854316.0}, {"price": 48500.66, "volume": 132151728.0}, {"price": 48511.34, "volume": 72024355.0}, {"price": 48522.03, "volume": 47911964.0}, {"price": 48532.71, "volume": 47911964.0}, {"price": 48543.4, "volume": 47911964.0}, {"price": 48554.08, "volume": 47911964.0}, {"price": 48564.77, "volume": 47911964.0}, {"price": 48575.45, "volume": 47911964.0}, {"price": 48586.14, "volume": 47911964.0}, {"price": 48596.82, "volume": 47911964.0}, {"price": 48607.51, "volume": 47911964.0}, {"price": 48618.19, "volume": 47911964.0}, {"price": 48628.88, "volume": 47911964.0}, {"price": 48639.56, "volume": 47911964.0}, {"price": 48650.25, "volume": 47911964.0}, {"price": 48660.93, "volume": 47911964.0}, {"price": 48671.62, "volume": 47911964.0}, {"price": 48682.3, "volume": 47911964.0}, {"price": 48692.98, "volume": 47911964.0}, {"price": 48703.67, "volume": 47911964.0}]}, "current_price": 48578.72, "daily_summary": "Bias Bullisch (Score 80, Confluence 78%). Vortag Range: 48281.62 \u2013 48709.01. VIX=17.9.", "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)", "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)", "h30m_summary": "Kurs 48578.72 ueber VWAP (48411.6), ausserhalb Value Area. POC=48457.92 VAH=48506.0 VAL=48324.36. Shape: Normal Day. Confluence: 7/9 (bullisch).", "mp_shape_yesterday": "Normal Day", "mp_shape_forecast": "Normal Day", "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt", "key_levels": [{"level": "VAH Vortag", "price": "48506.0", "source": "Market Profile"}, {"level": "POC Vortag", "price": "48457.92", "source": "Market Profile"}, {"level": "VAL Vortag", "price": "48324.36", "source": "Market Profile"}, {"level": "VWAP 30M", "price": "48411.6", "source": "VWAP"}], "orders": [{"type": "Limit Buy", "entry": "48333.44", "sl": "48278.95", "tp1": "48506.0", "tp2": "48596.82", "rr": "3.17", "p_fill": "58", "p_tp1": "46", "tf": "30M", "confluence": "Preis > VWAP (48579 > 48412) + Ueber VAH \u2013 Breakout (48579 > 48506) + Preis > POC (48579 > 48458)", "mp_shape_yesterday": "Normal Day", "mp_shape_forecast": "Normal Day", "vwap_position": "Preis ueber VWAP"}], "invalidation": "Kurs schliesst unter 48324.36 \u2013 bullischer Bias negiert"}, {"name": "SPX500", "bias": "Bullisch", "bias_color": "green", "bias_score": 80, "bias_pct": "95", "bias_signals": [{"label": "Preis > VWAP (7041 > 7001)", "score": 2, "direction": "bullish", "category": "vwap", "auto": true}, {"label": "Ueber VAH \u2013 Breakout (7041 > 7004)", "score": 2, "direction": "bullish", "category": "value_area", "auto": true}, {"label": "Preis > POC (7041 > 6996)", "score": 1, "direction": "bullish", "category": "poc", "auto": true}, {"label": "Shape: Normal Day", "score": 0, "direction": "neutral", "category": "shape", "auto": true}, {"label": "Overnight Inventory: Long (Preis > VA-Mitte)", "score": 1, "direction": "bullish", "category": "inventory", "auto": true}, {"label": "VIX 17.94 \u2013 Normal", "score": 1, "direction": "bullish", "category": "vix", "auto": true}, {"label": "Yield Curve positiv (0.54%)", "score": 1, "direction": "bullish", "category": "fred_yieldcurve", "auto": true}, {"label": "CPI 3.32% \u2014 erhoeht", "score": -1, "direction": "bearish", "category": "fred_cpi", "auto": true}, {"label": "Arbeitslosigkeit sinkt (4.3%)", "score": 1, "direction": "bullish", "category": "fred_unrate", "auto": true}], "confluence_score": 7, "confluence_against": 1, "confluence_total": 9, "confluence_pct": 78, "confluence_label": "7/9 (bullisch)", "manual_checks": ["Daily OTF Check (4H/Daily Trend manuell pruefen)", "Gap Analysis (Gap vom Vortag open/close pruefen)", "Session Expectation (Makro-Kontext / News manuell bewerten)"], "cvd": {}, "quote": {"price": 7041.28, "change": 18.33, "change_pct": 0.26, "high": 7051.23, "low": 7008.52, "open": 7037.78, "prev_close": 7022.95, "source": "yahoo_eod"}, "market_profile": {"poc": 6995.95, "vah": 7004.07, "val": 6973.04, "vwap": 7000.83, "day_high": 7026.24, "day_low": 6967.13, "shape": {"name": "Normal Day", "description": "Ausbalanciert \u2013 Range-Trading um POC."}, "volume_profile": [{"price": 6967.87, "volume": 243594465.0}, {"price": 6969.35, "volume": 243594465.0}, {"price": 6970.82, "volume": 243594465.0}, {"price": 6972.3, "volume": 243594465.0}, {"price": 6973.78, "volume": 456764410.0}, {"price": 6975.26, "volume": 456764410.0}, {"price": 6976.74, "volume": 456764410.0}, {"price": 6978.21, "volume": 456764410.0}, {"price": 6979.69, "volume": 613173410.0}, {"price": 6981.17, "volume": 613173410.0}, {"price": 6982.65, "volume": 793401467.0}, {"price": 6984.12, "volume": 793401467.0}, {"price": 6985.6, "volume": 793401467.0}, {"price": 6987.08, "volume": 908985467.0}, {"price": 6988.56, "volume": 1084892901.0}, {"price": 6990.04, "volume": 841298436.0}, {"price": 6991.51, "volume": 976168436.0}, {"price": 6992.99, "volume": 1136396021.0}, {"price": 6994.47, "volume": 923226076.0}, {"price": 6995.95, "volume": 1171564076.0}, {"price": 6997.42, "volume": 991336019.0}, {"price": 6998.9, "volume": 991336019.0}, {"price": 7000.38, "volume": 559115434.0}, {"price": 7001.86, "volume": 383208000.0}, {"price": 7003.33, "volume": 248338000.0}, {"price": 7004.81, "volume": 134112000.0}, {"price": 7006.29, "volume": 134112000.0}, {"price": 7007.77, "volume": 134112000.0}, {"price": 7009.25, "volume": 268228000.0}, {"price": 7010.72, "volume": 134116000.0}, {"price": 7012.2, "volume": 134116000.0}, {"price": 7013.68, "volume": 134116000.0}, {"price": 7015.16, "volume": 134116000.0}, {"price": 7016.63, "volume": 576080000.0}, {"price": 7018.11, "volume": 737989000.0}, {"price": 7019.59, "volume": 737989000.0}, {"price": 7021.07, "volume": 737989000.0}, {"price": 7022.55, "volume": 603873000.0}, {"price": 7024.02, "volume": 603873000.0}, {"price": 7025.5, "volume": 441964000.0}]}, "current_price": 7041.28, "daily_summary": "Bias Bullisch (Score 80, Confluence 78%). Vortag Range: 6967.13 \u2013 7026.24. VIX=17.9.", "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)", "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)", "h30m_summary": "Kurs 7041.28 ueber VWAP (7000.83), ausserhalb Value Area. POC=6995.95 VAH=7004.07 VAL=6973.04. Shape: Normal Day. Confluence: 7/9 (bullisch).", "mp_shape_yesterday": "Normal Day", "mp_shape_forecast": "Normal Day", "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt", "key_levels": [{"level": "VAH Vortag", "price": "7004.07", "source": "Market Profile"}, {"level": "POC Vortag", "price": "6995.95", "source": "Market Profile"}, {"level": "VAL Vortag", "price": "6973.04", "source": "Market Profile"}, {"level": "VWAP 30M", "price": "7000.83", "source": "VWAP"}], "orders": [{"type": "Limit Buy", "entry": "6974.59", "sl": "6965.28", "tp1": "7004.07", "tp2": "7019.58", "rr": "3.17", "p_fill": "58", "p_tp1": "46", "tf": "30M", "confluence": "Preis > VWAP (7041 > 7001) + Ueber VAH \u2013 Breakout (7041 > 7004) + Preis > POC (7041 > 6996)", "mp_shape_yesterday": "Normal Day", "mp_shape_forecast": "Normal Day", "vwap_position": "Preis ueber VWAP"}], "invalidation": "Kurs schliesst unter 6973.04 \u2013 bullischer Bias negiert"}], "summary": {"best_instrument": "US30", "total_orders": 3, "warnings": [], "notes": "Auto-generiert 00:34. VIX=17.9. Beste Konfluenz: US30."}, "stats": {"total": 102, "fill_rate": "11.8%", "tp1_rate": "8.3%", "trend": "SL-Dominant"}}};</script>
+<style>
+:root{--bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;--muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#06b6d4;--white:#f1f5f9;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;min-height:100vh;}
+.header{text-align:center;padding:20px 20px 14px;border-bottom:1px solid var(--border);}
+.header h1{font-size:22px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.header .ts{color:var(--muted);font-size:12px;margin-top:5px;}
+#age-bar{margin-top:4px;font-size:11px;display:none;}
+.nav{display:flex;justify-content:center;gap:8px;padding:10px 20px;border-bottom:1px solid var(--border);}
+.nav a{color:var(--muted);text-decoration:none;padding:6px 16px;font-size:12px;border-radius:6px;border:1px solid var(--border);letter-spacing:1px;transition:all .2s;}
+.nav a.active{color:var(--text);background:rgba(59,130,246,0.15);border-color:var(--blue);}
+.nav a:hover{color:var(--text);border-color:var(--muted);}
+.main{max-width:1400px;margin:0 auto;padding:20px;}
+/* MACRO BLOCK */
+.macro-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:18px;}
+.macro-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px;}
+.macro-title{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);}
+.score-pill{display:flex;align-items:center;gap:8px;}
+.score-num{font-size:18px;font-weight:700;}
+.score-lbl{font-size:10px;padding:2px 9px;border-radius:10px;font-weight:600;letter-spacing:1px;}
+.sg{color:var(--green);background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);}
+.sy{color:var(--yellow);background:rgba(234,179,8,.1);border:1px solid rgba(234,179,8,.3);}
+.sr{color:var(--red);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);}
+.macro-row{display:flex;flex-wrap:wrap;gap:4px 14px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:8px;}
+.mi{display:flex;align-items:center;gap:5px;font-size:12px;}
+.mk{color:var(--muted);min-width:38px;}
+.mv{font-weight:600;}
+.up{color:var(--green);}.down{color:var(--red);}.flat{color:var(--muted);}
+.fred-row{display:flex;flex-wrap:wrap;gap:4px 14px;}
+.fi{display:flex;align-items:center;gap:5px;font-size:11px;}
+.fd{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+/* INSTRUMENTS */
+.instruments{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+.irow{display:grid;grid-template-columns:200px 1fr;background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.iinfo{padding:14px;border-right:1px solid var(--border);}
+.iname{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:6px;}
+.iprice{font-size:22px;font-weight:700;margin-bottom:2px;}
+.ichg{font-size:12px;margin-bottom:8px;}
+.ibias{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.tl{display:flex;flex-direction:column;gap:3px;background:#000;padding:5px 4px;border-radius:12px;border:1px solid #333;}
+.lb{width:9px;height:9px;border-radius:50%;background:#1a1a1a;}
+.bt{font-size:15px;font-weight:700;letter-spacing:1px;}
+.cn{font-size:11px;color:var(--muted);}
+.cb{margin:5px 0 3px;}
+.cb-bg{background:rgba(255,255,255,.06);border-radius:4px;height:4px;overflow:hidden;}
+.cb-f{height:100%;border-radius:4px;}
+.ishp{font-size:10px;color:var(--muted);margin-top:3px;}
+/* CHART */
+.ichart{padding:10px 14px;min-width:0;}
+.ct-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:4px;}
+.ct-left{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.ct-name{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);}
+.leg{font-size:10px;}
+.ct-ts{font-size:10px;color:var(--muted);}
+.vpc{width:100%;height:240px;}
+.vpc svg{width:100%;height:100%;}
+/* CALENDAR */
+.cal-block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;}
+.cal-title{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:10px;}
+.cale{display:flex;gap:10px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;align-items:center;}
+.cat{color:var(--cyan);min-width:50px;font-size:11px;}
+.can{flex:1;}
+.imp-high{color:var(--red);font-weight:700;}
+.day-lbl{padding:7px 0 2px;font-size:11px;color:var(--muted);}
+.loading{text-align:center;padding:60px;color:var(--muted);}
+@media(max-width:900px){.instruments{grid-template-columns:1fr;}.irow{grid-template-columns:1fr;}.iinfo{border-right:none;border-bottom:1px solid var(--border);}}
+@media(max-width:600px){.main{padding:12px;}.header h1{font-size:18px;}}
+</style>
 </head>
 <body>
 <div class="header">
   <h1>✈ Cockpit-Trader</h1>
   <div class="ts" id="ts">Lade Daten...</div>
   <div id="age-bar">
-    <span id="age-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
+    <span id="age-dot" style="display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle;"></span>
     <span id="age-txt"></span>
   </div>
 </div>
-
 <div class="nav">
-  <a href="#dashboard" class="active" onclick="showTab('dashboard',this)">Dashboard</a>
-  <a href="#backtest" onclick="showTab('backtest',this)">Backtest</a>
+  <a href="#dashboard" class="active" onclick="showTab('dashboard',this);return false;">Dashboard</a>
   <a href="journal.html">Journal</a>
   <a href="orders.html">Orders</a>
+  <a href="#backtest" onclick="showTab('backtest',this);return false;">Backtest</a>
+  <a href="wiki.html">Wiki</a>
 </div>
-
-<!-- ═══════════════════ TAB: DASHBOARD ═══════════════════ -->
 <div id="tab-dashboard">
-  <div class="grid" id="dash">
-    <div class="loading fw">⏳ Lade Daten...<br>
-      <small style="font-size:12px;margin-top:8px;display:block;">
-        Zuerst: <code>python cockpit-morning.py</code> ausführen
-      </small>
-    </div>
-  </div>
+  <div class="main" id="dash"><div class="loading">⏳ Lade Daten...</div></div>
 </div>
-
-<!-- ═══════════════════ TAB: BACKTEST ════════════════════ -->
-<div id="tab-backtest" style="display:none;max-width:1400px;margin:0 auto;">
-  <div id="bt-content">
-    <div class="no-data">
-      Backtest-Daten werden nach dem ersten vollständigen Tag geladen.<br>
-      <code style="font-size:12px;margin-top:8px;display:block;">python backtest-collector.py</code>
-    </div>
-  </div>
+<div id="tab-backtest" style="display:none;max-width:1400px;margin:0 auto;padding:20px;">
+  <div style="color:var(--muted);text-align:center;padding:40px;">Backtest-Daten nicht verfügbar.</div>
 </div>
-
 <script>
-// ── Tab-Navigation ─────────────────────────────────────────────────────────
-function showTab(name, el) {
-  document.getElementById('tab-dashboard').style.display = name==='dashboard' ? '' : 'none';
-  document.getElementById('tab-backtest').style.display  = name==='backtest'  ? '' : 'none';
-  document.querySelectorAll('.nav a').forEach(a => a.classList.remove('active'));
-  if (el) el.classList.add('active');
-  if (name === 'backtest') loadBacktest();
+var _ts=null;
+function f(v,d){d=d||2;if(v===null||v===undefined)return'—';return typeof v==='number'?v.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d}):v;}
+function fmtTs(ts){if(!ts)return'';var d=new Date(ts);if(isNaN(d))return'';return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr';}
+function fmtAge(ts){var mins=Math.floor((Date.now()-ts.getTime())/60000);if(mins<1)return{txt:'gerade aktualisiert',c:'#22c55e'};if(mins<60)return{txt:'vor '+mins+' Min',c:'#22c55e'};var h=Math.floor(mins/60),m=mins%60;if(h<4)return{txt:'vor '+h+'h '+m+'min',c:'#eab308'};if(h<8)return{txt:'vor '+h+'h — bitte neu starten',c:'#f97316'};return{txt:h+'h alt — VERALTET',c:'#ef4444'};}
+function updateAge(){if(!_ts)return;var a=fmtAge(_ts);document.getElementById('age-txt').textContent=a.txt;document.getElementById('age-txt').style.color=a.c;document.getElementById('age-dot').style.background=a.c;document.getElementById('age-dot').style.boxShadow='0 0 6px '+a.c;}
+function showTab(n,el){document.getElementById('tab-dashboard').style.display=n==='dashboard'?'':'none';document.getElementById('tab-backtest').style.display=n==='backtest'?'':'none';document.querySelectorAll('.nav a').forEach(function(a){a.classList.remove('active');});if(el)el.classList.add('active');}
+
+function calcMacroScore(ctx,fred){
+  var s=0,t=0,vix=ctx&&ctx.VIX&&ctx.VIX.price,dxyc=ctx&&ctx.DXY&&ctx.DXY.change_pct,b10=ctx&&ctx.US10Y&&ctx.US10Y.price,vixc=ctx&&ctx.VIX&&ctx.VIX.change_pct;
+  if(vix!=null){t++;if(vix<15)s++;else if(vix<20)s+=0.5;}
+  if(vixc!=null){t++;if(vixc<0)s++;}
+  if(dxyc!=null){t++;if(dxyc<0)s++;else if(dxyc<0.3)s+=0.5;}
+  if(b10!=null){t++;if(b10<4.0)s++;else if(b10<4.5)s+=0.5;}
+  var ff=fred&&fred.FEDFUNDS&&fred.FEDFUNDS.value,cpi=fred&&fred.CPIAUCSL&&fred.CPIAUCSL.value,yc=fred&&fred.T10Y2Y&&fred.T10Y2Y.value,ur=fred&&fred.UNRATE&&fred.UNRATE.value;
+  if(ff!=null){t++;if(ff<=4.0)s++;}
+  if(cpi!=null){t++;if(cpi<2.5)s++;else if(cpi<3.5)s+=0.5;}
+  if(yc!=null){t++;if(yc>0.3)s++;}
+  if(ur!=null){t++;if(ur<4.5)s++;}
+  var pct=t>0?Math.round((s/t)*100):50;
+  var lbl,cls;
+  if(pct>=65){lbl='RISK ON';cls='sg';}else if(pct>=45){lbl='NEUTRAL';cls='sy';}else{lbl='RISK OFF';cls='sr';}
+  return{s:Math.round(s),t:t,lbl:lbl,cls:cls};
 }
 
-// ── Data Loading ───────────────────────────────────────────────────────────
-let _analysisTs = null;
-
-function fmtAge(ts) {
-  const mins = Math.floor((Date.now() - ts.getTime()) / 60000);
-  if (mins < 1)  return {txt:'gerade aktualisiert', color:'#22c55e'};
-  if (mins < 60) return {txt:`vor ${mins} Min`, color:'#22c55e'};
-  const h = Math.floor(mins/60), m = mins%60;
-  if (h < 4)  return {txt:`vor ${h}h ${m}min`, color:'#eab308'};
-  if (h < 8)  return {txt:`vor ${h}h — bitte neu starten`, color:'#f97316'};
-  return             {txt:`${h}h alt — VERALTET`, color:'#ef4444'};
-}
-
-function updateAge() {
-  if (!_analysisTs) return;
-  const {txt, color} = fmtAge(_analysisTs);
-  document.getElementById('age-txt').textContent  = txt;
-  document.getElementById('age-txt').style.color  = color;
-  document.getElementById('age-dot').style.background  = color;
-  document.getElementById('age-dot').style.boxShadow   = `0 0 6px ${color}`;
-}
-
-function load() {
-  if (window.__COCKPIT_DATA__) { render(window.__COCKPIT_DATA__); return; }
-  fetch('data.json')
-    .then(r => { if (!r.ok) throw new Error('data.json nicht gefunden'); return r.json(); })
-    .then(render)
-    .catch(e => {
-      document.getElementById('dash').innerHTML =
-        `<div class="loading fw">❌ ${e.message}<br>
-         <small>python cockpit-morning.py ausführen</small></div>`;
-    });
-}
-
-function render(d) {
-  _analysisTs = new Date(d.timestamp);
-  document.getElementById('ts').textContent =
-    `Pre-Flight Briefing — ${_analysisTs.toLocaleDateString('de-DE')} ` +
-    `${_analysisTs.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})} Uhr`;
-  document.title = `Cockpit-Trader — ${_analysisTs.toLocaleDateString('de-DE')}`; 
-  document.getElementById('age-bar').style.display = 'block';
-  updateAge();
-  setInterval(updateAge, 60000);
-
-  let html = '';
-  // Reihenfolge: Context → Instrumente → Kalender (ganz am Ende)
-  html += renderCtx(d.context);
-
-  const insts = (d.journal && d.journal.instruments) || [];
-  if (insts.length) {
-    insts.forEach(ji => { html += renderInst(ji); });
-  } else {
-    for (const [k, inst] of Object.entries(d.instruments || {})) {
-      if (!inst.error) html += renderInstLegacy(k, inst);
-    }
-  }
-
-  html += renderCal(d.calendar);
-  html += renderFred(d.fred);
-  document.getElementById('dash').innerHTML = html;
-}
-
-// ── Helpers ────────────────────────────────────────────────────────────────
-function f(v, dec=2) {
-  if (v === null || v === undefined) return '—';
-  return typeof v === 'number'
-    ? v.toLocaleString('de-DE', {minimumFractionDigits:dec, maximumFractionDigits:dec})
-    : v;
-}
-
-// Zeitstempel formatieren: "16.04.2026 05:02 Uhr"
-function fmtTs(ts) {
-  if (!ts) return '';
-  const d = new Date(ts);
-  if (isNaN(d)) return '';
-  return d.toLocaleDateString('de-DE', {day:'2-digit',month:'2-digit',year:'numeric'}) + ' ' +
-         d.toLocaleTimeString('de-DE', {hour:'2-digit',minute:'2-digit'}) + ' Uhr';
-}
-
-// Card-Titel mit optionalem Zeitstempel rechts
-function ctTitle(icon, label, ts) {
-  const tsHtml = ts ? '<span class="ct-ts">Stand: ' + fmtTs(ts) + '</span>' : '';
-  const iconHtml = icon ? '<span style="margin-right:4px">' + icon + '</span>' : '';
-  return '<div class="ct"><span class="ct-left">' + iconHtml + label + '</span>' + tsHtml + '</div>';
-}
-
-function biasColor(c) {
-  return c==='green' ? '#22c55e' : c==='red' ? '#ef4444' : '#eab308';
-}
-
-function tlight(color) {
-  return `<div class="tlight">
-    <div class="light" style="${color==='green'?'background:#22c55e;box-shadow:0 0 20px #22c55e':''}"></div>
-    <div class="light" style="${color==='yellow'?'background:#eab308;box-shadow:0 0 20px #eab308':''}"></div>
-    <div class="light" style="${color==='red'?'background:#ef4444;box-shadow:0 0 20px #ef4444':''}"></div>
-  </div>`;
-}
-
-function confBar(pct, label) {
-  const col = pct >= 70 ? '#22c55e' : pct >= 45 ? '#eab308' : '#ef4444';
-  return `<div class="conf-bar-wrap">
-    <div class="conf-bar-bg">
-      <div class="conf-bar-fill" style="width:${pct}%;background:${col}"></div>
-    </div>
-    <div class="conf-label">Confluence: <strong style="color:${col}">${label||pct+'%'}</strong></div>
-  </div>`;
-}
-
-function manualChecks(checks) {
-  if (!checks || !checks.length) return '';
-  const items = checks.map(c => `<li>${c}</li>`).join('');
-  return `<div class="manual-checks">
-    <div class="mc-title">✋ Manuell prüfen</div>
-    <ul>${items}</ul>
-  </div>`;
-}
-
-// ── Instrument Card ────────────────────────────────────────────────────────
-function renderInst(ji) {
-  const mp    = ji.market_profile || {};
-  const q     = ji.quote || {};
-  const cvd   = ji.cvd || {};
-  const price = ji.current_price;
-  const color = ji.bias_color || 'yellow';
-  const gc    = biasColor(color);
-  const cc    = (q.change || 0) >= 0 ? 'pos' : 'neg';
-  const cs    = (q.change || 0) >= 0 ? '+' : '';
-  const shape = mp.shape || {};
-
-  // Confluence
-  const confPct   = ji.confluence_pct   || 0;
-  const confLabel = ji.confluence_label || '—';
-  const confBar_  = confBar(confPct, confLabel);
-
-  // Manual checks
-  const manualHtml = manualChecks(ji.manual_checks);
-
-  // Key levels
-  const klRows = (ji.key_levels || []).map(kl => `
-    <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;">
-      <span style="color:var(--muted)">${kl.level}</span>
-      <span style="font-weight:600">${kl.price}</span>
-      <span style="color:var(--muted);font-size:11px">${kl.source||''}</span>
-    </div>`).join('');
-
-  // Orders
-  const orderCards = (ji.orders || []).map(o => {
-    const oc = o.type && o.type.includes('Buy') ? 'var(--green)' : 'var(--red)';
-    return `<div class="order-card" style="border:1px solid ${oc}">
-      <div style="color:${oc};font-weight:700;margin-bottom:6px">${o.type||'—'}</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px 12px;">
-        <span style="color:var(--muted)">Entry</span>
-        <span style="color:var(--muted)">SL</span>
-        <span style="color:var(--muted)">TP1</span>
-        <span style="font-weight:600">${o.entry||'—'}</span>
-        <span style="font-weight:600;color:var(--red)">${o.sl||'—'}</span>
-        <span style="font-weight:600;color:var(--green)">${o.tp1||'—'}</span>
-      </div>
-      <div style="margin-top:6px;color:var(--muted)">
-        R:R <strong style="color:#f1f5f9">${o.rr||'—'}</strong>
-        &nbsp;|&nbsp; P(Fill) <strong>${o.p_fill||'—'}%</strong>
-        &nbsp;|&nbsp; P(TP1) <strong>${o.p_tp1||'—'}%</strong>
-      </div>
-      <div style="margin-top:4px;font-size:11px;color:var(--muted)">${o.confluence||''}</div>
-    </div>`;
-  }).join('');
-
-  // Signals
-  const sigRows = (ji.bias_signals || []).map(s => {
-    const dc = s.direction==='bullish'?'var(--green)':s.direction==='bearish'?'var(--red)':'var(--muted)';
-    return `<li>
-      <span><span class="sdot" style="background:${dc}"></span>${s.label}</span>
-      <span class="ssc ${s.score>0?'pos':s.score<0?'neg':''}">${s.score>0?'+'+s.score:s.score}</span>
-    </li>`;
-  }).join('');
-
-  // CVD
-  const cvdHtml = cvd.value != null
-    ? `<div style="margin-top:6px;font-size:12px">CVD
-        <span style="font-weight:600;color:${cvd.value>0?'var(--green)':'var(--red)'}">
-          ${cvd.value>0?'+':''}${Math.round(cvd.value).toLocaleString('de-DE')}
-        </span>
-        <span style="color:var(--muted)">${cvd.direction||''}</span>
-       </div>` : '';
-
-  const ts = _analysisTs ? _analysisTs.toISOString() : null;
-  return `
-<div class="card">
-  <div class="ct">
-    <span class="ct-left">📈 ${ji.name} <span class="kassa-badge">KASSA</span></span>
-    ${ts ? `<span class="ct-ts">Stand: ${fmtTs(ts)}</span>` : ''}
-  </div>
-  <div class="qrow">
-    <span class="qp">${f(q.price)}</span>
-    <span class="qc ${cc}">${cs}${f(q.change)} (${cs}${f(q.change_pct)}%)</span>
-  </div>
-  <div style="font-size:11px;color:var(--muted);margin-bottom:10px">
-    H: ${f(q.high)} &nbsp;|&nbsp; L: ${f(q.low)} &nbsp;|&nbsp; Prev: ${f(q.prev_close)}
-  </div>
-  <div class="bias-wrap">
-    ${tlight(color)}
-    <div class="bi">
-      <div class="bl" style="color:${gc}">${ji.bias||'—'}</div>
-      <div class="bs">Score: ${ji.bias_score??'—'}</div>
-      ${cvdHtml}
-    </div>
-  </div>
-  ${confBar_}
-  ${manualHtml}
-  <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">
-    ${ji.h30m_summary||''}
-  </div>
-</div>
-
-<div class="card">
-  ${ctTitle("🎯", `Key Levels — ${ji.name}`, ts)}
-  <div class="lgrid" style="margin-bottom:12px">
-    <div class="lb lpoc"><div class="ll">POC</div><div class="lv">${f(mp.poc)}</div></div>
-    <div class="lb lvah"><div class="ll">VAH</div><div class="lv">${f(mp.vah)}</div></div>
-    <div class="lb lval"><div class="ll">VAL</div><div class="lv">${f(mp.val)}</div></div>
-    <div class="lb lvwap"><div class="ll">VWAP</div><div class="lv">${f(mp.vwap)}</div></div>
-  </div>
-  ${klRows}
-  <div style="margin-top:12px">
-    <span class="sbadge">${shape.name||'—'}</span>
-    <div class="sdesc">${shape.description||''}</div>
-  </div>
-  <div style="margin-top:6px;font-size:11px;color:var(--muted)">
-    Range Vortag: ${f(mp.day_low)} – ${f(mp.day_high)}
-  </div>
-  ${ji.invalidation
-    ? `<div style="margin-top:8px;padding:6px 10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:6px;font-size:12px;color:#ef4444">Invalidierung: ${ji.invalidation}</div>`
-    : ''}
-</div>
-
-<div class="card">
-  <div class="ct">
-    <span class="ct-left">📊 Levels Chart — ${ji.name}
-      <span style="margin-left:8px;color:#f1f5f9;font-size:10px">── Kurs</span>
-      <span style="margin-left:6px;color:#06b6d4;font-size:10px">╌ POC</span>
-      <span style="margin-left:6px;color:#22c55e;font-size:10px">╌ VAH</span>
-      <span style="margin-left:6px;color:#ef4444;font-size:10px">╌ VAL</span>
-    </span>
-    ${ts ? `<span class="ct-ts">Stand: ${fmtTs(ts)}</span>` : ''}
-  </div>
-  <div class="vpc">${drawVP(mp, price)}</div>
-</div>
-
-<div class="card">
-  ${ctTitle("🔍", `Bias Signals — ${ji.name}`, ts)}
-  <ul class="slist">${sigRows}</ul>
-  ${orderCards
-    ? `<div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px">
-        <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:4px">Order Setup</div>
-        ${orderCards}
-       </div>`
-    : ''}
-</div>`;
-}
-
-// ── Legacy (fallback) ──────────────────────────────────────────────────────
-function renderInstLegacy(k, inst) {
-  const q=inst.quote||{}, mp=inst.market_profile||{}, b=inst.bias||{};
-  const cc=(q.change||0)>=0?'pos':'neg', cs=(q.change||0)>=0?'+':'';
-  return `
-<div class="card">
-  <div class="ct">📈 ${k} <span class="kassa-badge">KASSA</span></div>
-  <div class="qrow"><span class="qp">${f(q.price)}</span><span class="qc ${cc}">${cs}${f(q.change)} (${cs}${f(q.change_pct)}%)</span></div>
-  <div class="bias-wrap">${tlight(b.color)}<div class="bi"><div class="bl" style="color:${biasColor(b.color)}">${b.bias||'—'}</div><div class="bs">Score: ${b.score??'—'}</div></div></div>
-</div>
-<div class="card">
-  <div class="ct">🎯 Key Levels — ${k}</div>
-  <div class="lgrid">
-    <div class="lb lpoc"><div class="ll">POC</div><div class="lv">${f(mp.poc)}</div></div>
-    <div class="lb lvah"><div class="ll">VAH</div><div class="lv">${f(mp.vah)}</div></div>
-    <div class="lb lval"><div class="ll">VAL</div><div class="lv">${f(mp.val)}</div></div>
-    <div class="lb lvwap"><div class="ll">VWAP</div><div class="lv">${f(mp.vwap)}</div></div>
-  </div>
-</div>`;
-}
-
-// ── VP Chart ───────────────────────────────────────────────────────────────
-function drawVP(mp, currentPrice) {
-  if (!mp || !mp.volume_profile || !mp.volume_profile.length)
-    return drawVPFromLevels(mp, currentPrice);
-
-  const vps  = mp.volume_profile;
-  const maxV = Math.max(...vps.map(b => b.volume));
-  const h=320, w=520, bH=h/vps.length, margin=70, rightPad=20;
-  const minP = vps[0].price, maxP = vps[vps.length-1].price;
-  const priceRange = maxP - minP || 1;
-  const p2y = p => h - ((p - minP) / priceRange) * h;
-  const tick = (vps[1]?.price - vps[0]?.price) || 1;
-  const inRange = currentPrice !== null &&
-                  currentPrice >= minP - priceRange*0.3 &&
-                  currentPrice <= maxP + priceRange*0.3;
-
-  let bars = '';
-  vps.forEach((bin, i) => {
-    const bW = maxV > 0 ? (bin.volume / maxV) * (w - margin - rightPad) : 0;
-    const y  = h - (i+1) * bH;
-    let col = 'rgba(59,130,246,0.4)';
-    if (mp.poc && Math.abs(bin.price - mp.poc) < tick * 0.6) col = 'rgba(6,182,212,0.8)';
-    else if (mp.vah && mp.val && bin.price >= mp.val && bin.price <= mp.vah) col = 'rgba(59,130,246,0.6)';
-    bars += `<rect x="${margin}" y="${y}" width="${bW}" height="${bH-1}" fill="${col}" rx="2"/>`;
-    if (i % 4 === 0)
-      bars += `<text x="${margin-6}" y="${y+bH/2+4}" text-anchor="end" fill="#64748b" font-size="10" font-family="monospace">${bin.price.toFixed(0)}</text>`;
-  });
-
-  if (mp.poc) {
-    const y = p2y(mp.poc);
-    bars += `<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#06b6d4" stroke-width="2" stroke-dasharray="6,3"/>`;
-    bars += `<text x="${w-4}" y="${y-4}" text-anchor="end" fill="#06b6d4" font-size="11" font-family="monospace">POC ${mp.poc}</text>`;
-  }
-  if (mp.vah) {
-    const y = p2y(mp.vah);
-    bars += `<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4"/>`;
-    bars += `<text x="${w-4}" y="${y-4}" text-anchor="end" fill="#22c55e" font-size="10" font-family="monospace">VAH ${mp.vah}</text>`;
-  }
-  if (mp.val) {
-    const y = p2y(mp.val);
-    bars += `<line x1="${margin}" y1="${y}" x2="${w}" y2="${y}" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,4"/>`;
-    bars += `<text x="${w-4}" y="${y+14}" text-anchor="end" fill="#ef4444" font-size="10" font-family="monospace">VAL ${mp.val}</text>`;
-  }
-  if (inRange) {
-    const y = p2y(currentPrice);
-    bars += `<line x1="${margin}" y1="${y}" x2="${w-100}" y2="${y}" stroke="#f1f5f9" stroke-width="2"/>`;
-    bars += `<polygon points="${w-102},${y-5} ${w-92},${y} ${w-102},${y+5}" fill="#f1f5f9"/>`;
-    bars += `<rect x="${margin}" y="${y-9}" width="92" height="18" fill="rgba(241,245,249,0.15)" rx="3"/>`;
-    bars += `<text x="${margin+4}" y="${y+5}" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">▶ ${currentPrice.toFixed(2)}</text>`;
-    bars += `<text x="${w-4}" y="${y+5}" text-anchor="end" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">${currentPrice.toFixed(2)}</text>`;
-  } else if (currentPrice !== null) {
-    const above = currentPrice > maxP;
-    bars += `<text x="${margin+4}" y="${above?16:h-6}" fill="#f1f5f9" font-size="12" font-family="monospace">${above?'▲':'▼'} Kurs ${currentPrice.toFixed(2)} (ausserhalb Range)</text>`;
-  }
-
-  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet">${bars}</svg>`;
-}
-
-function drawVPFromLevels(mp, currentPrice) {
-  if (!mp || !mp.poc)
-    return '<div style="text-align:center;color:var(--muted);padding:40px">Kein Volume Profile verfügbar</div>';
-  const h=200, w=520, margin=80, rightPad=20;
-  const levels = [
-    {label:'VAH',  price:mp.vah,  color:'#22c55e'},
-    {label:'POC',  price:mp.poc,  color:'#06b6d4'},
-    {label:'VWAP', price:mp.vwap, color:'#eab308'},
-    {label:'VAL',  price:mp.val,  color:'#ef4444'},
-  ].filter(l => l.price != null).sort((a,b) => b.price - a.price);
-  if (currentPrice) levels.push({label:'Kurs', price:currentPrice, color:'#f1f5f9', bold:true});
-  const allPrices = levels.map(l => l.price);
-  const minP = Math.min(...allPrices), maxP = Math.max(...allPrices);
-  const range = maxP - minP || 1;
-  const p2y = p => 10 + (1 - (p - minP) / range) * (h - 20);
-  let lines = '';
-  levels.forEach(l => {
-    const y   = p2y(l.price);
-    const dash = l.bold ? '' : ' stroke-dasharray="6,3"';
-    const sw   = l.bold ? 2.5 : 1.5;
-    lines += `<line x1="${margin}" y1="${y}" x2="${w-rightPad}" y2="${y}" stroke="${l.color}" stroke-width="${sw}"${dash}/>`;
-    lines += `<text x="${margin-6}" y="${y+4}" text-anchor="end" fill="${l.color}" font-size="11" font-family="monospace"${l.bold?' font-weight="bold"':''}>${l.price.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})}</text>`;
-    lines += `<text x="${w-rightPad+4}" y="${y+4}" fill="${l.color}" font-size="10" font-family="monospace">${l.label}</text>`;
-  });
-  return `<svg viewBox="0 0 ${w} ${h}">${lines}</svg>`;
-}
-
-// ── Context & Calendar ─────────────────────────────────────────────────────
-function renderCtx(ctx) {
-  if (!ctx) return '';
-  const ts = _analysisTs ? _analysisTs.toISOString() : null;
-  return `<div class="card fw">
-    ${ctTitle('Ctx', 'Macro Context', ts)}
-    <div class="cgrid">
-      ${['VIX','DXY','US10Y','DAX'].map(k => {
-        const d = ctx[k];
-        if (!d) return `<div class="ci"><div class="cl2">${k}</div><div class="cp2">—</div></div>`;
-        const cc = (d.change||0)>=0?'pos':'neg', cs=(d.change||0)>=0?'+':'';
-        return `<div class="ci">
-          <div class="cl2">${k}</div>
-          <div class="cp2">${f(d.price)}</div>
-          <div class="cc2 ${cc}">${cs}${f(d.change)} (${cs}${f(d.change_pct)}%)</div>
-        </div>`;
-      }).join('')}
-    </div>
-  </div>`;
-}
-
-function fmtDate(d) {
-  try { return new Date(d).toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'}); }
-  catch(e) { return d; }
-}
-
-function renderCal(cal) {
-  // Nur US und DE, nur high impact — als zweite Filterlinie (erste ist in cockpit-morning.py)
-  const filtered = (cal || []).filter(e =>
-    e.impact === 'high' &&
-    ['US','DE'].includes((e.country||'').toUpperCase())
-  );
-  const flagMap = {'US':'US','DE':'DE'};
-
-  if (!filtered.length) {
-    const tsE = _analysisTs ? _analysisTs.toISOString() : null;
-    return `<div class="card fw">${ctTitle('','Macro Kalender &mdash; US &amp; DE High Impact', tsE)}
-      <div style="color:var(--muted);font-size:13px;padding:12px 0;text-align:center">
-        Keine High-Impact Events f&uuml;r US/DE
-      </div></div>`;
-  }
-
-  const grouped = {};
-  filtered.forEach(e => {
-    const d = e.date || String(e.time||'').slice(0,10) || 'unbekannt';
-    if (!grouped[d]) grouped[d] = [];
-    grouped[d].push(e);
-  });
-
-  const today = new Date().toISOString().slice(0,10);
-  let rows = '';
-  for (const [date, events] of Object.entries(grouped)) {
-    const isToday = date === today;
-    rows += `<div class="day-label" style="color:${isToday?'var(--cyan)':'var(--yellow)'}">
-      ${isToday?'Heute':'N&auml;chster Tag'} — ${fmtDate(date)}
-    </div>`;
-    rows += events.map(e => `
-    <div class="cale">
-      <span class="cat">${String(e.time||'').slice(11,16)||'—'}</span>
-      <span class="can">${e.event}</span>
-      <span class="imp-high">●●</span>
-      <span class="cac">${flagMap[e.country]||''} ${e.country}</span>
-    </div>`).join('');
-  }
-  const tsStr = _analysisTs ? _analysisTs.toISOString() : null;
-  return `<div class="card fw">
-    ${ctTitle('Cal', 'Macro Kalender — US &amp; DE · High Impact only', tsStr)}
-    ${rows}
-  </div>`;
-}
-
-// ── FRED Macro Data ───────────────────────────────────────────────────────
-function renderFred(fred) {
-  const series = [
-    { id:'FEDFUNDS', icon:'Bank', label:'Fed Funds Rate',    warn_high:5.0, warn_low:2.0, invert:true  },
-    { id:'T10Y2Y',   icon:'Yld', label:'Yield Curve 10Y-2Y', warn_high:0.5, warn_low:-0.5, invert:true },
-    { id:'CPIAUCSL', icon:'CPI', label:'CPI Inflation',      warn_high:4.0, warn_low:2.0, invert:true  },
-    { id:'UNRATE',   icon:'Work', label:'Arbeitslosenquote',  warn_high:5.0, warn_low:3.5, invert:false },
+function renderMacro(ctx,fred){
+  var ms=calcMacroScore(ctx,fred);
+  function ci(key){var d=ctx&&ctx[key];if(!d)return{v:'—',c:'flat',a:''};var c=d.change_pct>0.2?'up':d.change_pct<-0.2?'down':'flat',a=d.change_pct>0.2?'↑':d.change_pct<-0.2?'↓':'';return{v:f(d.price,2),c:c,a:a};}
+  var vix=ci('VIX'),dxy=ci('DXY'),b10=ci('US10Y');
+  var fItems=[
+    {k:'Fed',v:fred&&fred.FEDFUNDS&&fred.FEDFUNDS.value!=null?f(fred.FEDFUNDS.value,2)+'%':'—',d:fred&&fred.FEDFUNDS&&fred.FEDFUNDS.value<=4.0?'#22c55e':fred&&fred.FEDFUNDS&&fred.FEDFUNDS.value<=5.0?'#eab308':'#ef4444'},
+    {k:'CPI',v:fred&&fred.CPIAUCSL&&fred.CPIAUCSL.value!=null?f(fred.CPIAUCSL.value,2)+'%':'—',d:fred&&fred.CPIAUCSL&&fred.CPIAUCSL.value<2.5?'#22c55e':fred&&fred.CPIAUCSL&&fred.CPIAUCSL.value<3.5?'#eab308':'#ef4444'},
+    {k:'YC 10Y-2Y',v:fred&&fred.T10Y2Y&&fred.T10Y2Y.value!=null?f(fred.T10Y2Y.value,2)+'%':'—',d:fred&&fred.T10Y2Y&&fred.T10Y2Y.value>0.3?'#22c55e':fred&&fred.T10Y2Y&&fred.T10Y2Y.value>0?'#eab308':'#ef4444'},
+    {k:'U-Rate',v:fred&&fred.UNRATE&&fred.UNRATE.value!=null?f(fred.UNRATE.value,2)+'%':'—',d:fred&&fred.UNRATE&&fred.UNRATE.value<4.5?'#22c55e':fred&&fred.UNRATE&&fred.UNRATE.value<5.5?'#eab308':'#ef4444'},
   ];
-
-  if (!fred || !Object.keys(fred).length) {
-    const tsF0 = _analysisTs ? _analysisTs.toISOString() : null;
-    return `<div class="card fw">
-      ${ctTitle('','FRED Macro &mdash; US Federal Reserve Data', tsF0)}
-      <div style="color:var(--muted);font-size:13px;padding:12px 0;text-align:center">
-        FRED-Daten nicht verfuegbar &mdash; FRED_API_KEY pr&uuml;fen
-      </div></div>`;
-  }
-
-  // Kacheln
-  const tiles = series.map(s => {
-    const d = fred[s.id];
-    if (!d) return `<div class="ci"><div class="cl2">${s.icon} ${s.label}</div><div class="cp2">—</div></div>`;
-    const chg    = d.change || 0;
-    const chgCol = chg === 0 ? 'var(--muted)' : (
-      s.invert
-        ? (chg < 0 ? 'var(--green)' : 'var(--red)')
-        : (chg > 0 ? 'var(--green)' : 'var(--red)')
-    );
-    // Ampel-Farbe fuer den Wert
-    let valCol = 'var(--text)';
-    if (s.id === 'T10Y2Y') {
-      valCol = d.value < -0.5 ? 'var(--red)' : d.value < 0 ? 'var(--yellow)' : 'var(--green)';
-    } else if (s.id === 'UNRATE') {
-      valCol = d.value < 4.0 ? 'var(--green)' : d.value > 5.0 ? 'var(--red)' : 'var(--yellow)';
-    } else {
-      valCol = d.value > s.warn_high ? 'var(--red)' : d.value < s.warn_low ? 'var(--green)' : 'var(--yellow)';
-    }
-    return `<div class="ci">
-      <div class="cl2">${s.icon} ${s.label}</div>
-      <div class="cp2" style="color:${valCol}">${d.value}${d.unit||'%'}</div>
-      <div class="cc2" style="color:${chgCol}">${chg >= 0 ? '+' : ''}${chg} vs Vormonat</div>
-      <div style="font-size:10px;color:var(--muted);margin-top:3px">${d.date||''}</div>
-    </div>`;
-  }).join('');
-
-  // Detail-Tabelle
-  const rows = series.map(s => {
-    const d = fred[s.id];
-    if (!d) return '';
-    const chg    = d.change || 0;
-    const chgCol = chg === 0 ? 'var(--muted)' :
-      (s.invert ? (chg < 0 ? 'var(--green)' : 'var(--red)') : (chg > 0 ? 'var(--green)' : 'var(--red)'));
-
-    // Bias-Einschätzung
-    let bias = '—', biasCol = 'var(--muted)';
-    if (s.id === 'FEDFUNDS') {
-      if      (d.value > 5.0) { bias='Restriktiv';    biasCol='var(--red)';    }
-      else if (d.value > 4.0) { bias='Erhoeht';       biasCol='var(--yellow)'; }
-      else if (d.value < 2.0) { bias='Akkommodativ';  biasCol='var(--green)';  }
-      else if (chg < 0)       { bias='Sinkend ↓';     biasCol='var(--green)';  }
-      else if (chg > 0)       { bias='Steigend ↑';    biasCol='var(--red)';    }
-      else                    { bias='Stabil';         biasCol='var(--muted)';  }
-    } else if (s.id === 'T10Y2Y') {
-      if      (d.value < -0.5) { bias='Stark inv. ⚠'; biasCol='var(--red)';    }
-      else if (d.value < 0)    { bias='Invertiert';   biasCol='var(--yellow)'; }
-      else if (d.value > 0.5)  { bias='Positiv ✓';   biasCol='var(--green)';  }
-      else                     { bias='Flach';         biasCol='var(--muted)';  }
-    } else if (s.id === 'CPIAUCSL') {
-      if      (d.value > 4.0) { bias='Hoch ⚠';       biasCol='var(--red)';    }
-      else if (d.value > 3.0) { bias='Erhoeht';       biasCol='var(--yellow)'; }
-      else if (d.value < 2.5) { bias='Nahe Ziel ✓';  biasCol='var(--green)';  }
-      else                    { bias='Moderat';        biasCol='var(--muted)';  }
-    } else if (s.id === 'UNRATE') {
-      if      (d.value < 4.0) { bias='Stark ✓';      biasCol='var(--green)';  }
-      else if (d.value > 5.0) { bias='Schwach ⚠';    biasCol='var(--red)';    }
-      else                    { bias='Normal';         biasCol='var(--muted)';  }
-    }
-
-    return `<div style="display:flex;justify-content:space-between;align-items:center;
-      padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;">
-      <span style="color:var(--muted);min-width:160px">${s.icon} ${s.label}</span>
-      <span style="font-weight:600;min-width:80px">${d.value}${d.unit||'%'}</span>
-      <span style="color:${chgCol};min-width:80px">${chg >= 0 ? '+' : ''}${chg}</span>
-      <span style="color:${biasCol};font-weight:600">${bias}</span>
-    </div>`;
-  }).join('');
-
-  const tsF = _analysisTs ? _analysisTs.toISOString() : null;
-  return `<div class="card fw">
-    ${ctTitle('FRED','FRED Macro — US Federal Reserve Data', tsF)}
-    <div class="cgrid" style="margin-bottom:16px">${tiles}</div>
-    <div style="border-top:1px solid var(--border);padding-top:12px">
-      <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:8px">
-        Detail — Wert / Veraenderung / Einschaetzung
-      </div>
-      ${rows}
-    </div>
-  </div>`;
+  return '<div class="macro-block">'+
+    '<div class="macro-header">'+
+      '<span class="macro-title">🌍 Makro &amp; Sentiment</span>'+
+      '<div class="score-pill"><span class="score-num '+ms.cls+'">'+ms.s+'/'+ms.t+'</span><span class="score-lbl '+ms.cls+'">'+ms.lbl+'</span></div>'+
+    '</div>'+
+    '<div class="macro-row">'+
+      '<div class="mi"><span class="mk">VIX</span><span class="mv '+vix.c+'">'+vix.v+'</span><span class="'+vix.c+'" style="font-size:10px">'+vix.a+'</span></div>'+
+      '<div class="mi"><span class="mk">DXY</span><span class="mv '+dxy.c+'">'+dxy.v+'</span><span class="'+dxy.c+'" style="font-size:10px">'+dxy.a+'</span></div>'+
+      '<div class="mi"><span class="mk">10Y</span><span class="mv '+b10.c+'">'+b10.v+'%</span><span class="'+b10.c+'" style="font-size:10px">'+b10.a+'</span></div>'+
+    '</div>'+
+    '<div class="fred-row">'+fItems.map(function(fi){return '<div class="fi"><span class="fd" style="background:'+fi.d+'"></span><span style="color:var(--muted)">'+fi.k+'</span><span class="mv">'+fi.v+'</span></div>';}).join('')+'</div>'+
+  '</div>';
 }
 
-// ── Backtest Tab ───────────────────────────────────────────────────────────
-function loadBacktest() {
-  fetch('snapshots/backtest-report.json')
-    .then(r => { if (!r.ok) throw new Error('Noch kein Report'); return r.json(); })
-    .then(renderBacktest)
-    .catch(() => {
-      document.getElementById('bt-content').innerHTML =
-        `<div class="no-data">
-          Noch kein Backtest-Report vorhanden.<br>
-          <code style="display:block;margin-top:8px;font-size:12px">python backtest-collector.py</code>
-        </div>`;
+function tl(color){
+  return '<div class="tl">'+
+    '<div class="lb" style="'+(color==='green'?'background:#22c55e;box-shadow:0 0 10px #22c55e':'')+'"></div>'+
+    '<div class="lb" style="'+(color==='yellow'?'background:#eab308;box-shadow:0 0 10px #eab308':'')+'"></div>'+
+    '<div class="lb" style="'+(color==='red'?'background:#ef4444;box-shadow:0 0 10px #ef4444':'')+'"></div>'+
+  '</div>';
+}
+
+function renderInstRow(ji){
+  var mp=ji.market_profile||{},q=ji.quote||{},color=ji.bias_color||'yellow';
+  var gc=color==='green'?'#22c55e':color==='red'?'#ef4444':'#eab308';
+  var cc=(q.change_pct||0)>=0?'up':'down',cs=(q.change_pct||0)>=0?'+':'';
+  var cp=ji.confluence_pct||0,cl=ji.confluence_label||'—';
+  var cc2=cp>=70?'#22c55e':cp>=45?'#eab308':'#ef4444';
+  var tsStr=_ts?'Stand: '+fmtTs(_ts.toISOString()):'';
+  var price=q.price||ji.current_price;
+  return '<div class="irow">'+
+    '<div class="iinfo">'+
+      '<div class="iname">'+( ji.name||'—')+'</div>'+
+      '<div class="iprice">'+f(q.price)+'</div>'+
+      '<div class="ichg '+cc+'">'+cs+f(q.change_pct)+'%</div>'+
+      '<div class="ibias">'+tl(color)+'<div><div class="bt" style="color:'+gc+'">'+(ji.bias||'—')+'</div><div class="cn">Score: <strong style="color:'+cc2+'">'+(cl)+'</strong></div></div></div>'+
+      '<div class="cb"><div class="cb-bg"><div class="cb-f" style="width:'+cp+'%;background:'+cc2+'"></div></div></div>'+
+      '<div class="ishp">'+(ji.mp_shape_yesterday||ji.market_profile&&ji.market_profile.shape&&ji.market_profile.shape.name||'')+'</div>'+
+    '</div>'+
+    '<div class="ichart">'+
+      '<div class="ct-row">'+
+        '<div class="ct-left">'+
+          '<span class="ct-name">LEVELS CHART — '+(ji.name||'')+'</span>'+
+          '<span class="leg" style="color:#f1f5f9">-- KURS</span>'+
+          '<span class="leg" style="color:#06b6d4">-- POC</span>'+
+          '<span class="leg" style="color:#22c55e">-- VAH</span>'+
+          '<span class="leg" style="color:#ef4444">-- VAL</span>'+
+        '</div>'+
+        '<span class="ct-ts">'+tsStr+'</span>'+
+      '</div>'+
+      '<div class="vpc">'+drawVP(mp,price)+'</div>'+
+    '</div>'+
+  '</div>';
+}
+
+function drawVP(mp,currentPrice){
+  if(!mp||!mp.volume_profile||!mp.volume_profile.length)return drawVPFallback(mp,currentPrice);
+  var vps=mp.volume_profile,maxV=Math.max.apply(null,vps.map(function(b){return b.volume;}));
+  var h=240,w=520,bH=h/vps.length,margin=70,rightPad=20;
+  var minP=vps[0].price,maxP=vps[vps.length-1].price,priceRange=maxP-minP||1;
+  var p2y=function(p){return h-((p-minP)/priceRange)*h;};
+  var tick=(vps[1]&&vps[1].price-vps[0].price)||1;
+  var inRange=currentPrice!==null&&currentPrice>=minP-priceRange*0.3&&currentPrice<=maxP+priceRange*0.3;
+  var bars='';
+  vps.forEach(function(bin,i){
+    var bW=maxV>0?(bin.volume/maxV)*(w-margin-rightPad):0,y=h-(i+1)*bH;
+    var col='rgba(59,130,246,0.4)';
+    if(mp.poc&&Math.abs(bin.price-mp.poc)<tick*0.6)col='rgba(6,182,212,0.8)';
+    else if(mp.vah&&mp.val&&bin.price>=mp.val&&bin.price<=mp.vah)col='rgba(59,130,246,0.6)';
+    bars+='<rect x="'+margin+'" y="'+y+'" width="'+bW+'" height="'+(bH-1)+'" fill="'+col+'" rx="2"/>';
+    if(i%4===0)bars+='<text x="'+(margin-6)+'" y="'+(y+bH/2+4)+'" text-anchor="end" fill="#64748b" font-size="10" font-family="monospace">'+bin.price.toFixed(0)+'</text>';
+  });
+  if(mp.poc){var y=p2y(mp.poc);bars+='<line x1="'+margin+'" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="#06b6d4" stroke-width="2" stroke-dasharray="6,3"/><text x="'+(w-4)+'" y="'+(y-4)+'" text-anchor="end" fill="#06b6d4" font-size="11" font-family="monospace">POC '+mp.poc+'</text>';}
+  if(mp.vah){var y=p2y(mp.vah);bars+='<line x1="'+margin+'" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4"/><text x="'+(w-4)+'" y="'+(y-4)+'" text-anchor="end" fill="#22c55e" font-size="10" font-family="monospace">VAH '+mp.vah+'</text>';}
+  if(mp.val){var y=p2y(mp.val);bars+='<line x1="'+margin+'" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,4"/><text x="'+(w-4)+'" y="'+(y+14)+'" text-anchor="end" fill="#ef4444" font-size="10" font-family="monospace">VAL '+mp.val+'</text>';}
+  if(inRange){var y=p2y(currentPrice);bars+='<line x1="'+margin+'" y1="'+y+'" x2="'+(w-100)+'" y2="'+y+'" stroke="#f1f5f9" stroke-width="2"/><polygon points="'+(w-102)+','+(y-5)+' '+(w-92)+','+y+' '+(w-102)+','+(y+5)+'" fill="#f1f5f9"/><rect x="'+margin+'" y="'+(y-9)+'" width="92" height="18" fill="rgba(241,245,249,0.15)" rx="3"/><text x="'+(margin+4)+'" y="'+(y+5)+'" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">▶ '+currentPrice.toFixed(2)+'</text><text x="'+(w-4)+'" y="'+(y+5)+'" text-anchor="end" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">'+currentPrice.toFixed(2)+'</text>';}
+  else if(currentPrice!==null){var above=currentPrice>maxP;bars+='<text x="'+(margin+4)+'" y="'+(above?16:h-6)+'" fill="#f1f5f9" font-size="12" font-family="monospace">'+(above?'▲':'▼')+' Kurs '+currentPrice.toFixed(2)+' (ausserhalb Range)</text>';}
+  return '<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMidYMid meet">'+bars+'</svg>';
+}
+
+function drawVPFallback(mp,currentPrice){
+  if(!mp||!mp.poc)return '<div style="text-align:center;color:var(--muted);padding:20px">Kein Volume Profile</div>';
+  var h=200,w=520,margin=80,rightPad=20;
+  var levels=[{label:'VAH',price:mp.vah,color:'#22c55e'},{label:'POC',price:mp.poc,color:'#06b6d4'},{label:'VWAP',price:mp.vwap,color:'#eab308'},{label:'VAL',price:mp.val,color:'#ef4444'}].filter(function(l){return l.price!=null;}).sort(function(a,b){return b.price-a.price;});
+  if(currentPrice)levels.push({label:'Kurs',price:currentPrice,color:'#f1f5f9',bold:true});
+  var allP=levels.map(function(l){return l.price;}),minP=Math.min.apply(null,allP),maxP=Math.max.apply(null,allP),range=maxP-minP||1;
+  var p2y=function(p){return 10+(1-(p-minP)/range)*(h-20);};
+  var lines='';
+  levels.forEach(function(l){var y=p2y(l.price),dash=l.bold?'':' stroke-dasharray="6,3"',sw=l.bold?2.5:1.5;lines+='<line x1="'+margin+'" y1="'+y+'" x2="'+(w-rightPad)+'" y2="'+y+'" stroke="'+l.color+'" stroke-width="'+sw+'"'+dash+'/><text x="'+(margin-6)+'" y="'+(y+4)+'" text-anchor="end" fill="'+l.color+'" font-size="11" font-family="monospace"'+(l.bold?' font-weight="bold"':'')+'>'+l.price.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+'</text><text x="'+(w-rightPad+4)+'" y="'+(y+4)+'" fill="'+l.color+'" font-size="10" font-family="monospace">'+l.label+'</text>';});
+  return '<svg viewBox="0 0 '+w+' '+h+'">'+lines+'</svg>';
+}
+
+function renderCal(cal){
+  var filtered=(cal||[]).filter(function(e){return e.impact==='high'&&['US','DE'].includes((e.country||'').toUpperCase());});
+  if(!filtered.length)return '<div class="cal-block"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span class="cal-title" style="margin-bottom:0">📅 Makro Kalender</span><span class="ct-ts">'+(_ts?'Stand: '+fmtTs(_ts.toISOString()):'')+'</span></div><div style="color:var(--muted);font-size:12px;padding:8px 0;text-align:center">Keine High-Impact Events</div></div>';
+  var byDay={};
+  filtered.forEach(function(e){var d=e.date||String(e.time||'').slice(0,10)||'';if(!byDay[d])byDay[d]=[];byDay[d].push(e);});
+  var rows='';
+  Object.keys(byDay).forEach(function(day){
+    var evts=byDay[day],d=new Date(day),dl=isNaN(d)?day:d.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
+    rows+='<div class="day-lbl">'+dl+'</div>';
+    evts.forEach(function(e){rows+='<div class="cale"><span class="cat">'+String(e.time||'').slice(11,16)+'</span><span class="can">'+e.event+'</span><span class="imp-high">'+e.country+'</span></div>';});
+  });
+  return '<div class="cal-block"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><span class="cal-title" style="margin-bottom:0">📅 Makro Kalender — High Impact</span><span class="ct-ts">'+(_ts?'Stand: '+fmtTs(_ts.toISOString()):'')+'</span></div>'+rows+'</div>';
+}
+
+function render(d){
+  _ts=new Date(d.timestamp);
+  document.getElementById('ts').textContent='Pre-Flight Briefing — '+_ts.toLocaleDateString('de-DE')+' '+_ts.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr';
+  document.title='Cockpit-Trader — '+_ts.toLocaleDateString('de-DE');
+  document.getElementById('age-bar').style.display='block';
+  updateAge();setInterval(updateAge,60000);
+
+  var html='';
+  html+=renderMacro(d.context,d.fred);
+  html+=renderCal(d.calendar);
+  var insts=(d.journal&&d.journal.instruments)||[];
+  html+='<div class="instruments">';
+  if(insts.length){
+    insts.forEach(function(ji){html+=renderInstRow(ji);});
+  } else {
+    Object.keys(d.instruments||{}).forEach(function(k){
+      var inst=d.instruments[k];
+      if(!inst.error){
+        html+=renderInstRow({name:inst.name||k,bias:inst.bias&&inst.bias.bias||'—',bias_color:inst.bias&&inst.bias.color||'yellow',confluence_pct:inst.bias&&inst.bias.confluence_pct||0,confluence_label:inst.bias&&inst.bias.confluence_label||'—',quote:inst.quote||{},market_profile:inst.market_profile||{},current_price:inst.current_price,mp_shape_yesterday:inst.market_profile&&inst.market_profile.shape&&inst.market_profile.shape.name||''});
+      }
     });
+  }
+  html+='</div>';
+  document.getElementById('dash').innerHTML=html;
 }
 
-function renderBacktest(r) {
-  const wrong = r.total_signals - r.total_correct - r.total_partial;
-  const pctCol = p => p >= 60 ? '#22c55e' : p >= 45 ? '#eab308' : '#ef4444';
-
-  // KPI
-  const kpiHtml = `
-  <div class="bt-kpi">
-    <div class="bt-kpi-box">
-      <div class="bt-kpi-val" style="color:${pctCol(r.overall_pct)}">${r.overall_pct}%</div>
-      <div class="bt-kpi-lbl">Trefferquote</div>
-    </div>
-    <div class="bt-kpi-box">
-      <div class="bt-kpi-val">${r.total_signals}</div>
-      <div class="bt-kpi-lbl">Signale gesamt</div>
-    </div>
-    <div class="bt-kpi-box">
-      <div class="bt-kpi-val" style="color:#22c55e">${r.total_correct}</div>
-      <div class="bt-kpi-lbl">✅ Korrekt</div>
-    </div>
-  </div>
-  <div style="font-size:12px;color:var(--muted);margin-bottom:20px">
-    ⚡ Partial: ${r.total_partial} &nbsp;|&nbsp; ❌ Falsch: ${wrong}
-    &nbsp;|&nbsp; Zeitraum: ${r.snapshots_used} Handelstage
-    &nbsp;|&nbsp; Stand: ${(r.generated_at||'').slice(0,16)}
-  </div>`;
-
-  // Tabellen-Builder
-  function tableOf(data, title) {
-    if (!data || !Object.keys(data).length) return '';
-    const rows = Object.entries(data).map(([k, v]) => {
-      const barW = Math.round(v.pct * 1.4);
-      const col  = pctCol(v.pct);
-      return `<tr>
-        <td>${k}</td>
-        <td><strong style="color:${col}">${v.pct}%</strong>
-          <span class="bt-bar" style="width:${barW}px;background:${col}"></span></td>
-        <td style="color:var(--muted)">${v.correct}/${v.total}</td>
-      </tr>`;
-    }).join('');
-    return `
-    <div class="bt-section card">
-      <div class="ct">${title}</div>
-      <table class="bt-table">
-        <thead><tr><th>Kategorie</th><th>Trefferquote</th><th>n</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>`;
-  }
-
-  // Wochenverlauf
-  let weekHtml = '';
-  if (r.by_week && Object.keys(r.by_week).length) {
-    const rows = Object.entries(r.by_week).map(([k, v]) => {
-      const col = pctCol(v.pct);
-      const barW = Math.round(v.pct * 1.4);
-      return `<tr>
-        <td>${k}</td>
-        <td><strong style="color:${col}">${v.pct}%</strong>
-          <span class="bt-bar" style="width:${barW}px;background:${col}"></span></td>
-        <td style="color:var(--muted)">${v.correct}/${v.total}</td>
-      </tr>`;
-    }).join('');
-    weekHtml = `
-    <div class="bt-section card">
-      <div class="ct">📅 Wochenverlauf</div>
-      <table class="bt-table">
-        <thead><tr><th>Woche</th><th>Trefferquote</th><th>n</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>`;
-  }
-
-  // Erkenntnisse
-  const insightsHtml = (r.insights || []).length
-    ? `<div class="bt-section card">
-        <div class="ct">💡 Erkenntnisse</div>
-        ${r.insights.map(i => `<div class="insight-item">${i}</div>`).join('')}
-       </div>`
-    : '';
-
-  document.getElementById('bt-content').innerHTML = `
-  <div style="max-width:1400px;margin:0 auto">
-    ${kpiHtml}
-    <div class="grid">
-      ${tableOf(r.by_instrument, '📈 Nach Instrument')}
-      ${tableOf(r.by_bias,       '🎯 Nach Bias')}
-      ${tableOf(r.by_confluence, '🔗 Confluence-Tier')}
-      ${tableOf(r.by_shape,      '📐 Nach Shape')}
-    </div>
-    ${weekHtml}
-    ${insightsHtml}
-  </div>`;
+function load(){
+  if(window.__COCKPIT_DATA__){render(window.__COCKPIT_DATA__);return;}
+  fetch('data.json').then(function(r){if(!r.ok)throw new Error('data.json nicht gefunden');return r.json();}).then(render).catch(function(e){document.getElementById('dash').innerHTML='<div class="loading">❌ '+e.message+'<br><small>python cockpit-morning.py ausführen</small></div>';});
 }
-
-// ── Start ──────────────────────────────────────────────────────────────────
 load();
 </script>
 </body>

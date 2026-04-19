@@ -2,331 +2,425 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cockpit-Trader — Journal</title>
 <style>
-:root{
-  --bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;
-  --muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;
-  --blue:#3b82f6;--cyan:#06b6d4;--white:#f1f5f9;--dim:#30363d;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{font-size:clamp(13px,1.1vw,16px)}
-body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;padding:20px;min-height:100vh;}
+:root{--bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;--muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#06b6d4;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;min-height:100vh;}
+.header{text-align:center;padding:20px 20px 14px;border-bottom:1px solid var(--border);}
+.header h1{font-size:22px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.header .ts{color:var(--muted);font-size:12px;margin-top:5px;}
+#age-bar{margin-top:4px;font-size:11px;display:none;}
+.nav{display:flex;justify-content:center;gap:8px;padding:10px 20px;border-bottom:1px solid var(--border);}
+.nav a{color:var(--muted);text-decoration:none;padding:6px 16px;font-size:12px;border-radius:6px;border:1px solid var(--border);letter-spacing:1px;transition:all .2s;}
+.nav a.active{color:var(--text);background:rgba(59,130,246,0.15);border-color:var(--blue);}
+.nav a:hover{color:var(--text);border-color:var(--muted);}
+.main{max-width:1100px;margin:0 auto;padding:20px;}
 
-/* ── Shared Header ────────────────────────────────────────────────── */
-.site-header{text-align:center;padding:20px 0 24px;border-bottom:1px solid var(--border);margin-bottom:0;}
-.site-header h1{font-size:28px;letter-spacing:4px;text-transform:uppercase;
-  background:linear-gradient(90deg,var(--cyan),var(--blue));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.site-header .ts{color:var(--muted);font-size:13px;margin-top:8px;}
-.site-nav{display:flex;justify-content:center;gap:8px;padding:12px 0 20px;
-  border-bottom:1px solid var(--border);margin-bottom:24px;}
-.site-nav a{color:var(--muted);text-decoration:none;padding:8px 20px;font-size:13px;
-  border-radius:8px;border:1px solid var(--border);letter-spacing:1px;transition:all .2s;}
-.site-nav a.active{color:var(--text);background:rgba(59,130,246,0.15);border-color:var(--blue);}
-.site-nav a:hover{color:var(--text);border-color:var(--muted);}
-#age-bar{margin-top:6px;font-size:12px;}
+/* Cards */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:16px;}
+.card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:6px;}
+.card-title{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);}
+.card-ts{font-size:10px;color:var(--muted);}
 
-/* ── Card Zeitstempel ─────────────────────────────────────────────── */
-.ct{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;
-  font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px;}
-.ct-left{display:flex;align-items:center;gap:8px;}
-.ct-ts{font-size:10px;color:var(--muted);letter-spacing:0;text-transform:none;opacity:0.7;white-space:nowrap;}
+/* Debrief */
+.debrief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.dstat{text-align:center;background:rgba(255,255,255,.02);border-radius:8px;padding:10px 4px;}
+.dstat-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.dstat-val{font-size:18px;font-weight:700;margin-top:4px;}
 
-/* ── Layout ───────────────────────────────────────────────────────── */
-main{max-width:860px;margin:0 auto;}
+/* Phase Block */
+.phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.phase-main{display:flex;flex-direction:column;gap:8px;}
+.phase-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;font-size:14px;font-weight:700;letter-spacing:1px;}
+.phase-trend{background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.3);}
+.phase-balance{background:rgba(234,179,8,.12);color:var(--yellow);border:1px solid rgba(234,179,8,.3);}
+.phase-ausbruch{background:rgba(6,182,212,.12);color:var(--cyan);border:1px solid rgba(6,182,212,.3);}
+.phase-extrem{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.3);}
+.phase-meta{display:flex;flex-direction:column;gap:6px;}
+.pmeta-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.pmeta-key{color:var(--muted);}
+.pmeta-val{font-weight:600;}
 
-/* ── Cards ────────────────────────────────────────────────────────── */
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px;}
+/* Alignment dots */
+.align-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.align-tf{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.align-dot{width:10px;height:10px;border-radius:50%;}
+.align-lbl{font-size:9px;color:var(--muted);}
+.align-score{font-size:20px;font-weight:700;margin-left:8px;}
 
-/* ── Debrief ──────────────────────────────────────────────────────── */
-.debrief-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;}
-.d-stat{text-align:center;background:rgba(255,255,255,0.02);border-radius:8px;padding:10px 4px;}
-.d-stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
-.d-stat-value{font-size:18px;font-weight:700;margin-top:4px;}
-.d-learnings{font-size:12px;color:var(--muted);line-height:1.6;border-top:1px solid var(--border);padding-top:8px;margin-top:8px;}
-.d-learn{padding:2px 0;}
-.d-learn::before{content:"→ ";color:var(--cyan);}
+/* Instrument section */
+.inst-block{margin-bottom:6px;}
+.inst-top{display:flex;align-items:center;gap:16px;margin-bottom:14px;flex-wrap:wrap;}
+.tl{display:flex;flex-direction:column;gap:3px;background:#000;padding:5px 4px;border-radius:12px;border:1px solid #333;}
+.lb{width:9px;height:9px;border-radius:50%;background:#1a1a1a;}
+.inst-name-big{font-size:20px;font-weight:700;}
+.bias-pill{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;}
+.bp-g{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);}
+.bp-r{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.3);}
+.bp-y{background:rgba(234,179,8,.12);color:var(--yellow);border:1px solid rgba(234,179,8,.3);}
 
-/* ── Instrument ───────────────────────────────────────────────────── */
-.inst-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
-.inst-name{font-size:16px;font-weight:700;}
-.inst-bias{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;}
-.bias-bull{background:rgba(34,197,94,0.12);color:var(--green);}
-.bias-bear{background:rgba(239,68,68,0.12);color:var(--red);}
-.bias-neutral{background:rgba(234,179,8,0.12);color:var(--yellow);}
+/* Conf bar */
+.cbar{margin:0 0 14px;}
+.cbar-bg{background:rgba(255,255,255,.06);border-radius:4px;height:6px;overflow:hidden;}
+.cbar-fill{height:100%;border-radius:4px;}
+.cbar-lbl{font-size:11px;color:var(--muted);margin-top:4px;}
 
-.inst-summary{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:10px;}
-.tf-label{display:inline-block;font-size:9px;font-weight:700;color:var(--blue);
-  background:rgba(59,130,246,0.1);padding:2px 6px;border-radius:3px;margin-right:4px;}
+/* Two-col table */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.tcol{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:8px;padding:12px;}
+.tcol-title{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px;}
+.level-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;}
+.level-key{color:var(--muted);}
+.level-val{font-weight:600;}
+.shape-badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;background:rgba(59,130,246,.1);color:var(--blue);margin-bottom:8px;}
+.shape-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+.shape-prog{font-size:12px;color:var(--cyan);margin-top:6px;line-height:1.6;}
+.shape-prog::before{content:"→ Prognose: ";color:var(--muted);}
 
-/* ── MP Section ───────────────────────────────────────────────────── */
-.mp-section{border-top:1px solid var(--border);padding-top:10px;margin-top:10px;}
-.mp-title{font-size:10px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;font-weight:700;}
-.mp-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;}
-.mp-label{color:var(--muted);}
-.mp-value{font-weight:600;}
-.shape-badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;
-  border-radius:20px;background:rgba(59,130,246,0.1);color:var(--blue);margin-top:6px;}
+/* Signal list */
+.sig-title{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;}
+.sig-row{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border-radius:6px;margin-bottom:3px;font-size:12px;}
+.sig-pos{background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);}
+.sig-neg{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);}
+.sig-neu{background:rgba(255,255,255,.02);border:1px solid var(--border);}
+.sig-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-right:8px;}
+.sig-score{font-weight:700;min-width:28px;text-align:right;}
 
-/* ── Key Levels ───────────────────────────────────────────────────── */
-.levels-section{border-top:1px solid var(--border);padding-top:10px;margin-top:10px;}
-.levels-title{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
-.level-row{display:flex;justify-content:space-between;align-items:center;
-  font-size:12px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.03);}
-.level-name{color:var(--muted);min-width:80px;}
-.level-price{font-weight:600;}
-.level-source{font-size:10px;color:var(--muted);text-align:right;}
+/* Invalidation */
+.inval{font-size:11px;color:var(--red);background:rgba(239,68,68,.06);padding:7px 10px;border-radius:6px;border:1px solid rgba(239,68,68,.2);margin-top:4px;}
 
-/* ── Confluence Bar ───────────────────────────────────────────────── */
-.conf-bar-wrap{margin:10px 0 6px;}
-.conf-bar-bg{background:rgba(255,255,255,.06);border-radius:6px;height:8px;overflow:hidden;}
-.conf-bar-fill{height:100%;border-radius:6px;}
-.conf-label{font-size:11px;color:var(--muted);margin-top:4px;}
+/* Session warning */
+.sess-warn{font-size:11px;color:var(--yellow);background:rgba(234,179,8,.06);padding:7px 10px;border-radius:6px;border:1px solid rgba(234,179,8,.2);margin-bottom:10px;}
 
-/* ── Invalidation ─────────────────────────────────────────────────── */
-.invalidation{font-size:11px;color:var(--red);background:rgba(239,68,68,0.08);
-  padding:6px 10px;border-radius:6px;margin-top:8px;border:1px solid rgba(239,68,68,0.2);}
+.divider{border:none;border-top:1px solid var(--border);margin:16px 0;}
 
-/* ── Summary ──────────────────────────────────────────────────────── */
-.summary-best{font-size:14px;font-weight:700;margin-bottom:6px;}
-.summary-best strong{color:var(--green);}
-.summary-warn{font-size:11px;color:var(--yellow);padding:2px 0;}
-.summary-warn::before{content:"⚠ ";}
-
-/* ── Signals ──────────────────────────────────────────────────────── */
-.slist{list-style:none;}
-.slist li{display:flex;justify-content:space-between;align-items:center;
-  padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;}
-.sdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:8px;}
-.ssc{font-weight:600;min-width:28px;text-align:right;}
-
-/* ── Empty ────────────────────────────────────────────────────────── */
-.empty{text-align:center;padding:60px 20px;color:var(--muted);}
-.empty h3{font-size:14px;margin-bottom:8px;}
-footer{text-align:center;padding:20px;font-size:10px;color:var(--muted);border-top:1px solid var(--border);margin-top:16px;}
+.loading{text-align:center;padding:60px;color:var(--muted);}
+footer{text-align:center;padding:20px;font-size:10px;color:var(--muted);border-top:1px solid var(--border);margin-top:8px;}
 
 @media(max-width:768px){
-  body{padding:12px;}
-  .site-nav a{padding:6px 12px;font-size:12px;}
+  .two-col{grid-template-columns:1fr;}
+  .phase-grid{grid-template-columns:1fr;}
+  .debrief-grid{grid-template-columns:1fr 1fr;}
+  .main{padding:12px;}
 }
 </style>
+<script>window.__STATE_DATA__ = {"_schema_version": "2.0", "_updated": "2026-04-19T18:25:24", "pipeline": {"date": "2026-04-19", "started": "2026-04-19T18:25:24", "completed": "2026-04-19T18:27:10", "status": "completed", "agents_completed": ["MACRO", "MARKETDATA", "ANALYST", "CAPTAIN", "EXECUTOR"], "errors": ["Put/Call Ratio: yfinance Datenfehler (Wochenende)", "VWAP: TradingView Indikator nicht geladen"]}, "macro": {"_last_run": "2026-04-19T18:25:40", "_status": "ready", "fear_greed": {"value": 27, "classification": "Fear", "yesterday": 26, "trend": "steigend"}, "put_call_ratio": {"value": null, "interpretation": "Datenfehler"}, "vix": {"value": 17.48, "prev": 17.94, "level": "normal", "trend": "fallend", "bias_einfluss": "leicht bearish"}, "bonds_10y": {"yield": 4.246, "prev": 4.309, "trend": "fallend", "interpretation": "zinsdruck_moderat"}, "dxy": {"value": 98.1, "prev": 98.22, "trend": "fallend", "interpretation": "dollar_schwach"}, "oil_wti": {"value": 82.59, "prev": 94.69, "trend": "fallend", "interpretation": "inflationsdruck_moderat"}, "gold": {"value": 4879.6, "prev": 4785.4, "trend": "steigend", "interpretation": "risk_off"}, "fred": {"fedfunds": {"value": 3.64, "date": "2026-03-01"}, "cpi": {"value": 3.32, "date": "2026-03-01"}}, "scoring": {"bullish_punkte": 4, "bearish_punkte": 2, "gesamt_score": 2, "makro_bias": "LEICHT_RISK_ON"}, "warnungen": []}, "market": {"_last_run": "2026-04-19T20:45:00", "_status": "ready", "timestamp": "2026-04-19 20:45", "instruments": {"GER40": {"ticker": "Vantage:GER40", "current_price": 24066.7, "open": 24060.97, "high": 24127.01, "low": 23996.8, "prev_close": 24066.7, "change_pct": 0.0, "vwap": 24047.26, "poc": 24127.58, "vah": 24184.78, "val": 24080.78, "er": null, "data_quality": "teilweise"}, "DJ30": {"ticker": "Vantage:DJ30", "current_price": 48578.72, "open": 48557.82, "high": 48683.45, "low": 48337.38, "prev_close": 48463.72, "change_pct": 0.24, "vwap": 48411.6, "poc": 48575.36, "vah": 48617.73, "val": 48499.08, "er": null, "data_quality": "teilweise"}, "SPX500": {"ticker": "Vantage:SP500", "current_price": 7041.28, "open": 7037.78, "high": 7051.23, "low": 7008.52, "prev_close": 7022.95, "change_pct": 0.26, "vwap": 7000.83, "poc": 7039.93, "vah": 7047.51, "val": 7032.34, "er": null, "data_quality": "teilweise"}}, "calendar": [{"date": "2026-04-21", "time": "09:00", "event": "ZEW Economic Sentiment Index", "country": "DE", "impact": "high"}, {"date": "2026-04-21", "time": "12:30", "event": "Retail Sales MoM", "country": "US", "impact": "high"}]}, "analysis": {"_last_run": "2026-04-19T18:26:20", "_status": "ready", "marktphase": {"phase": "TREND", "begruendung": "Alle drei Instrumente stark ueber gestrigem VAH. GER40 +2.41%, DJ30 +2.14%, SPX500 +1.58%. VIX 17.48 fallend. Makro LEICHT_RISK_ON (+2). Gap-up Eroeffnung deutet auf starken Trend-Tag.", "aktive_strategie": "Trend-Following", "er_bestaetigung": "nicht verfuegbar"}, "regime": "RISK-ON", "risk_level": "MEDIUM", "top_down": {"alignment_score": 5, "trade_freigabe": true}, "instruments": {"GER40": {"bias": "BULLISH", "bias_score": 4, "signals": {"preis_vs_poc": {"wert": 1, "detail": "24646.53 > POC 24127.58 (+519pts)"}, "preis_vs_va": {"wert": 2, "detail": "24646.53 > VAH 24184.78 — klarer Breakout"}, "preis_vs_vwap": {"wert": 0, "detail": "VWAP nicht verfuegbar"}, "momentum": {"wert": 1, "detail": "change_pct +2.41%"}, "range_position": {"wert": 0, "detail": "Enge Premarket-Range, Mitte"}}, "key_levels": {"poc": 24127.58, "vah": 24184.78, "val": 24080.78, "vwap": null, "current": 24646.53, "naechster_support": 24184.78, "naechste_resistance": 24700.0, "invalidation": 24080.78}, "zones": [{"typ": "SUPPORT", "low": 24127.58, "high": 24184.78, "prioritaet": 1, "detail": "POC+VAH Confluence — Gap-Retest Zone", "name": "Gap-Retest Zone", "preis_von": 24127.58, "preis_bis": 24184.78, "bestandteile": ["POC 24127.58", "VAH 24184.78"]}], "konflikt": null, "warnung": "GAP-UP +580pts ueber VAH. Kein Entry bei Marktpreis. Auf Retest 24185 warten."}, "DJ30": {"bias": "BULLISH", "bias_score": 5, "signals": {"preis_vs_poc": {"wert": 1, "detail": "49498.18 > POC 48575.36 (+923pts)"}, "preis_vs_va": {"wert": 2, "detail": "49498.18 > VAH 48617.73 — klarer Breakout"}, "preis_vs_vwap": {"wert": 0, "detail": "VWAP nicht verfuegbar"}, "momentum": {"wert": 1, "detail": "change_pct +2.14%"}, "range_position": {"wert": 1, "detail": "49498.18 im oberen Drittel"}}, "key_levels": {"poc": 48575.36, "vah": 48617.73, "val": 48499.08, "vwap": null, "current": 49498.18, "naechster_support": 48617.73, "naechste_resistance": 49600.0, "invalidation": 48499.08}, "zones": [{"typ": "SUPPORT", "low": 48575.36, "high": 48617.73, "prioritaet": 1, "detail": "POC+VAH Confluence — Gap-Retest Zone", "name": "Gap-Retest Zone", "preis_von": 48575.36, "preis_bis": 48617.73, "bestandteile": ["POC 48575.36", "VAH 48617.73"]}], "konflikt": null, "warnung": "GAP-UP +880pts ueber VAH. Auf Retest 48617 warten."}, "SPX500": {"bias": "BULLISH", "bias_score": 5, "signals": {"preis_vs_poc": {"wert": 1, "detail": "7133.83 > POC 7039.93 (+93.9pts)"}, "preis_vs_va": {"wert": 2, "detail": "7133.83 > VAH 7047.51 — klarer Breakout"}, "preis_vs_vwap": {"wert": 0, "detail": "VWAP nicht verfuegbar"}, "momentum": {"wert": 1, "detail": "change_pct +1.58%"}, "range_position": {"wert": 1, "detail": "7133.83 im oberen Drittel"}}, "key_levels": {"poc": 7039.93, "vah": 7047.51, "val": 7032.34, "vwap": null, "current": 7133.83, "naechster_support": 7047.51, "naechste_resistance": 7150.0, "invalidation": 7032.34}, "zones": [{"typ": "SUPPORT", "low": 7039.93, "high": 7047.51, "prioritaet": 1, "detail": "POC+VAH Confluence — Gap-Retest Zone", "name": "Gap-Retest Zone", "preis_von": 7039.93, "preis_bis": 7047.51, "bestandteile": ["POC 7039.93", "VAH 7047.51"]}], "konflikt": null, "warnung": "GAP-UP +86pts ueber VAH. Auf Retest 7047 warten."}}, "inter_market": {"alle_bullish": true, "alle_bearish": false, "gemischt": false, "beschreibung": "Alle drei BULLISH mit Gap-up. Konsistentes Inter-Market Bild."}, "watchlist": ["GAP-UP alle Instrumente — kein Chase, Retest abwarten", "Gold steigend +94$ (risk_off Signal)", "Fear&Greed 27 (Fear — Divergenz zu Preisaktion)", "ZEW + Retail Sales 21.04."], "summary": "Regime RISK-ON. Phase TREND. Alle drei BULLISH. Massive Gap-ups. VIX 17.48 fallend, DXY 98.1 schwach. WARNUNG: Kein Entry bei aktuellen Premarket-Kursen."}, "captain": {"_last_run": "2026-04-19T18:26:30", "_status": "ready", "session_bias": "LONG-BIAS", "aktive_strategie": "Trend-Following", "alignment_score": 5, "trade_freigabe": true, "trade_plan": "GAP-UP SITUATION — kein Chase. Limit-Buy-Orders an gestrigen VAH-Levels (Retest-Strategie).\nDJ30: Limit Buy 48620 (VAH-Retest), SL 48474, TP1 48839 (R:R 1.5), TP2 49100 (R:R 3.3).\nSPX500: Limit Buy 7048 (VAH-Retest), SL 7025, TP1 7082 (R:R 1.5), TP2 7134 (R:R 3.7).\nGER40: Limit Buy 24185 (VAH-Retest), SL 24056, TP1 24443 (R:R 2.0).\nNur handeln wenn Preis an Levels zurueckkehrt — kein Market-Buy bei aktuellen Kursen.", "instrument_prioritaet": ["DJ30", "SPX500", "GER40"], "max_risk_today": "1.0%", "max_trades_heute": 2, "trades_today": 0, "notes": "Regime RISK-ON + Makro LEICHT_RISK_ON = LONG-BIAS. CRITICAL: Premarket Sonntag, duenner Markt. Hard Rule: Kein Market-Buy jetzt. Fear&Greed 27 als Kontraindikator — Positionen kleiner halten."}, "orders": {"_status": "ready", "orders": [{"instrument": "DJ30", "richtung": "LONG", "entry": 48620.0, "sl": 48474.0, "tp1": 48839.0, "tp2": 49100.0, "rr": 1.5, "konfluenz_score": 7, "p_fill": 15, "p_tp1": 55, "bestaedigungen": ["VAH-Retest 48617.73", "POC 48575.36", "Regime RISK-ON", "Inter-Market BULLISH", "Bias-Score +5", "Makro LEICHT_RISK_ON"]}, {"instrument": "SPX500", "richtung": "LONG", "entry": 7048.0, "sl": 7025.0, "tp1": 7082.5, "tp2": 7134.0, "rr": 1.5, "konfluenz_score": 6, "p_fill": 12, "p_tp1": 55, "bestaedigungen": ["VAH-Retest 7047.51", "POC 7039.93", "Regime RISK-ON", "Bias-Score +5"]}, {"instrument": "GER40", "richtung": "LONG", "entry": 24185.0, "sl": 24056.0, "tp1": 24443.0, "tp2": 24647.0, "rr": 2.0, "konfluenz_score": 5, "p_fill": 18, "p_tp1": 50, "bestaedigungen": ["VAH-Retest 24184.78", "POC 24127.58", "Regime RISK-ON", "Bias-Score +4"]}], "summary": {"best_instrument": "DJ30", "total_orders": 3, "warnings": ["GAP-UP: P_Fill niedrig (12-18%)", "VWAP nicht verfuegbar"], "notes": "3 Limit-Buy Orders an gestrigen VAH-Levels."}}, "signals": [], "trades": []};</script>
 </head>
 <body>
-
-<div class="site-header">
+<div class="header">
   <h1>✈ Cockpit-Trader</h1>
-  <div class="ts" id="ts">Lade Daten...</div>
-  <div id="age-bar" style="display:none">
-    <span id="age-dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle;"></span>
+  <div class="ts" id="ts">Lade Journal...</div>
+  <div id="age-bar">
+    <span id="age-dot" style="display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle;"></span>
     <span id="age-txt"></span>
   </div>
 </div>
-
-<div class="site-nav">
+<div class="nav">
   <a href="index.html">Dashboard</a>
-  <a href="index.html#backtest" onclick="sessionStorage.setItem('tab','backtest')">Backtest</a>
   <a href="journal.html" class="active">Journal</a>
   <a href="orders.html">Orders</a>
+  <a href="index.html" onclick="sessionStorage.setItem('tab','backtest')">Backtest</a>
+  <a href="wiki.html">Wiki</a>
 </div>
-
-<main>
-  <div id="content">
-    <div class="empty"><h3>Lade Journal...</h3></div>
-  </div>
-</main>
-
+<div class="main" id="main">
+  <div class="loading">⏳ Lade Analyse-Daten...</div>
+</div>
 <footer>The Trading Floor · Cockpit Trader · Auction Market Theory</footer>
-
 <script>
-var _analysisTs = null;
+var _ts=null;
+function f(v,d){d=d||2;if(v===null||v===undefined)return'—';return typeof v==='number'?v.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d}):String(v);}
+function fmtTs(ts){if(!ts)return'';var d=new Date(ts);if(isNaN(d))return'';return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr';}
+function fmtAge(ts){var m=Math.floor((Date.now()-ts.getTime())/60000);if(m<1)return{t:'gerade aktualisiert',c:'#22c55e'};if(m<60)return{t:'vor '+m+' Min',c:'#22c55e'};var h=Math.floor(m/60),mm=m%60;if(h<4)return{t:'vor '+h+'h '+mm+'min',c:'#eab308'};if(h<8)return{t:'vor '+h+'h — bitte neu starten',c:'#f97316'};return{t:h+'h alt — VERALTET',c:'#ef4444'};}
+function updateAge(){if(!_ts)return;var a=fmtAge(_ts);document.getElementById('age-txt').textContent=a.t;document.getElementById('age-txt').style.color=a.c;document.getElementById('age-dot').style.background=a.c;document.getElementById('age-dot').style.boxShadow='0 0 6px '+a.c;}
 
-function fmtTs(ts) {
-  if (!ts) return '';
-  const d = new Date(ts);
-  if (isNaN(d)) return '';
-  return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'}) + ' ' +
-         d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}) + ' Uhr';
-}
+function tl(color){return '<div class="tl"><div class="lb" style="'+(color==='green'?'background:#22c55e;box-shadow:0 0 10px #22c55e':'')+'"></div><div class="lb" style="'+(color==='yellow'?'background:#eab308;box-shadow:0 0 10px #eab308':'')+'"></div><div class="lb" style="'+(color==='red'?'background:#ef4444;box-shadow:0 0 10px #ef4444':'')+'"></div></div>';}
+function biasPill(bias){var b=(bias||'').toLowerCase();var cls=b.includes('bull')?'bp-g':b.includes('bear')?'bp-r':'bp-y';return '<span class="bias-pill '+cls+'">'+(bias||'—')+'</span>';}
+function phaseClass(p){var m={'TREND':'phase-trend','BALANCE':'phase-balance','AUSBRUCH':'phase-ausbruch','EXTREM':'phase-extrem'};return m[p]||'phase-balance';}
+function scoreColor(s,t){var p=t>0?s/t:0;return p>=0.65?'var(--green)':p>=0.45?'var(--yellow)':'var(--red)';}
 
-function fmtAge(ts) {
-  const mins = Math.floor((Date.now() - ts.getTime()) / 60000);
-  if (mins < 1)  return {txt:'gerade aktualisiert',    color:'#22c55e'};
-  if (mins < 60) return {txt:'vor '+mins+' Min',        color:'#22c55e'};
-  const h = Math.floor(mins/60), m = mins%60;
-  if (h < 4)  return {txt:'vor '+h+'h '+m+'min',           color:'#eab308'};
-  if (h < 8)  return {txt:'vor '+h+'h — bitte neu starten', color:'#f97316'};
-  return           {txt:h+'h alt — VERALTET',                color:'#ef4444'};
-}
+// ── Render from state.json ─────────────────────────────────────────────────
+function render(s){
+  if(!s){document.getElementById('main').innerHTML='<div class="loading">❌ state.json nicht gefunden<br><small>Pipeline muss zuerst laufen</small></div>';return;}
 
-function updateAge() {
-  if (!_analysisTs) return;
-  const {txt, color} = fmtAge(_analysisTs);
-  document.getElementById('age-txt').textContent = txt;
-  document.getElementById('age-txt').style.color = color;
-  document.getElementById('age-dot').style.background = color;
-  document.getElementById('age-dot').style.boxShadow = '0 0 6px ' + color;
-}
-
-function ct(icon, label, ts) {
-  const tsHtml = ts ? `<span class="ct-ts">Stand: ${fmtTs(ts)}</span>` : '';
-  return `<div class="ct"><span class="ct-left">${icon} ${label}</span>${tsHtml}</div>`;
-}
-
-function bc(b) {
-  if (!b) return 'bias-neutral';
-  const l = b.toLowerCase();
-  return l.includes('bull') ? 'bias-bull' : (l.includes('bear')||l.includes('bär')) ? 'bias-bear' : 'bias-neutral';
-}
-
-async function load() {
-  try {
-    const r = await fetch('journal-data.json?t=' + Date.now());
-    if (!r.ok) throw new Error();
-    return await r.json();
-  } catch(e) {
-    document.getElementById('content').innerHTML =
-      '<div class="empty"><h3>Kein Journal vorhanden</h3><p>Wird nach der Morning-Analyse erstellt.</p></div>';
-    return null;
-  }
-}
-
-function render(d) {
-  if (!d) return;
-  const ts = d.timestamp || null;
-
-  if (ts) {
-    _analysisTs = new Date(ts);
-    document.getElementById('ts').textContent =
-      'Analyse Journal — ' + _analysisTs.toLocaleDateString('de-DE') + ' ' +
-      _analysisTs.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}) + ' Uhr';
-    document.title = 'Cockpit-Trader — Journal ' + _analysisTs.toLocaleDateString('de-DE');
-    document.getElementById('age-bar').style.display = 'block';
-    updateAge();
-    setInterval(updateAge, 60000);
+  var ts=s.pipeline&&s.pipeline.started||s.market&&s.market._last_run||null;
+  if(ts){
+    _ts=new Date(ts);
+    document.getElementById('ts').textContent='Analyse Journal — '+_ts.toLocaleDateString('de-DE')+' '+_ts.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr';
+    document.title='Cockpit-Trader — Journal '+_ts.toLocaleDateString('de-DE');
+    document.getElementById('age-bar').style.display='block';
+    updateAge();setInterval(updateAge,60000);
   }
 
-  let h = '';
+  var tsStr=ts?'Stand: '+fmtTs(ts):'';
+  var h='';
+  var an=s.analysis||{};
+  var mac=s.macro||{};
+  var mkt=s.market||{};
+  var cap=s.captain||{};
 
-  // ── Debrief ──────────────────────────────────────────────────────
-  if (d.debrief) {
-    const db = d.debrief;
-    h += `<div class="card">
-      ${ct('📋', 'Debrief Vortag', ts)}
-      <div class="debrief-grid">
-        <div class="d-stat"><div class="d-stat-label">Fill Rate</div><div class="d-stat-value">${db.fill_rate||'—'}</div></div>
-        <div class="d-stat"><div class="d-stat-label">TP1 Rate</div><div class="d-stat-value">${db.tp1_rate||'—'}</div></div>
-        <div class="d-stat"><div class="d-stat-label">Trend</div><div class="d-stat-value" style="font-size:12px">${db.trend||'—'}</div></div>
-      </div>`;
-    if (db.learnings && db.learnings.length) {
-      h += '<div class="d-learnings">';
-      db.learnings.forEach(l => { h += `<div class="d-learn">${l}</div>`; });
-      h += '</div>';
-    }
-    h += '</div>';
+  // ── 1. DEBRIEF ──────────────────────────────────────────────────────
+  // Fallback: try journal-data for debrief
+  var db=s.debrief||null;
+  if(db||s.stats){
+    var stats=db||s.stats||{};
+    h+='<div class="card">';
+    h+='<div class="card-header"><span class="card-title">📋 Debrief Vortag</span><span class="card-ts">'+tsStr+'</span></div>';
+    h+='<div class="debrief-grid">';
+    h+='<div class="dstat"><div class="dstat-lbl">Fill Rate</div><div class="dstat-val">'+(stats.fill_rate||'—')+'</div></div>';
+    h+='<div class="dstat"><div class="dstat-lbl">TP1 Rate</div><div class="dstat-val">'+(stats.tp1_rate||'—')+'</div></div>';
+    h+='<div class="dstat"><div class="dstat-lbl">Trend</div><div class="dstat-val" style="font-size:12px">'+(stats.trend||'—')+'</div></div>';
+    h+='</div></div>';
   }
 
-  // ── Instruments ───────────────────────────────────────────────────
-  const insts = d.instruments || [];
-  insts.forEach(inst => {
-    const bias = inst.bias || '';
-    const cls  = bc(bias);
-    const mp   = inst.market_profile || {};
-    const confPct   = inst.confluence_pct || 0;
-    const confLabel = inst.confluence_label || '';
-    const confCol   = confPct >= 70 ? '#22c55e' : confPct >= 45 ? '#eab308' : '#ef4444';
+  // ── 2. MARKTPHASE ───────────────────────────────────────────────────
+  var phase=an.marktphase||{};
+  var regime=an.regime||'—';
+  var risk=an.risk_level||'—';
+  var td=an.top_down||{};
+  var score=td.alignment_score||cap.alignment_score||0;
+  var scoreMax=7;
+  var strategie=phase.aktive_strategie||cap.aktive_strategie||'—';
+  var phaseName=phase.phase||'—';
+  var phaseCls=phaseClass(phaseName);
+  var scCol=scoreColor(score,scoreMax);
 
-    // Bias Signals
-    const signals = (inst.bias_signals || []).map(s => {
-      const dc = s.direction==='bullish'?'var(--green)':s.direction==='bearish'?'var(--red)':'var(--muted)';
-      return `<li>
-        <span><span class="sdot" style="background:${dc}"></span>${s.label}</span>
-        <span class="ssc ${s.score>0?'pos':s.score<0?'neg':''}" style="color:${s.score>0?'var(--green)':s.score<0?'var(--red)':'var(--muted)'}">${s.score>0?'+'+s.score:s.score}</span>
-      </li>`;
-    }).join('');
+  h+='<div class="card">';
+  h+='<div class="card-header"><span class="card-title">🌍 Marktphase &amp; Makro</span><span class="card-ts">'+tsStr+'</span></div>';
+  h+='<div class="phase-grid">';
 
-    h += `<div class="card">
-      ${ct('📈', inst.name + ' — Analyse', ts)}
-      <div class="inst-header">
-        <div class="inst-name">${inst.name}</div>
-        <div class="inst-bias ${cls}">${bias||'—'} ${inst.bias_pct||''}</div>
-      </div>`;
+  // Left: Phase + Alignment
+  h+='<div class="phase-main">';
+  h+='<div class="phase-badge '+phaseCls+'">'+phaseName+'</div>';
+  if(phase.begruendung)h+='<div style="font-size:11px;color:var(--muted);line-height:1.5">'+phase.begruendung+'</div>';
+  h+='<div class="align-row" style="margin-top:8px">';
+  var tfs=['W','4H','1H','30M'];
+  var tfkeys=['weekly_trend','h4_trend','h1_entry_context','m30_entry_zone'];
+  tfs.forEach(function(tf,i){
+    var val=td[tfkeys[i]];
+    var hasBull=val&&(typeof val==='string'?val.toLowerCase().includes('up')||val.toLowerCase().includes('bull'):false);
+    var hasBear=val&&(typeof val==='string'?val.toLowerCase().includes('down')||val.toLowerCase().includes('bear'):false);
+    var dc=hasBull?'#22c55e':hasBear?'#ef4444':'#64748b';
+    h+='<div class="align-tf"><div class="align-dot" style="background:'+dc+';box-shadow:0 0 6px '+dc+'"></div><div class="align-lbl">'+tf+'</div></div>';
+  });
+  h+='<div style="display:flex;flex-direction:column;align-items:center;margin-left:8px">';
+  h+='<span class="align-score" style="color:'+scCol+'">'+score+'/'+scoreMax+'</span>';
+  h+='<span style="font-size:9px;color:var(--muted)">SCORE</span></div>';
+  h+='</div>';
 
-    // Confluence Bar
-    if (confPct > 0) {
-      h += `<div class="conf-bar-wrap">
-        <div class="conf-bar-bg"><div class="conf-bar-fill" style="width:${confPct}%;background:${confCol}"></div></div>
-        <div class="conf-label">Confluence: <strong style="color:${confCol}">${confLabel||confPct+'%'}</strong></div>
-      </div>`;
+  // Session warning
+  if(an.session_warnung)h+='<div class="sess-warn">⚠ '+an.session_warnung+'</div>';
+
+  h+='</div>';
+
+  // Right: Regime + Makro
+  h+='<div class="phase-meta">';
+  h+='<div class="pmeta-row"><span class="pmeta-key">Regime</span><span class="pmeta-val">'+regime+'</span></div>';
+  h+='<div class="pmeta-row"><span class="pmeta-key">Risiko</span><span class="pmeta-val">'+risk+'</span></div>';
+  h+='<div class="pmeta-row"><span class="pmeta-key">Strategie</span><span class="pmeta-val">'+strategie+'</span></div>';
+  h+='<div class="pmeta-row"><span class="pmeta-key">Session-Bias</span><span class="pmeta-val">'+(cap.session_bias||'—')+'</span></div>';
+  // Makro summary
+  var ms=mac.scoring||{};
+  if(ms.makro_bias)h+='<div class="pmeta-row"><span class="pmeta-key">Makro-Bias</span><span class="pmeta-val" style="color:'+(ms.makro_bias.includes('RISK_ON')?'var(--green)':ms.makro_bias.includes('RISK_OFF')?'var(--red)':'var(--yellow)')+'">'+ms.makro_bias+'</span></div>';
+  var vix=mac.vix;
+  if(vix)h+='<div class="pmeta-row"><span class="pmeta-key">VIX</span><span class="pmeta-val '+(vix.trend==='fallend'?'style="color:var(--green)"':'style="color:var(--red)"')+'">'+(vix.value||'—')+' ('+vix.level+', '+vix.trend+')</span></div>';
+  var fg=mac.fear_greed;
+  if(fg)h+='<div class="pmeta-row"><span class="pmeta-key">Fear&amp;Greed</span><span class="pmeta-val">'+(fg.value||'—')+' — '+(fg.classification||'')+'</span></div>';
+  // Warnungen
+  var warns=(mac.warnungen||[]).concat(an.watchlist||[]);
+  if(warns.length){h+='<div style="margin-top:6px">';warns.slice(0,3).forEach(function(w){h+='<div style="font-size:10px;color:var(--yellow);padding:2px 0">⚠ '+w+'</div>';});h+='</div>';}
+  h+='</div>';
+  h+='</div></div>';
+
+  // ── 3. INSTRUMENTE ──────────────────────────────────────────────────
+  var instKeys=['GER40','DJ30','SPX500'];
+  instKeys.forEach(function(key){
+    var ai=an.instruments&&an.instruments[key]||{};
+    var mi=mkt.instruments&&mkt.instruments[key]||{};
+    if(!ai.bias&&!mi.poc)return;
+
+    var bias=ai.bias||'—';
+    var bcolor=bias.toLowerCase().includes('bull')?'green':bias.toLowerCase().includes('bear')?'red':'yellow';
+    var gc=bcolor==='green'?'#22c55e':bcolor==='red'?'#ef4444':'#eab308';
+    var bpCls=bcolor==='green'?'bp-g':bcolor==='red'?'bp-r':'bp-y';
+    var bs=ai.bias_score||0;
+    var bsMax=7;
+    var bsCol=scoreColor(bs<0?0:bs,bsMax);
+
+    h+='<div class="card">';
+    h+='<div class="card-header"><span class="card-title">📈 '+key+'</span><span class="card-ts">'+tsStr+'</span></div>';
+
+    // Top: Ampel + Name + Bias + Score
+    h+='<div class="inst-top">';
+    h+=tl(bcolor);
+    h+='<span class="inst-name-big">'+key+'</span>';
+    h+=biasPill(bias);
+    h+='<span style="font-size:12px;color:var(--muted)">Score: <strong style="color:'+bsCol+'">'+bs+'/'+bsMax+'</strong></span>';
+    if(ai.er_wert!=null)h+='<span style="font-size:11px;color:var(--muted)">ER: <strong style="color:'+(ai.er_wert>10?'var(--green)':ai.er_wert<-10?'var(--red)':'var(--yellow)')+'">'+f(ai.er_wert,1)+'</strong></span>';
+    h+='</div>';
+
+    // Confluence bar
+    var cpct=Math.round(Math.max(0,Math.min(100,(bs/bsMax)*100)));
+    var ccol=bsCol;
+    h+='<div class="cbar"><div class="cbar-bg"><div class="cbar-fill" style="width:'+cpct+'%;background:'+ccol+'"></div></div>';
+    h+='<div class="cbar-lbl">Confluence: <strong style="color:'+ccol+'">'+bs+'/'+bsMax+'</strong>'+(ai.er_chop_filter_aktiv?' — ⚠ Chop-Filter aktiv':'')+'</div></div>';
+
+    // Two-col: MP/VP Levels | Shape Analyse
+    h+='<div class="two-col">';
+
+    // Left: Levels
+    h+='<div class="tcol"><div class="tcol-title">📊 Market &amp; Volume Profile</div>';
+    var kl=ai.key_levels||{};
+    var lvls=[
+      {k:'Kurs aktuell',v:kl.current||mi.current_price,c:'var(--text)',bold:true},
+      {k:'VAH',v:kl.vah||mi.vah,c:'var(--green)'},
+      {k:'POC',v:kl.poc||mi.poc,c:'var(--cyan)'},
+      {k:'VAL',v:kl.val||mi.val,c:'var(--red)'},
+      {k:'VWAP',v:kl.vwap||mi.vwap,c:'var(--yellow)'},
+      {k:'VWAP +1σ',v:mi.vwap_upper,c:'rgba(234,179,8,.6)'},
+      {k:'VWAP -1σ',v:mi.vwap_lower,c:'rgba(234,179,8,.6)'},
+      {k:'Weekly POC',v:mi.weekly_poc,c:'rgba(6,182,212,.7)'},
+      {k:'ONH',v:kl.onh||mi.onh,c:'rgba(34,197,94,.7)'},
+      {k:'ONL',v:kl.onl||mi.onl,c:'rgba(239,68,68,.7)'},
+      {k:'PDH',v:kl.pdh||mi.pdh,c:'rgba(34,197,94,.5)'},
+      {k:'PDL',v:kl.pdl||mi.pdl,c:'rgba(239,68,68,.5)'},
+    ];
+    lvls.forEach(function(l){
+      if(l.v==null)return;
+      var fw=l.bold?'font-weight:700;font-size:13px;':'';
+      h+='<div class="level-row" style="'+(l.bold?'border-bottom:1px solid var(--border);margin-bottom:4px;padding-bottom:6px;':'')+'">'+'<span class="level-key" style="'+(l.bold?'color:var(--text);font-weight:600;':'')+'">'+l.k+'</span><span class="level-val" style="color:'+l.c+';'+fw+'">'+f(l.v)+'</span></div>';
+    });
+    if(kl.invalidation)h+='<div class="inval" style="margin-top:8px">⚠ Invalidierung: '+f(kl.invalidation)+'</div>';
+    h+='</div>';
+
+    // Right: Shape + Prognose
+    h+='<div class="tcol"><div class="tcol-title">📐 MP Shape &amp; Prognose</div>';
+    var mpShape=mi.mp_shape||'Normal Day';
+    h+='<div class="shape-badge">'+mpShape+'</div>';
+    // Shape interpretation
+    var shapeDesc=getShapeDesc(mpShape);
+    h+='<div class="shape-desc">'+shapeDesc.desc+'</div>';
+    h+='<div class="shape-prog">'+shapeDesc.prog+'</div>';
+    // Phase context
+    if(phase.phase){
+      h+='<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border)">';
+      h+='<div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Marktphase Kontext</div>';
+      h+='<div style="font-size:11px;color:var(--cyan)">'+phaseName+' → '+strategie+'</div>';
+      if(phase.er_bestaetigung)h+='<div style="font-size:11px;color:var(--muted);margin-top:3px">ER Bestätigung: '+(phase.er_bestaetigung==='ja'?'<span style="color:var(--green)">✓ Ja</span>':phase.er_bestaetigung==='nein'?'<span style="color:var(--red)">✗ Nein</span>':'n/v')+'</div>';
+      h+='</div>';
     }
+    h+='</div>';
+    h+='</div>'; // two-col
 
-    // TF Summaries
-    h += '<div class="inst-summary">';
-    if (inst.daily_summary) h += `<div><span class="tf-label">D</span>${inst.daily_summary}</div>`;
-    if (inst.h4_summary)    h += `<div><span class="tf-label">4H</span>${inst.h4_summary}</div>`;
-    if (inst.h1_summary)    h += `<div><span class="tf-label">1H</span>${inst.h1_summary}</div>`;
-    if (inst.h30m_summary)  h += `<div><span class="tf-label">30M</span>${inst.h30m_summary}</div>`;
-    h += '</div>';
+    // Confluence Signals — sorted by score
+    var sigs=ai.signals||{};
+    var sigArr=[];
+    Object.keys(sigs).forEach(function(k){
+      var s=sigs[k];
+      if(s&&s.detail)sigArr.push({key:k,wert:s.wert||0,detail:s.detail});
+    });
+    sigArr.sort(function(a,b){return Math.abs(b.wert)-Math.abs(a.wert);});
 
-    // MP
-    if (mp.poc || mp.vah || mp.val) {
-      h += `<div class="mp-section">
-        ${ct('📊', 'Market Profile', ts)}`;
-      if (mp.poc)  h += `<div class="mp-row"><span class="mp-label">POC</span><span class="mp-value" style="color:var(--cyan)">${mp.poc}</span></div>`;
-      if (mp.vah)  h += `<div class="mp-row"><span class="mp-label">VAH</span><span class="mp-value" style="color:var(--green)">${mp.vah}</span></div>`;
-      if (mp.val)  h += `<div class="mp-row"><span class="mp-label">VAL</span><span class="mp-value" style="color:var(--red)">${mp.val}</span></div>`;
-      if (mp.vwap) h += `<div class="mp-row"><span class="mp-label">VWAP</span><span class="mp-value" style="color:var(--yellow)">${mp.vwap}</span></div>`;
-      const shape = inst.mp_shape_yesterday || (mp.shape ? mp.shape.name || mp.shape : null);
-      if (shape) h += `<div style="margin-top:6px"><span class="shape-badge">${shape}</span></div>`;
-      h += '</div>';
-    }
-
-    // Key Levels
-    if (inst.key_levels && inst.key_levels.length) {
-      h += `<div class="levels-section">
-        ${ct('🎯', 'Key Levels', ts)}`;
-      inst.key_levels.forEach(l => {
-        h += `<div class="level-row">
-          <span class="level-name">${l.level}</span>
-          <span class="level-price">${l.price}</span>
-          <span class="level-source">${l.source||''}</span>
-        </div>`;
+    if(sigArr.length){
+      var posSum=0,negSum=0;
+      sigArr.forEach(function(s){s.wert>0?posSum+=s.wert:negSum+=s.wert;});
+      h+='<div style="margin-top:4px">';
+      h+='<div class="sig-title"><span>🔍 Confluence Score — Details</span><span>+'+posSum+' / '+negSum+' = '+bs+'</span></div>';
+      sigArr.forEach(function(s){
+        var cls=s.wert>0?'sig-pos':s.wert<0?'sig-neg':'sig-neu';
+        var dc=s.wert>0?'#22c55e':s.wert<0?'#ef4444':'#64748b';
+        var sc=s.wert>0?'+'+s.wert:String(s.wert);
+        h+='<div class="sig-row '+cls+'"><span style="display:flex;align-items:center"><span class="sig-dot" style="background:'+dc+'"></span>'+s.detail+'</span><span class="sig-score" style="color:'+dc+'">'+sc+'</span></div>';
       });
-      h += '</div>';
+      h+='</div>';
     }
 
-    // Bias Signals
-    if (signals) {
-      h += `<div class="mp-section">
-        ${ct('🔍', 'Bias Signals', ts)}
-        <ul class="slist">${signals}</ul>
-      </div>`;
+    // Zones
+    var zones=ai.zones||[];
+    if(zones.length){
+      h+='<div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border)">';
+      h+='<div class="sig-title"><span>🗺 Key Zones</span></div>';
+      zones.slice(0,5).forEach(function(z){
+        var zc=z.typ==='support'?'var(--green)':z.typ==='resistance'?'var(--red)':'var(--cyan)';
+        h+='<div class="sig-row sig-neu"><span style="color:'+zc+'">P'+z.prioritaet+' '+z.name+' ('+f(z.preis_von)+' – '+f(z.preis_bis)+')</span><span style="font-size:10px;color:var(--muted)">'+( z.bestandteile&&z.bestandteile.join(', ')||'')+'</span></div>';
+      });
+      h+='</div>';
     }
 
-    // Invalidation
-    if (inst.invalidation) {
-      h += `<div class="invalidation">⚠ Invalidierung: ${inst.invalidation}</div>`;
-    }
+    if(ai.konflikt)h+='<div class="sess-warn" style="margin-top:8px">⚡ Konflikt: '+ai.konflikt+'</div>';
 
-    h += '</div>';
+    h+='</div>'; // card
   });
 
-  // ── Summary ───────────────────────────────────────────────────────
-  if (d.summary) {
-    h += `<div class="card">
-      ${ct('📋', 'Gesamtübersicht', ts)}`;
-    if (d.summary.best_instrument) h += `<div class="summary-best">Bestes Setup: <strong>${d.summary.best_instrument}</strong></div>`;
-    if (d.summary.total_orders)    h += `<div style="font-size:12px;color:var(--muted)">Orders heute: ${d.summary.total_orders}</div>`;
-    if (d.summary.warnings)        d.summary.warnings.forEach(w => { h += `<div class="summary-warn">${w}</div>`; });
-    if (d.summary.notes)           h += `<div style="font-size:11px;color:var(--muted);margin-top:4px">${d.summary.notes}</div>`;
-    h += '</div>';
+  // ── 4. CAPTAIN BRIEFING ─────────────────────────────────────────────
+  if(cap.trade_plan){
+    h+='<div class="card">';
+    h+='<div class="card-header"><span class="card-title">✈ Captain Briefing</span><span class="card-ts">'+tsStr+'</span></div>';
+    h+='<div style="font-size:12px;line-height:1.7;color:var(--muted)">'+cap.trade_plan.replace(/\n/g,'<br>')+'</div>';
+    if(cap.notes)h+='<div style="margin-top:8px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:8px">'+cap.notes+'</div>';
+    h+='</div>';
   }
 
-  document.getElementById('content').innerHTML = h;
+  document.getElementById('main').innerHTML=h;
 }
 
-load().then(render);
+// MP Shape descriptions
+function getShapeDesc(shape){
+  var shapes={
+    'Normal Day':{desc:'Ausbalancierter Tag — Preis pendelt um POC. Käufer und Verkäufer im Gleichgewicht.',prog:'Fortsetzung der Range wahrscheinlich. POC als Magnet. VAH/VAL als Grenzen.'},
+    'Trend Day Up':{desc:'Starker Aufwärtstrend — einseitige Auktion. Wenig Gegenwehr. Schlusskurs nahe Tageshoch.',prog:'Pullback-Käufe an gestrigem VAH oder POC wahrscheinlich. Trend-Following.'},
+    'Trend Day Down':{desc:'Starker Abwärtstrend — einseitige Auktion abwärts. Schlusskurs nahe Tagestief.',prog:'Bounces an gestrigem VAL oder POC als Short-Einstiege. Trend-Following.'},
+    'Double Distribution':{desc:'Zwei getrennte Value Areas — Markt hat zweimal eine neue Balance gefunden.',prog:'Lücke zwischen den Distributions als Magnet. Richtung der zweiten VA bestimmt Bias.'},
+    'P-Shape':{desc:'Aufwärtsbewegung mit nachfolgender Konsolidierung oben. Starke Käufer.',prog:'Long-Bias. Pullbacks in den oberen Bereich kaufen. POC als Support.'},
+    'b-Shape':{desc:'Abwärtsbewegung mit nachfolgender Konsolidierung unten. Starke Verkäufer.',prog:'Short-Bias. Bounces in den unteren Bereich shorten. POC als Resistance.'},
+    'Neutral Day':{desc:'Keine klare Richtung — Markt testet beide Extreme ohne Folgebewegung.',prog:'Abwarten. Ausbruch über VAH oder unter VAL als Signal für Richtungsentscheidung.'},
+  };
+  return shapes[shape]||{desc:'Marktstruktur in Analyse.',prog:'Weitere Daten erforderlich.'};
+}
+
+// Load state.json
+async function load(){
+  // Use injected data first (local preview)
+  if(window.__STATE_DATA__){render(window.__STATE_DATA__);return;}
+  // Try state.json (GitHub Pages)
+  try{
+    var r=await fetch('state.json?t='+Date.now());
+    if(r.ok){var d=await r.json();render(d);return;}
+  }catch(e){}
+  // Fallback: journal-data.json
+  try{
+    var r2=await fetch('journal-data.json?t='+Date.now());
+    if(r2.ok){var d2=await r2.json();renderLegacy(d2);return;}
+  }catch(e){}
+  document.getElementById('main').innerHTML='<div class="loading">❌ Keine Analyse-Daten<br><small>Pipeline muss zuerst laufen</small></div>';
+}
+
+function renderLegacy(d){
+  // Minimal legacy render for old journal-data.json format
+  if(!d)return;
+  var ts=d.timestamp||null;
+  if(ts){_ts=new Date(ts);document.getElementById('ts').textContent='Journal (Legacy) — '+_ts.toLocaleDateString('de-DE');document.getElementById('age-bar').style.display='block';updateAge();}
+  // Wrap old data into state-like structure for render()
+  var wrapped={
+    pipeline:{started:ts},
+    analysis:{
+      marktphase:{phase:d.phase||'—',aktive_strategie:d.regime||'—'},
+      regime:d.regime||'—',
+      instruments:{}
+    },
+    macro:{scoring:{makro_bias:d.makro_bias||'—'}},
+    market:{instruments:{}},
+    captain:{session_bias:d.session_bias||'—'},
+    debrief:d.debrief||null,
+    stats:d.stats||null
+  };
+  // Map instruments
+  if(d.instruments){Object.keys(d.instruments).forEach(function(k){var i=d.instruments[k];wrapped.analysis.instruments[k]={bias:i.bias,bias_score:i.score,key_levels:{poc:i.poc,vah:i.vah,val:i.val}};wrapped.market.instruments[k]={poc:i.poc,vah:i.vah,val:i.val};});}
+  render(wrapped);
+}
+
+load();
 </script>
 </body>
 </html>
