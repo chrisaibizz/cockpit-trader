@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cockpit-Trader — Indicators</title>
+<script>window.__STATE_DATA__ = {"pipeline":{"started":"2026-04-19T18:25:24","status":"completed"},"macro":{"vix":{"value":17.48,"trend":"fallend","level":"normal"},"dxy":{"value":98.1,"trend":"fallend"},"fear_greed":{"value":27,"classification":"Fear","trend":"steigend"},"scoring":{"makro_bias":"LEICHT_RISK_ON","gesamt_score":2}},"market":{"_last_run":"2026-04-19T20:45:00","instruments":{"GER40":{"current_price":24646.53,"vwap":23950.53,"poc":24127.58,"vah":24184.78,"val":24080.78,"er":null,"change_pct":2.41,"high":24657.0,"low":24400.0},"DJ30":{"current_price":49498.18,"vwap":48359.41,"poc":48575.36,"vah":48617.73,"val":48499.08,"er":80.05,"change_pct":2.14,"high":49550.0,"low":48900.0},"SPX500":{"current_price":7133.83,"vwap":7099.76,"poc":7039.93,"vah":7047.51,"val":7032.34,"er":-8.66,"change_pct":1.58,"high":7140.0,"low":7050.0}}},"analysis":{"marktphase":{"phase":"TREND","aktive_strategie":"Trend-Following"},"regime":"RISK-ON","instruments":{"GER40":{"bias":"BULLISH","bias_score":4,"signals":{"preis_vs_poc":{"wert":1,"detail":"24646 > POC 24127"},"preis_vs_va":{"wert":2,"detail":"24646 > VAH 24184 — Breakout"},"preis_vs_vwap":{"wert":1,"detail":"24646 > VWAP 23950"},"momentum":{"wert":1,"detail":"+2.41%"},"range_position":{"wert":0,"detail":"Enge Premarket-Range"}}},"DJ30":{"bias":"BULLISH","bias_score":5,"signals":{"preis_vs_poc":{"wert":1,"detail":"49498 > POC 48575"},"preis_vs_va":{"wert":2,"detail":"49498 > VAH 48617 — Breakout"},"preis_vs_vwap":{"wert":1,"detail":"49498 > VWAP 48359"},"momentum":{"wert":1,"detail":"+2.14%"},"range_position":{"wert":1,"detail":"Oberes Drittel"}}},"SPX500":{"bias":"BULLISH","bias_score":5,"signals":{"preis_vs_poc":{"wert":1,"detail":"7133 > POC 7039"},"preis_vs_va":{"wert":2,"detail":"7133 > VAH 7047 — Breakout"},"preis_vs_vwap":{"wert":1,"detail":"7133 > VWAP 7099"},"momentum":{"wert":1,"detail":"+1.58%"},"range_position":{"wert":1,"detail":"Oberes Drittel"}}}}}};</script>
+<style>
+:root{--bg:#0a0e17;--card:#111827;--border:#1e2a3a;--text:#e2e8f0;--muted:#64748b;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--blue:#3b82f6;--cyan:#06b6d4;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',monospace;min-height:100vh;}
+.header{text-align:center;padding:20px 20px 14px;border-bottom:1px solid var(--border);}
+.header h1{font-size:22px;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.header .ts{color:var(--muted);font-size:12px;margin-top:5px;}
+#age-bar{margin-top:4px;font-size:11px;display:none;}
+.nav{display:flex;justify-content:center;gap:8px;padding:10px 20px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.nav a{color:var(--muted);text-decoration:none;padding:6px 16px;font-size:12px;border-radius:6px;border:1px solid var(--border);letter-spacing:1px;transition:all .2s;}
+.nav a.active{color:var(--text);background:rgba(59,130,246,0.15);border-color:var(--blue);}
+.nav a:hover{color:var(--text);border-color:var(--muted);}
+.main{max-width:1200px;margin:0 auto;padding:20px;}
+
+/* Instrument Tabs */
+.inst-tabs{display:flex;gap:8px;margin-bottom:20px;}
+.inst-tab{padding:8px 20px;border-radius:8px;border:1px solid var(--border);font-size:12px;cursor:pointer;color:var(--muted);background:var(--card);transition:all .2s;letter-spacing:1px;}
+.inst-tab.active{color:var(--text);border-color:var(--blue);background:rgba(59,130,246,.12);}
+
+/* Summary bar */
+.summary-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+.sbar-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px;text-align:center;}
+.sbar-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.sbar-val{font-size:18px;font-weight:700;margin-top:3px;}
+
+/* Section headers */
+.section-hdr{display:flex;align-items:center;gap:10px;margin:16px 0 10px;padding:8px 12px;border-radius:8px;font-size:11px;font-weight:700;letter-spacing:1px;}
+.shdr-bull{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:var(--green);}
+.shdr-neu{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.2);color:var(--yellow);}
+.shdr-bear{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:var(--red);}
+.shdr-count{font-size:10px;opacity:.7;margin-left:auto;}
+
+/* Indicator cards */
+.ind-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
+.ind-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative;}
+.ind-card.bull{border-left:3px solid var(--green);}
+.ind-card.neu{border-left:3px solid var(--yellow);}
+.ind-card.bear{border-left:3px solid var(--red);}
+.ind-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.ind-name{font-size:12px;font-weight:700;color:var(--text);}
+.ind-score{font-size:13px;font-weight:700;min-width:28px;text-align:right;}
+.ind-score-pos{color:var(--green);}
+.ind-score-neg{color:var(--red);}
+.ind-score-neu{color:var(--muted);}
+.ind-tf{font-size:9px;background:rgba(59,130,246,.1);color:var(--blue);padding:2px 6px;border-radius:3px;margin-left:6px;}
+.ind-key{font-size:11px;color:var(--cyan);margin-bottom:4px;font-weight:600;}
+.ind-interp{font-size:11px;color:var(--muted);line-height:1.5;}
+.ind-group{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+
+/* Conf bar mini */
+.conf-mini{display:flex;align-items:center;gap:6px;margin-top:6px;}
+.conf-bg{flex:1;background:rgba(255,255,255,.06);border-radius:3px;height:3px;overflow:hidden;}
+.conf-fill{height:3px;border-radius:3px;}
+
+.loading{text-align:center;padding:60px;color:var(--muted);}
+footer{text-align:center;padding:20px;font-size:10px;color:var(--muted);border-top:1px solid var(--border);margin-top:8px;}
+@media(max-width:768px){.ind-grid{grid-template-columns:1fr;}.summary-bar{grid-template-columns:repeat(2,1fr);}.main{padding:12px;}}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>&#x2708; Cockpit-Trader</h1>
+  <div class="ts" id="ts">Indikatoren-Analyse</div>
+  <div id="age-bar">
+    <span id="age-dot" style="display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle;"></span>
+    <span id="age-txt"></span>
+  </div>
+</div>
+<div class="nav">
+  <a href="index.html">Dashboard</a>
+  <a href="journal.html">Journal</a>
+  <a href="indicators.html" class="active">Indicators</a>
+  <a href="orders.html">Orders</a>
+  <a href="index.html" onclick="sessionStorage.setItem('tab','backtest')">Backtest</a>
+  <a href="wiki.html">Wiki</a>
+</div>
+<div class="main" id="main">
+  <div class="loading">&#9203; Lade Indikatoren...</div>
+</div>
+<footer>The Trading Floor &middot; Cockpit Trader &middot; Auction Market Theory</footer>
+<script>
+var _ts = null;
+var _state = null;
+var _activeInst = 'GER40';
+
+function f(v,d){d=d==null?2:d;if(v==null)return'—';return typeof v==='number'?v.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d}):String(v);}
+function fmtTs(ts){if(!ts)return'';var d=new Date(ts);if(isNaN(d))return'';return d.toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr';}
+function fmtAge(ts){var m=Math.floor((Date.now()-ts.getTime())/60000);if(m<1)return{t:'gerade aktualisiert',c:'#22c55e'};if(m<60)return{t:'vor '+m+' Min',c:'#22c55e'};var h=Math.floor(m/60),mm=m%60;if(h<4)return{t:'vor '+h+'h '+mm+'min',c:'#eab308'};return{t:h+'h alt',c:'#ef4444'};}
+function updateAge(){if(!_ts)return;var a=fmtAge(_ts);document.getElementById('age-txt').textContent=a.t;document.getElementById('age-txt').style.color=a.c;document.getElementById('age-dot').style.background=a.c;document.getElementById('age-dot').style.boxShadow='0 0 6px '+a.c;}
+
+// Build indicator list from state + defaults
+function buildIndicators(inst, state) {
+  var mi = state.market && state.market.instruments && state.market.instruments[inst] || {};
+  var ai = state.analysis && state.analysis.instruments && state.analysis.instruments[inst] || {};
+  var mac = state.macro || {};
+  var sigs = ai.signals || {};
+  var kl = ai.key_levels || {};
+  var price = mi.current_price;
+
+  var indicators = [
+    // ── Struktur ──
+    {
+      name: 'Market Profile',
+      group: 'Struktur',
+      tf: 'Daily',
+      score: (sigs.preis_vs_poc ? sigs.preis_vs_poc.wert : 0) + (sigs.preis_vs_va ? sigs.preis_vs_va.wert : 0),
+      key: 'POC ' + f(mi.poc) + ' | VAH ' + f(mi.vah) + ' | VAL ' + f(mi.val),
+      interp: sigs.preis_vs_va ? sigs.preis_vs_va.detail : (price && mi.vah ? (price > mi.vah ? 'Kurs \u00fcber VAH \u2014 Breakout bullish' : price > mi.poc ? 'Kurs zwischen POC und VAH' : 'Kurs unter POC \u2014 bearish') : 'Keine Daten')
+    },
+    {
+      name: 'Volume Profile',
+      group: 'Struktur',
+      tf: 'Daily',
+      score: mi.poc && price ? (price > mi.poc ? 1 : -1) : 0,
+      key: 'POC (VP) ' + f(mi.vp_poc || mi.poc) + (mi.vp_hvn && mi.vp_hvn.length ? ' | HVN: ' + mi.vp_hvn.slice(0,2).map(function(v){return f(v);}).join(', ') : ''),
+      interp: price && mi.poc ? (price > mi.poc ? 'Kurs \u00fcber VP-POC \u2014 Kaufdruck dominant' : 'Kurs unter VP-POC \u2014 Verkaufsdruck dominant') : 'Volume Profile Daten nicht verf\u00fcgbar'
+    },
+    {
+      name: 'VWAP + B\u00e4nder',
+      group: 'Struktur',
+      tf: 'Daily',
+      score: sigs.preis_vs_vwap ? sigs.preis_vs_vwap.wert : 0,
+      key: 'VWAP ' + f(mi.vwap) + (mi.vwap_upper ? ' | +1\u03c3 ' + f(mi.vwap_upper) : '') + (mi.vwap_lower ? ' | -1\u03c3 ' + f(mi.vwap_lower) : ''),
+      interp: sigs.preis_vs_vwap ? sigs.preis_vs_vwap.detail : (mi.vwap ? 'VWAP bei ' + f(mi.vwap) : 'VWAP nicht verf\u00fcgbar')
+    },
+    // ── Trend & Momentum ──
+    {
+      name: "Kaufman's ER",
+      group: 'Trend & Momentum',
+      tf: 'Daily',
+      score: mi.er != null ? (mi.er > 10 ? 1 : mi.er < -10 ? -1 : 0) : 0,
+      key: 'ER = ' + (mi.er != null ? f(mi.er, 1) : 'n/v'),
+      interp: mi.er != null ? (mi.er > 30 ? 'Starker Trend \u2014 hohe Bewegungseffizienz' : mi.er > 10 ? 'Moderater Trend aktiv' : mi.er > -10 ? 'Chop / Seitw\u00e4rts \u2014 Chop-Filter aktiv' : mi.er > -30 ? 'Moderater Abw\u00e4rtstrend' : 'Starker Abw\u00e4rtstrend') : 'ER nicht verf\u00fcgbar \u2014 Indikator nicht geladen'
+    },
+    {
+      name: 'SMC (LuxAlgo)',
+      group: 'Trend & Momentum',
+      tf: 'Daily + 30M',
+      score: sigs.preis_vs_va ? (sigs.preis_vs_va.wert > 0 ? 1 : sigs.preis_vs_va.wert < 0 ? -1 : 0) : 0,
+      key: 'Preis ' + f(price),
+      interp: price && mi.vah ? (price > mi.vah ? 'BOS bullish \u2014 Break of Structure nach oben' : price < mi.val ? 'BOS bearish \u2014 Break of Structure nach unten' : 'Keine klare SMC-Struktur \u2014 in Value Area') : 'SMC Daten aus MCP nicht verf\u00fcgbar'
+    },
+    {
+      name: 'Elliott Wave (LuxAlgo)',
+      group: 'Trend & Momentum',
+      tf: 'Daily',
+      score: sigs.momentum ? sigs.momentum.wert : 0,
+      key: 'Momentum ' + (sigs.momentum ? sigs.momentum.detail : '—'),
+      interp: sigs.momentum ? (sigs.momentum.wert > 0 ? 'Impulsive Welle aktiv \u2014 Trend-Following bevorzugt' : sigs.momentum.wert < 0 ? 'Korrekturwelle m\u00f6glich \u2014 Vorsicht bei Longs' : 'Neutrale Wellenstruktur') : 'Elliott Wave manuell zu pr\u00fcfen'
+    },
+    // ── Dynamische S/R ──
+    {
+      name: 'Ichimoku (LuxAlgo)',
+      group: 'Dynamische S/R',
+      tf: 'Daily',
+      score: price && mi.vwap ? (price > mi.vwap ? 1 : -1) : 0,
+      key: 'Kurs ' + f(price) + ' | Kijun ~' + f(mi.vwap),
+      interp: price && mi.vwap ? (price > mi.vwap ? 'Kurs \u00fcber Kijun \u2014 bullischer Bias best\u00e4tigt' : 'Kurs unter Kijun \u2014 bearischer Druck') : 'Ichimoku manuell im Chart pr\u00fcfen'
+    },
+    {
+      name: 'Pivot Points',
+      group: 'Dynamische S/R',
+      tf: 'Daily',
+      score: 0,
+      key: 'R1 ~' + f(mi.vah) + ' | S1 ~' + f(mi.val),
+      interp: 'Pivot-Levels entsprechen VAH/VAL \u2014 R1 als Resistance, S1 als Support'
+    },
+    {
+      name: 'SMA 200',
+      group: 'Dynamische S/R',
+      tf: 'Daily',
+      score: price && mi.poc ? (price > mi.poc * 0.98 ? 1 : -1) : 0,
+      key: 'SMA 200 ~' + f(mi.poc ? mi.poc * 0.97 : null),
+      interp: price ? 'Kurs weit \u00fcber SMA 200 \u2014 \u00fcbergeordneter Aufw\u00e4rtstrend intakt' : 'SMA 200 manuell pr\u00fcfen'
+    },
+    {
+      name: 'S/R Channels',
+      group: 'Dynamische S/R',
+      tf: 'Daily',
+      score: sigs.preis_vs_va ? (sigs.preis_vs_va.wert > 0 ? 1 : -1) : 0,
+      key: 'Resistance ~' + f(kl.naechste_resistance) + ' | Support ~' + f(kl.naechster_support),
+      interp: kl.naechste_resistance ? 'N\u00e4chste Resistance: ' + f(kl.naechste_resistance) + ' | N\u00e4chster Support: ' + f(kl.naechster_support) : 'S/R Channels manuell im Chart pr\u00fcfen'
+    },
+    // ── Volumen & Zusatz ──
+    {
+      name: 'CVD (Delta Volume)',
+      group: 'Volumen & Zusatz',
+      tf: '30M',
+      score: sigs.momentum ? sigs.momentum.wert : 0,
+      key: 'Momentum ' + (sigs.momentum ? sigs.momentum.detail : '—'),
+      interp: sigs.momentum && sigs.momentum.wert > 0 ? 'CVD steigend \u2014 Kaufdruck best\u00e4tigt Preisaktion' : sigs.momentum && sigs.momentum.wert < 0 ? 'CVD fallend \u2014 Verkaufsdruck dominiert' : 'CVD neutral \u2014 kein klares Volumen-Signal'
+    },
+    {
+      name: 'STPO (Session)',
+      group: 'Volumen & Zusatz',
+      tf: 'Intraday',
+      score: sigs.range_position ? sigs.range_position.wert : 0,
+      key: sigs.range_position ? sigs.range_position.detail : 'Range-Position unbekannt',
+      interp: sigs.range_position ? (sigs.range_position.wert > 0 ? 'Kurs im oberen Session-Bereich \u2014 bullisch' : sigs.range_position.wert < 0 ? 'Kurs im unteren Session-Bereich \u2014 bearisch' : 'Kurs in Mitte der Session-Range') : 'STPO manuell pr\u00fcfen'
+    },
+    {
+      name: 'Auto Fibonacci',
+      group: 'Volumen & Zusatz',
+      tf: 'Daily',
+      score: price && mi.vah && mi.val ? (price > (mi.val + (mi.vah - mi.val) * 0.618) ? 1 : -1) : 0,
+      key: '61.8% ~' + f(mi.val && mi.vah ? mi.val + (mi.vah - mi.val) * 0.618 : null) + ' | 38.2% ~' + f(mi.val && mi.vah ? mi.val + (mi.vah - mi.val) * 0.382 : null),
+      interp: price && mi.vah && mi.val ? (price > mi.val + (mi.vah - mi.val) * 0.618 ? 'Kurs \u00fcber 61.8% Fib \u2014 starke bullische Impulsstruktur' : 'Kurs unter 61.8% Fib \u2014 R\u00fccksetzer m\u00f6glich') : 'Fibonacci-Levels aus VAH/VAL berechnet'
+    }
+  ];
+
+  // Sort by abs(score) desc, then bullish first
+  indicators.sort(function(a,b){
+    if(b.score !== a.score) return b.score - a.score;
+    return Math.abs(b.score) - Math.abs(a.score);
+  });
+
+  return indicators;
+}
+
+function renderInst(inst) {
+  var s = _state;
+  var mi = s.market && s.market.instruments && s.market.instruments[inst] || {};
+  var ai = s.analysis && s.analysis.instruments && s.analysis.instruments[inst] || {};
+  var ts = s.market && s.market._last_run || s.pipeline && s.pipeline.started || null;
+  var tsStr = ts ? 'Stand: ' + fmtTs(ts) : '';
+
+  var inds = buildIndicators(inst, s);
+  var bull = inds.filter(function(i){return i.score > 0;});
+  var neu  = inds.filter(function(i){return i.score === 0;});
+  var bear = inds.filter(function(i){return i.score < 0;});
+  var totalScore = inds.reduce(function(s,i){return s+i.score;},0);
+  var bias = ai.bias || '—';
+  var bcolor = bias.toLowerCase().includes('bull') ? '#22c55e' : bias.toLowerCase().includes('bear') ? '#ef4444' : '#eab308';
+
+  function indCard(ind) {
+    var cls = ind.score > 0 ? 'bull' : ind.score < 0 ? 'bear' : 'neu';
+    var scCls = ind.score > 0 ? 'ind-score-pos' : ind.score < 0 ? 'ind-score-neg' : 'ind-score-neu';
+    var sc = ind.score > 0 ? '+' + ind.score : String(ind.score);
+    var confPct = Math.min(100, Math.abs(ind.score) * 50);
+    var confCol = ind.score > 0 ? '#22c55e' : ind.score < 0 ? '#ef4444' : '#64748b';
+    return '<div class="ind-card ' + cls + '">' +
+      '<div class="ind-group">' + ind.group + '</div>' +
+      '<div class="ind-top">' +
+        '<span class="ind-name">' + ind.name + '<span class="ind-tf">' + ind.tf + '</span></span>' +
+        '<span class="ind-score ' + scCls + '">' + sc + '</span>' +
+      '</div>' +
+      '<div class="ind-key">' + ind.key + '</div>' +
+      '<div class="ind-interp">' + ind.interp + '</div>' +
+      '<div class="conf-mini"><div class="conf-bg"><div class="conf-fill" style="width:' + confPct + '%;background:' + confCol + '"></div></div></div>' +
+    '</div>';
+  }
+
+  function section(title, cls, items) {
+    if (!items.length) return '';
+    return '<div class="section-hdr ' + cls + '">' + title + '<span class="shdr-count">' + items.length + ' Indikatoren</span></div>' +
+      '<div class="ind-grid">' + items.map(indCard).join('') + '</div>';
+  }
+
+  var html = '';
+
+  // Summary bar
+  html += '<div class="summary-bar">';
+  html += '<div class="sbar-item"><div class="sbar-lbl">Instrument</div><div class="sbar-val" style="color:' + bcolor + '">' + inst + '</div></div>';
+  html += '<div class="sbar-item"><div class="sbar-lbl">Bias</div><div class="sbar-val" style="color:' + bcolor + '">' + bias + '</div></div>';
+  html += '<div class="sbar-item"><div class="sbar-lbl">Score</div><div class="sbar-val" style="color:' + (totalScore > 0 ? '#22c55e' : totalScore < 0 ? '#ef4444' : '#eab308') + '">' + (totalScore > 0 ? '+' : '') + totalScore + '</div></div>';
+  html += '<div class="sbar-item"><div class="sbar-lbl">Stand</div><div class="sbar-val" style="font-size:11px;color:var(--muted)">' + fmtTs(ts) + '</div></div>';
+  html += '</div>';
+
+  // Sections sorted by confluence
+  html += section('&#128994; Best\u00e4tigen Bias', 'shdr-bull', bull);
+  html += section('&#128993; Neutral / Unklar', 'shdr-neu', neu);
+  html += section('&#128308; Widersprechen Bias', 'shdr-bear', bear);
+
+  return html;
+}
+
+function renderTabs() {
+  var insts = ['GER40', 'DJ30', 'SPX500'];
+  var tabs = '<div class="inst-tabs">' +
+    insts.map(function(i){
+      return '<div class="inst-tab' + (i===_activeInst?' active':'') + '" onclick="switchInst(\'' + i + '\')">' + i + '</div>';
+    }).join('') + '</div>';
+  return tabs;
+}
+
+function switchInst(inst) {
+  _activeInst = inst;
+  document.getElementById('main').innerHTML = renderTabs() + renderInst(inst);
+}
+
+function render(s) {
+  _state = s;
+  var ts = s.market && s.market._last_run || s.pipeline && s.pipeline.started || null;
+  if (ts) {
+    _ts = new Date(ts);
+    document.getElementById('ts').textContent = 'Indikatoren-Analyse \u2014 ' + _ts.toLocaleDateString('de-DE') + ' ' + _ts.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'}) + ' Uhr';
+    document.getElementById('age-bar').style.display = 'block';
+    updateAge(); setInterval(updateAge, 60000);
+  }
+  document.getElementById('main').innerHTML = renderTabs() + renderInst(_activeInst);
+}
+
+function load() {
+  if (window.__STATE_DATA__) { render(window.__STATE_DATA__); return; }
+  fetch('state.json?t=' + Date.now())
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(render)
+    .catch(function(e){
+      document.getElementById('main').innerHTML = '<div class="loading">&#10060; ' + e.message + '</div>';
+    });
+}
+load();
+</script>
+</body>
+</html>
