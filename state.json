@@ -1,0 +1,191 @@
+{
+  "_schema_version": "2.0",
+  "_updated": "",
+  "_note": "Cockpit Trader — Zentraler State fuer alle Agenten. Jeder Agent liest und schreibt nur seinen eigenen Block. Koordinator prueft status-Felder.",
+
+  "pipeline": {
+    "date": "2026-04-19",
+    "started": "2026-04-19T16:05:00",
+    "completed": "",
+    "active_agent": "MACRO",
+    "status": "running",
+    "agents_completed": [],
+    "errors": []
+  },
+
+  "macro": {
+    "_agent": "MACRO",
+    "_last_run": "2026-04-19T16:05:10",
+    "_status": "ready",
+    "fear_greed": { "value": 27, "classification": "Fear", "yesterday": 26, "trend": "steigend" },
+    "put_call_ratio": { "value": null, "interpretation": "Datenfehler", "error": "yfinance out-of-bounds" },
+    "vix": { "value": 17.48, "prev": 17.94, "level": "normal", "trend": "fallend", "bias_einfluss": "leicht bearish" },
+    "bonds_10y": { "yield": 4.246, "prev": 4.309, "trend": "fallend", "interpretation": "zinsdruck_moderat" },
+    "dxy": { "value": 98.1, "prev": 98.22, "trend": "fallend", "interpretation": "dollar_schwach" },
+    "oil_wti": { "value": 82.59, "prev": 94.69, "trend": "fallend", "interpretation": "inflationsdruck_moderat" },
+    "gold": { "value": 4879.6, "prev": 4785.4, "trend": "steigend", "interpretation": "risk_off" },
+    "fred": {
+      "fedfunds": { "value": 3.64, "date": "2026-03-01" },
+      "cpi": { "value": 3.32, "date": "2026-03-01" },
+      "t10yie": { "value": null, "date": "" },
+      "credit_spread": { "value": null, "date": "" }
+    },
+    "scoring": { "bullish_punkte": 4, "bearish_punkte": 2, "gesamt_score": 2, "makro_bias": "LEICHT_RISK_ON" },
+    "warnungen": []
+  },
+
+  "market": {
+    "_agent": "MARKETDATA",
+    "_last_run": "2026-04-19T16:05:20",
+    "_status": "ready",
+    "timestamp": "2026-04-19 16:05",
+    "instruments": {
+      "GER40": { "ticker": "Vantage:GER40", "current_price": 24066.7, "open": 24060.97, "high": 24127.01, "low": 23996.8, "prev_close": 24066.7, "change_pct": 0.0, "vwap": 24047.26, "poc": 24047.26, "vah": 24097.71, "val": 24039.12, "mp_source": "data.json fallback (TradingView offline)", "data_quality": "teilweise" },
+      "DJ30":  { "ticker": "Vantage:DJ30",  "current_price": 48578.72, "open": 48557.82, "high": 48683.45, "low": 48337.38, "prev_close": 48463.72, "change_pct": 0.24, "vwap": 48411.6, "poc": 48457.92, "vah": 48506.0, "val": 48324.36, "mp_source": "data.json fallback (TradingView offline)", "data_quality": "teilweise" },
+      "SPX500":{ "ticker": "Vantage:SP500", "current_price": 7041.28, "open": 7037.78, "high": 7051.23, "low": 7008.52, "prev_close": 7022.95, "change_pct": 0.26, "vwap": 7000.83, "poc": 6995.95, "vah": 7004.07, "val": 6973.04, "mp_source": "data.json fallback (TradingView offline)", "data_quality": "teilweise" }
+    },
+    "calendar": [
+      { "date": "2026-04-21", "time": "09:00", "event": "ZEW Economic Sentiment Index", "country": "DE", "impact": "high" },
+      { "date": "2026-04-21", "time": "12:30", "event": "Retail Sales MoM", "country": "US", "impact": "high" }
+    ]
+  },
+
+  "analysis": {
+    "_agent": "ANALYST",
+    "_last_run": "2026-04-19T16:05:30",
+    "_status": "ready",
+    "marktphase": {
+      "phase": "TREND",
+      "begruendung": "DJ30 (48578) und SPX500 (7041) klar ueber VAH (48506/7004). VIX 17.48 fallend. Makro LEICHT_RISK_ON (+2) unterstuetzt bullische Struktur.",
+      "aktive_strategie": "Trend-Following"
+    },
+    "regime": "RISK-ON",
+    "risk_level": "MEDIUM",
+    "instruments": {
+      "GER40": {
+        "bias": "BULLISH", "bias_score": 3,
+        "signals": {
+          "preis_vs_poc":  { "wert": 1, "detail": "24066.7 > POC 24047.26 (+1)" },
+          "preis_vs_va":   { "wert": 1, "detail": "In VA (24039-24098), oberhalb POC (+1)" },
+          "preis_vs_vwap": { "wert": 1, "detail": "24066.7 > VWAP 24047.26 (+1)" },
+          "momentum":      { "wert": 0, "detail": "change_pct 0.0% — kein Impuls (0)" },
+          "range_position":{ "wert": 0, "detail": "Mitte Range 23996-24127 (0)" }
+        },
+        "key_levels": { "poc": 24047.26, "vah": 24097.71, "val": 24039.12, "vwap": 24047.26, "current": 24066.7, "naechster_support": 24047.26, "naechste_resistance": 24097.71, "invalidation": 24039.12 },
+        "zones": [{ "typ": "SUPPORT", "low": 24039.12, "high": 24050.0, "prioritaet": 1, "detail": "VAL+POC+VWAP Confluence (3 Levels)" }],
+        "konflikt": null,
+        "warnung": "GER40 noch in Value Area — kein Breakout wie US-Indizes"
+      },
+      "DJ30": {
+        "bias": "BULLISH", "bias_score": 5,
+        "signals": {
+          "preis_vs_poc":  { "wert": 1, "detail": "48578.72 > POC 48457.92 (+1)" },
+          "preis_vs_va":   { "wert": 2, "detail": "48578.72 > VAH 48506.0 — Breakout (+2)" },
+          "preis_vs_vwap": { "wert": 1, "detail": "48578.72 > VWAP 48411.6 (+1)" },
+          "momentum":      { "wert": 0, "detail": "change_pct +0.24% unter Schwelle +0.5% (0)" },
+          "range_position":{ "wert": 1, "detail": "48578.72 oberes Drittel (>48568) (+1)" }
+        },
+        "key_levels": { "poc": 48457.92, "vah": 48506.0, "val": 48324.36, "vwap": 48411.6, "current": 48578.72, "naechster_support": 48506.0, "naechste_resistance": 48683.45, "invalidation": 48324.36 },
+        "zones": [{ "typ": "SUPPORT", "low": 48450.0, "high": 48510.0, "prioritaet": 1, "detail": "POC 48457 + prev_close 48463 + VAH 48506 Confluence (3 Levels)" }],
+        "konflikt": null,
+        "warnung": null
+      },
+      "SPX500": {
+        "bias": "BULLISH", "bias_score": 5,
+        "signals": {
+          "preis_vs_poc":  { "wert": 1, "detail": "7041.28 > POC 6995.95 (+1)" },
+          "preis_vs_va":   { "wert": 2, "detail": "7041.28 > VAH 7004.07 — Breakout (+2)" },
+          "preis_vs_vwap": { "wert": 1, "detail": "7041.28 > VWAP 7000.83 (+1)" },
+          "momentum":      { "wert": 0, "detail": "change_pct +0.26% unter Schwelle +0.5% (0)" },
+          "range_position":{ "wert": 1, "detail": "7041.28 oberes Drittel (>7036.99) (+1)" }
+        },
+        "key_levels": { "poc": 6995.95, "vah": 7004.07, "val": 6973.04, "vwap": 7000.83, "current": 7041.28, "naechster_support": 7004.07, "naechste_resistance": 7051.23, "invalidation": 6973.04 },
+        "zones": [{ "typ": "SUPPORT", "low": 7000.0, "high": 7006.0, "prioritaet": 1, "detail": "VAH 7004 + VWAP 7001 Confluence (2 Levels)" }],
+        "konflikt": null,
+        "warnung": null
+      }
+    },
+    "inter_market": {
+      "alle_bullish": true, "alle_bearish": false, "gemischt": false,
+      "beschreibung": "Alle drei Instrumente BULLISH. DJ30 und SPX500 ueber VAH (klarer Trend), GER40 in VA (Nachzuegler). Starkes Inter-Market Signal."
+    },
+    "watchlist": ["Gold steigend +94$ (Risk-Off)", "Fear&Greed 27 (Fear — Stimmung vorsichtig)", "ZEW + Retail Sales 21.04."],
+    "summary": "Regime RISK-ON. Phase TREND. Alle drei Indizes BULLISH (GER40 +3, DJ30 +5, SPX500 +5). DJ30 und SPX500 ueber VAH — Trend-Following Umgebung. VIX fallend 17.48, DXY schwach 98.1, Makro LEICHT_RISK_ON. Gegenwind: F&G 27 (Fear), Gold +94$ (Risk-Off). Events Montag 21.04 ohne unmittelbares Risiko heute. Long-Setups bevorzugen, Ruecksetzer auf Support-Zonen nutzen."
+  },
+
+  "captain": {
+    "_agent": "CAPTAIN",
+    "_last_run": "2026-04-19T16:05:40",
+    "_status": "ready",
+    "session_bias": "LONG-BIAS",
+    "aktive_strategie": "Trend-Following",
+    "trade_plan": "Primaerinstrument DJ30: Limit Buy bei Pullback in 48450-48510 Zone (POC 48457 + VAH 48506 als neuer Support). Entry 48460, SL 48276 (unter VAL 48324 mit 0.1% Buffer), TP1 48683 (Day-High, R:R 1.2). Besser: Entry tiefer bei 48330 (nahe VAL), SL 48276, TP1 48506, R:R 3.3. Sekundaer: SPX500 Pullback auf 6975 (nahe VAL 6973, VWAP+VAH Confluence). GER40: Entry 24040 (VAL+POC+VWAP Zone), hoechste P_Fill.",
+    "instrument_prioritaet": ["DJ30", "SPX500", "GER40"],
+    "max_risk_today": "1.0%",
+    "max_trades_heute": 2,
+    "trades_today": 0,
+    "active_positions": [],
+    "notes": "Regime RISK-ON + Makro LEICHT_RISK_ON = LONG-BIAS. Alle 3 Instrumente BULLISH — kein Divergenz-Override. ANALYST Trend-Following = Session-Bias konsistent. Risiko MEDIUM (Fear&Greed 27, Gold risk_off). VIX 17.48 < 30 — kein WAIT. Naechste Events 21.04 — heute kein Blocking. Hard Rules: kein Trade 30min um Events."
+  },
+
+  "orders": {
+    "_agent": "EXECUTOR",
+    "_last_run": "2026-04-19T16:05:55",
+    "_status": "ready",
+    "orders": [
+      {
+        "instrument": "DJ30",
+        "richtung": "LONG",
+        "entry": 48330.0,
+        "sl": 48276.0,
+        "tp1": 48506.0,
+        "tp2": 48683.45,
+        "rr": 3.26,
+        "konfluenz_score": 7,
+        "p_fill": 40,
+        "p_tp1": 50,
+        "bestaedigungen": ["VAL Support 48324", "POC 48457 Zone", "VWAP 48411 oberhalb", "Inter-Market alle BULLISH", "Bias-Score +5", "Regime RISK-ON", "Makro LEICHT_RISK_ON"]
+      },
+      {
+        "instrument": "SPX500",
+        "richtung": "LONG",
+        "entry": 6975.0,
+        "sl": 6966.0,
+        "tp1": 7004.07,
+        "tp2": 7051.23,
+        "rr": 3.23,
+        "konfluenz_score": 6,
+        "p_fill": 32,
+        "p_tp1": 50,
+        "bestaedigungen": ["VAL Support 6973", "VWAP 7001 + VAH 7004 Confluence", "POC 6995 Zone", "Inter-Market alle BULLISH", "Bias-Score +5", "Regime RISK-ON"]
+      },
+      {
+        "instrument": "GER40",
+        "richtung": "LONG",
+        "entry": 24040.0,
+        "sl": 24015.0,
+        "tp1": 24097.71,
+        "tp2": 24127.01,
+        "rr": 2.31,
+        "konfluenz_score": 5,
+        "p_fill": 55,
+        "p_tp1": 42,
+        "bestaedigungen": ["VAL+POC+VWAP Confluence 24039-24047", "Bias-Score +3", "Inter-Market BULLISH", "Regime RISK-ON", "Hoechste P_Fill"]
+      }
+    ],
+    "summary": {
+      "best_instrument": "DJ30",
+      "total_orders": 3,
+      "warnings": [
+        "Google Sheet: MCP nicht verfuegbar — kein Sheets-Write",
+        "Google Doc: MCP nicht verfuegbar — kein Doc-Create",
+        "CAPTAIN max_trades=2 — DJ30 und SPX500 haben Handels-Prioritaet",
+        "GER40 gueltig aber niedrigster Konfluenz-Score"
+      ],
+      "notes": "3 Limit-Buy Orders berechnet, alle R:R >= 2.3 (Minimum 1.5 erfuellt). Mindest-Bestaedigungen (MP+VP+2 weitere) erfuellt. Orders fuer Montag-Session vorbereitet."
+    }
+  },
+
+  "signals": [],
+  "trades": []
+}
