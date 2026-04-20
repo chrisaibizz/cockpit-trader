@@ -214,14 +214,65 @@ function drawVP(mp,currentPrice){
 
 function drawVPFallback(mp,currentPrice){
   if(!mp||!mp.poc)return '<div style="text-align:center;color:var(--muted);padding:20px">Kein Volume Profile</div>';
-  var h=200,w=520,margin=80,rightPad=20;
-  var levels=[{label:'VAH',price:mp.vah,color:'#22c55e'},{label:'POC',price:mp.poc,color:'#06b6d4'},{label:'VWAP',price:mp.vwap,color:'#eab308'},{label:'VAL',price:mp.val,color:'#ef4444'}].filter(function(l){return l.price!=null;}).sort(function(a,b){return b.price-a.price;});
-  if(currentPrice)levels.push({label:'Kurs',price:currentPrice,color:'#f1f5f9',bold:true});
-  var allP=levels.map(function(l){return l.price;}),minP=Math.min.apply(null,allP),maxP=Math.max.apply(null,allP),range=maxP-minP||1;
-  var p2y=function(p){return 10+(1-(p-minP)/range)*(h-20);};
-  var lines='';
-  levels.forEach(function(l){var y=p2y(l.price),dash=l.bold?'':' stroke-dasharray="6,3"',sw=l.bold?2.5:1.5;lines+='<line x1="'+margin+'" y1="'+y+'" x2="'+(w-rightPad)+'" y2="'+y+'" stroke="'+l.color+'" stroke-width="'+sw+'"'+dash+'/><text x="'+(margin-6)+'" y="'+(y+4)+'" text-anchor="end" fill="'+l.color+'" font-size="11" font-family="monospace"'+(l.bold?' font-weight="bold"':'')+'>'+l.price.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+'</text><text x="'+(w-rightPad+4)+'" y="'+(y+4)+'" fill="'+l.color+'" font-size="10" font-family="monospace">'+l.label+'</text>';});
-  return '<svg viewBox="0 0 '+w+' '+h+'">'+lines+'</svg>';
+  // Synthetisches Balken-Chart aus Levels generieren
+  var h=240,w=520,margin=70,rightPad=20;
+  var poc=mp.poc,vah=mp.vah,val=mp.val,vwap=mp.vwap;
+  if(!vah||!val)return '<div style="text-align:center;color:var(--muted);padding:20px">Keine Level-Daten</div>';
+
+  var allP=[poc,vah,val,vwap,currentPrice].filter(function(v){return v!=null;});
+  var minP=Math.min.apply(null,allP)*0.9998;
+  var maxP=Math.max.apply(null,allP)*1.0002;
+  var range=maxP-minP||1;
+  var numBars=30;
+  var bH=h/numBars;
+  var p2y=function(p){return h-((p-minP)/range)*h;};
+  var bars='';
+
+  // Synthetische Balken basierend auf VA, POC, Außenbereich
+  for(var i=0;i<numBars;i++){
+    var price=minP+(i/numBars)*range;
+    var inVA=price>=val&&price<=vah;
+    var isPOC=Math.abs(price-poc)<range/numBars*0.8;
+    var bW,col;
+    if(isPOC){
+      bW=(w-margin-rightPad)*0.95;
+      col='rgba(6,182,212,0.85)';
+    } else if(inVA){
+      // Normalverteilung um POC
+      var dist=Math.abs(price-poc)/(vah-val);
+      bW=(w-margin-rightPad)*(0.75-dist*0.4);
+      col='rgba(59,130,246,0.6)';
+    } else {
+      var dist2=Math.min(Math.abs(price-val),Math.abs(price-vah))/(range*0.3);
+      bW=(w-margin-rightPad)*(0.35-Math.min(dist2,0.3));
+      col='rgba(59,130,246,0.3)';
+    }
+    bW=Math.max(bW,2);
+    var y=h-(i+1)*bH;
+    bars+='<rect x="'+margin+'" y="'+y+'" width="'+bW+'" height="'+(bH-1)+'" fill="'+col+'" rx="2"/>';
+    if(i%4===0){
+      var lPrice=minP+(i/numBars)*range;
+      bars+='<text x="'+(margin-6)+'" y="'+(y+bH/2+4)+'" text-anchor="end" fill="#64748b" font-size="10" font-family="monospace">'+lPrice.toFixed(0)+'</text>';
+    }
+  }
+
+  // Level Linien
+  if(vah){var y=p2y(vah);bars+='<line x1="'+margin+'" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,4"/><text x="'+(w-4)+'" y="'+(y-4)+'" text-anchor="end" fill="#22c55e" font-size="10" font-family="monospace">VAH '+vah+'</text>';}
+  if(poc){var y=p2y(poc);bars+='<line x1="'+margin+'" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="#06b6d4" stroke-width="2" stroke-dasharray="6,3"/><text x="'+(w-4)+'" y="'+(y-4)+'" text-anchor="end" fill="#06b6d4" font-size="11" font-family="monospace">POC '+poc+'</text>';}
+  if(val){var y=p2y(val);bars+='<line x1="'+margin+'" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,4"/><text x="'+(w-4)+'" y="'+(y+14)+'" text-anchor="end" fill="#ef4444" font-size="10" font-family="monospace">VAL '+val+'</text>';}
+  if(vwap){var y=p2y(vwap);bars+='<line x1="'+margin+'" y1="'+y+'" x2="'+w+'" y2="'+y+'" stroke="#eab308" stroke-width="1" stroke-dasharray="3,2"/><text x="'+(w-4)+'" y="'+(y-4)+'" text-anchor="end" fill="#eab308" font-size="10" font-family="monospace">VWP '+vwap+'</text>';}
+  if(currentPrice!=null){
+    var inRange=currentPrice>=minP&&currentPrice<=maxP;
+    if(inRange){
+      var y=p2y(currentPrice);
+      bars+='<line x1="'+margin+'" y1="'+y+'" x2="'+(w-100)+'" y2="'+y+'" stroke="#f1f5f9" stroke-width="2"/>';
+      bars+='<polygon points="'+(w-102)+','+(y-5)+' '+(w-92)+','+y+' '+(w-102)+','+(y+5)+'" fill="#f1f5f9"/>';
+      bars+='<rect x="'+margin+'" y="'+(y-9)+'" width="92" height="18" fill="rgba(241,245,249,0.15)" rx="3"/>';
+      bars+='<text x="'+(margin+4)+'" y="'+(y+5)+'" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">▶ '+currentPrice.toFixed(2)+'</text>';
+      bars+='<text x="'+(w-4)+'" y="'+(y+5)+'" text-anchor="end" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">'+currentPrice.toFixed(2)+'</text>';
+    }
+  }
+  return '<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMidYMid meet">'+bars+'</svg>';
 }
 
 function renderCal(cal){
