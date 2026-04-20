@@ -265,25 +265,38 @@ function render(d){
 }
 
 function load(){
-  // fetch state.json zuerst (GitHub Pages - immer aktuell)
-  fetch('state.json?t='+Date.now())
-    .then(function(r){if(!r.ok)throw new Error();return r.json();})
-    .then(function(s){
-      // state.json in dashboard-kompatibles Format umwandeln
-      if(s.market&&s.analysis){renderFromState(s);return;}
-      throw new Error('state.json kein Dashboard-Format');
-    })
-    .catch(function(){
-      // Fallback 1: data.json
-      fetch('data.json?t='+Date.now())
-        .then(function(r){if(!r.ok)throw new Error('data.json nicht gefunden');return r.json();})
-        .then(render)
-        .catch(function(){
-          // Fallback 2: eingebettete Daten (lokal)
-          if(window.__COCKPIT_DATA__){render(window.__COCKPIT_DATA__);return;}
-          document.getElementById('dash').innerHTML='<div class="loading">❌ Keine Daten verfügbar</div>';
+  // Lade state.json UND data.json parallel - kombiniere beide
+  var stateP = fetch('state.json?t='+Date.now()).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});
+  var dataP  = fetch('data.json?t='+Date.now()).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});
+
+  Promise.all([stateP, dataP]).then(function(results){
+    var s=results[0], d=results[1];
+    if(s&&s.market&&s.analysis){
+      // state.json vorhanden - nutze es als Basis, ergänze VP-Daten aus data.json
+      if(d&&d.instruments){
+        // VP Balkendaten aus data.json in state.json injizieren
+        Object.keys(d.instruments).forEach(function(k){
+          var inst=d.instruments[k];
+          if(inst.market_profile&&inst.market_profile.volume_profile){
+            if(s.market.instruments[k]){
+              s.market.instruments[k].volume_profile=inst.market_profile.volume_profile;
+            }
+          }
         });
-    });
+        // Journal instruments VP auch
+        if(d.journal&&d.journal.instruments){
+          s._journal_instruments=d.journal.instruments;
+        }
+      }
+      renderFromState(s);
+      return;
+    }
+    // Fallback: nur data.json
+    if(d){render(d);return;}
+    // Fallback: eingebettete Daten
+    if(window.__COCKPIT_DATA__){render(window.__COCKPIT_DATA__);return;}
+    document.getElementById('dash').innerHTML='<div class="loading">❌ Keine Daten verfügbar</div>';
+  });
 }
 
 function renderFromState(s){
@@ -306,6 +319,10 @@ function renderFromState(s){
       instruments: Object.keys(s.market&&s.market.instruments||{}).map(function(k){
         var mi=s.market.instruments[k];
         var ai=s.analysis&&s.analysis.instruments&&s.analysis.instruments[k]||{};
+        // Versuche VP-Daten aus journal instruments (data.json) zu holen
+        var ji=s._journal_instruments&&s._journal_instruments.filter(function(x){return x.name===k||x.name===k.replace('SPX500','SPX').replace('DJ30','DJI');});
+        var jiData=ji&&ji.length?ji[0]:null;
+        var vpData=mi.volume_profile||(jiData&&jiData.market_profile&&jiData.market_profile.volume_profile)||null;
         return {
           name:k,
           bias:ai.bias||'—',
@@ -314,7 +331,7 @@ function renderFromState(s){
           confluence_pct:Math.round((ai.bias_score||0)/7*100),
           confluence_label:(ai.bias_score||0)+'/7',
           quote:{price:mi.current_price,change:0,change_pct:mi.change_pct||0,high:mi.high,low:mi.low,prev_close:mi.prev_close},
-          market_profile:{poc:mi.poc,vah:mi.vah,val:mi.val,vwap:mi.vwap,shape:{name:mi.mp_shape||'Normal Day',description:''}},
+          market_profile:{poc:mi.poc,vah:mi.vah,val:mi.val,vwap:mi.vwap,volume_profile:vpData,shape:{name:mi.mp_shape||'Normal Day',description:''}},
           current_price:mi.current_price,
           mp_shape_yesterday:mi.mp_shape||'Normal Day'
         };
