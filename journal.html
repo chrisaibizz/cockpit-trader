@@ -186,7 +186,9 @@ function render(s){
     if(cap.max_trades_heute)h+='<span style="font-size:11px;color:var(--muted)">Max Trades: <strong style="color:var(--text)">'+cap.max_trades_heute+'</strong></span>';
     h+='</div>';
     if(cap.trade_plan){
-      var lines=cap.trade_plan.split('\n').filter(function(l){return l.trim();});
+      // Splitte nach Newline ODER nach '. ' vor Grossbuchstabe (aber nicht Dezimalzahlen)
+      var raw=cap.trade_plan.replace(/([.!])\s+([A-ZÜÄÖ])/g,'$1\n$2');
+      var lines=raw.split('\n').filter(function(l){return l.trim().length>2;});
 
       // Trenne Instrument-Zeilen von Rest-Zeilen
       var instLines=[], otherLines=[];
@@ -196,6 +198,21 @@ function render(s){
         else otherLines.push(t);
       });
 
+      // Falls keine Instrument-Zeilen gefunden: suche nach Instrument-Mustern im Text
+      if(!instLines.length){
+        var combined=cap.trade_plan;
+        var matches=combined.match(/(DJ30|SPX500|GER40|US30|FDAX)[^.]+\./gi)||[];
+        matches.forEach(function(m){instLines.push(m.trim());});
+        // Rest als otherLines
+        if(instLines.length){
+          var restText=combined;
+          instLines.forEach(function(m){restText=restText.replace(m,'');});
+          restText.split(/[.!]\s+/).filter(function(l){return l.trim().length>3;}).forEach(function(l){otherLines.push(l.trim());});
+        } else {
+          lines.forEach(function(l){otherLines.push(l.trim());});
+        }
+      }
+
       // Sortiere Instrument-Zeilen nach R:R (höchste zuerst)
       instLines.sort(function(a,b){
         var rrA=parseFloat((a.match(/R:R\s*([\d.]+)/i)||[0,0])[1])||0;
@@ -203,33 +220,36 @@ function render(s){
         return rrB-rrA;
       });
 
-      // Render andere Zeilen zuerst (Intro-Text)
+      // Render andere Zeilen (Intro-Text + Warnungen)
       var otherHtml=otherLines.map(function(t){
         var isHard=/kein (market|chase|entry|trade)|nicht handeln|hard rule|verboten/i.test(t);
-        var isWarn=/vorsicht|kleiner halten|beobachten|nur handeln wenn|warten|abwarten|limit.order|retest|divergenz|kontraindikator/i.test(t);
-        var isGood=/risk.on|makro unterstützt|bias bestätigt|bullish bestätigt|alle.*bullish/i.test(t);
+        var isWarn=/vorsicht|kleiner|beobachten|nur handeln wenn|warten|abwarten|retest|divergenz|kontraindikator|long-lean/i.test(t);
+        var isGood=/risk.on|makro unterstützt|alle.*bullish|freigabe/i.test(t);
         var col=isHard?'var(--red)':isWarn?'var(--yellow)':isGood?'var(--green)':'var(--text)';
-        return '<div style="color:'+col+';font-size:12px;line-height:1.7;padding:1px 0">'+t+'</div>';
+        return '<div style="color:'+col+';font-size:12px;line-height:1.8;padding:1px 0">'+t+'</div>';
       }).join('');
 
-      // Render Instrument-Zeilen sortiert nach R:R
+      // Render Instrument-Zeilen sortiert nach R:R mit ⭐ für besten
       var instHtml=instLines.map(function(t,i){
-        var star=i===0?'⭐ ':'&#8226; ';
-        var starCol=i===0?'color:var(--yellow);':'color:var(--text);';
-        return '<div style="margin-top:10px;'+starCol+'font-size:12px;line-height:1.7;font-weight:600">'+star+t+'</div>';
+        var prefix=i===0?'⭐ ':'&#8226; ';
+        var col=i===0?'var(--yellow)':'var(--text)';
+        return '<div style="margin-top:10px;color:'+col+';font-size:12px;line-height:1.8;font-weight:600">'+prefix+t+'</div>';
       }).join('');
 
       h+='<div style="margin-bottom:8px">'+otherHtml+instHtml+'</div>';
     }
     if(cap.notes){
-      var noteLines=cap.notes.split('.').filter(function(l){return l.trim().length>3;});
+      // Splitte nach '. ' aber NICHT nach Dezimalzahlen (z.B. 17.48)
+      var noteLines=cap.notes.split(/(?<=\.\s|^)(?=[A-ZÜÄÖ])/m).join('|||').split('|||');
+      // Sichererer Ansatz: nach '. ' + Grossbuchstabe splitten
+      noteLines=cap.notes.replace(/([.!])\s+([A-ZÜÄÖ])/g,'$1|||$2').split('|||').filter(function(l){return l.trim().length>3;});
       var notesHtml=noteLines.map(function(l){
         var t=l.trim();
         var isHard=/kein (market|chase|entry)|hard rule|nicht jetzt/i.test(t);
         var isWarn=/vorsicht|kleiner|beobachten|kontraindikator|fear|divergenz/i.test(t);
         var isGood=/risk.on|long.bias|bestätigt|bullish/i.test(t);
         var col=isHard?'var(--red)':isWarn?'var(--yellow)':isGood?'var(--green)':'var(--text)';
-        return '<div style="color:'+col+';font-size:11px;line-height:1.7;padding:2px 0">'+t+'.</div>';
+        return '<div style="color:'+col+';font-size:11px;line-height:1.7;padding:3px 0">'+t+'</div>';
       }).join('');
       h+='<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">'+notesHtml+'</div>';
     }
