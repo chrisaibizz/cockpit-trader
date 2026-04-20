@@ -20,10 +20,36 @@
     "bias": "NEUTRAL"
   },
   "premarket_14h": {
-    "timestamp": "2026-04-20T14:00:00",
-    "er_status": "KOLLABIERT — Trend-Momentum erschoepft",
+    "timestamp": "2026-04-20T14:30:00",
+    "er_status": "KOLLABIERT — GER40=15.26 DJ30=43.48 SPX500=12.54",
     "orders_gefuellt": 0,
-    "assessment": "Kein Morning-Order gefuellt. Markt direkt aufwaerts ohne Pullback. ER aller 3 Instrumente kollabiert = Konsolidierung wahrscheinlich. Morgen ZEW + Retail Sales — keine Overnight-Pos."
+    "kurse": {
+      "GER40": 24407.9,
+      "DJ30": 49447.45,
+      "SPX500": 7108.45
+    },
+    "vwap": {
+      "GER40": {"vwap": 24396.79, "pos": "above", "dist": 11.1},
+      "DJ30": {"vwap": 49251.57, "pos": "above", "dist": 195.9},
+      "SPX500": {"vwap": 7098.59, "pos": "above", "dist": 9.9}
+    },
+    "ichimoku_status": {
+      "GER40": "UNDER_KUMO",
+      "DJ30": "ABOVE_KUMO",
+      "SPX500": "IN_KUMO_SQUEEZE"
+    },
+    "dist_to_tp1": {
+      "GER40": 42.1,
+      "DJ30": 90.24,
+      "SPX500": 19.52
+    },
+    "alerts": [
+      "SPX500 im Kumo-Squeeze — Breakout bei US-Open entscheidend",
+      "DJ30 nur 90 Pts von TP1 ohne Entry-Fuellung",
+      "GER40 unter Kumo, ER=15, Europa-Close bald",
+      "Morgen ZEW + Retail Sales — keine Overnight-Positionen"
+    ],
+    "assessment": "Alle 3 Orders nicht gefuellt. Markt V-Recovery ohne Pullback. ER kollabiert. SPX500 und DJ30 nah an TP1-Levels ohne Entry. Recommendation: Orders resting, kein Chase, kein neues Entry."
   },
   "instruments": {
     "GER40": {
