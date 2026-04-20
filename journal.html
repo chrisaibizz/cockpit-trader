@@ -41,7 +41,7 @@ body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',mo
 .phase-meta{display:flex;flex-direction:column;gap:6px;}
 .pmeta-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);}
 .pmeta-key{color:var(--muted);}
-.pmeta-val{font-weight:600;}
+.pmeta-val{font-weight:600;color:var(--text);}
 
 /* Alignment dots */
 .align-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
@@ -185,8 +185,54 @@ function render(s){
     if(cap.max_risk_today)h+='<span style="font-size:11px;color:var(--muted)">Max Risk: <strong style="color:var(--text)">'+cap.max_risk_today+'</strong></span>';
     if(cap.max_trades_heute)h+='<span style="font-size:11px;color:var(--muted)">Max Trades: <strong style="color:var(--text)">'+cap.max_trades_heute+'</strong></span>';
     h+='</div>';
-    if(cap.trade_plan)h+='<div style="font-size:12px;line-height:1.7;color:var(--muted)">'+cap.trade_plan.replace(/\n/g,'<br>')+'</div>';
-    if(cap.notes)h+='<div style="margin-top:8px;font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:8px">'+cap.notes+'</div>';
+    if(cap.trade_plan){
+      var lines=cap.trade_plan.split('\n').filter(function(l){return l.trim();});
+
+      // Trenne Instrument-Zeilen von Rest-Zeilen
+      var instLines=[], otherLines=[];
+      lines.forEach(function(l){
+        var t=l.trim();
+        if(/^(DJ30|SPX500|GER40|US30|FDAX)/i.test(t)) instLines.push(t);
+        else otherLines.push(t);
+      });
+
+      // Sortiere Instrument-Zeilen nach R:R (höchste zuerst)
+      instLines.sort(function(a,b){
+        var rrA=parseFloat((a.match(/R:R\s*([\d.]+)/i)||[0,0])[1])||0;
+        var rrB=parseFloat((b.match(/R:R\s*([\d.]+)/i)||[0,0])[1])||0;
+        return rrB-rrA;
+      });
+
+      // Render andere Zeilen zuerst (Intro-Text)
+      var otherHtml=otherLines.map(function(t){
+        var isHard=/kein (market|chase|entry|trade)|nicht handeln|hard rule|verboten/i.test(t);
+        var isWarn=/vorsicht|kleiner halten|beobachten|nur handeln wenn|warten|abwarten|limit.order|retest|divergenz|kontraindikator/i.test(t);
+        var isGood=/risk.on|makro unterstützt|bias bestätigt|bullish bestätigt|alle.*bullish/i.test(t);
+        var col=isHard?'var(--red)':isWarn?'var(--yellow)':isGood?'var(--green)':'var(--text)';
+        return '<div style="color:'+col+';font-size:12px;line-height:1.7;padding:1px 0">'+t+'</div>';
+      }).join('');
+
+      // Render Instrument-Zeilen sortiert nach R:R
+      var instHtml=instLines.map(function(t,i){
+        var star=i===0?'⭐ ':'&#8226; ';
+        var starCol=i===0?'color:var(--yellow);':'color:var(--text);';
+        return '<div style="margin-top:10px;'+starCol+'font-size:12px;line-height:1.7;font-weight:600">'+star+t+'</div>';
+      }).join('');
+
+      h+='<div style="margin-bottom:8px">'+otherHtml+instHtml+'</div>';
+    }
+    if(cap.notes){
+      var noteLines=cap.notes.split('.').filter(function(l){return l.trim().length>3;});
+      var notesHtml=noteLines.map(function(l){
+        var t=l.trim();
+        var isHard=/kein (market|chase|entry)|hard rule|nicht jetzt/i.test(t);
+        var isWarn=/vorsicht|kleiner|beobachten|kontraindikator|fear|divergenz/i.test(t);
+        var isGood=/risk.on|long.bias|bestätigt|bullish/i.test(t);
+        var col=isHard?'var(--red)':isWarn?'var(--yellow)':isGood?'var(--green)':'var(--text)';
+        return '<div style="color:'+col+';font-size:11px;line-height:1.7;padding:2px 0">'+t+'.</div>';
+      }).join('');
+      h+='<div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border)">'+notesHtml+'</div>';
+    }
     h+='</div>';
   }
 
@@ -232,20 +278,26 @@ function render(s){
 
   // Right: Regime + Makro
   h+='<div class="phase-meta">';
-  h+='<div class="pmeta-row"><span class="pmeta-key">Regime</span><span class="pmeta-val">'+regime+'</span></div>';
-  h+='<div class="pmeta-row"><span class="pmeta-key">Risiko</span><span class="pmeta-val">'+risk+'</span></div>';
-  h+='<div class="pmeta-row"><span class="pmeta-key">Strategie</span><span class="pmeta-val">'+strategie+'</span></div>';
-  h+='<div class="pmeta-row"><span class="pmeta-key">Session-Bias</span><span class="pmeta-val">'+(cap.session_bias||'—')+'</span></div>';
+  // Signalfarben Funktionen
+  function regimeCol(v){return v&&v.includes('RISK_ON')||v==='RISK-ON'?'var(--green)':v&&v.includes('RISK_OFF')||v==='RISK-OFF'?'var(--red)':'var(--yellow)';}
+  function riskCol(v){return v==='LOW'?'var(--green)':v==='HIGH'?'var(--red)':'var(--yellow)';}
+  function biasCol(v){return v&&v.includes('LONG')&&!v.includes('LEAN')?'var(--green)':v&&v.includes('SHORT')?'var(--red)':'var(--yellow)';}
+  function makroCol(v){return v&&v.includes('RISK_ON')?'var(--green)':v&&v.includes('RISK_OFF')?'var(--red)':'var(--yellow)';}
+
+  h+='<div class="pmeta-row"><span class="pmeta-key">Regime</span><span class="pmeta-val" style="color:'+regimeCol(regime)+'">'+regime+'</span></div>';
+  h+='<div class="pmeta-row"><span class="pmeta-key">Risiko</span><span class="pmeta-val" style="color:'+riskCol(risk)+'">'+risk+'</span></div>';
+  h+='<div class="pmeta-row"><span class="pmeta-key">Strategie</span><span class="pmeta-val" style="color:var(--text)">'+strategie+'</span></div>';
+  h+='<div class="pmeta-row"><span class="pmeta-key">Session-Bias</span><span class="pmeta-val" style="color:'+biasCol(cap.session_bias||'')+'">'+( cap.session_bias||'—')+'</span></div>';
   // Makro summary
   var ms=mac.scoring||{};
   if(ms.makro_bias)h+='<div class="pmeta-row"><span class="pmeta-key">Makro-Bias</span><span class="pmeta-val" style="color:'+(ms.makro_bias.includes('RISK_ON')?'var(--green)':ms.makro_bias.includes('RISK_OFF')?'var(--red)':'var(--yellow)')+'">'+ms.makro_bias+'</span></div>';
   var vix=mac.vix;
-  if(vix)h+='<div class="pmeta-row"><span class="pmeta-key">VIX</span><span class="pmeta-val '+(vix.trend==='fallend'?'style="color:var(--green)"':'style="color:var(--red)"')+'">'+(vix.value||'—')+' ('+vix.level+', '+vix.trend+')</span></div>';
+  if(vix){var vixCol=vix.trend==='fallend'?'var(--green)':vix.level==='normal'?'var(--yellow)':'var(--red)';h+='<div class="pmeta-row"><span class="pmeta-key">VIX</span><span class="pmeta-val" style="color:'+vixCol+'">'+(vix.value||'—')+' ('+vix.level+', '+vix.trend+')</span></div>';}
   var fg=mac.fear_greed;
-  if(fg)h+='<div class="pmeta-row"><span class="pmeta-key">Fear&amp;Greed</span><span class="pmeta-val">'+(fg.value||'—')+' — '+(fg.classification||'')+'</span></div>';
+  if(fg){var fgCol=fg.value>=60?'var(--green)':fg.value>=40?'var(--yellow)':'var(--red)';h+='<div class="pmeta-row"><span class="pmeta-key">Fear&amp;Greed</span><span class="pmeta-val" style="color:'+fgCol+'">'+(fg.value||'—')+' — '+(fg.classification||'')+'</span></div>';}
   // Warnungen
   var warns=(mac.warnungen||[]).concat(an.watchlist||[]);
-  if(warns.length){h+='<div style="margin-top:6px">';warns.slice(0,3).forEach(function(w){h+='<div style="font-size:10px;color:var(--yellow);padding:2px 0">⚠ '+w+'</div>';});h+='</div>';}
+  if(warns.length){h+='<div style="margin-top:8px">';warns.slice(0,3).forEach(function(w){h+='<div style="font-size:11px;color:var(--yellow);padding:3px 0">&#8226; ⚠ '+w+'</div>';});h+='</div>';}
   h+='</div>';
   h+='</div></div>';
 
