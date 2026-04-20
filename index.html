@@ -190,6 +190,7 @@ function renderInstRow(ji){
 function drawVP(mp,currentPrice){
   if(!mp||!mp.volume_profile||!mp.volume_profile.length)return drawVPFallback(mp,currentPrice);
   var vps=mp.volume_profile,maxV=Math.max.apply(null,vps.map(function(b){return b.volume;}));
+  // TPO color mapping: 0=POC(cyan), 1=VA(blue), 2=outside(darkblue)
   var h=240,w=520,bH=h/vps.length,margin=70,rightPad=20;
   var minP=vps[0].price,maxP=vps[vps.length-1].price,priceRange=maxP-minP||1;
   var p2y=function(p){return h-((p-minP)/priceRange)*h;};
@@ -198,9 +199,14 @@ function drawVP(mp,currentPrice){
   var bars='';
   vps.forEach(function(bin,i){
     var bW=maxV>0?(bin.volume/maxV)*(w-margin-rightPad):0,y=h-(i+1)*bH;
-    var col='rgba(59,130,246,0.4)';
-    if(mp.poc&&Math.abs(bin.price-mp.poc)<tick*0.6)col='rgba(6,182,212,0.8)';
-    else if(mp.vah&&mp.val&&bin.price>=mp.val&&bin.price<=mp.vah)col='rgba(59,130,246,0.6)';
+    var col='rgba(59,130,246,0.35)';
+    // Nutze color-Feld wenn vorhanden (TPO: 0=POC, 1=VA, 2=outside)
+    if(bin.color===0)col='rgba(6,182,212,0.85)';
+    else if(bin.color===1)col='rgba(59,130,246,0.65)';
+    else if(bin.color===2)col='rgba(59,130,246,0.35)';
+    // Fallback: berechne aus Preis-Position
+    else if(mp.poc&&Math.abs(bin.price-mp.poc)<tick*0.6)col='rgba(6,182,212,0.85)';
+    else if(mp.vah&&mp.val&&bin.price>=mp.val&&bin.price<=mp.vah)col='rgba(59,130,246,0.65)';
     bars+='<rect x="'+margin+'" y="'+y+'" width="'+bW+'" height="'+(bH-1)+'" fill="'+col+'" rx="2"/>';
     if(i%4===0)bars+='<text x="'+(margin-6)+'" y="'+(y+bH/2+4)+'" text-anchor="end" fill="#64748b" font-size="10" font-family="monospace">'+bin.price.toFixed(0)+'</text>';
   });
