@@ -275,17 +275,28 @@ function load(){
       // state.json vorhanden - nutze es als Basis, ergänze VP-Daten aus data.json
       if(d&&d.instruments){
         // VP Balkendaten aus data.json in state.json injizieren
+        // Key-Mapping: data.json -> state.json
+        var keyMap={'SPX':'SPX500','DJI':'DJ30','GER':'GER40',
+                    'SPX500':'SPX500','DJ30':'DJ30','GER40':'GER40'};
         Object.keys(d.instruments).forEach(function(k){
           var inst=d.instruments[k];
+          var stateKey=keyMap[k]||k;
           if(inst.market_profile&&inst.market_profile.volume_profile){
-            if(s.market.instruments[k]){
-              s.market.instruments[k].volume_profile=inst.market_profile.volume_profile;
+            if(s.market.instruments[stateKey]){
+              s.market.instruments[stateKey].volume_profile=inst.market_profile.volume_profile;
             }
           }
         });
-        // Journal instruments VP auch
+        // Journal instruments VP auch (GER40/US30/SPX500 names)
         if(d.journal&&d.journal.instruments){
-          s._journal_instruments=d.journal.instruments;
+          var jiMap={};
+          d.journal.instruments.forEach(function(ji){
+            var n=ji.name;
+            // Normalisiere Namen
+            var norm=n==='US30'?'DJ30':n==='GER40'?'GER40':n==='SPX500'?'SPX500':n;
+            jiMap[norm]=ji;
+          });
+          s._journal_map=jiMap;
         }
       }
       renderFromState(s);
@@ -319,9 +330,8 @@ function renderFromState(s){
       instruments: Object.keys(s.market&&s.market.instruments||{}).map(function(k){
         var mi=s.market.instruments[k];
         var ai=s.analysis&&s.analysis.instruments&&s.analysis.instruments[k]||{};
-        // Versuche VP-Daten aus journal instruments (data.json) zu holen
-        var ji=s._journal_instruments&&s._journal_instruments.filter(function(x){return x.name===k||x.name===k.replace('SPX500','SPX').replace('DJ30','DJI');});
-        var jiData=ji&&ji.length?ji[0]:null;
+        // VP-Daten aus data.json journal holen (via _journal_map)
+        var jiData=s._journal_map&&s._journal_map[k]||null;
         var vpData=mi.volume_profile||(jiData&&jiData.market_profile&&jiData.market_profile.volume_profile)||null;
         return {
           name:k,
