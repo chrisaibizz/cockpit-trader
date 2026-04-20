@@ -1,6 +1,6 @@
 {
   "date": "2026-04-20",
-  "timestamp": "2026-04-20T14:00:00",
+  "timestamp": "2026-04-20T16:00:00",
   "phase": "TREND",
   "regime": "RISK-ON",
   "session_bias": "LONG-LEAN",
@@ -51,11 +51,32 @@
     ],
     "assessment": "Alle 3 Orders nicht gefuellt. Markt V-Recovery ohne Pullback. ER kollabiert. SPX500 und DJ30 nah an TP1-Levels ohne Entry. Recommendation: Orders resting, kein Chase, kein neues Entry."
   },
+  "us_premarket_16h": {
+    "timestamp": "2026-04-20T16:00:00",
+    "mp_live": {
+      "GER40": {"poc": 24640.84, "vah": 24658.30, "val": 24274.13, "shape": "P-Shape", "price": 24378},
+      "DJ30":  {"poc": 49509.84, "vah": 49537.69, "val": 48925.02, "shape": "P-Shape extrem", "price": 49375},
+      "SPX500":{"poc": 7129.33,  "vah": 7132.05,  "val": 7061.49,  "shape": "P-Shape", "price": 7096.08}
+    },
+    "shape_summary": "ALLE P-Shape — Kaeufer-Kontrolle bestaetigt. Bullish-Continuation.",
+    "order_validation": {
+      "GER40_24200": {"dist_to_val": -74.13, "fill_prob": "SEHR GERING", "action": "RESTING"},
+      "DJ30_49050":  {"dist_to_val": -125.02, "fill_prob": "GERING", "action": "RESTING"},
+      "SPX500_7058": {"dist_to_val": -3.49, "fill_prob": "MODERAT", "action": "WATCHLIST PRIORITAET 1"}
+    },
+    "alerts": [
+      "SPX500 KRITISCH: Order 7058 nur 3 Pts unter VAL (7061) — US-Open entscheidend",
+      "DJ30 TP1 (49537=VAH) nur noch 162 Pts entfernt — ohne Entry-Fuellung missed",
+      "GER40 POC massiv aufwaerts migriert (24154 -> 24640) — Bullish-Staerke",
+      "Morgen ZEW 09:00 + Retail Sales 12:30 — KEINE Overnight-Positionen"
+    ],
+    "recommendation": "SPX500 7058 aktiv beobachten — US-Open Gap oder initialer Selloff koennte VAL 7061 testen. GER40 + DJ30 bleiben resting. Kein Chase."
+  },
   "instruments": {
     "GER40": {
       "bias": "LEICHT_BULLISH", "score": 4,
-      "current_price": 24405.9,
-      "poc": 24154.51, "vah": 24663.79, "val": 24101.83,
+      "current_price": 24378,
+      "poc": 24640.84, "vah": 24658.30, "val": 24274.13,
       "vwap": 24395.17, "vwap_upper": 24436.56, "vwap_lower": 24353.77,
       "er": 19.27, "er_morning": 54.86, "er_status": "CHOP",
       "vwap_position": "above (+10.7)",
@@ -65,8 +86,8 @@
     },
     "DJ30": {
       "bias": "BULLISH", "score": 6,
-      "current_price": 49352.45,
-      "poc": 48674.38, "vah": 49537.69, "val": 48646.53,
+      "current_price": 49375.45,
+      "poc": 49509.84, "vah": 49537.69, "val": 48925.02,
       "vwap": 49237.82, "vwap_upper": 49378.83, "vwap_lower": 49096.81,
       "er": 21.76, "er_morning": 58.60, "er_status": "CHOP",
       "vwap_position": "above (+114.6)",
@@ -76,8 +97,8 @@
     },
     "SPX500": {
       "bias": "BULLISH", "score": 6,
-      "current_price": 7104.58,
-      "poc": 7054.03, "vah": 7127.97, "val": 7045.82,
+      "current_price": 7096.08,
+      "poc": 7129.33, "vah": 7132.05, "val": 7061.49,
       "vwap": 7097.82, "vwap_upper": 7112.43, "vwap_lower": 7083.21,
       "er": 2.70, "er_morning": 83.93, "er_status": "EXTREME_CHOP",
       "vwap_position": "above (+6.8)",
