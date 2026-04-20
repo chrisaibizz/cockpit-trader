@@ -1,261 +1,494 @@
 {
   "_schema_version": "2.0",
-  "_updated": "2026-04-19T18:25:24",
+  "_updated": "2026-04-20T08:18:00",
   "_note": "Cockpit Trader — Zentraler State fuer alle Agenten. Jeder Agent liest und schreibt nur seinen eigenen Block. Koordinator prueft status-Felder.",
 
   "pipeline": {
-    "date": "2026-04-19",
-    "started": "2026-04-19T18:25:24",
-    "completed": "",
-    "active_agent": "MACRO",
-    "status": "running",
-    "agents_completed": [],
-    "errors": []
+    "date": "2026-04-20",
+    "started": "2026-04-20T08:02:20",
+    "completed": "2026-04-20T08:18:00",
+    "active_agent": "",
+    "status": "completed",
+    "agents_completed": ["MACRO", "MARKETDATA", "ANALYST", "CAPTAIN", "EXECUTOR"],
+    "errors": ["Put/Call Ratio: yfinance Datenfehler (Symbol delisted)", "ONH/ONL aus quote.high/low (pre-market Daten)"]
   },
 
   "macro": {
     "_agent": "MACRO",
-    "_last_run": "2026-04-19T18:25:40",
+    "_last_run": "2026-04-20T08:04:00",
     "_status": "ready",
-    "fear_greed": { "value": 27, "classification": "Fear", "yesterday": 26, "trend": "steigend" },
-    "put_call_ratio": { "value": null, "interpretation": "Datenfehler", "error": "yfinance out-of-bounds (Wochenende/kein Handelsdata)" },
+    "fear_greed": { "value": 29, "classification": "Fear", "yesterday": 27, "trend": "steigend" },
+    "put_call_ratio": { "value": null, "interpretation": "Datenfehler", "error": "yfinance: Symbol delisted" },
     "vix": { "value": 17.48, "prev": 17.94, "level": "normal", "trend": "fallend", "bias_einfluss": "leicht bearish" },
     "bonds_10y": { "yield": 4.246, "prev": 4.309, "trend": "fallend", "interpretation": "zinsdruck_moderat" },
-    "dxy": { "value": 98.1, "prev": 98.22, "trend": "fallend", "interpretation": "dollar_schwach" },
-    "oil_wti": { "value": 82.59, "prev": 94.69, "trend": "fallend", "interpretation": "inflationsdruck_moderat" },
-    "gold": { "value": 4879.6, "prev": 4785.4, "trend": "steigend", "interpretation": "risk_off" },
+    "dxy": { "value": 98.303, "prev": 98.1, "trend": "steigend", "interpretation": "dollar_schwach" },
+    "oil_wti": { "value": 83.85, "prev": 94.69, "trend": "fallend", "interpretation": "inflationsdruck_moderat" },
+    "gold": { "value": 4857.6, "prev": 4785.4, "trend": "steigend", "interpretation": "risk_off" },
     "fred": {
       "fedfunds": { "value": 3.64, "date": "2026-03-01" },
       "cpi": { "value": 3.32, "date": "2026-03-01" },
-      "t10yie": { "value": null, "date": "" },
-      "credit_spread": { "value": null, "date": "" }
+      "t10y2y": { "value": 0.55, "date": "2026-04-17" },
+      "unrate": { "value": 4.3, "date": "2026-03-01" }
     },
-    "scoring": { "bullish_punkte": 4, "bearish_punkte": 2, "gesamt_score": 2, "makro_bias": "LEICHT_RISK_ON" },
+    "scoring": {
+      "bullish_punkte": 3,
+      "bearish_punkte": 2,
+      "gesamt_score": 1,
+      "makro_bias": "NEUTRAL",
+      "detail": "Bullish: VIX fallend(+1) Bonds fallend(+1) Oel fallend(+1) | Bearish: F&G<40(−1) Gold steigend(−1)"
+    },
     "warnungen": []
   },
 
   "market": {
     "_agent": "MARKETDATA",
-    "_last_run": "2026-04-19T18:26:10",
+    "_last_run": "2026-04-20T08:16:00",
     "_status": "ready",
-    "timestamp": "2026-04-19 18:26",
-    "note": "Premarket/Duenner Markt (Sonntag). Alle Instrumente stark Gap-up vs Freitag-Close.",
+    "timestamp": "2026-04-20 08:16",
+    "timeframe_used": "30M MP + 1D + 1W",
     "instruments": {
       "GER40": {
         "ticker": "Vantage:GER40",
-        "current_price": 24646.53,
-        "open": 24655.28,
-        "high": 24657.28,
-        "low": 24633.28,
-        "prev_close": 24066.7,
-        "change_pct": 2.41,
-        "vwap": null,
-        "poc": 24127.58,
-        "vah": 24184.78,
-        "val": 24080.78,
-        "mp_source": "MCP TradingView live (session_index=0)",
-        "data_quality": "teilweise"
+        "current_price": 24386.4,
+        "open": 24150.47,
+        "high": 24792.46,
+        "low": 24146.58,
+        "prev_close": 24154.47,
+        "change_pct": 0.96,
+        "vwap": 24400.20,
+        "vwap_upper": 24400.20,
+        "vwap_lower": 24400.20,
+        "poc": 24154.51,
+        "vah": 24663.79,
+        "val": 24101.83,
+        "mp_shape": "P-Shape (POC nahe VAL — Kaeufer-Initiative, Fortsetzung erwartet)",
+        "er": 54.86,
+        "er_source": "Daily",
+        "er_weekly": -8.41,
+        "ichimoku_daily": {
+          "tenkan": 24114.24,
+          "kijun": 23329.49,
+          "ssa": 23721.87,
+          "ssb": 23633.00,
+          "kumo_bias": "Preis 24386 deutlich ueber Kumo (23633-23722) — BULLISCH"
+        },
+        "ichimoku_weekly": {
+          "tenkan": 23633.00,
+          "kijun": 23697.20,
+          "ssa": 23665.10,
+          "ssb": 23697.20,
+          "kumo_bias": "Preis deutlich ueber Weekly Kumo — BULLISCH"
+        },
+        "sma_200": 24139.89,
+        "onh": 24792.46,
+        "onl": 24146.58,
+        "pdh": 24663.79,
+        "pdl": 24101.83,
+        "mp_5day_sessions": [
+          {"session_index": 4, "poc": 23545.62, "vah": 23747.98, "val": 23478.16, "va_width": 269.82, "shape": "Trend Day (Wide Range)"},
+          {"session_index": 3, "poc": 24051.44, "vah": 24097.77, "val": 23952.67, "va_width": 145.10, "shape": "Normal/Recovery"},
+          {"session_index": 2, "poc": 24064.64, "vah": 24097.77, "val": 24031.51, "va_width": 66.26, "shape": "Non-Trend (Balance)"},
+          {"session_index": 1, "poc": 24127.58, "vah": 24184.78, "val": 24080.78, "va_width": 104.00, "shape": "Non-Trend (Balance)"},
+          {"session_index": 0, "poc": 24154.51, "vah": 24663.79, "val": 24101.83, "va_width": 561.96, "shape": "P-Shape (Expansion nach Balance — BULLISCH)"}
+        ],
+        "mp_source": "MCP TradingView live (sessions=12)",
+        "data_quality": "vollstaendig"
       },
       "DJ30": {
         "ticker": "Vantage:DJ30",
-        "current_price": 49498.18,
-        "open": 49483.48,
-        "high": 49510.48,
-        "low": 49474.48,
-        "prev_close": 48463.72,
-        "change_pct": 2.14,
-        "vwap": null,
-        "poc": 48575.36,
-        "vah": 48617.73,
-        "val": 48499.08,
-        "mp_source": "MCP TradingView live (session_index=0)",
-        "data_quality": "teilweise"
+        "current_price": 49118.45,
+        "open": 48788.81,
+        "high": 49717.98,
+        "low": 48788.81,
+        "prev_close": 48578.72,
+        "change_pct": 1.11,
+        "vwap": 49045.72,
+        "vwap_upper": 49045.73,
+        "vwap_lower": 49045.72,
+        "poc": 48674.38,
+        "vah": 49537.69,
+        "val": 48646.53,
+        "mp_shape": "P-Shape (POC extrem nahe VAL — starke Kaeufer-Initiative, Fortsetzung erwartet)",
+        "er": 58.60,
+        "er_source": "Daily",
+        "er_weekly": -3.57,
+        "ichimoku_daily": {
+          "tenkan": 48204.96,
+          "kijun": 47302.74,
+          "ssa": 47753.85,
+          "ssb": 47699.72,
+          "kumo_bias": "Preis 49118 deutlich ueber Kumo (47699-47753) — BULLISCH"
+        },
+        "ichimoku_weekly": {
+          "tenkan": 47356.21,
+          "kijun": 47699.72,
+          "ssa": 47527.97,
+          "ssb": 45150.47,
+          "kumo_bias": "Preis deutlich ueber Weekly Kumo — BULLISCH"
+        },
+        "sma_200": 47100.24,
+        "onh": 49717.98,
+        "onl": 48788.81,
+        "pdh": 49537.69,
+        "pdl": 48646.53,
+        "mp_5day_sessions": [
+          {"session_index": 4, "poc": 47704.20, "vah": 47773.35, "val": 47404.55, "va_width": 368.80, "shape": "Normal/Trend"},
+          {"session_index": 3, "poc": 48259.03, "vah": 48516.03, "val": 48202.00, "va_width": 314.03, "shape": "Normal"},
+          {"session_index": 2, "poc": 48580.83, "vah": 48634.38, "val": 48441.60, "va_width": 192.78, "shape": "Non-Trend (kontraktion)"},
+          {"session_index": 1, "poc": 48575.36, "vah": 48617.73, "val": 48499.08, "va_width": 118.65, "shape": "Non-Trend (Balance)"},
+          {"session_index": 0, "poc": 48674.38, "vah": 49537.69, "val": 48646.53, "va_width": 891.16, "shape": "P-Shape (massive Expansion — staerkste Kaeufer-Initiative)"}
+        ],
+        "mp_source": "MCP TradingView live (sessions=12)",
+        "data_quality": "vollstaendig"
       },
       "SPX500": {
         "ticker": "Vantage:SP500",
-        "current_price": 7133.83,
-        "open": 7131.35,
-        "high": 7134.85,
-        "low": 7130.6,
-        "prev_close": 7022.95,
-        "change_pct": 1.58,
-        "vwap": null,
-        "poc": 7039.93,
-        "vah": 7047.51,
-        "val": 7032.34,
-        "mp_source": "MCP TradingView live (session_index=0)",
-        "data_quality": "teilweise"
+        "current_price": 7086.2,
+        "open": 7074.55,
+        "high": 7147.52,
+        "low": 7074.55,
+        "prev_close": 7041.28,
+        "change_pct": 0.64,
+        "vwap": 7077.77,
+        "vwap_upper": 7077.77,
+        "vwap_lower": 7077.77,
+        "poc": 7054.03,
+        "vah": 7127.97,
+        "val": 7045.82,
+        "mp_shape": "P-Shape (POC extrem nahe VAL — Fortsetzung erwartet)",
+        "er": 83.93,
+        "er_source": "Daily",
+        "er_weekly": 17.83,
+        "ichimoku_daily": {
+          "tenkan": 6889.70,
+          "kijun": 6736.72,
+          "ssa": 6813.21,
+          "ssb": 6736.72,
+          "kumo_bias": "Preis 7086 deutlich ueber Kumo (6736-6813) — BULLISCH"
+        },
+        "ichimoku_weekly": {
+          "tenkan": 6736.72,
+          "kijun": 6736.72,
+          "ssa": 6736.72,
+          "ssb": 6294.45,
+          "kumo_bias": "Preis weit ueber Weekly Kumo — stark BULLISCH"
+        },
+        "sma_200": 6706.08,
+        "onh": 7147.52,
+        "onl": 7074.55,
+        "pdh": 7127.97,
+        "pdl": 7045.82,
+        "mp_5day_sessions": [
+          {"session_index": 4, "poc": 6779.86, "vah": 6856.74, "val": 6767.72, "va_width": 89.02, "shape": "Normal"},
+          {"session_index": 3, "poc": 6896.14, "vah": 6954.27, "val": 6889.68, "va_width": 64.59, "shape": "Non-Trend (kontraktion)"},
+          {"session_index": 2, "poc": 6976.21, "vah": 6999.69, "val": 6967.18, "va_width": 32.51, "shape": "Non-Trend (enge Balance)"},
+          {"session_index": 1, "poc": 7039.93, "vah": 7051.30, "val": 7032.34, "va_width": 18.96, "shape": "Non-Trend (EXTREME Balance — Coiled Spring)"},
+          {"session_index": 0, "poc": 7054.03, "vah": 7127.97, "val": 7045.82, "va_width": 82.15, "shape": "P-Shape (Expansion nach Coiled Spring — BULLISCH)"}
+        ],
+        "mp_source": "MCP TradingView live (sessions=12)",
+        "data_quality": "vollstaendig"
       }
     },
     "calendar": [
       { "date": "2026-04-21", "time": "09:00", "event": "ZEW Economic Sentiment Index", "country": "DE", "impact": "high" },
-      { "date": "2026-04-21", "time": "12:30", "event": "Retail Sales MoM", "country": "US", "impact": "high" }
-    ]
+      { "date": "2026-04-21", "time": "12:30", "event": "Retail Sales MoM", "country": "US", "impact": "high" },
+      { "date": "2026-04-23", "time": "07:30", "event": "S&P Global Manufacturing PMI Flash", "country": "DE", "impact": "high" }
+    ],
+    "today_events": "KEINE High-Impact Events heute (2026-04-20). Naechste Events: ZEW + Retail Sales morgen 21.04."
   },
 
   "analysis": {
     "_agent": "ANALYST",
-    "_last_run": "2026-04-19T18:26:20",
+    "_last_run": "2026-04-20T08:17:00",
     "_status": "ready",
     "marktphase": {
       "phase": "TREND",
-      "begruendung": "Alle drei Instrumente stark ueber gestrigem VAH. GER40 +2.41%, DJ30 +2.14%, SPX500 +1.58%. VIX 17.48 fallend. Makro LEICHT_RISK_ON (+2). Gap-up Eroeffnung deutet auf starken Trend-Tag.",
-      "aktive_strategie": "Trend-Following"
+      "begruendung": "5-Tage-Sequenz zeigt POC-Migration aufwaerts auf allen drei Instrumenten. Balance-Kontraktion (sessions 1-3) gefolgt von massiver VA-Expansion in Session 0: GER40 VA=562 (vorher 66-104), DJ30 VA=891 (vorher 118-192), SPX500 VA=82 (vorher 18-32). P-Shape auf allen Instrumenten. ER Daily stark positiv: GER40=54.86, DJ30=58.60, SPX500=83.93. Preis ueber Ichimoku Kumo auf D+W.",
+      "aktive_strategie": "Trend-Following (Pullback an VWAP/POC kaufen)",
+      "er_bestaetigung": "ja — alle drei Instrumente ER Daily > 50, SPX500 ER=83.93"
     },
     "regime": "RISK-ON",
-    "risk_level": "MEDIUM",
+    "risk_level": "LOW",
+    "top_down": {
+      "weekly_trend": "UP",
+      "weekly_key_levels": [
+        {"instr": "GER40", "level": "Weekly Kumo obere Grenze", "preis": 23697.20},
+        {"instr": "DJ30", "level": "Weekly Kumo obere Grenze", "preis": 47527.97},
+        {"instr": "SPX500", "level": "Weekly Kumo obere Grenze", "preis": 6736.72}
+      ],
+      "h4_trend": "UP",
+      "h4_confluence_zones": [],
+      "h1_entry_context": "Kein H1 direkt gemessen — aus Daily/30M abgeleitet: alle drei ueber VWAP oder nahe, P-Shape = Pullback-Long-Setup",
+      "h1_key_levels": [
+        {"instr": "GER40", "level": "VWAP Daily", "preis": 24400.20},
+        {"instr": "DJ30", "level": "VWAP Daily", "preis": 49045.72},
+        {"instr": "SPX500", "level": "VWAP Daily", "preis": 7077.77}
+      ],
+      "m30_entry_zone": {
+        "GER40": {"preis_von": 24150.0, "preis_bis": 24300.0, "detail": "POC 24154 bis VWAP-200er Kreuzung"},
+        "DJ30":  {"preis_von": 48700.0, "preis_bis": 49050.0, "detail": "Zwischen VAL 48646 und VWAP 49045"},
+        "SPX500":{"preis_von": 7048.0, "preis_bis": 7080.0, "detail": "POC 7054 bis VWAP 7077"}
+      },
+      "alignment_score": 5,
+      "trade_freigabe": true,
+      "score_detail": "Weekly UP(+1) | Daily UP(+1) | ER bestaetigt(+1) | Inter-Market aligned(+1) | Keine Events heute(+1) | Makro NEUTRAL(0) | ER Weekly gemischt(0)"
+    },
+    "overnight_levels": {
+      "GER40": {"onh": 24792.46, "onl": 24146.58, "pdh": 24663.79, "pdl": 24101.83},
+      "DJ30":  {"onh": 49717.98, "onl": 48788.81, "pdh": 49537.69, "pdl": 48646.53},
+      "SPX500":{"onh": 7147.52, "onl": 7074.55, "pdh": 7127.97, "pdl": 7045.82}
+    },
+    "session_warnung": null,
     "instruments": {
       "GER40": {
-        "bias": "BULLISH", "bias_score": 4,
+        "bias": "LEICHT_BULLISH",
+        "bias_score": 4,
+        "er_wert": 54.86,
+        "er_interpretation": "trend_stark",
+        "er_chop_filter_aktiv": false,
+        "vp_hvn_levels": [],
+        "vp_lvn_levels": [],
         "signals": {
-          "preis_vs_poc":  { "wert": 1, "detail": "24646.53 >> POC 24127.58 (+519pts, +1)" },
-          "preis_vs_va":   { "wert": 2, "detail": "24646.53 >> VAH 24184.78 — klarer Breakout (+2)" },
-          "preis_vs_vwap": { "wert": 0, "detail": "VWAP nicht verfuegbar — kein Signal (0)" },
-          "momentum":      { "wert": 1, "detail": "change_pct +2.41% >> +0.5% Schwelle (+1)" },
-          "range_position":{ "wert": 0, "detail": "Enge Premarket-Range 24633-24657, Mitte (0)" }
+          "preis_vs_poc":   { "wert": 1, "detail": "24386 > POC 24154 (+1)" },
+          "preis_vs_va":    { "wert": 1, "detail": "24386 in VA (24101-24663), zwischen POC und VAH (+1)" },
+          "preis_vs_vwap":  { "wert": -1, "detail": "24386 < VWAP 24400 (−1)" },
+          "momentum":       { "wert": 1, "detail": "+0.96% > +0.5% Schwelle (+1)" },
+          "range_position": { "wert": 0, "detail": "Mittleres Drittel (24288-24475) — 24386 im Mitte (0)" },
+          "er_trend":       { "wert": 1, "detail": "ER=54.86 > 10, bullish Richtung (+1)" },
+          "er_qualitaet":   { "wert": 1, "detail": "ER=54.86 > 30 — starker Trend (+1)" }
         },
         "key_levels": {
-          "poc": 24127.58, "vah": 24184.78, "val": 24080.78,
-          "vwap": null, "current": 24646.53,
-          "naechster_support": 24184.78,
-          "naechste_resistance": 24700.0,
-          "invalidation": 24080.78
+          "poc": 24154.51, "vah": 24663.79, "val": 24101.83,
+          "vwap": 24400.20, "vwap_upper": 24400.20, "vwap_lower": 24400.20,
+          "sma_200": 24139.89, "current": 24386.4,
+          "onh": 24792.46, "onl": 24146.58, "pdh": 24663.79, "pdl": 24101.83,
+          "naechster_support": 24154.51,
+          "naechste_resistance": 24663.79,
+          "invalidation": 24080.0
         },
         "zones": [
-          { "typ": "SUPPORT", "low": 24127.58, "high": 24184.78, "prioritaet": 1, "detail": "POC+VAH Confluence — Gap-Retest Zone" }
+          { "typ": "SUPPORT", "low": 24101.83, "high": 24200.0, "prioritaet": 1, "detail": "VAL + POC Confluence — primaere Long-Entry-Zone" },
+          { "typ": "RESISTANCE", "low": 24663.79, "high": 24792.46, "prioritaet": 1, "detail": "PDH + ONH — naechste Zielzone" }
         ],
-        "konflikt": null,
-        "warnung": "GAP-UP +580pts ueber VAH. Kein Entry bei Marktpreis. Auf Retest 24185 oder Konsolidierung warten."
+        "mp_shape": "P-Shape — Kaeufer-Initiative, Continuation bullish",
+        "mp_5day_sequence": "Balance-Kontraktion (3 Tage) → massive Expansion (Session 0 VA=562). POC-Migration: 23545→24051→24064→24127→24154. BULLISH.",
+        "ichimoku": "Preis 24386 ueber Daily Kumo (SSA=23722/SSB=23633). Tenkan 24114 nahe Preis als kurzfristiger Support. Kijun 23329 weit unten (Spielraum).",
+        "konflikt": "Preis minimal unter VWAP (−14 Punkte) — kleine Schwaeche, aber irrelevant bei starkem ER",
+        "warnung": null
       },
       "DJ30": {
-        "bias": "BULLISH", "bias_score": 5,
+        "bias": "BULLISH",
+        "bias_score": 6,
+        "er_wert": 58.60,
+        "er_interpretation": "trend_stark",
+        "er_chop_filter_aktiv": false,
+        "vp_hvn_levels": [],
+        "vp_lvn_levels": [],
         "signals": {
-          "preis_vs_poc":  { "wert": 1, "detail": "49498.18 >> POC 48575.36 (+923pts, +1)" },
-          "preis_vs_va":   { "wert": 2, "detail": "49498.18 >> VAH 48617.73 — klarer Breakout (+2)" },
-          "preis_vs_vwap": { "wert": 0, "detail": "VWAP nicht verfuegbar — kein Signal (0)" },
-          "momentum":      { "wert": 1, "detail": "change_pct +2.14% >> +0.5% Schwelle (+1)" },
-          "range_position":{ "wert": 1, "detail": "49498.18 im oberen Drittel der Premarket-Range (+1)" }
+          "preis_vs_poc":   { "wert": 1, "detail": "49118 > POC 48674 (+1)" },
+          "preis_vs_va":    { "wert": 1, "detail": "49118 in VA (48646-49537), zwischen POC und VAH (+1)" },
+          "preis_vs_vwap":  { "wert": 1, "detail": "49118 > VWAP 49045 (+1)" },
+          "momentum":       { "wert": 1, "detail": "+1.11% > +0.5% Schwelle (+1)" },
+          "range_position": { "wert": 0, "detail": "Range 48646-49537, oberes Drittel ab 49240. 49118 im Mitteldrittel (0)" },
+          "er_trend":       { "wert": 1, "detail": "ER=58.60 > 10, bullish (+1)" },
+          "er_qualitaet":   { "wert": 1, "detail": "ER=58.60 > 30 — starker Trend (+1)" }
         },
         "key_levels": {
-          "poc": 48575.36, "vah": 48617.73, "val": 48499.08,
-          "vwap": null, "current": 49498.18,
-          "naechster_support": 48617.73,
-          "naechste_resistance": 49600.0,
-          "invalidation": 48499.08
+          "poc": 48674.38, "vah": 49537.69, "val": 48646.53,
+          "vwap": 49045.72, "vwap_upper": 49045.73, "vwap_lower": 49045.72,
+          "sma_200": 47100.24, "current": 49118.45,
+          "onh": 49717.98, "onl": 48788.81, "pdh": 49537.69, "pdl": 48646.53,
+          "naechster_support": 48674.38,
+          "naechste_resistance": 49537.69,
+          "invalidation": 48600.0
         },
         "zones": [
-          { "typ": "SUPPORT", "low": 48575.36, "high": 48617.73, "prioritaet": 1, "detail": "POC+VAH Confluence — Gap-Retest Zone" }
+          { "typ": "SUPPORT", "low": 48646.53, "high": 49050.0, "prioritaet": 1, "detail": "VAL + VWAP Zone — primaere Long-Entry-Zone" },
+          { "typ": "RESISTANCE", "low": 49537.69, "high": 49717.98, "prioritaet": 1, "detail": "PDH + ONH — naechste Zielzone" }
         ],
+        "mp_shape": "P-Shape (extrem) — POC 48674 bei VAL 48646 — maximale Kaeufer-Kontrolle",
+        "mp_5day_sequence": "Balance-Kontraktion (3 Tage 118-314pt VA) → MASSIVE Expansion (Session 0 VA=891). POC-Migration: 47704→48259→48580→48575→48674. BULLISH.",
+        "ichimoku": "Preis 49118 deutlich ueber Daily Kumo (SSA=47753/SSB=47699). Tenkan 48204 und Kijun 47302 als starke Supports.",
         "konflikt": null,
-        "warnung": "GAP-UP +880pts ueber VAH. Kein Entry bei Marktpreis. Auf Retest 48617 warten."
+        "warnung": null
       },
       "SPX500": {
-        "bias": "BULLISH", "bias_score": 5,
+        "bias": "BULLISH",
+        "bias_score": 6,
+        "er_wert": 83.93,
+        "er_interpretation": "trend_stark",
+        "er_chop_filter_aktiv": false,
+        "vp_hvn_levels": [],
+        "vp_lvn_levels": [],
         "signals": {
-          "preis_vs_poc":  { "wert": 1, "detail": "7133.83 >> POC 7039.93 (+93.9pts, +1)" },
-          "preis_vs_va":   { "wert": 2, "detail": "7133.83 >> VAH 7047.51 — klarer Breakout (+2)" },
-          "preis_vs_vwap": { "wert": 0, "detail": "VWAP nicht verfuegbar — kein Signal (0)" },
-          "momentum":      { "wert": 1, "detail": "change_pct +1.58% >> +0.5% Schwelle (+1)" },
-          "range_position":{ "wert": 1, "detail": "7133.83 im oberen Drittel der Premarket-Range (+1)" }
+          "preis_vs_poc":   { "wert": 1, "detail": "7086 > POC 7054 (+1)" },
+          "preis_vs_va":    { "wert": 1, "detail": "7086 in VA (7045-7127), zwischen POC und VAH (+1)" },
+          "preis_vs_vwap":  { "wert": 1, "detail": "7086 > VWAP 7077 (+1)" },
+          "momentum":       { "wert": 1, "detail": "+0.64% > +0.5% Schwelle (+1)" },
+          "range_position": { "wert": 0, "detail": "Range 7045-7127, oberes Drittel ab 7100. 7086 Mitteldrittel (0)" },
+          "er_trend":       { "wert": 1, "detail": "ER=83.93 > 10, bullish (+1)" },
+          "er_qualitaet":   { "wert": 1, "detail": "ER=83.93 > 30 — sehr starker Trend (+1)" }
         },
         "key_levels": {
-          "poc": 7039.93, "vah": 7047.51, "val": 7032.34,
-          "vwap": null, "current": 7133.83,
-          "naechster_support": 7047.51,
-          "naechste_resistance": 7150.0,
-          "invalidation": 7032.34
+          "poc": 7054.03, "vah": 7127.97, "val": 7045.82,
+          "vwap": 7077.77, "vwap_upper": 7077.77, "vwap_lower": 7077.77,
+          "sma_200": 6706.08, "current": 7086.2,
+          "onh": 7147.52, "onl": 7074.55, "pdh": 7127.97, "pdl": 7045.82,
+          "naechster_support": 7054.03,
+          "naechste_resistance": 7127.97,
+          "invalidation": 7038.0
         },
         "zones": [
-          { "typ": "SUPPORT", "low": 7039.93, "high": 7047.51, "prioritaet": 1, "detail": "POC+VAH Confluence — Gap-Retest Zone" }
+          { "typ": "SUPPORT", "low": 7045.82, "high": 7080.0, "prioritaet": 1, "detail": "VAL + POC + VWAP Confluence — beste Entry-Zone" },
+          { "typ": "RESISTANCE", "low": 7127.97, "high": 7147.52, "prioritaet": 1, "detail": "PDH + ONH — naechste Zielzone" }
         ],
+        "mp_shape": "P-Shape nach Coiled Spring — Session 1 VA=18pts (extreme Balance), Session 0 Expansion VA=82. Sehr starkes Continuation-Signal.",
+        "mp_5day_sequence": "Starke Kontraktion: 89→64→32→18(Coiled Spring!)→82. POC-Migration: 6779→6896→6976→7039→7054. BULLISCH. Coiled Spring = explosive Bewegung erwartet.",
+        "ichimoku": "Preis 7086 weit ueber Daily Kumo (SSA=6813/SSB=6736). Weekly Kumo SSA=6736 — massive Distanz (350+ Punkte Buffer).",
         "konflikt": null,
-        "warnung": "GAP-UP +86pts ueber VAH. Kein Entry bei Marktpreis. Auf Retest 7047 warten."
+        "warnung": "SPX500 Session 1 hatte VA=18pts — extremste Balance (Coiled Spring). Session 0 mit VA=82 erste Expansion. Weiterer Ausbruch nach oben sehr wahrscheinlich."
       }
     },
     "inter_market": {
-      "alle_bullish": true, "alle_bearish": false, "gemischt": false,
-      "beschreibung": "Alle drei Instrumente stark BULLISH mit Gap-up. DJ30 +2.14%, GER40 +2.41%, SPX500 +1.58%. Konsistentes Inter-Market Bild — sehr starkes bullisches Signal."
+      "alle_bullish": true,
+      "alle_bearish": false,
+      "gemischt": false,
+      "beschreibung": "Alle drei Instrumente BULLISH. GER40 Score=+4, DJ30 Score=+6, SPX500 Score=+6. Konsistentes Inter-Market Signal. SPX500 mit staerkstem ER (83.93) und Coiled-Spring-Pattern — beste Setup-Qualitaet. DJ30 staerkste P-Shape (VA=891). GER40 leicht unter VWAP — minimal schwaecher."
     },
     "watchlist": [
-      "GAP-UP alle Instrumente — kein Chase, Retest abwarten",
-      "Gold steigend +94$ (risk_off Signal)",
-      "Fear&Greed 27 (Fear — Divergenz zu Preisaktion)",
-      "ZEW + Retail Sales 21.04. (Monday)"
+      "SPX500 Coiled Spring: VA Session 1 = 18pts — explosive Bewegung erwartet",
+      "DJ30 P-Shape extrem: POC bei VAL — maximale Kaeufer-Kontrolle",
+      "Gold steigend +72$ (risk_off — Kontraindikator, beobachten)",
+      "Fear & Greed 29 (Fear) — Divergenz zu bullischem Chart (Kaufgelegenheit?)",
+      "ZEW + Retail Sales 21.04. (morgen) — keine Orders ueber Nacht halten"
     ],
-    "summary": "Regime RISK-ON. Phase TREND. Alle drei BULLISH (GER40+4, DJ30+5, SPX500+5). Massive Gap-ups ueber gestrigem VAH: GER40+519, DJ30+880, SPX500+87 Punkte. VIX 17.48 fallend, DXY 98.1 schwach, Makro LEICHT_RISK_ON. WARNUNG: Kein Entry bei aktuellen Premarket-Kursen (Sonntag, duenner Markt). Strategie: Limit-Buy-Orders an gestrigen VAH-Levels setzen, bei Retest einsteigen. Fear&Greed 27 zeigt Divergenz zur Preisaktion — vorsichtig."
+    "summary": "Regime RISK-ON. Phase TREND. Alle drei BULLISH (GER40+4, DJ30+6, SPX500+6). ER Daily sehr stark: SPX 83.93, DJ30 58.60, GER40 54.86. 5-Tage-Sequenz: Balance-Kontraktion auf allen Instrumenten, Session 0 massive P-Shape Expansion. Ichimoku: Preis weit ueber Kumo D+W. Macro NEUTRAL (+1, kein Hindernis). Alignment Score 5/7 — Trade-Freigabe JA. SPX500 ist das beste Instrument: Coiled Spring + staerkster ER + P-Shape + VWAP-Support."
   },
 
   "captain": {
     "_agent": "CAPTAIN",
-    "_last_run": "2026-04-19T18:26:30",
+    "_last_run": "2026-04-20T08:17:30",
     "_status": "ready",
-    "session_bias": "LONG-BIAS",
-    "aktive_strategie": "Trend-Following",
-    "trade_plan": "GAP-UP SITUATION — kein Chase. Limit-Buy-Orders an gestrigen VAH-Levels (Retest-Strategie). DJ30: Limit Buy 48620 (VAH-Retest), SL 48474 (unter VAL), TP1 48839 (R:R 1.5), TP2 49100 (R:R 3.3). SPX500: Limit Buy 7048 (VAH-Retest), SL 7025 (unter VAL), TP1 7082 (R:R 1.5), TP2 7134 (R:R 3.7). GER40: Limit Buy 24185 (VAH-Retest), SL 24056 (unter VAL), TP1 24443 (R:R 2.0). Nur handeln wenn Preis an Levels zurueckkehrt — kein Market-Buy bei aktuellen Kursen.",
-    "instrument_prioritaet": ["DJ30", "SPX500", "GER40"],
+    "session_bias": "LONG-LEAN",
+    "aktive_strategie": "Trend-Following (Pullback-Entry)",
+    "alignment_score": 5,
+    "trade_freigabe": true,
+    "trade_plan": "LONG-LEAN Setup auf allen drei Instrumenten. Strategie: Limit-Buy-Orders an Pullback-Zonen (VWAP/POC). SPX500 bevorzugt (Coiled Spring + ER=83.93). Kein Chase bei aktuellen Kursen (pre-London-Open). Entry-Fenster: London Open 09:00 CET (in ~55 Min) oder Pullback im Laufe des Tages. DJ30: Limit Buy 49050 (VWAP-Zone), SL 48740 (unter ONL), TP1 49537 (PDH), TP2 50000. SPX500: Limit Buy 7058 (POC+), SL 7038 (unter VAL), TP1 7127 (PDH), TP2 7160. GER40: Limit Buy 24200 (POC-Naehe), SL 24080 (unter VAL), TP1 24450, TP2 24663 (PDH).",
+    "instrument_prioritaet": ["SPX500", "DJ30", "GER40"],
+    "entry_fenster": "London Open (09:00 CET) — Pullback bei Markteroeffnung bevorzugt",
     "max_risk_today": "1.0%",
     "max_trades_heute": 2,
     "trades_today": 0,
     "active_positions": [],
-    "notes": "Regime RISK-ON + Makro LEICHT_RISK_ON = LONG-BIAS. Alle drei BULLISH, kein Divergenz-Override. CRITICAL: Premarket Sonntag, duenner Markt, massive Gap-ups. Hard Rule: Kein Market-Buy jetzt. Limit-Orders an gestrigen VAH als Retest-Vorbereitung setzen. VIX 17.48 OK. Events erst 21.04. Fear&Greed 27 (Fear) als Kontraindikator beachten — Positionen kleiner halten."
+    "notes": "Regime RISK-ON + Makro NEUTRAL = LONG-LEAN (nicht LONG-BIAS da Makro nicht RISK_ON). Aber: alle 3 Instrumente stark bullish, ER sehr hoch, P-Shape Continuation = Qualitaet ist TOP. Kein Event heute. VIX 17.48 OK. Fear&Greed 29 (Fear) zeigt Kontraindikator — Divergenz zu Chart = typisches Kaufsignal. Gold steigend (Vorsicht, aber kein Hard-Stop). Alignment 5/7: Trade-Freigabe JA. Max 2 Trades: SPX500 + DJ30 Prioritaet. GER40 nur wenn erste 2 gut eingegangen."
   },
 
   "orders": {
     "_agent": "EXECUTOR",
-    "_last_run": "2026-04-19T18:26:45",
+    "_last_run": "2026-04-20T08:18:00",
     "_status": "ready",
     "orders": [
       {
-        "instrument": "DJ30",
-        "richtung": "LONG",
-        "entry": 48620.0,
-        "sl": 48474.0,
-        "tp1": 48839.0,
-        "tp2": 49100.0,
-        "rr": 1.50,
-        "konfluenz_score": 7,
-        "p_fill": 15,
-        "p_tp1": 55,
-        "bestaedigungen": ["VAH-Retest 48617.73", "POC 48575.36 nahe Entry", "Regime RISK-ON", "Inter-Market alle BULLISH", "Bias-Score +5", "Makro LEICHT_RISK_ON", "Trend-Following nach Gap-up"]
-      },
-      {
         "instrument": "SPX500",
         "richtung": "LONG",
-        "entry": 7048.0,
-        "sl": 7025.0,
-        "tp1": 7082.5,
-        "tp2": 7134.0,
-        "rr": 1.50,
+        "entry": 7058.0,
+        "sl": 7038.0,
+        "sl_referenz": "VAL 7045 − 0.1% Buffer",
+        "tp1": 7127.97,
+        "tp1_referenz": "PDH / VAH",
+        "tp2": 7160.0,
+        "tp2_referenz": "Extension ueber ONH 7147",
+        "rr": 3.45,
         "konfluenz_score": 6,
-        "p_fill": 12,
-        "p_tp1": 55,
-        "bestaedigungen": ["VAH-Retest 7047.51", "POC 7039.93 nahe Entry", "Regime RISK-ON", "Inter-Market alle BULLISH", "Bias-Score +5", "Trend-Following nach Gap-up"]
+        "p_fill": 65,
+        "p_tp1": 60,
+        "alignment_score": 5,
+        "bestaedigungen": [
+          "MP POC 7054 als Entry-Zone (+2)",
+          "VWAP 7077 darueber als naechster Magnet (+1)",
+          "ER=83.93 — staerkster aller drei Instrumente (+1)",
+          "Inter-Market alle BULLISH (+1)",
+          "CVD Daily positiv +1.43M (+1)",
+          "Coiled Spring Pattern (VA Session 1 = 18pts) — explosive Fortsetzung wahrscheinlich",
+          "Ichimoku Kumo weit unten — kein Widerstand"
+        ]
+      },
+      {
+        "instrument": "DJ30",
+        "richtung": "LONG",
+        "entry": 49050.0,
+        "sl": 48740.0,
+        "sl_referenz": "Unter ONL 48788 − 0.1% Buffer",
+        "tp1": 49537.69,
+        "tp1_referenz": "PDH / VAH",
+        "tp2": 50000.0,
+        "tp2_referenz": "Psychologisches Level 50k",
+        "rr": 1.57,
+        "konfluenz_score": 6,
+        "p_fill": 55,
+        "p_tp1": 60,
+        "alignment_score": 5,
+        "bestaedigungen": [
+          "MP POC 48674 / VAL 48646 als Support-Zone (+2)",
+          "VWAP 49045 am Entry (+1)",
+          "ER=58.60 stark bullish (+1)",
+          "Inter-Market BULLISH (+1)",
+          "ONL als Stop-Referenz (+1)",
+          "P-Shape extrem: POC bei VAL = maximale Kaeufer-Kontrolle"
+        ]
       },
       {
         "instrument": "GER40",
         "richtung": "LONG",
-        "entry": 24185.0,
-        "sl": 24056.0,
-        "tp1": 24443.0,
-        "tp2": 24647.0,
-        "rr": 2.00,
-        "konfluenz_score": 5,
-        "p_fill": 18,
-        "p_tp1": 50,
-        "bestaedigungen": ["VAH-Retest 24184.78", "POC 24127.58 als tieferes Support", "Regime RISK-ON", "Inter-Market BULLISH", "Bias-Score +4"]
+        "entry": 24200.0,
+        "sl": 24080.0,
+        "sl_referenz": "Unter VAL 24101 − 0.1% Buffer",
+        "tp1": 24450.0,
+        "tp1_referenz": "VWAP-Bereich / Mid-VA",
+        "tp2": 24663.79,
+        "tp2_referenz": "PDH / VAH",
+        "rr": 2.08,
+        "konfluenz_score": 6,
+        "p_fill": 35,
+        "p_tp1": 55,
+        "alignment_score": 5,
+        "bestaedigungen": [
+          "MP POC 24154 als Entry-Anker (+2)",
+          "ER=54.86 stark bullish (+1)",
+          "Inter-Market BULLISH (+1)",
+          "CVD Daily positiv +125k (+1)",
+          "ONL 24146 als SL-Referenz (+1)",
+          "P-Shape nach Balance-Kontraktion"
+        ]
       }
     ],
     "summary": {
-      "best_instrument": "DJ30",
+      "best_instrument": "SPX500",
       "total_orders": 3,
+      "trade_freigabe": true,
       "warnings": [
-        "GAP-UP Situation: Alle P_Fill niedrig (10-18%) — reale Chance auf Retest gering bei starker Session",
-        "VWAP nicht verfuegbar — Signal fehlt fuer alle Instrumente",
-        "Premarket Sonntag: Duenner Markt, Kurse koennen sich bis Marktoeffnung aendern",
-        "Captain max_trades=2: DJ30 und SPX500 Prioritaet"
+        "LONG-LEAN (nicht LONG-BIAS): Makro NEUTRAL — Positionen kleiner halten",
+        "Pre-London Open: Preis kann sich bis 09:00 CET verschieben",
+        "GER40 P_Fill nur 35% — nur handeln wenn SPX500+DJ30 bereits gefuellt",
+        "ZEW + Retail Sales morgen 21.04. — keine Positionen ueber Nacht halten"
       ],
-      "notes": "3 Limit-Buy Orders an gestrigen VAH-Levels. Alle R:R >= 1.5. Gap-up Szenario: Orders nur ausloesung wenn Preis zuruecklaeuft. Bei Trend-Fortsetzung ohne Retest: Orders verfallen lassen, neu bewerten bei Marktoeffnung."
+      "notes": "Alignment 5/7. Regime RISK-ON. Phase TREND (P-Shape Expansion). Alle ER Daily > 50. Beste Setup: SPX500 (Coiled Spring). Max 2 Trades priorisieren: SPX500 + DJ30. GER40 als Bonus wenn Marktbedingungen passen."
     }
+  },
+
+  "debrief": {
+    "date": "2026-04-17",
+    "orders_checked": 11,
+    "fill_rate": "0%",
+    "tp1_rate": "0%",
+    "sl_rate": "0%",
+    "pnl": 0.0,
+    "detail": "Alle 11 Limit-Buy-Orders vom 17.04. NICHT gefuellt. Entries lagen unter den Session-VAL Levels: GER40 Entries 24034-24042 < VAL 24080. DJ30 Entries 48333-48505 < VAL 48499. SPX500 Entries 6967-7033 < VAL 7032. Markt hat nicht zurueckgesetzt — Trend-Fortsetzung ohne Retest.",
+    "learnings": [
+      "Limit-Orders bei starken Trend-Days nicht zu weit unter VAL setzen — Retest bleibt aus",
+      "Coiled-Spring und P-Shape = Entries nahe POC/VWAP priorisieren, nicht zu tief",
+      "ER > 50 = starker Trend, Pullback-Tiefe limitiert"
+    ]
   },
 
   "signals": [],
