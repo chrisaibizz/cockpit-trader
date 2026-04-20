@@ -365,12 +365,13 @@ function renderFromState(s){
           bias:ai.bias||'—',
           bias_color:ai.bias&&ai.bias.includes('BULL')?'green':ai.bias&&ai.bias.includes('BEAR')?'red':'yellow',
           bias_score:ai.bias_score||0,
-          confluence_pct:Math.round((ai.bias_score||0)/7*100),
+          confluence_pct:Math.min(100,Math.round(Math.max(0,(ai.bias_score||0))/7*100)),
           confluence_label:(ai.bias_score||0)+'/7',
           quote:{price:mi.current_price,change:0,change_pct:mi.change_pct||0,high:mi.high,low:mi.low,prev_close:mi.prev_close},
           market_profile:{poc:mi.poc,vah:mi.vah,val:mi.val,vwap:mi.vwap,volume_profile:vpData,shape:{name:mi.mp_shape||'Normal Day',description:''}},
           current_price:mi.current_price,
-          mp_shape_yesterday:mi.mp_shape||'Normal Day'
+          mp_shape_yesterday:mi.mp_shape||'Normal Day',
+          manual_checks:[]
         };
       })
     }
