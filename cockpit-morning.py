@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Cockpit-Trader: Vollautomatisches Morning Briefing
-SP500 & Dow Jones KASSA – Market Profile, VWAP, Bias-Ampel
+SP500 & Dow Jones KASSA â€“ Market Profile, VWAP, Bias-Ampel
 Symbole: ^GSPC (S&P 500 Cash), ^DJI (Dow Jones Cash)
 GitHub Actions: laeuft automatisch Mo-Fr 07:00 Uhr
 iPhone URL: https://chrisaibizz.github.io/cockpit-trader/
@@ -261,7 +261,7 @@ def detect_shape_from_tpo(sess, poc, vah, val):
 
     price_range = sorted_levels[-1] - sorted_levels[0]
     if price_range == 0:
-        return {"name": "Normal Day", "description": "Keine Range – kein Muster erkennbar"}
+        return {"name": "Normal Day", "description": "Keine Range â€“ kein Muster erkennbar"}
 
     poc_pos  = (poc - sorted_levels[0]) / price_range
     va_size  = vah - val
@@ -269,36 +269,36 @@ def detect_shape_from_tpo(sess, poc, vah, val):
 
     if poc_pos > 0.80:
         return {"name": "Trend Day (Up)",
-                "description": "POC am oberen Extrem – starker Aufwaerts-Trend, Continuation-Bias"}
+                "description": "POC am oberen Extrem â€“ starker Aufwaerts-Trend, Continuation-Bias"}
     if poc_pos < 0.20:
         return {"name": "Trend Day (Down)",
-                "description": "POC am unteren Extrem – starker Abwaerts-Trend, Continuation-Bias"}
+                "description": "POC am unteren Extrem â€“ starker Abwaerts-Trend, Continuation-Bias"}
     if upper_tpo > 0.50 * total_tpo and lower_tpo < 0.20 * total_tpo:
         return {"name": "P-Shape",
-                "description": "Distribution oben, Buying Tail unten – Short Covering. Oft bearish reversal."}
+                "description": "Distribution oben, Buying Tail unten â€“ Short Covering. Oft bearish reversal."}
     if lower_tpo > 0.50 * total_tpo and upper_tpo < 0.20 * total_tpo:
         return {"name": "b-Shape",
-                "description": "Distribution unten, Selling Tail oben – Long Liquidation. Oft bullish reversal."}
+                "description": "Distribution unten, Selling Tail oben â€“ Long Liquidation. Oft bullish reversal."}
     peaks = [i for i in range(1, n-1)
              if tpo_vals[i] > tpo_vals[i-1] and tpo_vals[i] > tpo_vals[i+1]
              and tpo_vals[i] > 0.25 * max(tpo_vals)]
     if len(peaks) >= 2 and abs(peaks[0] - peaks[-1]) > third:
         return {"name": "Double Distribution",
-                "description": "Zwei Value Areas mit LVN dazwischen – Trend-Continuation wahrscheinlich"}
+                "description": "Zwei Value Areas mit LVN dazwischen â€“ Trend-Continuation wahrscheinlich"}
     if va_ratio > 0.85:
         return {"name": "Non-Trend Day",
-                "description": "Breite VA – Range-Bound, kein klarer Richtungs-Bias"}
+                "description": "Breite VA â€“ Range-Bound, kein klarer Richtungs-Bias"}
     if middle_tpo > 0.40 * total_tpo and 0.30 < poc_pos < 0.70:
         return {"name": "Normal Day",
-                "description": "Ausbalanciert, POC zentral – Range-Trading um POC wahrscheinlich"}
+                "description": "Ausbalanciert, POC zentral â€“ Range-Trading um POC wahrscheinlich"}
     if poc_pos > 0.55:
         return {"name": "Normal Variation (Up)",
-                "description": "Leicht bullischer Bias – Abwarten auf Breakout aus VA"}
+                "description": "Leicht bullischer Bias â€“ Abwarten auf Breakout aus VA"}
     if poc_pos < 0.45:
         return {"name": "Normal Variation (Down)",
-                "description": "Leicht bearischer Bias – Abwarten auf Breakdown aus VA"}
+                "description": "Leicht bearischer Bias â€“ Abwarten auf Breakdown aus VA"}
     return {"name": "Normal Variation",
-            "description": "Ausgewogen ohne klare Richtung – Range-Handel"}
+            "description": "Ausgewogen ohne klare Richtung â€“ Range-Handel"}
 
 
 def get_tv_data(ticker, timeframe="30"):
@@ -549,7 +549,7 @@ def get_tv_data(ticker, timeframe="30"):
                       "poor_high":    stpo["poor_high"]    if stpo else None,
                       "poor_low":     stpo["poor_low"]     if stpo else None}
             else:
-                print("    TV CDP: MP – POC oder VA Lines fehlen")
+                print("    TV CDP: MP â€“ POC oder VA Lines fehlen")
 
         cvd = None
         if cvd_items and cvd_items.get("current") is not None:
@@ -669,39 +669,39 @@ def detect_mp_shape(vol_profile, poc_idx, num_bins, df_day):
                 peaks.append(i)
     if len(peaks) >= 2 and abs(peaks[0] - peaks[-1]) > third:
         return {"name": "Double Distribution",
-                "description": "Zwei Value Areas – oft Trend-Folgetag."}
+                "description": "Zwei Value Areas â€“ oft Trend-Folgetag."}
     if middle > 0.4*total:
         return {"name": "Normal Day",
-                "description": "Ausbalanciert – Range-Trading um POC."}
+                "description": "Ausbalanciert â€“ Range-Trading um POC."}
     return {"name": "Normal Variation",
-            "description": "Leichte Richtung – Abwarten auf Breakout aus VA."}
+            "description": "Leichte Richtung â€“ Abwarten auf Breakout aus VA."}
 
 # ============================================================
 # 3. BIAS-AMPEL MIT CONFLUENCE-SCORE
 # ============================================================
 #
 # Confluence-Score zeigt wie viele der messbaren Kriterien in dieselbe
-# Richtung zeigen — analog zum 7-Schritte-Morgen-Prozess.
+# Richtung zeigen â€” analog zum 7-Schritte-Morgen-Prozess.
 #
 # Jedes Signal hat:
-#   label     – Text fuer das Dashboard
-#   score     – Gewichtung: +2 stark bullisch, +1 leicht bullisch,
+#   label     â€“ Text fuer das Dashboard
+#   score     â€“ Gewichtung: +2 stark bullisch, +1 leicht bullisch,
 #                           0 neutral, -1 leicht bearisch, -2 stark bearisch
-#   direction – "bullish" / "bearish" / "neutral"
-#   category  – Welcher der 7 Schritte (fuer Confluence-Zaehlung)
-#   auto      – True = automatisch berechnet, False = manuell zu pruefen
+#   direction â€“ "bullish" / "bearish" / "neutral"
+#   category  â€“ Welcher der 7 Schritte (fuer Confluence-Zaehlung)
+#   auto      â€“ True = automatisch berechnet, False = manuell zu pruefen
 #
 # Confluence:
 #   Zaehlt nur Kategorien mit auto=True.
 #   Gibt an: X von Y automatisch messbaren Kriterien zeigen in Bias-Richtung.
 #   Manuelle Kriterien (OTF, Gap, Session Expectation) werden separat
-#   als "manuell_offen" gelistet – sie erinnern den Trader was noch zu pruefen ist.
+#   als "manuell_offen" gelistet â€“ sie erinnern den Trader was noch zu pruefen ist.
 
 def compute_bias(mp, price, context, cvd=None, fred_data=None):
     """
     Berechnet Bias-Ampel mit Confluence-Score.
 
-    FIX #1: mp und price werden zuerst auf None geprueft –
+    FIX #1: mp und price werden zuerst auf None geprueft â€“
             kein AttributeError mehr wenn MP nicht geladen werden konnte.
     FIX #2: Dummy-Signale (Daily OTF / Gap / Session Expectation) werden
             nicht mehr in den Score eingerechnet, sondern als offene
@@ -711,16 +711,16 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
             confluence_pct   = Prozentsatz (fuer Ampel-Faerbung)
     """
 
-    # ── FIX #1: Fruehzeitiger Abbruch wenn keine Kerndaten vorhanden ──────────
+    # â”€â”€ FIX #1: Fruehzeitiger Abbruch wenn keine Kerndaten vorhanden â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if mp is None or price is None:
-        print("    Bias: Keine MP/Preis-Daten – NEUTRAL (kein Score)")
+        print("    Bias: Keine MP/Preis-Daten â€“ NEUTRAL (kein Score)")
         return {
             "score": 0, "bias": "NEUTRAL", "color": "yellow",
             "signals": [],
             "confluence_score": 0,
             "confluence_total": 0,
             "confluence_pct":   0,
-            "confluence_label": "0/0 – Keine Daten",
+            "confluence_label": "0/0 â€“ Keine Daten",
             "manual_checks":    ["Daily OTF Check", "Gap Analysis", "Session Expectation"],
         }
 
@@ -734,7 +734,7 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
     val  = mp["val"]
     poc  = mp["poc"]
 
-    # ── SCHRITT 1: Preis vs. VWAP (Gewicht 2) ──────────────────────────────────
+    # â”€â”€ SCHRITT 1: Preis vs. VWAP (Gewicht 2) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if price > vwap:
         signals.append({"label":     f"Preis > VWAP ({price:.0f} > {vwap:.0f})",
                          "score":     2, "direction": "bullish",
@@ -744,21 +744,21 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
                          "score":    -2, "direction": "bearish",
                          "category":  "vwap", "auto": True})
 
-    # ── SCHRITT 2: Preis vs. Value Area ────────────────────────────────────────
+    # â”€â”€ SCHRITT 2: Preis vs. Value Area â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if price > vah:
-        signals.append({"label":     f"Ueber VAH – Breakout ({price:.0f} > {vah:.0f})",
+        signals.append({"label":     f"Ueber VAH â€“ Breakout ({price:.0f} > {vah:.0f})",
                          "score":     2, "direction": "bullish",
                          "category":  "value_area", "auto": True})
     elif price < val:
-        signals.append({"label":     f"Unter VAL – Breakdown ({price:.0f} < {val:.0f})",
+        signals.append({"label":     f"Unter VAL â€“ Breakdown ({price:.0f} < {val:.0f})",
                          "score":    -2, "direction": "bearish",
                          "category":  "value_area", "auto": True})
     else:
-        signals.append({"label":     f"In Value Area ({val:.0f} – {vah:.0f})",
+        signals.append({"label":     f"In Value Area ({val:.0f} â€“ {vah:.0f})",
                          "score":     0, "direction": "neutral",
                          "category":  "value_area", "auto": True})
 
-    # ── SCHRITT 3: Preis vs. POC ───────────────────────────────────────────────
+    # â”€â”€ SCHRITT 3: Preis vs. POC â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if price > poc:
         signals.append({"label":     f"Preis > POC ({price:.0f} > {poc:.0f})",
                          "score":     1, "direction": "bullish",
@@ -768,7 +768,7 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
                          "score":    -1, "direction": "bearish",
                          "category":  "poc", "auto": True})
 
-    # ── SCHRITT 4: MP Shape ────────────────────────────────────────────────────
+    # â”€â”€ SCHRITT 4: MP Shape â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     sn = mp["shape"]["name"]
     if   "Trend Day (Up)"    in sn: shape_sc, shape_dir =  2, "bullish"
     elif "Trend Day (Down)"  in sn: shape_sc, shape_dir = -2, "bearish"
@@ -781,7 +781,7 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
                      "score":     shape_sc, "direction": shape_dir,
                      "category":  "shape", "auto": True})
 
-    # ── SCHRITT 5: Overnight Inventory (Preis-Position in Value Area) ──────────
+    # â”€â”€ SCHRITT 5: Overnight Inventory (Preis-Position in Value Area) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     mid = (vah + val) / 2
     if price > mid:
         signals.append({"label":     "Overnight Inventory: Long (Preis > VA-Mitte)",
@@ -792,15 +792,15 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
                          "score":    -1, "direction": "bearish",
                          "category":  "inventory", "auto": True})
 
-    # ── CVD: Kauf-/Verkaufsdruck ───────────────────────────────────────────────
+    # â”€â”€ CVD: Kauf-/Verkaufsdruck â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if cvd and cvd.get("value") is not None:
         v = cvd["value"]
         if v > 0:
-            signals.append({"label":     f"CVD positiv ({v:+.0f}) – Kaufdruck",
+            signals.append({"label":     f"CVD positiv ({v:+.0f}) â€“ Kaufdruck",
                              "score":     1, "direction": "bullish",
                              "category":  "cvd", "auto": True})
         else:
-            signals.append({"label":     f"CVD negativ ({v:+.0f}) – Verkaufsdruck",
+            signals.append({"label":     f"CVD negativ ({v:+.0f}) â€“ Verkaufsdruck",
                              "score":    -1, "direction": "bearish",
                              "category":  "cvd", "auto": True})
         # Divergenz: Preis in VA aber CVD extrem
@@ -814,17 +814,17 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
                                  "score":    2, "direction": "bullish",
                                  "category": "cvd_divergenz", "auto": True})
 
-    # ── STPO: Naked POC ──────────────────────────────────────────────────────
+    # â”€â”€ STPO: Naked POC â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     naked_poc = mp.get("naked_poc", []) or []
     if naked_poc:
         above_nkd = sorted([p for p in naked_poc if p > price])
         below_nkd = sorted([p for p in naked_poc if p < price], reverse=True)
         if above_nkd and not below_nkd:
-            signals.append({"label":    f"Naked POC ueber Preis ({above_nkd[0]:.0f}) – Magnet oben",
+            signals.append({"label":    f"Naked POC ueber Preis ({above_nkd[0]:.0f}) â€“ Magnet oben",
                              "score":    2, "direction": "bullish",
                              "category": "naked_poc", "auto": True})
         elif below_nkd and not above_nkd:
-            signals.append({"label":    f"Naked POC unter Preis ({below_nkd[0]:.0f}) – Magnet unten",
+            signals.append({"label":    f"Naked POC unter Preis ({below_nkd[0]:.0f}) â€“ Magnet unten",
                              "score":   -2, "direction": "bearish",
                              "category": "naked_poc", "auto": True})
         elif above_nkd and below_nkd:
@@ -840,50 +840,50 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
                                  "score":   -1, "direction": "bearish",
                                  "category": "naked_poc", "auto": True})
 
-    # ── STPO: Single Prints ────────────────────────────────────────────────────
+    # â”€â”€ STPO: Single Prints â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     single_prints = mp.get("single_prints", []) or []
     if single_prints:
         above_sp = [p for p in single_prints if p > price]
         below_sp = [p for p in single_prints if p < price]
         if above_sp and not below_sp:
-            signals.append({"label":    f"Single Prints ueber Preis ({len(above_sp)}x, naeheste {min(above_sp):.0f}) – Magnet oben",
+            signals.append({"label":    f"Single Prints ueber Preis ({len(above_sp)}x, naeheste {min(above_sp):.0f}) â€“ Magnet oben",
                              "score":    1, "direction": "bullish",
                              "category": "single_prints", "auto": True})
         elif below_sp and not above_sp:
-            signals.append({"label":    f"Single Prints unter Preis ({len(below_sp)}x, naeheste {max(below_sp):.0f}) – Magnet unten",
+            signals.append({"label":    f"Single Prints unter Preis ({len(below_sp)}x, naeheste {max(below_sp):.0f}) â€“ Magnet unten",
                              "score":   -1, "direction": "bearish",
                              "category": "single_prints", "auto": True})
-        # beide Seiten → neutral, kein Signal
+        # beide Seiten â†’ neutral, kein Signal
 
-    # ── STPO: Poor High / Poor Low ─────────────────────────────────────────────
+    # â”€â”€ STPO: Poor High / Poor Low â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     poor_high = mp.get("poor_high")
     poor_low  = mp.get("poor_low")
     if poor_high and price < poor_high:
-        signals.append({"label":    f"Poor High ueber Preis ({poor_high:.0f}) – Schwaches Hoch, Revisit wahrscheinlich",
+        signals.append({"label":    f"Poor High ueber Preis ({poor_high:.0f}) â€“ Schwaches Hoch, Revisit wahrscheinlich",
                          "score":    1, "direction": "bullish",
                          "category": "poor_high", "auto": True})
     if poor_low and price > poor_low:
-        signals.append({"label":    f"Poor Low unter Preis ({poor_low:.0f}) – Schwaches Tief, Revisit wahrscheinlich",
+        signals.append({"label":    f"Poor Low unter Preis ({poor_low:.0f}) â€“ Schwaches Tief, Revisit wahrscheinlich",
                          "score":   -1, "direction": "bearish",
                          "category": "poor_low", "auto": True})
 
-    # ── Context: VIX ──────────────────────────────────────────────────────────
+    # â”€â”€ Context: VIX â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     vix = context.get("VIX",   {}) or {}
     dxy = context.get("DXY",   {}) or {}
     y10 = context.get("US10Y", {}) or {}
 
     if vix.get("price"):
         v = vix["price"]
-        if   v < 15: signals.append({"label": f"VIX {v} – Low Vol",    "score":  2, "direction": "bullish", "category": "vix", "auto": True})
-        elif v < 20: signals.append({"label": f"VIX {v} – Normal",     "score":  1, "direction": "bullish", "category": "vix", "auto": True})
-        elif v < 25: signals.append({"label": f"VIX {v} – Elevated",   "score": -1, "direction": "bearish", "category": "vix", "auto": True})
-        else:        signals.append({"label": f"VIX {v} – High Fear",  "score": -2, "direction": "bearish", "category": "vix", "auto": True})
+        if   v < 15: signals.append({"label": f"VIX {v} â€“ Low Vol",    "score":  2, "direction": "bullish", "category": "vix", "auto": True})
+        elif v < 20: signals.append({"label": f"VIX {v} â€“ Normal",     "score":  1, "direction": "bullish", "category": "vix", "auto": True})
+        elif v < 25: signals.append({"label": f"VIX {v} â€“ Elevated",   "score": -1, "direction": "bearish", "category": "vix", "auto": True})
+        else:        signals.append({"label": f"VIX {v} â€“ High Fear",  "score": -2, "direction": "bearish", "category": "vix", "auto": True})
 
     if vix.get("change_pct"):
         cp = vix["change_pct"]
         if   cp < -3: signals.append({"label": "VIX faellt stark",    "score":  1, "direction": "bullish", "category": "vix_chg", "auto": True})
         elif cp >  3: signals.append({"label": "VIX steigt stark",    "score": -1, "direction": "bearish", "category": "vix_chg", "auto": True})
-        # VIX stabil wird NICHT mehr als neutrales Gewicht eingetragen –
+        # VIX stabil wird NICHT mehr als neutrales Gewicht eingetragen â€“
         # ein nicht-Ereignis soll den Score nicht verwaessern.
 
     if dxy.get("change_pct"):
@@ -900,15 +900,15 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
         if   cp >  2: signals.append({"label": f"Yields steigen stark{ypy}", "score": -1, "direction": "bearish", "category": "yields", "auto": True})
         elif cp < -2: signals.append({"label": f"Yields fallen stark{ypy}",  "score":  1, "direction": "bullish", "category": "yields", "auto": True})
 
-    # ── FRED: Makrooekonomische Signale ─────────────────────────────────────────
+    # â”€â”€ FRED: Makrooekonomische Signale â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if fred_data:
         # Fed Funds Rate
         ff = fred_data.get("FEDFUNDS")
         if ff and ff.get("value") is not None:
             v, p = ff["value"], ff["prev"]
-            if   v > 5.0: signals.append({"label": f"Fed Funds {v}% — restriktiv",         "score": -2, "direction": "bearish", "category": "fred_fedfunds", "auto": True})
-            elif v > 4.0: signals.append({"label": f"Fed Funds {v}% — erhoeht",             "score": -1, "direction": "bearish", "category": "fred_fedfunds", "auto": True})
-            elif v < 2.0: signals.append({"label": f"Fed Funds {v}% — akkommodativ",        "score":  1, "direction": "bullish", "category": "fred_fedfunds", "auto": True})
+            if   v > 5.0: signals.append({"label": f"Fed Funds {v}% â€” restriktiv",         "score": -2, "direction": "bearish", "category": "fred_fedfunds", "auto": True})
+            elif v > 4.0: signals.append({"label": f"Fed Funds {v}% â€” erhoeht",             "score": -1, "direction": "bearish", "category": "fred_fedfunds", "auto": True})
+            elif v < 2.0: signals.append({"label": f"Fed Funds {v}% â€” akkommodativ",        "score":  1, "direction": "bullish", "category": "fred_fedfunds", "auto": True})
             elif v < p:   signals.append({"label": f"Fed Funds sinkend ({v}%)",             "score":  1, "direction": "bullish", "category": "fred_fedfunds", "auto": True})
             elif v > p:   signals.append({"label": f"Fed Funds steigend ({v}%)",            "score": -1, "direction": "bearish", "category": "fred_fedfunds", "auto": True})
 
@@ -925,9 +925,9 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
         cpi = fred_data.get("CPIAUCSL")
         if cpi and cpi.get("value") is not None:
             v, p = cpi["value"], cpi["prev"]
-            if   v > 4.0: signals.append({"label": f"CPI {v}% — Fed unter Druck",          "score": -2, "direction": "bearish", "category": "fred_cpi", "auto": True})
-            elif v > 3.0: signals.append({"label": f"CPI {v}% — erhoeht",                  "score": -1, "direction": "bearish", "category": "fred_cpi", "auto": True})
-            elif v < 2.5: signals.append({"label": f"CPI {v}% — nahe Ziel",                "score":  1, "direction": "bullish", "category": "fred_cpi", "auto": True})
+            if   v > 4.0: signals.append({"label": f"CPI {v}% â€” Fed unter Druck",          "score": -2, "direction": "bearish", "category": "fred_cpi", "auto": True})
+            elif v > 3.0: signals.append({"label": f"CPI {v}% â€” erhoeht",                  "score": -1, "direction": "bearish", "category": "fred_cpi", "auto": True})
+            elif v < 2.5: signals.append({"label": f"CPI {v}% â€” nahe Ziel",                "score":  1, "direction": "bullish", "category": "fred_cpi", "auto": True})
             elif v < p:   signals.append({"label": f"CPI sinkend ({v}%)",                  "score":  1, "direction": "bullish", "category": "fred_cpi", "auto": True})
             elif v > p:   signals.append({"label": f"CPI steigend ({v}%)",                 "score": -1, "direction": "bearish", "category": "fred_cpi", "auto": True})
 
@@ -935,19 +935,19 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
         ur = fred_data.get("UNRATE")
         if ur and ur.get("value") is not None:
             v, p = ur["value"], ur["prev"]
-            if   v < 4.0: signals.append({"label": f"Arbeitslosigkeit {v}% — stark",       "score":  1, "direction": "bullish", "category": "fred_unrate", "auto": True})
-            elif v > 5.0: signals.append({"label": f"Arbeitslosigkeit {v}% — schwach",     "score": -1, "direction": "bearish", "category": "fred_unrate", "auto": True})
+            if   v < 4.0: signals.append({"label": f"Arbeitslosigkeit {v}% â€” stark",       "score":  1, "direction": "bullish", "category": "fred_unrate", "auto": True})
+            elif v > 5.0: signals.append({"label": f"Arbeitslosigkeit {v}% â€” schwach",     "score": -1, "direction": "bearish", "category": "fred_unrate", "auto": True})
             elif v > p:   signals.append({"label": f"Arbeitslosigkeit steigt ({v}%)",      "score": -1, "direction": "bearish", "category": "fred_unrate", "auto": True})
             elif v < p:   signals.append({"label": f"Arbeitslosigkeit sinkt ({v}%)",       "score":  1, "direction": "bullish", "category": "fred_unrate", "auto": True})
 
-    # ── FIX #2: Manuelle Checks NICHT im Score – separat zurueckgeben ─────────
+    # â”€â”€ FIX #2: Manuelle Checks NICHT im Score â€“ separat zurueckgeben â”€â”€â”€â”€â”€â”€â”€â”€â”€
     manual_checks = [
         "Daily OTF Check (4H/Daily Trend manuell pruefen)",
         "Gap Analysis (Gap vom Vortag open/close pruefen)",
         "Session Expectation (Makro-Kontext / News manuell bewerten)",
     ]
 
-    # ── Score berechnen ───────────────────────────────────────────────────────
+    # â”€â”€ Score berechnen â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     auto_signals = [s for s in signals if s.get("auto")]
     total_weight = sum(abs(s["score"]) for s in auto_signals) or 1
     raw_score    = sum(s["score"] for s in auto_signals)
@@ -956,7 +956,7 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
     bias  = "BULLISH" if sc > 25 else "BEARISH" if sc < -25 else "NEUTRAL"
     color = "green"   if sc > 25 else "red"     if sc < -25 else "yellow"
 
-    # ── Confluence-Score berechnen ────────────────────────────────────────────
+    # â”€â”€ Confluence-Score berechnen â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     # Zaehlt wie viele auto-Kategorien klar in Bias-Richtung zeigen (score != 0)
     # Jede Kategorie zaehlt nur einmal (erstes Signal dieser Kategorie).
     seen_categories = {}
@@ -1002,13 +1002,13 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
         "bias":              bias,
         "color":             color,
         "signals":           signals,
-        # ── NEU: Confluence ──────────────────────────────────────────────────
+        # â”€â”€ NEU: Confluence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         "confluence_score":  confluence_for,
         "confluence_against": confluence_against,
         "confluence_total":  confluence_total,
         "confluence_pct":    confluence_pct,
         "confluence_label":  confluence_label,
-        # ── NEU: Manuelle Checks ─────────────────────────────────────────────
+        # â”€â”€ NEU: Manuelle Checks â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         "manual_checks":     manual_checks,
     }
 
@@ -1102,7 +1102,7 @@ def generate_order(inst, mp, price, bias_data, shape_name):
                       or (effective_bias == "BEARISH" and s["direction"] == "bearish")]
     confluence = " + ".join(direction_sigs[:3]) or "MP-Levels + Score-Richtung"
     if bias == "NEUTRAL":
-        confluence += " (NEUTRAL Bias – geringere Konfluenz)"
+        confluence += " (NEUTRAL Bias â€“ geringere Konfluenz)"
 
     vwap_pos = ("Preis ueber VWAP" if price > vwap
                 else "Preis unter VWAP" if price < vwap
@@ -1163,15 +1163,15 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
     warnings             = []
 
     if vix_price > 25:
-        warnings.append(f"VIX {vix_price:.1f} – High Fear! Stops enger setzen")
+        warnings.append(f"VIX {vix_price:.1f} â€“ High Fear! Stops enger setzen")
     elif vix_price > 20:
-        warnings.append(f"VIX {vix_price:.1f} – Elevated, Vorsicht bei Einstiegen")
+        warnings.append(f"VIX {vix_price:.1f} â€“ Elevated, Vorsicht bei Einstiegen")
     if abs(vix_chg) > 5:
         direction = "steigt" if vix_chg > 0 else "faellt"
-        warnings.append(f"VIX {direction} stark ({vix_chg:+.1f}%) – Volatilitaet im Wandel")
+        warnings.append(f"VIX {direction} stark ({vix_chg:+.1f}%) â€“ Volatilitaet im Wandel")
     if abs(dxy_chg) > 0.5:
         direction = "steigt" if dxy_chg > 0 else "faellt"
-        warnings.append(f"USD {direction} ({dxy_chg:+.2f}%) – Richtungsrisiko beachten")
+        warnings.append(f"USD {direction} ({dxy_chg:+.2f}%) â€“ Richtungsrisiko beachten")
 
     best_inst  = None
     best_score = -999
@@ -1223,7 +1223,7 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
         )
         daily_summary = (
             f"Bias {bias_de} (Score {score}, Confluence {conf_pct}%). "
-            f"Vortag Range: {mp.get('day_low')} – {mp.get('day_high')}. "
+            f"Vortag Range: {mp.get('day_low')} â€“ {mp.get('day_high')}. "
             f"VIX={vix_price:.1f}."
         )
 
@@ -1231,11 +1231,11 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
         orders_list = [order] if order else []
 
         if bias_str == "BULLISH":
-            invalidation = f"Kurs schliesst unter {mp.get('val')} – bullischer Bias negiert"
+            invalidation = f"Kurs schliesst unter {mp.get('val')} â€“ bullischer Bias negiert"
         elif bias_str == "BEARISH":
-            invalidation = f"Kurs schliesst ueber {mp.get('vah')} – bearischer Bias negiert"
+            invalidation = f"Kurs schliesst ueber {mp.get('vah')} â€“ bearischer Bias negiert"
         else:
-            invalidation = f"Kurs bricht aus Value Area ({mp.get('val')}–{mp.get('vah')}) aus"
+            invalidation = f"Kurs bricht aus Value Area ({mp.get('val')}â€“{mp.get('vah')}) aus"
 
         journal_instruments.append({
             "name":                display_name,
@@ -1244,14 +1244,14 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
             "bias_score":          score,
             "bias_pct":            str(bias_pct),
             "bias_signals":        bias_data.get("signals", []),
-            # ── NEU: Confluence-Felder ──────────────────────────────────────
+            # â”€â”€ NEU: Confluence-Felder â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             "confluence_score":    bias_data.get("confluence_score", 0),
             "confluence_against":  bias_data.get("confluence_against", 0),
             "confluence_total":    bias_data.get("confluence_total", 0),
             "confluence_pct":      conf_pct,
             "confluence_label":    conf_label,
             "manual_checks":       manual_chks,
-            # ────────────────────────────────────────────────────────────────
+            # â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             "cvd":                 cvd,
             "quote":               q,
             "market_profile":      mp,
@@ -1400,7 +1400,7 @@ def run_pipeline(journal, orders, script_dir):
     try:
         subprocess.run(["git", "add", "-A"],
                        capture_output=True, text=True, cwd=script_dir, encoding="utf-8")
-        commit_msg = f"Morning Briefing {today} – GER40/US30/SPX500 Auto-Pipeline"
+        commit_msg = f"Morning Briefing {today} â€“ GER40/US30/SPX500 Auto-Pipeline"
         commit_result = subprocess.run(
             ["git", "commit", "-m", commit_msg],
             capture_output=True, text=True, cwd=script_dir, encoding="utf-8"
@@ -1468,7 +1468,7 @@ def main():
         json.dump(out, f, indent=2, cls=SafeJSONEncoder)
     print(f"    -> {json_path}")
 
-    # ── SNAPSHOT: data.json täglich archivieren (Basis für Backtesting) ──────
+    # â”€â”€ SNAPSHOT: data.json tÃ¤glich archivieren (Basis fÃ¼r Backtesting) â”€â”€â”€â”€â”€â”€
     print("\n>>> Snapshot archivieren...")
     today_str = datetime.now().strftime("%Y-%m-%d")
     snapshots_dir = os.path.join(script_dir, "snapshots")
@@ -1535,7 +1535,7 @@ def main():
     for fname, label in [
         ("cockpit-briefing.html", "cockpit-briefing.html"),
         ("dashboard-legacy.html", "dashboard-legacy.html (GitHub Pages)"),
-        ("index.html",            "index.html (GitHub Pages Einstieg)"),
+        # ("index.html", "index.html") # deaktiviert
     ]:
         fpath = os.path.join(script_dir, fname)
         print(f">>> Schreibe {label}...")
@@ -1543,7 +1543,7 @@ def main():
             f.write(html_embedded)
         print(f"    -> {fpath}")
 
-    # ── Summary-Print ──────────────────────────────────────────────────────────
+    # â”€â”€ Summary-Print â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     print(f"\n{'='*55}")
     print(f"Timestamp: {out['timestamp']}")
     for ji in journal.get("instruments", []):
@@ -1578,9 +1578,10 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f"\n❌ UNERWARTETER FEHLER:")
+        print(f"\nâŒ UNERWARTETER FEHLER:")
         traceback.print_exc()
         logging.error(f"UNERWARTETER FEHLER: {e}", exc_info=True)
         sys.exit(1)
     sys.exit(0)
+
 
