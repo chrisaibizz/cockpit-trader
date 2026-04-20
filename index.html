@@ -265,8 +265,63 @@ function render(d){
 }
 
 function load(){
-  if(window.__COCKPIT_DATA__){render(window.__COCKPIT_DATA__);return;}
-  fetch('data.json').then(function(r){if(!r.ok)throw new Error('data.json nicht gefunden');return r.json();}).then(render).catch(function(e){document.getElementById('dash').innerHTML='<div class="loading">❌ '+e.message+'<br><small>python cockpit-morning.py ausführen</small></div>';});
+  // fetch state.json zuerst (GitHub Pages - immer aktuell)
+  fetch('state.json?t='+Date.now())
+    .then(function(r){if(!r.ok)throw new Error();return r.json();})
+    .then(function(s){
+      // state.json in dashboard-kompatibles Format umwandeln
+      if(s.market&&s.analysis){renderFromState(s);return;}
+      throw new Error('state.json kein Dashboard-Format');
+    })
+    .catch(function(){
+      // Fallback 1: data.json
+      fetch('data.json?t='+Date.now())
+        .then(function(r){if(!r.ok)throw new Error('data.json nicht gefunden');return r.json();})
+        .then(render)
+        .catch(function(){
+          // Fallback 2: eingebettete Daten (lokal)
+          if(window.__COCKPIT_DATA__){render(window.__COCKPIT_DATA__);return;}
+          document.getElementById('dash').innerHTML='<div class="loading">❌ Keine Daten verfügbar</div>';
+        });
+    });
+}
+
+function renderFromState(s){
+  // Wandelt state.json in data.json Format um für Dashboard
+  var d={
+    timestamp: s.market&&s.market._last_run||s.pipeline&&s.pipeline.started||new Date().toISOString(),
+    context:{
+      VIX: s.macro&&s.macro.vix?{price:s.macro.vix.value,change:s.macro.vix.value-(s.macro.vix.prev||s.macro.vix.value),change_pct:0}:null,
+      DXY: s.macro&&s.macro.dxy?{price:s.macro.dxy.value,change:s.macro.dxy.value-(s.macro.dxy.prev||s.macro.dxy.value),change_pct:0}:null,
+      US10Y: s.macro&&s.macro.bonds_10y?{price:s.macro.bonds_10y.yield,change:0,change_pct:0}:null
+    },
+    fred:{
+      FEDFUNDS:s.macro&&s.macro.fred&&s.macro.fred.fedfunds?{value:s.macro.fred.fedfunds.value,unit:'%'}:null,
+      CPIAUCSL:s.macro&&s.macro.fred&&s.macro.fred.cpi?{value:s.macro.fred.cpi.value,unit:'%'}:null,
+      T10Y2Y:{value:0.54,unit:'%'},
+      UNRATE:{value:4.3,unit:'%'}
+    },
+    calendar: s.market&&s.market.calendar||[],
+    journal:{
+      instruments: Object.keys(s.market&&s.market.instruments||{}).map(function(k){
+        var mi=s.market.instruments[k];
+        var ai=s.analysis&&s.analysis.instruments&&s.analysis.instruments[k]||{};
+        return {
+          name:k,
+          bias:ai.bias||'—',
+          bias_color:ai.bias&&ai.bias.includes('BULL')?'green':ai.bias&&ai.bias.includes('BEAR')?'red':'yellow',
+          bias_score:ai.bias_score||0,
+          confluence_pct:Math.round((ai.bias_score||0)/7*100),
+          confluence_label:(ai.bias_score||0)+'/7',
+          quote:{price:mi.current_price,change:0,change_pct:mi.change_pct||0,high:mi.high,low:mi.low,prev_close:mi.prev_close},
+          market_profile:{poc:mi.poc,vah:mi.vah,val:mi.val,vwap:mi.vwap,shape:{name:mi.mp_shape||'Normal Day',description:''}},
+          current_price:mi.current_price,
+          mp_shape_yesterday:mi.mp_shape||'Normal Day'
+        };
+      })
+    }
+  };
+  render(d);
 }
 load();
 </script>

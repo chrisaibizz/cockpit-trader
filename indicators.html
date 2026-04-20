@@ -308,12 +308,14 @@ function render(s) {
 }
 
 function load() {
-  if (window.__STATE_DATA__) { render(window.__STATE_DATA__); return; }
+  // fetch state.json zuerst (GitHub Pages - immer aktuell)
   fetch('state.json?t=' + Date.now())
     .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(render)
     .catch(function(e){
-      document.getElementById('main').innerHTML = '<div class="loading">&#10060; ' + e.message + '</div>';
+      // Fallback: eingebettete Daten (lokal)
+      if(window.__STATE_DATA__){ render(window.__STATE_DATA__); return; }
+      document.getElementById('main').innerHTML = '<div class="loading">❌ ' + e.message + '</div>';
     });
 }
 load();
