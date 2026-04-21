@@ -79,6 +79,14 @@ body{background:var(--bg);color:var(--text);font-family:'SF Mono','Fira Code',mo
 .can{flex:1;}
 .imp-high{color:var(--red);font-weight:700;}
 .day-lbl{padding:7px 0 2px;font-size:11px;color:var(--muted);}
+.cbadge{display:inline-block;padding:1px 7px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:1px;flex-shrink:0;}
+.cbadge-de{background:rgba(234,179,8,.15);color:var(--yellow);border:1px solid rgba(234,179,8,.3);}
+.cbadge-us{background:rgba(59,130,246,.15);color:var(--blue);border:1px solid rgba(59,130,246,.3);}
+.cafp{display:flex;gap:12px;min-width:210px;justify-content:flex-end;}
+.cafp-col{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:60px;}
+.cafp-lbl{font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.cafp-val{font-size:11px;font-weight:600;}
+.cafp-g{color:var(--green);}.cafp-r{color:var(--red);}.cafp-m{color:var(--muted);}
 /* WARNINGS */
 .warn-block{background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:10px 14px;margin-bottom:18px;}
 .warn-title{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--red);margin-bottom:6px;}
@@ -249,11 +257,32 @@ function renderCal(cal){
   if(!filtered.length)return'<div class="cal-block"><div class="cal-title">📅 Makro Kalender</div><div style="color:var(--muted);font-size:12px;text-align:center;padding:8px 0">Keine High-Impact Events</div></div>';
   var byDay={};
   filtered.forEach(function(e){var d=e.date||String(e.time||'').slice(0,10)||'';if(!byDay[d])byDay[d]=[];byDay[d].push(e);});
+  Object.keys(byDay).forEach(function(d){byDay[d].sort(function(a,b){return String(a.time||'').localeCompare(String(b.time||''));});});
   var rows='';
   Object.keys(byDay).sort().forEach(function(day){
-    var evts=byDay[day],d=new Date(day),dl=isNaN(d)?day:d.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit',year:'numeric'});
+    var evts=byDay[day],d=new Date(day),dl=isNaN(d)?day:d.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit'});
     rows+='<div class="day-lbl">'+dl+'</div>';
-    evts.forEach(function(e){rows+='<div class="cale"><span class="cat">'+String(e.time||'').slice(11,16)+'</span><span class="can">'+e.event+'</span><span class="imp-high">'+e.country+'</span></div>';});
+    evts.forEach(function(e){
+      var ct=(e.country||'').toUpperCase();
+      var badge='<span class="cbadge '+(ct==='DE'?'cbadge-de':'cbadge-us')+'">'+ct+'</span>';
+      var uhr=String(e.time||'').slice(11,16)||'—';
+      var actual=e.actual!=null?e.actual:null;
+      var forecast=e.estimate!=null?e.estimate:null;
+      var previous=e.prior!=null?e.prior:null;
+      var actCls='cafp-m';
+      if(actual!=null&&forecast!=null){actCls=actual>=forecast?'cafp-g':'cafp-r';}
+      var fmtN=function(v){return v!=null?String(v):'—';};
+      rows+='<div class="cale">'+
+        '<span class="cat">'+uhr+'</span>'+
+        badge+
+        '<span class="can">'+e.event+'</span>'+
+        '<div class="cafp">'+
+          '<div class="cafp-col"><div class="cafp-lbl">Actual</div><div class="cafp-val '+(actual!=null?actCls:'cafp-m')+'">'+fmtN(actual)+'</div></div>'+
+          '<div class="cafp-col"><div class="cafp-lbl">Fcst</div><div class="cafp-val cafp-m">'+fmtN(forecast)+'</div></div>'+
+          '<div class="cafp-col"><div class="cafp-lbl">Prev</div><div class="cafp-val cafp-m">'+fmtN(previous)+'</div></div>'+
+        '</div>'+
+      '</div>';
+    });
   });
   return'<div class="cal-block"><div class="cal-title">📅 Makro Kalender — High Impact</div>'+rows+'</div>';
 }

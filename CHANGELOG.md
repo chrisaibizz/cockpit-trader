@@ -267,6 +267,7 @@ CockpitGitPush        -> DISABLED (alt)
 3. [x] Dashboard live verifizieren: Nav komplett (Dashboard/Journal/Orders/Indicators/Wiki)
 4. [ ] Fill-Rate 9.4% analysieren: Entries zu weit vom Markt
 5. [ ] cockpit-morning-prompt.txt auf Umlaute pruefen
+7. [ ] cockpit-morning.py: Kalender-Daten um actual-Feld erweitern (Dashboard zeigt aktuell immer "—" fuer Actual)
 6. [ ] Backtesting-System (Phase 2 - spaeter)
 
 ---
