@@ -215,23 +215,29 @@ function drawTPOShape(mp,currentPrice){
   var pocTpos=mp.mp_poc_tpos||100;
   var pocIdx=Math.min(nRows-1,Math.max(0,Math.round(pocPos*(nRows-1))));
 
-  // Synthetische TPO-Verteilung: Peak bei pocIdx, Abfall zu beiden Seiten.
-  // Asymmetrisch: kurzer Tail auf der POC-Seite, langer Tail auf der Gegenseite.
-  // b-Shape: pocIdx nahe 0 → langer Tail oben; P-Shape: pocIdx nahe N-1 → langer Tail unten.
-  var dist=[];
+  // Synthetische Verteilung: modelliert b/P/D-Shape als asymmetrische Verteilung.
+  // b-Shape (pocIdx nahe 0): kurzer Tail unten, langer Tail oben → "b" Profil.
+  // P-Shape (pocIdx nahe N-1): langer Tail unten, kurzer oben → "P" Profil.
+  // D-Shape (pocIdx ~N/2): symmetrische Glocke.
+  // Jede Seite: Power-Law-Decay mit Exponent 1.8, Bodenminimum 8%.
+  var rawDist=[];
   for(var i=0;i<nRows;i++){
     var t;
     if(i===pocIdx){t=1.0;}
     else if(i<pocIdx){
-      // Unterhalb POC
-      t=pocIdx>0?Math.pow(i/pocIdx,1.7)*0.88+0.12:0.12;
+      var spaceBelow=pocIdx;
+      t=spaceBelow>0?Math.pow(i/spaceBelow,1.8)*0.92+0.08:0.08;
     }else{
-      // Oberhalb POC
-      var avail=nRows-1-pocIdx;
-      t=avail>0?Math.pow((nRows-1-i)/avail,1.7)*0.88+0.12:0.12;
+      var spaceAbove=nRows-1-pocIdx;
+      t=spaceAbove>0?Math.pow((nRows-1-i)/spaceAbove,1.8)*0.92+0.08:0.08;
     }
-    dist.push(Math.max(2,Math.round(pocTpos*t)));
+    rawDist.push(t);
   }
+
+  // Visuelle Skalierung: MAX_CELLS Zellen fuer die POC-Zeile (breiteste Zeile).
+  // Jede Zelle = eine TPO-Periode (wie TradingView STPO).
+  var MAX_CELLS=42;
+  var cellCounts=rawDist.map(function(t){return Math.max(1,Math.round(t*MAX_CELLS));});
 
   var h=240,w=500,margin=65,rightPad=72;
   var barZone=w-margin-rightPad;
@@ -239,38 +245,52 @@ function drawTPOShape(mp,currentPrice){
   var pad=priceRange*0.18;
   var minP=mp.val-pad,maxP=mp.vah+pad,extRange=maxP-minP;
   var p2y=function(p){return h*(1-(p-minP)/extRange);};
-  var tickPx=Math.abs(p2y(0)-p2y(mp.mp_tick_step||(priceRange/(nRows-1))));
-  var barH=Math.max(2,tickPx*0.86);
+
+  var tickStep=mp.mp_tick_step||(priceRange/(nRows-1));
+  var tickPx=Math.abs(p2y(0)-p2y(tickStep));
+  var cellH=Math.max(2,tickPx*0.82);// Hoehe einer Zelle (leichter Abstand zwischen Zeilen)
+  var cellW=barZone/MAX_CELLS;      // Breite einer Zelle
+  var cellGap=Math.max(0.4,cellW*0.1);// Abstand zwischen Zellen (fuer Raster-Optik)
 
   var svg='';
 
-  // VA-Hintergrund
-  svg+='<rect x="'+margin+'" y="'+p2y(mp.vah)+'" width="'+barZone+'" height="'+(p2y(mp.val)-p2y(mp.vah))+'" fill="rgba(59,130,246,0.06)" rx="3"/>';
+  // VA-Hintergrund (sehr dezent)
+  svg+='<rect x="'+margin+'" y="'+p2y(mp.vah)+'" width="'+barZone+'" height="'+(p2y(mp.val)-p2y(mp.vah))+'" fill="rgba(59,130,246,0.05)" rx="0"/>';
 
-  // Balken
+  // Zellen zeichnen: je Preiszeile N Quadrate (= N TPO-Perioden)
   for(var i=0;i<nRows;i++){
-    var rp=mp.val+(i/(nRows-1))*priceRange;
-    var y=p2y(rp);
-    var bW=Math.round((dist[i]/pocTpos)*barZone*0.88);
+    var rowPrice=mp.val+(i/(nRows-1))*priceRange;
+    var ry=p2y(rowPrice)-cellH*0.9;
+    var n=cellCounts[i];
     var isPoc=(i===pocIdx);
-    var col=isPoc?'#06b6d4':'rgba(59,130,246,0.52)';
-    svg+='<rect x="'+margin+'" y="'+(y-barH*0.9)+'" width="'+bW+'" height="'+barH+'" fill="'+col+'" rx="1"/>';
+    var inVA=(rowPrice>=mp.val&&rowPrice<=mp.vah);
+
+    // Farbe: POC=Cyan, innere VA=Blau, Tails=Grau
+    var cellCol=isPoc?'#06b6d4':inVA?'rgba(59,130,246,0.65)':'rgba(100,116,139,0.45)';
+
+    for(var c=0;c<n;c++){
+      var cx=margin+c*cellW+cellGap*0.5;
+      svg+='<rect x="'+cx.toFixed(1)+'" y="'+ry.toFixed(1)+'" width="'+(cellW-cellGap).toFixed(1)+'" height="'+cellH.toFixed(1)+'" fill="'+cellCol+'"/>';
+    }
+
+    // Preisbeschriftung bei POC und alle 4 Zeilen
     if(isPoc||i%4===0){
-      var lc=isPoc?'#06b6d4':'#475569';
-      var lf=isPoc?'bold':'normal';
-      var ls=isPoc?11:9;
-      svg+='<text x="'+(margin-4)+'" y="'+(y-barH*0.1)+'" text-anchor="end" fill="'+lc+'" font-size="'+ls+'" font-weight="'+lf+'" font-family="monospace">'+rp.toFixed(0)+'</text>';
+      svg+='<text x="'+(margin-4)+'" y="'+(ry+cellH*0.85).toFixed(1)+'" text-anchor="end"'+
+        ' fill="'+(isPoc?'#06b6d4':'#475569')+'" font-size="'+(isPoc?11:9)+'"'+
+        ' font-weight="'+(isPoc?'bold':'normal')+'" font-family="monospace">'+rowPrice.toFixed(0)+'</text>';
     }
   }
 
-  // Pegellinien
+  // Pegellinien (ueber Zellen gezeichnet)
   var line=function(price,col,dash,sw,lbl,below){
     var y=p2y(price);
     if(y<-8||y>h+8)return;
     var da=dash?' stroke-dasharray="'+dash+'"':'';
-    svg+='<line x1="'+margin+'" y1="'+y+'" x2="'+(w-rightPad)+'" y2="'+y+'" stroke="'+col+'" stroke-width="'+(sw||1.5)+'"'+da+'/>';
-    var ly=below?y+13:y-4;
-    svg+='<text x="'+(w-rightPad+4)+'" y="'+ly+'" fill="'+col+'" font-size="10" font-family="monospace">'+lbl+' '+price.toFixed(0)+'</text>';
+    svg+='<line x1="'+margin+'" y1="'+y.toFixed(1)+'" x2="'+(w-rightPad)+'" y2="'+y.toFixed(1)+
+      '" stroke="'+col+'" stroke-width="'+(sw||1.5)+'"'+da+'/>';
+    var ly=(below?y+13:y-4).toFixed(1);
+    svg+='<text x="'+(w-rightPad+4)+'" y="'+ly+'" fill="'+col+'" font-size="10" font-family="monospace">'+
+      lbl+' '+price.toFixed(0)+'</text>';
   };
   line(mp.vah,'#22c55e','5,3',1.5,'VAH',false);
   line(mp.val,'#ef4444','5,3',1.5,'VAL',true);
@@ -279,16 +299,19 @@ function drawTPOShape(mp,currentPrice){
   if(currentPrice!=null){
     var y=p2y(currentPrice);
     if(y>-8&&y<h+8){
-      svg+='<line x1="'+margin+'" y1="'+y+'" x2="'+(w-rightPad)+'" y2="'+y+'" stroke="#f1f5f9" stroke-width="2"/>';
-      svg+='<text x="'+(margin+4)+'" y="'+(y-4)+'" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">'+currentPrice.toFixed(1)+'</text>';
+      svg+='<line x1="'+margin+'" y1="'+y.toFixed(1)+'" x2="'+(w-rightPad)+'" y2="'+y.toFixed(1)+
+        '" stroke="#f1f5f9" stroke-width="2"/>';
+      svg+='<text x="'+(margin+4)+'" y="'+(y-4).toFixed(1)+'" fill="#f1f5f9" font-size="11"'+
+        ' font-family="monospace" font-weight="bold">'+currentPrice.toFixed(1)+'</text>';
     }
   }
 
-  // Shape-Label
+  // Shape-Label oben rechts im Chart
   var sn=mp.mp_shape||'';
   var sc=sn.indexOf('P-Shape')>=0?'#22c55e':sn.indexOf('b-Shape')>=0?'#f87171':'#eab308';
-  svg+='<text x="'+(margin+barZone*0.5)+'" y="16" fill="'+sc+'" font-size="11" font-family="monospace" font-weight="bold">'+sn+'</text>';
-  if(mp.mp_shape_pos!=null)svg+='<text x="'+(margin+barZone*0.5)+'" y="28" fill="#475569" font-size="9" font-family="monospace">pos='+mp.mp_shape_pos.toFixed(3)+'</text>';
+  svg+='<text x="'+(margin+barZone*0.48)+'" y="16" fill="'+sc+'" font-size="11" font-family="monospace" font-weight="bold">'+sn+'</text>';
+  if(mp.mp_shape_pos!=null)
+    svg+='<text x="'+(margin+barZone*0.48)+'" y="27" fill="#475569" font-size="9" font-family="monospace">pos='+mp.mp_shape_pos.toFixed(3)+'</text>';
 
   return'<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMidYMid meet">'+svg+'</svg>';
 }
