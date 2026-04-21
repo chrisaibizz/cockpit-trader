@@ -162,7 +162,11 @@ function renderInstCard(name, mi, ai, jdi){
   // Volume Profile fuer Chart
   var vp=mi&&mi.volume_profile||null;
   var tpo=mi&&mi.tpo_bars&&mi.tpo_bars.length?mi.tpo_bars:null;
-  var mp={poc:poc,vah:vah,val:val,vwap:vwap,volume_profile:vp,tpo_bars:tpo};
+  var mp={poc:poc,vah:vah,val:val,vwap:vwap,volume_profile:vp,tpo_bars:tpo,
+    mp_shape:shape,mp_shape_pos:shapePos!=null?shapePos:null,
+    mp_poc_tpos:mi&&mi.mp_poc_tpos!=null?mi.mp_poc_tpos:null,
+    mp_tpo_rows:mi&&mi.mp_tpo_rows||22,
+    mp_tick_step:mi&&mi.mp_tick_step||null};
 
   var shapeCls=shapeClass(shape);
   var shapeHtml='<span class="shape-badge '+shapeCls+'">'+shape+shapeBias(shape)+'</span>';
@@ -201,7 +205,92 @@ function drawVP(mp,currentPrice){
   if(mp.tpo_bars&&mp.tpo_bars.length)return drawVPBars(mp,currentPrice);
   var vps=mp.volume_profile;
   if(vps&&vps.length)return drawVPBars(mp,currentPrice);
+  if(mp.poc&&mp.vah&&mp.val&&mp.mp_shape&&mp.mp_shape_pos!=null)return drawTPOShape(mp,currentPrice);
   return drawVPFallback(mp,currentPrice);
+}
+
+function drawTPOShape(mp,currentPrice){
+  var nRows=mp.mp_tpo_rows||22;
+  var pocPos=mp.mp_shape_pos!=null?mp.mp_shape_pos:0.5;
+  var pocTpos=mp.mp_poc_tpos||100;
+  var pocIdx=Math.min(nRows-1,Math.max(0,Math.round(pocPos*(nRows-1))));
+
+  // Synthetische TPO-Verteilung: Peak bei pocIdx, Abfall zu beiden Seiten.
+  // Asymmetrisch: kurzer Tail auf der POC-Seite, langer Tail auf der Gegenseite.
+  // b-Shape: pocIdx nahe 0 → langer Tail oben; P-Shape: pocIdx nahe N-1 → langer Tail unten.
+  var dist=[];
+  for(var i=0;i<nRows;i++){
+    var t;
+    if(i===pocIdx){t=1.0;}
+    else if(i<pocIdx){
+      // Unterhalb POC
+      t=pocIdx>0?Math.pow(i/pocIdx,1.7)*0.88+0.12:0.12;
+    }else{
+      // Oberhalb POC
+      var avail=nRows-1-pocIdx;
+      t=avail>0?Math.pow((nRows-1-i)/avail,1.7)*0.88+0.12:0.12;
+    }
+    dist.push(Math.max(2,Math.round(pocTpos*t)));
+  }
+
+  var h=240,w=500,margin=65,rightPad=72;
+  var barZone=w-margin-rightPad;
+  var priceRange=mp.vah-mp.val;
+  var pad=priceRange*0.18;
+  var minP=mp.val-pad,maxP=mp.vah+pad,extRange=maxP-minP;
+  var p2y=function(p){return h*(1-(p-minP)/extRange);};
+  var tickPx=Math.abs(p2y(0)-p2y(mp.mp_tick_step||(priceRange/(nRows-1))));
+  var barH=Math.max(2,tickPx*0.86);
+
+  var svg='';
+
+  // VA-Hintergrund
+  svg+='<rect x="'+margin+'" y="'+p2y(mp.vah)+'" width="'+barZone+'" height="'+(p2y(mp.val)-p2y(mp.vah))+'" fill="rgba(59,130,246,0.06)" rx="3"/>';
+
+  // Balken
+  for(var i=0;i<nRows;i++){
+    var rp=mp.val+(i/(nRows-1))*priceRange;
+    var y=p2y(rp);
+    var bW=Math.round((dist[i]/pocTpos)*barZone*0.88);
+    var isPoc=(i===pocIdx);
+    var col=isPoc?'#06b6d4':'rgba(59,130,246,0.52)';
+    svg+='<rect x="'+margin+'" y="'+(y-barH*0.9)+'" width="'+bW+'" height="'+barH+'" fill="'+col+'" rx="1"/>';
+    if(isPoc||i%4===0){
+      var lc=isPoc?'#06b6d4':'#475569';
+      var lf=isPoc?'bold':'normal';
+      var ls=isPoc?11:9;
+      svg+='<text x="'+(margin-4)+'" y="'+(y-barH*0.1)+'" text-anchor="end" fill="'+lc+'" font-size="'+ls+'" font-weight="'+lf+'" font-family="monospace">'+rp.toFixed(0)+'</text>';
+    }
+  }
+
+  // Pegellinien
+  var line=function(price,col,dash,sw,lbl,below){
+    var y=p2y(price);
+    if(y<-8||y>h+8)return;
+    var da=dash?' stroke-dasharray="'+dash+'"':'';
+    svg+='<line x1="'+margin+'" y1="'+y+'" x2="'+(w-rightPad)+'" y2="'+y+'" stroke="'+col+'" stroke-width="'+(sw||1.5)+'"'+da+'/>';
+    var ly=below?y+13:y-4;
+    svg+='<text x="'+(w-rightPad+4)+'" y="'+ly+'" fill="'+col+'" font-size="10" font-family="monospace">'+lbl+' '+price.toFixed(0)+'</text>';
+  };
+  line(mp.vah,'#22c55e','5,3',1.5,'VAH',false);
+  line(mp.val,'#ef4444','5,3',1.5,'VAL',true);
+  line(mp.poc,'#06b6d4','7,3',2,'POC',false);
+  if(mp.vwap)line(mp.vwap,'#eab308','3,3',1.5,'VWAP',false);
+  if(currentPrice!=null){
+    var y=p2y(currentPrice);
+    if(y>-8&&y<h+8){
+      svg+='<line x1="'+margin+'" y1="'+y+'" x2="'+(w-rightPad)+'" y2="'+y+'" stroke="#f1f5f9" stroke-width="2"/>';
+      svg+='<text x="'+(margin+4)+'" y="'+(y-4)+'" fill="#f1f5f9" font-size="11" font-family="monospace" font-weight="bold">'+currentPrice.toFixed(1)+'</text>';
+    }
+  }
+
+  // Shape-Label
+  var sn=mp.mp_shape||'';
+  var sc=sn.indexOf('P-Shape')>=0?'#22c55e':sn.indexOf('b-Shape')>=0?'#f87171':'#eab308';
+  svg+='<text x="'+(margin+barZone*0.5)+'" y="16" fill="'+sc+'" font-size="11" font-family="monospace" font-weight="bold">'+sn+'</text>';
+  if(mp.mp_shape_pos!=null)svg+='<text x="'+(margin+barZone*0.5)+'" y="28" fill="#475569" font-size="9" font-family="monospace">pos='+mp.mp_shape_pos.toFixed(3)+'</text>';
+
+  return'<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="xMidYMid meet">'+svg+'</svg>';
 }
 
 function drawVPBars(mp,currentPrice){
