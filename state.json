@@ -132,6 +132,30 @@
           {"session": 1, "poc": 24154.51, "vah": 24663.79, "val": 24101.83, "width": 561.96, "pos": 0.094, "shape": "b-Shape"},
           {"session": 0, "poc": 24443.01, "vah": 24460.13, "val": 24357.39, "width": 102.74, "pos": 0.84, "shape": "P-Shape (frueher Tag)"}
         ],
+        "tpo_distribution": [
+          {"price": 24101.83, "count": 6,  "type": "va"},
+          {"price": 24136.95, "count": 9,  "type": "va"},
+          {"price": 24154.51, "count": 10, "type": "poc"},
+          {"price": 24172.08, "count": 9,  "type": "va"},
+          {"price": 24207.20, "count": 4,  "type": "va"},
+          {"price": 24242.32, "count": 5,  "type": "va"},
+          {"price": 24277.44, "count": 7,  "type": "va"},
+          {"price": 24312.57, "count": 7,  "type": "va"},
+          {"price": 24347.69, "count": 6,  "type": "va"},
+          {"price": 24382.81, "count": 3,  "type": "va"},
+          {"price": 24417.93, "count": 1,  "type": "va"},
+          {"price": 24453.06, "count": 1,  "type": "va"},
+          {"price": 24488.18, "count": 1,  "type": "va"},
+          {"price": 24523.30, "count": 1,  "type": "va"},
+          {"price": 24558.42, "count": 3,  "type": "va"},
+          {"price": 24593.55, "count": 6,  "type": "va"},
+          {"price": 24628.67, "count": 8,  "type": "va"},
+          {"price": 24663.79, "count": 8,  "type": "va"},
+          {"price": 24698.91, "count": 7,  "type": "tail"},
+          {"price": 24734.04, "count": 7,  "type": "tail"},
+          {"price": 24769.16, "count": 4,  "type": "tail"},
+          {"price": 24804.28, "count": 2,  "type": "tail"}
+        ],
         "data_quality": "vollstaendig"
       },
       "DJ30": {
@@ -185,6 +209,7 @@
           {"session": 1, "poc": 48674.38, "vah": 49537.69, "val": 48646.53, "width": 891.16, "pos": 0.031, "shape": "b-Shape (extrem)"},
           {"session": 0, "poc": 49465.67, "vah": 49546.23, "val": 49127.34, "width": 418.89, "pos": 0.808, "shape": "P-Shape (frueher Tag)"}
         ],
+        "tpo_distribution": [],
         "data_quality": "vollstaendig"
       },
       "SPX500": {
@@ -238,6 +263,7 @@
           {"session": 1, "poc": 7054.03, "vah": 7127.97, "val": 7045.82, "width": 82.15, "pos": 0.10, "shape": "b-Shape"},
           {"session": 0, "poc": 7092.76, "vah": 7122.49, "val": 7087.13, "width": 35.36, "pos": 0.16, "shape": "b-Shape (frueher Tag)"}
         ],
+        "tpo_distribution": [],
         "data_quality": "vollstaendig"
       }
     },
