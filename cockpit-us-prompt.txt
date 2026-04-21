@@ -1,0 +1,81 @@
+Starte das Cockpit Trader US Pre-Market Update (14:00).
+ZIEL: Morning-Orders validieren, state.json aktualisieren, GitHub pushen.
+
+SCHRITT 1 - Kontext laden:
+Lies C:/Users/chris/TradingFloor/cockpit-trader/data.json
+Lies C:/Users/chris/TradingFloor/agents/shared/state.json
+
+SCHRITT 2 - Aktuelle Marktdaten holen (via MCP) fuer ALLE 3 Instrumente:
+Fuer GER40, DJ30 und SPX500 jeweils:
+- chart_set_symbol auf das Instrument
+- chart_set_timeframe "1D"
+- data_get_market_profile -> neuer POC/VAH/VAL/Shape
+- data_get_study_values study_filter="VWAP Stdev Bands v2 Mod" -> aktueller VWAP
+- data_get_study_values study_filter="Kaufman's ER" -> aktueller ER
+- quote_get -> aktueller Kurs
+Dann chart_set_timeframe "30" fuer Entry-Kontext.
+
+SCHRITT 3 - state.json["market"] aktualisieren:
+Schreibe die neuen Werte in state.json["market"]["instruments"]:
+- current_price, poc, vah, val, vwap, er, mp_shape
+- Setze "_last_run" auf aktuellen Timestamp
+Setze state.json["pipeline"]["completed"] auf aktuellen Timestamp.
+FUEHRE AUS: Schreibe state.json mit den neuen Werten (Write Tool).
+Pfad: C:/Users/chris/TradingFloor/agents/shared/state.json
+
+SCHRITT 4 - Morning-Orders validieren:
+Vergleiche state.json["orders"]["orders"] mit neuen Levels:
+- Hat sich POC/VAH/VAL um >0.3% verschoben?
+- Ist Bias noch gueltig?
+- Ist Entry noch erreichbar?
+- Hat sich MP Shape veraendert?
+
+SCHRITT 5 - Bei Anpassungen:
+Wenn eine Order ANPASSEN benoetigt:
+- Neuen Entry/SL/TP berechnen
+- Aktualisierte Orders in state.json["orders"] schreiben
+FUEHRE AUS (Bash):
+node "C:/Users/chris/TradingFloor/trading-journal/journal.js" write-multiple
+
+SCHRITT 6 - Report erstellen:
+FUEHRE AUS (Bash):
+node "C:/Users/chris/TradingFloor/trading-journal/journal.js" report
+
+SCHRITT 7 - state.json kopieren:
+FUEHRE AUS (Bash):
+cp "C:/Users/chris/TradingFloor/agents/shared/state.json" "C:/Users/chris/TradingFloor/cockpit-trader/state.json"
+
+SCHRITT 8 - GitHub Push:
+FUEHRE AUS (Bash):
+cd "C:/Users/chris/TradingFloor/cockpit-trader"
+git add -A
+git commit -m "US Update - Preise aktualisiert"
+git push
+Speichere den Commit-Hash fuer den Log.
+
+SCHRITT 9 - LOG SCHREIBEN (PFLICHT - NICHT UEBERSPRINGEN):
+Erstelle mit dem Write-Tool eine Log-Datei. Timestamp = aktuelles Datum+Uhrzeit (YYYYMMDD_HHmmss).
+Pfad:    C:/Users/chris/TradingFloor/logs/pipeline/us-update_[TIMESTAMP].log
+Inhalt:
+================================================
+US UPDATE LOG - [YYYY-MM-DD HH:MM:SS]
+================================================
+GER40:  Kurs=[WERT] POC=[WERT] VAH=[WERT] VAL=[WERT] Shape=[WERT]
+DJ30:   Kurs=[WERT] POC=[WERT] VAH=[WERT] VAL=[WERT] Shape=[WERT]
+SPX500: Kurs=[WERT] POC=[WERT] VAH=[WERT] VAL=[WERT] Shape=[WERT]
+------------------------------------------------
+Order GER40:  [VALID/ANPASSEN/VERFALLEN] - [GRUND]
+Order DJ30:   [VALID/ANPASSEN/VERFALLEN] - [GRUND]
+Order SPX500: [VALID/ANPASSEN/VERFALLEN] - [GRUND]
+------------------------------------------------
+Aenderungen: [WAS GEAENDERT WURDE ODER: keine]
+Git Commit: [COMMIT-HASH]
+state.json: aktualisiert
+================================================
+
+PFLICHT-ABSCHLUSS - Du bist NICHT fertig bis alle 5 Punkte ausgefuehrt wurden:
+[x] state.json mit neuen Preisen geschrieben
+[x] journal.js report ausgefuehrt
+[x] git push erfolgreich
+[x] us-update Log-Datei in C:/Users/chris/TradingFloor/logs/pipeline/ geschrieben
+[x] Abschlussmeldung: DONE: state.json | report | git:[HASH] | log:[DATEINAME]
