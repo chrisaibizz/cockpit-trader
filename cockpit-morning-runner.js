@@ -18,11 +18,12 @@ try {
   process.exit(1);
 }
 
-const child = spawn('claude', [
-  '-p', prompt,
-  '--allowedTools', allowedTools,
-  '--dangerously-skip-permissions'
-], { stdio: 'inherit', windowsHide: false });
+// Auf Windows: cmd.exe /c verwenden, damit .cmd-Dateien (claude.cmd aus npm)
+// korrekt gefunden werden. Vermeidet shell:true Deprecation-Warning.
+const args = ['-p', prompt, '--allowedTools', allowedTools, '--dangerously-skip-permissions'];
+const spawnCmd = process.platform === 'win32' ? 'cmd.exe' : 'claude';
+const spawnArgs = process.platform === 'win32' ? ['/c', 'claude', ...args] : args;
+const child = spawn(spawnCmd, spawnArgs, { stdio: 'inherit', windowsHide: false });
 
 child.on('error', (err) => {
   console.error('Fehler beim Starten von claude:', err.message);
