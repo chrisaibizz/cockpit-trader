@@ -265,7 +265,7 @@ function renderCal(cal){
     evts.forEach(function(e){
       var ct=(e.country||'').toUpperCase();
       var badge='<span class="cbadge '+(ct==='DE'?'cbadge-de':'cbadge-us')+'">'+ct+'</span>';
-      var uhr=String(e.time||'').slice(11,16)||'—';
+      var _t=String(e.time||'');var uhr=(_t.indexOf(' ')>=0?_t.slice(11,16):_t.slice(0,5))||'—';
       var actual=e.actual!=null?e.actual:null;
       var forecast=e.estimate!=null?e.estimate:null;
       var previous=e.prior!=null?e.prior:null;
