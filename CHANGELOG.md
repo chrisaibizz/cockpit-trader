@@ -260,6 +260,22 @@ CockpitGitPush        -> DISABLED (alt)
 
 ---
 
+## SESSION #7 — TPO-Integration (21. April 2026)
+
+**agents/marketdata/CLAUDE.md** (Schritt 12 praezisiert)
+- NEU: session_index=1 Parameter explizit im Tool-Call data_get_study_values
+- NEU: Bar-Format dokumentiert: {price, volume, color} — color=0 POC, 1 VA, 2 Outside
+- NEU: PFLICHT-Schreibbefehl fuer tpo_bars in state.json["market"]["instruments"][X]
+- NEU: Fallback-LOG: "TPO [GER40] nicht verfuegbar — Fallback leer"
+
+**cockpit-trader/index.html** (3 str_replace)
+- renderInstCard: tpo_bars aus mi in mp-Objekt aufgenommen
+- drawVP(): prueft tpo_bars zuerst, dann volume_profile, dann Fallback-Linien
+- drawVPBars(): isTpo-Flag, TPO-Farben: POC=#ff00ff, VA=rgba(59,130,246,0.7), Outside=rgba(59,130,246,0.3)
+- Abwaertskompatibel: volume_profile-Bars unveraendert wenn tpo_bars leer
+
+---
+
 ## OFFENE PUNKTE (TODO)
 
 1. [ ] us-update Log pruefen (14:00 Run heute)

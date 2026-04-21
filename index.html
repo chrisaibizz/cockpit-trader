@@ -161,7 +161,8 @@ function renderInstCard(name, mi, ai, jdi){
 
   // Volume Profile fuer Chart
   var vp=mi&&mi.volume_profile||null;
-  var mp={poc:poc,vah:vah,val:val,vwap:vwap,volume_profile:vp};
+  var tpo=mi&&mi.tpo_bars&&mi.tpo_bars.length?mi.tpo_bars:null;
+  var mp={poc:poc,vah:vah,val:val,vwap:vwap,volume_profile:vp,tpo_bars:tpo};
 
   var shapeCls=shapeClass(shape);
   var shapeHtml='<span class="shape-badge '+shapeCls+'">'+shape+shapeBias(shape)+'</span>';
@@ -197,13 +198,16 @@ function renderInstCard(name, mi, ai, jdi){
 
 function drawVP(mp,currentPrice){
   if(!mp)return'';
+  if(mp.tpo_bars&&mp.tpo_bars.length)return drawVPBars(mp,currentPrice);
   var vps=mp.volume_profile;
   if(vps&&vps.length)return drawVPBars(mp,currentPrice);
   return drawVPFallback(mp,currentPrice);
 }
 
 function drawVPBars(mp,currentPrice){
-  var vps=mp.volume_profile,maxV=Math.max.apply(null,vps.map(function(b){return b.volume;}));
+  var isTpo=!!(mp.tpo_bars&&mp.tpo_bars.length);
+  var vps=isTpo?mp.tpo_bars:mp.volume_profile;
+  var maxV=Math.max.apply(null,vps.map(function(b){return b.volume;}));
   var h=240,w=520,bH=h/vps.length,margin=70,rightPad=20;
   var minP=vps[0].price,maxP=vps[vps.length-1].price,priceRange=maxP-minP||1;
   var p2y=function(p){return h-((p-minP)/priceRange)*h;};
@@ -212,11 +216,11 @@ function drawVPBars(mp,currentPrice){
   var bars='';
   vps.forEach(function(bin,i){
     var bW=maxV>0?(bin.volume/maxV)*(w-margin-rightPad):0,y=h-(i+1)*bH;
-    var col='rgba(59,130,246,0.35)';
-    if(bin.color===0)col='rgba(6,182,212,0.85)';
-    else if(bin.color===1)col='rgba(59,130,246,0.65)';
-    else if(mp.poc&&Math.abs(bin.price-mp.poc)<tick*0.6)col='rgba(6,182,212,0.85)';
-    else if(mp.vah&&mp.val&&bin.price>=mp.val&&bin.price<=mp.vah)col='rgba(59,130,246,0.65)';
+    var col=isTpo?'rgba(59,130,246,0.3)':'rgba(59,130,246,0.35)';
+    if(bin.color===0)col=isTpo?'#ff00ff':'rgba(6,182,212,0.85)';
+    else if(bin.color===1)col=isTpo?'rgba(59,130,246,0.7)':'rgba(59,130,246,0.65)';
+    else if(!isTpo&&mp.poc&&Math.abs(bin.price-mp.poc)<tick*0.6)col='rgba(6,182,212,0.85)';
+    else if(!isTpo&&mp.vah&&mp.val&&bin.price>=mp.val&&bin.price<=mp.vah)col='rgba(59,130,246,0.65)';
     bars+='<rect x="'+margin+'" y="'+y+'" width="'+bW+'" height="'+(bH-1)+'" fill="'+col+'" rx="2"/>';
     if(i%4===0)bars+='<text x="'+(margin-6)+'" y="'+(y+bH/2+4)+'" text-anchor="end" fill="#64748b" font-size="10" font-family="monospace">'+bin.price.toFixed(0)+'</text>';
   });
