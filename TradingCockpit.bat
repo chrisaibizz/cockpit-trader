@@ -1,5 +1,6 @@
 @echo off
 chcp 65001 >nul
+setlocal enabledelayedexpansion
 set LOGFILE=C:\Users\chris\TradingFloor\cockpit-run.log
 set COCKPIT_DIR=C:\Users\chris\TradingFloor\cockpit-trader
 set MCP_DIR=C:\Users\chris\TradingFloor\tradingview-mcp
