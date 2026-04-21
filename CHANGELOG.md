@@ -15,6 +15,33 @@
 
 ---
 
+## VERZEICHNIS-STRUKTUR (WICHTIG)
+
+```
+C:\Users\chris\TradingFloor\          <- ROOT (alle lokalen Dateien)
+  cockpit-trader\                      <- NUR das GitHub/Website-Repo
+    index.html                         <- Dashboard (GitHub Pages)
+    data.json                          <- Yahoo Finance Daten
+    journal-data.json                  <- Tages-Analyse
+    state.json                         <- Kopie Agent-State
+    CHANGELOG.md                       <- Diese Datei
+  agents\                              <- LOKAL (nicht im Repo)
+  logs\                                <- LOKAL (nicht im Repo)
+  trading-journal\                     <- LOKAL (nicht im Repo)
+  tradingview-mcp\                     <- LOKAL (nicht im Repo)
+  TradingCockpit.bat                   <- LOKAL
+  TradingCockpit-US.bat                <- LOKAL
+  cockpit-morning-prompt.txt           <- LOKAL
+  cockpit-us-prompt.txt                <- LOKAL
+  change-template.txt                  <- LOKAL
+```
+
+REGEL: git add/commit/push NUR aus cockpit-trader\ ausfuehren.
+REGEL: Alle anderen Dateien und Scripts laufen aus TradingFloor\ Root.
+REGEL: Nie lokale Logs oder Agent-Dateien ins Repo pushen.
+
+---
+
 ## SESSION #1 — iMac Setup (April 2026)
 
 ### Was gemacht wurde
