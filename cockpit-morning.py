@@ -1418,7 +1418,76 @@ def run_pipeline(journal, orders, script_dir):
         print(f"    FEHLER (git): {e}")
 
 # ============================================================
-# 8. MAIN
+# 8. FRED → STATE.JSON BRIDGE
+# ============================================================
+
+def _write_fred_to_state(fred_data):
+    """Schreibt FRED-Daten in state.json["macro"]["fred"] fuer den MACRO Agent."""
+    if not fred_data:
+        print("    FRED-Bridge: keine Daten — uebersprungen")
+        return
+    try:
+        state_path = os.path.normpath(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            '..', 'agents', 'shared', 'state.json'
+        ))
+        if not os.path.exists(state_path):
+            print(f"    FRED-Bridge: state.json nicht gefunden ({state_path})")
+            return
+        with open(state_path, encoding='utf-8') as f:
+            state = json.load(f)
+
+        ff  = fred_data.get("FEDFUNDS", {})
+        yc  = fred_data.get("T10Y2Y",   {})
+        cpi = fred_data.get("CPIAUCSL", {})
+        ur  = fred_data.get("UNRATE",   {})
+
+        def _fed_interp(v):
+            if v is None: return "unbekannt"
+            if v > 5.0:   return "hawkish"
+            if v < 3.0:   return "dovish"
+            return "neutral"
+
+        def _yc_interp(v):
+            if v is None: return "unbekannt"
+            if v < -0.3:  return "invertiert"
+            if v > 0.3:   return "steil"
+            return "normal"
+
+        def _cpi_interp(v):
+            if v is None: return "unbekannt"
+            if v > 3.5:   return "hoch"
+            if v < 2.5:   return "niedrig"
+            return "moderat"
+
+        def _ur_interp(v):
+            if v is None: return "unbekannt"
+            if v < 4.0:   return "eng"
+            if v > 5.5:   return "schwach"
+            return "normal"
+
+        state.setdefault("macro", {})["fred"] = {
+            "fed_funds":    {"value": ff.get("value"),  "interpretation": _fed_interp(ff.get("value"))},
+            "yield_curve":  {"value": yc.get("value"),  "interpretation": _yc_interp(yc.get("value"))},
+            "cpi":          {"value": cpi.get("value"), "interpretation": _cpi_interp(cpi.get("value"))},
+            "unemployment": {"value": ur.get("value"),  "interpretation": _ur_interp(ur.get("value"))},
+            "last_updated": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        }
+
+        with open(state_path, 'w', encoding='utf-8') as f:
+            json.dump(state, f, indent=2, cls=SafeJSONEncoder)
+        print(f"    FRED-Bridge: state.json['macro']['fred'] geschrieben")
+        ff_v  = ff.get("value",  "?")
+        yc_v  = yc.get("value",  "?")
+        cpi_v = cpi.get("value", "?")
+        ur_v  = ur.get("value",  "?")
+        print(f"    FedFunds={ff_v}% YieldCurve={yc_v}% CPI={cpi_v}% UNRATE={ur_v}%")
+    except Exception as e:
+        print(f"    FRED-Bridge FEHLER: {e}")
+
+
+# ============================================================
+# 9. MAIN
 # ============================================================
 
 def main():
@@ -1438,6 +1507,7 @@ def main():
 
     print("\n>>> FRED Daten holen...")
     fred_data = fetch_fred_data()
+    _write_fred_to_state(fred_data)
 
     print("\n>>> Bias berechnen...")
     spx["bias"] = compute_bias(spx.get("market_profile"), spx.get("current_price"), ctx, spx.get("cvd"), fred_data)

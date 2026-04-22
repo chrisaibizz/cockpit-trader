@@ -1,81 +1,281 @@
-Starte das Cockpit Trader US Pre-Market Update (14:00).
-ZIEL: Morning-Orders validieren, state.json aktualisieren, GitHub pushen.
+Starte das Cockpit Trader US Session Update (14:45).
+ZIEL: Marktentwicklung seit 8 Uhr analysieren, Signale neu berechnen, Entscheidung fuer NY-Session aktualisieren, Orders validieren, GitHub pushen.
 
-SCHRITT 1 - Kontext laden:
-Lies C:/Users/chris/TradingFloor/cockpit-trader/data.json
+═══════════════════════════════════════════════════════
+SCHRITT 1 - Kontext laden
+═══════════════════════════════════════════════════════
 Lies C:/Users/chris/TradingFloor/agents/shared/state.json
+Merke dir fuer den Vergleich (8-Uhr-Stand):
+- GER40: current_price, poc, vah, val, vwap, er, mp_shape, bias_score
+- DJ30:  current_price, poc, vah, val, vwap, er, mp_shape, bias_score
+- SPX500: current_price, poc, vah, val, vwap, er, mp_shape, bias_score
+- analysis.marktphase.phase, analysis.regime
+- orders.orders (aktive Orders)
 
-SCHRITT 2 - Aktuelle Marktdaten holen (via MCP) fuer ALLE 3 Instrumente:
+═══════════════════════════════════════════════════════
+SCHRITT 1b - Mini-MACRO Update (VIX / DXY / Bonds aktualisieren)
+═══════════════════════════════════════════════════════
+Lies und fuehre aus: C:\Users\chris\TradingFloor\agents\captain\CLAUDE.md
+Abschnitt: "14:00 UPDATE -- Mini-MACRO"
+Danach Bestaetigung: "Mini-MACRO: VIX=[X] DXY=[X] TNX=[X] | makro_score=[vorher]->[nachher]"
+
+═══════════════════════════════════════════════════════
+SCHRITT 2 - Aktuelle Marktdaten holen (via MCP)
+═══════════════════════════════════════════════════════
 Fuer GER40, DJ30 und SPX500 jeweils:
 - chart_set_symbol auf das Instrument
-- chart_set_timeframe "1D"
-- data_get_market_profile -> neuer POC/VAH/VAL/Shape
+- chart_set_timeframe "30" (IMMER 30M — niemals 1D, sonst wechselt MP auf 12-Monats-Profil!)
+
+MP-Daten via ui_evaluate (exakte Chart-Werte, ersetzt data_get_market_profile):
+Fuehre diesen JavaScript-Code aus:
+(function() {
+  try {
+    var chart = window.TradingViewApi._activeChartWidgetWV.value()._chartWidget;
+    var sources = chart.model().model().dataSources();
+    var results = {};
+    sources.forEach(function(s) {
+      if (!s.metaInfo) return;
+      var name = '';
+      try { name = s.metaInfo().description || s.metaInfo().shortDescription || ''; } catch(e) {}
+      if (name.indexOf('Market Profile') === -1) return;
+      var coll = s._graphics._primitivesCollection.dwglines.get('lines').get(false);
+      var lines = [];
+      coll._primitivesDataById.forEach(function(v) {
+        if (v.y1 === v.y2) lines.push({y1: v.y1, x1: v.x1, x2: v.x2, ci: v.ci});
+      });
+      var max_x1 = Math.max.apply(null, lines.map(function(l){ return l.x1; }));
+      var sess = lines.filter(function(l){ return l.x1 >= max_x1 - 3; });
+      var poc_lines = sess.filter(function(l){ return l.ci === 0; });
+      var va_lines  = sess.filter(function(l){ return l.ci === 1; });
+      var poc = poc_lines.length ? Math.round(poc_lines[0].y1 * 100) / 100 : null;
+      var vah = va_lines.length  ? Math.round(Math.max.apply(null, va_lines.map(function(l){ return l.y1; })) * 100) / 100 : null;
+      var val = va_lines.length  ? Math.round(Math.min.apply(null, va_lines.map(function(l){ return l.y1; })) * 100) / 100 : null;
+      var pos = (poc !== null && vah !== null && val !== null && vah !== val) ? Math.round((poc - val) / (vah - val) * 1000) / 1000 : null;
+      var dist = sess.map(function(l) {
+        return { price: Math.round(l.y1 * 100) / 100, count: l.x2 - l.x1, type: l.ci === 0 ? 'poc' : l.ci === 1 ? 'va' : 'tail' };
+      }).filter(function(d){ return d.count > 0; }).sort(function(a,b){ return a.price - b.price; });
+      results[name] = { poc: poc, vah: vah, val: val, mp_shape_pos: pos, tpo_distribution: dist };
+    });
+    return results;
+  } catch(e) { return {error: e.message}; }
+})()
+Ergebnis: {poc, vah, val, mp_shape_pos, tpo_distribution[]} exakt wie im Chart
+
 - data_get_study_values study_filter="VWAP Stdev Bands v2 Mod" -> aktueller VWAP
 - data_get_study_values study_filter="Kaufman's ER" -> aktueller ER
-- quote_get -> aktueller Kurs
-Dann chart_set_timeframe "30" fuer Entry-Kontext.
+- quote_get -> aktueller Kurs, OHLC
 
-SCHRITT 3 - state.json["market"] aktualisieren:
+MP-Shape algorithmisch berechnen aus ui_evaluate-Werten:
+- mp_shape_pos = (poc - val) / (vah - val)
+- pos > 0.65 → P-Shape (+2) | pos < 0.35 → b-Shape (-2) | sonst → D-Shape (0)
+
+MP-Shape algorithmisch berechnen:
+- mp_shape_pos = (poc - val) / (vah - val)
+- pos > 0.65 → P-Shape (+2) | pos < 0.35 → b-Shape (-2) | sonst → D-Shape (0)
+
+═══════════════════════════════════════════════════════
+SCHRITT 3 - state.json["market"] aktualisieren (PFLICHT)
+═══════════════════════════════════════════════════════
 Schreibe die neuen Werte in state.json["market"]["instruments"]:
-- current_price, poc, vah, val, vwap, er, mp_shape
-- Setze "_last_run" auf aktuellen Timestamp
-Setze state.json["pipeline"]["completed"] auf aktuellen Timestamp.
-FUEHRE AUS: Schreibe state.json mit den neuen Werten (Write Tool).
+- current_price, open, high, low, change_pct: aus quote_get
+- poc, vah, val, mp_shape_pos: direkt aus ui_evaluate (exakte Chart-Werte)
+- tpo_distribution: direkt aus ui_evaluate (echte TPO-Counts fuer Dashboard-Visualisierung)
+- mp_shape: aus mp_shape_pos klassifizieren (pos>0.65=P-Shape, <0.35=b-Shape, sonst=D-Shape)
+- vwap, er: aus study_values
+- Setze market._last_run und market.timestamp auf aktuellen Timestamp
+- Setze pipeline.completed auf aktuellen Timestamp, pipeline.status = "completed"
 Pfad: C:/Users/chris/TradingFloor/agents/shared/state.json
 
-SCHRITT 4 - Morning-Orders validieren:
-Vergleiche state.json["orders"]["orders"] mit neuen Levels:
-- Hat sich POC/VAH/VAL um >0.3% verschoben?
-- Ist Bias noch gueltig?
-- Ist Entry noch erreichbar?
-- Hat sich MP Shape veraendert?
+!! STOPP - BESTAETIGUNG PFLICHT !!
+Bestaetigue explizit bevor Schritt 4 startet:
+"state.json geschrieben: GER40=[KURS] DJ30=[KURS] SPX500=[KURS]"
+Wenn nicht geschrieben: jetzt schreiben. Schritt 4 darf ERST danach starten.
 
-SCHRITT 5 - Bei Anpassungen:
-Wenn eine Order ANPASSEN benoetigt:
-- Neuen Entry/SL/TP berechnen
-- Aktualisierte Orders in state.json["orders"] schreiben
+═══════════════════════════════════════════════════════
+SCHRITT 4 - Delta-Analyse: Entwicklung seit 8 Uhr
+═══════════════════════════════════════════════════════
+Vergleiche 8-Uhr-Stand (aus Schritt 1) mit 14:45-Daten (aus Schritt 2).
+Berechne und dokumentiere fuer jedes Instrument:
+
+Kurs-Entwicklung:
+- Preisveraenderung absolut und in % seit 8 Uhr
+- Hat Preis neue Levels gebrochen? (VWAP / POC / VAH / VAL)
+- Aktuelle Position: ueber/unter VWAP? ueber/unter POC? in/ausserhalb VA?
+
+ER-Entwicklung:
+- ER damals vs ER jetzt — steigend (mehr Trend) oder fallend (weniger Trend)?
+- Hat ER Schwelle 10, 25 oder 30 ueberschritten oder unterschritten?
+- Chop-Filter aktiv? (ER < 10)
+
+MP-Entwicklung:
+- Hat sich Shape seit 8 Uhr veraendert?
+- Hat sich POC verschoben (> 0.3%)? Richtung?
+
+Kurze Zusammenfassung je Instrument:
+"GER40: -0.5% seit 8h, Preis unter VWAP gerutscht, ER von 18→12 (schwaecher), Shape unveraendert P-Shape"
+
+═══════════════════════════════════════════════════════
+SCHRITT 5 - Neu-Analyse: Alle 8 Signale berechnen
+═══════════════════════════════════════════════════════
+Berechne fuer jedes Instrument mit den 14:45-Daten alle 8 Signale neu:
+
+| Signal         | Bullish (+) | Bearish (-) | Neutral (0) |
+|----------------|-------------|-------------|-------------|
+| MP-Shape       | P-Shape: +2 | b-Shape: -2 | D/B-Shape: 0 |
+| Preis vs POC   | > POC: +1   | < POC: -1   | ~0.1%: 0    |
+| Preis vs VA    | > VAH: +2, VAL-POC: +1 | < VAL: -2, VAL-POC: -1 | Mitte: 0 |
+| Preis vs VWAP  | > VWAP: +1  | < VWAP: -1  | fehlt: 0    |
+| Momentum       | change_pct > +0.5%: +1 | < -0.5%: -1 | sonst: 0 |
+| Range-Position | oberes Drittel: +1 | unteres Drittel: -1 | Mitte: 0 |
+| ER-Trend       | ER > 10 + bullish: +1 | ER > 10 + bearish: -1 | ER < 10: 0 |
+| ER-Qualitaet   | ER > 30: +1 | ER < -10: -1 | sonst: 0 |
+
+ER Chop-Filter: Wenn ER < 10 — alle Signale ausser MP-Shape auf 0 setzen.
+
+Marktphase bestimmen:
+- TREND: ER > 25 auf mind. 2 Instrumenten + P/b-Shape
+- BALANCE: ER < 15, D-Shape, Preis innerhalb VA
+- AUSBRUCH: Preis bricht VAH/VAL, ER steigt von <15 auf >20
+- EXTREM: VIX > 30, ER > 60, Trend Day Shape
+
+Schreibe state.json["analysis"] komplett neu:
+- _last_run: aktueller Timestamp
+- marktphase.phase + begruendung (als Array, je 1 Satz pro Instrument + Makro)
+- marktphase.aktive_strategie + er_bestaetigung
+- regime: RISK-ON / RISK-OFF / NEUTRAL (aus Makro-Daten in state.json["macro"])
+- instruments[X].bias_score, bias, er_wert, er_interpretation, er_chop_filter_aktiv
+- instruments[X].signals (alle 8 mit wert + detail)
+- instruments[X].key_levels.current aktualisieren
+- inter_market: alle_bullish / gemischt / alle_bearish
+- summary: Max 150 Woerter, Fokus auf NY-Session ab 15:30
+
+Score-Interpretation:
+- Score >= 4: Trade erlaubt
+- Score >= 6: Hohe Konfluenz — bevorzugter Trade
+- Score < 4: Kein Trade
+
+!! STOPP - BESTAETIGUNG PFLICHT !!
+Bestaetigue: "ANALYSE fertig: GER40=[bias](Score=[n]) DJ30=[bias](Score=[n]) SPX500=[bias](Score=[n]) Phase=[phase]"
+Schritt 6 darf ERST danach starten.
+
+═══════════════════════════════════════════════════════
+SCHRITT 6 - CAPTAIN Update: NY-Session Entscheidung
+═══════════════════════════════════════════════════════
+Aktualisiere state.json["captain"] auf Basis der neuen Analyse:
+
+Session-Bias bestimmen:
+- LONG-BIAS: mind. 2 Instrumente Score >= 4, Phase TREND bullisch
+- SHORT-BIAS: mind. 2 Instrumente Score <= -4, Phase TREND bearisch
+- LONG-LEAN: gemischtes Bild, leichter Bullish-Ueberhang
+- SHORT-LEAN: gemischtes Bild, leichter Bearish-Ueberhang
+- WAIT: kein Instrument Score >= 4, oder Phase BALANCE ohne Breakout
+
+Trade-Plan fuer NY Open (15:30 CET):
+- Bestes Instrument + Entry-Logik (Pullback/Breakout/Limit)
+- Konkrete Entry-Zone (VWAP / POC / VAH / VAL)
+- Max-Risk und Max-Trades beibehalten aus 8-Uhr-Stand
+
+Schreibe state.json["captain"]:
+- _last_run: aktueller Timestamp
+- session_bias, aktive_strategie, alignment_score, trade_freigabe
+- trade_plan (max 100 Woerter, konkret fuer NY)
+- instrument_prioritaet, entry_fenster
+- notes: Vergleich zu 8-Uhr-Entscheidung (was hat sich geaendert?)
+
+═══════════════════════════════════════════════════════
+SCHRITT 7 - Order-Validierung
+═══════════════════════════════════════════════════════
+Vergleiche state.json["orders"]["orders"] mit 14:45-Analyse:
+
+Fuer jede Order pruefen:
+- Hat sich Bias gedreht? (z.B. LONG bei jetzt BEARISH → VERFALLEN)
+- Hat sich POC/VAH/VAL um > 0.3% verschoben? → Entry anpassen
+- Ist Entry-Level noch erreichbar bis NY Open?
+- Hat sich ER-basierte Phase von TREND zu BALANCE geaendert? → Strategie-Wechsel
+
+Moegliche Entscheidungen:
+- VALID: Order bleibt unveraendert
+- ANPASSEN: Neuen Entry/SL/TP berechnen, in state.json["orders"] schreiben
+- VERFALLEN: Order aus state.json["orders"]["orders"] entfernen + begruenden
+
+═══════════════════════════════════════════════════════
+SCHRITT 8 - Bei Order-Anpassungen
+═══════════════════════════════════════════════════════
+Wenn ANPASSEN oder VERFALLEN:
 FUEHRE AUS (Bash):
 node "C:/Users/chris/TradingFloor/trading-journal/journal.js" write-multiple
 
-SCHRITT 6 - Report erstellen:
+═══════════════════════════════════════════════════════
+SCHRITT 9 - Report erstellen
+═══════════════════════════════════════════════════════
 FUEHRE AUS (Bash):
 node "C:/Users/chris/TradingFloor/trading-journal/journal.js" report
 
-SCHRITT 7 - state.json kopieren:
+═══════════════════════════════════════════════════════
+SCHRITT 10 - state.json kopieren
+═══════════════════════════════════════════════════════
 FUEHRE AUS (Bash):
 cp "C:/Users/chris/TradingFloor/agents/shared/state.json" "C:/Users/chris/TradingFloor/cockpit-trader/state.json"
 
-SCHRITT 8 - GitHub Push:
+═══════════════════════════════════════════════════════
+SCHRITT 11 - GitHub Push
+═══════════════════════════════════════════════════════
 FUEHRE AUS (Bash):
 cd "C:/Users/chris/TradingFloor/cockpit-trader"
 git add -A
-git commit -m "US Update - Preise aktualisiert"
+git commit -m "US Update [UHRZEIT] - [PHASE] | GER40:[bias] DJ30:[bias] SPX500:[bias]"
 git push
 Speichere den Commit-Hash fuer den Log.
 
-SCHRITT 9 - LOG SCHREIBEN (PFLICHT - NICHT UEBERSPRINGEN):
-Erstelle mit dem Write-Tool eine Log-Datei. Timestamp = aktuelles Datum+Uhrzeit (YYYYMMDD_HHmmss).
-Pfad:    C:/Users/chris/TradingFloor/logs/pipeline/us-update_[TIMESTAMP].log
+═══════════════════════════════════════════════════════
+SCHRITT 12 - LOG SCHREIBEN (PFLICHT - NICHT UEBERSPRINGEN)
+═══════════════════════════════════════════════════════
+Erstelle mit dem Write-Tool eine Log-Datei.
+Pfad: C:/Users/chris/TradingFloor/logs/pipeline/us-update_[YYYYMMDD_HHmmss].log
+
 Inhalt:
 ================================================
 US UPDATE LOG - [YYYY-MM-DD HH:MM:SS]
 ================================================
-GER40:  Kurs=[WERT] POC=[WERT] VAH=[WERT] VAL=[WERT] Shape=[WERT]
-DJ30:   Kurs=[WERT] POC=[WERT] VAH=[WERT] VAL=[WERT] Shape=[WERT]
-SPX500: Kurs=[WERT] POC=[WERT] VAH=[WERT] VAL=[WERT] Shape=[WERT]
+MARKTDATEN 14:45:
+  GER40:  Kurs=[W] POC=[W] VAH=[W] VAL=[W] ER=[W] Shape=[S]
+  DJ30:   Kurs=[W] POC=[W] VAH=[W] VAL=[W] ER=[W] Shape=[S]
+  SPX500: Kurs=[W] POC=[W] VAH=[W] VAL=[W] ER=[W] Shape=[S]
 ------------------------------------------------
-Order GER40:  [VALID/ANPASSEN/VERFALLEN] - [GRUND]
-Order DJ30:   [VALID/ANPASSEN/VERFALLEN] - [GRUND]
-Order SPX500: [VALID/ANPASSEN/VERFALLEN] - [GRUND]
+DELTA SEIT 8 UHR:
+  GER40:  [+/-X%] Preis vs VWAP/POC/VA | ER [damals]→[jetzt]
+  DJ30:   [+/-X%] Preis vs VWAP/POC/VA | ER [damals]→[jetzt]
+  SPX500: [+/-X%] Preis vs VWAP/POC/VA | ER [damals]→[jetzt]
 ------------------------------------------------
-Aenderungen: [WAS GEAENDERT WURDE ODER: keine]
-Git Commit: [COMMIT-HASH]
-state.json: aktualisiert
+ANALYSE UPDATE:
+  Phase:       [damals]→[jetzt]
+  GER40  Bias: [damals]→[jetzt] (Score:[n]/8)
+  DJ30   Bias: [damals]→[jetzt] (Score:[n]/8)
+  SPX500 Bias: [damals]→[jetzt] (Score:[n]/8)
+  Session-Bias: [damals]→[jetzt]
+------------------------------------------------
+ORDER-VALIDIERUNG:
+  Order GER40:  [VALID/ANPASSEN/VERFALLEN] - [GRUND]
+  Order DJ30:   [VALID/ANPASSEN/VERFALLEN] - [GRUND]
+  Order SPX500: [VALID/ANPASSEN/VERFALLEN] - [GRUND]
+------------------------------------------------
+Git Commit: [HASH]
+state.json: aktualisiert (market + analysis + captain + orders)
 ================================================
 
-PFLICHT-ABSCHLUSS - Du bist NICHT fertig bis alle 5 Punkte ausgefuehrt wurden:
-[x] state.json mit neuen Preisen geschrieben
-[x] journal.js report ausgefuehrt
+═══════════════════════════════════════════════════════
+SCHRITT 13 - MONITOR (PFLICHT - NICHT UEBERSPRINGEN)
+═══════════════════════════════════════════════════════
+Lies und fuehre aus: C:\Users\chris\TradingFloor\agents\monitor\CLAUDE.md
+Der Monitor prueft alle 6 Bereiche, erstellt den Report und oeffnet Notepad.
+
+═══════════════════════════════════════════════════════
+PFLICHT-ABSCHLUSS - Nicht fertig bis alle 7 Punkte OK:
+═══════════════════════════════════════════════════════
+[x] state.json["market"] mit neuen Preisen geschrieben
+[x] state.json["analysis"] neu berechnet und geschrieben
+[x] state.json["captain"] fuer NY-Session aktualisiert
+[x] state.json nach cockpit-trader/ kopiert
 [x] git push erfolgreich
 [x] us-update Log-Datei in C:/Users/chris/TradingFloor/logs/pipeline/ geschrieben
-[x] Abschlussmeldung: DONE: state.json | report | git:[HASH] | log:[DATEINAME]
+[x] Abschlussmeldung: DONE: market+analysis+captain | Phase:[p] | git:[HASH] | log:[DATEI]
