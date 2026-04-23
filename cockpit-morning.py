@@ -600,7 +600,7 @@ def get_tv_data(ticker, timeframe="30"):
                       "poor_high":    stpo["poor_high"]    if stpo else None,
                       "poor_low":     stpo["poor_low"]     if stpo else None}
             else:
-                print("    TV CDP: MP â€“ POC oder VA Lines fehlen")
+                print("    TV CDP: MP -- POC oder VA Lines fehlen")
 
         cvd = None
         if cvd_items and cvd_items.get("current") is not None:
@@ -764,7 +764,7 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
 
     # â”€â”€ FIX #1: Fruehzeitiger Abbruch wenn keine Kerndaten vorhanden â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if mp is None or price is None:
-        print("    Bias: Keine MP/Preis-Daten â€“ NEUTRAL (kein Score)")
+        print("    Bias: Keine MP/Preis-Daten -- NEUTRAL (kein Score)")
         return {
             "score": 0, "bias": "NEUTRAL", "color": "yellow",
             "signals": [],
@@ -1475,7 +1475,7 @@ def run_pipeline(journal, orders, script_dir):
 def _write_fred_to_state(fred_data):
     """Schreibt FRED-Daten in state.json["macro"]["fred"] fuer den MACRO Agent."""
     if not fred_data:
-        print("    FRED-Bridge: keine Daten — uebersprungen")
+        print("    FRED-Bridge: keine Daten -- uebersprungen")
         return
     try:
         state_path = os.path.normpath(os.path.join(
@@ -1684,7 +1684,7 @@ def main():
 
     print(f"\nKalender: {len(cal)} Events")
     for e in cal[:8]:
-        print(f"  {e.get('date','')} {str(e['time'])[11:16]}  {e['event']} ({e['country']}) [{e['impact']}]")
+        print(f"  {e.get('date','')} {e.get('time','')}  {e['name']} ({e['currency']}) [{e['impact']}]")
 
     print("\n>>> Pipeline starten (Sheet / Doc / git)...")
     run_pipeline(journal, orders, script_dir)
@@ -1699,7 +1699,7 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f"\nâŒ UNERWARTETER FEHLER:")
+        print(f"\n[ERROR] UNERWARTETER FEHLER:")
         traceback.print_exc()
         logging.error(f"UNERWARTETER FEHLER: {e}", exc_info=True)
         sys.exit(1)
