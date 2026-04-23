@@ -1537,6 +1537,29 @@ def _write_fred_to_state(fred_data):
         print(f"    FRED-Bridge FEHLER: {e}")
 
 
+def _write_calendar_to_state(cal):
+    """Schreibt cal in state.json["market"]["calendar"] fuer Dashboard + Agenten."""
+    if not cal:
+        print("    Calendar-Bridge: keine Events -- uebersprungen")
+        return
+    try:
+        state_path = os.path.normpath(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            '..', 'agents', 'shared', 'state.json'
+        ))
+        if not os.path.exists(state_path):
+            print(f"    Calendar-Bridge: state.json nicht gefunden ({state_path})")
+            return
+        with open(state_path, encoding='utf-8') as f:
+            state = json.load(f)
+        state.setdefault("market", {})["calendar"] = cal
+        with open(state_path, 'w', encoding='utf-8') as f:
+            json.dump(state, f, indent=2, cls=SafeJSONEncoder)
+        print(f"    Calendar-Bridge: {len(cal)} Events in state.json['market']['calendar'] geschrieben")
+    except Exception as e:
+        print(f"    Calendar-Bridge FEHLER: {e}")
+
+
 # ============================================================
 # 9. MAIN
 # ============================================================
@@ -1567,6 +1590,7 @@ def main():
 
     print("\n>>> Kalender holen...")
     cal = fetch_calendar()
+    _write_calendar_to_state(cal)
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
