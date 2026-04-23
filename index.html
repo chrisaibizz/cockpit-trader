@@ -434,29 +434,28 @@ function drawVPFallback(mp,currentPrice){
 }
 
 function renderCal(cal){
-  var filtered=(cal||[]).filter(function(e){return e.impact==='high'&&['US','DE'].includes((e.country||'').toUpperCase());});
+  var filtered=(cal||[]).filter(function(e){return (e.impact==='high'||e.impact==='medium')&&['EUR','USD'].includes((e.currency||'').toUpperCase());});
   if(!filtered.length)return'<div class="cal-block"><div class="cal-title">📅 Makro Kalender</div><div style="color:var(--muted);font-size:12px;text-align:center;padding:8px 0">Keine High-Impact Events</div></div>';
   var byDay={};
-  filtered.forEach(function(e){var d=e.date||String(e.time||'').slice(0,10)||'';if(!byDay[d])byDay[d]=[];byDay[d].push(e);});
+  filtered.forEach(function(e){var d=e.date||'';if(!byDay[d])byDay[d]=[];byDay[d].push(e);});
   Object.keys(byDay).forEach(function(d){byDay[d].sort(function(a,b){return String(a.time||'').localeCompare(String(b.time||''));});});
   var rows='';
   Object.keys(byDay).sort().forEach(function(day){
     var evts=byDay[day],d=new Date(day),dl=isNaN(d)?day:d.toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit'});
     rows+='<div class="day-lbl">'+dl+'</div>';
     evts.forEach(function(e){
-      var ct=(e.country||'').toUpperCase();
-      var badge='<span class="cbadge '+(ct==='DE'?'cbadge-de':'cbadge-us')+'">'+ct+'</span>';
-      var _t=String(e.time||'');var uhr=(_t.indexOf(' ')>=0?_t.slice(11,16):_t.slice(0,5))||'—';
-      var actual=e.actual!=null?e.actual:null;
-      var forecast=e.estimate!=null?e.estimate:null;
-      var previous=e.prior!=null?e.prior:null;
-      var actCls='cafp-m';
-      if(actual!=null&&forecast!=null){actCls=actual>=forecast?'cafp-g':'cafp-r';}
+      var curr=(e.currency||'').toUpperCase();
+      var badge='<span class="cbadge '+(curr==='EUR'?'cbadge-de':'cbadge-us')+'">'+curr+'</span>';
+      var uhr=e.time||'—';
+      var actual=e.actual!=null&&e.actual!==''?e.actual:null;
+      var forecast=e.forecast!=null&&e.forecast!==''?e.forecast:null;
+      var previous=e.previous!=null&&e.previous!==''?e.previous:null;
+      var actCls=e.better===true?'cafp-g':e.better===false?'cafp-r':'cafp-m';
       var fmtN=function(v){return v!=null?String(v):'—';};
       rows+='<div class="cale">'+
         '<span class="cat">'+uhr+'</span>'+
         badge+
-        '<span class="can">'+e.event+'</span>'+
+        '<span class="can">'+(e.name||e.event||'')+'</span>'+
         '<div class="cafp">'+
           '<div class="cafp-col"><div class="cafp-lbl">Actual</div><div class="cafp-val '+(actual!=null?actCls:'cafp-m')+'">'+fmtN(actual)+'</div></div>'+
           '<div class="cafp-col"><div class="cafp-lbl">Fcst</div><div class="cafp-val cafp-m">'+fmtN(forecast)+'</div></div>'+

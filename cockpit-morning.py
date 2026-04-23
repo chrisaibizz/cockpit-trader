@@ -48,14 +48,9 @@ logging.basicConfig(
 logging.info("cockpit-morning.py gestartet")
 print(">>> Script gestartet")
 
-try:
-    import finnhub
-    FINNHUB_KEY = os.environ.get("FINNHUB_API_KEY", "")
-    fh = finnhub.Client(api_key=FINNHUB_KEY) if FINNHUB_KEY else None
-    print(f">>> Finnhub: {'OK (Key vorhanden)' if FINNHUB_KEY else 'Kein Key - Kalender deaktiviert'}")
-except ImportError:
-    fh = None
-    print(">>> Finnhub nicht installiert - Kalender deaktiviert")
+import requests
+import xml.etree.ElementTree as ET
+print(">>> Myfxbook Calendar: bereit (requests + ET)")
 
 try:
     from fredapi import Fred
@@ -109,46 +104,102 @@ def fetch_quote(ticker):
         return None
 
 def fetch_calendar():
-    if not fh:
-        print("    Kalender: kein Finnhub-Key")
-        return []
-    try:
-        future_dates = [
-            (datetime.now() + timedelta(days=i)).strftime("%Y-%m-%d")
-            for i in range(7)
-        ]
-        all_events = []
-        for date_str in future_dates:
-            try:
-                cal = fh.calendar_economic(date_str, date_str)
-                events = [
-                    {"time":     e.get("time", ""),
-                     "event":    e.get("event", ""),
-                     "country":  e.get("country", ""),
-                     "impact":   e.get("impact", ""),
-                     "estimate": e.get("estimate"),
-                     "prior":    e.get("prior"),
-                     "date":     date_str}
-                    for e in cal.get("economicCalendar", [])
-                    if e.get("impact") == "high"
-                    and e.get("country", "").upper() in ("US", "DE")
-                ]
-                if events:
-                    all_events.append({"date": date_str, "events": events})
-            except Exception as e:
-                print(f"    Kalender FEHLER fuer {date_str}: {e}")
+    """ForexFactory Economic Calendar -- EUR+USD, medium+high impact, laufende + naechste Woche."""
+    FF_URLS = [
+        "https://nfs.faireconomy.media/ff_calendar_thisweek.xml",
+        "https://nfs.faireconomy.media/ff_calendar_nextweek.xml",
+    ]
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        "Accept": "application/xml, text/xml, */*",
+    }
+    today    = datetime.now().date()
+    cutoff   = today + timedelta(days=5)
+    all_events = []
+
+    for url in FF_URLS:
+        try:
+            resp = requests.get(url, headers=headers, timeout=15)
+            resp.raise_for_status()
+            root = ET.fromstring(resp.text)
+        except requests.RequestException as e:
+            print(f"    Kalender FEHLER (Request) {url[-20:]}: {e}")
+            continue
+        except ET.ParseError as e:
+            print(f"    Kalender FEHLER (XML) {url[-20:]}: {e}")
+            continue
+
+        for item in root.findall(".//event"):
+            currency   = item.findtext("country",  "").strip()
+            impact_raw = item.findtext("impact",   "").strip()
+            if currency not in ("EUR", "USD"):
+                continue
+            if impact_raw not in ("High", "Medium"):
                 continue
 
-        result = []
-        for day in all_events[:2]:
-            result.extend(day["events"])
+            name     = item.findtext("title",    "").strip()
+            raw_date = item.findtext("date",     "").strip()   # "04-23-2026"
+            raw_time = item.findtext("time",     "").strip()   # "2:30pm" oder "All Day"
+            actual   = item.findtext("actual",   "").strip()
+            forecast = item.findtext("forecast", "").strip()
+            previous = item.findtext("previous", "").strip()
 
-        print(f"    Kalender: {len(result)} Events ueber {min(len(all_events), 2)} Tage")
-        return result
+            # Datum parsen (MM-DD-YYYY)
+            try:
+                dt       = datetime.strptime(raw_date, "%m-%d-%Y")
+                date_str = dt.strftime("%Y-%m-%d")
+            except ValueError:
+                continue
 
-    except Exception as e:
-        print(f"    Kalender FEHLER: {e}")
-        return []
+            # Nur Events im Fenster heute bis +5 Tage
+            if not (today <= dt.date() <= cutoff):
+                continue
+
+            # Zeit parsen: "2:30pm" -> "14:30"
+            time_str = ""
+            if raw_time and raw_time.lower() not in ("all day", ""):
+                try:
+                    t = datetime.strptime(raw_time.upper(), "%I:%M%p")
+                    time_str = t.strftime("%H:%M")
+                except ValueError:
+                    time_str = raw_time
+
+            impact_label = "high" if impact_raw == "High" else "medium"
+
+            better = None
+            try:
+                def _num(s):
+                    return float(s.replace("%", "").replace("K", "000")
+                                  .replace("M", "000000").replace("B", "000000000").strip())
+                better = _num(actual) > _num(forecast)
+            except (ValueError, AttributeError, ZeroDivisionError):
+                pass
+
+            all_events.append({
+                "date":     date_str,
+                "time":     time_str,
+                "currency": currency,
+                "name":     name,
+                "impact":   impact_label,
+                "actual":   actual,
+                "forecast": forecast,
+                "previous": previous,
+                "better":   better,
+                "source":   "forexfactory",
+            })
+
+    all_events.sort(key=lambda x: (x["date"], x["time"]))
+    # Deduplizieren (thisweek und nextweek koennen ueberlappen)
+    seen = set()
+    unique = []
+    for e in all_events:
+        key = (e["date"], e["time"], e["currency"], e["name"])
+        if key not in seen:
+            seen.add(key)
+            unique.append(e)
+
+    print(f"    Kalender: {len(unique)} Events (ForexFactory, {today} bis {cutoff})")
+    return unique
 
 def fetch_fred_data():
     """
