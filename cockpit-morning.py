@@ -1538,26 +1538,29 @@ def _write_fred_to_state(fred_data):
 
 
 def _write_calendar_to_state(cal):
-    """Schreibt cal in state.json["market"]["calendar"] fuer Dashboard + Agenten."""
+    """Schreibt cal in beide state.json (shared + cockpit-trader), market.calendar + top-level."""
     if not cal:
         print("    Calendar-Bridge: keine Events -- uebersprungen")
         return
-    try:
-        state_path = os.path.normpath(os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            '..', 'agents', 'shared', 'state.json'
-        ))
-        if not os.path.exists(state_path):
-            print(f"    Calendar-Bridge: state.json nicht gefunden ({state_path})")
-            return
-        with open(state_path, encoding='utf-8') as f:
-            state = json.load(f)
-        state.setdefault("market", {})["calendar"] = cal
-        with open(state_path, 'w', encoding='utf-8') as f:
-            json.dump(state, f, indent=2, cls=SafeJSONEncoder)
-        print(f"    Calendar-Bridge: {len(cal)} Events in state.json['market']['calendar'] geschrieben")
-    except Exception as e:
-        print(f"    Calendar-Bridge FEHLER: {e}")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    paths = [
+        os.path.normpath(os.path.join(script_dir, '..', 'agents', 'shared', 'state.json')),
+        os.path.join(script_dir, 'state.json'),
+    ]
+    for state_path in paths:
+        try:
+            if not os.path.exists(state_path):
+                print(f"    Calendar-Bridge: nicht gefunden ({os.path.basename(os.path.dirname(state_path))}/state.json)")
+                continue
+            with open(state_path, encoding='utf-8') as f:
+                state = json.load(f)
+            state.setdefault("market", {})["calendar"] = cal
+            state["calendar"] = cal
+            with open(state_path, 'w', encoding='utf-8') as f:
+                json.dump(state, f, indent=2, cls=SafeJSONEncoder)
+            print(f"    Calendar-Bridge: {len(cal)} Events -> {os.path.basename(os.path.dirname(state_path))}/state.json")
+        except Exception as e:
+            print(f"    Calendar-Bridge FEHLER ({state_path}): {e}")
 
 
 # ============================================================
