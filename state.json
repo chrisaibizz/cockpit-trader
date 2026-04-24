@@ -723,7 +723,7 @@
     "calendar": [
       {
         "date": "2026-04-24",
-        "time": "14:00",
+        "time": "16:00",
         "currency": "USD",
         "name": "Revised UoM Consumer Sentiment",
         "impact": "medium",
@@ -742,11 +742,11 @@
     "marktphase": {
       "phase": "BALANCE",
       "begruendung": [
-        "2 von 3 Instrumenten zeigen negativen ER (DJ30=-7.77, SPX500=-14.87) — kein aktiver Trend, Chop/Konsolidierung dominiert.",
-        "GER40: P-Shape Vortag (pos=0.787), ER=20.20 trend_moderat, Preis 24181 im oberen VA (VAL=23995-VAH=24274) — leicht bullisch.",
-        "DJ30: P-Shape Vortag (pos=0.780), ER=-7.77 Chop, Preis 49279 im unteren VA (VAL=49130-VAH=49527) — Orientierungsphase.",
-        "SPX500: Trend Day Vortag (pos=0.381), ER=-14.87 Chop, Preis 7126 im oberen VA (VAL=7099-VAH=7133) — leicht bullisch.",
-        "Makro NEUTRAL (Score=-1), VIX=19.31 normal, UoM Consumer Sentiment 14:00 — BALANCE-Strategie: Mean-Reversion an VA-Grenzen."
+        "2 von 3 Instrumenten zeigen negativen ER (DJ30=-7.77, SPX500=-14.87) \u2014 kein aktiver Trend, Chop/Konsolidierung dominiert.",
+        "GER40: P-Shape Vortag (pos=0.787), ER=20.20 trend_moderat, Preis 24181 im oberen VA (VAL=23995-VAH=24274) \u2014 leicht bullisch.",
+        "DJ30: P-Shape Vortag (pos=0.780), ER=-7.77 Chop, Preis 49279 im unteren VA (VAL=49130-VAH=49527) \u2014 Orientierungsphase.",
+        "SPX500: Trend Day Vortag (pos=0.381), ER=-14.87 Chop, Preis 7126 im oberen VA (VAL=7099-VAH=7133) \u2014 leicht bullisch.",
+        "Makro NEUTRAL (Score=-1), VIX=19.31 normal, UoM Consumer Sentiment 14:00 \u2014 BALANCE-Strategie: Mean-Reversion an VA-Grenzen."
       ],
       "aktive_strategie": "Mean-Reversion",
       "er_bestaetigung": "nein"
@@ -777,7 +777,7 @@
       ],
       "h4_trend": "NEUTRAL",
       "h4_confluence_zones": [],
-      "h1_entry_context": "Alle Instrumente unter Weekly POC — Mean-Reversion an VAH/VAL bevorzugt.",
+      "h1_entry_context": "Alle Instrumente unter Weekly POC \u2014 Mean-Reversion an VAH/VAL bevorzugt.",
       "h1_key_levels": [],
       "m30_entry_zone": {
         "preis_von": null,
@@ -792,7 +792,7 @@
       "pdh": 24274.85,
       "pdl": 23995.55
     },
-    "session_warnung": "Revised UoM Consumer Sentiment 14:00 (medium) — enge Orders oder Pause vor dem Event empfohlen.",
+    "session_warnung": "Revised UoM Consumer Sentiment 14:00 (medium) \u2014 enge Orders oder Pause vor dem Event empfohlen.",
     "instruments": {
       "GER40": {
         "bias": "LEICHT_BULLISH",
@@ -891,7 +891,7 @@
             "typ": "naked_poc"
           }
         ],
-        "konflikt": "Preis unter SMA200 (24298) — Upside begrenzt ohne Durchbruch.",
+        "konflikt": "Preis unter SMA200 (24298) \u2014 Upside begrenzt ohne Durchbruch.",
         "warnung": null
       },
       "DJ30": {
@@ -991,7 +991,7 @@
             "typ": "support"
           }
         ],
-        "konflikt": "Preis im unteren VA, unter POC und unter SMA200 (49376) — Chop-Phase, kein klarer Trend.",
+        "konflikt": "Preis im unteren VA, unter POC und unter SMA200 (49376) \u2014 Chop-Phase, kein klarer Trend.",
         "warnung": "ER=-7.77 Chop-Filter aktiv. Vorsicht bei Orders."
       },
       "SPX500": {
@@ -1094,7 +1094,7 @@
       "alle_bullish": false,
       "alle_bearish": false,
       "gemischt": false,
-      "beschreibung": "Alle 3 Instrumente zeigen moderaten bullischen Bias (GER40=4/8, DJ30=3/8, SPX500=3/8) — konsistent aber schwach. Alle Schichten freigegeben (erstmals). Phase BALANCE."
+      "beschreibung": "Alle 3 Instrumente zeigen moderaten bullischen Bias (GER40=4/8, DJ30=3/8, SPX500=3/8) \u2014 konsistent aber schwach. Alle Schichten freigegeben (erstmals). Phase BALANCE."
     },
     "watchlist": [
       {
@@ -1103,10 +1103,10 @@
       },
       {
         "instrument": "SPX500",
-        "grund": "Einziges Instrument ueber SMA200 — staerkste S3-Signale"
+        "grund": "Einziges Instrument ueber SMA200 \u2014 staerkste S3-Signale"
       }
     ],
-    "summary": "Phase BALANCE — 2/3 ER negativ, kein Trend. GER40 (4/8) leicht bullisch: P-Shape, POC-Migration steigend, VWAP-Support. DJ30 (3/8) und SPX500 (3/8) ebenfalls leicht bullisch trotz Chop-ER. Alle 3 Schichten freigegeben auf allen Instrumenten (S1>=0.20, S2>=0.25, S3>=0.00). CAPTAIN-Hinweis: BALANCE + NEUTRAL Makro -> 50/50-Gewichtung. Konfidenz-Berechnung auf Basis alignment=4, makro=-1 notwendig. Kalender: UoM 14:00 (medium)."
+    "summary": "Phase BALANCE \u2014 2/3 ER negativ, kein Trend. GER40 (4/8) leicht bullisch: P-Shape, POC-Migration steigend, VWAP-Support. DJ30 (3/8) und SPX500 (3/8) ebenfalls leicht bullisch trotz Chop-ER. Alle 3 Schichten freigegeben auf allen Instrumenten (S1>=0.20, S2>=0.25, S3>=0.00). CAPTAIN-Hinweis: BALANCE + NEUTRAL Makro -> 50/50-Gewichtung. Konfidenz-Berechnung auf Basis alignment=4, makro=-1 notwendig. Kalender: UoM 14:00 (medium)."
   },
   "captain": {
     "_agent": "CAPTAIN",
@@ -1120,18 +1120,18 @@
     "konfidenz_details": {
       "chart_gewichtung": 0.5,
       "makro_gewichtung": 0.5,
-      "gewichtungs_grund": "Phase BALANCE — beide Seiten gleichwertig (50/50)",
+      "gewichtungs_grund": "Phase BALANCE \u2014 beide Seiten gleichwertig (50/50)",
       "alignment_beitrag": 0.25,
       "makro_beitrag": -0.0417,
       "konfidenz_final": 0.2083
     },
-    "trade_plan": "WAIT — Konfidenz 0.21 unter Minimum 0.40. Phase BALANCE + Makro NEUTRAL (Score=-1) ergibt zu schwaches kombiniertes Signal. Neubewertung: (1) Wenn alignment_score >= 5 erreicht wird (z.B. bei Preisausbruch ueber VAH+POC), (2) Wenn Makro-Score auf >= 0 steigt (VIX faellt < 19, F&G erholt), (3) Nach UoM Consumer Sentiment 14:00 — falls positiv kann Makro-Bias steigen. Beobachten: GER40 VAH=24274 und POC=24215 als kritische Widerstandszone. DJ30 POC=49440 — Ausbruch darueber wuerde Bias staerken. SPX500 Weekly POC=7144 — naechste relevante Resistance.",
+    "trade_plan": "WAIT \u2014 Konfidenz 0.21 unter Minimum 0.40. Phase BALANCE + Makro NEUTRAL (Score=-1) ergibt zu schwaches kombiniertes Signal. Neubewertung: (1) Wenn alignment_score >= 5 erreicht wird (z.B. bei Preisausbruch ueber VAH+POC), (2) Wenn Makro-Score auf >= 0 steigt (VIX faellt < 19, F&G erholt), (3) Nach UoM Consumer Sentiment 14:00 \u2014 falls positiv kann Makro-Bias steigen. Beobachten: GER40 VAH=24274 und POC=24215 als kritische Widerstandszone. DJ30 POC=49440 \u2014 Ausbruch darueber wuerde Bias staerken. SPX500 Weekly POC=7144 \u2014 naechste relevante Resistance.",
     "instrument_prioritaet": [
       "GER40",
       "SPX500",
       "DJ30"
     ],
-    "entry_fenster": "Kein Einstieg heute — WAIT-Modus",
+    "entry_fenster": "Kein Einstieg heute \u2014 WAIT-Modus",
     "max_risk_today": "0%",
     "max_trades_heute": 0,
     "trades_today": 0,
@@ -1141,25 +1141,25 @@
         "s1": "0.60 OK (Shape P+3, POC-Mig+2, Sequenz+1, VA+1, POC-1)",
         "s2": "0.50 OK (VWAP+1, CVD+1)",
         "s3": "0.00 OK Grenze (Kumo+1, SMA200-1)",
-        "status": "OK — alle_schichten_ok=True"
+        "status": "OK \u2014 alle_schichten_ok=True"
       },
       "DJ30": {
         "s1": "0.50 OK (Shape P+3, Seq+2, POC-Mig+2, VA-1, POC-1)",
         "s2": "0.50 OK (VWAP+1, CVD+1)",
         "s3": "0.00 OK Grenze (Kumo+1, SMA200-1)",
-        "status": "OK — alle_schichten_ok=True"
+        "status": "OK \u2014 alle_schichten_ok=True"
       },
       "SPX500": {
         "s1": "0.40 OK (POC-Mig+2, VA+1, POC+1, Trend Day=0, Seq 0)",
         "s2": "0.50 OK (VWAP+1, CVD+1)",
         "s3": "0.33 OK (Kumo+1, SMA200+1)",
-        "status": "OK — alle_schichten_ok=True"
+        "status": "OK \u2014 alle_schichten_ok=True"
       }
     },
     "shape_validierung": {
-      "GER40": "P-Shape (pos=0.787) — WAIT-Modus, kein Shape-Konflikt relevant",
-      "DJ30": "P-Shape (pos=0.780) — WAIT-Modus, kein Shape-Konflikt relevant",
-      "SPX500": "Trend Day (pos=0.381) — WAIT-Modus, neutral"
+      "GER40": "P-Shape (pos=0.787) \u2014 WAIT-Modus, kein Shape-Konflikt relevant",
+      "DJ30": "P-Shape (pos=0.780) \u2014 WAIT-Modus, kein Shape-Konflikt relevant",
+      "SPX500": "Trend Day (pos=0.381) \u2014 WAIT-Modus, neutral"
     },
     "notes": "Konfidenz=0.21 | Chart=50% / Makro=50% | BALANCE Phase | alignment_beitrag=0.25 + makro_beitrag=-0.04 = 0.21 < 0.40 Minimum. Erstmals alle 3 Instrumente alle_schichten_ok=True. Trigger fuer Trade: alignment >= 5 ODER makro_score >= 0. Kalender-Event: UoM Consumer Sentiment 14:00 (medium) beachten."
   },
@@ -1174,9 +1174,9 @@
       "trade_freigabe": false,
       "shape_konflikt": false,
       "warnings": [
-        "WAIT — Konfidenz 0.21 < 0.40 Minimum",
+        "WAIT \u2014 Konfidenz 0.21 < 0.40 Minimum",
         "Phase BALANCE + Makro NEUTRAL = kombiniertes Signal zu schwach",
-        "UoM Consumer Sentiment 14:00 (medium) — Watch Event"
+        "UoM Consumer Sentiment 14:00 (medium) \u2014 Watch Event"
       ],
       "notes": "Kein Trade heute. Alignment=4/8 gut, aber Makro-Score=-1 bei 50/50-Gewichtung ergibt Konfidenz=0.21. Neu bewerten wenn: alignment>=5 ODER makro>=0 ODER nach UoM-Event (Aufwertung des Makro-Scores moeglich)."
     }
@@ -1202,7 +1202,7 @@
   "calendar": [
     {
       "date": "2026-04-24",
-      "time": "14:00",
+      "time": "16:00",
       "currency": "USD",
       "name": "Revised UoM Consumer Sentiment",
       "impact": "medium",

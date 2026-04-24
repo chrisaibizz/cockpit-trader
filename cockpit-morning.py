@@ -104,7 +104,12 @@ def fetch_quote(ticker):
         return None
 
 def fetch_calendar():
-    """ForexFactory Economic Calendar -- EUR+USD, medium+high impact, laufende + naechste Woche."""
+    """ForexFactory Economic Calendar -- EUR+USD, medium+high impact, laufende + naechste Woche.
+    Zeiten: ForexFactory XML liefert UTC -- wird nach Europe/Berlin (CET/CEST) konvertiert."""
+    from zoneinfo import ZoneInfo
+    from datetime import timezone as _tz
+    _BERLIN = ZoneInfo("Europe/Berlin")
+
     FF_URLS = [
         "https://nfs.faireconomy.media/ff_calendar_thisweek.xml",
         "https://nfs.faireconomy.media/ff_calendar_nextweek.xml",
@@ -155,12 +160,16 @@ def fetch_calendar():
             if not (today <= dt.date() <= cutoff):
                 continue
 
-            # Zeit parsen: "2:30pm" -> "14:30"
+            # Zeit parsen: "2:30pm" (UTC) -> "14:30" UTC -> Berlin (CET/CEST)
             time_str = ""
             if raw_time and raw_time.lower() not in ("all day", ""):
                 try:
                     t = datetime.strptime(raw_time.upper(), "%I:%M%p")
-                    time_str = t.strftime("%H:%M")
+                    dt_utc = datetime(dt.year, dt.month, dt.day, t.hour, t.minute,
+                                      tzinfo=_tz.utc)
+                    dt_berlin = dt_utc.astimezone(_BERLIN)
+                    time_str = dt_berlin.strftime("%H:%M")
+                    date_str = dt_berlin.strftime("%Y-%m-%d")  # Datum bei Mitternacht-Rollover
                 except ValueError:
                     time_str = raw_time
 
