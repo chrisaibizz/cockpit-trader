@@ -94,15 +94,15 @@
     "instruments": {
       "GER40": {
         "ticker": "Vantage:GER40",
-        "current_price": 24327.8,
+        "current_price": 24073.15,
         "open": 24076.7,
         "high": 24341.8,
-        "low": 24303.3,
+        "low": 24073.15,
         "prev_close": 24184.95,
-        "change_pct": -0.04,
-        "vwap": 24202.56,
-        "vwap_upper": 24245.78,
-        "vwap_lower": 24159.35,
+        "change_pct": -0.46,
+        "vwap": 24183.28,
+        "vwap_upper": 24247.56,
+        "vwap_lower": 24119.0,
         "poc": 24160.16,
         "vah": 24235.1,
         "val": 24065.45,
@@ -125,17 +125,17 @@
         "pdl": 23995.55,
         "er": 50.33,
         "er_interpretation": "trend_stark",
-        "cdv": 10754,
-        "cdv_direction": "bullish",
+        "cdv": 4961,
+        "cdv_direction": "bearish",
         "ichimoku_30m": {
           "tenkan": 24232.8,
           "kijun": 24232.8,
-          "chikou": 24315.8,
+          "chikou": 24073.15,
           "senkou_a": 24232.8,
           "senkou_b": 24160.57,
-          "above_kumo": true,
+          "above_kumo": false,
           "in_kumo": false,
-          "note": "Preis 24327 ueber Kumo (24160-24232) - Bullisch"
+          "note": "Preis 24073 unter Kumo (24160-24232) - Baerisch"
         },
         "sma200_30m": 24225.18,
         "mp_history": [
@@ -376,15 +376,15 @@
       },
       "DJ30": {
         "ticker": "Vantage:DJ30",
-        "current_price": 49210.45,
+        "current_price": 49220.15,
         "open": 49284.85,
         "high": 49522.94,
         "low": 48861.31,
         "prev_close": 49286.44,
-        "change_pct": -0.41,
-        "vwap": 49190.18,
-        "vwap_upper": 49215,
-        "vwap_lower": 49165.35,
+        "change_pct": -0.13,
+        "vwap": 49204.02,
+        "vwap_upper": 49243.92,
+        "vwap_lower": 49164.13,
         "poc": 49203.07,
         "vah": 49318.44,
         "val": 49176.44,
@@ -407,12 +407,12 @@
         "pdl": 49130.27,
         "er": 15.37,
         "er_interpretation": "ranging",
-        "cdv": 179841,
-        "cdv_direction": "bullish",
+        "cdv": 179302,
+        "cdv_direction": "neutral",
         "ichimoku_30m": {
           "tenkan": 49194.3,
           "kijun": 49192.45,
-          "chikou": 49204.45,
+          "chikou": 49220.15,
           "senkou_a": 49193.38,
           "senkou_b": 49282.94,
           "above_kumo": false,
@@ -550,15 +550,15 @@
       },
       "SPX500": {
         "ticker": "Vantage:SP500",
-        "current_price": 7172.45,
+        "current_price": 7183.05,
         "open": 7118.8,
-        "high": 7147.78,
+        "high": 7185.3,
         "low": 7046.55,
         "prev_close": 7127.09,
-        "change_pct": -0.15,
-        "vwap": 7167.57,
-        "vwap_upper": 7175.6,
-        "vwap_lower": 7159.54,
+        "change_pct": 0.56,
+        "vwap": 7169.38,
+        "vwap_upper": 7176.77,
+        "vwap_lower": 7161.99,
         "poc": 7121.89,
         "vah": 7152.5,
         "val": 7113.83,
@@ -581,12 +581,12 @@
         "pdl": 7099.05,
         "er": 35.43,
         "er_interpretation": "trend_moderat",
-        "cdv": 36413,
+        "cdv": 39978,
         "cdv_direction": "bullish",
         "ichimoku_30m": {
           "tenkan": 7166,
           "kijun": 7168.63,
-          "chikou": 7172.32,
+          "chikou": 7183.05,
           "senkou_a": 7167.32,
           "senkou_b": 7148.01,
           "above_kumo": true,
@@ -949,16 +949,16 @@
     "_last_run": "2026-04-27T14:45:00",
     "_status": "ready_us",
     "marktphase": {
-      "phase": "TREND",
+      "phase": "DIVERGENZ",
       "begruendung": [
-        "GER40: ER=24.91 trend_moderat, D-Shape, Preis im Kumo — Orientierungsphase.",
-        "DJ30: b-Shape pos=0.188, below_kumo bearish, CDV negativ — bearisher Druck.",
-        "SPX500: b-Shape pos=0.208, in_kumo, ER=86.69 stark aber VWAP bearish — mixed.",
-        "Makro NEUTRAL (Score=0), VIX=19.16 steigend, FOMC 29.04 + ECB 30.04 — Pre-Event.",
-        "S2 Struktur auf allen 3 Instrumenten bearish (VWAP + ER unter VWAP) — WAIT-Strategie."
+        "GER40: -254pts Reversal (24327→24073), Invalidation 24150 unterschritten. Unter Kumo+SMA200+VWAP. CDV -5793 stark bearish. Setup aufgeloest.",
+        "DJ30: b-Shape unv., 49220 flach, CDV neutral. Kein Setup.",
+        "SPX500: Bullisch, 7183 (+11pts), VWAP +1.85SD, CDV 10x konsekutiv bullisch. An Resistance 7185.",
+        "Divergenz Europa (GER40 bearish) vs USA (SPX500 bullisch) — typischer US-Open-Effekt.",
+        "Pre-FOMC 29.04 + Pre-ECB 30.04 — kein aktiver Handel trotz SPX-Staerke."
       ],
-      "aktive_strategie": "WAIT — Pre-Event (FOMC 29.04, ECB 30.04)",
-      "er_bestaetigung": "gemischt"
+      "aktive_strategie": "WAIT — Invalidation GER40 + Pre-Event FOMC/ECB",
+      "er_bestaetigung": "divergent"
     },
     "regime": "NEUTRAL",
     "risk_level": "HIGH",
@@ -1001,11 +1001,11 @@
       "pdh": 24274.85,
       "pdl": 23995.55
     },
-    "session_warnung": "FOMC 29.04.2026 20:00 CET + ECB 30.04.2026 14:15 CET — Pre-Event Woche. KEIN Handel empfohlen.",
+    "session_warnung": "GER40 REVERSAL: -254pts (24327→24073), Invalidation 24150 UNTERSCHRITTEN. SPX500 bullisch an Resistance 7185. FOMC 29.04 + ECB 30.04 — Pre-Event. KEIN Handel.",
     "instruments": {
       "GER40": {
-        "bias": "BULLISH",
-        "bias_score": 6,
+        "bias": "BEARISH",
+        "bias_score": -1,
         "er_wert": 50.33,
         "er_interpretation": "trend_stark",
         "er_chop_filter_aktiv": false,
@@ -1015,64 +1015,64 @@
         "mp_shape_bias": "NEUTRAL",
         "schichten": {
           "s1_kontext": {
-            "score_raw": 6,
-            "score_norm": 0.6,
+            "score_raw": 1,
+            "score_norm": 0.1,
             "signale": {
               "mp_shape": 0,
-              "preis_vs_va": 2,
-              "preis_vs_poc": 1,
+              "preis_vs_va": 0,
+              "preis_vs_poc": -1,
               "poc_migration": 1,
               "shape_sequenz": 1,
-              "vp_hvn_lvn": 1
+              "vp_hvn_lvn": 0
             }
           },
           "s2_struktur": {
-            "score_raw": 4,
-            "score_norm": 1,
+            "score_raw": -2,
+            "score_norm": -0.5,
             "signale": {
-              "vwap": 1,
-              "cvd": 1,
-              "er_trend": 1,
+              "vwap": -1,
+              "cvd": -1,
+              "er_trend": -1,
               "er_qualitaet": 1
             }
           },
           "s3_entry": {
-            "score_raw": 4,
-            "score_norm": 0.667,
+            "score_raw": -3,
+            "score_norm": -0.5,
             "signale": {
-              "ichimoku": 1,
-              "sma200": 1,
-              "smc": 1,
+              "ichimoku": -1,
+              "sma200": -1,
+              "smc": -1,
               "sr_channel": 0,
-              "pivot": 1,
+              "pivot": 0,
               "autofibo": 0
             }
           },
-          "freigabe_s1": true,
-          "freigabe_s2": true,
-          "freigabe_s3": true,
-          "alle_schichten_ok": true
+          "freigabe_s1": false,
+          "freigabe_s2": false,
+          "freigabe_s3": false,
+          "alle_schichten_ok": false
         },
         "key_levels": {
           "poc": 24160.16,
           "vah": 24235.1,
           "val": 24065.45,
-          "vwap": 24202.56,
-          "current": 24327.8,
-          "naechster_support": 24235.1,
-          "naechste_resistance": 24515.2,
+          "vwap": 24183.28,
+          "current": 24073.15,
+          "naechster_support": 24065.45,
+          "naechste_resistance": 24160.16,
           "invalidation": 24150
         },
-        "alignment_score": 6,
+        "alignment_score": -1,
         "alignment_details": {
-          "s1_beitrag": 0.36,
-          "s2_beitrag": 0.25,
-          "s3_beitrag": 0.1,
-          "alignment_gesamt": 0.71,
-          "alignment_score": 6
+          "s1_beitrag": 0.06,
+          "s2_beitrag": -0.125,
+          "s3_beitrag": -0.075,
+          "alignment_gesamt": -0.14,
+          "alignment_score": -1
         },
-        "trade_freigabe": true,
-        "freigabe_grund": "Alle 3 Schichten OK: Preis ueber VA+VP VAH, VWAP +2.87SD, CVD bullish, ER trending, ueber Kumo+SMA200"
+        "trade_freigabe": false,
+        "freigabe_grund": "INVALIDATION GETRIGGERT (24073 < 24150). Kompletter Reversal: -254pts, unter VWAP (-1.71SD), CDV bearish (-5793), unter Kumo+SMA200. Kein Long-Setup mehr."
       },
       "DJ30": {
         "bias": "NEUTRAL",
@@ -1223,51 +1223,56 @@
     "_agent": "CAPTAIN",
     "_last_run": "2026-04-27T14:45:00",
     "_status": "ready",
-    "session_bias": "BULLISH",
-    "session_phase": "US_OPEN_WATCH",
-    "konfidenz": 0.41,
+    "session_bias": "DIVERGENT",
+    "session_phase": "US_OPEN_DIVERGENCE",
+    "konfidenz": 0.375,
     "konfidenz_details": {
       "chart_gewichtung": 0.6,
       "makro_gewichtung": 0.4,
-      "gewichtungs_grund": "Default: VIX 19.16<20, FOMC in 2 Tagen — Standard-Gewichtung",
-      "alignment_beitrag": 0.4125,
+      "gewichtungs_grund": "Default: VIX 19.16<20, FOMC morgen 29.04 — Standard-Gewichtung",
+      "alignment_beitrag": 0.375,
       "makro_beitrag": 0,
-      "konfidenz_final": 0.41
+      "konfidenz_final": 0.375
     },
-    "entscheidung": "WATCH",
-    "entscheidung_grund": "WATCH — Bullische Initiative (GER40 +166pts ueber SMA200+Kumo, SPX500 5-Tage-Compression Breakout), aber extended Levels + FOMC 29.04/ECB 30.04 Pre-Event. Alert-Levels aktiv, kein aktiver Trade.",
+    "entscheidung": "WAIT",
+    "entscheidung_grund": "WAIT — GER40 Invalidation getriggert (24073 < 24150): Morgen-Setup vollstaendig gefallen. SPX500 bullisch aber an Resistance 7185 (Konfidenz 0.375 < 0.40). Nur 1 Instrument mit alle_schichten_ok (< Minimum 2). Pre-FOMC 29.04 Schutz aktiv.",
     "max_risk_pct": 0,
     "shape_check": {
-      "GER40": "Normal-Shape + Breakout ueber VAH 24235 + VP VAH 24316 — PASS aber extended",
+      "GER40": "INVALIDIERT — Preis 24073 < Invalidation 24150. Unter Kumo+SMA200+VWAP. KEIN Setup.",
       "DJ30": "b-Shape BAERISCH — WAIT",
-      "SPX500": "b-Shape ABER 5-Tage Compression Breakout ueber VAH 7152 — CONDITIONAL"
+      "SPX500": "Breakout haelt ueber VAH 7152, an Resistance 7185 — WATCH aber kein Entry"
     },
     "phasen": {
       "pre_market": "WAIT",
-      "open_drive": "WATCH",
+      "open_drive": "WAIT",
       "range": "WAIT",
       "afternoon": "WAIT"
     },
-    "strategie": "WATCH: GER40 Pullback zu 24280-24300 (FVG+VP VAH Retest) abwarten. SPX500 US Open Hold ueber 7152 beobachten. DJ30 kein Setup. Kein aktiver Trade wegen FOMC/ECB.",
+    "strategie": "WAIT: GER40 Morgen-Setup invalidiert (-254pts Reversal). SPX500 an Resistance 7185 — Breakout oder Reject beobachten, kein aktiver Trade. FOMC morgen 29.04 erzwingt Pre-Event WAIT.",
     "warnungen": [
       "FOMC 29.04.2026 20:00 CET",
       "ECB 30.04.2026 14:15 CET",
-      "GER40 +2.87 SD VWAP — extended",
-      "SPX500 in VP HVN Sell-Zone 7154-7185",
+      "GER40 INVALIDATION: 24073 < 24150 — Morgen-Setup aufgeloest",
+      "GER40 unter Kumo + SMA200 (24225) — Bias-Wechsel auf BEARISH",
+      "SPX500 an Resistance 7185 — VP HVN Sell-Zone 7154-7185",
+      "Divergenz: SPX500 bullisch / GER40 bearish — kein klares Signal",
       "VIX 19.16 steigend"
     ],
     "_session": "us_update",
     "alert_levels": {
       "GER40": {
-        "pullback_entry": "24280-24300",
-        "support": 24235,
-        "resistance": 24515,
-        "invalidation": 24150
+        "watch": "Neue Session abwarten. Erholung ueber 24183 (VWAP) noetig fuer neues Setup.",
+        "support": 24065.45,
+        "resistance": 24183.28,
+        "invalidation": 24150,
+        "status": "INVALIDIERT"
       },
       "SPX500": {
+        "breakout_ueber": 7185,
         "halten_ueber": 7152,
         "resistance": 7185,
-        "invalidation": 7100
+        "invalidation": 7100,
+        "status": "WATCH_RESISTANCE"
       },
       "DJ30": "WAIT"
     }
@@ -1279,21 +1284,21 @@
     "datum": "2026-04-27",
     "session": "us_update",
     "freigabe": false,
-    "grund": "WATCH — Kein aktiver Trade. Alert-Levels: GER40@24290 + SPX500@7152.",
+    "grund": "WAIT — GER40 Invalidation getriggert. SPX500 an Resistance 7185, Konfidenz 0.375 < 0.40. FOMC 29.04 Pre-Event Schutz.",
     "orders": [],
     "_session": "us_update",
     "alert_levels": [
       {
         "instrument": "GER40",
-        "typ": "ALERT_LONG",
-        "level": 24290,
-        "bedingung": "Pullback FVG+VP VAH Retest, Hold ueber 24235"
+        "typ": "INFO",
+        "level": 24183.28,
+        "bedingung": "Morgen-Setup invalidiert. Erholung ueber VWAP 24183 noetig fuer neues Setup — morgen beobachten"
       },
       {
         "instrument": "SPX500",
-        "typ": "ALERT_LONG",
-        "level": 7152,
-        "bedingung": "US Open Hold ueber VAH+BOS, kein Reject in HVN 7154-7185"
+        "typ": "ALERT_BREAKOUT",
+        "level": 7185,
+        "bedingung": "Breakout ueber 7185 (VP HVN Sell-Zone Top) wuerde bullisches Signal geben — aber kein Trade wegen FOMC"
       }
     ]
   },

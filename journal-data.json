@@ -3,188 +3,101 @@
   "timestamp": "2026-04-27T14:45:00",
   "session": "us_update",
   "debrief": {
-    "orders_checked": 0,
-    "fill_rate": "n/a",
-    "tp1_rate": "n/a",
-    "trend": "Kein Trade (WAIT morning)",
-    "learnings": []
+    "yesterday_date": "2026-04-24",
+    "orders_checked": 3,
+    "fill_rate": "100% (3/3 gefuellt)",
+    "tp1_rate": "100% (3/3 TP1 erreicht)",
+    "trend": "Gestern stark — Gesamt-Stats: Fill 11.9%, SL 72.2% (Verschlechterung)",
+    "learnings": [
+      "Gestern: GER40 24004 + US30 49141 + SPX500 7100 — alle gefuellt, alle TP1 erreicht",
+      "Heute: GER40 Reversal -254pts — Morgen-WATCH-Level 24280-24300 massiv durchbrochen",
+      "Fill-Rate gesamt 11.9% — Orders weiterhin zu weit vom Markt",
+      "SL-Rate 72.2% — Risikomanagement kritisch pruefen"
+    ]
   },
   "instruments": [
     {
       "name": "GER40",
-      "bias": "Bullisch",
-      "bias_pct": "71",
-      "alignment_score": "6/8",
-      "daily_summary": "Preis ueber Kumo + SMA200 geflippt. Starke bullische Initiative.",
-      "h4_summary": "Preis ueber alle Wert-Bereiche (VP VAH 24316, MP VAH 24235).",
-      "h1_summary": "VWAP +2.87 SD - stark extended. CVD 10754 bullisch.",
-      "h30m_summary": "SMC FVG Support 24289-24303. Bearish OB Resistance 24515-24608.",
-      "mp_shape_yesterday": "Normal (POC 0.56, neutrale Mitte)",
-      "mp_shape_forecast": "Continuation oder Pullback zu VAH 24235",
-      "mp_5day_sequence": "S4 NonTrend -> S3 Trend(378pts) -> S2 Normal -> S1 Normal -> S0 Normal. Konsolidierung abgeschlossen.",
+      "bias": "BEARISH",
+      "bias_pct": "20",
+      "daily_summary": "Bullischer Morgenstart (24327, +2.87SD VWAP) vollstaendig reversiert. Preis 24073 unterschreitet Invalidation 24150. Unter Kumo (24160-24232), unter SMA200 (24225), unter VWAP (24183).",
+      "h4_summary": "Bearisher Tagesbruch nach ausgedehnter Aufwaertsbewegung. b-Shape-Sequenz der letzten Wochen dominant.",
+      "h1_summary": "Intraday-Reversal nach Eroeffnungs-Spike auf 24341. Volles Retracement zurueck auf Tagesoeffnung 24077.",
+      "h30m_summary": "Preis 24073 in VA (val=24065), CDV -5793 bearish, VWAP-Abstand -1.71SD. Kein bullisches Setup.",
+      "mp_shape_yesterday": "Normal (pos=0.56, D-Shape, NEUTRAL)",
+      "mp_shape_forecast": "KEIN SETUP — Invalidation getriggert. Morgen neue Session abwarten.",
+      "mp_5day_sequence": "S0:P-Shape, S1:P-Shape(naked), S2:D-Shape, S3:b-Shape, S4:b-Shape — Aufwaertstrend gestoppt",
       "key_levels": [
-        {
-          "level": "POC",
-          "price": "24160",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAH",
-          "price": "24235",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VP VAH",
-          "price": "24316",
-          "source": "Volume Profile"
-        },
-        {
-          "level": "FVG Support",
-          "price": "24289-24303",
-          "source": "SMC"
-        },
-        {
-          "level": "Bearish OB",
-          "price": "24515-24608",
-          "source": "SMC"
-        },
-        {
-          "level": "VWAP",
-          "price": "24202",
-          "source": "VWAP"
-        }
+        {"level": "VWAP", "price": "24183.28", "source": "VWAP Stdev Bands"},
+        {"level": "POC Vortag", "price": "24160.16", "source": "Market Profile"},
+        {"level": "VAH Vortag", "price": "24235.1", "source": "Market Profile"},
+        {"level": "VAL Vortag", "price": "24065.45", "source": "Market Profile"},
+        {"level": "Invalidation", "price": "24150", "source": "CAPTAIN"},
+        {"level": "SMA200 30M", "price": "24225.18", "source": "SMA200"}
       ],
       "orders": [],
-      "alert_levels": [
-        {
-          "typ": "ALERT_LONG",
-          "level": "24290",
-          "note": "Pullback zu FVG+VP VAH, Hold ueber 24235 erforderlich"
-        }
-      ],
-      "invalidation": "Unter 24150 wird bullischer Bias negiert"
+      "invalidation": "Bereits unterschritten (24073 < 24150). Kein Setup heute."
     },
     {
-      "name": "US30",
-      "bias": "Neutral",
-      "bias_pct": "0",
-      "alignment_score": "0/8",
-      "daily_summary": "b-Shape bearish. Preis in Balance-Zone. ER ranging (15.37).",
-      "h4_summary": "Inside VA (49176-49318). Preis nahe POC 49203.",
-      "h1_summary": "VWAP Neutral +0.82 SD. Im Kumo (49193-49283).",
-      "h30m_summary": "Unter SMA200 (49348). Keine aktiven Bearish OBs.",
-      "mp_shape_yesterday": "b-Shape (POC 0.19 - unten in VA)",
-      "mp_shape_forecast": "Balance, kein klarer Setup",
-      "mp_5day_sequence": "Abwärts-POC-Migration (49588->49203). VA Overlap = Konsolidierung.",
+      "name": "DJ30",
+      "bias": "NEUTRAL",
+      "bias_pct": "45",
+      "daily_summary": "Unveraendert flach. b-Shape Vortag, ER=15.37 ranging. Preis 49220 in Value Area zwischen VAL 49176 und VAH 49318.",
+      "h4_summary": "Konsolidierung nahe VWAP (49204). Kein direktionaler Bias.",
+      "h1_summary": "Kein Setup sichtbar. Ranging-Markt.",
+      "h30m_summary": "VWAP +0.40SD neutral, CDV flat (-482). b-Shape-Sequenz haelt an.",
+      "mp_shape_yesterday": "b-Shape (pos=0.188, BAERISCH)",
+      "mp_shape_forecast": "Ranging. Kein Setup.",
+      "mp_5day_sequence": "3x P-Shape (stark bullisch) — aber aktuell b-Shape Reversal",
       "key_levels": [
-        {
-          "level": "POC",
-          "price": "49203",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAH",
-          "price": "49318",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL",
-          "price": "49176",
-          "source": "Market Profile"
-        },
-        {
-          "level": "SMA200",
-          "price": "49348",
-          "source": "SMA"
-        }
+        {"level": "VWAP", "price": "49204.02", "source": "VWAP Stdev Bands"},
+        {"level": "POC Vortag", "price": "49203.07", "source": "Market Profile"},
+        {"level": "VAH Vortag", "price": "49318.44", "source": "Market Profile"},
+        {"level": "VAL Vortag", "price": "49176.44", "source": "Market Profile"}
       ],
       "orders": [],
-      "alert_levels": [],
-      "invalidation": "Unter 49100"
+      "invalidation": "Kein aktives Setup."
     },
     {
       "name": "SPX500",
-      "bias": "Bullisch",
-      "bias_pct": "63",
-      "alignment_score": "5/8",
-      "daily_summary": "5-Tage Compression Breakout. Preis ueber VAH + VP VAH. Alle Schichten bullisch.",
-      "h4_summary": "Preis ueber MP VAH 7152 und VP VAH 7150.",
-      "h1_summary": "VWAP +0.62 SD (nahe Fair Value). CVD 36413 bullisch. ER 35.43 trending.",
-      "h30m_summary": "2x BOS Support 7155-7164. In VP HVN Sell-Zone 7154-7185.",
-      "mp_shape_yesterday": "b-Shape (POC 0.21, unten in VA) - aber Compression-Setup",
-      "mp_shape_forecast": "Breakout-Continuation wenn US Open ueber 7152 haelt",
-      "mp_5day_sequence": "5x sehr enge Sessions (28-54 pts) -> Compression abgeschlossen -> Breakout.",
+      "bias": "BULLISH",
+      "bias_pct": "65",
+      "daily_summary": "Bullische Fortsetzung. Preis 7183 (+11pts), VWAP +1.85SD, CDV 10 konsekutive bullische Bars. An Resistance 7185 (VP HVN Sell-Zone). Breakout oder Reject entscheidend.",
+      "h4_summary": "5-Tage Compression Breakout bestaetigte sich. Preis ueber VAH (7152) + SMA200 (7130) + Kumo.",
+      "h1_summary": "Bullischer Trend intakt. VWAP-Abstand gesund (+1.85SD). CDV stark steigend.",
+      "h30m_summary": "Preis 7183 testet Widerstand 7185. CDV 39978 (rising). VWAP 7169. Entscheidungszone.",
+      "mp_shape_yesterday": "Trend Day (Vortag, pos=0.381)",
+      "mp_shape_forecast": "Breakout ueber 7185 naechstes Ziel 7200+. Reject Pullback zu VWAP 7169.",
+      "mp_5day_sequence": "2x Trend Day, 1x b-Shape — gemischt, aber POC-Migration steigend",
       "key_levels": [
-        {
-          "level": "POC",
-          "price": "7122",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAH",
-          "price": "7152",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VP VAH",
-          "price": "7150",
-          "source": "Volume Profile"
-        },
-        {
-          "level": "BOS Support",
-          "price": "7155-7164",
-          "source": "SMC"
-        },
-        {
-          "level": "VP HVN Sell",
-          "price": "7154-7185",
-          "source": "Volume Profile"
-        },
-        {
-          "level": "AutoFib 1.0",
-          "price": "7185",
-          "source": "AutoFib"
-        }
+        {"level": "Resistance", "price": "7185.0", "source": "VP HVN Sell-Zone"},
+        {"level": "VWAP", "price": "7169.38", "source": "VWAP Stdev Bands"},
+        {"level": "VAH Vortag", "price": "7152.5", "source": "Market Profile"},
+        {"level": "POC Vortag", "price": "7121.89", "source": "Market Profile"},
+        {"level": "SMA200 30M", "price": "7130.09", "source": "SMA200"},
+        {"level": "Invalidation", "price": "7100", "source": "CAPTAIN"}
       ],
       "orders": [],
-      "alert_levels": [
-        {
-          "typ": "ALERT_LONG",
-          "level": "7152",
-          "note": "US Open Hold ueber VAH+BOS, kein Reject in HVN 7154-7185"
-        }
-      ],
-      "invalidation": "Unter 7100 wird Breakout als Failed markiert"
+      "invalidation": "Unter 7152 (VAH) waere Breakout-Setup aufgeloest."
     }
   ],
   "summary": {
-    "best_instrument": "GER40 (6/8) > SPX500 (5/8) > DJ30 (0/8)",
+    "best_instrument": "SPX500",
     "total_orders": 0,
-    "entscheidung": "WATCH",
-    "konfidenz": 0.41,
     "warnings": [
-      "FOMC 29.04.2026 20:00 CET - Federal Funds Rate + Statement",
-      "ECB 30.04.2026 14:15 CET - Main Refinancing Rate",
-      "GER40 +2.87 SD VWAP - extended, kein direkter Entry",
-      "SPX500 in VP HVN Sell-Zone 7154-7185",
-      "VIX 19.16 steigend"
+      "GER40 INVALIDATION: 24073 < 24150 — Morgen-Setup aufgeloest",
+      "FOMC 29.04.2026 20:00 CET — Federal Funds Rate",
+      "ECB 30.04.2026 14:15 CET — Main Refinancing Rate",
+      "GER40/SPX500 DIVERGENZ: Europa bearish, USA bullisch",
+      "Fill-Rate gesamt 11.9% — weiterhin kritisch"
     ],
-    "notes": "Starke bullische Delta vs Morning: GER40 +166pts (ueber SMA200+Kumo geflippt), SPX500 +25pts (5-Tage Compression Breakout). DJ30 unverändert in Balance. Kein Trade wegen FOMC/ECB Pre-Event."
+    "notes": "Pre-FOMC WAIT. GER40 Intraday-Reversal -254pts nach Eroeffnungs-Spike. SPX500 bullisch an 7185 Resistance. Keine Orders heute. Morgen 28.04 CB Consumer Confidence 16:00 CET."
   },
-  "macro": {
-    "vix": 19.16,
-    "dxy": 98.419,
-    "tnx": 4.31,
-    "fg": 47,
-    "oil": 96.49,
-    "gold": 4728.5,
-    "makro_score": 0,
-    "makro_bias": "NEUTRAL",
-    "warnungen": [
-      "FOMC 29.04",
-      "ECB 30.04",
-      "Oel>90",
-      "Gold steigend"
-    ]
+  "stats": {
+    "total": 151,
+    "fill_rate": "11.9%",
+    "tp1_rate": "27.8%",
+    "sl_rate": "72.2%",
+    "trend": "Verschlechterung"
   }
 }
