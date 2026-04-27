@@ -1267,31 +1267,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-04-24T08:28:00",
+    "_last_run": "2026-04-27T10:45:00",
     "_status": "ready",
     "session": "Morning",
-    "gesamt_status": "OK",
-    "probleme_count": 0,
+    "gesamt_status": "WARNUNGEN",
+    "probleme_count": 2,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260424_0828_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260427_1045_Morning.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
       "sheet_doc": "OK",
       "github_web": "OK",
-      "datenqualitaet": "OK (1 Warnung: Put/Call N/A, VP null - bekannt)",
-      "entscheidung": "WAIT (Score:4/8 Konfidenz:0.21)",
+      "datenqualitaet": "2 Warnungen (PCR null, DJI data.json Preis)",
+      "entscheidung": "WAIT - Score 0/8",
       "anomalien": "OK"
-    },
-    "highlights": [
-      "ERSTMALS alle_schichten_ok=True auf ALLEN 3 Instrumenten",
-      "Google Doc erstellt: https://docs.google.com/open?id=1IDSIm3XoDzmrm_nzdyx2t2ACxpCa4qXCaUfpp1dxYGc",
-      "Git Push OK: Commit 36722e3 um 08:28"
-    ],
-    "warnungen": [
-      "cockpit-morning-prompt.txt sehr kurz (136 Bytes) - pruefen",
-      "Put/Call Ratio ^PCALL nicht verfuegbar (bekannt)",
-      "VP-Daten null auf allen Instrumenten (DGT nicht via MCP lesbar - bekannt)"
-    ]
+    }
   },
   "calendar": [
     {
