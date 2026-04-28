@@ -1,13 +1,13 @@
 {
   "pipeline": {
-    "status": "complete",
+    "status": "us-update-complete",
     "started": "2026-04-28T08:04:39.029460",
     "completed": "2026-04-28T08:26:03.906641",
     "date": "2026-04-28"
   },
   "macro": {
     "_agent": "MACRO",
-    "_last_run": "2026-04-28T08:04:39.029460",
+    "_last_run": "2026-04-28T14:45:00",
     "_status": "ready",
     "fear_greed": {
       "value": 33,
@@ -20,50 +20,51 @@
       "error": "Symbol ^PCALL nicht verfuegbar"
     },
     "vix": {
-      "value": 18.02,
-      "prev": 18.71,
+      "value": 19.4,
+      "prev": 18.02,
       "level": "normal",
-      "trend": "fallend",
+      "trend": "steigend",
       "bias_einfluss": "leicht bearish"
     },
     "bonds_10y": {
-      "yield": 4.336,
-      "prev": 4.31,
+      "yield": 4.375,
+      "prev": 4.336,
       "trend": "steigend",
       "interpretation": "zinsdruck_moderat"
     },
     "dxy": {
-      "value": 98.563,
+      "value": 98.763,
       "prev": 98.48,
       "trend": "steigend",
       "interpretation": "dollar_schwach"
     },
     "oil_wti": {
-      "value": 98.22,
+      "value": 100.13,
       "prev": 96.37,
       "trend": "steigend",
       "interpretation": "inflationsdruck_hoch"
     },
     "gold": {
-      "value": 4644.3,
+      "value": 4594.4,
       "prev": 4675.4,
       "trend": "fallend",
       "interpretation": "risk_on"
     },
     "scoring": {
-      "bullish_punkte": 2,
-      "bearish_punkte": 2,
-      "basis_score": 0,
+      "bullish_punkte": 1,
+      "bearish_punkte": 3,
+      "basis_score": -2,
       "fred_punkte": 1,
-      "gesamt_score": 1,
+      "gesamt_score": -1,
       "makro_bias": "NEUTRAL",
-      "detail": "Bull: VIX_fallend(+1) Gold_fallend_RiskOn(+1) | Bear: F&G<40(-1) Oel>90_steigend(-1) | Basis=0, FRED_YieldCurve=+1, Gesamt=1"
+      "detail": "Bull: Gold_fallend_RiskOn(+1) | Bear: F&G<40(-1) VIX_steigend(-1) Oel>90_steigend(-1) | Basis=-2, FRED_YieldCurve=+1, Gesamt=-1"
     },
     "warnungen": [
       "FOMC 29.04.2026 20:00 CET -- Federal Funds Rate + Statement + PK",
-      "ECB 30.04.2026 14:15 CET -- Main Refinancing Rate + Statement",
-      "ACHTUNG: Oel WTI 98.22 USD > 90 USD -- Inflationsdruck hoch",
-      "Fear & Greed 33 (Fear) -- Nervositaet steigt (gestern 47)"
+      "ECB 30.04.2026 14:15 CET -- Main Refinancing Rate",
+      "ACHTUNG: Oel WTI 100.13 USD > 90 USD -- Inflationsdruck hoch",
+      "ACHTUNG: VIX steigend 18.02 -> 19.4 -- Nervositaet steigt",
+      "Fear & Greed 33 (Fear) -- Risk-Off Stimmung"
     ],
     "fred": {
       "fed_funds": {
@@ -87,22 +88,22 @@
   },
   "market": {
     "_agent": "MARKETDATA",
-    "_last_run": "2026-04-28T08:26:03.906641",
+    "_last_run": "2026-04-28T14:45:00",
     "_status": "ready",
-    "timestamp": "2026-04-28 08:12",
+    "timestamp": "2026-04-28 14:45",
     "timeframe_used": "30M",
     "instruments": {
       "GER40": {
         "ticker": "Vantage:GER40",
-        "current_price": 24068.15,
-        "open": 24076.7,
+        "current_price": 24003.3,
+        "open": 23968.3,
         "high": 24341.8,
-        "low": 24073.15,
+        "low": 23966.3,
         "prev_close": 24184.95,
-        "change_pct": -0.46,
-        "vwap": 24112.41,
-        "vwap_upper": 24176.93,
-        "vwap_lower": 24047.89,
+        "change_pct": -0.75,
+        "vwap": 24065.17,
+        "vwap_upper": 24123.02,
+        "vwap_lower": 24007.31,
         "poc": 24089.99,
         "vah": 24220.43,
         "val": 23995.55,
@@ -110,8 +111,8 @@
         "mp_shape_pos": 0.42,
         "mp_shape_bias": "NEUTRAL",
         "mp_shape_grund": "pos=0.420 (0.35-0.65), va_breite=0.93% >= 0.8% -> D-Shape | Preis in VA unter POC",
-        "mp_session": "Letzte Session 2026-04-25 (ui_evaluate 30M)",
-        "vp_poc": 24057.16,
+        "mp_session": "Letzte Session 2026-04-25 (ui_evaluate 30M, unveraendert)",
+        "vp_poc": 24125.52,
         "vp_vah": 24315.97,
         "vp_val": 24013.21,
         "vp_hvn": [],
@@ -123,16 +124,16 @@
         "onl": 23991.78,
         "pdh": 24220.43,
         "pdl": 23995.55,
-        "er": -24.21,
-        "er_interpretation": "baerisch_trend",
-        "cdv": 2659.76,
-        "cdv_direction": "sinkend",
+        "er": -12.37,
+        "er_interpretation": "baerisch_chop",
+        "cdv": -555.17,
+        "cdv_direction": "sinkend_stark",
         "ichimoku_30m": {
           "above_kumo": false,
           "in_kumo": false,
-          "note": "Preis 24068 unter Kumo - Baerisch"
+          "note": "Preis 24003 unter Kumo (SpanA=24018 SpanB=24128) - Baerisch"
         },
-        "sma200_30m": 24225.18,
+        "sma200_30m": 24143.86,
         "mp_history": [
           {
             "session": 0,
@@ -370,15 +371,15 @@
       },
       "DJ30": {
         "ticker": "Vantage:DJ30",
-        "current_price": 49228.5,
-        "open": 49284.85,
+        "current_price": 49288.2,
+        "open": 49275.5,
         "high": 49522.94,
         "low": 48861.31,
         "prev_close": 49286.44,
-        "change_pct": -0.13,
-        "vwap": 49275.17,
-        "vwap_upper": 49475.0,
-        "vwap_lower": 49075.0,
+        "change_pct": 0.0,
+        "vwap": 49295.46,
+        "vwap_upper": 49337.76,
+        "vwap_lower": 49253.16,
         "poc": 49247.17,
         "vah": 49364.07,
         "val": 49130.27,
@@ -386,10 +387,10 @@
         "mp_shape_pos": 0.5,
         "mp_shape_bias": "NEUTRAL",
         "mp_shape_grund": "pos=0.50 (neutral), va_breite=0.475% < 0.8% -> Trend Day | enger Kursbereich",
-        "mp_session": "Letzte Session 2026-04-25 (ui_evaluate 30M)",
-        "vp_poc": 49189.64,
-        "vp_vah": 49576.59,
-        "vp_val": 49134.36,
+        "mp_session": "Letzte Session 2026-04-25 (ui_evaluate 30M, unveraendert)",
+        "vp_poc": 49202.32,
+        "vp_vah": 49494.03,
+        "vp_val": 49138.29,
         "vp_hvn": [],
         "vp_lvn": [],
         "weekly_poc": 49700.43,
@@ -399,16 +400,16 @@
         "onl": 48861.31,
         "pdh": 49364.07,
         "pdl": 49130.27,
-        "er": -42.86,
-        "er_interpretation": "baerisch_trend",
-        "cdv": 178516.13,
+        "er": 6.74,
+        "er_interpretation": "bullisch_chop",
+        "cdv": 178139.73,
         "cdv_direction": "sinkend_leicht",
         "ichimoku_30m": {
           "above_kumo": false,
           "in_kumo": true,
-          "note": "Preis 49228 im/unter Kumo - Neutral/Baerisch"
+          "note": "Preis 49288 im Kumo (SpanA=49326 SpanB=49249) - Neutral"
         },
-        "sma200_30m": 49347.59,
+        "sma200_30m": 49286.79,
         "mp_history": [
           {
             "session": 0,
@@ -539,15 +540,15 @@
       },
       "SPX500": {
         "ticker": "Vantage:SP500",
-        "current_price": 7176.87,
-        "open": 7118.8,
+        "current_price": 7142.6,
+        "open": 7131.35,
         "high": 7185.3,
         "low": 7046.55,
         "prev_close": 7127.09,
-        "change_pct": 0.56,
-        "vwap": 7189.69,
-        "vwap_upper": 7210.0,
-        "vwap_lower": 7169.38,
+        "change_pct": 0.22,
+        "vwap": 7174.46,
+        "vwap_upper": 7192.88,
+        "vwap_lower": 7156.03,
         "poc": 7111.72,
         "vah": 7152.5,
         "val": 7099.05,
@@ -555,10 +556,10 @@
         "mp_shape_pos": 0.237,
         "mp_shape_bias": "BAERISCH",
         "mp_shape_grund": "pos=0.237 < 0.35 -> b-Shape | POC unten, Preis UEBER VAH (Breakout!)",
-        "mp_session": "Letzte Session 2026-04-25 (ui_evaluate 30M)",
-        "vp_poc": 7130.98,
-        "vp_vah": 7149.78,
-        "vp_val": 7088.43,
+        "mp_session": "Letzte Session 2026-04-25 (ui_evaluate 30M, unveraendert)",
+        "vp_poc": 7130.49,
+        "vp_vah": 7150.76,
+        "vp_val": 7087.3,
         "vp_hvn": [],
         "vp_lvn": [],
         "weekly_poc": 7144.85,
@@ -568,16 +569,16 @@
         "onl": 7046.55,
         "pdh": 7152.5,
         "pdl": 7099.05,
-        "er": -51.55,
+        "er": -52.68,
         "er_interpretation": "baerisch_stark",
-        "cdv": 36454.08,
+        "cdv": 29211.42,
         "cdv_direction": "sinkend",
         "ichimoku_30m": {
-          "above_kumo": true,
+          "above_kumo": false,
           "in_kumo": false,
-          "note": "Preis 7176 ueber Kumo - Bullisch"
+          "note": "Preis 7143 UNTER Kumo (SpanA=7159 SpanB=7164) - BAERISCH (war morgens bullisch!)"
         },
-        "sma200_30m": 7130.09,
+        "sma200_30m": 7144.68,
         "mp_history": [
           {
             "session": 0,
@@ -930,7 +931,7 @@
   },
   "analysis": {
     "_agent": "ANALYST",
-    "_last_run": "2026-04-28T08:26:03.906641",
+    "_last_run": "2026-04-28T14:45:00",
     "_status": "ready",
     "date": "2026-04-28",
     "marktphase": "BALANCE",
@@ -938,22 +939,22 @@
     "instruments": {
       "GER40": {
         "bias": "BEARISCH",
-        "alignment_score": -2,
+        "alignment_score": -3,
         "schichten": {
-          "s1_kontext": -0.1,
-          "s1_raw": -1,
-          "s1_details": "D-Shape(0)+VA-unter-POC(-1)+POC-unten(-1)+Migration-seitwarts(0)+2xP-Sequenz(+1)=-1/10",
+          "s1_kontext": -0.3,
+          "s1_raw": -3,
+          "s1_details": "D-Shape(0)+untererVA(-1)+Preis<POC(-1)+Migration_fallend(-2)+Sequenz_gemischt(0)+VP_HVN_support(+1)=-3/10",
           "freigabe_s1": false,
-          "s2_struktur": -0.25,
-          "s2_raw": -1,
-          "s2_details": "VWAP-unter(-1)+CDV-neutral(0)+ER-negativ(-1)+ER-Qualitaet(+1)=-1/4",
+          "s2_struktur": -0.75,
+          "s2_raw": -3,
+          "s2_details": "VWAP-unter(-1)+CDV-negativ(-1)+ER>10+bearish(-1)+ER<30(0)=-3/4",
           "freigabe_s2": false,
-          "s3_entry": -0.5,
-          "s3_raw": -3,
-          "s3_details": "Ich-unter-Kumo(-1)+SMA200-unter(-1)+SMC-baerisch(-1)+SR(0)=-3/6",
+          "s3_entry": -0.333,
+          "s3_raw": -2,
+          "s3_details": "Ich-unter-Kumo(-1)+SMA200-unter(-1)+SMC(0)+SR(0)+Pivot(0)+Fibo(0)=-2/6",
           "freigabe_s3": false,
           "alle_schichten_ok": false,
-          "alignment_berechnung": "(-0.10*0.60)+(-0.25*0.25)+(-0.50*0.15)=-0.1975->round*8=-2"
+          "alignment_berechnung": "(-0.30*0.60)+(-0.75*0.25)+(-0.333*0.15)=-0.418->round*8=-3"
         },
         "top_down": {
           "m30_entry_zone": null,
@@ -962,67 +963,67 @@
         "freigabe": false
       },
       "DJ30": {
-        "bias": "NEUTRAL",
-        "alignment_score": 0,
+        "bias": "LEICHT_BULLISCH",
+        "alignment_score": 1,
         "schichten": {
           "s1_kontext": 0.1,
           "s1_raw": 1,
-          "s1_details": "Trend-Day(0)+VA-unter-POC(-1)+POC-unten(-1)+Migration-steigend(+2)+2xP-Sequenz(+1)=+1/10",
+          "s1_details": "Trend-Day(0)+obererVA(+1)+Preis>POC(+1)+Migration_fallend(-2)+2xP-Sequenz(+1)+VP(0)=+1/10",
           "freigabe_s1": false,
           "s2_struktur": 0.0,
           "s2_raw": 0,
-          "s2_details": "VWAP-unter(-1)+CDV-bullish(+1)+ER-negativ(-1)+ER-Qualitaet(+1)=0/4",
+          "s2_details": "VWAP-unter(-1)+CDV-positiv(+1)+ER<=10_chop(0)+ER<30(0)=0/4",
+          "freigabe_s2": false,
+          "s3_entry": 0.167,
+          "s3_raw": 1,
+          "s3_details": "Ich-im-Kumo(0)+SMA200-drueber(+1)+SMC(0)+SR(0)+Pivot(0)+Fibo(0)=+1/6",
+          "freigabe_s3": true,
+          "alle_schichten_ok": false,
+          "alignment_berechnung": "(0.10*0.60)+(0.00*0.25)+(0.167*0.15)=+0.085->round*8=1"
+        },
+        "top_down": {
+          "m30_entry_zone": null,
+          "bias": "LEICHT_BULLISCH"
+        },
+        "freigabe": false
+      },
+      "SPX500": {
+        "bias": "NEUTRAL",
+        "alignment_score": 0,
+        "schichten": {
+          "s1_kontext": 0.0,
+          "s1_raw": 0,
+          "s1_details": "b-Shape(-3)+obererVA(+1)+Preis>POC(+1)+Migration_seitwarts(0)+2xTD-Sequenz(+1)+VP(0)=0/10 | FALSE-BREAKOUT: 7177->7143 unter VAH+Kumo",
+          "freigabe_s1": false,
+          "s2_struktur": 0.0,
+          "s2_raw": 0,
+          "s2_details": "VWAP-unter(-1)+CDV-positiv(+1)+ER>30+bearish(-1)+ER-Qualitaet(+1)=0/4",
           "freigabe_s2": false,
           "s3_entry": -0.333,
           "s3_raw": -2,
-          "s3_details": "Ich-im-Kumo(0)+SMA200-unter(-1)+SMC-neutral(0)+SR-bearish(-1)=-2/6",
+          "s3_details": "Ich-unter-Kumo(-1)+SMA200-unter(-1)+SMC(0)+SR(0)+Pivot(0)+Fibo(0)=-2/6 | Kumo-Wechsel ueber->unter!",
           "freigabe_s3": false,
           "alle_schichten_ok": false,
-          "alignment_berechnung": "(0.10*0.60)+(0.00*0.25)+(-0.333*0.15)=+0.01->round*8=0"
+          "alignment_berechnung": "(0.00*0.60)+(0.00*0.25)+(-0.333*0.15)=-0.05->round*8=0"
         },
         "top_down": {
           "m30_entry_zone": null,
           "bias": "NEUTRAL"
         },
         "freigabe": false
-      },
-      "SPX500": {
-        "bias": "LEICHT_BULLISCH",
-        "alignment_score": 1,
-        "schichten": {
-          "s1_kontext": 0.2,
-          "s1_raw": 2,
-          "s1_details": "b-Shape(-3)+Preis-ueber-VAH(+2)+POC-darunter(-1)+Migration-steigend(+2)+2xTD-Sequenz(+2)=+2/10",
-          "freigabe_s1": true,
-          "s2_struktur": 0.25,
-          "s2_raw": 1,
-          "s2_details": "VWAP-neutral(0)+CDV-bullish(+1)+ER-negativ(-1)+ER-Qualitaet(+1)=+1/4",
-          "freigabe_s2": true,
-          "s3_entry": 0.0,
-          "s3_raw": 0,
-          "s3_details": "Ich-ueber-Kumo(+1)+SMA200-ueber(+1)+SMC-neutral(0)+SR-mixed(-2)=0/6",
-          "freigabe_s3": true,
-          "alle_schichten_ok": true,
-          "alignment_berechnung": "(0.20*0.60)+(0.25*0.25)+(0.00*0.15)=+0.1825->round*8=1"
-        },
-        "top_down": {
-          "m30_entry_zone": null,
-          "bias": "LEICHT_BULLISCH"
-        },
-        "freigabe": true
       }
     },
     "trade_freigabe": false,
-    "freigabe_details": "Nur 1/3 Instrumente mit alle_schichten_ok=True (SPX500). Minimum 2 benoetigt.",
+    "freigabe_details": "0/3 Instrumente mit alle_schichten_ok=True. SPX500 False-Breakout (VAH+Kumo gebrochen). GER40 CDV-Kollaps. Kein Trade.",
     "instrument_ranking": [
-      "SPX500",
       "DJ30",
+      "SPX500",
       "GER40"
     ]
   },
   "captain": {
     "_agent": "CAPTAIN",
-    "_last_run": "2026-04-28T08:26:03.906641",
+    "_last_run": "2026-04-28T14:45:00",
     "_status": "ready",
     "date": "2026-04-28",
     "trade_freigabe": false,
@@ -1033,51 +1034,55 @@
     "shape_konflikt": false,
     "instrument_prioritaet": [],
     "max_risk": 0.0,
-    "konfidenz": 0.104,
+    "konfidenz": 0.021,
     "konfidenz_details": {
       "chart_gewichtung": 0.5,
       "makro_gewichtung": 0.5,
       "gewichtungs_grund": "BALANCE-Phase: Chart 50% / Makro 50%",
       "alignment_beitrag": 0.0625,
-      "makro_beitrag": 0.0417,
-      "konfidenz_final": 0.104,
+      "makro_beitrag": -0.0417,
+      "konfidenz_final": 0.021,
       "schwelle_genutzt": 0.4,
-      "entscheidung": "WAIT (konfidenz 0.104 < 0.40)"
+      "entscheidung": "WAIT (konfidenz 0.021 < 0.40, STOP: 0/3 Schichten-Freigabe)"
     },
-    "trade_plan": "KEIN TRADE -- Pre-FOMC (29.04.2026 20:00 CET) + Konfidenz 0.104 < 0.40 + nur 1/3 Instrumente mit Schichten-Freigabe (SPX500). GER40/DJ30 bearisch strukturiert. Markt wartet auf Fed-Entscheidung.",
+    "trade_plan": "KEIN TRADE -- US-Update 14:45: 0/3 Instrumente mit Schichten-Freigabe. SPX500 False-Breakout bestaetigt (7177->7143, unter VAH 7152 + unter Kumo). GER40 CDV-Kollaps +2660->-555. Pre-FOMC 29.04.2026 20:00. NY Open 15:30 nur beobachten.",
     "wait_grund": [
-      "Schichten-Freigabe: nur 1/3 Instrumente OK (Minimum: 2)",
-      "Konfidenz 0.104 unter Schwelle 0.40",
+      "Schichten-Freigabe: 0/3 Instrumente OK (Minimum: 2)",
+      "SPX500 False-Breakout: Preis 7177->7143, jetzt unter VAH 7152 und unter Kumo",
+      "GER40 CDV-Kollaps: +2660->-555 (massive Verkaeufe intraday)",
+      "Konfidenz 0.021 unter Schwelle 0.40",
       "FOMC morgen 29.04.2026 20:00 CET -- Pre-Event Schutz aktiv",
-      "GER40 unter Kumo + ER=-24 (bearisch)",
-      "DJ30 im Kumo + ER=-43 (bearisch)",
-      "SPX500 ueber Kumo aber b-Shape + ER=-52 (widerspruelich)"
+      "VIX gestiegen: 18.02->19.4 (bearish pressure)"
     ],
     "warnings": [
       "FOMC 29.04.2026 20:00 CET -- Federal Funds Rate + Statement + PK",
       "ECB 30.04.2026 14:15 CET -- Main Refinancing Rate",
-      "SPX500 ueber VAH 7152 -- moeglicher False Breakout",
-      "Oel WTI 98.22 USD > 90 -- Inflationsdruck hoch"
+      "SPX500 False-Breakout bestaetigt -- Bias-Shift bearisch",
+      "GER40 CDV-Kollaps intraday -- Institutionelles Verkaufen",
+      "Oel WTI 100.13 USD > 100 -- Inflationsdruck kritisch",
+      "NY Open 15:30 -- nur beobachten, kein Trade"
     ],
-    "notes": "SPX500 zeigt staerksten Bias (b-Shape mit VAH-Breakout, alignment=1). GER40/DJ30 bearisch. Pre-FOMC Abwarten ist korrekte Entscheidung."
+    "notes": "US-Update 14:45. Schlechtere Lage als Morgen: SPX500 verlor VAH+Kumo (False-Breakout-Risiko realisiert). GER40 CDV implodiert. DJ30 leicht positiv (+60 Pts, ER positiv) aber zu schwach allein. FOMC-Risiko dominiert. Naechste Analyse: 30.04.2026 Morning nach FOMC-Entscheid."
   },
   "orders": {
     "_agent": "EXECUTOR",
-    "_last_run": "2026-04-28T08:26:03.906641",
+    "_last_run": "2026-04-28T14:45:00",
     "_status": "ready",
     "date": "2026-04-28",
     "orders": [],
     "summary": {
-      "best_instrument": "SPX500",
+      "best_instrument": "DJ30",
       "total_orders": 0,
       "trade_freigabe": false,
       "shape_konflikt": false,
       "warnings": [
-        "WAIT -- Pre-FOMC 29.04.2026",
-        "Konfidenz 0.104 < 0.40",
-        "Nur 1/3 Instrumente mit Freigabe"
+        "WAIT -- Pre-FOMC 29.04.2026 + False-Breakout SPX500",
+        "Konfidenz 0.021 < 0.40",
+        "0/3 Instrumente mit Schichten-Freigabe",
+        "GER40 CDV-Kollaps -- kein Long-Setup",
+        "NY Open 15:30 -- beobachten"
       ],
-      "notes": "KEIN TRADE. Pre-FOMC Schutz aktiv. Naechste Analyse: 30.04.2026 Morning (nach FOMC)."
+      "notes": "KEIN TRADE. US-Update 14:45. SPX500 False-Breakout realisiert. Pre-FOMC Schutz aktiv. Naechste Analyse: 30.04.2026 Morning."
     }
   },
   "monitor": {

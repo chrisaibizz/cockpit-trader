@@ -1,49 +1,102 @@
 {
   "date": "2026-04-28",
-  "timestamp": "2026-04-28T08:26:03",
+  "timestamp": "2026-04-28T14:45:00",
+  "session": "USUpdate",
   "phase": "BALANCE",
   "regime": "PRE_EVENT",
   "session_bias": "WAIT",
   "alignment_score": 1,
   "makro_bias": "NEUTRAL",
+  "makro_score": -1,
+  "debrief": {
+    "orders_checked": 0,
+    "fill_rate": "N/A",
+    "tp1_rate": "N/A",
+    "trend": "Kein Trade heute (WAIT)",
+    "learnings": []
+  },
   "instruments": {
     "GER40": {
       "bias": "BEARISCH",
-      "score": -2,
+      "alignment_score": -3,
+      "current_price": 24003.3,
+      "delta_from_morning": -64.85,
+      "delta_pct": -0.27,
       "poc": 24089.99,
       "vah": 24220.43,
       "val": 23995.55,
+      "vwap": 24065.17,
       "mp_shape": "D-Shape",
       "mp_shape_pos": 0.42,
-      "er": -24.21,
+      "er": -12.37,
+      "cdv": -555.17,
+      "cdv_delta": -3214.93,
       "onh": 24204.47,
-      "pdh": 24220.43
+      "pdh": 24220.43,
+      "key_event": "CDV-Kollaps: +2660->-555 (massive Verkaeufe intraday)",
+      "freigabe": false
     },
     "DJ30": {
-      "bias": "NEUTRAL",
-      "score": 0,
+      "bias": "LEICHT_BULLISCH",
+      "alignment_score": 1,
+      "current_price": 49288.2,
+      "delta_from_morning": 59.7,
+      "delta_pct": 0.12,
       "poc": 49247.17,
       "vah": 49364.07,
       "val": 49130.27,
+      "vwap": 49295.46,
       "mp_shape": "Trend Day",
       "mp_shape_pos": 0.50,
-      "er": -42.86,
+      "er": 6.74,
+      "cdv": 178139.73,
+      "cdv_delta": -376.4,
       "onh": 49522.94,
-      "pdh": 49364.07
+      "pdh": 49364.07,
+      "key_event": "ER-Wechsel: -42->+6 (kurzzeitig bullisch). Preis nahe VWAP.",
+      "freigabe": false
     },
     "SPX500": {
-      "bias": "LEICHT_BULLISCH",
-      "score": 1,
+      "bias": "NEUTRAL",
+      "alignment_score": 0,
+      "current_price": 7142.6,
+      "delta_from_morning": -34.27,
+      "delta_pct": -0.48,
       "poc": 7111.72,
-      "vah": 7152.50,
+      "vah": 7152.5,
       "val": 7099.05,
+      "vwap": 7174.46,
       "mp_shape": "b-Shape",
       "mp_shape_pos": 0.237,
-      "er": -51.55,
+      "er": -52.68,
+      "cdv": 29211.42,
+      "cdv_delta": -7242.66,
       "onh": 7147.78,
-      "pdh": 7152.50
+      "pdh": 7152.5,
+      "key_event": "FALSE-BREAKOUT: 7177->7143, jetzt UNTER VAH 7152 + UNTER Kumo!",
+      "freigabe": false
     }
   },
-  "orders_count": 0,
-  "wait_reason": "Pre-FOMC (29.04.2026 20:00 CET) + Konfidenz 0.104 < 0.40 + nur 1/3 Instrumente mit Schichten-Freigabe"
+  "delta_analyse": {
+    "ger40": {"kurs_delta": -64.85, "pct": -0.27, "vwap_gebrochen": false, "poc_verschoben": false, "cdv_wechsel": "positiv->negativ (massiv)"},
+    "dj30": {"kurs_delta": 59.7, "pct": 0.12, "vwap_gebrochen": false, "poc_verschoben": false, "cdv_wechsel": "stabil"},
+    "spx500": {"kurs_delta": -34.27, "pct": -0.48, "vwap_gebrochen": false, "vah_gebrochen": true, "kumo_wechsel": "ueber->unter (bearisch)"}
+  },
+  "summary": {
+    "best_instrument": "DJ30",
+    "total_orders": 0,
+    "warnings": [
+      "FOMC 29.04.2026 20:00 CET",
+      "SPX500 False-Breakout bestaetigt",
+      "GER40 CDV-Kollaps",
+      "Oel WTI > 100 USD"
+    ],
+    "notes": "KEIN TRADE. US-Update 14:45. SPX500 False-Breakout. Pre-FOMC Schutz. Naechste Analyse: 30.04.2026 Morning."
+  },
+  "stats": {
+    "total": 0,
+    "fill_rate": "N/A",
+    "tp1_rate": "N/A",
+    "trend": "Kein Trade"
+  }
 }
