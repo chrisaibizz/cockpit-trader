@@ -60,10 +60,10 @@
       "detail": "Bull: Bonds_fallend(+1) DXY_fallend(+1) | Bear: VIX_steigend(-1) Oel>90_steigend(-1) Gold_steigend(-1) | Basis=-1, FRED_YieldCurve=+1, Gesamt=0"
     },
     "warnungen": [
-      "ACHTUNG: FOMC 29.04.2026 20:00 CET — Federal Funds Rate + Statement + PK",
-      "ACHTUNG: ECB 30.04.2026 14:15 CET — Main Refinancing Rate + Statement",
-      "ACHTUNG: Oel WTI 96.49 USD > 90 USD — Inflationsdruck hoch",
-      "ACHTUNG: Gold 4728 USD steigend — Risk-Off Signal aktiv"
+      "ACHTUNG: FOMC 29.04.2026 20:00 CET \u2014 Federal Funds Rate + Statement + PK",
+      "ACHTUNG: ECB 30.04.2026 14:15 CET \u2014 Main Refinancing Rate + Statement",
+      "ACHTUNG: Oel WTI 96.49 USD > 90 USD \u2014 Inflationsdruck hoch",
+      "ACHTUNG: Gold 4728 USD steigend \u2014 Risk-Off Signal aktiv"
     ],
     "fred": {
       "fed_funds": {
@@ -391,7 +391,7 @@
         "mp_shape": "b-Shape",
         "mp_shape_pos": 0.19,
         "mp_shape_bias": "BAERISCH",
-        "mp_shape_grund": "pos=0.188 < 0.35, va_breite=0.29% < 0.8% -> b-Shape (Trend bärisch) | POC unten",
+        "mp_shape_grund": "pos=0.188 < 0.35, va_breite=0.29% < 0.8% -> b-Shape (Trend b\u00e4risch) | POC unten",
         "mp_session": "Vortag (Session 0 history, ui_evaluate 30M)",
         "vp_poc": 49189.64,
         "vp_vah": 49576.59,
@@ -565,7 +565,7 @@
         "mp_shape": "b-Shape",
         "mp_shape_pos": 0.21,
         "mp_shape_bias": "BAERISCH",
-        "mp_shape_grund": "pos=0.208 < 0.35, va_breite=0.54% < 0.8% -> b-Shape (Trend bärisch) | POC unten",
+        "mp_shape_grund": "pos=0.208 < 0.35, va_breite=0.54% < 0.8% -> b-Shape (Trend b\u00e4risch) | POC unten",
         "mp_session": "Vortag (Session 0 history, ui_evaluate 30M)",
         "vp_poc": 7130.98,
         "vp_vah": 7149.78,
@@ -733,7 +733,7 @@
         "name": "CB Consumer Confidence",
         "impact": "medium",
         "actual": "",
-        "forecast": "89.4",
+        "forecast": "89.0",
         "previous": "91.8",
         "better": null,
         "source": "forexfactory"
@@ -889,7 +889,7 @@
         "name": "Advance GDP Price Index q/q",
         "impact": "medium",
         "actual": "",
-        "forecast": "3.9%",
+        "forecast": "3.8%",
         "previous": "3.6%",
         "better": null,
         "source": "forexfactory"
@@ -901,7 +901,7 @@
         "name": "Unemployment Claims",
         "impact": "medium",
         "actual": "",
-        "forecast": "212K",
+        "forecast": "213K",
         "previous": "214K",
         "better": null,
         "source": "forexfactory"
@@ -925,7 +925,7 @@
         "name": "ISM Manufacturing PMI",
         "impact": "medium",
         "actual": "",
-        "forecast": "53.2",
+        "forecast": "53.1",
         "previous": "52.7",
         "better": null,
         "source": "forexfactory"
@@ -951,13 +951,13 @@
     "marktphase": {
       "phase": "DIVERGENZ",
       "begruendung": [
-        "GER40: -254pts Reversal (24327→24073), Invalidation 24150 unterschritten. Unter Kumo+SMA200+VWAP. CDV -5793 stark bearish. Setup aufgeloest.",
+        "GER40: -254pts Reversal (24327\u219224073), Invalidation 24150 unterschritten. Unter Kumo+SMA200+VWAP. CDV -5793 stark bearish. Setup aufgeloest.",
         "DJ30: b-Shape unv., 49220 flach, CDV neutral. Kein Setup.",
         "SPX500: Bullisch, 7183 (+11pts), VWAP +1.85SD, CDV 10x konsekutiv bullisch. An Resistance 7185.",
-        "Divergenz Europa (GER40 bearish) vs USA (SPX500 bullisch) — typischer US-Open-Effekt.",
-        "Pre-FOMC 29.04 + Pre-ECB 30.04 — kein aktiver Handel trotz SPX-Staerke."
+        "Divergenz Europa (GER40 bearish) vs USA (SPX500 bullisch) \u2014 typischer US-Open-Effekt.",
+        "Pre-FOMC 29.04 + Pre-ECB 30.04 \u2014 kein aktiver Handel trotz SPX-Staerke."
       ],
-      "aktive_strategie": "WAIT — Invalidation GER40 + Pre-Event FOMC/ECB",
+      "aktive_strategie": "WAIT \u2014 Invalidation GER40 + Pre-Event FOMC/ECB",
       "er_bestaetigung": "divergent"
     },
     "regime": "NEUTRAL",
@@ -986,7 +986,7 @@
       ],
       "h4_trend": "NEUTRAL",
       "h4_confluence_zones": [],
-      "h1_entry_context": "Pre-Event Woche — FOMC 29.04 + ECB 30.04. Kein Trade-Setup aktiv.",
+      "h1_entry_context": "Pre-Event Woche \u2014 FOMC 29.04 + ECB 30.04. Kein Trade-Setup aktiv.",
       "h1_key_levels": [],
       "m30_entry_zone": {
         "preis_von": null,
@@ -1001,7 +1001,7 @@
       "pdh": 24274.85,
       "pdl": 23995.55
     },
-    "session_warnung": "GER40 REVERSAL: -254pts (24327→24073), Invalidation 24150 UNTERSCHRITTEN. SPX500 bullisch an Resistance 7185. FOMC 29.04 + ECB 30.04 — Pre-Event. KEIN Handel.",
+    "session_warnung": "GER40 REVERSAL: -254pts (24327\u219224073), Invalidation 24150 UNTERSCHRITTEN. SPX500 bullisch an Resistance 7185. FOMC 29.04 + ECB 30.04 \u2014 Pre-Event. KEIN Handel.",
     "instruments": {
       "GER40": {
         "bias": "BEARISH",
@@ -1229,18 +1229,18 @@
     "konfidenz_details": {
       "chart_gewichtung": 0.6,
       "makro_gewichtung": 0.4,
-      "gewichtungs_grund": "Default: VIX 19.16<20, FOMC morgen 29.04 — Standard-Gewichtung",
+      "gewichtungs_grund": "Default: VIX 19.16<20, FOMC morgen 29.04 \u2014 Standard-Gewichtung",
       "alignment_beitrag": 0.375,
       "makro_beitrag": 0,
       "konfidenz_final": 0.375
     },
     "entscheidung": "WAIT",
-    "entscheidung_grund": "WAIT — GER40 Invalidation getriggert (24073 < 24150): Morgen-Setup vollstaendig gefallen. SPX500 bullisch aber an Resistance 7185 (Konfidenz 0.375 < 0.40). Nur 1 Instrument mit alle_schichten_ok (< Minimum 2). Pre-FOMC 29.04 Schutz aktiv.",
+    "entscheidung_grund": "WAIT \u2014 GER40 Invalidation getriggert (24073 < 24150): Morgen-Setup vollstaendig gefallen. SPX500 bullisch aber an Resistance 7185 (Konfidenz 0.375 < 0.40). Nur 1 Instrument mit alle_schichten_ok (< Minimum 2). Pre-FOMC 29.04 Schutz aktiv.",
     "max_risk_pct": 0,
     "shape_check": {
-      "GER40": "INVALIDIERT — Preis 24073 < Invalidation 24150. Unter Kumo+SMA200+VWAP. KEIN Setup.",
-      "DJ30": "b-Shape BAERISCH — WAIT",
-      "SPX500": "Breakout haelt ueber VAH 7152, an Resistance 7185 — WATCH aber kein Entry"
+      "GER40": "INVALIDIERT \u2014 Preis 24073 < Invalidation 24150. Unter Kumo+SMA200+VWAP. KEIN Setup.",
+      "DJ30": "b-Shape BAERISCH \u2014 WAIT",
+      "SPX500": "Breakout haelt ueber VAH 7152, an Resistance 7185 \u2014 WATCH aber kein Entry"
     },
     "phasen": {
       "pre_market": "WAIT",
@@ -1248,14 +1248,14 @@
       "range": "WAIT",
       "afternoon": "WAIT"
     },
-    "strategie": "WAIT: GER40 Morgen-Setup invalidiert (-254pts Reversal). SPX500 an Resistance 7185 — Breakout oder Reject beobachten, kein aktiver Trade. FOMC morgen 29.04 erzwingt Pre-Event WAIT.",
+    "strategie": "WAIT: GER40 Morgen-Setup invalidiert (-254pts Reversal). SPX500 an Resistance 7185 \u2014 Breakout oder Reject beobachten, kein aktiver Trade. FOMC morgen 29.04 erzwingt Pre-Event WAIT.",
     "warnungen": [
       "FOMC 29.04.2026 20:00 CET",
       "ECB 30.04.2026 14:15 CET",
-      "GER40 INVALIDATION: 24073 < 24150 — Morgen-Setup aufgeloest",
-      "GER40 unter Kumo + SMA200 (24225) — Bias-Wechsel auf BEARISH",
-      "SPX500 an Resistance 7185 — VP HVN Sell-Zone 7154-7185",
-      "Divergenz: SPX500 bullisch / GER40 bearish — kein klares Signal",
+      "GER40 INVALIDATION: 24073 < 24150 \u2014 Morgen-Setup aufgeloest",
+      "GER40 unter Kumo + SMA200 (24225) \u2014 Bias-Wechsel auf BEARISH",
+      "SPX500 an Resistance 7185 \u2014 VP HVN Sell-Zone 7154-7185",
+      "Divergenz: SPX500 bullisch / GER40 bearish \u2014 kein klares Signal",
       "VIX 19.16 steigend"
     ],
     "_session": "us_update",
@@ -1284,7 +1284,7 @@
     "datum": "2026-04-27",
     "session": "us_update",
     "freigabe": false,
-    "grund": "WAIT — GER40 Invalidation getriggert. SPX500 an Resistance 7185, Konfidenz 0.375 < 0.40. FOMC 29.04 Pre-Event Schutz.",
+    "grund": "WAIT \u2014 GER40 Invalidation getriggert. SPX500 an Resistance 7185, Konfidenz 0.375 < 0.40. FOMC 29.04 Pre-Event Schutz.",
     "orders": [],
     "_session": "us_update",
     "alert_levels": [
@@ -1292,13 +1292,13 @@
         "instrument": "GER40",
         "typ": "INFO",
         "level": 24183.28,
-        "bedingung": "Morgen-Setup invalidiert. Erholung ueber VWAP 24183 noetig fuer neues Setup — morgen beobachten"
+        "bedingung": "Morgen-Setup invalidiert. Erholung ueber VWAP 24183 noetig fuer neues Setup \u2014 morgen beobachten"
       },
       {
         "instrument": "SPX500",
         "typ": "ALERT_BREAKOUT",
         "level": 7185,
-        "bedingung": "Breakout ueber 7185 (VP HVN Sell-Zone Top) wuerde bullisches Signal geben — aber kein Trade wegen FOMC"
+        "bedingung": "Breakout ueber 7185 (VP HVN Sell-Zone Top) wuerde bullisches Signal geben \u2014 aber kein Trade wegen FOMC"
       }
     ]
   },
@@ -1328,7 +1328,7 @@
       "name": "CB Consumer Confidence",
       "impact": "medium",
       "actual": "",
-      "forecast": "89.4",
+      "forecast": "89.0",
       "previous": "91.8",
       "better": null,
       "source": "forexfactory"
@@ -1484,7 +1484,7 @@
       "name": "Advance GDP Price Index q/q",
       "impact": "medium",
       "actual": "",
-      "forecast": "3.9%",
+      "forecast": "3.8%",
       "previous": "3.6%",
       "better": null,
       "source": "forexfactory"
@@ -1496,7 +1496,7 @@
       "name": "Unemployment Claims",
       "impact": "medium",
       "actual": "",
-      "forecast": "212K",
+      "forecast": "213K",
       "previous": "214K",
       "better": null,
       "source": "forexfactory"
@@ -1520,7 +1520,7 @@
       "name": "ISM Manufacturing PMI",
       "impact": "medium",
       "actual": "",
-      "forecast": "53.2",
+      "forecast": "53.1",
       "previous": "52.7",
       "better": null,
       "source": "forexfactory"
