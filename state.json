@@ -1087,20 +1087,20 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-04-27T10:45:00",
-    "_status": "pending",
-    "session": "Morning",
+    "_last_run": "2026-04-28T14:45:00",
+    "_status": "ready",
+    "session": "USUpdate",
     "gesamt_status": "WARNUNGEN",
-    "probleme_count": 2,
+    "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260427_1045_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260428_1445_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK",
-      "github_web": "OK",
-      "datenqualitaet": "2 Warnungen (PCR null, DJI data.json Preis)",
-      "entscheidung": "WAIT - Score 0/8",
-      "anomalien": "OK"
+      "sheet_doc": "OK (Google Doc erstellt, 0 Orders)",
+      "github_web": "OK (Commit 78f239f)",
+      "datenqualitaet": "1 Warnung (PCR null - bekannt)",
+      "entscheidung": "WAIT - Score 1/8 | False-Breakout SPX500 + CDV-Kollaps GER40",
+      "anomalien": "2 Beobachtungen (SPX500 False-Breakout + GER40 CDV-Kollaps)"
     }
   },
   "calendar": [
