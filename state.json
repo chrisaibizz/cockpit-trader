@@ -712,18 +712,6 @@
     },
     "calendar": [
       {
-        "date": "2026-04-28",
-        "time": "16:00",
-        "currency": "USD",
-        "name": "CB Consumer Confidence",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "89.0",
-        "previous": "91.8",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-04-29",
         "time": "08:29",
         "currency": "EUR",
@@ -1104,18 +1092,6 @@
     }
   },
   "calendar": [
-    {
-      "date": "2026-04-28",
-      "time": "16:00",
-      "currency": "USD",
-      "name": "CB Consumer Confidence",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "89.0",
-      "previous": "91.8",
-      "better": null,
-      "source": "forexfactory"
-    },
     {
       "date": "2026-04-29",
       "time": "08:29",
