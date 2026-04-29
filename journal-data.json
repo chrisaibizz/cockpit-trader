@@ -1,539 +1,93 @@
 {
   "date": "2026-04-29",
-  "timestamp": "2026-04-29T08:01:31.167461",
-  "debrief": {
-    "orders_checked": 3,
-    "fill_rate": "N/A",
-    "tp1_rate": "N/A",
-    "trend": "Kein Trade",
-    "learnings": []
-  },
-  "instruments": [
-    {
-      "name": "GER40",
-      "bias": "Bullisch",
-      "bias_color": "green",
-      "bias_score": 67,
-      "bias_pct": "95",
-      "bias_signals": [
-        {
-          "label": "Preis > VWAP (24108 > 24020)",
-          "score": 2,
-          "direction": "bullish",
-          "category": "vwap",
-          "auto": true
-        },
-        {
-          "label": "Ueber VAH â€“ Breakout (24108 > 24102)",
-          "score": 2,
-          "direction": "bullish",
-          "category": "value_area",
-          "auto": true
-        },
-        {
-          "label": "Preis > POC (24108 > 23986)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "poc",
-          "auto": true
-        },
-        {
-          "label": "Shape: Normal Variation (Down)",
-          "score": -1,
-          "direction": "bearish",
-          "category": "shape",
-          "auto": true
-        },
-        {
-          "label": "Overnight Inventory: Long (Preis > VA-Mitte)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "inventory",
-          "auto": true
-        },
-        {
-          "label": "CVD positiv (+1738) â€“ Kaufdruck",
-          "score": 1,
-          "direction": "bullish",
-          "category": "cvd",
-          "auto": true
-        },
-        {
-          "label": "VIX 17.83 â€“ Normal",
-          "score": 1,
-          "direction": "bullish",
-          "category": "vix",
-          "auto": true
-        },
-        {
-          "label": "Yield Curve positiv (0.52%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_yieldcurve",
-          "auto": true
-        },
-        {
-          "label": "CPI 3.32% â€” erhoeht",
-          "score": -1,
-          "direction": "bearish",
-          "category": "fred_cpi",
-          "auto": true
-        },
-        {
-          "label": "Arbeitslosigkeit sinkt (4.3%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_unrate",
-          "auto": true
-        }
-      ],
-      "confluence_score": 8,
-      "confluence_against": 2,
-      "confluence_total": 10,
-      "confluence_pct": 80,
-      "confluence_label": "8/10 (bullisch)",
-      "manual_checks": [
-        "Daily OTF Check (4H/Daily Trend manuell pruefen)",
-        "Gap Analysis (Gap vom Vortag open/close pruefen)",
-        "Session Expectation (Makro-Kontext / News manuell bewerten)"
-      ],
-      "cvd": {
-        "value": 1738.34,
-        "direction": "bullish"
-      },
-      "quote": {
-        "price": 24108.1,
-        "change": 24.57,
-        "change_pct": 0.1,
-        "high": 24153.99,
-        "low": 23897.24,
-        "open": 24067.91,
-        "prev_close": 24083.53,
-        "source": "tradingview_live"
-      },
-      "market_profile": {
-        "poc": 23985.99,
-        "vah": 24102.38,
-        "val": 23965.46,
-        "vwap": 24020.27,
-        "day_high": 24102.38,
-        "day_low": 23965.46,
-        "shape": {
-          "name": "Normal Variation (Down)",
-          "description": "Leicht bearischer Bias â€“ Abwarten auf Breakdown aus VA"
-        },
-        "volume_profile": [],
-        "source": "tradingview",
-        "naked_poc": [],
-        "single_prints": [],
-        "poor_high": null,
-        "poor_low": null
-      },
+  "timestamp": "2026-04-29T08:26:03.738723",
+  "phase": "TREND",
+  "regime": "NEUTRAL",
+  "session_bias": "WAIT",
+  "alignment_score": 2,
+  "makro_bias": "NEUTRAL",
+  "makro_score": 1,
+  "vix": 17.83,
+  "fomc_heute": true,
+  "instruments": {
+    "GER40": {
+      "bias": "BAERISCH",
+      "score": -2,
+      "poc": 24144.32,
+      "vah": 24253.85,
+      "val": 24102.2,
+      "mp_shape": "b-Shape",
+      "mp_shape_pos": 0.278,
+      "er": 72.65,
+      "cdv": 2509.18,
+      "onh": 24153.99,
+      "onl": 23897.24,
+      "pdh": 24253.85,
+      "pdl": 24102.2,
+      "vwap": 24022.79,
+      "vwap_upper": 24048.61,
+      "vwap_lower": 23996.96,
+      "weekly_poc": 24631.77,
       "current_price": 24108.1,
-      "daily_summary": "Bias Bullisch (Score 67, Confluence 80%). Vortag Range: 23965.46 â€“ 24102.38. VIX=17.8.",
-      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
-      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 24108.1 ueber VWAP (24020.27), ausserhalb Value Area. POC=23985.99 VAH=24102.38 VAL=23965.46. CVD +1738 (Kaufdruck). Shape: Normal Variation (Down). Confluence: 8/10 (bullisch).",
-      "mp_shape_yesterday": "Normal Variation (Down)",
-      "mp_shape_forecast": "Normal Variation (Down)",
-      "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
-      "key_levels": [
-        {
-          "level": "VAH Vortag",
-          "price": "24102.38",
-          "source": "Market Profile"
-        },
-        {
-          "level": "POC Vortag",
-          "price": "23985.99",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL Vortag",
-          "price": "23965.46",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "24020.27",
-          "source": "VWAP"
-        }
-      ],
-      "orders": [
-        {
-          "type": "Limit Buy",
-          "entry": "23972.31",
-          "sl": "23931.23",
-          "tp1": "24102.38",
-          "tp2": "24170.84",
-          "rr": "3.17",
-          "p_fill": "60",
-          "p_tp1": "48",
-          "tf": "30M",
-          "confluence": "Preis > VWAP (24108 > 24020) + Ueber VAH â€“ Breakout (24108 > 24102) + Preis > POC (24108 > 23986)",
-          "mp_shape_yesterday": "Normal Variation (Down)",
-          "mp_shape_forecast": "Normal Variation (Down)",
-          "vwap_position": "Preis ueber VWAP"
-        }
-      ],
-      "invalidation": "Kurs schliesst unter 23965.46 â€“ bullischer Bias negiert"
+      "s1": -0.7,
+      "s2": 0.75,
+      "s3": 0.167,
+      "alle_schichten_ok": false,
+      "freigabe_grund": "S1 blockiert: b-Shape stark bearish"
     },
-    {
-      "name": "US30",
-      "bias": "Bullisch",
-      "bias_color": "green",
-      "bias_score": 82,
-      "bias_pct": "95",
-      "bias_signals": [
-        {
-          "label": "Preis > VWAP (49286 > 49272)",
-          "score": 2,
-          "direction": "bullish",
-          "category": "vwap",
-          "auto": true
-        },
-        {
-          "label": "In Value Area (49210 â€“ 49352)",
-          "score": 0,
-          "direction": "neutral",
-          "category": "value_area",
-          "auto": true
-        },
-        {
-          "label": "Preis > POC (49286 > 49281)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "poc",
-          "auto": true
-        },
-        {
-          "label": "Shape: Normal Variation",
-          "score": 0,
-          "direction": "neutral",
-          "category": "shape",
-          "auto": true
-        },
-        {
-          "label": "Overnight Inventory: Long (Preis > VA-Mitte)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "inventory",
-          "auto": true
-        },
-        {
-          "label": "CVD positiv (+181926) â€“ Kaufdruck",
-          "score": 1,
-          "direction": "bullish",
-          "category": "cvd",
-          "auto": true
-        },
-        {
-          "label": "CVD-Divergenz: Preis in VA, starker Kaufdruck",
-          "score": 2,
-          "direction": "bullish",
-          "category": "cvd_divergenz",
-          "auto": true
-        },
-        {
-          "label": "VIX 17.83 â€“ Normal",
-          "score": 1,
-          "direction": "bullish",
-          "category": "vix",
-          "auto": true
-        },
-        {
-          "label": "Yield Curve positiv (0.52%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_yieldcurve",
-          "auto": true
-        },
-        {
-          "label": "CPI 3.32% â€” erhoeht",
-          "score": -1,
-          "direction": "bearish",
-          "category": "fred_cpi",
-          "auto": true
-        },
-        {
-          "label": "Arbeitslosigkeit sinkt (4.3%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_unrate",
-          "auto": true
-        }
-      ],
-      "confluence_score": 8,
-      "confluence_against": 1,
-      "confluence_total": 11,
-      "confluence_pct": 73,
-      "confluence_label": "8/11 (bullisch)",
-      "manual_checks": [
-        "Daily OTF Check (4H/Daily Trend manuell pruefen)",
-        "Gap Analysis (Gap vom Vortag open/close pruefen)",
-        "Session Expectation (Makro-Kontext / News manuell bewerten)"
-      ],
-      "cvd": {
-        "value": 181926.11,
-        "direction": "bullish"
-      },
-      "quote": {
-        "price": 49286.5,
-        "change": 118.71,
-        "change_pct": 0.24,
-        "high": 49381.33,
-        "low": 49077.75,
-        "open": 49276.8,
-        "prev_close": 49167.79,
-        "source": "tradingview_live"
-      },
-      "market_profile": {
-        "poc": 49280.88,
-        "vah": 49351.75,
-        "val": 49210,
-        "vwap": 49271.56,
-        "day_high": 49351.75,
-        "day_low": 49210,
-        "shape": {
-          "name": "Normal Variation",
-          "description": "Ausgewogen ohne klare Richtung â€“ Range-Handel"
-        },
-        "volume_profile": [],
-        "source": "tradingview",
-        "naked_poc": [],
-        "single_prints": [],
-        "poor_high": null,
-        "poor_low": null
-      },
+    "DJ30": {
+      "bias": "LEICHT_BULLISCH",
+      "score": 2,
+      "poc": 49191.95,
+      "vah": 49250.05,
+      "val": 49150.45,
+      "mp_shape": "Trend Day",
+      "mp_shape_pos": 0.417,
+      "er": 13.98,
+      "cdv": 182137.54,
+      "onh": 49381.33,
+      "onl": 49077.75,
+      "pdh": 49250.05,
+      "pdl": 49150.45,
+      "vwap": 49271.89,
+      "vwap_upper": 49283.77,
+      "vwap_lower": 49260.0,
+      "weekly_poc": 49700.43,
       "current_price": 49286.5,
-      "daily_summary": "Bias Bullisch (Score 82, Confluence 73%). Vortag Range: 49210 â€“ 49351.75. VIX=17.8.",
-      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
-      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 49286.5 ueber VWAP (49271.56), in Value Area. POC=49280.88 VAH=49351.75 VAL=49210. CVD +181926 (Kaufdruck). Shape: Normal Variation. Confluence: 8/11 (bullisch).",
-      "mp_shape_yesterday": "Normal Variation",
-      "mp_shape_forecast": "Normal Variation",
-      "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
-      "key_levels": [
-        {
-          "level": "VAH Vortag",
-          "price": "49351.75",
-          "source": "Market Profile"
-        },
-        {
-          "level": "POC Vortag",
-          "price": "49280.88",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL Vortag",
-          "price": "49210",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "49271.56",
-          "source": "VWAP"
-        }
-      ],
-      "orders": [
-        {
-          "type": "Limit Buy",
-          "entry": "49217.09",
-          "sl": "49174.56",
-          "tp1": "49351.75",
-          "tp2": "49422.62",
-          "rr": "3.17",
-          "p_fill": "54",
-          "p_tp1": "43",
-          "tf": "30M",
-          "confluence": "Preis > VWAP (49286 > 49272) + Preis > POC (49286 > 49281) + Overnight Inventory: Long (Preis > VA-Mitte)",
-          "mp_shape_yesterday": "Normal Variation",
-          "mp_shape_forecast": "Normal Variation",
-          "vwap_position": "Preis ueber VWAP"
-        }
-      ],
-      "invalidation": "Kurs schliesst unter 49210 â€“ bullischer Bias negiert"
+      "s1": 0.1,
+      "s2": 0.5,
+      "s3": 0.5,
+      "alle_schichten_ok": false,
+      "freigabe_grund": "S1=0.10 knapp unter Schwelle 0.20"
     },
-    {
-      "name": "SPX500",
-      "bias": "Bullisch",
-      "bias_color": "green",
-      "bias_score": 60,
-      "bias_pct": "95",
-      "bias_signals": [
-        {
-          "label": "Preis > VWAP (7166 > 7159)",
-          "score": 2,
-          "direction": "bullish",
-          "category": "vwap",
-          "auto": true
-        },
-        {
-          "label": "In Value Area (7126 â€“ 7179)",
-          "score": 0,
-          "direction": "neutral",
-          "category": "value_area",
-          "auto": true
-        },
-        {
-          "label": "Preis > POC (7166 > 7150)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "poc",
-          "auto": true
-        },
-        {
-          "label": "Shape: Normal Variation (Down)",
-          "score": -1,
-          "direction": "bearish",
-          "category": "shape",
-          "auto": true
-        },
-        {
-          "label": "Overnight Inventory: Long (Preis > VA-Mitte)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "inventory",
-          "auto": true
-        },
-        {
-          "label": "CVD positiv (+29339) â€“ Kaufdruck",
-          "score": 1,
-          "direction": "bullish",
-          "category": "cvd",
-          "auto": true
-        },
-        {
-          "label": "VIX 17.83 â€“ Normal",
-          "score": 1,
-          "direction": "bullish",
-          "category": "vix",
-          "auto": true
-        },
-        {
-          "label": "Yield Curve positiv (0.52%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_yieldcurve",
-          "auto": true
-        },
-        {
-          "label": "CPI 3.32% â€” erhoeht",
-          "score": -1,
-          "direction": "bearish",
-          "category": "fred_cpi",
-          "auto": true
-        },
-        {
-          "label": "Arbeitslosigkeit sinkt (4.3%)",
-          "score": 1,
-          "direction": "bullish",
-          "category": "fred_unrate",
-          "auto": true
-        }
-      ],
-      "confluence_score": 7,
-      "confluence_against": 2,
-      "confluence_total": 10,
-      "confluence_pct": 70,
-      "confluence_label": "7/10 (bullisch)",
-      "manual_checks": [
-        "Daily OTF Check (4H/Daily Trend manuell pruefen)",
-        "Gap Analysis (Gap vom Vortag open/close pruefen)",
-        "Session Expectation (Makro-Kontext / News manuell bewerten)"
-      ],
-      "cvd": {
-        "value": 29339.17,
-        "direction": "bullish"
-      },
-      "quote": {
-        "price": 7165.7,
-        "change": -8.21,
-        "change_pct": -0.11,
-        "high": 7152.52,
-        "low": 7115.17,
-        "open": 7133.74,
-        "prev_close": 7173.91,
-        "source": "tradingview_live"
-      },
-      "market_profile": {
-        "poc": 7150.39,
-        "vah": 7179.0,
-        "val": 7125.6,
-        "vwap": 7159.36,
-        "day_high": 7179.0,
-        "day_low": 7125.6,
-        "shape": {
-          "name": "Normal Variation (Down)",
-          "description": "Leicht bearischer Bias â€“ Abwarten auf Breakdown aus VA"
-        },
-        "volume_profile": [],
-        "source": "tradingview",
-        "naked_poc": [],
-        "single_prints": [],
-        "poor_high": null,
-        "poor_low": null
-      },
+    "SPX500": {
+      "bias": "LEICHT_BULLISCH",
+      "score": 1,
+      "poc": 7167.2,
+      "vah": 7182.27,
+      "val": 7162.17,
+      "mp_shape": "b-Shape",
+      "mp_shape_pos": 0.25,
+      "er": 62.07,
+      "cdv": 29738.66,
+      "onh": 7152.52,
+      "onl": 7115.17,
+      "pdh": 7182.27,
+      "pdl": 7162.17,
+      "vwap": 7159.53,
+      "vwap_upper": 7163.1,
+      "vwap_lower": 7155.96,
+      "weekly_poc": 7144.85,
       "current_price": 7165.7,
-      "daily_summary": "Bias Bullisch (Score 60, Confluence 70%). Vortag Range: 7125.6 â€“ 7179.0. VIX=17.8.",
-      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
-      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 7165.7 ueber VWAP (7159.36), in Value Area. POC=7150.39 VAH=7179.0 VAL=7125.6. CVD +29339 (Kaufdruck). Shape: Normal Variation (Down). Confluence: 7/10 (bullisch).",
-      "mp_shape_yesterday": "Normal Variation (Down)",
-      "mp_shape_forecast": "Normal Variation (Down)",
-      "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
-      "key_levels": [
-        {
-          "level": "VAH Vortag",
-          "price": "7179.0",
-          "source": "Market Profile"
-        },
-        {
-          "level": "POC Vortag",
-          "price": "7150.39",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL Vortag",
-          "price": "7125.6",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "7159.36",
-          "source": "VWAP"
-        }
-      ],
-      "orders": [
-        {
-          "type": "Limit Buy",
-          "entry": "7128.27",
-          "sl": "7112.25",
-          "tp1": "7179.0",
-          "tp2": "7205.7",
-          "rr": "3.17",
-          "p_fill": "52",
-          "p_tp1": "42",
-          "tf": "30M",
-          "confluence": "Preis > VWAP (7166 > 7159) + Preis > POC (7166 > 7150) + Overnight Inventory: Long (Preis > VA-Mitte)",
-          "mp_shape_yesterday": "Normal Variation (Down)",
-          "mp_shape_forecast": "Normal Variation (Down)",
-          "vwap_position": "Preis ueber VWAP"
-        }
-      ],
-      "invalidation": "Kurs schliesst unter 7125.6 â€“ bullischer Bias negiert"
+      "s1": -0.2,
+      "s2": 0.75,
+      "s3": 0.5,
+      "alle_schichten_ok": false,
+      "freigabe_grund": "S1 blockiert: b-Shape bearish"
     }
-  ],
-  "summary": {
-    "best_instrument": "US30",
-    "total_orders": 3,
-    "warnings": [],
-    "notes": "Auto-generiert 08:01. VIX=17.8. Beste Konfluenz: US30."
   },
-  "stats": {
-    "total": 0,
-    "fill_rate": "N/A",
-    "tp1_rate": "N/A",
-    "trend": "Kein Trade"
-  }
+  "orders_count": 0,
+  "orders": [],
+  "wait_begruendung": "FOMC heute 20:00 CET + alle S1-Schichten blockiert + alignment 2/8 + konfidenz 0.183",
+  "neubewertung": "30.04.2026 08:00 nach FOMC-Ergebnis"
 }
