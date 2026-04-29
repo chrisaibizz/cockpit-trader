@@ -1406,21 +1406,26 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-04-28T14:45:00",
-    "_status": "pending",
-    "session": "USUpdate",
-    "gesamt_status": "WARNUNGEN",
-    "probleme_count": 0,
+    "_last_run": "2026-04-29T08:29:17.825476",
+    "_status": "ready",
+    "session": "Morning",
+    "gesamt_status": "OK",
+    "probleme_count": 1,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260428_1445_USUpdate.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260429_0830_Morning.txt",
     "bereiche": {
-      "lokale_prozesse": "OK",
-      "sheet_doc": "OK (Google Doc erstellt, 0 Orders)",
-      "github_web": "OK (Commit 78f239f)",
-      "datenqualitaet": "1 Warnung (PCR null - bekannt)",
-      "entscheidung": "WAIT - Score 1/8 | False-Breakout SPX500 + CDV-Kollaps GER40",
-      "anomalien": "2 Beobachtungen (SPX500 False-Breakout + GER40 CDV-Kollaps)"
-    }
+      "lokale_prozesse": "OK (1 Hinweis: Pipeline-Log endet nach MACRO-Start — Agenten liefen direkt)",
+      "sheet_doc": "OK (0 Orders — WAIT-Session korrekt | Google Doc erstellt)",
+      "github_web": "OK (Push 08:28 | Commit 8d09f21)",
+      "datenqualitaet": "OK (PCR null bekannt | alle MP/VP/VWAP/ONH-ONL vorhanden)",
+      "entscheidung": "WAIT — Score:2/8 — FOMC-Tag 20:00 CET",
+      "anomalien": "OK (1 bekannter Fehler: PCR ^PCALL nicht verfuegbar)"
+    },
+    "warnungen": [
+      "FOMC 20:00 CET — Hohe Volatilitaet ab 15:30 CET erwartet",
+      "Alle 3 Instrumente erstmals UEBER Kumo — strukturelle Trendwende moeglich",
+      "Naked POC GER40 24506.32 (22.04) — langfristiges Magnet-Level"
+    ]
   },
   "calendar": [
     {
