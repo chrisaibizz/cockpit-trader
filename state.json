@@ -1,8 +1,8 @@
 {
   "pipeline": {
-    "status": "running",
+    "status": "completed",
     "started": "2026-04-30T08:02:35",
-    "completed": "",
+    "completed": "2026-04-30T08:08:30",
     "date": "2026-04-30"
   },
   "macro": {
@@ -971,10 +971,22 @@
   "monitor": {
     "_agent": "MONITOR",
     "_last_run": "2026-04-30T08:02:35",
-    "_status": "pending",
-    "report_path": "",
-    "warnungen": [],
-    "status_bereiche": {}
+    "_status": "ready",
+    "report_path": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260430_0808_Morning.txt",
+    "warnungen": [
+      "ZENTRALBANK-HARD-STOP: ECB 14:15 + ECB Press Conference 14:45",
+      "Alle 3 Instrumente: alle_schichten_ok=False",
+      "CDV Bullish-Divergenz DJ30/SPX500",
+      "Morgen 01.05.2026 Maifeiertag -- GER40 CLOSED"
+    ],
+    "status_bereiche": {
+      "zentralbank": "HARD-STOP aktiv",
+      "export": "state.json+journal-data.json+git-push OK",
+      "orders": "0 (WAIT-Modus)",
+      "captain": "WAIT (Konfidenz=0.00)",
+      "makro": "LEICHT_RISK_OFF (-3/12)",
+      "marktdaten": "vollstaendig (MP+VWAP+ER+CDV alle 3 Instrumente)"
+    }
   },
   "calendar": [
     {
@@ -1134,6 +1146,6 @@
       "source": "forexfactory"
     }
   ],
-  "_last_run": "2026-04-28T08:04:39.029460",
+  "_last_run": "2026-04-28T08:04:39.02946",
   "_session": "morning_2026-04-28"
 }
