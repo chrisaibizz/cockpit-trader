@@ -162,7 +162,7 @@ function renderInstCard(name, mi, ai, jdi, mts){
 
   // Volume Profile fuer Chart
   var vp=mi&&mi.volume_profile||null;
-  var tpo=mi&&mi.tpo_bars&&mi.tpo_bars.length?mi.tpo_bars:null;
+  var tpo=mi&&Array.isArray(mi.tpo_bars)&&mi.tpo_bars.length?mi.tpo_bars:null;
   var mp={poc:poc,vah:vah,val:val,vwap:vwap,volume_profile:vp,tpo_bars:tpo,
     tpo_distribution:mi&&mi.tpo_distribution&&mi.tpo_distribution.length?mi.tpo_distribution:null,
     mp_shape:shape,mp_shape_pos:shapePos!=null?shapePos:null,
@@ -205,7 +205,7 @@ function renderInstCard(name, mi, ai, jdi, mts){
 
 function drawVP(mp,currentPrice){
   if(!mp)return'';
-  if(mp.tpo_bars&&mp.tpo_bars.length)return drawVPBars(mp,currentPrice);
+  if(Array.isArray(mp.tpo_bars)&&mp.tpo_bars.length)return drawVPBars(mp,currentPrice);
   var vps=mp.volume_profile;
   if(vps&&vps.length)return drawVPBars(mp,currentPrice);
   if(mp.tpo_distribution&&mp.tpo_distribution.length)return drawTPORealShape(mp,currentPrice);
@@ -382,7 +382,7 @@ function drawTPOShape(mp,currentPrice){
 }
 
 function drawVPBars(mp,currentPrice){
-  var isTpo=!!(mp.tpo_bars&&mp.tpo_bars.length);
+  var isTpo=!!(Array.isArray(mp.tpo_bars)&&mp.tpo_bars.length);
   var vps=isTpo?mp.tpo_bars:mp.volume_profile;
   var maxV=Math.max.apply(null,vps.map(function(b){return b.volume;}));
   var h=240,w=520,bH=h/vps.length,margin=70,rightPad=20;

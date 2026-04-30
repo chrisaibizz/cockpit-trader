@@ -941,54 +941,6 @@
     },
     "calendar": [
       {
-        "date": "2026-04-29",
-        "time": "08:29",
-        "currency": "EUR",
-        "name": "German Prelim CPI m/m",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "0.7%",
-        "previous": "1.1%",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-04-29",
-        "time": "20:00",
-        "currency": "USD",
-        "name": "Federal Funds Rate",
-        "impact": "high",
-        "actual": "",
-        "forecast": "3.75%",
-        "previous": "3.75%",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-04-29",
-        "time": "20:00",
-        "currency": "USD",
-        "name": "FOMC Statement",
-        "impact": "high",
-        "actual": "",
-        "forecast": "",
-        "previous": "",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-04-29",
-        "time": "20:30",
-        "currency": "USD",
-        "name": "FOMC Press Conference",
-        "impact": "high",
-        "actual": "",
-        "forecast": "",
-        "previous": "",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-04-30",
         "time": "10:00",
         "currency": "EUR",
@@ -1152,7 +1104,7 @@
     "phase": "TREND",
     "regime": "RISK_OFF",
     "risk_level": "HIGH",
-    "risk_reason": "FOMC heute 20:00 CET (5h15m) — Pre-FOMC Sell-Off, alle Instrumente bearisch. KEIN TRADE.",
+    "risk_reason": "FOMC heute 20:00 CET (5h15m) \u2014 Pre-FOMC Sell-Off, alle Instrumente bearisch. KEIN TRADE.",
     "trade_freigabe": false,
     "trade_freigabe_reason": "Pre-FOMC Sell-Off: GER40 -139pts CDV kollabiert, DJ30 -142pts 14 bearische Bars, SPX500 -16pts unter PDL. Alle S1-Schichten bearisch blockiert. WAIT bis FOMC-Ergebnis.",
     "instrument_ranking": [
@@ -1161,9 +1113,27 @@
       "GER40"
     ],
     "us_update_delta": {
-      "GER40": {"morning": 24108.1, "jetzt": 23969.1, "delta": -139.0, "delta_pct": -0.58, "cdv_delta": -2926},
-      "DJ30": {"morning": 49286.5, "jetzt": 49144.5, "delta": -142.0, "delta_pct": -0.29, "cdv_delta": -13830},
-      "SPX500": {"morning": 7165.7, "jetzt": 7149.5, "delta": -16.2, "delta_pct": -0.23, "cdv_delta": -5978}
+      "GER40": {
+        "morning": 24108.1,
+        "jetzt": 23969.1,
+        "delta": -139.0,
+        "delta_pct": -0.58,
+        "cdv_delta": -2926
+      },
+      "DJ30": {
+        "morning": 49286.5,
+        "jetzt": 49144.5,
+        "delta": -142.0,
+        "delta_pct": -0.29,
+        "cdv_delta": -13830
+      },
+      "SPX500": {
+        "morning": 7165.7,
+        "jetzt": 7149.5,
+        "delta": -16.2,
+        "delta_pct": -0.23,
+        "cdv_delta": -5978
+      }
     },
     "instruments": {
       "GER40": {
@@ -1303,7 +1273,7 @@
     "konfidenz_details": {
       "chart_gewichtung": 0.3,
       "makro_gewichtung": 0.7,
-      "gewichtungs_grund": "FOMC heute 20:00 CET — Event-Gewichtung: Chart 30% / Makro 70% (Event < 6h)",
+      "gewichtungs_grund": "FOMC heute 20:00 CET \u2014 Event-Gewichtung: Chart 30% / Makro 70% (Event < 6h)",
       "alignment_beitrag": -0.1125,
       "makro_beitrag": 0.023,
       "konfidenz_final": 0.0
@@ -1358,20 +1328,20 @@
       }
     },
     "session_bias_begruendung": [
-      "US-Update 14:45: Pre-FOMC Sell-Off bestaetigt — alle 3 Instrumente bearisch",
+      "US-Update 14:45: Pre-FOMC Sell-Off bestaetigt \u2014 alle 3 Instrumente bearisch",
       "GER40 -139pts (24108->23969), CDV kollabiert +2509->-417, Preis unter PDL (24102)",
       "DJ30 -142pts (49286->49144), 14 bearische CDV-Bars, Preis unter VAL heute (49210)",
       "SPX500 -16pts (7166->7149), CDV fallend, Preis unter Vortag-VAL (7162)",
-      "alignment_score -3/8 BEARISCH — KEIN Short-Setup wegen FOMC-Unberechenbarkeit in 5h",
-      "FOMC-Gewichtung: Chart 30% / Makro 70%. Konfidenz=0.0 — WAIT bestaetigt"
+      "alignment_score -3/8 BEARISCH \u2014 KEIN Short-Setup wegen FOMC-Unberechenbarkeit in 5h",
+      "FOMC-Gewichtung: Chart 30% / Makro 70%. Konfidenz=0.0 \u2014 WAIT bestaetigt"
     ],
-    "trade_plan": "WAIT — Kein Trade. Pre-FOMC Sell-Off laeuft aktiv. Post-FOMC Szenarien: (DOVISH) Long GER40 ueber 24112 + CDV turns positiv; (HAWKISH) Short GER40 unter 23965 Target 23800/23700; (NEUTRAL) Range 23965-24112 abwarten und morgen 08:00 neu bewerten.",
+    "trade_plan": "WAIT \u2014 Kein Trade. Pre-FOMC Sell-Off laeuft aktiv. Post-FOMC Szenarien: (DOVISH) Long GER40 ueber 24112 + CDV turns positiv; (HAWKISH) Short GER40 unter 23965 Target 23800/23700; (NEUTRAL) Range 23965-24112 abwarten und morgen 08:00 neu bewerten.",
     "instrument_prioritaet": [
       "DJ30",
       "SPX500",
       "GER40"
     ],
-    "entry_fenster": "Kein Trade — WAIT bis nach FOMC 20:00 CET",
+    "entry_fenster": "Kein Trade \u2014 WAIT bis nach FOMC 20:00 CET",
     "max_risk_today": "0.0%",
     "max_trades_heute": 0,
     "trades_today": 0,
@@ -1404,11 +1374,11 @@
       }
     },
     "warnungen": [
-      "FOMC 29.04.2026 20:00 CET in ~5h — Hohe Volat. ab jetzt. KEIN TRADE!",
+      "FOMC 29.04.2026 20:00 CET in ~5h \u2014 Hohe Volat. ab jetzt. KEIN TRADE!",
       "Pre-FOMC Sell-Off: GER40 -139pts, DJ30 -142pts, SPX500 -16pts seit 08:15",
-      "GER40 CDV kollabiert: +2509 -> -417 (Delta -2926) — Verkaeufer dominieren",
-      "DJ30: 14 konsekutive bearische CDV-Bars — starker Verkaufsdruck",
-      "GER40 unter PDL (24102) — bullischer Breakout-Versuch von heute Nacht gescheitert",
+      "GER40 CDV kollabiert: +2509 -> -417 (Delta -2926) \u2014 Verkaeufer dominieren",
+      "DJ30: 14 konsekutive bearische CDV-Bars \u2014 starker Verkaufsdruck",
+      "GER40 unter PDL (24102) \u2014 bullischer Breakout-Versuch von heute Nacht gescheitert",
       "Naked POC GER40 24506.32 (22.04) bleibt langfristiger Magnet nach oben"
     ],
     "notes": "US-Update 14:45 | Konfidenz=0.0 | Chart=30% / Makro=70% (FOMC-Event) | Pre-FOMC Sell-Off alle 3 Instrumente | CDV GER40 kollabiert -2926 | FOMC 20:00 CET: Konsens keine Senkung, Statement-Ton entscheidend (hawkish/dovish). Neubewertung morgen 08:00."
@@ -1424,10 +1394,10 @@
       "trade_freigabe": false,
       "shape_konflikt": false,
       "warnings": [
-        "WAIT: trade_freigabe=False — alle S1-Schichten blockiert (b-Shape vs bullischem Kontext)",
-        "FOMC 29.04.2026 20:00 CET — Markt in Erwartungsmodus",
-        "alignment_score 2/8 — unter Mindestchwelle 4/8",
-        "konfidenz 0.183 — unter Schwelle 0.40"
+        "WAIT: trade_freigabe=False \u2014 alle S1-Schichten blockiert (b-Shape vs bullischem Kontext)",
+        "FOMC 29.04.2026 20:00 CET \u2014 Markt in Erwartungsmodus",
+        "alignment_score 2/8 \u2014 unter Mindestchwelle 4/8",
+        "konfidenz 0.183 \u2014 unter Schwelle 0.40"
       ],
       "notes": "KEIN TRADE. Neubewertung: (a) morgen 30.04.2026 nach FOMC-Ergebnis, (b) bei GER40 Breakout >24254 (VAH) + S1-Freigabe, (c) bei DJ30 S1 > 0.20 im Intraday-Update."
     }
@@ -1442,68 +1412,20 @@
     "kritisch_count": 0,
     "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260429_0830_Morning.txt",
     "bereiche": {
-      "lokale_prozesse": "OK (1 Hinweis: Pipeline-Log endet nach MACRO-Start — Agenten liefen direkt)",
-      "sheet_doc": "OK (0 Orders — WAIT-Session korrekt | Google Doc erstellt)",
+      "lokale_prozesse": "OK (1 Hinweis: Pipeline-Log endet nach MACRO-Start \u2014 Agenten liefen direkt)",
+      "sheet_doc": "OK (0 Orders \u2014 WAIT-Session korrekt | Google Doc erstellt)",
       "github_web": "OK (Push 08:28 | Commit 8d09f21)",
       "datenqualitaet": "OK (PCR null bekannt | alle MP/VP/VWAP/ONH-ONL vorhanden)",
-      "entscheidung": "WAIT — Score:2/8 — FOMC-Tag 20:00 CET",
+      "entscheidung": "WAIT \u2014 Score:2/8 \u2014 FOMC-Tag 20:00 CET",
       "anomalien": "OK (1 bekannter Fehler: PCR ^PCALL nicht verfuegbar)"
     },
     "warnungen": [
-      "FOMC 20:00 CET — Hohe Volatilitaet ab 15:30 CET erwartet",
-      "Alle 3 Instrumente erstmals UEBER Kumo — strukturelle Trendwende moeglich",
-      "Naked POC GER40 24506.32 (22.04) — langfristiges Magnet-Level"
+      "FOMC 20:00 CET \u2014 Hohe Volatilitaet ab 15:30 CET erwartet",
+      "Alle 3 Instrumente erstmals UEBER Kumo \u2014 strukturelle Trendwende moeglich",
+      "Naked POC GER40 24506.32 (22.04) \u2014 langfristiges Magnet-Level"
     ]
   },
   "calendar": [
-    {
-      "date": "2026-04-29",
-      "time": "08:29",
-      "currency": "EUR",
-      "name": "German Prelim CPI m/m",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "0.7%",
-      "previous": "1.1%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-04-29",
-      "time": "20:00",
-      "currency": "USD",
-      "name": "Federal Funds Rate",
-      "impact": "high",
-      "actual": "",
-      "forecast": "3.75%",
-      "previous": "3.75%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-04-29",
-      "time": "20:00",
-      "currency": "USD",
-      "name": "FOMC Statement",
-      "impact": "high",
-      "actual": "",
-      "forecast": "",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-04-29",
-      "time": "20:30",
-      "currency": "USD",
-      "name": "FOMC Press Conference",
-      "impact": "high",
-      "actual": "",
-      "forecast": "",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
     {
       "date": "2026-04-30",
       "time": "10:00",
