@@ -1,8 +1,8 @@
 {
   "pipeline": {
-    "status": "running",
+    "status": "completed",
     "started": "2026-05-01T09:15:01",
-    "completed": null,
+    "completed": "2026-05-01T09:36:00",
     "date": "2026-05-01"
   },
   "macro": {
@@ -82,7 +82,7 @@
         "value": 4.3,
         "interpretation": "normal"
       },
-      "last_updated": "2026-05-01 09:16"
+      "last_updated": "2026-05-01 09:37"
     }
   },
   "market": {
@@ -1000,23 +1000,27 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-04-30T08:02:35",
+    "_last_run": "2026-05-01T09:36:00",
     "_status": "ready",
-    "report_path": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260430_0808_Morning.txt",
+    "session": "Morning",
+    "gesamt_status": "OK",
+    "probleme_count": 0,
+    "kritisch_count": 0,
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260501_0934_Morning.txt",
+    "bereiche": {
+      "lokale_prozesse": "OK",
+      "sheet_doc": "OK",
+      "github_web": "OK",
+      "datenqualitaet": "OK (1 Warnung: ER pre-market DJ30)",
+      "entscheidung": "LONG-LEAN SPX500 Score:4/8",
+      "anomalien": "OK"
+    },
     "warnungen": [
-      "ZENTRALBANK-HARD-STOP: ECB 14:15 + ECB Press Conference 14:45",
-      "Alle 3 Instrumente: alle_schichten_ok=False",
-      "CDV Bullish-Divergenz DJ30/SPX500",
-      "Morgen 01.05.2026 Maifeiertag -- GER40 CLOSED"
-    ],
-    "status_bereiche": {
-      "zentralbank": "HARD-STOP aktiv",
-      "export": "state.json+journal-data.json+git-push OK",
-      "orders": "0 (WAIT-Modus)",
-      "captain": "WAIT (Konfidenz=0.00)",
-      "makro": "LEICHT_RISK_OFF (-3/12)",
-      "marktdaten": "vollstaendig (MP+VWAP+ER+CDV alle 3 Instrumente)"
-    }
+      "GER40 GESCHLOSSEN (Maifeiertag 01.05) -- Holiday-Session",
+      "Konfidenz 0.425 grenzwertig (>=0.40 mit P-Shape)",
+      "P_Fill=30% (historisch 13.5% system-weit)",
+      "ISM PMI 16:00 CET -- kein Trade 15:00-16:30"
+    ]
   },
   "calendar": [
     {
@@ -1044,6 +1048,6 @@
       "source": "forexfactory"
     }
   ],
-  "_last_run": "2026-05-01T09:20:00",
+  "_last_run": "2026-05-01T09:36:00",
   "_session": "morning_2026-05-01"
 }
