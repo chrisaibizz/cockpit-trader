@@ -380,9 +380,9 @@
         "change_pct": 0.04,
         "vwap": 49809.74,
         "vwap_upper": 49822.98,
-        "vwap_lower": 49796.50,
-        "poc": 49259.40,
-        "vah": 49306.50,
+        "vwap_lower": 49796.5,
+        "poc": 49259.4,
+        "vah": 49306.5,
         "val": 48866.91,
         "mp_shape": "P-Shape",
         "mp_shape_pos": 0.893,
@@ -410,7 +410,7 @@
           "in_kumo": false,
           "note": "Preis 49799 UEBER Kumo (SpanA=49758 SpanB=49174) - BULLISCH"
         },
-        "sma200_30m": 49224.60,
+        "sma200_30m": 49224.6,
         "mp_history": [
           {
             "session": 0,
@@ -742,9 +742,9 @@
       "phase": "TREND",
       "begruendung": [
         "SPX500 ER=81.36 (sehr stark trendfolgend) + Preis 77 Punkte ueber VWAP und 70 Punkte ueber VAH.",
-        "DJ30 P-Shape (pos=0.893) bestätigt Kaeufer-Kontrolle mit POC im oberen VA-Drittel.",
+        "DJ30 P-Shape (pos=0.893) best\u00e4tigt Kaeufer-Kontrolle mit POC im oberen VA-Drittel.",
         "Beide aktiven Instrumente mit Preis ausserhalb Value Area (Breakout nach oben).",
-        "GER40 GESCHLOSSEN (Maifeiertag) — nur DJ30 + SPX500 analysierbar.",
+        "GER40 GESCHLOSSEN (Maifeiertag) \u2014 nur DJ30 + SPX500 analysierbar.",
         "Makro LEICHT_RISK_ON (+3): VIX fallend (16.89), Bonds fallend, DXY schwach."
       ],
       "aktive_strategie": "Trend-Following",
@@ -753,7 +753,10 @@
     "regime": "RISK-ON",
     "risk_level": "MEDIUM",
     "top_down": {
-      "m30_entry_zone": { "preis_von": 7159, "preis_bis": 7167 },
+      "m30_entry_zone": {
+        "preis_von": 7159,
+        "preis_bis": 7167
+      },
       "alignment_score": 4,
       "trade_freigabe": true
     },
@@ -773,7 +776,7 @@
         "alle_schichten_ok": false,
         "schichten_blockiert_durch": "GESCHLOSSEN (Maifeiertag 01.05.2026)",
         "bias": "N/A",
-        "notes": "MAIFEIERTAG — GER40 geschlossen. Letzter bekannter Stand: b-Shape pos=0.15, Preis 24273"
+        "notes": "MAIFEIERTAG \u2014 GER40 geschlossen. Letzter bekannter Stand: b-Shape pos=0.15, Preis 24273"
       },
       "DJ30": {
         "s1_score": 0.6,
@@ -785,12 +788,40 @@
         "freigabe_s2": false,
         "freigabe_s3": true,
         "alle_schichten_ok": false,
-        "schichten_blockiert_durch": "S2 (0.00 < 0.25) — ER=-23.08 overnight chop, VWAP -10 Pkt",
+        "schichten_blockiert_durch": "S2 (0.00 < 0.25) \u2014 ER=-23.08 overnight chop, VWAP -10 Pkt",
         "bias": "LEICHT_BULLISH",
         "schichten": {
-          "s1_kontext": { "score": 0.6, "signale": { "mp_shape": 3, "preis_vs_va": 2, "preis_vs_poc": 1, "poc_migration": 0, "shape_sequenz": 0, "vp_hvn_lvn": 0 } },
-          "s2_struktur": { "score": 0.0, "signale": { "vwap": -1, "cvd": 1, "er_trend": 0, "er_qualitaet": 0 } },
-          "s3_entry":   { "score": 0.167, "signale": { "ichimoku": 1, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": -1 } }
+          "s1_kontext": {
+            "score": 0.6,
+            "signale": {
+              "mp_shape": 3,
+              "preis_vs_va": 2,
+              "preis_vs_poc": 1,
+              "poc_migration": 0,
+              "shape_sequenz": 0,
+              "vp_hvn_lvn": 0
+            }
+          },
+          "s2_struktur": {
+            "score": 0.0,
+            "signale": {
+              "vwap": -1,
+              "cvd": 1,
+              "er_trend": 0,
+              "er_qualitaet": 0
+            }
+          },
+          "s3_entry": {
+            "score": 0.167,
+            "signale": {
+              "ichimoku": 1,
+              "sma200": 1,
+              "smc": 0,
+              "sr_channel": 0,
+              "pivot": 0,
+              "autofibo": -1
+            }
+          }
         },
         "notes": "P-Shape pos=0.893 (stark bullisch). Preis 49799 ueber VAH 49306. ER=-23 (overnight chop). CDV=+188856 (bullisch). Ichimoku+SMA200 bullisch."
       },
@@ -807,25 +838,66 @@
         "schichten_blockiert_durch": null,
         "bias": "BULLISH",
         "schichten": {
-          "s1_kontext": { "score": 0.6, "signale": { "mp_shape": 0, "preis_vs_va": 2, "preis_vs_poc": 1, "poc_migration": 2, "shape_sequenz": 1, "vp_hvn_lvn": 0 } },
-          "s2_struktur": { "score": 1.0, "signale": { "vwap": 1, "cvd": 1, "er_trend": 1, "er_qualitaet": 1 } },
-          "s3_entry":   { "score": 0.5, "signale": { "ichimoku": 1, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 1 } },
+          "s1_kontext": {
+            "score": 0.6,
+            "signale": {
+              "mp_shape": 0,
+              "preis_vs_va": 2,
+              "preis_vs_poc": 1,
+              "poc_migration": 2,
+              "shape_sequenz": 1,
+              "vp_hvn_lvn": 0
+            }
+          },
+          "s2_struktur": {
+            "score": 1.0,
+            "signale": {
+              "vwap": 1,
+              "cvd": 1,
+              "er_trend": 1,
+              "er_qualitaet": 1
+            }
+          },
+          "s3_entry": {
+            "score": 0.5,
+            "signale": {
+              "ichimoku": 1,
+              "sma200": 1,
+              "smc": 0,
+              "sr_channel": 0,
+              "pivot": 0,
+              "autofibo": 1
+            }
+          },
           "freigabe_s1": true,
           "freigabe_s2": true,
           "freigabe_s3": true,
           "alle_schichten_ok": true
         },
         "notes": "Trend Day pos=0.611. Preis 7236 ueber VWAP 7159 (+77). Preis ueber VAH 7167 (+70). ER=81.36 sehr stark. CDV=+21899. Ichimoku+SMA200 bullisch. Score=5/8.",
-        "key_levels": { "poc": 7156.58, "vah": 7167.06, "val": 7140.13, "vwap": 7159.64, "current": 7236.66, "onh": 7237.16, "pdh": 7219.83 }
+        "key_levels": {
+          "poc": 7156.58,
+          "vah": 7167.06,
+          "val": 7140.13,
+          "vwap": 7159.64,
+          "current": 7236.66,
+          "onh": 7237.16,
+          "pdh": 7219.83
+        }
       }
     },
-    "inter_market": { "alle_bullish": false, "alle_bearish": false, "gemischt": false, "note": "GER40 GESCHLOSSEN. DJ30+SPX500 beide bullisch aber DJ30 borderline." },
+    "inter_market": {
+      "alle_bullish": false,
+      "alle_bearish": false,
+      "gemischt": false,
+      "note": "GER40 GESCHLOSSEN. DJ30+SPX500 beide bullisch aber DJ30 borderline."
+    },
     "summary": "TREND-Phase RISK-ON. SPX500 aller Schichten OK (5/8). DJ30 borderline S2 (overnight ER). GER40 geschlossen Maifeiertag. Entry-Zone: VWAP+VAH+SMA200 Confluence 7159-7167 fuer SPX500 Pullback-Long bei NY-Open 15:30 CET.",
     "warnungen": [
       "GER40 GESCHLOSSEN (Maifeiertag 01.05)",
       "DJ30 alle_schichten_ok=False (S2 blockiert durch overnight ER=-23)",
-      "SPX500 Preis 69pt ueber VAH — extended, Pullback-Entry erforderlich",
-      "ISM Manufacturing PMI 16:00 CET (medium) — kein Trade 30min vor Event"
+      "SPX500 Preis 69pt ueber VAH \u2014 extended, Pullback-Entry erforderlich",
+      "ISM Manufacturing PMI 16:00 CET (medium) \u2014 kein Trade 30min vor Event"
     ]
   },
   "captain": {
@@ -840,8 +912,8 @@
     "zentralbank_stop": false,
     "zentralbank_stop_grund": "",
     "konfidenz_details": {
-      "chart_gewichtung": 0.70,
-      "makro_gewichtung": 0.30,
+      "chart_gewichtung": 0.7,
+      "makro_gewichtung": 0.3,
       "gewichtungs_grund": "TREND + LEICHT_RISK_ON -> 70/30 (Prio 5)",
       "alignment_beitrag": 0.35,
       "makro_beitrag": 0.075,
@@ -851,15 +923,17 @@
       "GER40": "N/A (GESCHLOSSEN)",
       "DJ30": "BLOCKIERT (S2=0.00 < 0.25, overnight ER=-23)",
       "SPX500": "OK (S1=0.60 S2=1.00 S3=0.50)",
-      "holiday_ausnahme": "GER40 GESCHLOSSEN — nur 2 Instrumente verfuegbar. SPX500 besteht alle Schichten. Trade erlaubt fuer SPX500."
+      "holiday_ausnahme": "GER40 GESCHLOSSEN \u2014 nur 2 Instrumente verfuegbar. SPX500 besteht alle Schichten. Trade erlaubt fuer SPX500."
     },
     "mp_shapes": {
-      "GER40": "b-Shape pos=0.15 (GESCHLOSSEN — nicht relevant)",
-      "DJ30": "P-Shape pos=0.893 — BESTAETIGT (Long-Bias)",
-      "SPX500": "Trend Day pos=0.611 — NEUTRAL (kein Konflikt)"
+      "GER40": "b-Shape pos=0.15 (GESCHLOSSEN \u2014 nicht relevant)",
+      "DJ30": "P-Shape pos=0.893 \u2014 BESTAETIGT (Long-Bias)",
+      "SPX500": "Trend Day pos=0.611 \u2014 NEUTRAL (kein Konflikt)"
     },
-    "trade_plan": "TREND-FOLLOWING LONG auf SPX500. Pullback zu VWAP+VAH+SMA200 Confluence (7159-7167). Entry Limit 7163. SL unter VAL 7133. TP1 ONH 7237. Konfidenz 0.425 (>=0.40 mit P-Shape DJ30 Bestaetigung). DJ30 als sekundaere Bestaetigung (alignment_score=3, kein eigener Trade). Entry-Fenster: NY Open 15:30 CET. Achtung: ISM PMI 16:00 CET — kein Trade 30min VOR/NACH (15:00-16:30).",
-    "instrument_prioritaet": ["SPX500"],
+    "trade_plan": "TREND-FOLLOWING LONG auf SPX500. Pullback zu VWAP+VAH+SMA200 Confluence (7159-7167). Entry Limit 7163. SL unter VAL 7133. TP1 ONH 7237. Konfidenz 0.425 (>=0.40 mit P-Shape DJ30 Bestaetigung). DJ30 als sekundaere Bestaetigung (alignment_score=3, kein eigener Trade). Entry-Fenster: NY Open 15:30 CET. Achtung: ISM PMI 16:00 CET \u2014 kein Trade 30min VOR/NACH (15:00-16:30).",
+    "instrument_prioritaet": [
+      "SPX500"
+    ],
     "entry_fenster": "NY Open 15:30 CET (nicht 15:00-16:30 wegen ISM)",
     "max_risk_today": "0.5%",
     "max_trades_heute": 1,
@@ -867,10 +941,10 @@
     "active_positions": [],
     "notes": "Holiday-Session (Maifeiertag). Nur SPX500 tradeable. Konfidenz 0.425 (grenzwertig, >= 0.40 mit P-Shape). TREND+LEICHT_RISK_ON. ISM PMI 16:00 als Medium-Event beachten.",
     "warnungen": [
-      "Konfidenz 0.425 — grenzwertig (>= 0.40), P-Shape DJ30 als Bestaetigung",
-      "DJ30 alignment_score=3 unter Minimum 4 — kein DJ30-Trade",
-      "ISM Manufacturing PMI 16:00 CET (medium) — Entry-Pause 15:00-16:30",
-      "GER40 geschlossen — nur 1 aktives Instrument"
+      "Konfidenz 0.425 \u2014 grenzwertig (>= 0.40), P-Shape DJ30 als Bestaetigung",
+      "DJ30 alignment_score=3 unter Minimum 4 \u2014 kein DJ30-Trade",
+      "ISM Manufacturing PMI 16:00 CET (medium) \u2014 Entry-Pause 15:00-16:30",
+      "GER40 geschlossen \u2014 nur 1 aktives Instrument"
     ]
   },
   "orders": {
@@ -900,7 +974,14 @@
         "bias": "BULLISH",
         "bias_pct": 75,
         "vwap_position": "Entry AT VWAP (7159.64) +3 Pkt",
-        "bestaetigungen": ["VWAP-Support", "VAH-Breakout-Retest", "SMA200-Support", "ER=81.36", "Ichimoku above Kumo", "CDV+21899"],
+        "bestaetigungen": [
+          "VWAP-Support",
+          "VAH-Breakout-Retest",
+          "SMA200-Support",
+          "ER=81.36",
+          "Ichimoku above Kumo",
+          "CDV+21899"
+        ],
         "notes": "TREND | LONG-LEAN | Score:5/8 | VAL-Stop | ONH-TP1 | R:R 2.47:1 | VWAP+VAH+SMA200 Confluence Entry | NY Open 15:30 CET | Pause 15:00-16:30 wegen ISM"
       }
     ],
@@ -912,7 +993,7 @@
       "warnings": [
         "DJ30 abgelehnt (alignment_score=3 < Minimum 4)",
         "GER40 geschlossen (Maifeiertag)",
-        "ISM PMI 16:00 — Entry-Pause beachten"
+        "ISM PMI 16:00 \u2014 Entry-Pause beachten"
       ],
       "notes": "1 Order fuer NY-Session. SPX500 Limit Long 7163, SL 7133, TP1 7237. P_Fill=30% (Pullback von 7236 auf 7163 benoetigt)."
     }
