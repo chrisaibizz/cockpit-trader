@@ -393,9 +393,9 @@ def get_tv_data(ticker, timeframe="30"):
             return None
 
         _eval(f"(function(){{var c=window.TradingViewApi._activeChartWidgetWV.value();c.setSymbol({json.dumps(tv_symbol)},function(){{}});}})()")
-        time.sleep(8)
+        time.sleep(2.5)
         _eval(f"(function(){{var c=window.TradingViewApi._activeChartWidgetWV.value();c.setResolution({json.dumps(timeframe)},function(){{}});}})()")
-        time.sleep(4)
+        time.sleep(1.5)
 
         mp_items = _eval("""
             (function() {
