@@ -1,111 +1,109 @@
 {
   "date": "2026-05-04",
-  "timestamp": "2026-05-04T10:32:00",
+  "timestamp": "2026-05-04T14:45:00",
+  "session": "us_update",
   "debrief": {
-    "yesterday_date": "2026-05-02",
-    "orders_checked": 3,
-    "fill_rate": "67%",
-    "tp1_rate": "0%",
-    "trend": "Fill-Rate gut, aber TP1 noch nicht erreicht — Entries zu frueh oder TPs zu weit",
-    "learnings": [
-      "3 Orders geprueft, 2 Entries gefuellt (67%), TP1 0x erreicht",
-      "DJ30 b-Shape heute + Preis unter VAL 49753 — kein Long vertretbar",
-      "Alle ERs negativ: kein Trend-Trade moeglich",
-      "WAIT korrekt: Score 3/8 < Minimum 4, nur SP500 Schichten-Freigabe"
-    ]
+    "orders_checked": 0,
+    "fill_rate": "n/a (WAIT-Session)",
+    "tp1_rate": "n/a",
+    "trend": "WAIT",
+    "learnings": ["Morning WAIT bestaetigt. SPX500 CDV bearischer Shift Nachmittag."]
   },
   "instruments": [
     {
       "name": "GER40",
-      "bias": "LEICHT_BULLISH",
+      "bias": "NEUTRAL",
       "bias_pct": "40",
-      "daily_summary": "P-Shape intraday (pos=0.893) bullisch, aber 5-Tage History baerisch (2x b-Shape). POC-Migration fallend. ER=-2.95 (chop).",
-      "h4_summary": "Nicht analysiert (Morning Pipeline WAIT)",
-      "h1_summary": "Nicht analysiert (Morning Pipeline WAIT)",
-      "h30m_summary": "Preis 24311 knapp unter VWAP 24318. POC=24269, VAH=24323, VAL=23820. SMA200=24082. Ichimoku: knapp ueber Kumo.",
-      "mp_shape_yesterday": "Trend Day (pos=0.65, va_breite=0.79%)",
-      "mp_shape_forecast": "Unklar — Intraday P-Shape aber History baerisch dominant",
-      "mp_5day_sequence": "Trend Day -> b-Shape -> b-Shape -> D-Shape -> D-Shape (baerisch dominant)",
+      "daily_summary": "P-Shape pos=0.893 aber Preis unter POC (-26 Pkt). CDV steigend +2672 (bullische Divergenz). ER=-7.84 (Chop).",
+      "h4_summary": "Nicht neu gelesen (US-Update).",
+      "h1_summary": "Nicht neu gelesen.",
+      "h30m_summary": "Preis 24242.7, VWAP 24275.22 (-32), SMA200=24086. Uber Ichimoku-Kumo (SpanA=24215, SpanB=24084).",
+      "mp_shape_yesterday": "Trend Day (session_1, 2026-05-02: POC=24005, VAH=24107, VAL=23882)",
+      "mp_shape_forecast": "P-Shape laufend pos=0.893. POC-Migration fallend -> Konsolidierung erwartet.",
+      "mp_5day_sequence": "Trend Day -> 2x b-Shape -> D-Shape -> D-Shape (history bearisch dominant)",
       "key_levels": [
-        {"level": "POC (intraday)", "price": "24269.1", "source": "Market Profile 30M"},
-        {"level": "VAH", "price": "24323.0", "source": "Market Profile 30M"},
-        {"level": "VAL", "price": "23820.0", "source": "Market Profile 30M"},
-        {"level": "VWAP", "price": "24318.6", "source": "VWAP 30M"},
-        {"level": "ONH/ONL", "price": "24314.7 / 24272.7", "source": "Overnight"},
-        {"level": "PDH/PDL", "price": "24071.3 / 23882.5", "source": "Previous Day"},
-        {"level": "SMA200", "price": "24082.2", "source": "SMA200 30M"},
-        {"level": "Naked POC", "price": "24144.3", "source": "MP History Session 2"},
-        {"level": "Naked POC", "price": "24506.3", "source": "MP History Session 6"}
+        {"level": "POC", "price": "24269.1", "source": "Market Profile 30M"},
+        {"level": "VAH", "price": "24322.99", "source": "Market Profile 30M"},
+        {"level": "VAL", "price": "23820.04", "source": "Market Profile 30M"},
+        {"level": "VWAP", "price": "24275.22", "source": "VWAP 30M"},
+        {"level": "SMA200", "price": "24086.19", "source": "SMA200 30M"},
+        {"level": "AutoFibo 0.236", "price": "24204.39", "source": "AutoFibo"},
+        {"level": "AutoFibo 0.382", "price": "24089.75", "source": "AutoFibo"}
       ],
       "orders": [],
-      "invalidation": "S2 blockiert (VWAP-/CDV+ neutralisieren sich, ER=-2.95 chop). Kein Trade."
+      "invalidation": "WAIT - Score 1/8. S1+S2 blockiert. Nur Trade wenn CDV bullisch dreht + Preis ueber POC 24269."
     },
     {
       "name": "DJ30",
       "bias": "BEARISH",
-      "bias_pct": "15",
-      "daily_summary": "b-Shape (pos=0.187), Preis 300 Punkte UNTER VAL 49753. ER=-25.28 (baerisch trendfolgend). Unter Ichimoku-Kumo.",
-      "h4_summary": "Nicht analysiert (Morning Pipeline WAIT)",
-      "h1_summary": "Nicht analysiert (Morning Pipeline WAIT)",
-      "h30m_summary": "Preis 49453 unter Kumo (SpanA=49521, SpanB=49721). VWAP=49540. POC=49796, VAH=49980, VAL=49753. SMA200=49334.",
-      "mp_shape_yesterday": "b-Shape (pos=0.269, va_breite=1.77%)",
-      "mp_shape_forecast": "Weiter baerisch — 2x b-Shape in letzten 2 Sessions",
+      "bias_pct": "20",
+      "daily_summary": "b-Shape pos=0.188. Preis 335 Pkt unter VAL 49753. ER verbessert -25->-18. Ichimoku von unter Kumo nach in Kumo.",
+      "h4_summary": "Nicht neu gelesen.",
+      "h1_summary": "Nicht neu gelesen.",
+      "h30m_summary": "Preis 49418.15, VWAP 49446 (-28), SMA200=49338. In Ichimoku-Kumo (SpanA=49342, SpanB=49587).",
+      "mp_shape_yesterday": "b-Shape (session_1, 2026-05-02: POC=48732, VAH=49428, VAL=48500)",
+      "mp_shape_forecast": "b-Shape laufend pos=0.188. Preis weit unter VAL. Keine Erholung sichtbar.",
       "mp_5day_sequence": "b-Shape -> P-Shape -> Trend Day -> Trend Day -> b-Shape (gemischt, aktuell baerisch)",
       "key_levels": [
-        {"level": "POC (intraday)", "price": "49796.1", "source": "Market Profile 30M"},
-        {"level": "VAH", "price": "49980.7", "source": "Market Profile 30M"},
-        {"level": "VAL (kritisch)", "price": "49753.5", "source": "Market Profile 30M"},
-        {"level": "VWAP", "price": "49540.0", "source": "VWAP 30M"},
-        {"level": "PDH/PDL", "price": "49362.4 / 48500.5", "source": "Previous Day"},
-        {"level": "SMA200", "price": "49334.3", "source": "SMA200 30M"},
-        {"level": "Naked POC", "price": "49587.97", "source": "MP History Session 7"}
+        {"level": "VAL (kritisch)", "price": "49753.48", "source": "Market Profile 30M"},
+        {"level": "POC", "price": "49796.08", "source": "Market Profile 30M"},
+        {"level": "VAH", "price": "49980.68", "source": "Market Profile 30M"},
+        {"level": "VWAP", "price": "49446.05", "source": "VWAP 30M"},
+        {"level": "SMA200", "price": "49338.58", "source": "SMA200 30M"},
+        {"level": "AutoFibo 0.382", "price": "49450.36", "source": "AutoFibo"},
+        {"level": "AutoFibo 0.5", "price": "49269.00", "source": "AutoFibo"}
       ],
       "orders": [],
-      "invalidation": "S1 blockiert (b-Shape + Preis unter VAL). S2 blockiert (VWAP-/CDV+/ER-). Starkster WAIT-Grund der drei Instrumente."
+      "invalidation": "WAIT - Score -4/8. Kein Trade bis Preis ueber VAL 49753."
     },
     {
       "name": "SPX500",
-      "bias": "LEICHT_BULLISH",
-      "bias_pct": "55",
-      "daily_summary": "Trend Day (pos=0.389, va_breite=0.37%). Preis knapp unter VWAP. POC-Migration steigend (+2). ER=-18.11 aber Tag bullish.",
-      "h4_summary": "Nicht analysiert (Morning Pipeline WAIT)",
-      "h1_summary": "Nicht analysiert (Morning Pipeline WAIT)",
-      "h30m_summary": "Preis 7241 knapp unter Kumo (SpanA=7242, SpanB=7248). VWAP=7245. POC=7238, VAH=7254, VAL=7227. SMA200=7188.",
-      "mp_shape_yesterday": "P-Shape (pos=0.833, va_breite=0.74%)",
-      "mp_shape_forecast": "Trend Day Konsolidierung — Preis in VA, Erholung von unten",
-      "mp_5day_sequence": "P-Shape -> Trend Day -> Trend Day -> b-Shape -> b-Shape (Erholung nach 2x b-Shape)",
+      "bias": "NEUTRAL",
+      "bias_pct": "40",
+      "daily_summary": "KRITISCH: CDV fiel 20967->16711 (-4256). S2 kollabiert +0.25->-0.50. Preis unter POC. alle_schichten_ok war TRUE (Morning) jetzt FALSE.",
+      "h4_summary": "Nicht neu gelesen.",
+      "h1_summary": "Nicht neu gelesen.",
+      "h30m_summary": "Preis 7232.9, VWAP 7236.47 (-3.6), SMA200=7190. In Ichimoku-Kumo (SpanA=7222, SpanB=7235).",
+      "mp_shape_yesterday": "P-Shape (session_1, 2026-05-02: POC=7175, VAH=7184, VAL=7131)",
+      "mp_shape_forecast": "Trend Day laufend pos=0.389. CDV-Rueckgang bearisch. Konsolidierung oder Korrektur moeglich.",
+      "mp_5day_sequence": "P-Shape -> 2x Trend Day -> b-Shape -> b-Shape (Erholung, aber CDV dreht bearisch)",
       "key_levels": [
-        {"level": "POC (intraday)", "price": "7238.1", "source": "Market Profile 30M"},
         {"level": "VAH", "price": "7254.4", "source": "Market Profile 30M"},
-        {"level": "VAL", "price": "7227.7", "source": "Market Profile 30M"},
-        {"level": "VWAP", "price": "7245.7", "source": "VWAP 30M"},
-        {"level": "ONH/ONL", "price": "7244.9 / 7235.0", "source": "Overnight"},
-        {"level": "PDH/PDL", "price": "7184.6 / 7131.3", "source": "Previous Day"},
-        {"level": "SMA200", "price": "7188.2", "source": "SMA200 30M"},
-        {"level": "Naked POC", "price": "7092.8", "source": "MP History Session 8"},
-        {"level": "Naked POC", "price": "7054.0", "source": "MP History Session 9"}
+        {"level": "POC", "price": "7238.07", "source": "Market Profile 30M"},
+        {"level": "VWAP", "price": "7236.47", "source": "VWAP 30M"},
+        {"level": "VAL", "price": "7227.67", "source": "Market Profile 30M"},
+        {"level": "AutoFibo 0.236", "price": "7238.52", "source": "AutoFibo"},
+        {"level": "AutoFibo 0.382", "price": "7214.00", "source": "AutoFibo"},
+        {"level": "SMA200", "price": "7190.14", "source": "SMA200 30M"}
       ],
       "orders": [],
-      "invalidation": "Alle Schichten OK aber Score=3/8 < Minimum 4. Morgen ISM+JOLTS 16:00 CET. Kein Trade bis Score >=4."
+      "invalidation": "WAIT - Score 0/8. CDV-Signal bearisch. Trade erst wenn CDV Tagesbeginn (>20000) zurueck + S2 OK."
     }
   ],
   "summary": {
-    "best_instrument": "SPX500",
+    "best_instrument": "GER40 (Score=1, CDV steigend)",
     "total_orders": 0,
+    "session_bias": "WAIT",
     "warnings": [
-      "WAIT - Score 3/8 < Minimum 4",
-      "DJ30 b-Shape + Preis 300 Punkte unter VAL 49753",
-      "Alle ERs negativ (GER=-2.95, DJ30=-25.28, SP500=-18.11)",
-      "Nur 1/3 Instrumente Schichten-Freigabe",
-      "Morgen 2026-05-05 16:00: ISM Services PMI + JOLTS (High Impact USD)",
-      "Freitag 2026-05-08: NFP + Unemployment Rate (sehr High Impact)"
+      "SPX500 CDV -4256 = kritisches bearisches Warnsignal",
+      "DJ30 b-Shape + 335 Pkt unter VAL",
+      "0/3 Instrumente Schichten-Freigabe (Morning: 1/3)",
+      "Morgen 16:00: ISM Services PMI + JOLTS (High Impact)",
+      "Freitag: NFP + Unemployment Rate"
     ],
-    "notes": "WAIT. Kein Trade heute. WAIT-Bedingungen: DJ30 zurueck ueber VAL 49753 ODER SP500 Score >=4. Naechste Pruefung: US-Update 14:00."
+    "notes": "US-Update 14:45. WAIT verschaerft vs Morning. Kein Trade. Naechste Pruefung: Morning 2026-05-05 nach ISM/JOLTS."
   },
   "stats": {
-    "total": 3,
-    "fill_rate": "67%",
-    "tp1_rate": "0%",
-    "trend": "Steigende Fill-Rate, TP1 noch nicht erreicht"
+    "total": 0,
+    "fill_rate": "n/a",
+    "tp1_rate": "n/a",
+    "trend": "WAIT"
+  },
+  "macro": {
+    "vix": 17.62,
+    "dxy": 98.267,
+    "makro_bias": "NEUTRAL",
+    "gesamt_score": 1,
+    "fred_summary": "FedFunds=3.64 (neutral), YieldCurve=0.51 (steil), CPI=3.32 (moderat)"
   }
 }

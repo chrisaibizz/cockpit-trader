@@ -86,35 +86,35 @@
   },
   "market": {
     "_agent": "MARKETDATA",
-    "_last_run": "2026-05-04T10:27:00",
+    "_last_run": "2026-05-04T14:45:00",
     "_status": "ready",
-    "timestamp": "2026-05-04 10:27",
+    "timestamp": "2026-05-04 14:45",
     "timeframe_used": "30M",
     "instruments": {
       "GER40": {
         "ticker": "Vantage:GER40",
-        "current_price": 24311.7,
+        "current_price": 24242.7,
         "open": 24290.7,
         "high": 24314.7,
-        "low": 24272.7,
+        "low": 24240.7,
         "prev_close": 24292.38,
-        "change_pct": 0.08,
-        "vwap": 24318.62,
-        "vwap_upper": 24340.67,
-        "vwap_lower": 24296.58,
+        "change_pct": -0.21,
+        "vwap": 24275.22,
+        "vwap_upper": 24328.36,
+        "vwap_lower": 24222.08,
         "poc": 24269.1,
         "vah": 24322.99,
         "val": 23820.04,
         "mp_shape": "P-Shape",
         "mp_shape_pos": 0.893,
         "mp_shape_bias": "BULLISCH",
-        "mp_shape_grund": "pos=0.893 > 0.65 -> P-Shape | POC oben in VA | Preis in oberer VA",
+        "mp_shape_grund": "pos=0.893 > 0.65 -> P-Shape | POC oben in VA | Preis 24243 unter POC (-26 Pkt) | CDV steigend (+2672)",
         "mp_session": "Session 2026-05-04 laufend (ui_evaluate 30M)",
-        "er": -2.95,
-        "er_interpretation": "chop (|ER|<10)",
-        "cdv": 20061.02,
+        "er": -7.84,
+        "er_interpretation": "chop (|ER|<10, fallend)",
+        "cdv": 22732.60,
         "cdv_direction": "bullisch",
-        "sma200_30m": 24082.21,
+        "sma200_30m": 24086.19,
         "onh": 24314.7,
         "onl": 24272.7,
         "pdh": 24071.34,
@@ -122,7 +122,7 @@
         "ichimoku_30m": {
           "above_kumo": true,
           "in_kumo": false,
-          "note": "Preis 24311 knapp ueber SpanA=24311.28, SpanB=23997.10 - BULLISCH (knapp)"
+          "note": "Preis 24243 ueber SpanA=24215.20, SpanB=24084.10 - BULLISCH (klarer Abstand)"
         },
         "mp_history": [
           {"session": 0, "date": "2026-05-02", "poc": 24005.25, "vah": 24071.34, "val": 23882.52, "shape": "Trend Day", "mp_shape_pos": 0.65, "va_breite_pct": 0.79, "naked_poc": false},
@@ -147,36 +147,36 @@
       },
       "DJ30": {
         "ticker": "Vantage:DJ30",
-        "current_price": 49453.15,
+        "current_price": 49418.15,
         "open": 49453.15,
         "high": 49453.15,
-        "low": 49453.15,
+        "low": 49392.15,
         "prev_close": 49652.14,
-        "change_pct": -0.40,
-        "vwap": 49540.0,
-        "vwap_upper": 49598.54,
-        "vwap_lower": 49481.46,
+        "change_pct": -0.47,
+        "vwap": 49446.05,
+        "vwap_upper": 49550.25,
+        "vwap_lower": 49341.85,
         "poc": 49796.08,
         "vah": 49980.68,
         "val": 49753.48,
         "mp_shape": "b-Shape",
-        "mp_shape_pos": 0.187,
+        "mp_shape_pos": 0.188,
         "mp_shape_bias": "BAERISCH",
-        "mp_shape_grund": "pos=0.187 < 0.35 -> b-Shape | Preis 49453 weit unter VAL 49753 (-300 Pkt) | BEARISCH",
+        "mp_shape_grund": "pos=0.188 < 0.35 -> b-Shape | Preis 49418 weit unter VAL 49753 (-335 Pkt) | ER verbessert -25->-18 | Ichimoku in Kumo (Verbesserung)",
         "mp_session": "Session 2026-05-04 laufend (ui_evaluate 30M)",
-        "er": -25.28,
-        "er_interpretation": "trendfolgend_baerisch (|ER|=25.28)",
-        "cdv": 175337.59,
+        "er": -18.18,
+        "er_interpretation": "baerisch_moderat (|ER|=18.18, verbessert)",
+        "cdv": 176874.48,
         "cdv_direction": "bullisch",
-        "sma200_30m": 49334.32,
+        "sma200_30m": 49338.58,
         "onh": 49453.15,
         "onl": 49453.15,
         "pdh": 49362.42,
         "pdl": 48500.52,
         "ichimoku_30m": {
           "above_kumo": false,
-          "in_kumo": false,
-          "note": "Preis 49453 unter Kumo (SpanA=49521.94, SpanB=49721.82) - BAERISCH"
+          "in_kumo": true,
+          "note": "Preis 49418 in Kumo (SpanA=49342.48, SpanB=49587.57) - GEMISCHT (Verbesserung vs Morning)"
         },
         "mp_history": [
           {"session": 0, "date": "2026-05-02", "poc": 48732.57, "vah": 49362.42, "val": 48500.52, "shape": "b-Shape", "mp_shape_pos": 0.269, "va_breite_pct": 1.77, "naked_poc": false},
@@ -201,28 +201,28 @@
       },
       "SPX500": {
         "ticker": "Vantage:SP500",
-        "current_price": 7241.15,
+        "current_price": 7232.9,
         "open": 7244.65,
         "high": 7244.9,
-        "low": 7235.02,
+        "low": 7227.15,
         "prev_close": 7209.01,
-        "change_pct": 0.41,
-        "vwap": 7245.74,
-        "vwap_upper": 7249.14,
-        "vwap_lower": 7242.35,
+        "change_pct": 0.33,
+        "vwap": 7236.47,
+        "vwap_upper": 7247.97,
+        "vwap_lower": 7224.96,
         "poc": 7238.07,
         "vah": 7254.4,
         "val": 7227.67,
         "mp_shape": "Trend Day",
         "mp_shape_pos": 0.389,
-        "mp_shape_bias": "DIREKTIONAL",
-        "mp_shape_grund": "pos=0.389 (kein P/b), va_breite=0.37% < 0.8% -> Trend Day",
+        "mp_shape_bias": "NEUTRAL",
+        "mp_shape_grund": "pos=0.389 (kein P/b), va_breite=0.37% < 0.8% -> Trend Day | CDV GEFALLEN -4256 (20967->16711) - WARNING",
         "mp_session": "Session 2026-05-04 laufend (ui_evaluate 30M)",
-        "er": -18.11,
-        "er_interpretation": "baerisch_moderat (|ER|=18.11)",
-        "cdv": 20967.26,
-        "cdv_direction": "bullisch",
-        "sma200_30m": 7188.22,
+        "er": -18.80,
+        "er_interpretation": "baerisch_moderat (|ER|=18.80)",
+        "cdv": 16711.40,
+        "cdv_direction": "bearisch",
+        "sma200_30m": 7190.14,
         "onh": 7244.9,
         "onl": 7235.02,
         "pdh": 7184.57,
@@ -230,7 +230,7 @@
         "ichimoku_30m": {
           "above_kumo": false,
           "in_kumo": true,
-          "note": "Preis 7241 knapp unter SpanA=7242.75, SpanB=7248.46 - IN/UNTER Kumo (knapp)"
+          "note": "Preis 7233 in Kumo (SpanA=7222.25, SpanB=7235.78) - GEMISCHT (knapp unter SpanB)"
         },
         "mp_history": [
           {"session": 0, "date": "2026-05-02", "poc": 7175.69, "vah": 7184.57, "val": 7131.32, "shape": "P-Shape", "mp_shape_pos": 0.833, "va_breite_pct": 0.74, "naked_poc": false},
@@ -267,41 +267,41 @@
   },
   "analysis": {
     "_agent": "ANALYST",
-    "_last_run": "2026-05-04T10:29:00",
+    "_last_run": "2026-05-04T14:45:00",
     "_status": "ready",
     "marktphase": {
       "phase": "BALANCE",
       "begruendung": [
-        "SP500 Trend Day (pos=0.389, va_breite=0.37%) mit Preis knapp ueber VWAP-Mid — Konsolidierung nach Erholung.",
-        "DJ30 b-Shape (pos=0.187) mit Preis 300 Punkte unter VAL — deutlicher baerischer Druck auf US30.",
-        "GER40 P-Shape (pos=0.893) intraday aber 5-Tage POC-Migration fallend und 2x b-Shape History.",
-        "Alle ERs negativ: GER=-2.95 (chop), DJ30=-25.28 (baerisch), SP500=-18.11 (baerisch) — kein Trendfolgender.",
-        "Makro NEUTRAL (+1): Gold fallend (Risk-On), aber Oil >90 steigend und VIX steigend."
+        "SPX500 Trend Day CDV GEFALLEN -4256 (20967->16711) — bearischer Nachmittagsflow, S2 kollabiert.",
+        "DJ30 b-Shape (pos=0.188) mit Preis 335 Punkte unter VAL — weiterhin baerisch, marginal verbessert (ER, Ichimoku).",
+        "GER40 P-Shape (pos=0.893) CDV steigend (+2672) aber Preis unter POC und S1/S2 blockiert.",
+        "Alle ERs negativ: GER=-7.84 (chop), DJ30=-18.18 (baerisch), SP500=-18.80 (baerisch).",
+        "Makro NEUTRAL (+1): unverändert. ISM/JOLTS morgen 16:00."
       ],
-      "aktive_strategie": "WAIT — Schichten-Freigabe nicht erfuellt",
+      "aktive_strategie": "WAIT — 0/3 Instrumente Schichten-Freigabe",
       "er_bestaetigung": "nein (alle ERs negativ)"
     },
     "regime": "NEUTRAL",
     "risk_level": "HIGH",
     "top_down": {
       "m30_entry_zone": {"preis_von": null, "preis_bis": null},
-      "alignment_score": 3,
+      "alignment_score": 1,
       "trade_freigabe": false
     },
     "trade_freigabe": false,
-    "trade_freigabe_grund": "Score 3/8 < 4 | Nur SP500 alle_schichten_ok=true (1/3 Instrumente) — 2 benoetigt | DJ30 S1=-0.80 (b-Shape+unter VAL) blockiert",
-    "alignment_score": 3,
+    "trade_freigabe_grund": "Score 1/8 < 4 | 0/3 Instrumente alle_schichten_ok (war 1/3) | SPX500 CDV-Rückgang -4256 dreht S2 auf -0.50 | DJ30 S1=-0.80 blockiert",
+    "alignment_score": 1,
     "instruments": {
       "GER40": {
-        "bias": "LEICHT_BULLISH",
-        "bias_score": 2,
+        "bias": "NEUTRAL",
+        "bias_score": 1,
         "mp_shape": "P-Shape",
         "mp_shape_pos": 0.893,
-        "er_wert": -2.95,
+        "er_wert": -7.84,
         "schichten": {
           "s1_kontext": {
-            "score": 0.20,
-            "signale": {"mp_shape": 3, "preis_vs_va": 1, "preis_vs_poc": 1, "poc_migration": -2, "shape_sequenz": -1, "vp_hvn_lvn": 0}
+            "score": 0.00,
+            "signale": {"mp_shape": 3, "preis_vs_va": 1, "preis_vs_poc": -1, "poc_migration": -2, "shape_sequenz": -1, "vp_hvn_lvn": 0}
           },
           "s2_struktur": {
             "score": 0.00,
@@ -311,20 +311,20 @@
             "score": 0.50,
             "signale": {"ichimoku": 1, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 1}
           },
-          "freigabe_s1": true,
+          "freigabe_s1": false,
           "freigabe_s2": false,
           "freigabe_s3": true,
           "alle_schichten_ok": false
         },
-        "key_levels": {"poc": 24269.1, "vah": 24322.99, "val": 23820.04, "vwap": 24318.62, "current": 24311.7, "onh": 24314.7, "pdh": 24071.34},
-        "notes": "P-Shape intraday (pos=0.893) bullisch, aber History 2x b-Shape + POC-Migration fallend. ER=-2.95 (chop). S2 = 0 (VWAP-/CDV+ neutralisieren sich). Kein Trade."
+        "key_levels": {"poc": 24269.1, "vah": 24322.99, "val": 23820.04, "vwap": 24275.22, "current": 24242.7, "onh": 24314.7, "pdh": 24071.34},
+        "notes": "P-Shape pos=0.893 aber Preis unter POC (-26 Pkt, war +42). S1 rutschte 0.20->0.00 (POC-Signal -1). CDV steigend +2672 (bullische Divergenz). S2=0 (VWAP-/CDV+ neutralisieren). Alignment=0.075, Score=1."
       },
       "DJ30": {
         "bias": "BEARISH",
         "bias_score": -4,
         "mp_shape": "b-Shape",
         "mp_shape_pos": 0.187,
-        "er_wert": -25.28,
+        "er_wert": -18.18,
         "schichten": {
           "s1_kontext": {
             "score": -0.80,
@@ -336,65 +336,67 @@
           },
           "s3_entry": {
             "score": 0.167,
-            "signale": {"ichimoku": -1, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 1}
+            "signale": {"ichimoku": 0, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 0}
           },
           "freigabe_s1": false,
           "freigabe_s2": false,
           "freigabe_s3": true,
           "alle_schichten_ok": false
         },
-        "key_levels": {"poc": 49796.08, "vah": 49980.68, "val": 49753.48, "vwap": 49540.0, "current": 49453.15, "onh": 49453.15, "pdh": 49362.42},
-        "notes": "b-Shape pos=0.187, Preis 300 Punkte unter VAL. ER=-25.28 (baerisch trendfolgend). Unter Ichimoku-Kumo. Starkster WAIT-Grund."
+        "key_levels": {"poc": 49796.08, "vah": 49980.68, "val": 49753.48, "vwap": 49446.05, "current": 49418.15, "onh": 49453.15, "pdh": 49362.42},
+        "notes": "b-Shape pos=0.188, Preis 335 Pkt unter VAL (-35 Pkt vs Morning). ER verbessert -25->-18. Ichimoku: unter Kumo -> in Kumo (Verbesserung). CDV +1537 (bullische Divergenz). Strukturell BEARISCH."
       },
       "SPX500": {
-        "bias": "LEICHT_BULLISH",
-        "bias_score": 3,
+        "bias": "NEUTRAL",
+        "bias_score": 0,
         "mp_shape": "Trend Day",
         "mp_shape_pos": 0.389,
-        "er_wert": -18.11,
+        "er_wert": -18.80,
         "schichten": {
           "s1_kontext": {
-            "score": 0.50,
-            "signale": {"mp_shape": 0, "preis_vs_va": 1, "preis_vs_poc": 1, "poc_migration": 2, "shape_sequenz": 1, "vp_hvn_lvn": 0}
+            "score": 0.20,
+            "signale": {"mp_shape": 0, "preis_vs_va": 0, "preis_vs_poc": -1, "poc_migration": 2, "shape_sequenz": 1, "vp_hvn_lvn": 0}
           },
           "s2_struktur": {
-            "score": 0.25,
-            "signale": {"vwap": -1, "cvd": 1, "er_trend": 1, "er_qualitaet": 0}
+            "score": -0.50,
+            "signale": {"vwap": -1, "cvd": -1, "er_trend": 0, "er_qualitaet": 0}
           },
           "s3_entry": {
             "score": 0.167,
-            "signale": {"ichimoku": -1, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 1}
+            "signale": {"ichimoku": 0, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 0}
           },
           "freigabe_s1": true,
-          "freigabe_s2": true,
+          "freigabe_s2": false,
           "freigabe_s3": true,
-          "alle_schichten_ok": true
+          "alle_schichten_ok": false
         },
-        "key_levels": {"poc": 7238.07, "vah": 7254.4, "val": 7227.67, "vwap": 7245.74, "current": 7241.15, "onh": 7244.9, "pdh": 7184.57},
-        "notes": "Trend Day pos=0.389. Preis knapp unter VWAP (4.6 Pkt). POC-Migration steigend (+2). ER=-18.11 aber Tag bullish (|ER|>10, +1). Alle Schichten gruen aber Score=3 < 4 Minimum."
+        "key_levels": {"poc": 7238.07, "vah": 7254.4, "val": 7227.67, "vwap": 7236.47, "current": 7232.9, "onh": 7244.9, "pdh": 7184.57},
+        "notes": "KRITISCHE VERSCHLECHTERUNG: CDV fiel 20967->16711 (-4256) = bearischer Nachmittagsflow. S2 dreht +0.25->-0.50. Preis unter POC (-5 Pkt). alle_schichten_ok war TRUE (Morning) jetzt FALSE (S2 blockiert). Score: 3->0."
       }
     },
     "inter_market": {
       "alle_bullish": false,
       "alle_bearish": false,
       "gemischt": true,
-      "note": "DJ30 BEARISH (Score=-4), GER40 LEICHT_BULLISH (Score=2), SP500 LEICHT_BULLISH (Score=3). Gemischt. Kein Inter-Market-Alignment."
+      "note": "DJ30 BEARISH (Score=-4), GER40 NEUTRAL (Score=1), SPX500 NEUTRAL (Score=0). Alle verschlechtert vs Morning. SPX500 CDV-Shift bearisch."
     },
-    "summary": "BALANCE/NEUTRAL. Kein Trade. DJ30 stark bearisch (b-Shape, Preis unter VAL). SP500 einziges Instrument mit Schichten-Freigabe aber Score=3/8 < Minimum 4. Alle ERs negativ. WAIT bis DJ30 zurueck ueber VAL (49753) oder SP500 Score >=4.",
+    "summary": "US-UPDATE 14:45: WAIT verschaerft. Score max 1/8 (war 3/8). 0/3 Instrumente Schichten-Freigabe (war 1/3). SPX500 CDV-Rückgang -4256 = kritisches Warnsignal. Alle ERs negativ. DJ30 +335 Pkt unter VAL. WAIT morgen mit ISM/JOLTS 16:00.",
     "warnungen": [
-      "DJ30 b-Shape + Preis unter VAL 49753 — stark bearisch",
-      "Alle ERs negativ (GER=-2.95, DJ30=-25.28, SP500=-18.11)",
-      "Nur 1/3 Instrumente Schichten-Freigabe (SP500)",
-      "Morgen 16:00: ISM Services PMI + JOLTS (High Impact USD)"
+      "SPX500 CDV GEFALLEN -4256 (20967->16711) — bearischer Nachmittagsflow",
+      "DJ30 b-Shape + Preis unter VAL 49753 (335 Pkt) — stark bearisch",
+      "Alle ERs negativ (GER=-7.84, DJ30=-18.18, SP500=-18.80)",
+      "0/3 Instrumente Schichten-Freigabe (Morning: 1/3)",
+      "Morgen 16:00: ISM Services PMI + JOLTS (High Impact USD)",
+      "Freitag 14:30: NFP + Unemployment Rate (sehr High Impact)"
     ]
   },
   "captain": {
     "_agent": "CAPTAIN",
-    "_last_run": "2026-05-04T10:30:00",
+    "_last_run": "2026-05-04T14:45:00",
     "_status": "ready",
     "session_bias": "WAIT",
     "aktive_strategie": "Keine",
-    "alignment_score": 3,
+    "alignment_score": 1,
     "trade_freigabe": false,
     "shape_konflikt": false,
     "zentralbank_stop": false,
@@ -403,32 +405,33 @@
       "chart_gewichtung": 0.50,
       "makro_gewichtung": 0.50,
       "gewichtungs_grund": "BALANCE -> 50/50 (Prio 4)",
-      "alignment_beitrag": 0.1875,
+      "alignment_beitrag": 0.0625,
       "makro_beitrag": 0.0417,
-      "konfidenz_final": 0.229
+      "konfidenz_final": 0.104
     },
     "schichten_freigabe": {
-      "GER40": "BLOCKIERT (S2=0.00 < 0.25, ER=-2.95 chop)",
+      "GER40": "BLOCKIERT (S1=0.00 < 0.20 — Preis unter POC, S2=0.00)",
       "DJ30": "BLOCKIERT (S1=-0.80 < 0.20, S2=-0.25 < 0.25)",
-      "SPX500": "OK (S1=0.50, S2=0.25, S3=0.17) — Score=3/8 unter Minimum"
+      "SPX500": "BLOCKIERT (S2=-0.50 < 0.25 — CDV bearischer Shift -4256)"
     },
     "mp_shapes": {
-      "GER40": "P-Shape pos=0.893 — NEUTRAL (History bearisch)",
-      "DJ30": "b-Shape pos=0.187 — BEARISCH (Preis unter VAL)",
-      "SPX500": "Trend Day pos=0.389 — NEUTRAL"
+      "GER40": "P-Shape pos=0.893 — NEUTRAL (Preis unter POC, CDV steigend +2672)",
+      "DJ30": "b-Shape pos=0.188 — BEARISCH (335 Pkt unter VAL, ER verbessert)",
+      "SPX500": "Trend Day pos=0.389 — NEUTRAL (CDV WARNING -4256)"
     },
-    "trade_plan": "WAIT. Score=3/8 < 4 Minimum. Nur 1/3 Instrumente Schichten-Freigabe. DJ30 b-Shape + Preis 300 Pkt unter VAL (49753) = starkster WAIT-Grund. Alle ERs negativ. Konfidenz=0.229 < 0.40.\n\nWAIT-Bedingungen fuer Freigabe morgen:\n1. DJ30 Preis zurueck ueber VAL 49753 ODER\n2. SP500 Score >=4 (ER muss auf >+10 drehen, VWAP-Bestaetigung)\n3. Mind. 2 Instrumente alle_schichten_ok",
+    "trade_plan": "WAIT — VERSCHAERFT (US-Update 14:45). Score=1/8 (war 3/8). 0/3 Instrumente Schichten-Freigabe (war 1/3). SPX500 CDV-Einbruch -4256 = starkste Warnung. Konfidenz=0.104 << 0.40.\n\nTrigger fuer Freigabe morgen:\n1. SPX500 CDV ueber Tagesbeginn (>20000) + S2 wieder OK\n2. DJ30 Preis ueber VAL 49753 (aktuell -335 Pkt)\n3. Mind. 2/3 Instrumente alle_schichten_ok\n4. ISM/JOLTS 16:00 morgen abwarten (High Impact)",
     "instrument_prioritaet": [],
     "entry_fenster": "Kein Trade heute",
     "max_risk_today": "0%",
     "max_trades_heute": 0,
     "trades_today": 0,
     "active_positions": [],
-    "notes": "WAIT. DJ30 kritisch (b-Shape+VAL-Breakdown). Morgen ISM+JOLTS 16:00 (High Impact). NFP Freitag 2026-05-08.",
+    "notes": "WAIT verschaerft. SPX500 CDV-Signal kritisch (-4256 Nachmittag). DJ30 strukturell baerisch. GER40 CDV steigt (bullische Divergenz) aber Schichten blockiert.",
     "warnungen": [
-      "DJ30 b-Shape + Preis < VAL 49753 (300 Pkt unter VA) — kein Long vertretbar",
-      "Alle ERs negativ — kein Trendfolgender aktiv",
-      "Konfidenz 0.229 < 0.40 — WAIT",
+      "SPX500 CDV GEFALLEN -4256 (20967->16711) — bearischer Nachmittagsflow",
+      "DJ30 b-Shape + Preis < VAL 49753 (335 Pkt unter VA)",
+      "0/3 Instrumente Schichten-Freigabe (Morning: 1/3 — Verschlechterung)",
+      "Konfidenz 0.104 < 0.40 — WAIT",
       "Morgen 2026-05-05 16:00: ISM Services PMI + JOLTS (High Impact USD)",
       "Freitag 2026-05-08: NFP + Unemployment Rate (sehr High Impact)"
     ]
@@ -453,14 +456,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-04T10:32:00",
-    "_status": "pending",
+    "_last_run": "2026-05-04T10:43:00",
+    "_status": "ready",
     "session": "Morning",
-    "gesamt_status": "pending",
-    "probleme_count": 0,
-    "kritisch_count": 0,
-    "report_datei": "",
-    "bereiche": {}
+    "gesamt_status": "KRITISCH",
+    "probleme_count": 4,
+    "kritisch_count": 1,
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260504_1043_Morning.txt",
+    "bereiche": {
+      "lokale_prozesse": "1 PROBLEM (TradingFloor-Morning Task disabled)",
+      "sheet_doc": "OK (0 Orders WAIT-Session, Doc erstellt)",
+      "github_web": "OK (Push erfolgreich, GH Pages aktuell)",
+      "datenqualitaet": "2 WARNUNGEN (Put/Call null, GER40 pos nahe 1.0)",
+      "entscheidung": "WAIT - Score:3/8 - DJ30 b-Shape+VAL-Breakdown",
+      "anomalien": "1 ANOMALIE (Pipeline-Log 246B klein)"
+    }
   },
   "calendar": [
     {"date": "2026-05-05", "time": "14:30", "currency": "EUR", "name": "ECB President Lagarde Speaks", "impact": "medium", "actual": "", "forecast": "", "previous": ""},
@@ -472,6 +482,17 @@
     {"date": "2026-05-08", "time": "14:30", "currency": "USD", "name": "Unemployment Rate", "impact": "high", "actual": "", "forecast": "4.3%", "previous": "4.3%"},
     {"date": "2026-05-08", "time": "14:30", "currency": "USD", "name": "Average Hourly Earnings m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.2%"}
   ],
-  "_last_run": "2026-05-04T10:32:00",
-  "_session": "morning_2026-05-04"
+  "_last_run": "2026-05-04T14:45:00",
+  "_session": "us_update_2026-05-04",
+  "us_update": {
+    "_agent": "US_UPDATE",
+    "_last_run": "2026-05-04T14:45:00",
+    "delta_vs_morning": {
+      "GER40": {"preis": -69, "cdv_delta": 2672, "er_delta": -4.89, "schichten_change": "S1: 0.20->0.00 (Preis unter POC)", "score_change": "3->1"},
+      "DJ30": {"preis": -35, "cdv_delta": 1537, "er_delta": 7.1, "schichten_change": "Ichimoku: unter Kumo -> in Kumo", "score_change": "-4->-4"},
+      "SPX500": {"preis": -8, "cdv_delta": -4256, "er_delta": -0.69, "schichten_change": "S2: +0.25->-0.50 (CDV bearisch)", "score_change": "3->0"}
+    },
+    "main_finding": "SPX500 CDV -4256 = kritisches bearisches Warnsignal. 0/3 Instrumente Schichten-Freigabe. Score-Verschlechterung an allen Fronten.",
+    "session_entscheidung": "WAIT (unveraendert, verschaerft)"
+  }
 }
