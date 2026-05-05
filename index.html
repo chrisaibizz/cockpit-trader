@@ -507,13 +507,13 @@ function load(){
 
 function render(s,jd,data){
   // Timestamp aus state oder journal-data
-  var ts=[s&&s.pipeline&&s.pipeline.last_run,s&&s.market&&s.market._last_run,jd&&jd.timestamp].filter(Boolean).sort().slice(-1)[0]||null;
+  var ts=[s&&s.pipeline&&s.pipeline.last_run,s&&s.market&&s.market._last_run,jd&&jd.timestamp].concat(s&&s.market&&s.market.instruments?Object.values(s.market.instruments).map(function(i){return i&&i.last_run||null;}):[]).filter(Boolean).sort().slice(-1)[0]||null;
   if(ts){_ts=new Date(ts);document.getElementById('ts').textContent='Pre-Flight Briefing — '+_ts.toLocaleDateString('de-DE')+' '+_ts.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr';document.title='Cockpit-Trader — '+_ts.toLocaleDateString('de-DE');document.getElementById('age-bar').style.display='block';updateAge();setInterval(updateAge,60000);}
 
   var html='';
 
   // Timestamps
-  var marketTs=[s&&s.pipeline&&s.pipeline.last_run,s&&s.market&&s.market._last_run].filter(Boolean).sort().slice(-1)[0]||null;
+  var marketTs=[s&&s.pipeline&&s.pipeline.last_run,s&&s.market&&s.market._last_run].concat(s&&s.market&&s.market.instruments?Object.values(s.market.instruments).map(function(i){return i&&i.last_run||null;}):[]).filter(Boolean).sort().slice(-1)[0]||null;
   var capTs=s&&s.captain&&s.captain._last_run||null;
 
   // WAIT Banner
