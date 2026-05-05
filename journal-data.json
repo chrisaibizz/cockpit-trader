@@ -1,103 +1,129 @@
 {
   "date": "2026-05-05",
-  "timestamp": "2026-05-05T08:22:51",
+  "timestamp": "2026-05-05T14:45:00",
+  "session": "us_update",
   "debrief": {
     "orders_checked": 0,
-    "fill_rate": "n/a",
-    "tp1_rate": "n/a",
-    "trend": "WAIT-Session (Score 1/8)",
+    "fill_rate": "N/A (0 Morning Orders)",
+    "tp1_rate": "N/A",
+    "trend": "Keine Orders Morning (WAIT Score 1/8)",
     "learnings": [
-      "ISM PMI + JOLTS gleichzeitig 16:00 — kein Trade an High-Impact Doppel-Event-Tagen",
-      "DJ30 Breakdown 689 Punkte unter VAL: b-Shape bestaetigt Schwaeche",
-      "GER40 P-Shape aber Preis weit unter POC — kein Entry-Signal ohne Rueckkehr in VA"
+      "Morning: Score 1/8, ISM+JOLTS Event-Risk verhinderte alle Orders",
+      "US-Update: Starke technische Erholung GER40 +1.44%, CDV massiv bullisch",
+      "Event-Regel <2h greift: ISM+JOLTS 16:00 = Konfidenz nur 0.25"
     ]
   },
   "instruments": [
     {
       "name": "GER40",
       "bias": "Bullisch",
-      "bias_pct": "65",
-      "daily_summary": "GER40 im Korrekturmodus. Preis 23943 deutlich unter POC 24269 (Session 0, P-Shape pos=0.893). SMA200 bei 24048 als naechster Widerstand. Kumo-Lage baeisch (SpanA 23966, SpanB 24107 — Preis unter Kumo).",
-      "h4_summary": "Swing-Struktur zeigt Korrektur. Volume Profile: VAL-Bereich 23820-23940 als Unterstuetzungszone. CVD positiv +10777 — Kaufinteresse vorhanden aber nicht dominant.",
-      "h1_summary": "VWAP 23903 — Preis 23943 knapp ueber VWAP. VWAP-Band sehr eng (23883-23922). SMC: keine aktiven Order Blocks im unmittelbaren Entry-Bereich.",
-      "h30m_summary": "MP Session 0 (2026-05-04): P-Shape, POC=24269.10, VAH=24322.99, VAL=23820.04. Preis 23943 im unteren VA-Bereich. ER=52.33 (Trend aktiv). Kein Trade ohne Rueckkehr ueber POC.",
+      "bias_pct": "72",
+      "daily_summary": "Starke Erholung, CDV massiv bullisch (+12357), Ichimoku voll ueber Kumo",
+      "h4_summary": "N/A (US-Update)",
+      "h1_summary": "N/A (US-Update)",
+      "h30m_summary": "Preis 24289 in VA, knapp unter POC 24319. VWAP Upper bei 24266 bereits durchbrochen.",
       "mp_shape_yesterday": "P-Shape (pos=0.893)",
-      "mp_shape_forecast": "Konsolidierung oder weitere Korrektur — ISM Event entscheidend",
-      "mp_5day_sequence": "2x P-Shape (steigend). POC-Migration: steigend +0.45%. Naked POC: 24506.32",
+      "mp_shape_forecast": "P-Shape forming (pos=0.773) -- bullische Kontrolle",
+      "mp_5day_sequence": "2x P-Shape (steigend)",
       "key_levels": [
-        {"level": "Naked POC", "price": "24506.32", "source": "Market Profile"},
-        {"level": "VAH", "price": "24322.99", "source": "Market Profile"},
-        {"level": "POC", "price": "24269.10", "source": "Market Profile"},
-        {"level": "SMA200", "price": "24048.73", "source": "SMA200"},
-        {"level": "VWAP", "price": "23903.04", "source": "VWAP"},
-        {"level": "VAL", "price": "23820.04", "source": "Market Profile"}
+        {"level": "POC heute", "price": "24319.17", "source": "Market Profile"},
+        {"level": "VAH heute", "price": "24389.70", "source": "Market Profile"},
+        {"level": "VAL heute", "price": "24079.36", "source": "Market Profile"},
+        {"level": "VWAP", "price": "24103.34", "source": "VWAP"},
+        {"level": "VWAP Upper", "price": "24266.43", "source": "VWAP"},
+        {"level": "SMA200", "price": "24050.17", "source": "SMA200"},
+        {"level": "Naked POC", "price": "24506.32", "source": "MP History"}
       ],
       "orders": [],
-      "invalidation": "WAIT. S3 geblockt (Ichimoku unter Kumo). Kein Trade heute."
+      "post_event_setup": {
+        "trigger": "ISM PMI > 53.7",
+        "type": "Limit Buy",
+        "entry": "24266-24319 (VWAP Upper bis POC)",
+        "sl": "24079 (VAL)",
+        "tp1": "24390 (VAH)",
+        "tp2": "24506 (Naked POC)",
+        "rr": "2.5-3.0"
+      },
+      "invalidation": "Preis unter VAL 24079 oder ISM < 53.0 (Risk-Off)"
     },
     {
       "name": "DJ30",
       "bias": "Baerisch",
-      "bias_pct": "35",
-      "daily_summary": "DJ30 klarer Breakdown. Preis 49064 ist 689 Punkte unter VAL 49753 (b-Shape Session 0, pos=0.187). Massive Schwaeche. Preis unter SMA200 49307. Ichimoku: Preis im Kumo (neutral/mixed).",
-      "h4_summary": "Mehrere Naked POCs nach unten: 49440, 49587 bereits nach oben verletzt. Naechstes Ziel Naked POC 48732. CVD +158516 (hohe Aktivitaet aber baerisch dominant).",
-      "h1_summary": "VWAP 49026 — Preis 49064 knapp ueber VWAP aber unter allen MP-Levels. VWAP-Band eng (49005-49048). AutoFibo 0.618 bei 49087 — Preis darunter (bearish).",
-      "h30m_summary": "MP Session 0: b-Shape, POC=49796.08, VAH=49980.68, VAL=49753.48. Price 689 Punkte unter VAL = extremer Breakdown. ER=47.69.",
+      "bias_pct": "30",
+      "daily_summary": "Weiter schwach, Preis 112 Pts unter VAL, ER eingebrochen (-21), in Kumo",
+      "h4_summary": "N/A (US-Update)",
+      "h1_summary": "N/A (US-Update)",
+      "h30m_summary": "Preis 49172 unter VAL 49284, Ichimoku in Kumo neutral, ER 27 sehr schwach",
       "mp_shape_yesterday": "b-Shape (pos=0.187)",
-      "mp_shape_forecast": "Weitere Schwaeche wahrscheinlich. Naked POC 48732 als Ziel nach ISM.",
-      "mp_5day_sequence": "2x b-Shape + 1x P-Shape. Sequenz baerisch dominant.",
+      "mp_shape_forecast": "b-Shape forming -- kein klarer POC, Preis unter VA",
+      "mp_5day_sequence": "2x b-Shape (fallend)",
       "key_levels": [
-        {"level": "VAH", "price": "49980.68", "source": "Market Profile"},
-        {"level": "POC", "price": "49796.08", "source": "Market Profile"},
-        {"level": "VAL", "price": "49753.48", "source": "Market Profile"},
-        {"level": "Naked POC", "price": "49587.97", "source": "MP History"},
-        {"level": "SMA200", "price": "49307.19", "source": "SMA200"},
-        {"level": "Naked POC", "price": "49440.37", "source": "MP History"},
-        {"level": "VWAP", "price": "49026.72", "source": "VWAP"},
-        {"level": "Naked POC", "price": "48732.57", "source": "MP History"}
+        {"level": "VAH heute", "price": "49557.69", "source": "Market Profile"},
+        {"level": "VAL heute", "price": "49284.15", "source": "Market Profile"},
+        {"level": "VWAP", "price": "49103.81", "source": "VWAP"},
+        {"level": "SMA200", "price": "49298.03", "source": "SMA200"},
+        {"level": "Naked POC 1", "price": "48732.57", "source": "MP History"},
+        {"level": "Naked POC 2", "price": "49440.37", "source": "MP History"}
       ],
       "orders": [],
-      "invalidation": "WAIT. S1 geblockt (b-Shape + Preis weit unter VAL). Kein Trade heute."
+      "invalidation": "Kein Trade -- alle Schichten geblockt"
     },
     {
       "name": "SPX500",
-      "bias": "Neutral",
-      "bias_pct": "50",
-      "daily_summary": "SPX500 an kritischer Grenze. Preis 7221 knapp unter VAL 7227 (Trend Day Session 0). SMA200 7200 als Support. Ichimoku: UEBER Kumo (SpanA/B ~7216 — hauchdünn). Positivster Kontext der 3 Instrumente.",
-      "h4_summary": "POC-Migration steigend +0.99% (staerkstes Signal). Naked POC 7175 als Downside-Ziel. CVD +11438 positiv.",
-      "h1_summary": "VWAP 7215 — Preis 7221 ueber VWAP (leicht bullisch). AutoFibo 0.382 bei 7215 als Support. S2 Struktur staerkste aller 3 Instrumente (S2=0.75).",
-      "h30m_summary": "MP Session 0: Trend Day pos=0.389, va_breite=0.37%. Preis 7221 knapp unter VAL 7227. ER=41.65. SMA200 7200 — Preis 21 Punkte darueber.",
-      "mp_shape_yesterday": "Trend Day (pos=0.389, va_breite=0.37%)",
-      "mp_shape_forecast": "Neutral bis leicht bullisch nach ISM. SMA200 als Kaufzone.",
-      "mp_5day_sequence": "Gemischt. POC-Migration steigend. Composite POC 7177.50.",
+      "bias": "Bullisch",
+      "bias_pct": "62",
+      "daily_summary": "Solide Erholung, CDV +3524, ER 59 stark, Ichimoku voll ueber Kumo",
+      "h4_summary": "N/A (US-Update)",
+      "h1_summary": "N/A (US-Update)",
+      "h30m_summary": "Preis 7243 ueber VWAP Upper 7237, nahe POC 7248. Alle Schichten OK.",
+      "mp_shape_yesterday": "Trend Day (pos=0.389)",
+      "mp_shape_forecast": "P-Shape forming (pos=0.833) -- bullische Initiative",
+      "mp_5day_sequence": "gemischt, heute P-Shape",
       "key_levels": [
-        {"level": "VAH", "price": "7254.40", "source": "Market Profile"},
-        {"level": "POC", "price": "7238.07", "source": "Market Profile"},
-        {"level": "VAL", "price": "7227.67", "source": "Market Profile"},
-        {"level": "VWAP", "price": "7215.06", "source": "VWAP"},
-        {"level": "SMA200", "price": "7200.06", "source": "SMA200"},
-        {"level": "Naked POC", "price": "7175.69", "source": "MP History"},
-        {"level": "Naked POC", "price": "7121.89", "source": "MP History"}
+        {"level": "POC heute", "price": "7247.79", "source": "Market Profile"},
+        {"level": "VAH heute", "price": "7254.05", "source": "Market Profile"},
+        {"level": "VAL heute", "price": "7216.48", "source": "Market Profile"},
+        {"level": "VWAP", "price": "7226.00", "source": "VWAP"},
+        {"level": "VWAP Upper", "price": "7236.93", "source": "VWAP"},
+        {"level": "SMA200", "price": "7204.92", "source": "SMA200"},
+        {"level": "Naked POC", "price": "7175.69", "source": "MP History"}
       ],
       "orders": [],
-      "invalidation": "WAIT. S1 geblockt (Preis unter VAL). Kein Trade heute trotz positiver S2/S3."
+      "post_event_setup": {
+        "trigger": "ISM PMI > 53.7",
+        "type": "Limit Buy",
+        "entry": "7237-7248 (VWAP Upper bis POC)",
+        "sl": "7216 (VAL)",
+        "tp1": "7254 (VAH)",
+        "tp2": "7278 (AutoFibo 0)",
+        "rr": "2.0"
+      },
+      "invalidation": "Preis unter VAL 7216 oder ISM < 53.0"
     }
   ],
   "summary": {
-    "best_instrument": "SPX500",
+    "best_instrument": "GER40",
     "total_orders": 0,
+    "entscheidung": "WAIT",
+    "konfidenz": 0.246,
+    "konfidenz_grund": "Event < 2h: ISM+JOLTS 16:00 -- Chart 30% / Makro 70%",
+    "freigabe_instrumente": 2,
     "warnings": [
-      "ECB Lagarde 14:30 (EUR, medium impact)",
-      "ISM PMI 16:00 (USD, HIGH impact)",
-      "JOLTS 16:00 (USD, HIGH impact)",
-      "WAIT — Score 1/8, unter Mindest-Freigabe (4/8)"
+      "ISM Services PMI 16:00 (Forecast 53.7) -- HIGH Impact",
+      "JOLTS Job Openings 16:00 (Forecast 6.86M) -- HIGH Impact",
+      "DJ30 unter VAL: kein Trade-Setup"
     ],
-    "notes": "Kein Trade heute. DJ30 Breakdown bestaetigt globale Schwaeche. GER40 P-Shape intakt aber Preis weit unter POC. SPX500 knappste Lage — SMA200 als letzte bullische Verteidigung. Nach ISM 16:00 neu bewerten."
+    "notes": "Technisch stark verbessert vs Morning. GER40 CDV massiv bullisch. Nach 16:00 ISM/JOLTS: wenn Daten > Forecast, GER40 + SPX500 Pullback-Setup pruefen."
   },
   "stats": {
     "total": 0,
-    "fill_rate": "0%",
-    "tp1_rate": "0%",
-    "trend": "WAIT-Session"
+    "fill_rate": "N/A",
+    "tp1_rate": "N/A",
+    "trend": "N/A -- kein Trade heute"
+  },
+  "delta_vs_morning": {
+    "GER40": {"preis": "+345 (+1.44%)", "cdv": "+12358 MASSIV", "er": "-4.2", "schichten": "false -> TRUE"},
+    "DJ30": {"preis": "+108 (+0.22%)", "cdv": "+2895 schwach", "er": "-20.7 stark gefallen", "schichten": "false -> FALSE"},
+    "SPX500": {"preis": "+21 (+0.30%)", "cdv": "+3523", "er": "+17.5 stark gestiegen", "schichten": "false -> TRUE"}
   }
 }
