@@ -112,7 +112,7 @@
         "mp_session": "Session 2026-05-04 laufend (ui_evaluate 30M)",
         "er": -7.84,
         "er_interpretation": "chop (|ER|<10, fallend)",
-        "cdv": 22732.60,
+        "cdv": 22732.6,
         "cdv_direction": "bullisch",
         "sma200_30m": 24086.19,
         "onh": 24314.7,
@@ -125,21 +125,124 @@
           "note": "Preis 24243 ueber SpanA=24215.20, SpanB=24084.10 - BULLISCH (klarer Abstand)"
         },
         "mp_history": [
-          {"session": 0, "date": "2026-05-02", "poc": 24005.25, "vah": 24071.34, "val": 23882.52, "shape": "Trend Day", "mp_shape_pos": 0.65, "va_breite_pct": 0.79, "naked_poc": false},
-          {"session": 1, "date": "2026-04-29", "poc": 23985.99, "vah": 24102.38, "val": 23965.46, "shape": "b-Shape", "mp_shape_pos": 0.15, "va_breite_pct": 0.57, "naked_poc": false},
-          {"session": 2, "date": "2026-04-25", "poc": 24144.32, "vah": 24253.85, "val": 24102.2, "shape": "b-Shape", "mp_shape_pos": 0.278, "va_breite_pct": 0.63, "naked_poc": true},
-          {"session": 3, "date": "2026-04-24", "poc": 24160.16, "vah": 24220.43, "val": 24065.45, "shape": "D-Shape", "mp_shape_pos": 0.611, "va_breite_pct": 0.64, "naked_poc": false},
-          {"session": 4, "date": "2026-04-23", "poc": 24089.99, "vah": 24184.44, "val": 23995.55, "shape": "D-Shape", "mp_shape_pos": 0.5, "va_breite_pct": 0.78, "naked_poc": false},
-          {"session": 5, "date": "2026-04-22", "poc": 24215.23, "vah": 24274.85, "val": 24168.85, "shape": "D-Shape", "mp_shape_pos": 0.438, "va_breite_pct": 0.44, "naked_poc": false},
-          {"session": 6, "date": "2026-04-17", "poc": 24506.32, "vah": 24608.2, "val": 24229.8, "shape": "P-Shape", "mp_shape_pos": 0.731, "va_breite_pct": 1.54, "naked_poc": true},
-          {"session": 7, "date": "2026-04-16", "poc": 24443.01, "vah": 24460.13, "val": 24357.39, "shape": "P-Shape", "mp_shape_pos": 0.833, "va_breite_pct": 0.42, "naked_poc": false},
-          {"session": 8, "date": "2026-04-15", "poc": 24154.51, "vah": 24663.79, "val": 24101.83, "shape": "b-Shape", "mp_shape_pos": 0.094, "va_breite_pct": 2.33, "naked_poc": false},
-          {"session": 9, "date": "2026-04-14", "poc": 24127.58, "vah": 24184.78, "val": 24080.78, "shape": "D-Shape", "mp_shape_pos": 0.45, "va_breite_pct": 0.43, "naked_poc": false}
+          {
+            "session": 0,
+            "date": "2026-05-02",
+            "poc": 24005.25,
+            "vah": 24071.34,
+            "val": 23882.52,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.65,
+            "va_breite_pct": 0.79,
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "date": "2026-04-29",
+            "poc": 23985.99,
+            "vah": 24102.38,
+            "val": 23965.46,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.15,
+            "va_breite_pct": 0.57,
+            "naked_poc": false
+          },
+          {
+            "session": 2,
+            "date": "2026-04-25",
+            "poc": 24144.32,
+            "vah": 24253.85,
+            "val": 24102.2,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.278,
+            "va_breite_pct": 0.63,
+            "naked_poc": true
+          },
+          {
+            "session": 3,
+            "date": "2026-04-24",
+            "poc": 24160.16,
+            "vah": 24220.43,
+            "val": 24065.45,
+            "shape": "D-Shape",
+            "mp_shape_pos": 0.611,
+            "va_breite_pct": 0.64,
+            "naked_poc": false
+          },
+          {
+            "session": 4,
+            "date": "2026-04-23",
+            "poc": 24089.99,
+            "vah": 24184.44,
+            "val": 23995.55,
+            "shape": "D-Shape",
+            "mp_shape_pos": 0.5,
+            "va_breite_pct": 0.78,
+            "naked_poc": false
+          },
+          {
+            "session": 5,
+            "date": "2026-04-22",
+            "poc": 24215.23,
+            "vah": 24274.85,
+            "val": 24168.85,
+            "shape": "D-Shape",
+            "mp_shape_pos": 0.438,
+            "va_breite_pct": 0.44,
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "date": "2026-04-17",
+            "poc": 24506.32,
+            "vah": 24608.2,
+            "val": 24229.8,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.731,
+            "va_breite_pct": 1.54,
+            "naked_poc": true
+          },
+          {
+            "session": 7,
+            "date": "2026-04-16",
+            "poc": 24443.01,
+            "vah": 24460.13,
+            "val": 24357.39,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.833,
+            "va_breite_pct": 0.42,
+            "naked_poc": false
+          },
+          {
+            "session": 8,
+            "date": "2026-04-15",
+            "poc": 24154.51,
+            "vah": 24663.79,
+            "val": 24101.83,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.094,
+            "va_breite_pct": 2.33,
+            "naked_poc": false
+          },
+          {
+            "session": 9,
+            "date": "2026-04-14",
+            "poc": 24127.58,
+            "vah": 24184.78,
+            "val": 24080.78,
+            "shape": "D-Shape",
+            "mp_shape_pos": 0.45,
+            "va_breite_pct": 0.43,
+            "naked_poc": false
+          }
         ],
         "mp_context": {
           "poc_migration": "fallend",
           "shape_sequenz": "1x Trend Day + 2x b-Shape (baerisch dominant in History)",
-          "naked_pocs": [24144.32, 24506.32],
+          "naked_pocs": [
+            24144.32,
+            24506.32
+          ],
           "composite_poc": 24138.35
         },
         "mp_source": "ui_evaluate 30M",
@@ -179,21 +282,123 @@
           "note": "Preis 49418 in Kumo (SpanA=49342.48, SpanB=49587.57) - GEMISCHT (Verbesserung vs Morning)"
         },
         "mp_history": [
-          {"session": 0, "date": "2026-05-02", "poc": 48732.57, "vah": 49362.42, "val": 48500.52, "shape": "b-Shape", "mp_shape_pos": 0.269, "va_breite_pct": 1.77, "naked_poc": false},
-          {"session": 1, "date": "2026-04-30", "poc": 49259.4, "vah": 49306.5, "val": 48866.91, "shape": "P-Shape", "mp_shape_pos": 0.893, "va_breite_pct": 0.89, "naked_poc": false},
-          {"session": 2, "date": "2026-04-29", "poc": 49280.88, "vah": 49351.75, "val": 49210.0, "shape": "Trend Day", "mp_shape_pos": 0.5, "va_breite_pct": 0.29, "naked_poc": false},
-          {"session": 3, "date": "2026-04-28", "poc": 49191.95, "vah": 49250.05, "val": 49150.45, "shape": "Trend Day", "mp_shape_pos": 0.417, "va_breite_pct": 0.2, "naked_poc": false},
-          {"session": 4, "date": "2026-04-24", "poc": 49203.07, "vah": 49318.44, "val": 49176.44, "shape": "b-Shape", "mp_shape_pos": 0.188, "va_breite_pct": 0.29, "naked_poc": false},
-          {"session": 5, "date": "2026-04-22", "poc": 49247.17, "vah": 49364.07, "val": 49130.27, "shape": "D-Shape", "mp_shape_pos": 0.5, "va_breite_pct": 0.47, "naked_poc": false},
-          {"session": 6, "date": "2026-04-21", "poc": 49440.37, "vah": 49527.67, "val": 49372.47, "shape": "D-Shape", "mp_shape_pos": 0.438, "va_breite_pct": 0.31, "naked_poc": false},
-          {"session": 7, "date": "2026-04-17", "poc": 49587.97, "vah": 49608.27, "val": 49202.27, "shape": "P-Shape", "mp_shape_pos": 0.95, "va_breite_pct": 0.82, "naked_poc": true},
-          {"session": 8, "date": "2026-04-16", "poc": 49465.67, "vah": 49546.23, "val": 49127.34, "shape": "P-Shape", "mp_shape_pos": 0.808, "va_breite_pct": 0.85, "naked_poc": false},
-          {"session": 9, "date": "2026-04-15", "poc": 48674.38, "vah": 49537.69, "val": 48646.53, "shape": "b-Shape", "mp_shape_pos": 0.031, "va_breite_pct": 1.83, "naked_poc": false}
+          {
+            "session": 0,
+            "date": "2026-05-02",
+            "poc": 48732.57,
+            "vah": 49362.42,
+            "val": 48500.52,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.269,
+            "va_breite_pct": 1.77,
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "date": "2026-04-30",
+            "poc": 49259.4,
+            "vah": 49306.5,
+            "val": 48866.91,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.893,
+            "va_breite_pct": 0.89,
+            "naked_poc": false
+          },
+          {
+            "session": 2,
+            "date": "2026-04-29",
+            "poc": 49280.88,
+            "vah": 49351.75,
+            "val": 49210.0,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.5,
+            "va_breite_pct": 0.29,
+            "naked_poc": false
+          },
+          {
+            "session": 3,
+            "date": "2026-04-28",
+            "poc": 49191.95,
+            "vah": 49250.05,
+            "val": 49150.45,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.417,
+            "va_breite_pct": 0.2,
+            "naked_poc": false
+          },
+          {
+            "session": 4,
+            "date": "2026-04-24",
+            "poc": 49203.07,
+            "vah": 49318.44,
+            "val": 49176.44,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.188,
+            "va_breite_pct": 0.29,
+            "naked_poc": false
+          },
+          {
+            "session": 5,
+            "date": "2026-04-22",
+            "poc": 49247.17,
+            "vah": 49364.07,
+            "val": 49130.27,
+            "shape": "D-Shape",
+            "mp_shape_pos": 0.5,
+            "va_breite_pct": 0.47,
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "date": "2026-04-21",
+            "poc": 49440.37,
+            "vah": 49527.67,
+            "val": 49372.47,
+            "shape": "D-Shape",
+            "mp_shape_pos": 0.438,
+            "va_breite_pct": 0.31,
+            "naked_poc": false
+          },
+          {
+            "session": 7,
+            "date": "2026-04-17",
+            "poc": 49587.97,
+            "vah": 49608.27,
+            "val": 49202.27,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.95,
+            "va_breite_pct": 0.82,
+            "naked_poc": true
+          },
+          {
+            "session": 8,
+            "date": "2026-04-16",
+            "poc": 49465.67,
+            "vah": 49546.23,
+            "val": 49127.34,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.808,
+            "va_breite_pct": 0.85,
+            "naked_poc": false
+          },
+          {
+            "session": 9,
+            "date": "2026-04-15",
+            "poc": 48674.38,
+            "vah": 49537.69,
+            "val": 48646.53,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.031,
+            "va_breite_pct": 1.83,
+            "naked_poc": false
+          }
         ],
         "mp_context": {
           "poc_migration": "fallend",
           "shape_sequenz": "1x b-Shape + 1x P-Shape (gemischt, baerisch aktuell)",
-          "naked_pocs": [49587.97],
+          "naked_pocs": [
+            49587.97
+          ],
           "composite_poc": 49320.0
         },
         "mp_source": "ui_evaluate 30M",
@@ -218,9 +423,9 @@
         "mp_shape_bias": "NEUTRAL",
         "mp_shape_grund": "pos=0.389 (kein P/b), va_breite=0.37% < 0.8% -> Trend Day | CDV GEFALLEN -4256 (20967->16711) - WARNING",
         "mp_session": "Session 2026-05-04 laufend (ui_evaluate 30M)",
-        "er": -18.80,
+        "er": -18.8,
         "er_interpretation": "baerisch_moderat (|ER|=18.80)",
-        "cdv": 16711.40,
+        "cdv": 16711.4,
         "cdv_direction": "bearisch",
         "sma200_30m": 7190.14,
         "onh": 7244.9,
@@ -233,21 +438,124 @@
           "note": "Preis 7233 in Kumo (SpanA=7222.25, SpanB=7235.78) - GEMISCHT (knapp unter SpanB)"
         },
         "mp_history": [
-          {"session": 0, "date": "2026-05-02", "poc": 7175.69, "vah": 7184.57, "val": 7131.32, "shape": "P-Shape", "mp_shape_pos": 0.833, "va_breite_pct": 0.74, "naked_poc": false},
-          {"session": 1, "date": "2026-04-30", "poc": 7156.58, "vah": 7167.06, "val": 7140.13, "shape": "Trend Day", "mp_shape_pos": 0.611, "va_breite_pct": 0.38, "naked_poc": false},
-          {"session": 2, "date": "2026-04-29", "poc": 7150.39, "vah": 7179.0, "val": 7125.6, "shape": "Trend Day", "mp_shape_pos": 0.464, "va_breite_pct": 0.75, "naked_poc": false},
-          {"session": 3, "date": "2026-04-28", "poc": 7167.2, "vah": 7182.27, "val": 7162.17, "shape": "b-Shape", "mp_shape_pos": 0.25, "va_breite_pct": 0.28, "naked_poc": false},
-          {"session": 4, "date": "2026-04-24", "poc": 7121.89, "vah": 7152.5, "val": 7110.61, "shape": "b-Shape", "mp_shape_pos": 0.269, "va_breite_pct": 0.59, "naked_poc": false},
-          {"session": 5, "date": "2026-04-22", "poc": 7111.72, "vah": 7129.46, "val": 7099.05, "shape": "D-Shape", "mp_shape_pos": 0.417, "va_breite_pct": 0.43, "naked_poc": false},
-          {"session": 6, "date": "2026-04-21", "poc": 7112.06, "vah": 7133.24, "val": 7108.33, "shape": "b-Shape", "mp_shape_pos": 0.15, "va_breite_pct": 0.35, "naked_poc": false},
-          {"session": 7, "date": "2026-04-17", "poc": 7133.4, "vah": 7155.3, "val": 7101.76, "shape": "D-Shape", "mp_shape_pos": 0.591, "va_breite_pct": 0.75, "naked_poc": false},
-          {"session": 8, "date": "2026-04-16", "poc": 7092.76, "vah": 7117.18, "val": 7087.13, "shape": "b-Shape", "mp_shape_pos": 0.187, "va_breite_pct": 0.42, "naked_poc": true},
-          {"session": 9, "date": "2026-04-15", "poc": 7054.03, "vah": 7122.49, "val": 7045.82, "shape": "b-Shape", "mp_shape_pos": 0.107, "va_breite_pct": 1.09, "naked_poc": true}
+          {
+            "session": 0,
+            "date": "2026-05-02",
+            "poc": 7175.69,
+            "vah": 7184.57,
+            "val": 7131.32,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.833,
+            "va_breite_pct": 0.74,
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "date": "2026-04-30",
+            "poc": 7156.58,
+            "vah": 7167.06,
+            "val": 7140.13,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.611,
+            "va_breite_pct": 0.38,
+            "naked_poc": false
+          },
+          {
+            "session": 2,
+            "date": "2026-04-29",
+            "poc": 7150.39,
+            "vah": 7179.0,
+            "val": 7125.6,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.464,
+            "va_breite_pct": 0.75,
+            "naked_poc": false
+          },
+          {
+            "session": 3,
+            "date": "2026-04-28",
+            "poc": 7167.2,
+            "vah": 7182.27,
+            "val": 7162.17,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.25,
+            "va_breite_pct": 0.28,
+            "naked_poc": false
+          },
+          {
+            "session": 4,
+            "date": "2026-04-24",
+            "poc": 7121.89,
+            "vah": 7152.5,
+            "val": 7110.61,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.269,
+            "va_breite_pct": 0.59,
+            "naked_poc": false
+          },
+          {
+            "session": 5,
+            "date": "2026-04-22",
+            "poc": 7111.72,
+            "vah": 7129.46,
+            "val": 7099.05,
+            "shape": "D-Shape",
+            "mp_shape_pos": 0.417,
+            "va_breite_pct": 0.43,
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "date": "2026-04-21",
+            "poc": 7112.06,
+            "vah": 7133.24,
+            "val": 7108.33,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.15,
+            "va_breite_pct": 0.35,
+            "naked_poc": false
+          },
+          {
+            "session": 7,
+            "date": "2026-04-17",
+            "poc": 7133.4,
+            "vah": 7155.3,
+            "val": 7101.76,
+            "shape": "D-Shape",
+            "mp_shape_pos": 0.591,
+            "va_breite_pct": 0.75,
+            "naked_poc": false
+          },
+          {
+            "session": 8,
+            "date": "2026-04-16",
+            "poc": 7092.76,
+            "vah": 7117.18,
+            "val": 7087.13,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.187,
+            "va_breite_pct": 0.42,
+            "naked_poc": true
+          },
+          {
+            "session": 9,
+            "date": "2026-04-15",
+            "poc": 7054.03,
+            "vah": 7122.49,
+            "val": 7045.82,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.107,
+            "va_breite_pct": 1.09,
+            "naked_poc": true
+          }
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "1x P-Shape + 2x Trend Day (Erholung, direktional)",
-          "naked_pocs": [7092.76, 7054.03],
+          "naked_pocs": [
+            7092.76,
+            7054.03
+          ],
           "composite_poc": 7143.0
         },
         "mp_source": "ui_evaluate 30M",
@@ -255,14 +563,150 @@
       }
     },
     "calendar": [
-      {"date": "2026-05-05", "time": "14:30", "currency": "EUR", "name": "ECB President Lagarde Speaks", "impact": "medium", "actual": "", "forecast": "", "previous": ""},
-      {"date": "2026-05-05", "time": "16:00", "currency": "USD", "name": "ISM Services PMI", "impact": "high", "actual": "", "forecast": "53.8", "previous": "54.0"},
-      {"date": "2026-05-05", "time": "16:00", "currency": "USD", "name": "JOLTS Job Openings", "impact": "high", "actual": "", "forecast": "6.87M", "previous": "6.88M"},
-      {"date": "2026-05-06", "time": "14:15", "currency": "USD", "name": "ADP Non-Farm Employment Change", "impact": "medium", "actual": "", "forecast": "90K", "previous": "62K"},
-      {"date": "2026-05-07", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "203K", "previous": "189K"},
-      {"date": "2026-05-08", "time": "14:30", "currency": "USD", "name": "Non-Farm Employment Change", "impact": "high", "actual": "", "forecast": "60K", "previous": "178K"},
-      {"date": "2026-05-08", "time": "14:30", "currency": "USD", "name": "Unemployment Rate", "impact": "high", "actual": "", "forecast": "4.3%", "previous": "4.3%"},
-      {"date": "2026-05-08", "time": "14:30", "currency": "USD", "name": "Average Hourly Earnings m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.2%"}
+      {
+        "date": "2026-05-05",
+        "time": "14:30",
+        "currency": "EUR",
+        "name": "ECB President Lagarde Speaks",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "",
+        "previous": "",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-05",
+        "time": "16:00",
+        "currency": "USD",
+        "name": "ISM Services PMI",
+        "impact": "high",
+        "actual": "",
+        "forecast": "53.7",
+        "previous": "54.0",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-05",
+        "time": "16:00",
+        "currency": "USD",
+        "name": "JOLTS Job Openings",
+        "impact": "high",
+        "actual": "",
+        "forecast": "6.86M",
+        "previous": "6.88M",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-05",
+        "time": "16:00",
+        "currency": "USD",
+        "name": "New Home Sales",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "652K",
+        "previous": "",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-06",
+        "time": "14:15",
+        "currency": "USD",
+        "name": "ADP Non-Farm Employment Change",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "116K",
+        "previous": "62K",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-07",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Unemployment Claims",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "205K",
+        "previous": "189K",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-08",
+        "time": "09:00",
+        "currency": "EUR",
+        "name": "ECB President Lagarde Speaks",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "",
+        "previous": "",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-08",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Average Hourly Earnings m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.3%",
+        "previous": "0.2%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-08",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Non-Farm Employment Change",
+        "impact": "high",
+        "actual": "",
+        "forecast": "64K",
+        "previous": "178K",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-08",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Unemployment Rate",
+        "impact": "high",
+        "actual": "",
+        "forecast": "4.3%",
+        "previous": "4.3%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-08",
+        "time": "16:00",
+        "currency": "USD",
+        "name": "Prelim UoM Consumer Sentiment",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "49.5",
+        "previous": "47.6",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-08",
+        "time": "16:00",
+        "currency": "USD",
+        "name": "Prelim UoM Inflation Expectations",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "",
+        "previous": "4.8%",
+        "better": null,
+        "source": "forexfactory"
+      }
     ]
   },
   "analysis": {
@@ -272,24 +716,27 @@
     "marktphase": {
       "phase": "BALANCE",
       "begruendung": [
-        "SPX500 Trend Day CDV GEFALLEN -4256 (20967->16711) — bearischer Nachmittagsflow, S2 kollabiert.",
-        "DJ30 b-Shape (pos=0.188) mit Preis 335 Punkte unter VAL — weiterhin baerisch, marginal verbessert (ER, Ichimoku).",
+        "SPX500 Trend Day CDV GEFALLEN -4256 (20967->16711) \u2014 bearischer Nachmittagsflow, S2 kollabiert.",
+        "DJ30 b-Shape (pos=0.188) mit Preis 335 Punkte unter VAL \u2014 weiterhin baerisch, marginal verbessert (ER, Ichimoku).",
         "GER40 P-Shape (pos=0.893) CDV steigend (+2672) aber Preis unter POC und S1/S2 blockiert.",
         "Alle ERs negativ: GER=-7.84 (chop), DJ30=-18.18 (baerisch), SP500=-18.80 (baerisch).",
-        "Makro NEUTRAL (+1): unverändert. ISM/JOLTS morgen 16:00."
+        "Makro NEUTRAL (+1): unver\u00e4ndert. ISM/JOLTS morgen 16:00."
       ],
-      "aktive_strategie": "WAIT — 0/3 Instrumente Schichten-Freigabe",
+      "aktive_strategie": "WAIT \u2014 0/3 Instrumente Schichten-Freigabe",
       "er_bestaetigung": "nein (alle ERs negativ)"
     },
     "regime": "NEUTRAL",
     "risk_level": "HIGH",
     "top_down": {
-      "m30_entry_zone": {"preis_von": null, "preis_bis": null},
+      "m30_entry_zone": {
+        "preis_von": null,
+        "preis_bis": null
+      },
       "alignment_score": 1,
       "trade_freigabe": false
     },
     "trade_freigabe": false,
-    "trade_freigabe_grund": "Score 1/8 < 4 | 0/3 Instrumente alle_schichten_ok (war 1/3) | SPX500 CDV-Rückgang -4256 dreht S2 auf -0.50 | DJ30 S1=-0.80 blockiert",
+    "trade_freigabe_grund": "Score 1/8 < 4 | 0/3 Instrumente alle_schichten_ok (war 1/3) | SPX500 CDV-R\u00fcckgang -4256 dreht S2 auf -0.50 | DJ30 S1=-0.80 blockiert",
     "alignment_score": 1,
     "instruments": {
       "GER40": {
@@ -300,23 +747,50 @@
         "er_wert": -7.84,
         "schichten": {
           "s1_kontext": {
-            "score": 0.00,
-            "signale": {"mp_shape": 3, "preis_vs_va": 1, "preis_vs_poc": -1, "poc_migration": -2, "shape_sequenz": -1, "vp_hvn_lvn": 0}
+            "score": 0.0,
+            "signale": {
+              "mp_shape": 3,
+              "preis_vs_va": 1,
+              "preis_vs_poc": -1,
+              "poc_migration": -2,
+              "shape_sequenz": -1,
+              "vp_hvn_lvn": 0
+            }
           },
           "s2_struktur": {
-            "score": 0.00,
-            "signale": {"vwap": -1, "cvd": 1, "er_trend": 0, "er_qualitaet": 0}
+            "score": 0.0,
+            "signale": {
+              "vwap": -1,
+              "cvd": 1,
+              "er_trend": 0,
+              "er_qualitaet": 0
+            }
           },
           "s3_entry": {
-            "score": 0.50,
-            "signale": {"ichimoku": 1, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 1}
+            "score": 0.5,
+            "signale": {
+              "ichimoku": 1,
+              "sma200": 1,
+              "smc": 0,
+              "sr_channel": 0,
+              "pivot": 0,
+              "autofibo": 1
+            }
           },
           "freigabe_s1": false,
           "freigabe_s2": false,
           "freigabe_s3": true,
           "alle_schichten_ok": false
         },
-        "key_levels": {"poc": 24269.1, "vah": 24322.99, "val": 23820.04, "vwap": 24275.22, "current": 24242.7, "onh": 24314.7, "pdh": 24071.34},
+        "key_levels": {
+          "poc": 24269.1,
+          "vah": 24322.99,
+          "val": 23820.04,
+          "vwap": 24275.22,
+          "current": 24242.7,
+          "onh": 24314.7,
+          "pdh": 24071.34
+        },
         "notes": "P-Shape pos=0.893 aber Preis unter POC (-26 Pkt, war +42). S1 rutschte 0.20->0.00 (POC-Signal -1). CDV steigend +2672 (bullische Divergenz). S2=0 (VWAP-/CDV+ neutralisieren). Alignment=0.075, Score=1."
       },
       "DJ30": {
@@ -327,23 +801,50 @@
         "er_wert": -18.18,
         "schichten": {
           "s1_kontext": {
-            "score": -0.80,
-            "signale": {"mp_shape": -3, "preis_vs_va": -2, "preis_vs_poc": -1, "poc_migration": -2, "shape_sequenz": 0, "vp_hvn_lvn": 0}
+            "score": -0.8,
+            "signale": {
+              "mp_shape": -3,
+              "preis_vs_va": -2,
+              "preis_vs_poc": -1,
+              "poc_migration": -2,
+              "shape_sequenz": 0,
+              "vp_hvn_lvn": 0
+            }
           },
           "s2_struktur": {
             "score": -0.25,
-            "signale": {"vwap": -1, "cvd": 1, "er_trend": -1, "er_qualitaet": 0}
+            "signale": {
+              "vwap": -1,
+              "cvd": 1,
+              "er_trend": -1,
+              "er_qualitaet": 0
+            }
           },
           "s3_entry": {
             "score": 0.167,
-            "signale": {"ichimoku": 0, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 0}
+            "signale": {
+              "ichimoku": 0,
+              "sma200": 1,
+              "smc": 0,
+              "sr_channel": 0,
+              "pivot": 0,
+              "autofibo": 0
+            }
           },
           "freigabe_s1": false,
           "freigabe_s2": false,
           "freigabe_s3": true,
           "alle_schichten_ok": false
         },
-        "key_levels": {"poc": 49796.08, "vah": 49980.68, "val": 49753.48, "vwap": 49446.05, "current": 49418.15, "onh": 49453.15, "pdh": 49362.42},
+        "key_levels": {
+          "poc": 49796.08,
+          "vah": 49980.68,
+          "val": 49753.48,
+          "vwap": 49446.05,
+          "current": 49418.15,
+          "onh": 49453.15,
+          "pdh": 49362.42
+        },
         "notes": "b-Shape pos=0.188, Preis 335 Pkt unter VAL (-35 Pkt vs Morning). ER verbessert -25->-18. Ichimoku: unter Kumo -> in Kumo (Verbesserung). CDV +1537 (bullische Divergenz). Strukturell BEARISCH."
       },
       "SPX500": {
@@ -351,26 +852,53 @@
         "bias_score": 0,
         "mp_shape": "Trend Day",
         "mp_shape_pos": 0.389,
-        "er_wert": -18.80,
+        "er_wert": -18.8,
         "schichten": {
           "s1_kontext": {
-            "score": 0.20,
-            "signale": {"mp_shape": 0, "preis_vs_va": 0, "preis_vs_poc": -1, "poc_migration": 2, "shape_sequenz": 1, "vp_hvn_lvn": 0}
+            "score": 0.2,
+            "signale": {
+              "mp_shape": 0,
+              "preis_vs_va": 0,
+              "preis_vs_poc": -1,
+              "poc_migration": 2,
+              "shape_sequenz": 1,
+              "vp_hvn_lvn": 0
+            }
           },
           "s2_struktur": {
-            "score": -0.50,
-            "signale": {"vwap": -1, "cvd": -1, "er_trend": 0, "er_qualitaet": 0}
+            "score": -0.5,
+            "signale": {
+              "vwap": -1,
+              "cvd": -1,
+              "er_trend": 0,
+              "er_qualitaet": 0
+            }
           },
           "s3_entry": {
             "score": 0.167,
-            "signale": {"ichimoku": 0, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 0}
+            "signale": {
+              "ichimoku": 0,
+              "sma200": 1,
+              "smc": 0,
+              "sr_channel": 0,
+              "pivot": 0,
+              "autofibo": 0
+            }
           },
           "freigabe_s1": true,
           "freigabe_s2": false,
           "freigabe_s3": true,
           "alle_schichten_ok": false
         },
-        "key_levels": {"poc": 7238.07, "vah": 7254.4, "val": 7227.67, "vwap": 7236.47, "current": 7232.9, "onh": 7244.9, "pdh": 7184.57},
+        "key_levels": {
+          "poc": 7238.07,
+          "vah": 7254.4,
+          "val": 7227.67,
+          "vwap": 7236.47,
+          "current": 7232.9,
+          "onh": 7244.9,
+          "pdh": 7184.57
+        },
         "notes": "KRITISCHE VERSCHLECHTERUNG: CDV fiel 20967->16711 (-4256) = bearischer Nachmittagsflow. S2 dreht +0.25->-0.50. Preis unter POC (-5 Pkt). alle_schichten_ok war TRUE (Morning) jetzt FALSE (S2 blockiert). Score: 3->0."
       }
     },
@@ -380,10 +908,10 @@
       "gemischt": true,
       "note": "DJ30 BEARISH (Score=-4), GER40 NEUTRAL (Score=1), SPX500 NEUTRAL (Score=0). Alle verschlechtert vs Morning. SPX500 CDV-Shift bearisch."
     },
-    "summary": "US-UPDATE 14:45: WAIT verschaerft. Score max 1/8 (war 3/8). 0/3 Instrumente Schichten-Freigabe (war 1/3). SPX500 CDV-Rückgang -4256 = kritisches Warnsignal. Alle ERs negativ. DJ30 +335 Pkt unter VAL. WAIT morgen mit ISM/JOLTS 16:00.",
+    "summary": "US-UPDATE 14:45: WAIT verschaerft. Score max 1/8 (war 3/8). 0/3 Instrumente Schichten-Freigabe (war 1/3). SPX500 CDV-R\u00fcckgang -4256 = kritisches Warnsignal. Alle ERs negativ. DJ30 +335 Pkt unter VAL. WAIT morgen mit ISM/JOLTS 16:00.",
     "warnungen": [
-      "SPX500 CDV GEFALLEN -4256 (20967->16711) — bearischer Nachmittagsflow",
-      "DJ30 b-Shape + Preis unter VAL 49753 (335 Pkt) — stark bearisch",
+      "SPX500 CDV GEFALLEN -4256 (20967->16711) \u2014 bearischer Nachmittagsflow",
+      "DJ30 b-Shape + Preis unter VAL 49753 (335 Pkt) \u2014 stark bearisch",
       "Alle ERs negativ (GER=-7.84, DJ30=-18.18, SP500=-18.80)",
       "0/3 Instrumente Schichten-Freigabe (Morning: 1/3)",
       "Morgen 16:00: ISM Services PMI + JOLTS (High Impact USD)",
@@ -402,24 +930,24 @@
     "zentralbank_stop": false,
     "zentralbank_stop_grund": "",
     "konfidenz_details": {
-      "chart_gewichtung": 0.50,
-      "makro_gewichtung": 0.50,
+      "chart_gewichtung": 0.5,
+      "makro_gewichtung": 0.5,
       "gewichtungs_grund": "BALANCE -> 50/50 (Prio 4)",
       "alignment_beitrag": 0.0625,
       "makro_beitrag": 0.0417,
       "konfidenz_final": 0.104
     },
     "schichten_freigabe": {
-      "GER40": "BLOCKIERT (S1=0.00 < 0.20 — Preis unter POC, S2=0.00)",
+      "GER40": "BLOCKIERT (S1=0.00 < 0.20 \u2014 Preis unter POC, S2=0.00)",
       "DJ30": "BLOCKIERT (S1=-0.80 < 0.20, S2=-0.25 < 0.25)",
-      "SPX500": "BLOCKIERT (S2=-0.50 < 0.25 — CDV bearischer Shift -4256)"
+      "SPX500": "BLOCKIERT (S2=-0.50 < 0.25 \u2014 CDV bearischer Shift -4256)"
     },
     "mp_shapes": {
-      "GER40": "P-Shape pos=0.893 — NEUTRAL (Preis unter POC, CDV steigend +2672)",
-      "DJ30": "b-Shape pos=0.188 — BEARISCH (335 Pkt unter VAL, ER verbessert)",
-      "SPX500": "Trend Day pos=0.389 — NEUTRAL (CDV WARNING -4256)"
+      "GER40": "P-Shape pos=0.893 \u2014 NEUTRAL (Preis unter POC, CDV steigend +2672)",
+      "DJ30": "b-Shape pos=0.188 \u2014 BEARISCH (335 Pkt unter VAL, ER verbessert)",
+      "SPX500": "Trend Day pos=0.389 \u2014 NEUTRAL (CDV WARNING -4256)"
     },
-    "trade_plan": "WAIT — VERSCHAERFT (US-Update 14:45). Score=1/8 (war 3/8). 0/3 Instrumente Schichten-Freigabe (war 1/3). SPX500 CDV-Einbruch -4256 = starkste Warnung. Konfidenz=0.104 << 0.40.\n\nTrigger fuer Freigabe morgen:\n1. SPX500 CDV ueber Tagesbeginn (>20000) + S2 wieder OK\n2. DJ30 Preis ueber VAL 49753 (aktuell -335 Pkt)\n3. Mind. 2/3 Instrumente alle_schichten_ok\n4. ISM/JOLTS 16:00 morgen abwarten (High Impact)",
+    "trade_plan": "WAIT \u2014 VERSCHAERFT (US-Update 14:45). Score=1/8 (war 3/8). 0/3 Instrumente Schichten-Freigabe (war 1/3). SPX500 CDV-Einbruch -4256 = starkste Warnung. Konfidenz=0.104 << 0.40.\n\nTrigger fuer Freigabe morgen:\n1. SPX500 CDV ueber Tagesbeginn (>20000) + S2 wieder OK\n2. DJ30 Preis ueber VAL 49753 (aktuell -335 Pkt)\n3. Mind. 2/3 Instrumente alle_schichten_ok\n4. ISM/JOLTS 16:00 morgen abwarten (High Impact)",
     "instrument_prioritaet": [],
     "entry_fenster": "Kein Trade heute",
     "max_risk_today": "0%",
@@ -428,10 +956,10 @@
     "active_positions": [],
     "notes": "WAIT verschaerft. SPX500 CDV-Signal kritisch (-4256 Nachmittag). DJ30 strukturell baerisch. GER40 CDV steigt (bullische Divergenz) aber Schichten blockiert.",
     "warnungen": [
-      "SPX500 CDV GEFALLEN -4256 (20967->16711) — bearischer Nachmittagsflow",
+      "SPX500 CDV GEFALLEN -4256 (20967->16711) \u2014 bearischer Nachmittagsflow",
       "DJ30 b-Shape + Preis < VAL 49753 (335 Pkt unter VA)",
-      "0/3 Instrumente Schichten-Freigabe (Morning: 1/3 — Verschlechterung)",
-      "Konfidenz 0.104 < 0.40 — WAIT",
+      "0/3 Instrumente Schichten-Freigabe (Morning: 1/3 \u2014 Verschlechterung)",
+      "Konfidenz 0.104 < 0.40 \u2014 WAIT",
       "Morgen 2026-05-05 16:00: ISM Services PMI + JOLTS (High Impact USD)",
       "Freitag 2026-05-08: NFP + Unemployment Rate (sehr High Impact)"
     ]
@@ -447,8 +975,8 @@
       "trade_freigabe": false,
       "shape_konflikt": false,
       "warnings": [
-        "WAIT — Score 3/8 < 4 Minimum",
-        "DJ30 b-Shape + Preis unter VAL — kein Long",
+        "WAIT \u2014 Score 3/8 < 4 Minimum",
+        "DJ30 b-Shape + Preis unter VAL \u2014 kein Long",
         "Morgen ISM+JOLTS 16:00 CET (High Impact)"
       ],
       "notes": "Kein Trade heute. WAIT aufgrund Score<4 und Schichten-Freigabe 1/3. Naechste Pruefung: US-Update 14:00."
@@ -473,14 +1001,150 @@
     }
   },
   "calendar": [
-    {"date": "2026-05-05", "time": "14:30", "currency": "EUR", "name": "ECB President Lagarde Speaks", "impact": "medium", "actual": "", "forecast": "", "previous": ""},
-    {"date": "2026-05-05", "time": "16:00", "currency": "USD", "name": "ISM Services PMI", "impact": "high", "actual": "", "forecast": "53.8", "previous": "54.0"},
-    {"date": "2026-05-05", "time": "16:00", "currency": "USD", "name": "JOLTS Job Openings", "impact": "high", "actual": "", "forecast": "6.87M", "previous": "6.88M"},
-    {"date": "2026-05-06", "time": "14:15", "currency": "USD", "name": "ADP Non-Farm Employment Change", "impact": "medium", "actual": "", "forecast": "90K", "previous": "62K"},
-    {"date": "2026-05-07", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "203K", "previous": "189K"},
-    {"date": "2026-05-08", "time": "14:30", "currency": "USD", "name": "Non-Farm Employment Change", "impact": "high", "actual": "", "forecast": "60K", "previous": "178K"},
-    {"date": "2026-05-08", "time": "14:30", "currency": "USD", "name": "Unemployment Rate", "impact": "high", "actual": "", "forecast": "4.3%", "previous": "4.3%"},
-    {"date": "2026-05-08", "time": "14:30", "currency": "USD", "name": "Average Hourly Earnings m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.2%"}
+    {
+      "date": "2026-05-05",
+      "time": "14:30",
+      "currency": "EUR",
+      "name": "ECB President Lagarde Speaks",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "",
+      "previous": "",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-05",
+      "time": "16:00",
+      "currency": "USD",
+      "name": "ISM Services PMI",
+      "impact": "high",
+      "actual": "",
+      "forecast": "53.7",
+      "previous": "54.0",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-05",
+      "time": "16:00",
+      "currency": "USD",
+      "name": "JOLTS Job Openings",
+      "impact": "high",
+      "actual": "",
+      "forecast": "6.86M",
+      "previous": "6.88M",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-05",
+      "time": "16:00",
+      "currency": "USD",
+      "name": "New Home Sales",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "652K",
+      "previous": "",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-06",
+      "time": "14:15",
+      "currency": "USD",
+      "name": "ADP Non-Farm Employment Change",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "116K",
+      "previous": "62K",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-07",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Unemployment Claims",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "205K",
+      "previous": "189K",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-08",
+      "time": "09:00",
+      "currency": "EUR",
+      "name": "ECB President Lagarde Speaks",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "",
+      "previous": "",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-08",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Average Hourly Earnings m/m",
+      "impact": "high",
+      "actual": "",
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-08",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Non-Farm Employment Change",
+      "impact": "high",
+      "actual": "",
+      "forecast": "64K",
+      "previous": "178K",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-08",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Unemployment Rate",
+      "impact": "high",
+      "actual": "",
+      "forecast": "4.3%",
+      "previous": "4.3%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-08",
+      "time": "16:00",
+      "currency": "USD",
+      "name": "Prelim UoM Consumer Sentiment",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "49.5",
+      "previous": "47.6",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-08",
+      "time": "16:00",
+      "currency": "USD",
+      "name": "Prelim UoM Inflation Expectations",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "",
+      "previous": "4.8%",
+      "better": null,
+      "source": "forexfactory"
+    }
   ],
   "_last_run": "2026-05-04T14:45:00",
   "_session": "us_update_2026-05-04",
@@ -488,9 +1152,27 @@
     "_agent": "US_UPDATE",
     "_last_run": "2026-05-04T14:45:00",
     "delta_vs_morning": {
-      "GER40": {"preis": -69, "cdv_delta": 2672, "er_delta": -4.89, "schichten_change": "S1: 0.20->0.00 (Preis unter POC)", "score_change": "3->1"},
-      "DJ30": {"preis": -35, "cdv_delta": 1537, "er_delta": 7.1, "schichten_change": "Ichimoku: unter Kumo -> in Kumo", "score_change": "-4->-4"},
-      "SPX500": {"preis": -8, "cdv_delta": -4256, "er_delta": -0.69, "schichten_change": "S2: +0.25->-0.50 (CDV bearisch)", "score_change": "3->0"}
+      "GER40": {
+        "preis": -69,
+        "cdv_delta": 2672,
+        "er_delta": -4.89,
+        "schichten_change": "S1: 0.20->0.00 (Preis unter POC)",
+        "score_change": "3->1"
+      },
+      "DJ30": {
+        "preis": -35,
+        "cdv_delta": 1537,
+        "er_delta": 7.1,
+        "schichten_change": "Ichimoku: unter Kumo -> in Kumo",
+        "score_change": "-4->-4"
+      },
+      "SPX500": {
+        "preis": -8,
+        "cdv_delta": -4256,
+        "er_delta": -0.69,
+        "schichten_change": "S2: +0.25->-0.50 (CDV bearisch)",
+        "score_change": "3->0"
+      }
     },
     "main_finding": "SPX500 CDV -4256 = kritisches bearisches Warnsignal. 0/3 Instrumente Schichten-Freigabe. Score-Verschlechterung an allen Fronten.",
     "session_entscheidung": "WAIT (unveraendert, verschaerft)"
