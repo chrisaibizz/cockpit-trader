@@ -469,9 +469,9 @@ function renderCal(cal){
 
 function renderMacroBar(s,jd){
   var macro=s&&s.macro||{};
-  var vixV=macro.vix&&macro.vix.value,dxyV=macro.dxy&&macro.dxy.value,b10=macro.bonds_10y&&macro.bonds_10y.yield;
-  var vixC=macro.vix&&macro.vix.trend==='steigend'?'down':'up';
-  var dxyC=macro.dxy&&macro.dxy.trend==='steigend'?'down':'up';
+  var vixV=typeof macro.vix==='object'?macro.vix&&macro.vix.value:macro.vix,dxyV=typeof macro.dxy==='object'?macro.dxy&&macro.dxy.value:macro.dxy,b10=macro.bonds_10y&&macro.bonds_10y.yield;
+  var vixC=(typeof macro.vix==='object'?macro.vix&&macro.vix.trend:macro.vix_pct_change>0?'steigend':'fallend')==='steigend'?'down':'up';
+  var dxyC=(typeof macro.dxy==='object'?macro.dxy&&macro.dxy.trend:'fallend')==='steigend'?'down':'up';
   var fng=macro.fear_greed&&macro.fear_greed.value;
   var makroBias=jd&&jd.makro_bias||'NEUTRAL';
   var biasCls=makroBias.indexOf('RISK_ON')>=0?'sg':makroBias.indexOf('RISK_OFF')>=0?'sr':'sy';
