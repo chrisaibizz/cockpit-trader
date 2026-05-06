@@ -407,11 +407,19 @@ def get_tv_data(ticker, timeframe="30"):
                 try {
                   var name = s.metaInfo().description || s.metaInfo().shortDescription || '';
                   if (name.indexOf('Market Profile') === -1) continue;
-                  var coll = s._graphics._primitivesCollection.dwglines.get('lines').get(false);
-                  if (!coll || !coll._primitivesDataById) continue;
+                  var linesColl = s._graphics._primitivesCollection.dwglines.get('lines');
                   var out = [];
-                  coll._primitivesDataById.forEach(function(v, id) {
-                    if (v.y1 === v.y2) out.push({y1: v.y1, x1: v.x1, ci: v.ci});
+                  var seen = {};
+                  [false, true].forEach(function(key) {
+                    try {
+                      var coll = linesColl.get(key);
+                      if (!coll || !coll._primitivesDataById) return;
+                      coll._primitivesDataById.forEach(function(v) {
+                        if (v.y1 !== v.y2) return;
+                        var sid = v.x1 + '|' + v.y1 + '|' + v.ci;
+                        if (!seen[sid]) { seen[sid] = true; out.push({y1: v.y1, x1: v.x1, ci: v.ci}); }
+                      });
+                    } catch(e) {}
                   });
                   return out;
                 } catch(e) {}

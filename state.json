@@ -116,7 +116,7 @@
         "symbol": "Vantage:GER40",
         "price": 24288.8,
         "poc": 24319.17,
-        "vah": 24389.70,
+        "vah": 24389.7,
         "val": 24079.36,
         "mp_shape": "P-Shape",
         "mp_shape_pos": 0.773,
@@ -134,7 +134,7 @@
         "ichimoku": {
           "tenkan": 24279.56,
           "kijun": 24115.58,
-          "chikou": 24288.80,
+          "chikou": 24288.8,
           "senkou_a": 24197.57,
           "senkou_b": 24104.58,
           "kumo_bias": "bullisch_ueber_kumo"
@@ -152,7 +152,7 @@
             "session": 0,
             "date": "2026-05-05",
             "poc": 24319.17,
-            "vah": 24389.70,
+            "vah": 24389.7,
             "val": 24079.36,
             "shape": "P-Shape",
             "mp_shape_pos": 0.773,
@@ -183,7 +183,7 @@
         "mp_shape_bias": "BAERISCH",
         "vwap": 49103.81,
         "vwap_upper": 49160.12,
-        "vwap_lower": 49047.50,
+        "vwap_lower": 49047.5,
         "sma200": 49298.03,
         "er": 27.02,
         "cvd": 161411.11,
@@ -196,7 +196,7 @@
           "kijun": 49102.43,
           "chikou": 49172.15,
           "senkou_a": 49123.43,
-          "senkou_b": 49204.80,
+          "senkou_b": 49204.8,
           "kumo_bias": "in_kumo_neutral"
         },
         "mp_context": {
@@ -236,19 +236,19 @@
       "SPX500": {
         "last_run": "2026-05-05T14:45:00",
         "symbol": "Vantage:SP500",
-        "price": 7243.30,
+        "price": 7243.3,
         "poc": 7247.79,
         "vah": 7254.05,
         "val": 7216.48,
         "mp_shape": "P-Shape",
         "mp_shape_pos": 0.833,
         "mp_shape_bias": "BULLISCH",
-        "vwap": 7226.00,
+        "vwap": 7226.0,
         "vwap_upper": 7236.93,
         "vwap_lower": 7215.08,
         "sma200": 7204.92,
         "er": 59.14,
-        "cvd": 14961.60,
+        "cvd": 14961.6,
         "onh": null,
         "onl": null,
         "pdh": 7254.4,
@@ -297,61 +297,13 @@
     },
     "calendar": [
       {
-        "date": "2026-05-05",
-        "time": "14:30",
-        "currency": "EUR",
-        "name": "ECB President Lagarde Speaks",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "",
-        "previous": "",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-05-05",
-        "time": "16:00",
-        "currency": "USD",
-        "name": "ISM Services PMI",
-        "impact": "high",
-        "actual": "",
-        "forecast": "53.7",
-        "previous": "54.0",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-05-05",
-        "time": "16:00",
-        "currency": "USD",
-        "name": "JOLTS Job Openings",
-        "impact": "high",
-        "actual": "",
-        "forecast": "6.86M",
-        "previous": "6.88M",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-05-05",
-        "time": "16:00",
-        "currency": "USD",
-        "name": "New Home Sales",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "652K",
-        "previous": "",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-05-06",
         "time": "14:15",
         "currency": "USD",
         "name": "ADP Non-Farm Employment Change",
         "impact": "medium",
         "actual": "",
-        "forecast": "116K",
+        "forecast": "118K",
         "previous": "62K",
         "better": null,
         "source": "forexfactory"
@@ -399,7 +351,7 @@
         "name": "Non-Farm Employment Change",
         "impact": "high",
         "actual": "",
-        "forecast": "64K",
+        "forecast": "65K",
         "previous": "178K",
         "better": null,
         "source": "forexfactory"
@@ -423,7 +375,7 @@
         "name": "Prelim UoM Consumer Sentiment",
         "impact": "medium",
         "actual": "",
-        "forecast": "49.5",
+        "forecast": "49.7",
         "previous": "47.6",
         "better": null,
         "source": "forexfactory"
@@ -472,7 +424,7 @@
           },
           {
             "level": "VAH heute",
-            "price": 24389.70,
+            "price": 24389.7,
             "source": "Market Profile"
           },
           {
@@ -505,8 +457,8 @@
       },
       "DJ30": {
         "schichten": {
-          "S1_kontext": -0.600,
-          "S2_struktur": 0.250,
+          "S1_kontext": -0.6,
+          "S2_struktur": 0.25,
           "S3_entry": -0.167,
           "freigabe_s1": false,
           "freigabe_s2": true,
@@ -551,7 +503,7 @@
         "schichten": {
           "S1_kontext": 0.383,
           "S2_struktur": 0.875,
-          "S3_entry": 0.500,
+          "S3_entry": 0.5,
           "freigabe_s1": true,
           "freigabe_s2": true,
           "freigabe_s3": true,
@@ -580,7 +532,7 @@
           },
           {
             "level": "VWAP",
-            "price": 7226.00,
+            "price": 7226.0,
             "source": "VWAP"
           },
           {
@@ -611,8 +563,8 @@
     "score_max": 8,
     "konfidenz": 0.246,
     "konfidenz_details": {
-      "chart_gewichtung": 0.30,
-      "makro_gewichtung": 0.70,
+      "chart_gewichtung": 0.3,
+      "makro_gewichtung": 0.7,
       "gewichtungs_grund": "Event < 2h: ISM PMI + JOLTS 16:00 -- Makro-Gewichtung 70%",
       "alignment_beitrag": 0.188,
       "makro_beitrag": 0.058,
@@ -669,61 +621,13 @@
   },
   "calendar": [
     {
-      "date": "2026-05-05",
-      "time": "14:30",
-      "currency": "EUR",
-      "name": "ECB President Lagarde Speaks",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-05",
-      "time": "16:00",
-      "currency": "USD",
-      "name": "ISM Services PMI",
-      "impact": "high",
-      "actual": "",
-      "forecast": "53.7",
-      "previous": "54.0",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-05",
-      "time": "16:00",
-      "currency": "USD",
-      "name": "JOLTS Job Openings",
-      "impact": "high",
-      "actual": "",
-      "forecast": "6.86M",
-      "previous": "6.88M",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-05",
-      "time": "16:00",
-      "currency": "USD",
-      "name": "New Home Sales",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "652K",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
       "date": "2026-05-06",
       "time": "14:15",
       "currency": "USD",
       "name": "ADP Non-Farm Employment Change",
       "impact": "medium",
       "actual": "",
-      "forecast": "116K",
+      "forecast": "118K",
       "previous": "62K",
       "better": null,
       "source": "forexfactory"
@@ -771,7 +675,7 @@
       "name": "Non-Farm Employment Change",
       "impact": "high",
       "actual": "",
-      "forecast": "64K",
+      "forecast": "65K",
       "previous": "178K",
       "better": null,
       "source": "forexfactory"
@@ -795,7 +699,7 @@
       "name": "Prelim UoM Consumer Sentiment",
       "impact": "medium",
       "actual": "",
-      "forecast": "49.5",
+      "forecast": "49.7",
       "previous": "47.6",
       "better": null,
       "source": "forexfactory"
@@ -853,17 +757,17 @@
       },
       "SPX500": {
         "preis_morning": 7221.88,
-        "preis_jetzt": 7243.30,
+        "preis_jetzt": 7243.3,
         "preis_delta": 21.42,
-        "preis_delta_pct": 0.30,
+        "preis_delta_pct": 0.3,
         "cdv_morning": 11438.14,
-        "cdv_jetzt": 14961.60,
+        "cdv_jetzt": 14961.6,
         "cdv_delta": 3523.46,
         "er_morning": 41.65,
         "er_jetzt": 59.14,
         "er_delta": 17.49,
         "vwap_morning": 7215.06,
-        "vwap_jetzt": 7226.00,
+        "vwap_jetzt": 7226.0,
         "schichten_change": "alle_schichten_ok: false -> TRUE (S1+S3 freigegeben, Ichimoku voll ueber Kumo)",
         "score_change": "2 -> 4"
       }
