@@ -1,105 +1,135 @@
 {
   "date": "2026-05-06",
-  "timestamp": "2026-05-06T08:18:00",
-  "phase": "TREND",
-  "regime": "RISK-ON",
-  "session_bias": "LONG-BIAS",
-  "alignment_score": 4,
-  "makro_bias": "LEICHT_RISK_ON",
-  "instruments": {
-    "GER40": {
-      "bias": "BULLISCH",
-      "score": 7,
-      "poc": 24378.56,
-      "vah": 24452.87,
-      "val": 24096.16,
-      "mp_shape": "P-Shape",
-      "mp_shape_pos": 0.792,
-      "er": 21.52,
-      "onh": null,
-      "pdh": 24403.56,
-      "price": 24598.8
-    },
-    "DJ30": {
-      "bias": "BAERISCH",
-      "score": 0,
-      "poc": 49031.41,
-      "vah": 49249.83,
-      "val": 49000.2,
-      "mp_shape": "b-Shape",
-      "mp_shape_pos": 0.125,
-      "er": -10.56,
-      "onh": null,
-      "pdh": 49365.22,
-      "price": 49435.38
-    },
-    "SPX500": {
-      "bias": "BULLISCH",
-      "score": 5,
-      "poc": 7234.63,
-      "vah": 7256.82,
-      "val": 7204.38,
-      "mp_shape": "Trend Day",
-      "mp_shape_pos": 0.577,
-      "er": 30.63,
-      "onh": null,
-      "pdh": 7273.26,
-      "price": 7292.1
-    }
-  },
-  "orders": [
-    {
-      "instrument": "GER40",
-      "type": "LONG",
-      "entry": 24380,
-      "sl": 24072,
-      "tp1": 24840,
-      "tp2": 25150,
-      "rr": 1.5,
-      "p_fill": 45,
-      "confluence": 5,
-      "notes": "POC-Pullback"
-    },
-    {
-      "instrument": "SPX500",
-      "type": "LONG",
-      "entry": 7257,
-      "sl": 7197,
-      "tp1": 7347,
-      "tp2": 7407,
-      "rr": 1.5,
-      "p_fill": 50,
-      "confluence": 5,
-      "notes": "VAH-Pullback"
-    }
-  ],
-  "orders_count": 2,
+  "timestamp": "2026-05-06T14:45:00",
+  "session": "us_update_14:45",
   "debrief": {
-    "orders_checked": 3,
-    "fill_rate": "0% (WAIT)",
+    "orders_checked": 2,
+    "fill_rate": "0% (Orders verfallen -- Preis stark gestiegen)",
     "tp1_rate": "N/A",
-    "trend": "Stabil (Fill 12%, TP1 22.7%)",
+    "trend": "Morning Orders nicht gefuellt, Markt +1.3% GER40",
     "learnings": [
-      "WAIT wegen Event-Risk ISM/JOLTS 2026-05-05",
-      "DJ30 bestes TP1-Rate 50% wenn gefuellt",
-      "Fill-Rate 12% -- Entries zu weit vom Markt"
+      "POC-Pullback Entries muessen enger gesetzt werden wenn Markt bereits weit ueber POC",
+      "VWAP-Pullback ist besserer Entry bei Trend-Tagen"
     ]
   },
-  "macro": {
-    "vix": 17.38,
-    "dxy": 98.072,
-    "fear_greed": 46,
-    "bonds": 4.416,
-    "oil": 100.74,
-    "gold": 4664.3,
-    "makro_score": 4
-  },
-  "calendar_today": [
-    "14:15 ADP Non-Farm USD medium"
+  "instruments": [
+    {
+      "name": "GER40",
+      "bias": "Bullisch",
+      "bias_pct": "85",
+      "daily_summary": "P-Shape 3x Sequenz, POC-Migration steigend. Preis 24913 massiv ueber VAH 24452 (+1.28% seit 08:00). CVD +65% stark bullisch.",
+      "h4_summary": "Starker Aufwaertstrend. Ichimoku bullisch ueber Kumo.",
+      "h1_summary": "ER 26.77 Trend bestaetigt. VWAP 24800 als Pullback-Zone.",
+      "h30m_summary": "P-Shape pos=0.792 unveraendert. POC 24378, VAH 24452, VAL 24096.",
+      "mp_shape_yesterday": "P-Shape pos=0.792",
+      "mp_shape_forecast": "Fortsetzung P-Shape (3x Sequenz). Open Drive erwartet.",
+      "mp_5day_sequence": "S0:P-Shape(0.792) S1:P-Shape(0.773) S2:P-Shape(0.893) S3:TrendDay(0.65) S4:b-Shape(0.15)",
+      "key_levels": [
+        {"level": "VWAP", "price": "24800", "source": "VWAP Stdev"},
+        {"level": "VWAP Upper", "price": "25005", "source": "VWAP Stdev"},
+        {"level": "VWAP Lower", "price": "24595", "source": "VWAP Stdev"},
+        {"level": "Kijun", "price": "24813", "source": "Ichimoku"},
+        {"level": "POC", "price": "24378", "source": "Market Profile"},
+        {"level": "VAH", "price": "24452", "source": "Market Profile"},
+        {"level": "VAL", "price": "24096", "source": "Market Profile"}
+      ],
+      "orders": [
+        {
+          "type": "Limit Buy",
+          "entry": "24800",
+          "sl": "24590",
+          "tp1": "25200",
+          "tp2": "25400",
+          "rr": "1.9",
+          "p_fill": "30",
+          "p_tp1": "40",
+          "tf": "30M",
+          "confluence": "VWAP + Kijun + P-Shape + CVD bullisch"
+        }
+      ],
+      "invalidation": "Unter VWAP Lower 24595 Bias neutral. Unter VAH 24452 Bias negiert."
+    },
+    {
+      "name": "DJ30",
+      "bias": "Geblockt (kein Trade)",
+      "bias_pct": "20",
+      "daily_summary": "b-Shape pos=0.125 -- S1 geblockt. ER massiv auf 49.89 gestiegen (war -10.56). POC-Migration fallend. Preis 49759 (+0.66%).",
+      "h4_summary": "Ichimoku bullisch ueber Kumo trotz b-Shape -- Widerspruch MP vs. Ichimoku.",
+      "h1_summary": "ER 49.89 deutet Momentum-Shift an. S1 bleibt geblockt wegen b-Shape.",
+      "h30m_summary": "b-Shape pos=0.125. POC 49031, VAH 49249, VAL 49000.",
+      "mp_shape_yesterday": "b-Shape pos=0.125",
+      "mp_shape_forecast": "Unklarheit -- b-Shape aber starkes Aufwaertsmomentum.",
+      "mp_5day_sequence": "S0:b-Shape(0.125) S1:P-Shape(0.708) S2:b-Shape(0.187) S3:b-Shape(0.269)",
+      "key_levels": [
+        {"level": "VWAP", "price": "49636", "source": "VWAP Stdev"},
+        {"level": "VAH", "price": "49249", "source": "Market Profile"},
+        {"level": "POC", "price": "49031", "source": "Market Profile"},
+        {"level": "VAL", "price": "49000", "source": "Market Profile"},
+        {"level": "Naked POC", "price": "48732", "source": "MP History"}
+      ],
+      "orders": [],
+      "invalidation": "S1 geblockt -- kein Trade. Bei Aufloesung b-Shape: Neubewertung."
+    },
+    {
+      "name": "SPX500",
+      "bias": "Bullisch",
+      "bias_pct": "65",
+      "daily_summary": "Trend Day direktional. Preis 7320 ueber VAH 7256 (+0.39%). ER 36.55 stark. CVD leicht fallend (neutral).",
+      "h4_summary": "Alle Ichimoku-Linien bullisch ueber Kumo. SMA200 7236 weit unter Preis.",
+      "h1_summary": "VWAP 7307 als Pullback-Zone. MRC R2 7323 als Widerstand.",
+      "h30m_summary": "Trend Day va_breite 0.72. POC 7234, VAH 7256, VAL 7204.",
+      "mp_shape_yesterday": "Trend Day pos=0.577",
+      "mp_shape_forecast": "Seitwarts/leicht bullisch. NY-Session entscheidend.",
+      "mp_5day_sequence": "S0:TrendDay(0.577) S1:P-Shape(0.833) S2:D-Shape(0.389) S3:P-Shape(0.833)",
+      "key_levels": [
+        {"level": "VWAP", "price": "7307", "source": "VWAP Stdev"},
+        {"level": "VWAP Upper", "price": "7326", "source": "VWAP Stdev"},
+        {"level": "VWAP Lower", "price": "7288", "source": "VWAP Stdev"},
+        {"level": "MRC R2", "price": "7323", "source": "Mean Reversion"},
+        {"level": "VAH", "price": "7256", "source": "Market Profile"},
+        {"level": "POC", "price": "7234", "source": "Market Profile"},
+        {"level": "VAL", "price": "7204", "source": "Market Profile"}
+      ],
+      "orders": [
+        {
+          "type": "Limit Buy",
+          "entry": "7307",
+          "sl": "7285",
+          "tp1": "7350",
+          "tp2": "7400",
+          "rr": "1.95",
+          "p_fill": "45",
+          "p_tp1": "50",
+          "tf": "30M",
+          "confluence": "VWAP + Tenkan + Trend Day + ER 36.55"
+        }
+      ],
+      "invalidation": "Unter VWAP 7307 Pullback-Check. Unter VWAP Lower 7288 Bias neutral."
+    }
   ],
-  "warnings": [
-    "Shape-Konflikt DJ30 b-Shape",
-    "ADP 14:15 USD medium watch",
-    "Gold +2.4% Risk-Off Signal"
-  ]
+  "summary": {
+    "best_instrument": "GER40",
+    "total_orders": 2,
+    "warnings": [
+      "Morning Orders GER40@24380 + SPX500@7257 VERFALLEN",
+      "DJ30 S1 geblockt -- kein Trade",
+      "Morgen NFP + AHE 14:30 (08.05) HIGH Impact"
+    ],
+    "notes": "Starker NY-Pre-Open. TREND+RISK_ON. GER40 +1.28% dominant. Konfidenz 0.45. VWAP-Pullback-Entries fuer NY-Session."
+  },
+  "stats": {
+    "total": 2,
+    "fill_rate": "0% (Orders verfallen)",
+    "tp1_rate": "N/A",
+    "trend": "Morning Orders nicht gefuellt -- Markt zu stark"
+  },
+  "macro": {
+    "vix": 16.55,
+    "dxy": 97.917,
+    "tnx": 4.354,
+    "gold": 4690.5,
+    "oil": 94.77,
+    "makro_bias": "LEICHT_RISK_ON",
+    "gesamt_score": 4
+  }
 }
