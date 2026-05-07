@@ -355,18 +355,6 @@
     },
     "calendar": [
       {
-        "date": "2026-05-06",
-        "time": "14:15",
-        "currency": "USD",
-        "name": "ADP Non-Farm Employment Change",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "118K",
-        "previous": "62K",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-05-07",
         "time": "14:30",
         "currency": "USD",
@@ -844,18 +832,6 @@
     }
   },
   "calendar": [
-    {
-      "date": "2026-05-06",
-      "time": "14:15",
-      "currency": "USD",
-      "name": "ADP Non-Farm Employment Change",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "118K",
-      "previous": "62K",
-      "better": null,
-      "source": "forexfactory"
-    },
     {
       "date": "2026-05-07",
       "time": "14:30",
