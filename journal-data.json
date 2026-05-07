@@ -1,100 +1,136 @@
 {
   "date": "2026-05-07",
-  "timestamp": "2026-05-07T08:08:00",
+  "timestamp": "2026-05-07T14:48:00",
+  "session": "USUpdate",
   "debrief": {
-    "orders_checked": 7,
-    "fill_rate": "0% bestaetigt (Reihen 182-184 Nein). Reihen 185-188 ungeklaert -- Broker-Check empfohlen.",
+    "orders_checked": 0,
+    "fill_rate": "0% (keine Morning-Orders)",
     "tp1_rate": "N/A",
-    "trend": "Morning Orders verfallen -- Markt zu stark. USUpdate-Orders (24800/7307) ungeklaert.",
+    "trend": "WAIT morgens -- keine Orders",
     "learnings": [
-      "Overnight-Gap-Up: Limit Buy Entries unterhalb Gap-Level werden nicht gefuellt -- Markt uebersteigt Entry direkt.",
-      "Nach starkem Rally: VWAP-Pullback-Entries realistischer als VAL/POC-Entries.",
-      "b-Shape in Ausbruch-Sessions = erwartet: Preis bricht aus, POC bleibt zurueck -- kein Kontra-Signal."
+      "Overnight-Gap +2-3% fuehrt zu b-Shape",
+      "ER kollabiert nach US-Open von +47 auf -11"
     ]
   },
   "instruments": [
     {
       "name": "GER40",
-      "bias": "Leicht Bullisch",
-      "bias_pct": "55",
-      "daily_summary": "Gap-Up +2.1% (24636 Open, aktuell 24914). Gestern 3x P-Shape in Folge (Bullisch). Heute D-Shape Konsolidierung nach Gap.",
-      "h4_summary": "3x P-Shape Sequenz bestaetigt bullische Struktur. POC-Migration steigend (24005->24929). Starker Aufwaertstrend.",
-      "h1_summary": "Preis bei 24914 nahe VWAP 24941 und Kijun 24930. Konsolidierung nach Gap. ER=-24.05 zeigt kurzfristige Chop-Phase.",
-      "h30m_summary": "D-Shape (pos=0.500). Preis 24914 leicht unter POC 24929 und VWAP 24941. S2 blockiert. WAIT.",
-      "mp_shape_yesterday": "P-Shape (pos=0.792) -- Bullisch",
-      "mp_shape_forecast": "D-Shape Konsolidierung. VWAP-Pullback 24930-24941 als Beobachtungsniveau.",
-      "mp_5day_sequenz": "3x P-Shape (sess1-3) bullisch, dann Trend Day und b-Shape vor aktuellem Anstieg.",
+      "bias": "LEICHT_BULLISH",
+      "bias_pct": "50",
+      "h30m_summary": "Kurs 24904 < VWAP 24924 < POC 24929. D-Shape pos=0.500. ER=-18.5. S2 blockiert. Score 1/8.",
+      "mp_shape_forecast": "D-Shape (Konsolidierung)",
       "key_levels": [
-        {"level": "VWAP+Kijun Cluster", "price": "24930-24941", "source": "VWAP+Ichimoku"},
-        {"level": "POC heute", "price": "24928.87", "source": "Market Profile"},
-        {"level": "VAH heute", "price": "25144.03", "source": "Market Profile"},
-        {"level": "VAL heute", "price": "24713.71", "source": "Market Profile"},
-        {"level": "Naked POC (gest.)", "price": "24378.56", "source": "MP History"},
-        {"level": "SMA200", "price": "24288.71", "source": "SMA200"}
+        {
+          "level": "VWAP",
+          "price": "24924",
+          "source": "VWAP"
+        },
+        {
+          "level": "POC",
+          "price": "24929",
+          "source": "MP"
+        },
+        {
+          "level": "VAH",
+          "price": "25144",
+          "source": "MP"
+        },
+        {
+          "level": "VAL",
+          "price": "24714",
+          "source": "MP"
+        }
       ],
       "orders": [],
-      "invalidation": "S2 blockiert. Bei USUpdate: wenn ER > 0 und Preis > VWAP -- Freigabe moeglich."
+      "invalidation": "WAIT Score 1/8 S2 blockiert"
     },
     {
-      "name": "DJ30",
-      "bias": "Leicht Bullisch",
+      "name": "US30",
+      "bias": "LEICHT_BULLISH",
       "bias_pct": "55",
-      "daily_summary": "Gap-Up +1.24% (49442 Open, aktuell 50009). b-Shape (pos=0.192) laufende Session. Preis ueber VAH.",
-      "h4_summary": "POC-Migration steigend (48732->49449). Ichimoku ueber Kumo. CVD massiv bullisch. b-Shape lokal.",
-      "h1_summary": "Preis 50009 ueber VWAP 49984. Kijun 49928 potenzielle Pullback-Sueporte. ER=2.56 = Chop.",
-      "h30m_summary": "b-Shape (pos=0.192). Score 2/8 -- WAIT (< 4).",
-      "mp_shape_yesterday": "b-Shape (pos=0.125)",
-      "mp_shape_forecast": "b-Shape Konsolidierung. VWAP-Pullback 49928-49984.",
-      "mp_5day_sequenz": "gemischt: b-P-b-b. Kein klarer Trend in MP-Shapes.",
+      "h30m_summary": "Kurs 50082 ueber VAH 49858. b-Shape pos=0.192. VWAP 50023. ER=7.4. Score 2/8.",
+      "mp_shape_forecast": "b-Shape",
       "key_levels": [
-        {"level": "VWAP", "price": "49984.24", "source": "VWAP"},
-        {"level": "Kijun", "price": "49928.63", "source": "Ichimoku"},
-        {"level": "VAH heute", "price": "49858.71", "source": "Market Profile"},
-        {"level": "Naked POC", "price": "48732.57", "source": "MP History"}
+        {
+          "level": "VWAP",
+          "price": "50023",
+          "source": "VWAP"
+        },
+        {
+          "level": "VAH",
+          "price": "49859",
+          "source": "MP"
+        },
+        {
+          "level": "POC",
+          "price": "49450",
+          "source": "MP"
+        }
       ],
       "orders": [],
-      "invalidation": "Score 2/8 -- WAIT. b-Shape Konflikt."
+      "invalidation": "WAIT Score 2/8 < 4"
     },
     {
       "name": "SPX500",
-      "bias": "Bullisch",
-      "bias_pct": "65",
-      "daily_summary": "Gap-Up +1.46% (7294 Open, aktuell 7376). ER=47.84 staerkste Momentum. b-Shape (pos=0.136) trotz Bullish.",
-      "h4_summary": "POC-Migration steigend. Ichimoku ueber Kumo. SMA200=7267 weit unter Preis.",
-      "h1_summary": "Preis 7376 ueber VWAP 7367 und Kijun 7357. ER=47.84 bestaetigt Trend. S2=1.0.",
-      "h30m_summary": "b-Shape (pos=0.136). Score 3/8 -- WAIT (knapp unter 4).",
-      "mp_shape_yesterday": "Trend Day (pos=0.577)",
-      "mp_shape_forecast": "b-Shape Konsolidierung. VWAP-Pullback 7357-7367 Beobachtungsniveau.",
-      "mp_5day_sequenz": "gemischt: TrendDay-P-TrendDay-P. Kein einheitlicher Shape.",
+      "bias": "BULLISCH",
+      "bias_pct": "60",
+      "h30m_summary": "Kurs 7385 ueber VAH 7336. b-Shape pos=0.136. VWAP 7376. ER=-10.98 (kollabiert +47->-11). Score 2/8.",
+      "mp_shape_forecast": "b-Shape",
       "key_levels": [
-        {"level": "VWAP", "price": "7367.51", "source": "VWAP"},
-        {"level": "Kijun", "price": "7357.40", "source": "Ichimoku"},
-        {"level": "VAH heute", "price": "7336.80", "source": "Market Profile"},
-        {"level": "POC heute", "price": "7288.15", "source": "Market Profile"},
-        {"level": "VAL + Fibo 0.5", "price": "7278-7280", "source": "Market Profile + AutoFibo"},
-        {"level": "Naked POC", "price": "7175.69", "source": "MP History"},
-        {"level": "SMA200", "price": "7267.36", "source": "SMA200"}
+        {
+          "level": "VWAP",
+          "price": "7376",
+          "source": "VWAP"
+        },
+        {
+          "level": "Kijun",
+          "price": "7377",
+          "source": "Ichimoku"
+        },
+        {
+          "level": "VAH",
+          "price": "7337",
+          "source": "MP"
+        },
+        {
+          "level": "POC",
+          "price": "7288",
+          "source": "MP"
+        }
       ],
       "orders": [],
-      "invalidation": "Score 3/8 -- WAIT. Bei Pullback zu VWAP 7362-7368 + Score >=4 bei USUpdate -- Freigabe moeglich."
+      "invalidation": "WAIT Score 2/8 ER negativ"
     }
   ],
   "summary": {
     "best_instrument": "SPX500",
     "total_orders": 0,
     "warnings": [
-      "WAIT: Score max 3/8 (Schwelle 4 nicht erreicht)",
-      "b-Shape Konflikt SPX500 (pos=0.136) + DJ30 (pos=0.192)",
-      "GER40 S2 blockiert (ER=-24.05, Preis < VWAP)",
-      "Unemployment Claims heute 14:30 USD medium",
-      "NFP MORGEN 08.05 14:30 USD HIGH -- WAIT morgen empfohlen"
+      "NFP morgen 08.05 HIGH -- WAIT auch morgen",
+      "ER kollabiert alle Instrumente",
+      "b-Shape DJ30+SPX500"
     ],
-    "notes": "Overnight-Gap +2-3% nach Handelsdeal-News. Keine Orders. USUpdate 14:00 beobachten."
+    "notes": "USUpdate 14:48. Score 2/8 (war 3/8 morgens). WAIT."
   },
   "stats": {
-    "total": 190,
-    "fill_rate": "11.6%",
-    "tp1_rate": "22.7%",
-    "trend": "Stabil"
+    "total": 0,
+    "fill_rate": "0%",
+    "tp1_rate": "N/A",
+    "trend": "WAIT"
+  },
+  "captain": {
+    "session_bias": "WAIT",
+    "konfidenz": 0.15,
+    "alignment_score": 2,
+    "trade_freigabe": false,
+    "max_risk": "0%"
+  },
+  "macro": {
+    "vix": 17.39,
+    "dxy": 98.003,
+    "tnx": 4.356,
+    "fear_greed": 47,
+    "bias": "NEUTRAL",
+    "score": -1
   }
 }
