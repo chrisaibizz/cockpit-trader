@@ -1,64 +1,63 @@
 {
   "pipeline": {
     "status": "completed",
-    "last_run": "2026-05-07T14:48:00",
-    "run_date": "2026-05-07",
-    "run_type": "usupdate",
+    "last_run": "2026-05-08T08:30:00",
+    "run_date": "2026-05-08",
+    "run_type": "morning",
     "steps_completed": [
       "log_init",
-      "macro_mini",
+      "macro",
       "marketdata",
-      "delta",
       "analyst",
       "captain",
       "executor",
       "export"
     ],
     "result": "WAIT",
-    "score": "2/8"
+    "score": "3/8"
   },
   "macro": {
     "_agent": "MACRO",
-    "_last_run": "2026-05-07T08:04:00",
+    "_last_run": "2026-05-08T08:30:00",
     "_status": "ready",
     "fear_greed": {
-      "value": 47,
-      "classification": "Neutral",
-      "yesterday": 46,
-      "trend": "steigend"
+      "value": 38,
+      "classification": "Fear",
+      "yesterday": 47,
+      "trend": "fallend"
     },
     "put_call_ratio": {
       "value": null,
       "error": "^PCALL delisted"
     },
     "vix": {
-      "value": 17.39,
-      "prev": 17.38,
+      "value": 17.08,
+      "prev": 17.39,
       "level": "normal",
-      "trend": "steigend",
+      "trend": "fallend",
       "bias_einfluss": "leicht bearish"
     },
     "bonds_10y": {
-      "yield": 4.356,
-      "prev": 4.416,
-      "trend": "fallend",
+      "yield": 4.392,
+      "prev": 4.356,
+      "trend": "steigend",
       "interpretation": "zinsdruck_moderat"
     },
     "dxy": {
-      "value": 98.003,
-      "prev": 98.02,
+      "value": 98.18,
+      "prev": 98.25,
       "trend": "fallend",
       "interpretation": "dollar_schwach"
     },
     "oil_wti": {
-      "value": 95.47,
-      "prev": 95.08,
+      "value": 95.45,
+      "prev": 94.81,
       "trend": "steigend",
       "interpretation": "inflationsdruck_hoch"
     },
     "gold": {
-      "value": 4713.4,
-      "prev": 4681.9,
+      "value": 4735.7,
+      "prev": 4699.8,
       "trend": "steigend",
       "interpretation": "risk_off"
     },
@@ -69,12 +68,13 @@
       "fred_punkte": 0,
       "gesamt_score": -1,
       "makro_bias": "NEUTRAL",
-      "detail": "Bonds_fallend(+1) DXY_fallend(+1) | VIX_steigend(-1) Oil>90_steigend(-1) Gold_steigend(-1) | FRED null(0)"
+      "detail": "VIX_fallend(+1) DXY_fallend(+1) | F&G<40_fallend(-1) Oil>90_steigend(-1) Gold_steigend(-1) | FRED CPI 3.32% kein Punkt(0)"
     },
     "warnungen": [
-      "Gold 4713 steigend (+0.67%) -- Risk-Off Signal",
-      "Oil 95.47 > 90 und steigend -- Inflationsdruck",
-      "Morgen NFP (08.05.2026) 14:30 USD HIGH -- WAIT morgen erwartet"
+      "Gold 4735.7 steigend (+0.76%) -- Risk-Off Signal",
+      "Oil 95.45 > 90 und steigend -- Inflationsdruck hoch",
+      "NFP heute 14:30 USD HIGH -- Extreme Volatilitaet erwartet (forecast 65K vs prev 178K)",
+      "F&G 38 (Fear) stark fallend von 47 -- Stimmung dreht bearisch"
     ],
     "fred": {
       "fed_funds": {
@@ -86,62 +86,71 @@
         "interpretation": "unbekannt"
       },
       "cpi": {
-        "value": null,
-        "interpretation": "unbekannt"
+        "value": 3.32,
+        "interpretation": "moderat"
       },
       "unemployment": {
         "value": 4.3,
         "interpretation": "normal"
       },
-      "last_updated": "2026-05-07 08:01"
+      "last_updated": "2026-05-08 08:01"
     }
   },
   "market": {
     "_agent": "MARKETDATA",
-    "_last_run": "2026-05-07T14:48:00",
+    "_last_run": "2026-05-08T08:30:00",
     "_status": "ready",
-    "timestamp": "2026-05-07 14:48",
+    "timestamp": "2026-05-08 08:30",
     "timeframe_used": "30M",
     "instruments": {
       "GER40": {
-        "last_run": "2026-05-07T14:48:00",
+        "last_run": "2026-05-08T08:30:00",
         "symbol": "Vantage:GER40",
-        "price": 24903.63,
-        "poc": 24928.87,
-        "vah": 25144.03,
-        "val": 24713.71,
-        "mp_shape": "D-Shape",
-        "mp_shape_pos": 0.5,
-        "mp_shape_bias": "NEUTRAL",
-        "vwap": 24924.09,
-        "vwap_upper": 24959.95,
-        "vwap_lower": 24888.24,
-        "sma200": 24357,
-        "er": -18.5,
-        "cvd": 44684.2,
+        "price": 24481.98,
+        "poc": 24929.43,
+        "vah": 25009.63,
+        "val": 24624.67,
+        "mp_shape": "P-Shape",
+        "mp_shape_pos": 0.792,
+        "mp_shape_bias": "BULLISCH",
+        "vwap": 24446.39,
+        "vwap_upper": 24455.93,
+        "vwap_lower": 24436.84,
+        "sma200": 24453.39,
+        "er": 10.58,
+        "cvd": 23984.46,
         "onh": null,
         "onl": null,
-        "pdh": 24403.56,
-        "pdl": 23988.92,
+        "pdh": 25021.02,
+        "pdl": 24650.99,
         "ichimoku": {
-          "tenkan": 24885.38,
-          "kijun": 24920.88,
-          "chikou": 24907.63,
-          "senkou_a": 24903.13,
-          "senkou_b": 24945.28,
-          "kumo_bias": "neutral_in_kumo"
+          "tenkan": 24442.25,
+          "kijun": 24570.83,
+          "chikou": 24481.98,
+          "senkou_a": 24506.54,
+          "senkou_b": 24688.83,
+          "kumo_bias": "bearisch_unter_kumo"
         },
         "mp_context": {
           "poc_migration": "steigend",
-          "shape_sequenz": "3x P-Shape",
-          "naked_pocs": [
-            24378.56
-          ],
-          "composite_poc": 24337.22
+          "shape_sequenz": "2x P-Shape",
+          "naked_pocs": [24378.56, 24319.17, 24269.1],
+          "composite_poc": 24460.82
         },
         "mp_history": [
           {
             "session": 0,
+            "date": "2026-05-08",
+            "poc": 24929.43,
+            "vah": 25009.63,
+            "val": 24624.67,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.792,
+            "va_breite_pct": 1.54,
+            "naked_poc": false
+          },
+          {
+            "session": 1,
             "date": "2026-05-07",
             "poc": 24928.87,
             "vah": 25144.03,
@@ -152,7 +161,7 @@
             "naked_poc": false
           },
           {
-            "session": 1,
+            "session": 2,
             "date": "2026-05-06",
             "poc": 24378.56,
             "vah": 24452.87,
@@ -163,7 +172,7 @@
             "naked_poc": true
           },
           {
-            "session": 2,
+            "session": 3,
             "date": "2026-05-05",
             "poc": 24319.17,
             "vah": 24389.7,
@@ -171,10 +180,10 @@
             "shape": "P-Shape",
             "mp_shape_pos": 0.773,
             "va_breite_pct": 1.28,
-            "naked_poc": false
+            "naked_poc": true
           },
           {
-            "session": 3,
+            "session": 4,
             "date": "2026-05-04",
             "poc": 24269.1,
             "vah": 24322.99,
@@ -182,61 +191,59 @@
             "shape": "P-Shape",
             "mp_shape_pos": 0.893,
             "va_breite_pct": 2.07,
-            "naked_poc": false
-          },
-          {
-            "session": 4,
-            "date": "2026-05-02",
-            "poc": 24005.25,
-            "vah": 24071.34,
-            "val": 23882.52,
-            "shape": "Trend Day",
-            "mp_shape_pos": 0.65,
-            "va_breite_pct": 0.79,
-            "naked_poc": false
+            "naked_poc": true
           }
         ],
         "data_quality": "vollstaendig"
       },
       "DJ30": {
-        "last_run": "2026-05-07T14:48:00",
+        "last_run": "2026-05-08T08:30:00",
         "symbol": "Vantage:DJ30",
-        "price": 50082.41,
-        "poc": 49449.76,
-        "vah": 49858.71,
-        "val": 49352.4,
-        "mp_shape": "b-Shape",
-        "mp_shape_pos": 0.192,
-        "mp_shape_bias": "BAERISCH",
-        "vwap": 50023.28,
-        "vwap_upper": 50069.93,
-        "vwap_lower": 49976.62,
-        "sma200": 49545.43,
-        "er": 7.4,
-        "cvd": 180441.65,
+        "price": 49711.35,
+        "poc": 50020.04,
+        "vah": 50134.66,
+        "val": 49741.66,
+        "mp_shape": "P-Shape",
+        "mp_shape_pos": 0.708,
+        "mp_shape_bias": "BULLISCH",
+        "vwap": 49646.36,
+        "vwap_upper": 49689.17,
+        "vwap_lower": 49603.55,
+        "sma200": 49533.57,
+        "er": 38.18,
+        "cvd": 165028.18,
         "onh": null,
         "onl": null,
-        "pdh": 49365.22,
-        "pdl": 49009.11,
+        "pdh": 50130.2,
+        "pdl": 49487.97,
         "ichimoku": {
-          "tenkan": 50025.41,
-          "kijun": 50044.76,
-          "chikou": 50042.11,
-          "senkou_a": 50035.09,
-          "senkou_b": 49905.81,
-          "kumo_bias": "bullisch_ueber_kumo"
+          "tenkan": 49667.85,
+          "kijun": 49657.41,
+          "chikou": 49711.35,
+          "senkou_a": 49662.63,
+          "senkou_b": 49839.91,
+          "kumo_bias": "neutral_in_kumo"
         },
         "mp_context": {
           "poc_migration": "steigend",
-          "shape_sequenz": "gemischt",
-          "naked_pocs": [
-            48732.57
-          ],
-          "composite_poc": 49303.69
+          "shape_sequenz": "2x b-Shape",
+          "naked_pocs": [49449.76, 49031.41, 49538.15],
+          "composite_poc": 49439.51
         },
         "mp_history": [
           {
             "session": 0,
+            "date": "2026-05-08",
+            "poc": 50020.04,
+            "vah": 50134.66,
+            "val": 49741.66,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.708,
+            "va_breite_pct": 0.79,
+            "naked_poc": false
+          },
+          {
+            "session": 1,
             "date": "2026-05-07",
             "poc": 49449.76,
             "vah": 49858.71,
@@ -244,10 +251,10 @@
             "shape": "b-Shape",
             "mp_shape_pos": 0.192,
             "va_breite_pct": 1.02,
-            "naked_poc": false
+            "naked_poc": true
           },
           {
-            "session": 1,
+            "session": 2,
             "date": "2026-05-06",
             "poc": 49031.41,
             "vah": 49249.83,
@@ -255,10 +262,10 @@
             "shape": "b-Shape",
             "mp_shape_pos": 0.125,
             "va_breite_pct": 0.51,
-            "naked_poc": false
+            "naked_poc": true
           },
           {
-            "session": 2,
+            "session": 3,
             "date": "2026-05-05",
             "poc": 49538.15,
             "vah": 49674.92,
@@ -266,10 +273,10 @@
             "shape": "P-Shape",
             "mp_shape_pos": 0.708,
             "va_breite_pct": 0.95,
-            "naked_poc": false
+            "naked_poc": true
           },
           {
-            "session": 3,
+            "session": 4,
             "date": "2026-05-04",
             "poc": 49796.08,
             "vah": 49980.68,
@@ -278,61 +285,58 @@
             "mp_shape_pos": 0.187,
             "va_breite_pct": 0.46,
             "naked_poc": false
-          },
-          {
-            "session": 4,
-            "date": "2026-05-02",
-            "poc": 48732.57,
-            "vah": 49362.42,
-            "val": 48500.52,
-            "shape": "b-Shape",
-            "mp_shape_pos": 0.269,
-            "va_breite_pct": 1.77,
-            "naked_poc": true
           }
         ],
         "data_quality": "vollstaendig"
       },
       "SPX500": {
-        "last_run": "2026-05-07T14:48:00",
+        "last_run": "2026-05-08T08:30:00",
         "symbol": "Vantage:SP500",
-        "price": 7385.2,
-        "poc": 7288.15,
-        "vah": 7336.8,
-        "val": 7280.47,
-        "mp_shape": "b-Shape",
-        "mp_shape_pos": 0.136,
-        "mp_shape_bias": "BAERISCH",
-        "vwap": 7375.81,
-        "vwap_upper": 7383.61,
-        "vwap_lower": 7368.01,
-        "sma200": 7276.59,
-        "er": -10.98,
-        "cvd": 33886.29,
+        "price": 7368.75,
+        "poc": 7378.79,
+        "vah": 7393.45,
+        "val": 7357.61,
+        "mp_shape": "Trend Day",
+        "mp_shape_pos": 0.591,
+        "mp_shape_bias": "DIREKTIONAL",
+        "vwap": 7352.19,
+        "vwap_upper": 7363.53,
+        "vwap_lower": 7340.85,
+        "sma200": 7295.4,
+        "er": 64.86,
+        "cvd": 27629.93,
         "onh": null,
         "onl": null,
-        "pdh": 7273.26,
-        "pdl": 7233.62,
+        "pdh": 7385.02,
+        "pdl": 7321.25,
         "ichimoku": {
-          "tenkan": 7379.2,
-          "kijun": 7377.45,
-          "chikou": 7382.45,
-          "senkou_a": 7378.33,
-          "senkou_b": 7351.19,
+          "tenkan": 7359.88,
+          "kijun": 7345.73,
+          "chikou": 7368.75,
+          "senkou_a": 7352.81,
+          "senkou_b": 7357.7,
           "kumo_bias": "bullisch_ueber_kumo"
         },
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "gemischt",
-          "naked_pocs": [
-            7175.69,
-            7121.89
-          ],
-          "composite_poc": 7217.05
+          "naked_pocs": [7288.15, 7234.63, 7247.79],
+          "composite_poc": 7251.52
         },
         "mp_history": [
           {
             "session": 0,
+            "date": "2026-05-08",
+            "poc": 7378.79,
+            "vah": 7393.45,
+            "val": 7357.61,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.591,
+            "va_breite_pct": 0.49,
+            "naked_poc": false
+          },
+          {
+            "session": 1,
             "date": "2026-05-07",
             "poc": 7288.15,
             "vah": 7336.8,
@@ -340,10 +344,10 @@
             "shape": "b-Shape",
             "mp_shape_pos": 0.136,
             "va_breite_pct": 0.77,
-            "naked_poc": false
+            "naked_poc": true
           },
           {
-            "session": 1,
+            "session": 2,
             "date": "2026-05-06",
             "poc": 7234.63,
             "vah": 7256.82,
@@ -351,10 +355,10 @@
             "shape": "Trend Day",
             "mp_shape_pos": 0.577,
             "va_breite_pct": 0.72,
-            "naked_poc": false
+            "naked_poc": true
           },
           {
-            "session": 2,
+            "session": 3,
             "date": "2026-05-05",
             "poc": 7247.79,
             "vah": 7254.05,
@@ -362,10 +366,10 @@
             "shape": "P-Shape",
             "mp_shape_pos": 0.833,
             "va_breite_pct": 0.52,
-            "naked_poc": false
+            "naked_poc": true
           },
           {
-            "session": 3,
+            "session": 4,
             "date": "2026-05-04",
             "poc": 7238.07,
             "vah": 7254.4,
@@ -373,17 +377,6 @@
             "shape": "Trend Day",
             "mp_shape_pos": 0.389,
             "va_breite_pct": 0.37,
-            "naked_poc": false
-          },
-          {
-            "session": 4,
-            "date": "2026-05-02",
-            "poc": 7175.69,
-            "vah": 7184.57,
-            "val": 7131.32,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.833,
-            "va_breite_pct": 0.74,
             "naked_poc": true
           }
         ],
@@ -467,257 +460,196 @@
   },
   "analysis": {
     "_agent": "ANALYST",
-    "_last_run": "2026-05-07T14:48:00",
+    "_last_run": "2026-05-08T08:30:00",
     "_status": "ready",
-    "last_run": "2026-05-07T14:48:00",
     "marktphase": {
-      "phase": "AUSBRUCH",
+      "phase": "TREND",
       "begruendung": [
-        "AUSBRUCH unveraendert: Instrumente weit ausserhalb ihrer VAs. Kein Pullback seit US-Open (14:30).",
-        "GER40: D-Shape (pos=0.500), Kurs 24904 unter VWAP 24924 und POC 24929. S2 blockiert. Score=1/8.",
-        "DJ30: b-Shape (pos=0.192), Kurs 50082 ueber VAH 49858. ER=7.4 kein Impuls. Score=2/8.",
-        "SPX500: b-Shape (pos=0.136), Kurs 7385 ueber VAH 7336. ER kollabiert +47->-11 (Choppy). Score=2/8.",
-        "Makro NEUTRAL (Score=-1). NFP morgen 08.05 HIGH. Max 2/8 < Schwelle 4 -> WAIT."
+        "TREND: ER>25 auf SPX500 (64.86) und DJ30 (38.18). P-Shapes auf GER40 und DJ30 (Eroeffnung bullisch). 2/3 Instrumente ausserhalb heutiger VA.",
+        "GER40: P-Shape (pos=0.792) heute, aber Kurs 24481 < VAL 24624 (Breakdown nach Eroeffnung). ER=10.58 schwach. Score S1=0.30 OK, S2=0.75 OK, S3=-0.17 BLOCKED. Align=3/8.",
+        "DJ30: P-Shape (pos=0.708) heute, Kurs 49711 < VAL 49741 (knapp unter). ER=38.18 Trendimpuls, CDV sehr stark. Score S1=0.10 BLOCKED, S2=1.0 OK, S3=0.50 OK. Align=3/8.",
+        "SPX500: Trend Day (pos=0.591), Kurs 7368 im unteren VA, ER=64.86 extrem stark, CDV positiv. S1=0.00 BLOCKED, S2=1.0 OK, S3=0.50 OK. Align=3/8.",
+        "Makro NEUTRAL (Score=-1). NFP heute 14:30 HIGH (forecast 65K vs 178K). 0/3 Schichten-Freigabe. CAPTAIN: WAIT."
       ],
-      "aktive_strategie": "Kein Trade (WAIT) -- Score 2/8, ER-Verfall, b-Shape Konflikt",
-      "er_bestaetigung": "nein (alle ER <= 10 oder negativ)"
+      "aktive_strategie": "Kein Trade (WAIT) -- Score 3/8, alle S1-Schichten unter Freigabe-Schwelle, NFP",
+      "er_bestaetigung": "teilweise (SPX500+DJ30 stark, GER40 schwach)"
     },
-    "regime": "RISK-ON",
+    "regime": "NEUTRAL",
     "risk_level": "HIGH",
     "top_down": {
       "m30_entry_zone": {
         "preis_von": null,
         "preis_bis": null
       },
-      "alignment_score": 2,
+      "alignment_score": 3,
       "trade_freigabe": false
     },
     "instruments": {
       "GER40": {
         "bias": "LEICHT_BULLISH",
-        "bias_score": 1,
-        "er_wert": -18.5,
-        "mp_shape": "D-Shape",
-        "mp_shape_pos": 0.5,
+        "bias_score": 3,
+        "er_wert": 10.58,
+        "mp_shape": "P-Shape",
+        "mp_shape_pos": 0.792,
         "schichten": {
           "s1_kontext": {
-            "score": 0.2,
+            "score": 0.3,
             "signale": {
-              "mp_shape": 0,
-              "preis_vs_va": -1,
+              "mp_shape": 3,
+              "preis_vs_va": -2,
               "preis_vs_poc": -1,
               "poc_migration": 2,
-              "shape_sequenz": 2,
+              "shape_sequenz": 1,
               "vp_hvn_lvn": 0
             }
           },
           "s2_struktur": {
-            "score": 0,
+            "score": 0.75,
             "signale": {
-              "vwap": -1,
+              "vwap": 1,
               "cvd": 1,
-              "er_trend": 0,
+              "er_trend": 1,
               "er_qualitaet": 0
             }
           },
           "s3_entry": {
-            "score": 0,
+            "score": -0.167,
             "signale": {
               "ichimoku": -1,
               "sma200": 1,
               "smc": 0,
               "sr_channel": 0,
               "pivot": 0,
-              "autofibo": 0
+              "autofibo": -1
             }
           },
           "freigabe_s1": true,
-          "freigabe_s2": false,
+          "freigabe_s2": true,
+          "freigabe_s3": false,
+          "alle_schichten_ok": false
+        },
+        "key_levels": [
+          {"level": "POC heute", "price": 24929.43, "source": "Market Profile"},
+          {"level": "VAH heute", "price": 25009.63, "source": "Market Profile"},
+          {"level": "VAL heute", "price": 24624.67, "source": "Market Profile"},
+          {"level": "VWAP", "price": 24446.39, "source": "VWAP"},
+          {"level": "Kijun", "price": 24570.83, "source": "Ichimoku"},
+          {"level": "SMA200", "price": 24453.39, "source": "SMA200"},
+          {"level": "Naked POC", "price": 24378.56, "source": "Market Profile"},
+          {"level": "PDH", "price": 25021.02, "source": "PrevDay"},
+          {"level": "PDL", "price": 24650.99, "source": "PrevDay"}
+        ],
+        "grund": "S3 BLOCKED: Kurs unter Kumo (-1), AutoFibo 0.5-Widerstand bei 24493 (-1). S1 OK: P-Shape +3, aber Kurs unter VAL -2, unter POC -1. POC-Migration steigend +2, 2x P-Shape +1."
+      },
+      "DJ30": {
+        "bias": "LEICHT_BULLISH",
+        "bias_score": 3,
+        "er_wert": 38.18,
+        "mp_shape": "P-Shape",
+        "mp_shape_pos": 0.708,
+        "schichten": {
+          "s1_kontext": {
+            "score": 0.1,
+            "signale": {
+              "mp_shape": 3,
+              "preis_vs_va": -2,
+              "preis_vs_poc": -1,
+              "poc_migration": 2,
+              "shape_sequenz": -1,
+              "vp_hvn_lvn": 0
+            }
+          },
+          "s2_struktur": {
+            "score": 1.0,
+            "signale": {
+              "vwap": 1,
+              "cvd": 1,
+              "er_trend": 1,
+              "er_qualitaet": 1
+            }
+          },
+          "s3_entry": {
+            "score": 0.5,
+            "signale": {
+              "ichimoku": 0,
+              "sma200": 1,
+              "smc": 0,
+              "sr_channel": 0,
+              "pivot": 1,
+              "autofibo": 1
+            }
+          },
+          "freigabe_s1": false,
+          "freigabe_s2": true,
           "freigabe_s3": true,
           "alle_schichten_ok": false
         },
         "key_levels": [
-          {
-            "level": "VWAP",
-            "price": 24924.09,
-            "source": "VWAP"
-          },
-          {
-            "level": "Kijun",
-            "price": 24920.88,
-            "source": "Ichimoku"
-          },
-          {
-            "level": "POC heute",
-            "price": 24928.87,
-            "source": "Market Profile"
-          },
-          {
-            "level": "VAH heute",
-            "price": 25144.03,
-            "source": "Market Profile"
-          },
-          {
-            "level": "VAL heute",
-            "price": 24713.71,
-            "source": "Market Profile"
-          },
-          {
-            "level": "SMA200",
-            "price": 24357,
-            "source": "SMA200"
-          }
+          {"level": "POC heute", "price": 50020.04, "source": "Market Profile"},
+          {"level": "VAH heute", "price": 50134.66, "source": "Market Profile"},
+          {"level": "VAL heute", "price": 49741.66, "source": "Market Profile"},
+          {"level": "VWAP", "price": 49646.36, "source": "VWAP"},
+          {"level": "Kijun", "price": 49657.41, "source": "Ichimoku"},
+          {"level": "SMA200", "price": 49533.57, "source": "SMA200"},
+          {"level": "PDH", "price": 50130.2, "source": "PrevDay"},
+          {"level": "PDL", "price": 49487.97, "source": "PrevDay"}
         ],
-        "grund": "S2 blockiert: Kurs 24904 < VWAP 24924 (-1), ER=-18.5 kein Trend (0). CVD +1 nicht ausreichend. US-Open ohne Aenderung."
-      },
-      "DJ30": {
-        "bias": "LEICHT_BULLISH",
-        "bias_score": 2,
-        "er_wert": 7.4,
-        "mp_shape": "b-Shape",
-        "mp_shape_pos": 0.192,
-        "schichten": {
-          "s1_kontext": {
-            "score": 0.2,
-            "signale": {
-              "mp_shape": -3,
-              "preis_vs_va": 2,
-              "preis_vs_poc": 1,
-              "poc_migration": 2,
-              "shape_sequenz": 0,
-              "vp_hvn_lvn": 0
-            }
-          },
-          "s2_struktur": {
-            "score": 0.5,
-            "signale": {
-              "vwap": 1,
-              "cvd": 1,
-              "er_trend": 0,
-              "er_qualitaet": 0
-            }
-          },
-          "s3_entry": {
-            "score": 0.333,
-            "signale": {
-              "ichimoku": 1,
-              "sma200": 1,
-              "smc": 0,
-              "sr_channel": 0,
-              "pivot": 0,
-              "autofibo": 0
-            }
-          },
-          "freigabe_s1": true,
-          "freigabe_s2": true,
-          "freigabe_s3": true,
-          "alle_schichten_ok": true
-        },
-        "key_levels": [
-          {
-            "level": "VWAP",
-            "price": 50023.28,
-            "source": "VWAP"
-          },
-          {
-            "level": "Kijun",
-            "price": 50044.76,
-            "source": "Ichimoku"
-          },
-          {
-            "level": "VAH heute",
-            "price": 49858.71,
-            "source": "Market Profile"
-          },
-          {
-            "level": "POC heute",
-            "price": 49449.76,
-            "source": "Market Profile"
-          },
-          {
-            "level": "VAL heute",
-            "price": 49352.4,
-            "source": "Market Profile"
-          }
-        ],
-        "grund": "b-Shape (-3) blockiert S1 auf 0.20 (Minimum). Kurs 50082 ueber VAH 49858 (+2). VWAP+CVD bullisch (S2=0.50). ER=7.4 kein Trendimpuls. Score 2/8."
+        "grund": "S1 BLOCKED: P-Shape +3 aber Kurs unter VAL -2, unter POC -1, 2x b-Shape Sequenz -1 = s1_raw=1 (0.10<0.20). S2 maximal (ER=38, CDV=165K, VWAP). S3 gut (SMA200, Fibo, MRC)."
       },
       "SPX500": {
-        "bias": "BULLISCH",
-        "bias_score": 2,
-        "er_wert": -10.98,
-        "mp_shape": "b-Shape",
-        "mp_shape_pos": 0.136,
+        "bias": "LEICHT_BULLISH",
+        "bias_score": 3,
+        "er_wert": 64.86,
+        "mp_shape": "Trend Day",
+        "mp_shape_pos": 0.591,
         "schichten": {
           "s1_kontext": {
-            "score": 0.2,
+            "score": 0.0,
             "signale": {
-              "mp_shape": -3,
-              "preis_vs_va": 2,
-              "preis_vs_poc": 1,
+              "mp_shape": 0,
+              "preis_vs_va": -1,
+              "preis_vs_poc": -1,
               "poc_migration": 2,
               "shape_sequenz": 0,
               "vp_hvn_lvn": 0
             }
           },
           "s2_struktur": {
-            "score": 0.5,
+            "score": 1.0,
             "signale": {
               "vwap": 1,
               "cvd": 1,
-              "er_trend": 0,
-              "er_qualitaet": 0
+              "er_trend": 1,
+              "er_qualitaet": 1
             }
           },
           "s3_entry": {
-            "score": 0.333,
+            "score": 0.5,
             "signale": {
               "ichimoku": 1,
               "sma200": 1,
               "smc": 0,
               "sr_channel": 0,
-              "pivot": 0,
+              "pivot": 1,
               "autofibo": 0
             }
           },
-          "freigabe_s1": true,
+          "freigabe_s1": false,
           "freigabe_s2": true,
           "freigabe_s3": true,
-          "alle_schichten_ok": true
+          "alle_schichten_ok": false
         },
         "key_levels": [
-          {
-            "level": "VWAP",
-            "price": 7375.81,
-            "source": "VWAP"
-          },
-          {
-            "level": "Kijun",
-            "price": 7377.45,
-            "source": "Ichimoku"
-          },
-          {
-            "level": "VAH heute",
-            "price": 7336.8,
-            "source": "Market Profile"
-          },
-          {
-            "level": "POC heute",
-            "price": 7288.15,
-            "source": "Market Profile"
-          },
-          {
-            "level": "VAL heute",
-            "price": 7280.47,
-            "source": "Market Profile"
-          },
-          {
-            "level": "SMA200",
-            "price": 7276.59,
-            "source": "SMA200"
-          }
+          {"level": "POC heute", "price": 7378.79, "source": "Market Profile"},
+          {"level": "VAH heute", "price": 7393.45, "source": "Market Profile"},
+          {"level": "VAL heute", "price": 7357.61, "source": "Market Profile"},
+          {"level": "VWAP", "price": 7352.19, "source": "VWAP"},
+          {"level": "Kijun", "price": 7345.73, "source": "Ichimoku"},
+          {"level": "SMA200", "price": 7295.4, "source": "SMA200"},
+          {"level": "PDH", "price": 7385.02, "source": "PrevDay"},
+          {"level": "PDL", "price": 7321.25, "source": "PrevDay"}
         ],
-        "grund": "b-Shape (-3) zieht S1 auf 0.20. Kurs 7385 ueber VAH 7336 (+2). ER kollabiert +47->-11 (S2 von 1.0 auf 0.5). Score 2/8 (war 3/8 morgens)."
+        "grund": "S1 BLOCKED: Trend Day=0, Kurs unter POC -1, im unteren VA -1, poc_migration +2, gemischt 0 = s1_raw=0. S2 maximal (ER=64.86 extrem, CDV+). S3 gut (Ichimoku ueber Kumo, SMA200, MRC)."
       }
     },
     "inter_market": {
@@ -725,86 +657,80 @@
       "alle_bearish": false,
       "gemischt": true
     },
-    "summary": "AUSBRUCH haelt an. ER alle Instrumente kollabiert (SPX500 +47->-11). b-Shape DJ30/SPX500 unveraendert. Max 2/8 < 4 -> CAPTAIN WAIT. NFP morgen."
+    "summary": "TREND-Phase. ER stark auf SPX500+DJ30. Alle P-Shapes zur Eroeffnung, aber Preise gefallen. Score 3/8 max < 4 Pflicht-WAIT. NFP 14:30 HIGH. 0/3 Schichten-Freigabe."
   },
   "captain": {
     "_agent": "CAPTAIN",
-    "_last_run": "2026-05-07T14:48:00",
+    "_last_run": "2026-05-08T08:30:00",
     "_status": "ready",
-    "last_run": "2026-05-07T14:48:00",
     "session_bias": "WAIT",
     "aktive_strategie": "Keine",
-    "alignment_score": 2,
+    "alignment_score": 3,
     "trade_freigabe": false,
-    "shape_konflikt": true,
+    "shape_konflikt": false,
     "zentralbank_stop": false,
     "zentralbank_stop_grund": "",
     "konfidenz_details": {
-      "chart_gewichtung": 0.7,
-      "makro_gewichtung": 0.3,
-      "gewichtungs_grund": "AUSBRUCH+RISK-ON -- Chart 70% / Makro 30%",
-      "alignment_beitrag": 0.175,
-      "makro_beitrag": -0.025,
-      "konfidenz_final": 0.15
+      "chart_gewichtung": 0.6,
+      "makro_gewichtung": 0.4,
+      "gewichtungs_grund": "TREND + NEUTRAL (Makro) -- Default 60/40",
+      "alignment_beitrag": 0.225,
+      "makro_beitrag": -0.033,
+      "konfidenz_final": 0.192
     },
-    "instrument_prioritaet": [
-      "SPX500",
-      "DJ30",
-      "GER40"
-    ],
+    "instrument_prioritaet": ["SPX500", "DJ30", "GER40"],
     "entry_fenster": "WAIT -- kein Entry",
     "max_risk_today": "0%",
     "max_trades_heute": 0,
     "trades_today": 0,
     "active_positions": [],
-    "trade_plan": "WAIT. Score 2/8 (war 3/8 morgens) < Schwelle 4. ER kollabiert: SPX500 +47->-11, DJ30 +2->+7, GER40 -24->-18. b-Shape DJ30/SPX500 unveraendert. Kein Pullback an VWAP-Kijun (SPX500 VWAP 7376/Kijun 7377, DJ30 VWAP 50023/Kijun 50044). Konfidenz 0.15 < 0.40. NFP morgen HIGH.",
-    "notes": "USUpdate 14:48. US-Open (14:30) ohne signifikante Bewegung. ER-Verfall bestaetigt Choppy-Markt.",
+    "trade_plan": "WAIT. Score 3/8 < 4 (Pflicht-WAIT). 0/3 Instrumente mit Schichten-Freigabe. Konfidenz 0.192 < 0.40 (WAIT). NFP 14:30 USD HIGH: AHE m/m, Non-Farm Employment Change (forecast 65K vs prev 178K), Unemployment Rate. Nach NFP: US-Update um 14:45 Uhr durchfuehren und neu bewerten.",
+    "notes": "Morning 08:30. Markt eroeffnete bullisch (P-Shapes), aber Preise sind seitdem gefallen. GER40 unter Kumo. DJ30 in Kumo. SPX500 ueber Kumo -- starkster Kandidat nach NFP.",
     "warnungen": [
-      "Score 2/8 < 4 (schlechter als morgens 3/8) -- Pflicht-WAIT",
-      "ER kollabiert SPX500: +47->-11",
-      "b-Shape Konflikt DJ30+SPX500",
-      "GER40 S2 blockiert",
-      "NFP morgen 08.05 14:30 USD HIGH"
+      "Score 3/8 < 4 -- Pflicht-WAIT keine Ausnahme",
+      "0/3 Schichten-Freigabe -- kein Instrument qualifiziert",
+      "Konfidenz 0.192 < 0.40 -- WAIT",
+      "NFP heute 14:30 HIGH -- forecast 65K vs prev 178K (massive Diskrepanz)",
+      "Gold Risk-Off steigend | Oil Inflationsdruck > 90"
     ]
   },
   "orders": {
     "_agent": "EXECUTOR",
-    "_last_run": "2026-05-07T14:48:00",
+    "_last_run": "2026-05-08T08:30:00",
     "_status": "ready",
-    "last_run": "2026-05-07T14:48:00",
-    "session": "2026-05-07-usupdate",
+    "session": "2026-05-08-morning",
     "total": 0,
     "list": [],
     "summary": {
       "best_instrument": "SPX500",
       "total_orders": 0,
       "trade_freigabe": false,
-      "shape_konflikt": true,
+      "shape_konflikt": false,
       "warnings": [
-        "WAIT: Score 2/8 < 4",
-        "b-Shape DJ30+SPX500",
-        "NFP morgen 08.05"
+        "WAIT: Score 3/8 < 4",
+        "0/3 Schichten-Freigabe",
+        "NFP 14:30 HIGH"
       ],
-      "notes": "Keine Orders. ER-Verfall bestaetigt Choppy-Markt."
+      "notes": "Keine Orders. Nach NFP (14:30) US-Update durchfuehren. SPX500 starkster Kandidat (ER=64.86, S2+S3 ok, Kumo bullisch)."
     },
-    "grund_keine_orders": "Score 2/8 < 4 (Pflicht-WAIT). ER kollabiert. b-Shape Konflikt. NFP morgen."
+    "grund_keine_orders": "Score 3/8 < 4 (Pflicht-WAIT). 0/3 Schichten. Konfidenz 0.192. NFP 14:30 HIGH."
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-06T08:20:00",
-    "_status": "ready",
+    "_last_run": "2026-05-08T08:30:00",
+    "_status": "pending",
     "session": "Morning",
-    "gesamt_status": "OK",
+    "gesamt_status": "PENDING",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260506_0820_Morning.txt",
+    "report_datei": "",
     "bereiche": {
-      "lokale_prozesse": "OK",
-      "sheet_doc": "OK",
-      "github_web": "OK",
+      "lokale_prozesse": "PENDING",
+      "sheet_doc": "PENDING",
+      "github_web": "PENDING",
       "datenqualitaet": "2 Warnungen (ONH/ONL null, PCR delisted)",
-      "entscheidung": "TRADE Score:4/8 2 Orders",
-      "anomalien": "OK"
+      "entscheidung": "WAIT Score:3/8 0 Orders",
+      "anomalien": "PENDING"
     }
   },
   "calendar": [
