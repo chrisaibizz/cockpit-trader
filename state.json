@@ -392,18 +392,6 @@
     },
     "calendar": [
       {
-        "date": "2026-05-07",
-        "time": "14:30",
-        "currency": "USD",
-        "name": "Unemployment Claims",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "205K",
-        "previous": "189K",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-05-08",
         "time": "09:00",
         "currency": "EUR",
@@ -820,18 +808,6 @@
     }
   },
   "calendar": [
-    {
-      "date": "2026-05-07",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Unemployment Claims",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "205K",
-      "previous": "189K",
-      "better": null,
-      "source": "forexfactory"
-    },
     {
       "date": "2026-05-08",
       "time": "09:00",
