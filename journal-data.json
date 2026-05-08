@@ -1,80 +1,100 @@
 {
   "date": "2026-05-08",
-  "timestamp": "2026-05-08T08:30:00",
-  "phase": "TREND",
-  "regime": "NEUTRAL",
-  "session_bias": "WAIT",
-  "alignment_score": 3,
-  "makro_bias": "NEUTRAL",
-  "instruments": {
-    "GER40": {
-      "bias": "LEICHT_BULLISH",
-      "score": 3,
-      "poc": 24929.43,
-      "vah": 25009.63,
-      "val": 24624.67,
-      "mp_shape": "P-Shape",
-      "mp_shape_pos": 0.792,
-      "er": 10.58,
-      "onh": null,
-      "pdh": 25021.02,
-      "vwap": 24446.39,
-      "price": 24481.98
-    },
-    "DJ30": {
-      "bias": "LEICHT_BULLISH",
-      "score": 3,
-      "poc": 50020.04,
-      "vah": 50134.66,
-      "val": 49741.66,
-      "mp_shape": "P-Shape",
-      "mp_shape_pos": 0.708,
-      "er": 38.18,
-      "onh": null,
-      "pdh": 50130.2,
-      "vwap": 49646.36,
-      "price": 49711.35
-    },
-    "SPX500": {
-      "bias": "LEICHT_BULLISH",
-      "score": 3,
-      "poc": 7378.79,
-      "vah": 7393.45,
-      "val": 7357.61,
-      "mp_shape": "Trend Day",
-      "mp_shape_pos": 0.591,
-      "er": 64.86,
-      "onh": null,
-      "pdh": 7385.02,
-      "vwap": 7352.19,
-      "price": 7368.75
-    }
-  },
-  "orders_count": 0,
+  "timestamp": "2026-05-08T14:45:00",
+  "session": "us_update",
   "debrief": {
-    "orders_checked": 3,
-    "fill_rate": "0%",
-    "tp1_rate": "N/A",
-    "trend": "WAIT",
-    "learnings": [
-      "Vortag-Orders (07.05) alle nicht gefuellt -- Limit Buy Entries zu weit vom Markt",
-      "NFP heute 14:30: Kein Trade bis nach US-Update"
-    ]
+    "orders_checked": 0,
+    "fill_rate": "0% (WAIT morgens)",
+    "tp1_rate": "",
+    "trend": "Keine Orders (NFP WAIT)",
+    "learnings": ["NFP 14:30 USD HIGH erzwang WAIT morgens. Post-NFP Improvement: Score 3/8 -> 5/8. DJ30+SPX500 qualifiziert aber Makro (Gold+Oil) blockierte Konfidenz."]
   },
+  "instruments": [
+    {
+      "name": "GER40",
+      "bias": "NEUTRAL",
+      "bias_pct": "35",
+      "daily_summary": "GER40 schwach. ER=1.26 kollabiert (war 10.58 morgens). Unter VAL 24624, unter VWAP 24437, unter SMA200 24471, unter Kumo (Senkou B=24668). P-Shape Struktur intakt aber Preis weit abgefallen.",
+      "h4_summary": "Europaeische Session geschlossen. GER40 verlor -71 Punkte seit 08:30.",
+      "h1_summary": "Bearischer Trend in EU-Session. Alle Indikatoren zeigen Schwaeche.",
+      "h30m_summary": "P-Shape (pos=0.792) unveraendert. Preis 24410 vs VAL 24624 -- tief darunter. S2 FAIL (VWAP+ER). S3 FAIL (Kumo+SMA200+Fibo).",
+      "mp_shape_yesterday": "D-Shape (2026-05-07, pos=0.50)",
+      "mp_shape_forecast": "P-Shape Konsolidierung -- Preis muessen VAL 24624 zurueckerobern fuer bullisches Signal",
+      "mp_5day_sequence": "P-Shape(heute), D-Shape(07.05), P-Shape(06.05), P-Shape(05.05), P-Shape(04.05) -- steigender POC-Trend",
+      "key_levels": [
+        {"level": "VAL heute", "price": "24624.67", "source": "Market Profile"},
+        {"level": "POC heute", "price": "24929.43", "source": "Market Profile"},
+        {"level": "VAH heute", "price": "25009.63", "source": "Market Profile"},
+        {"level": "VWAP", "price": "24437.00", "source": "VWAP"},
+        {"level": "SMA200", "price": "24471.44", "source": "SMA200"},
+        {"level": "Senkou B (Kumo)", "price": "24668.33", "source": "Ichimoku"},
+        {"level": "Naked POC", "price": "24378.56", "source": "Market Profile"}
+      ],
+      "orders": [],
+      "invalidation": "Keine Orders. Alle Schichten FAIL. Naechster Kaufpunkt: VAL-Rueckkehr + ER > 10."
+    },
+    {
+      "name": "DJ30",
+      "bias": "BULLISCH",
+      "bias_pct": "65",
+      "daily_summary": "DJ30 verbessert. Kurs 49803 ueber VAL 49741 (Schluessel-Durchbruch seit Morning). ER=62.28 extrem stark. CVD=172524 massiv bullisch. Alle 3 Schichten qualifiziert.",
+      "h4_summary": "NY-Open bullisch. Kurs von 49711 auf 49803 (+92). Trend-Impulse bestaetigt durch ER und CVD.",
+      "h1_summary": "Preis ueber VAL, ueber VWAP, nahe Kijun (49751). In Kumo (neutral_in_kumo) aber oberhalb Senkou A.",
+      "h30m_summary": "P-Shape (pos=0.708) bestaetigt. S1=0.50 (Preis ueber VAL!), S2=1.0 (ER=62), S3=0.33 (SMA200+Fibo). alle_schichten_ok=TRUE.",
+      "mp_shape_yesterday": "b-Shape (2026-05-07, pos=0.192)",
+      "mp_shape_forecast": "P-Shape haelt. Ziel: POC 50020. Bullisch solange > VAL 49741.",
+      "mp_5day_sequence": "P-Shape(heute), b-Shape(07.05), b-Shape(06.05), P-Shape(05.05), b-Shape(04.05) -- gemischte Sequenz",
+      "key_levels": [
+        {"level": "VAL heute", "price": "49741.66", "source": "Market Profile"},
+        {"level": "VWAP", "price": "49705.27", "source": "VWAP"},
+        {"level": "Kijun", "price": "49751.65", "source": "Ichimoku"},
+        {"level": "POC heute", "price": "50020.04", "source": "Market Profile"},
+        {"level": "VAH heute", "price": "50134.66", "source": "Market Profile"},
+        {"level": "PDH", "price": "50130.20", "source": "PrevDay"},
+        {"level": "SMA200", "price": "49546.71", "source": "SMA200"}
+      ],
+      "orders": [],
+      "invalidation": "WAIT wegen Konfidenz 0.375 < 0.40. Beobachtungs-Setup: Long auf Ruecksetzer an VAL 49741. Freigabe bei makro_score +2."
+    },
+    {
+      "name": "SPX500",
+      "bias": "BULLISCH",
+      "bias_pct": "68",
+      "daily_summary": "SPX500 staerkstes Instrument. Kurs 7384 UEBER POC 7378 (Durchbruch) und UEBER Kumo (bullisch_ueber_kumo). ER=57.58 stark. CVD=34227 stark. Alle 3 Schichten qualifiziert.",
+      "h4_summary": "Post-NFP Bewegung stark. Kurs +15.75 seit 08:30. Ichimoku: ueber Kumo, Tenkan=7384 > Kijun=7370.",
+      "h1_summary": "Ueber VWAP 7363, ueber POC 7378, nahe VAH 7393. MRC R1=7394 als naechster Widerstand.",
+      "h30m_summary": "Trend Day (pos=0.591). S1=0.40 (ueber POC!), S2=1.0, S3=0.67 (Ichimoku+SMA200+MRC+Fibo). alle_schichten_ok=TRUE.",
+      "mp_shape_yesterday": "b-Shape (2026-05-07, pos=0.136)",
+      "mp_shape_forecast": "Trend Day haelt bullischen Impuls. VAH 7393 als Ziel. Ueber VAH -> MRC R1 7394 -> MRC R2 7438.",
+      "mp_5day_sequence": "Trend Day(heute), b-Shape(07.05), Trend Day(06.05), P-Shape(05.05), Trend Day(04.05) -- direktional",
+      "key_levels": [
+        {"level": "POC heute", "price": "7378.79", "source": "Market Profile"},
+        {"level": "VWAP", "price": "7363.54", "source": "VWAP"},
+        {"level": "Kijun", "price": "7370.63", "source": "Ichimoku"},
+        {"level": "VAH heute", "price": "7393.45", "source": "Market Profile"},
+        {"level": "MRC R1", "price": "7394.43", "source": "MRC"},
+        {"level": "PDH", "price": "7385.02", "source": "PrevDay"},
+        {"level": "SMA200", "price": "7304.03", "source": "SMA200"}
+      ],
+      "orders": [],
+      "invalidation": "WAIT wegen Konfidenz 0.375 < 0.40. Beobachtungs-Setup: Long POC-Retest 7378. Freigabe bei makro_score +2."
+    }
+  ],
   "summary": {
     "best_instrument": "SPX500",
     "total_orders": 0,
     "warnings": [
-      "WAIT: Score 3/8 < 4",
-      "NFP heute 14:30 HIGH -- forecast 65K vs 178K",
-      "0/3 Schichten-Freigabe"
+      "Konfidenz 0.375 < 0.40 -- WAIT",
+      "Gold+Oil hoch halten Makro auf NEUTRAL (0)",
+      "UoM Consumer Sentiment 16:00 USD medium",
+      "GER40 ausgefallen -- ER kollabiert"
     ],
-    "notes": "WAIT Morning. P-Shapes zur Eroeffnung, Preise danach gefallen. SPX500 starkster Kandidat nach NFP (ER=64.86, S2+S3 ok). US-Update 14:45 abwarten."
+    "notes": "Massive Verbesserung post-NFP: Score 3/8->5/8, DJ30+SPX500 alle Schichten OK. Hauptblocker: makro_score=0. Wenn Gold/Oil drehen oder F&G steigt -> Konfidenz > 0.40 -> Trade."
   },
   "stats": {
-    "total": 3,
+    "total": 0,
     "fill_rate": "0%",
-    "tp1_rate": "N/A",
-    "trend": "WAIT"
+    "tp1_rate": "",
+    "trend": "WAIT (NFP + Makro)"
   }
 }
