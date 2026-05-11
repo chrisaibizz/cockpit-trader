@@ -1,75 +1,105 @@
 {
   "date": "2026-05-11",
-  "timestamp": "2026-05-11T08:20:00",
+  "timestamp": "2026-05-11T14:45:00",
   "phase": "BALANCE",
   "regime": "NEUTRAL",
   "session_bias": "WAIT",
-  "alignment_score": 5,
+  "alignment_score": 3,
   "makro_bias": "NEUTRAL",
   "instruments": {
     "GER40": {
       "bias": "NEUTRAL",
-      "score": 2,
+      "bias_score": 1,
+      "price": 24226.2,
       "poc": 24445.42,
       "vah": 24476.98,
       "val": 24363.36,
       "mp_shape": "P-Shape",
       "mp_shape_pos": 0.722,
-      "er": 15.3,
-      "onh": null,
-      "pdh": 25021.02
+      "vwap": 24269.88,
+      "er": -22.44,
+      "cvd": 21508.91,
+      "sma200": 24481.78,
+      "kumo_bias": "bearisch_unter_kumo",
+      "alle_schichten_ok": false,
+      "s1": 0.3,
+      "s2": -0.25,
+      "s3": -0.333,
+      "delta_price": -34.0,
+      "delta_er": -37.74
     },
     "DJ30": {
       "bias": "BAERISCH",
-      "score": -2,
+      "bias_score": -3,
+      "price": 49554.15,
       "poc": 49663.6,
       "vah": 49785.32,
       "val": 49616.78,
       "mp_shape": "b-Shape",
       "mp_shape_pos": 0.278,
-      "er": 41.18,
-      "onh": null,
-      "pdh": 50130.2
+      "vwap": 49544.64,
+      "er": -2.30,
+      "cvd": 167864.94,
+      "sma200": 49632.72,
+      "kumo_bias": "neutral_in_kumo",
+      "alle_schichten_ok": false,
+      "s1": -0.7,
+      "s2": 0.25,
+      "s3": -0.167,
+      "delta_price": 16.7,
+      "delta_er": -43.48
     },
     "SPX500": {
-      "bias": "BULLISCH",
-      "score": 5,
+      "bias": "NEUTRAL",
+      "bias_score": 3,
+      "price": 7390.27,
       "poc": 7403.4,
       "vah": 7410.0,
       "val": 7370.38,
       "mp_shape": "P-Shape",
       "mp_shape_pos": 0.833,
-      "er": 24.01,
-      "onh": null,
-      "pdh": 7385.02
+      "vwap": 7392.73,
+      "er": -28.00,
+      "cvd": 39348.50,
+      "sma200": 7343.86,
+      "kumo_bias": "bearisch_unter_kumo",
+      "alle_schichten_ok": false,
+      "s1": 0.5,
+      "s2": 0.0,
+      "s3": 0.167,
+      "delta_price": -5.63,
+      "delta_er": -52.01,
+      "warning": "SPX500 unter Ichimoku-Kumo (war bullisch_ueber_kumo morgens)"
     }
   },
+  "delta": {
+    "timestamp_from": "2026-05-11T08:20:00",
+    "timestamp_to": "2026-05-11T14:45:00",
+    "GER40": {"price": -34.0, "er": -37.74, "note": "ER-Flip bullish->bearish"},
+    "DJ30": {"price": 16.7, "er": -43.48, "note": "ER-Kollaps: Baerentrend gestoppt"},
+    "SPX500": {"price": -5.63, "er": -52.01, "note": "ER-Flip bullish->bearish, Ichimoku-Kumo-Durchbruch"}
+  },
+  "captain": {
+    "session_bias": "WAIT",
+    "konfidenz": 0.1875,
+    "konfidenz_morning": 0.3125,
+    "alignment_score": 3,
+    "alignment_morning": 5,
+    "trade_freigabe": false,
+    "max_risk": "0%"
+  },
+  "orders": [],
   "orders_count": 0,
-  "debrief": {
-    "orders_checked": 3,
-    "fill_rate": "unbekannt",
-    "tp1_rate": "",
-    "trend": "WAIT (Konfidenz 0.31, CPI morgen)",
-    "learnings": [
-      "CPI morgen 2026-05-12 -- Markt positioniert sich vorsichtig",
-      "Oil 99.79 > 90 bremst Risk-On",
-      "SPX500 einziger qualifizierter Kandidat"
-    ]
+  "macro": {
+    "vix": 17.19,
+    "makro_score": 0,
+    "makro_bias": "NEUTRAL",
+    "oil": 99.79,
+    "cpi_morgen": true
   },
-  "summary": {
-    "best_instrument": "SPX500",
-    "total_orders": 0,
-    "warnings": [
-      "CPI morgen 2026-05-12 14:30 USD",
-      "Oil 99.79 > 90 steigend",
-      "Konfidenz 0.3125 < 0.40 Threshold"
-    ],
-    "notes": "WAIT. SPX500 Score 5/8 alle Schichten OK, aber allein (1/3). BALANCE-Phase drueckt Konfidenz. Beobachtungs-Setup: SPX500 Long VAL 7370."
-  },
-  "stats": {
-    "total": 3,
-    "fill_rate": "unbekannt",
-    "tp1_rate": "",
-    "trend": "WAIT"
-  }
+  "calendar_warnings": [
+    "CPI morgen 2026-05-12 14:30 USD High",
+    "Fed Chair Nomination Vote 2026-05-12 18:00"
+  ],
+  "summary": "US-Update 14:45 WAIT bestaetigt. Technische Verschlechterung: SPX500 ER-Flip +24->-28, unter Ichimoku-Kumo. DJ30 ER-Kollaps 41->-2. 0/3 alle_schichten_ok. Score 3/8 (war 5/8). CPI morgen."
 }
