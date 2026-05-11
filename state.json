@@ -135,7 +135,11 @@
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "2x P-Shape",
-          "naked_pocs": [24378.56, 24319.17, 24269.1],
+          "naked_pocs": [
+            24378.56,
+            24319.17,
+            24269.1
+          ],
           "composite_poc": 24460.82
         },
         "mp_history": [
@@ -228,7 +232,11 @@
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "2x b-Shape",
-          "naked_pocs": [49449.76, 49031.41, 49538.15],
+          "naked_pocs": [
+            49449.76,
+            49031.41,
+            49538.15
+          ],
           "composite_poc": 49439.51
         },
         "mp_history": [
@@ -321,7 +329,11 @@
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "gemischt",
-          "naked_pocs": [7288.15, 7234.63, 7247.79],
+          "naked_pocs": [
+            7288.15,
+            7234.63,
+            7247.79
+          ],
           "composite_poc": 7251.52
         },
         "mp_history": [
@@ -386,22 +398,10 @@
     },
     "calendar": [
       {
-        "date": "2026-05-08",
-        "time": "09:00",
-        "currency": "EUR",
-        "name": "ECB President Lagarde Speaks",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "",
-        "previous": "",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-05-08",
+        "date": "2026-05-12",
         "time": "14:30",
         "currency": "USD",
-        "name": "Average Hourly Earnings m/m",
+        "name": "Core CPI m/m",
         "impact": "high",
         "actual": "",
         "forecast": "0.3%",
@@ -410,50 +410,98 @@
         "source": "forexfactory"
       },
       {
-        "date": "2026-05-08",
+        "date": "2026-05-12",
         "time": "14:30",
         "currency": "USD",
-        "name": "Non-Farm Employment Change",
+        "name": "CPI m/m",
         "impact": "high",
         "actual": "",
-        "forecast": "65K",
-        "previous": "178K",
+        "forecast": "0.6%",
+        "previous": "0.9%",
         "better": null,
         "source": "forexfactory"
       },
       {
-        "date": "2026-05-08",
+        "date": "2026-05-12",
         "time": "14:30",
         "currency": "USD",
-        "name": "Unemployment Rate",
+        "name": "CPI y/y",
         "impact": "high",
         "actual": "",
-        "forecast": "4.3%",
-        "previous": "4.3%",
+        "forecast": "3.7%",
+        "previous": "3.3%",
         "better": null,
         "source": "forexfactory"
       },
       {
-        "date": "2026-05-08",
-        "time": "16:00",
+        "date": "2026-05-12",
+        "time": "18:00",
         "currency": "USD",
-        "name": "Prelim UoM Consumer Sentiment",
-        "impact": "medium",
+        "name": "Fed Chair Nomination Vote",
+        "impact": "high",
         "actual": "",
-        "forecast": "49.7",
-        "previous": "47.6",
+        "forecast": "Pass",
+        "previous": "",
         "better": null,
         "source": "forexfactory"
       },
       {
-        "date": "2026-05-08",
-        "time": "16:00",
+        "date": "2026-05-13",
+        "time": "14:30",
         "currency": "USD",
-        "name": "Prelim UoM Inflation Expectations",
+        "name": "Core PPI m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.3%",
+        "previous": "0.1%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-13",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "PPI m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.5%",
+        "previous": "0.5%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-14",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Core Retail Sales m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.6%",
+        "previous": "1.9%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-14",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Retail Sales m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.6%",
+        "previous": "1.7%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-14",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Unemployment Claims",
         "impact": "medium",
         "actual": "",
-        "forecast": "",
-        "previous": "4.8%",
+        "forecast": "206K",
+        "previous": "200K",
         "better": null,
         "source": "forexfactory"
       }
@@ -530,16 +578,56 @@
           "alle_schichten_ok": false
         },
         "key_levels": [
-          {"level": "POC heute", "price": 24929.43, "source": "Market Profile"},
-          {"level": "VAH heute", "price": 25009.63, "source": "Market Profile"},
-          {"level": "VAL heute", "price": 24624.67, "source": "Market Profile"},
-          {"level": "VWAP", "price": 24437.0, "source": "VWAP"},
-          {"level": "Kijun", "price": 24440.48, "source": "Ichimoku"},
-          {"level": "SMA200", "price": 24471.44, "source": "SMA200"},
-          {"level": "Senkou B", "price": 24668.33, "source": "Ichimoku"},
-          {"level": "Naked POC", "price": 24378.56, "source": "Market Profile"},
-          {"level": "PDH", "price": 25021.02, "source": "PrevDay"},
-          {"level": "PDL", "price": 24650.99, "source": "PrevDay"}
+          {
+            "level": "POC heute",
+            "price": 24929.43,
+            "source": "Market Profile"
+          },
+          {
+            "level": "VAH heute",
+            "price": 25009.63,
+            "source": "Market Profile"
+          },
+          {
+            "level": "VAL heute",
+            "price": 24624.67,
+            "source": "Market Profile"
+          },
+          {
+            "level": "VWAP",
+            "price": 24437.0,
+            "source": "VWAP"
+          },
+          {
+            "level": "Kijun",
+            "price": 24440.48,
+            "source": "Ichimoku"
+          },
+          {
+            "level": "SMA200",
+            "price": 24471.44,
+            "source": "SMA200"
+          },
+          {
+            "level": "Senkou B",
+            "price": 24668.33,
+            "source": "Ichimoku"
+          },
+          {
+            "level": "Naked POC",
+            "price": 24378.56,
+            "source": "Market Profile"
+          },
+          {
+            "level": "PDH",
+            "price": 25021.02,
+            "source": "PrevDay"
+          },
+          {
+            "level": "PDL",
+            "price": 24650.99,
+            "source": "PrevDay"
+          }
         ],
         "grund": "S2 FAIL: Unter VWAP (-1), ER=1.26 kollabiert (-1). S3 FAIL: Unter Kumo (-1), Unter SMA200 (-1), AutoFibo 0.5=24518 Widerstand (-1). S1 OK: P-Shape +3, POC-Migration +2, 2x P-Shape +1, aber Kurs unter VAL -2, unter POC -1."
       },
@@ -587,14 +675,46 @@
           "alle_schichten_ok": true
         },
         "key_levels": [
-          {"level": "POC heute", "price": 50020.04, "source": "Market Profile"},
-          {"level": "VAH heute", "price": 50134.66, "source": "Market Profile"},
-          {"level": "VAL heute", "price": 49741.66, "source": "Market Profile"},
-          {"level": "VWAP", "price": 49705.27, "source": "VWAP"},
-          {"level": "Kijun", "price": 49751.65, "source": "Ichimoku"},
-          {"level": "SMA200", "price": 49546.71, "source": "SMA200"},
-          {"level": "PDH", "price": 50130.2, "source": "PrevDay"},
-          {"level": "PDL", "price": 49487.97, "source": "PrevDay"}
+          {
+            "level": "POC heute",
+            "price": 50020.04,
+            "source": "Market Profile"
+          },
+          {
+            "level": "VAH heute",
+            "price": 50134.66,
+            "source": "Market Profile"
+          },
+          {
+            "level": "VAL heute",
+            "price": 49741.66,
+            "source": "Market Profile"
+          },
+          {
+            "level": "VWAP",
+            "price": 49705.27,
+            "source": "VWAP"
+          },
+          {
+            "level": "Kijun",
+            "price": 49751.65,
+            "source": "Ichimoku"
+          },
+          {
+            "level": "SMA200",
+            "price": 49546.71,
+            "source": "SMA200"
+          },
+          {
+            "level": "PDH",
+            "price": 50130.2,
+            "source": "PrevDay"
+          },
+          {
+            "level": "PDL",
+            "price": 49487.97,
+            "source": "PrevDay"
+          }
         ],
         "grund": "S1 OK: P-Shape +3, Kurs UEBER VAL +2 (Durchbruch seit Morning!), POC-Migration +2, b-Shape Sequenz -1, unter POC -1 = s1_raw=5 (0.50). S2 maximal: ER=62.28 stark (+1), CVD=172524 stark (+1), VWAP (+1), ER-Qualitaet (+1). S3 gut: SMA200 (+1), AutoFibo 0.5 (+1)."
       },
@@ -642,15 +762,51 @@
           "alle_schichten_ok": true
         },
         "key_levels": [
-          {"level": "POC heute", "price": 7378.79, "source": "Market Profile"},
-          {"level": "VAH heute", "price": 7393.45, "source": "Market Profile"},
-          {"level": "VAL heute", "price": 7357.61, "source": "Market Profile"},
-          {"level": "VWAP", "price": 7363.54, "source": "VWAP"},
-          {"level": "Kijun", "price": 7370.63, "source": "Ichimoku"},
-          {"level": "SMA200", "price": 7304.03, "source": "SMA200"},
-          {"level": "PDH", "price": 7385.02, "source": "PrevDay"},
-          {"level": "Naked POC", "price": 7288.15, "source": "Market Profile"},
-          {"level": "PDL", "price": 7321.25, "source": "PrevDay"}
+          {
+            "level": "POC heute",
+            "price": 7378.79,
+            "source": "Market Profile"
+          },
+          {
+            "level": "VAH heute",
+            "price": 7393.45,
+            "source": "Market Profile"
+          },
+          {
+            "level": "VAL heute",
+            "price": 7357.61,
+            "source": "Market Profile"
+          },
+          {
+            "level": "VWAP",
+            "price": 7363.54,
+            "source": "VWAP"
+          },
+          {
+            "level": "Kijun",
+            "price": 7370.63,
+            "source": "Ichimoku"
+          },
+          {
+            "level": "SMA200",
+            "price": 7304.03,
+            "source": "SMA200"
+          },
+          {
+            "level": "PDH",
+            "price": 7385.02,
+            "source": "PrevDay"
+          },
+          {
+            "level": "Naked POC",
+            "price": 7288.15,
+            "source": "Market Profile"
+          },
+          {
+            "level": "PDL",
+            "price": 7321.25,
+            "source": "PrevDay"
+          }
         ],
         "grund": "S1 OK: Kurs 7384 UEBER POC 7378 (Durchbruch!), in oberer VA (+1+1), poc_migration +2 = s1_raw=4 (0.40). S2 maximal: ER=57.58 stark, CVD=34227 stark. S3 stark: Ueber Kumo (+1), SMA200 (+1), MRC-Mean (+1), AutoFibo 0.5 (+1)."
       }
@@ -681,7 +837,11 @@
       "makro_beitrag": 0.0,
       "konfidenz_final": 0.375
     },
-    "instrument_prioritaet": ["SPX500", "DJ30", "GER40"],
+    "instrument_prioritaet": [
+      "SPX500",
+      "DJ30",
+      "GER40"
+    ],
     "entry_fenster": "WAIT -- kein Entry",
     "max_risk_today": "0%",
     "max_trades_heute": 0,
@@ -720,39 +880,27 @@
   "monitor": {
     "_agent": "MONITOR",
     "_last_run": "2026-05-08T14:45:00",
-    "_status": "pending",
+    "_status": "ready",
     "session": "USUpdate",
-    "gesamt_status": "PENDING",
+    "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260508_1445_USUpdate.txt",
     "bereiche": {
-      "lokale_prozesse": "PENDING",
-      "sheet_doc": "PENDING",
-      "github_web": "PENDING",
-      "datenqualitaet": "2 Warnungen (ONH/ONL null, PCR delisted)",
+      "lokale_prozesse": "OK",
+      "sheet_doc": "OK (0 Orders, Doc erstellt)",
+      "github_web": "OK (Commit 86b1dc0)",
+      "datenqualitaet": "2 Warnungen (GER40 ER=1.26 chop, ONH/ONL null)",
       "entscheidung": "WAIT Score:5/8 0 Orders -- Konfidenz 0.375",
-      "anomalien": "PENDING"
+      "anomalien": "OK (3 bekannte, nicht kritisch)"
     }
   },
   "calendar": [
     {
-      "date": "2026-05-08",
-      "time": "09:00",
-      "currency": "EUR",
-      "name": "ECB President Lagarde Speaks",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-08",
+      "date": "2026-05-12",
       "time": "14:30",
       "currency": "USD",
-      "name": "Average Hourly Earnings m/m",
+      "name": "Core CPI m/m",
       "impact": "high",
       "actual": "",
       "forecast": "0.3%",
@@ -761,50 +909,98 @@
       "source": "forexfactory"
     },
     {
-      "date": "2026-05-08",
+      "date": "2026-05-12",
       "time": "14:30",
       "currency": "USD",
-      "name": "Non-Farm Employment Change",
+      "name": "CPI m/m",
       "impact": "high",
       "actual": "",
-      "forecast": "65K",
-      "previous": "178K",
+      "forecast": "0.6%",
+      "previous": "0.9%",
       "better": null,
       "source": "forexfactory"
     },
     {
-      "date": "2026-05-08",
+      "date": "2026-05-12",
       "time": "14:30",
       "currency": "USD",
-      "name": "Unemployment Rate",
+      "name": "CPI y/y",
       "impact": "high",
       "actual": "",
-      "forecast": "4.3%",
-      "previous": "4.3%",
+      "forecast": "3.7%",
+      "previous": "3.3%",
       "better": null,
       "source": "forexfactory"
     },
     {
-      "date": "2026-05-08",
-      "time": "16:00",
+      "date": "2026-05-12",
+      "time": "18:00",
       "currency": "USD",
-      "name": "Prelim UoM Consumer Sentiment",
-      "impact": "medium",
+      "name": "Fed Chair Nomination Vote",
+      "impact": "high",
       "actual": "",
-      "forecast": "49.7",
-      "previous": "47.6",
+      "forecast": "Pass",
+      "previous": "",
       "better": null,
       "source": "forexfactory"
     },
     {
-      "date": "2026-05-08",
-      "time": "16:00",
+      "date": "2026-05-13",
+      "time": "14:30",
       "currency": "USD",
-      "name": "Prelim UoM Inflation Expectations",
+      "name": "Core PPI m/m",
+      "impact": "high",
+      "actual": "",
+      "forecast": "0.3%",
+      "previous": "0.1%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-13",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "PPI m/m",
+      "impact": "high",
+      "actual": "",
+      "forecast": "0.5%",
+      "previous": "0.5%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-14",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Core Retail Sales m/m",
+      "impact": "high",
+      "actual": "",
+      "forecast": "0.6%",
+      "previous": "1.9%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-14",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Retail Sales m/m",
+      "impact": "high",
+      "actual": "",
+      "forecast": "0.6%",
+      "previous": "1.7%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-14",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Unemployment Claims",
       "impact": "medium",
       "actual": "",
-      "forecast": "",
-      "previous": "4.8%",
+      "forecast": "206K",
+      "previous": "200K",
       "better": null,
       "source": "forexfactory"
     }
