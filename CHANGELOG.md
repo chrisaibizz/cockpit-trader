@@ -335,3 +335,30 @@ Git Commit-Message Format (NUR ASCII):
 ```
 
 ---
+
+## SESSION #10 - Morning-Report Phase 1 (11. Mai 2026)
+
+### Aenderungen (additiv, NON-CRITICAL, kein Eingriff in MP-Pipeline)
+- **Neuer Pipeline-Schritt:** KOORDINATOR generiert am Ende der Morning-Pipeline
+  einen Markdown-Report aus agents/shared/state.json.
+- **Neue Dateien:**
+  - cockpit-trader/reports/README.md (Auto-generated Hinweis)
+  - cockpit-trader/reports/_template.md (Master-Template, {{VAR}} Platzhalter)
+  - cockpit-trader/reports/dryrun-2026-05-11.md (Phase-1 Dry-Run)
+  - agents/KOORDINATOR/report-generator.md (Generator-Logik + Mapping)
+  - agents/KOORDINATOR/CLAUDE_ref.md.backup (Backup vor Edit)
+- **CLAUDE_ref.md:** Nur Referenz-Zeile am Ende hinzugefuegt (Logik ausgelagert,
+  da Datei > 1200 Bytes Schwelle aus Auftrag).
+- **Variablen-Mapping:** 52 Template-{{VARS}}, 7 leer (~13.5%): PIVOT x3 (Feld
+  fehlt im state.json), FRED x3 (macro.fred=null), PCR (^PCALL delisted).
+- **Fehlerverhalten:** WARN-Log, Pipeline NICHT abbrechen (non-critical).
+- **USUpdate-Pipeline:** KEINE Aenderung (nur Morning-Pipeline schreibt Report).
+- **Phase 2/3 TBD:** Google-Doc-Sync, Top-3-Trigger, Dashboard-MD-Renderer.
+
+### Verifikation
+- state.json: unveraendert (nur gelesen).
+- Empty-{{VARS}} 13.5% < 20% Threshold -> Aktivierung erlaubt.
+- Backup CLAUDE_ref.md.backup angelegt.
+- Diagnose + Bericht in reports/cc-reports-phase1-{diagnose,bericht}.txt.
+
+---
