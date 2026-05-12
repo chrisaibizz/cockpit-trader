@@ -526,20 +526,20 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-12T08:46:32",
+    "_last_run": "2026-05-12T14:53:00",
     "_status": "ready",
-    "session": "Morning",
+    "session": "USUpdate",
     "gesamt_status": "OK",
-    "probleme_count": 1,
+    "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260512_0831_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260512_1452_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
       "sheet_doc": "OK",
       "github_web": "OK",
-      "datenqualitaet": "WARNUNGEN (PCR null)",
+      "datenqualitaet": "WARNUNGEN (PCR null, ONH/ONL null - bekannt)",
       "entscheidung": "WAIT",
-      "anomalien": "OK"
+      "anomalien": "OK (DJ30 Post-CPI Bias-Shift plausibel)"
     }
   },
   "calendar": [
