@@ -1,41 +1,41 @@
 {
   "date": "2026-05-12",
-  "timestamp": "2026-05-12T08:43:31",
+  "timestamp": "2026-05-12T14:52:00",
   "phase": "BALANCE",
-  "regime": "EVENT-DRIVEN",
+  "regime": "NEUTRAL",
   "session_bias": "WAIT",
-  "alignment_score": -4,
+  "alignment_score": 4,
   "makro_bias": "NEUTRAL",
   "trade_freigabe": false,
-  "konfidenz": -0.25,
+  "konfidenz": 0.25,
   "instruments": {
     "GER40": {
-      "bias": "LEICHT_BEARISH",
-      "score": -4,
+      "bias": "LEICHT_BEARISCH",
+      "score": -3,
       "poc": 24263.37,
       "vah": 24309.38,
       "val": 24242.46,
       "mp_shape": "b-Shape",
       "mp_shape_pos": 0.312,
-      "er": 5.61,
-      "vwap": 24152.4,
-      "kurs": 24126.0,
+      "er": 4.17,
+      "vwap": 24124.86,
+      "kurs": 24127.0,
       "pdh": 24362.8,
       "pdl": 24202.33,
       "onh": null,
       "onl": null
     },
     "DJ30": {
-      "bias": "NEUTRAL",
-      "score": 1,
+      "bias": "LEICHT_BULLISH",
+      "score": 4,
       "poc": 49633.94,
       "vah": 49725.27,
       "val": 49502.03,
       "mp_shape": "Trend Day",
       "mp_shape_pos": 0.591,
-      "er": -41.51,
-      "vwap": 49713.61,
-      "kurs": 49671.45,
+      "er": 15.01,
+      "vwap": 49697.75,
+      "kurs": 49737.45,
       "pdh": 49856.79,
       "pdl": 49404.27,
       "onh": null,
@@ -43,15 +43,15 @@
     },
     "SPX500": {
       "bias": "NEUTRAL",
-      "score": 0,
+      "score": 1,
       "poc": 7394.62,
       "vah": 7415.34,
       "val": 7380.28,
       "mp_shape": "Trend Day",
       "mp_shape_pos": 0.409,
-      "er": -15.7,
-      "vwap": 7409.31,
-      "kurs": 7397.65,
+      "er": 0.96,
+      "vwap": 7401.15,
+      "kurs": 7399.9,
       "pdh": 7428.97,
       "pdl": 7384.2,
       "onh": null,
@@ -61,9 +61,9 @@
   "orders": [],
   "orders_count": 0,
   "macro": {
-    "vix": 18.38,
-    "dxy": 98.164,
-    "tnx": 4.41,
+    "vix": 18.85,
+    "dxy": 98.283,
+    "tnx": 4.437,
     "fear_greed": 49,
     "oil": 99.44,
     "gold": 4707.6,
@@ -71,10 +71,17 @@
     "makro_bias": "NEUTRAL"
   },
   "warnings": [
-    "Heute 14:30 Core CPI m/m — High-Impact",
-    "Heute 14:30 CPI m/m — High-Impact",
-    "Heute 14:30 CPI y/y — High-Impact",
-    "Heute 18:00 Fed Chair Nomination Vote — High-Impact"
+    "Heute 18:00 Fed Chair Nomination Vote -- High-Impact",
+    "Morgen 14:30 Core PPI m/m -- High-Impact",
+    "Morgen 14:30 PPI m/m -- High-Impact"
   ],
-  "notes": "Schichten-Freigabe FAIL: 0/3 Instrumente — keine erfuellen S1+S2+S3"
+  "notes": "US Update 14:50: Schichten-Freigabe 1/3 (DJ30) -- braucht 2+ fuer Trade-Freigabe. Konfidenz 0.25 < 0.40 = WAIT. DJ30 deutliche Verbesserung seit Morning (ER -41 -> +15, Ausbruch ueber VAH).",
+  "us_update": {
+    "uhrzeit": "14:50",
+    "delta": {
+      "GER40": "+0.00%",
+      "DJ30": "+0.13%",
+      "SPX500": "+0.03%"
+    }
+  }
 }

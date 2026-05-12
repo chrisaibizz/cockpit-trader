@@ -1,23 +1,24 @@
 {
   "pipeline": {
     "status": "completed",
-    "last_run": "2026-05-12T08:43:31",
+    "last_run": "2026-05-12T14:52:00",
     "run_date": "2026-05-12",
-    "run_type": "morning",
+    "run_type": "us-update",
     "steps_completed": [
       "log_init",
-      "macro",
+      "macro_mini",
       "marketdata",
+      "delta",
       "analyst",
       "captain",
       "executor"
     ],
     "result": "WAIT",
-    "score": "-4/8"
+    "score": "+4/8"
   },
   "macro": {
     "_agent": "MACRO",
-    "_last_run": "2026-05-12T08:33:57",
+    "_last_run": "2026-05-12T14:50:00",
     "_status": "ready",
     "fear_greed": {
       "value": 49,
@@ -30,20 +31,20 @@
       "error": "^PCALL delisted (yfinance)"
     },
     "vix": {
-      "value": 18.38,
-      "prev": 17.19,
+      "value": 18.85,
+      "prev": 18.38,
       "level": "normal",
       "trend": "steigend",
       "bias_einfluss": "leicht bearish"
     },
     "bonds_10y": {
-      "yield": 4.41,
-      "prev": 4.364,
+      "yield": 4.437,
+      "prev": 4.41,
       "trend": "steigend",
       "interpretation": "zinsdruck_moderat"
     },
     "dxy": {
-      "value": 98.164,
+      "value": 98.283,
       "prev": 97.94,
       "trend": "steigend",
       "interpretation": "dollar_schwach"
@@ -67,13 +68,13 @@
       "fred_punkte": 1,
       "gesamt_score": 0,
       "makro_bias": "NEUTRAL",
-      "detail": "Gold_fallend(+1) | VIX_steigend(-1) Oil>90(-1) | FRED yield_curve_normal(+1) | Basis=-1 FRED=+1 → 0 NEUTRAL"
+      "detail": "Gold_fallend(+1) | VIX_steigend(-1) Oil>90(-1) | FRED yield_curve_normal(+1) | Mini-MACRO 14:50: VIX 18.38->18.85 DXY 97.94->98.28 TNX 4.41->4.44 | gesamt=0 NEUTRAL"
     },
     "warnungen": [
-      "VIX 18.38 steigend von 17.19 -- leicht bearish",
-      "Oil 99.44 > 90 steigend -- Inflationsdruck hoch",
-      "Heute 14:30 CPI/Core CPI (USD high) -- Pre-Event-Vorsicht",
-      "Heute 18:00 Fed Chair Nomination Vote (USD high)"
+      "VIX 18.85 steigend von 18.38 -- leicht bearish",
+      "Oil 99.44 > 90 -- Inflationsdruck hoch",
+      "CPI 14:30 veroeffentlicht -- US-Indizes leicht erholt (DJ +0.13%, SPX +0.03%), GER40 unbewegt",
+      "Heute 18:00 Fed Chair Nomination Vote (USD high) -- noch ausstehend"
     ],
     "fred": {
       "fed_funds": {
@@ -97,16 +98,16 @@
   },
   "market": {
     "_agent": "MARKETDATA",
-    "_last_run": "2026-05-12T08:40:23",
+    "_last_run": "2026-05-12T14:50:00",
     "_status": "ready",
-    "timestamp": "2026-05-12 08:40",
+    "timestamp": "2026-05-12 14:50",
     "timeframe": "30M",
     "datenqualitaet": "vollstaendig",
     "instruments": {
       "GER40": {
-        "_last_run": "2026-05-12T08:40:23",
+        "_last_run": "2026-05-12T14:50:00",
         "symbol": "VANTAGE:GER40",
-        "kurs": 24126.0,
+        "kurs": 24127.0,
         "poc": 24263.37,
         "vah": 24309.38,
         "val": 24242.46,
@@ -114,22 +115,22 @@
         "mp_shape_pos": 0.312,
         "mp_shape_bias": "BAERISCH",
         "va_breite_pct": 0.28,
-        "vwap": 24152.4,
-        "vwap_upper": 24183.98,
-        "vwap_lower": 24120.82,
-        "er": 5.61,
-        "cdv": 23033.57,
+        "vwap": 24124.86,
+        "vwap_upper": 24163.58,
+        "vwap_lower": 24086.14,
+        "er": 4.17,
+        "cdv": 20283.32,
         "ichimoku_daily": {
-          "tenkan": 24144.07,
-          "kijun": 24196.38,
-          "senkou_a": 24170.23,
-          "senkou_b": 24199.63,
+          "tenkan": 24115.5,
+          "kijun": 24125.68,
+          "senkou_a": 24120.59,
+          "senkou_b": 24173.75,
           "above_kumo": false,
-          "below_kumo": true
+          "below_kumo": false
         },
-        "sma200_daily": 24516.35,
+        "sma200_daily": 24501.82,
         "smc_levels": {
-          "plot_candle": 24125.0
+          "plot_candle": 24126.0
         },
         "onh": null,
         "onl": null,
@@ -137,131 +138,28 @@
         "pdl": 24202.33,
         "tpo_distribution": [],
         "mp_history": [
-          {
-            "session": 0,
-            "date": "2026-05-12",
-            "poc": 24263.37,
-            "vah": 24309.38,
-            "val": 24242.46,
-            "shape": "b-Shape",
-            "mp_shape_pos": 0.312,
-            "va_breite_pct": 0.28,
-            "naked_poc": false
-          },
-          {
-            "session": 1,
-            "date": "2026-05-11",
-            "poc": 24445.42,
-            "vah": 24476.98,
-            "val": 24363.36,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.722,
-            "va_breite_pct": 0.46,
-            "naked_poc": true
-          },
-          {
-            "session": 2,
-            "date": "2026-05-08",
-            "poc": 24929.43,
-            "vah": 25009.63,
-            "val": 24624.67,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.792,
-            "va_breite_pct": 1.54,
-            "naked_poc": true
-          },
-          {
-            "session": 3,
-            "date": "2026-05-07",
-            "poc": 24928.87,
-            "vah": 25144.03,
-            "val": 24713.71,
-            "shape": "B-Shape",
-            "mp_shape_pos": 0.5,
-            "va_breite_pct": 1.73,
-            "naked_poc": false
-          },
-          {
-            "session": 4,
-            "date": "2026-05-06",
-            "poc": 24378.56,
-            "vah": 24452.87,
-            "val": 24096.16,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.792,
-            "va_breite_pct": 1.46,
-            "naked_poc": false
-          },
-          {
-            "session": 5,
-            "date": "2026-05-05",
-            "poc": 24319.17,
-            "vah": 24389.7,
-            "val": 24079.36,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.773,
-            "va_breite_pct": 1.28,
-            "naked_poc": false
-          },
-          {
-            "session": 6,
-            "date": "2026-05-04",
-            "poc": 24269.1,
-            "vah": 24322.99,
-            "val": 23820.04,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.893,
-            "va_breite_pct": 2.07,
-            "naked_poc": false
-          },
-          {
-            "session": 7,
-            "date": "2026-05-01",
-            "poc": 24005.25,
-            "vah": 24071.34,
-            "val": 23882.52,
-            "shape": "Trend Day",
-            "mp_shape_pos": 0.65,
-            "va_breite_pct": 0.79,
-            "naked_poc": false
-          },
-          {
-            "session": 8,
-            "date": "2026-04-30",
-            "poc": 23985.99,
-            "vah": 24102.38,
-            "val": 23965.46,
-            "shape": "b-Shape",
-            "mp_shape_pos": 0.15,
-            "va_breite_pct": 0.57,
-            "naked_poc": false
-          },
-          {
-            "session": 9,
-            "date": "2026-04-29",
-            "poc": 24144.32,
-            "vah": 24253.85,
-            "val": 24102.2,
-            "shape": "b-Shape",
-            "mp_shape_pos": 0.278,
-            "va_breite_pct": 0.63,
-            "naked_poc": false
-          }
+          {"session": 0, "date": "2026-05-12", "poc": 24263.37, "vah": 24309.38, "val": 24242.46, "shape": "b-Shape", "mp_shape_pos": 0.312, "va_breite_pct": 0.28, "naked_poc": false},
+          {"session": 1, "date": "2026-05-11", "poc": 24445.42, "vah": 24476.98, "val": 24363.36, "shape": "P-Shape", "mp_shape_pos": 0.722, "va_breite_pct": 0.46, "naked_poc": true},
+          {"session": 2, "date": "2026-05-08", "poc": 24929.43, "vah": 25009.63, "val": 24624.67, "shape": "P-Shape", "mp_shape_pos": 0.792, "va_breite_pct": 1.54, "naked_poc": true},
+          {"session": 3, "date": "2026-05-07", "poc": 24928.87, "vah": 25144.03, "val": 24713.71, "shape": "B-Shape", "mp_shape_pos": 0.5, "va_breite_pct": 1.73, "naked_poc": false},
+          {"session": 4, "date": "2026-05-06", "poc": 24378.56, "vah": 24452.87, "val": 24096.16, "shape": "P-Shape", "mp_shape_pos": 0.792, "va_breite_pct": 1.46, "naked_poc": false},
+          {"session": 5, "date": "2026-05-05", "poc": 24319.17, "vah": 24389.7, "val": 24079.36, "shape": "P-Shape", "mp_shape_pos": 0.773, "va_breite_pct": 1.28, "naked_poc": false},
+          {"session": 6, "date": "2026-05-04", "poc": 24269.1, "vah": 24322.99, "val": 23820.04, "shape": "P-Shape", "mp_shape_pos": 0.893, "va_breite_pct": 2.07, "naked_poc": false},
+          {"session": 7, "date": "2026-05-01", "poc": 24005.25, "vah": 24071.34, "val": 23882.52, "shape": "Trend Day", "mp_shape_pos": 0.65, "va_breite_pct": 0.79, "naked_poc": false},
+          {"session": 8, "date": "2026-04-30", "poc": 23985.99, "vah": 24102.38, "val": 23965.46, "shape": "b-Shape", "mp_shape_pos": 0.15, "va_breite_pct": 0.57, "naked_poc": false},
+          {"session": 9, "date": "2026-04-29", "poc": 24144.32, "vah": 24253.85, "val": 24102.2, "shape": "b-Shape", "mp_shape_pos": 0.278, "va_breite_pct": 0.63, "naked_poc": false}
         ],
         "mp_context": {
           "poc_migration": "fallend",
           "shape_sequenz": "2x P-Shape + 1x b-Shape",
-          "naked_pocs": [
-            24445.42,
-            24929.43
-          ],
+          "naked_pocs": [24445.42, 24929.43],
           "composite_poc": 24466.47
         }
       },
       "DJ30": {
-        "_last_run": "2026-05-12T08:40:23",
+        "_last_run": "2026-05-12T14:50:00",
         "symbol": "VANTAGE:DJ30",
-        "kurs": 49671.45,
+        "kurs": 49737.45,
         "poc": 49633.94,
         "vah": 49725.27,
         "val": 49502.03,
@@ -269,22 +167,22 @@
         "mp_shape_pos": 0.591,
         "mp_shape_bias": "DIREKTIONAL",
         "va_breite_pct": 0.45,
-        "vwap": 49713.61,
-        "vwap_upper": 49733.67,
-        "vwap_lower": 49693.55,
-        "er": -41.51,
-        "cdv": 172300.88,
+        "vwap": 49697.75,
+        "vwap_upper": 49722.16,
+        "vwap_lower": 49673.34,
+        "er": 15.01,
+        "cdv": 171010.95,
         "ichimoku_daily": {
-          "tenkan": 49699.95,
-          "kijun": 49708.95,
-          "senkou_a": 49704.45,
+          "tenkan": 49698.3,
+          "kijun": 49667.95,
+          "senkou_a": 49683.13,
           "senkou_b": 49650.95,
-          "above_kumo": false,
+          "above_kumo": true,
           "below_kumo": false
         },
-        "sma200_daily": 49717.44,
+        "sma200_daily": 49732.33,
         "smc_levels": {
-          "plot_candle": 49671.45
+          "plot_candle": 49735.15
         },
         "onh": null,
         "onl": null,
@@ -292,133 +190,28 @@
         "pdl": 49404.27,
         "tpo_distribution": [],
         "mp_history": [
-          {
-            "session": 0,
-            "date": "2026-05-12",
-            "poc": 49633.94,
-            "vah": 49725.27,
-            "val": 49502.03,
-            "shape": "Trend Day",
-            "mp_shape_pos": 0.591,
-            "va_breite_pct": 0.45,
-            "naked_poc": false
-          },
-          {
-            "session": 1,
-            "date": "2026-05-11",
-            "poc": 49663.6,
-            "vah": 49785.32,
-            "val": 49616.78,
-            "shape": "b-Shape",
-            "mp_shape_pos": 0.278,
-            "va_breite_pct": 0.34,
-            "naked_poc": false
-          },
-          {
-            "session": 2,
-            "date": "2026-05-08",
-            "poc": 50020.04,
-            "vah": 50134.66,
-            "val": 49741.66,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.708,
-            "va_breite_pct": 0.79,
-            "naked_poc": true
-          },
-          {
-            "session": 3,
-            "date": "2026-05-07",
-            "poc": 49449.76,
-            "vah": 49858.71,
-            "val": 49352.4,
-            "shape": "b-Shape",
-            "mp_shape_pos": 0.192,
-            "va_breite_pct": 1.02,
-            "naked_poc": true
-          },
-          {
-            "session": 4,
-            "date": "2026-05-06",
-            "poc": 49031.41,
-            "vah": 49249.83,
-            "val": 49000.2,
-            "shape": "b-Shape",
-            "mp_shape_pos": 0.125,
-            "va_breite_pct": 0.51,
-            "naked_poc": true
-          },
-          {
-            "session": 5,
-            "date": "2026-05-05",
-            "poc": 49538.15,
-            "vah": 49674.92,
-            "val": 49205.99,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.708,
-            "va_breite_pct": 0.95,
-            "naked_poc": false
-          },
-          {
-            "session": 6,
-            "date": "2026-05-04",
-            "poc": 49796.08,
-            "vah": 49980.68,
-            "val": 49753.48,
-            "shape": "b-Shape",
-            "mp_shape_pos": 0.187,
-            "va_breite_pct": 0.46,
-            "naked_poc": false
-          },
-          {
-            "session": 7,
-            "date": "2026-05-01",
-            "poc": 48732.57,
-            "vah": 49362.42,
-            "val": 48500.52,
-            "shape": "b-Shape",
-            "mp_shape_pos": 0.269,
-            "va_breite_pct": 1.77,
-            "naked_poc": true
-          },
-          {
-            "session": 8,
-            "date": "2026-04-30",
-            "poc": 49259.4,
-            "vah": 49306.5,
-            "val": 48866.91,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.893,
-            "va_breite_pct": 0.89,
-            "naked_poc": false
-          },
-          {
-            "session": 9,
-            "date": "2026-04-29",
-            "poc": 49280.88,
-            "vah": 49351.75,
-            "val": 49210.0,
-            "shape": "Trend Day",
-            "mp_shape_pos": 0.5,
-            "va_breite_pct": 0.29,
-            "naked_poc": false
-          }
+          {"session": 0, "date": "2026-05-12", "poc": 49633.94, "vah": 49725.27, "val": 49502.03, "shape": "Trend Day", "mp_shape_pos": 0.591, "va_breite_pct": 0.45, "naked_poc": false},
+          {"session": 1, "date": "2026-05-11", "poc": 49663.6, "vah": 49785.32, "val": 49616.78, "shape": "b-Shape", "mp_shape_pos": 0.278, "va_breite_pct": 0.34, "naked_poc": false},
+          {"session": 2, "date": "2026-05-08", "poc": 50020.04, "vah": 50134.66, "val": 49741.66, "shape": "P-Shape", "mp_shape_pos": 0.708, "va_breite_pct": 0.79, "naked_poc": true},
+          {"session": 3, "date": "2026-05-07", "poc": 49449.76, "vah": 49858.71, "val": 49352.4, "shape": "b-Shape", "mp_shape_pos": 0.192, "va_breite_pct": 1.02, "naked_poc": true},
+          {"session": 4, "date": "2026-05-06", "poc": 49031.41, "vah": 49249.83, "val": 49000.2, "shape": "b-Shape", "mp_shape_pos": 0.125, "va_breite_pct": 0.51, "naked_poc": true},
+          {"session": 5, "date": "2026-05-05", "poc": 49538.15, "vah": 49674.92, "val": 49205.99, "shape": "P-Shape", "mp_shape_pos": 0.708, "va_breite_pct": 0.95, "naked_poc": false},
+          {"session": 6, "date": "2026-05-04", "poc": 49796.08, "vah": 49980.68, "val": 49753.48, "shape": "b-Shape", "mp_shape_pos": 0.187, "va_breite_pct": 0.46, "naked_poc": false},
+          {"session": 7, "date": "2026-05-01", "poc": 48732.57, "vah": 49362.42, "val": 48500.52, "shape": "b-Shape", "mp_shape_pos": 0.269, "va_breite_pct": 1.77, "naked_poc": true},
+          {"session": 8, "date": "2026-04-30", "poc": 49259.4, "vah": 49306.5, "val": 48866.91, "shape": "P-Shape", "mp_shape_pos": 0.893, "va_breite_pct": 0.89, "naked_poc": false},
+          {"session": 9, "date": "2026-04-29", "poc": 49280.88, "vah": 49351.75, "val": 49210.0, "shape": "Trend Day", "mp_shape_pos": 0.5, "va_breite_pct": 0.29, "naked_poc": false}
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "gemischt",
-          "naked_pocs": [
-            50020.04,
-            49449.76,
-            49031.41,
-            48732.57
-          ],
+          "naked_pocs": [50020.04, 49449.76, 49031.41, 48732.57],
           "composite_poc": 49539.66
         }
       },
       "SPX500": {
-        "_last_run": "2026-05-12T08:40:23",
+        "_last_run": "2026-05-12T14:50:00",
         "symbol": "VANTAGE:SP500",
-        "kurs": 7397.65,
+        "kurs": 7399.9,
         "poc": 7394.62,
         "vah": 7415.34,
         "val": 7380.28,
@@ -426,22 +219,22 @@
         "mp_shape_pos": 0.409,
         "mp_shape_bias": "DIREKTIONAL",
         "va_breite_pct": 0.47,
-        "vwap": 7409.31,
-        "vwap_upper": 7415.79,
-        "vwap_lower": 7402.82,
-        "er": -15.7,
-        "cdv": 41250.54,
+        "vwap": 7401.15,
+        "vwap_upper": 7410.58,
+        "vwap_lower": 7391.72,
+        "er": 0.96,
+        "cdv": 41217.66,
         "ichimoku_daily": {
-          "tenkan": 7405.78,
-          "kijun": 7416.15,
-          "senkou_a": 7410.97,
-          "senkou_b": 7411.84,
+          "tenkan": 7391.65,
+          "kijun": 7402.28,
+          "senkou_a": 7396.97,
+          "senkou_b": 7410.03,
           "above_kumo": false,
-          "below_kumo": true
+          "below_kumo": false
         },
-        "sma200_daily": 7371.68,
+        "sma200_daily": 7377.98,
         "smc_levels": {
-          "plot_candle": 7397.9
+          "plot_candle": 7399.65
         },
         "onh": null,
         "onl": null,
@@ -449,125 +242,21 @@
         "pdl": 7384.2,
         "tpo_distribution": [],
         "mp_history": [
-          {
-            "session": 0,
-            "date": "2026-05-12",
-            "poc": 7394.62,
-            "vah": 7415.34,
-            "val": 7380.28,
-            "shape": "Trend Day",
-            "mp_shape_pos": 0.409,
-            "va_breite_pct": 0.47,
-            "naked_poc": false
-          },
-          {
-            "session": 1,
-            "date": "2026-05-11",
-            "poc": 7403.4,
-            "vah": 7410.0,
-            "val": 7370.38,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.833,
-            "va_breite_pct": 0.54,
-            "naked_poc": false
-          },
-          {
-            "session": 2,
-            "date": "2026-05-08",
-            "poc": 7378.79,
-            "vah": 7393.45,
-            "val": 7357.61,
-            "shape": "Trend Day",
-            "mp_shape_pos": 0.591,
-            "va_breite_pct": 0.49,
-            "naked_poc": false
-          },
-          {
-            "session": 3,
-            "date": "2026-05-07",
-            "poc": 7288.15,
-            "vah": 7336.8,
-            "val": 7280.47,
-            "shape": "b-Shape",
-            "mp_shape_pos": 0.136,
-            "va_breite_pct": 0.77,
-            "naked_poc": true
-          },
-          {
-            "session": 4,
-            "date": "2026-05-06",
-            "poc": 7234.63,
-            "vah": 7256.82,
-            "val": 7204.38,
-            "shape": "Trend Day",
-            "mp_shape_pos": 0.577,
-            "va_breite_pct": 0.72,
-            "naked_poc": true
-          },
-          {
-            "session": 5,
-            "date": "2026-05-05",
-            "poc": 7247.79,
-            "vah": 7254.05,
-            "val": 7216.48,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.833,
-            "va_breite_pct": 0.52,
-            "naked_poc": false
-          },
-          {
-            "session": 6,
-            "date": "2026-05-04",
-            "poc": 7238.07,
-            "vah": 7254.4,
-            "val": 7227.67,
-            "shape": "Trend Day",
-            "mp_shape_pos": 0.389,
-            "va_breite_pct": 0.37,
-            "naked_poc": false
-          },
-          {
-            "session": 7,
-            "date": "2026-05-01",
-            "poc": 7175.69,
-            "vah": 7184.57,
-            "val": 7131.32,
-            "shape": "P-Shape",
-            "mp_shape_pos": 0.833,
-            "va_breite_pct": 0.74,
-            "naked_poc": true
-          },
-          {
-            "session": 8,
-            "date": "2026-04-30",
-            "poc": 7156.58,
-            "vah": 7167.06,
-            "val": 7140.13,
-            "shape": "Trend Day",
-            "mp_shape_pos": 0.611,
-            "va_breite_pct": 0.38,
-            "naked_poc": false
-          },
-          {
-            "session": 9,
-            "date": "2026-04-29",
-            "poc": 7150.39,
-            "vah": 7179.0,
-            "val": 7125.6,
-            "shape": "Trend Day",
-            "mp_shape_pos": 0.464,
-            "va_breite_pct": 0.75,
-            "naked_poc": false
-          }
+          {"session": 0, "date": "2026-05-12", "poc": 7394.62, "vah": 7415.34, "val": 7380.28, "shape": "Trend Day", "mp_shape_pos": 0.409, "va_breite_pct": 0.47, "naked_poc": false},
+          {"session": 1, "date": "2026-05-11", "poc": 7403.4, "vah": 7410.0, "val": 7370.38, "shape": "P-Shape", "mp_shape_pos": 0.833, "va_breite_pct": 0.54, "naked_poc": false},
+          {"session": 2, "date": "2026-05-08", "poc": 7378.79, "vah": 7393.45, "val": 7357.61, "shape": "Trend Day", "mp_shape_pos": 0.591, "va_breite_pct": 0.49, "naked_poc": false},
+          {"session": 3, "date": "2026-05-07", "poc": 7288.15, "vah": 7336.8, "val": 7280.47, "shape": "b-Shape", "mp_shape_pos": 0.136, "va_breite_pct": 0.77, "naked_poc": true},
+          {"session": 4, "date": "2026-05-06", "poc": 7234.63, "vah": 7256.82, "val": 7204.38, "shape": "Trend Day", "mp_shape_pos": 0.577, "va_breite_pct": 0.72, "naked_poc": true},
+          {"session": 5, "date": "2026-05-05", "poc": 7247.79, "vah": 7254.05, "val": 7216.48, "shape": "P-Shape", "mp_shape_pos": 0.833, "va_breite_pct": 0.52, "naked_poc": false},
+          {"session": 6, "date": "2026-05-04", "poc": 7238.07, "vah": 7254.4, "val": 7227.67, "shape": "Trend Day", "mp_shape_pos": 0.389, "va_breite_pct": 0.37, "naked_poc": false},
+          {"session": 7, "date": "2026-05-01", "poc": 7175.69, "vah": 7184.57, "val": 7131.32, "shape": "P-Shape", "mp_shape_pos": 0.833, "va_breite_pct": 0.74, "naked_poc": true},
+          {"session": 8, "date": "2026-04-30", "poc": 7156.58, "vah": 7167.06, "val": 7140.13, "shape": "Trend Day", "mp_shape_pos": 0.611, "va_breite_pct": 0.38, "naked_poc": false},
+          {"session": 9, "date": "2026-04-29", "poc": 7150.39, "vah": 7179.0, "val": 7125.6, "shape": "Trend Day", "mp_shape_pos": 0.464, "va_breite_pct": 0.75, "naked_poc": false}
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "2x Trend Day + 1x P-Shape",
-          "naked_pocs": [
-            7288.15,
-            7234.63,
-            7175.69
-          ],
+          "naked_pocs": [7288.15, 7234.63, 7175.69],
           "composite_poc": 7312.98
         }
       }
@@ -575,36 +264,36 @@
   },
   "analysis": {
     "_agent": "ANALYST",
-    "_last_run": "2026-05-12T08:42:13",
+    "_last_run": "2026-05-12T14:51:00",
     "_status": "ready",
     "marktphase": {
       "phase": "BALANCE",
       "begruendung": [
-        "Pre-CPI 14:30 USD high-impact + VIX 18.38 steigend — Markt-Risiko erhoeht, Pre-Event-Vorsicht.",
-        "GER40: b-Shape pos=0.312, Preis 24126 unter VAL 24242, unter VWAP 24152, unter SMA200 24516. BAERISCH (Score=-4).",
-        "DJ30: Trend Day pos=0.591, Preis 49671 im VA mitte, ER=-41.51 starker bearish Trend, unter VWAP. LEICHT_BULLISH-Konflikt (Score=2).",
-        "SPX500: Trend Day pos=0.409, Preis 7397 nahe POC, ER=-15.7 mild bearish, ueber SMA200. NEUTRAL (Score=0).",
-        "Schichten-Freigabe: 0/3 Instrumente — keine erfuellt S1+S2+S3. Trade-Freigabe NEIN. Phase=BALANCE Pre-Event."
+        "Post-CPI 14:30: US-Indizes leicht positiv (DJ30 +0.13%, SPX500 +0.03%), GER40 unbewegt. VIX 18.85 (+0.47).",
+        "GER40: b-Shape pos=0.312, Preis 24127 unter VAL 24242, knapp ueber VWAP. Bias LEICHT_BEARISCH (Score=-3).",
+        "DJ30: Trend Day pos=0.591, Preis 49737 ueber VAH 49725 (Ausbruch oben), ueber VWAP+SMA200, ER von -41 auf +15. Bias LEICHT_BULLISH (Score=+4).",
+        "SPX500: Trend Day pos=0.409, Preis 7399 ueber POC 7394, knapp unter VWAP 7401, ueber SMA200. Bias NEUTRAL (Score=+1).",
+        "Schichten-Freigabe: 1/3 Instrumente (DJ30 erfuellt S1+S2+S3). Trade-Freigabe NEIN (benoetigt 2+). Phase=BALANCE, Fed Chair Nomination 18:00 ausstehend."
       ],
       "aktive_strategie": "Mean-Reversion",
       "er_bestaetigung": "nein"
     },
-    "regime": "EVENT-DRIVEN",
+    "regime": "NEUTRAL",
     "risk_level": "MEDIUM",
     "top_down": {
       "m30_entry_zone": {
         "preis_von": null,
         "preis_bis": null
       },
-      "alignment_score": -4,
+      "alignment_score": 4,
       "trade_freigabe": false,
-      "ok_instruments": 0
+      "ok_instruments": 1
     },
     "instruments": {
       "GER40": {
-        "bias": "LEICHT_BEARISH",
-        "bias_score": -4,
-        "er_wert": 5.61,
+        "bias": "LEICHT_BEARISCH",
+        "bias_score": -3,
+        "er_wert": 4.17,
         "mp_shape": "b-Shape",
         "mp_shape_pos": 0.312,
         "schichten": {
@@ -621,10 +310,10 @@
             }
           },
           "s2_struktur": {
-            "score": 0.0,
-            "raw": 0,
+            "score": 0.5,
+            "raw": 2,
             "signale": {
-              "vwap": -1,
+              "vwap": 1,
               "cvd": 1,
               "er_trend": 0,
               "er_qualitaet": 0
@@ -643,7 +332,7 @@
             }
           },
           "freigabe_s1": false,
-          "freigabe_s2": false,
+          "freigabe_s2": true,
           "freigabe_s3": false,
           "alle_schichten_ok": false
         },
@@ -651,27 +340,84 @@
           "poc": 24263.37,
           "vah": 24309.38,
           "val": 24242.46,
-          "vwap": 24152.4,
-          "current": 24126.0,
+          "vwap": 24124.86,
+          "current": 24127.0,
           "onh": null,
-          "pdh": null
+          "pdh": 24362.8
         },
-        "alignment_score": -4
+        "alignment_score": -3
       },
       "DJ30": {
-        "bias": "NEUTRAL",
-        "bias_score": 1,
-        "er_wert": -41.51,
+        "bias": "LEICHT_BULLISH",
+        "bias_score": 4,
+        "er_wert": 15.01,
         "mp_shape": "Trend Day",
         "mp_shape_pos": 0.591,
+        "schichten": {
+          "s1_kontext": {
+            "score": 0.5,
+            "raw": 5,
+            "signale": {
+              "mp_shape": 0,
+              "preis_vs_va": 2,
+              "preis_vs_poc": 1,
+              "poc_migration": 2,
+              "shape_sequenz": 0,
+              "vp_hvn_lvn": 0
+            }
+          },
+          "s2_struktur": {
+            "score": 0.75,
+            "raw": 3,
+            "signale": {
+              "vwap": 1,
+              "cvd": 1,
+              "er_trend": 1,
+              "er_qualitaet": 0
+            }
+          },
+          "s3_entry": {
+            "score": 0.333,
+            "raw": 2,
+            "signale": {
+              "ichimoku": 1,
+              "sma200": 1,
+              "smc": 0,
+              "sr_channel": 0,
+              "pivot": 0,
+              "autofibo": 0
+            }
+          },
+          "freigabe_s1": true,
+          "freigabe_s2": true,
+          "freigabe_s3": true,
+          "alle_schichten_ok": true
+        },
+        "key_levels": {
+          "poc": 49633.94,
+          "vah": 49725.27,
+          "val": 49502.03,
+          "vwap": 49697.75,
+          "current": 49737.45,
+          "onh": null,
+          "pdh": 49856.79
+        },
+        "alignment_score": 4
+      },
+      "SPX500": {
+        "bias": "NEUTRAL",
+        "bias_score": 1,
+        "er_wert": 0.96,
+        "mp_shape": "Trend Day",
+        "mp_shape_pos": 0.409,
         "schichten": {
           "s1_kontext": {
             "score": 0.3,
             "raw": 3,
             "signale": {
               "mp_shape": 0,
-              "preis_vs_va": 1,
-              "preis_vs_poc": 0,
+              "preis_vs_va": 0,
+              "preis_vs_poc": 1,
               "poc_migration": 2,
               "shape_sequenz": 0,
               "vp_hvn_lvn": 0
@@ -683,64 +429,7 @@
             "signale": {
               "vwap": -1,
               "cvd": 1,
-              "er_trend": -1,
-              "er_qualitaet": 1
-            }
-          },
-          "s3_entry": {
-            "score": -0.167,
-            "raw": -1,
-            "signale": {
-              "ichimoku": 0,
-              "sma200": -1,
-              "smc": 0,
-              "sr_channel": 0,
-              "pivot": 0,
-              "autofibo": 0
-            }
-          },
-          "freigabe_s1": true,
-          "freigabe_s2": false,
-          "freigabe_s3": false,
-          "alle_schichten_ok": false
-        },
-        "key_levels": {
-          "poc": 49633.94,
-          "vah": 49725.27,
-          "val": 49502.03,
-          "vwap": 49713.61,
-          "current": 49671.45,
-          "onh": null,
-          "pdh": null
-        },
-        "alignment_score": 1
-      },
-      "SPX500": {
-        "bias": "NEUTRAL",
-        "bias_score": 0,
-        "er_wert": -15.7,
-        "mp_shape": "Trend Day",
-        "mp_shape_pos": 0.409,
-        "schichten": {
-          "s1_kontext": {
-            "score": 0.2,
-            "raw": 2,
-            "signale": {
-              "mp_shape": 0,
-              "preis_vs_va": 0,
-              "preis_vs_poc": 0,
-              "poc_migration": 2,
-              "shape_sequenz": 0,
-              "vp_hvn_lvn": 0
-            }
-          },
-          "s2_struktur": {
-            "score": -0.25,
-            "raw": -1,
-            "signale": {
-              "vwap": -1,
-              "cvd": 1,
-              "er_trend": -1,
+              "er_trend": 0,
               "er_qualitaet": 0
             }
           },
@@ -765,12 +454,12 @@
           "poc": 7394.62,
           "vah": 7415.34,
           "val": 7380.28,
-          "vwap": 7409.31,
-          "current": 7397.65,
+          "vwap": 7401.15,
+          "current": 7399.9,
           "onh": null,
-          "pdh": null
+          "pdh": 7428.97
         },
-        "alignment_score": 0
+        "alignment_score": 1
       }
     },
     "inter_market": {
@@ -778,191 +467,90 @@
       "alle_bearish": false,
       "gemischt": true
     },
-    "summary": "Phase=BALANCE, Regime=EVENT-DRIVEN. GER40 stark bearish (-4), DJ30 leicht bullish-Konflikt (+2), SPX500 neutral (0). 0/3 alle_schichten_ok. Pre-CPI 14:30 — Trade-Freigabe NEIN."
+    "summary": "Phase=BALANCE post-CPI, Regime=NEUTRAL. GER40 leicht bearish (-3), DJ30 leicht bullish (+4) mit allen 3 Schichten OK, SPX500 neutral (+1). 1/3 alle_schichten_ok. Trade-Freigabe NEIN — Fed Chair Nomination 18:00 ausstehend."
   },
   "captain": {
     "_agent": "CAPTAIN",
-    "_last_run": "2026-05-12T08:42:59",
+    "_last_run": "2026-05-12T14:52:00",
     "_status": "ready",
     "session_bias": "WAIT",
     "aktive_strategie": "Keine",
-    "alignment_score": -4,
+    "alignment_score": 4,
     "trade_freigabe": false,
     "shape_konflikt": false,
     "konfidenz_details": {
       "chart_gewichtung": 0.5,
       "makro_gewichtung": 0.5,
-      "gewichtungs_grund": "Phase BALANCE",
-      "alignment_beitrag": -0.25,
+      "gewichtungs_grund": "Phase BALANCE post-CPI",
+      "alignment_beitrag": 0.25,
       "makro_beitrag": 0.0,
-      "konfidenz_final": -0.25
+      "konfidenz_final": 0.25
     },
-    "trade_plan": "SESSION-BIAS:    WAIT\nSTRATEGIE:       Keine\nALIGNMENT-SCORE: -4/8 — Trade-Freigabe: NEIN\n\nMP-SHAPES (Session 0):\n  GER40:  b-Shape (pos=0.312) — Preis 24126 unter VAL 24242\n  DJ30:   Trend Day (pos=0.591) — Preis 49671 im VA mitte\n  SPX500: Trend Day (pos=0.409) — Preis 7397 nahe POC\n\nBASIS: BALANCE-Phase + EVENT-DRIVEN Regime + Konfidenz -0.25 < 0.40 + 0/3 alle_schichten_ok. CPI 14:30 USD high — Pre-Event-Vorsicht. WAIT bis Daten veroeffentlicht.\n\nTRADE-PLAN: keine Orders heute Morning. Re-Evaluation nach CPI 14:30 (US Update Pipeline).\n\nRISIKO: WAIT — kein Risiko exposiert. Max/Trade: 0% | Max Trades: 0\n\nKEY LEVELS:\n  GER40:  POC=24263 VAH=24309 VAL=24242 VWAP=24152 PDH=24363 PDL=24202\n  DJ30:   POC=49634 VAH=49725 VAL=49502 VWAP=49714 PDH=49857 PDL=49404\n  SPX500: POC=7395 VAH=7415 VAL=7380 VWAP=7409 PDH=7429 PDL=7384\n\nWARNUNGEN: Heute 14:30 Core CPI m/m — High-Impact | Heute 14:30 CPI m/m — High-Impact | Heute 14:30 CPI y/y — High-Impact | Heute 18:00 Fed Chair Nomination Vote — High-Impact\n",
+    "trade_plan": "SESSION-BIAS:    WAIT (US Update 14:50)\nSTRATEGIE:       Keine\nALIGNMENT-SCORE: +4/8 (DJ30 Lead) -- Trade-Freigabe: NEIN\n\nMP-SHAPES (Session 0):\n  GER40:  b-Shape (pos=0.312) -- Preis 24127 unter VAL 24242\n  DJ30:   Trend Day (pos=0.591) -- Preis 49737 UEBER VAH 49725 (Ausbruch oben)\n  SPX500: Trend Day (pos=0.409) -- Preis 7399 knapp ueber POC 7394\n\nBASIS: BALANCE-Phase + NEUTRAL Regime + Konfidenz 0.25 < 0.40 + nur 1/3 alle_schichten_ok (DJ30). CPI 14:30 veroeffentlicht, US-Indizes leicht erholt. Fed Chair Nomination 18:00 noch ausstehend. WAIT bis NY-Session sich stabilisiert und Schichten-Freigabe fuer 2+ Instrumente erfuellt.\n\nDELTA SEIT 08:40:\n  GER40:  24126 -> 24127 (+0.00%)  ER 5.6 -> 4.2 (chop)\n  DJ30:   49671 -> 49737 (+0.13%)  ER -41 -> +15 (von bearish auf bullish)\n  SPX500: 7397.65 -> 7399.9 (+0.03%) ER -16 -> +1 (von bearish auf flat)\n\nDJ30 EINZIGES TRADE-FAEHIGES INSTRUMENT (alle 3 Schichten OK), aber Session-Bias bleibt WAIT mangels Konfidenz und 2+ Schichten-Freigabe.\n\nTRADE-PLAN: keine neuen Orders im US Update. Re-Evaluation nach Fed Chair Vote 18:00 oder am naechsten Morning (PPI 13.05).\n\nRISIKO: WAIT -- kein Risiko exposiert. Max/Trade: 0% | Max Trades: 0\n\nKEY LEVELS:\n  GER40:  POC=24263 VAH=24309 VAL=24242 VWAP=24125 PDH=24363 PDL=24202\n  DJ30:   POC=49634 VAH=49725 VAL=49502 VWAP=49698 PDH=49857 PDL=49404\n  SPX500: POC=7395 VAH=7415 VAL=7380 VWAP=7401 PDH=7429 PDL=7384\n\nWARNUNGEN: Heute 18:00 Fed Chair Nomination Vote -- High-Impact | Morgen 14:30 Core PPI + PPI m/m\n",
     "instrument_prioritaet": [
-      "GER40",
       "DJ30",
-      "SPX500"
+      "SPX500",
+      "GER40"
     ],
-    "entry_fenster": "London/NY",
+    "entry_fenster": "NY",
     "max_risk_today": "0%",
     "max_trades_heute": 0,
     "trades_today": 0,
     "active_positions": [],
-    "notes": "Schichten-Freigabe FAIL: 0/3 Instrumente — keine erfuellen S1+S2+S3",
+    "notes": "Schichten-Freigabe TEILWEISE: 1/3 (DJ30) -- braucht 2+ fuer Session-Freigabe. Konfidenz 0.25 < 0.40 = WAIT.",
     "zentralbank_stop": false,
     "zentralbank_stop_grund": "",
     "warnungen": [
-      "Heute 14:30 Core CPI m/m — High-Impact",
-      "Heute 14:30 CPI m/m — High-Impact",
-      "Heute 14:30 CPI y/y — High-Impact",
-      "Heute 18:00 Fed Chair Nomination Vote — High-Impact"
+      "Heute 18:00 Fed Chair Nomination Vote -- High-Impact",
+      "Morgen 14:30 Core PPI m/m -- High-Impact",
+      "Morgen 14:30 PPI m/m -- High-Impact"
     ]
   },
   "orders": {
     "_agent": "EXECUTOR",
-    "_last_run": "2026-05-12T08:43:31",
+    "_last_run": "2026-05-12T14:52:00",
     "_status": "ready",
     "orders": [],
     "summary": {
-      "best_instrument": null,
+      "best_instrument": "DJ30",
       "total_orders": 0,
       "trade_freigabe": false,
       "shape_konflikt": false,
       "warnings": [
-        "Heute 14:30 Core CPI m/m — High-Impact",
-        "Heute 14:30 CPI m/m — High-Impact",
-        "Heute 14:30 CPI y/y — High-Impact",
-        "Heute 18:00 Fed Chair Nomination Vote — High-Impact"
+        "Heute 18:00 Fed Chair Nomination Vote -- High-Impact",
+        "Morgen 14:30 Core PPI m/m -- High-Impact",
+        "Morgen 14:30 PPI m/m -- High-Impact"
       ],
-      "notes": "Schichten-Freigabe FAIL: 0/3 Instrumente — keine erfuellen S1+S2+S3"
+      "notes": "US Update 14:50: Keine neuen Orders. Morning hatte 0 Orders -- nichts zu validieren. DJ30 mit allen Schichten OK aber Konfidenz 0.25 < 0.40 = WAIT."
     }
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-11T14:45:00",
+    "_last_run": "2026-05-12T08:46:32",
     "_status": "ready",
-    "session": "USUpdate",
+    "session": "Morning",
     "gesamt_status": "OK",
-    "probleme_count": 0,
+    "probleme_count": 1,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260511_1445_USUpdate.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260512_0831_Morning.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK (0 Orders, kein Sheet-Export noetig)",
-      "github_web": "pending (Git Push folgt)",
-      "datenqualitaet": "2 Warnungen (ONH/ONL null, PCR null)",
-      "entscheidung": "WAIT Score:3/8 0 Orders -- Konfidenz 0.1875 (verschlechtert von 0.3125)",
-      "anomalien": "SPX500 unter Ichimoku-Kumo (Intraday-Wende) -- beobachten"
+      "sheet_doc": "OK",
+      "github_web": "OK",
+      "datenqualitaet": "WARNUNGEN (PCR null)",
+      "entscheidung": "WAIT",
+      "anomalien": "OK"
     }
   },
   "calendar": [
-    {
-      "date": "2026-05-12",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Core CPI m/m",
-      "impact": "high",
-      "actual": "",
-      "forecast": "0.3%",
-      "previous": "0.2%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-12",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "CPI m/m",
-      "impact": "high",
-      "actual": "",
-      "forecast": "0.6%",
-      "previous": "0.9%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-12",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "CPI y/y",
-      "impact": "high",
-      "actual": "",
-      "forecast": "3.7%",
-      "previous": "3.3%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-12",
-      "time": "18:00",
-      "currency": "USD",
-      "name": "Fed Chair Nomination Vote",
-      "impact": "high",
-      "actual": "",
-      "forecast": "Pass",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-13",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Core PPI m/m",
-      "impact": "high",
-      "actual": "",
-      "forecast": "0.3%",
-      "previous": "0.1%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-13",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "PPI m/m",
-      "impact": "high",
-      "actual": "",
-      "forecast": "0.5%",
-      "previous": "0.5%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-14",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Core Retail Sales m/m",
-      "impact": "high",
-      "actual": "",
-      "forecast": "0.7%",
-      "previous": "1.9%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-14",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Retail Sales m/m",
-      "impact": "high",
-      "actual": "",
-      "forecast": "0.5%",
-      "previous": "1.7%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-05-14",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Unemployment Claims",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "205K",
-      "previous": "200K",
-      "better": null,
-      "source": "forexfactory"
-    }
+    {"date": "2026-05-12", "time": "14:30", "currency": "USD", "name": "Core CPI m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.2%", "better": null, "source": "forexfactory"},
+    {"date": "2026-05-12", "time": "14:30", "currency": "USD", "name": "CPI m/m", "impact": "high", "actual": "", "forecast": "0.6%", "previous": "0.9%", "better": null, "source": "forexfactory"},
+    {"date": "2026-05-12", "time": "14:30", "currency": "USD", "name": "CPI y/y", "impact": "high", "actual": "", "forecast": "3.7%", "previous": "3.3%", "better": null, "source": "forexfactory"},
+    {"date": "2026-05-12", "time": "18:00", "currency": "USD", "name": "Fed Chair Nomination Vote", "impact": "high", "actual": "", "forecast": "Pass", "previous": "", "better": null, "source": "forexfactory"},
+    {"date": "2026-05-13", "time": "14:30", "currency": "USD", "name": "Core PPI m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.1%", "better": null, "source": "forexfactory"},
+    {"date": "2026-05-13", "time": "14:30", "currency": "USD", "name": "PPI m/m", "impact": "high", "actual": "", "forecast": "0.5%", "previous": "0.5%", "better": null, "source": "forexfactory"},
+    {"date": "2026-05-14", "time": "14:30", "currency": "USD", "name": "Core Retail Sales m/m", "impact": "high", "actual": "", "forecast": "0.7%", "previous": "1.9%", "better": null, "source": "forexfactory"},
+    {"date": "2026-05-14", "time": "14:30", "currency": "USD", "name": "Retail Sales m/m", "impact": "high", "actual": "", "forecast": "0.5%", "previous": "1.7%", "better": null, "source": "forexfactory"},
+    {"date": "2026-05-14", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "205K", "previous": "200K", "better": null, "source": "forexfactory"}
   ]
 }
