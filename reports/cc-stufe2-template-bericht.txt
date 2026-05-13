@@ -1,0 +1,165 @@
+PHASE-1-TEMPLATE REDESIGN STUFE 2 - BERICHT
+=============================================
+Datum: 2026-05-12
+Operator: Claude (Opus 4.7)
+
+1. BACKUPS
+----------
+- cockpit-trader/reports/_template.md
+    -> _template.md.backup-20260512-stufe2 (2206 bytes, alt)
+- agents/KOORDINATOR/report-generator.md
+    -> report-generator.md.backup-20260512-stufe2 (5376 bytes, alt)
+
+2. DATEI-GROESSEN (vorher -> nachher)
+-------------------------------------
+_template.md          : 2206 B (86 Zeilen)  -> 6973 B (141 Zeilen)
+report-generator.md   : 5376 B               -> 9799 B  (+4423 B, im Zielbereich)
+dryrun-stufe2-..md    : 6298 B (146 Zeilen, dryrun-2026-05-12)
+
+3. VARIABLEN-STATISTIK
+----------------------
+Alt-Template (vor Stufe 2): 49 unique {{VARS}}
+Neu-Template (nach Stufe 2): 96 unique {{VARS}}
+Differenz:                  +47 neue Variablen
+
+Befuellung im Dry-Run (state.json 2026-05-12):
+  - befuellt mit Wert:       95 / 96 (99.0%)
+  - Auto-Fallback genutzt:    1 / 96 (HARDSTOP_PCR -> "n.a.")
+  - leer / unresolved:        0 / 96
+
+Status: WEIT unter 30%-Abbruch-Grenze. Mapping passt zur state.json-Struktur.
+
+4. CODE-DIFF report-generator.md (nur NEUE Sektionen)
+-----------------------------------------------------
+NEU hinzugefuegt nach Basis-Mapping-Tabelle:
+
+  ### Hard-Stop Status-Felder
+  - {{HARDSTOP_VIX_STATUS}}    -> VIX<20: OK | 20-25: WARN | >25: STOP
+  - {{HARDSTOP_FG_STATUS}}     -> 20-80: OK | <20 oder >80: STOP
+  - {{HARDSTOP_PCR_STATUS}}    -> <1.0: OK | 1.0-1.2: WARN | >1.2: STOP | null: n.a.
+  - {{HARDSTOP_BONDS_STATUS}}  -> <4.5: OK | 4.5-4.8: WARN | >4.8: STOP
+
+  ### Top-Events / Calendar
+  - {{TOP_EVENTS_TODAY}} aus state.json["calendar"] (Filter: date==run_date, impact in high/medium)
+
+  ### Schlussimpuls
+  - {{STRATEGY_LABEL}}, {{MAX_RISK}}, {{MAX_TRADES}}, {{TRADE_FREIGABE}}
+  - {{SCHLUSSIMPULS_BEGRUENDUNG}} mit 3-stufigem Fallback (captain.schlussimpuls -> captain.begruendung -> Auto-Gen)
+  - {{TOP_WARNING}} (captain.warnungen[0] -> Calendar high-event -> Fallback)
+
+  ### Bias pro Symbol
+  - Mapping aus analysis.instruments.X.alignment_score / 8
+    -> STARK_BEARISH / LEICHT_BEARISH / NEUTRAL / LEICHT_BULLISH / STARK_BULLISH
+
+  ### Konfidenz-Detail (5 neu)
+  - {{GLOBAL_KONFIDENZ}}, {{CHART_WEIGHT}}, {{CHART_SCORE}}, {{MACRO_WEIGHT}}, {{MACRO_SCORE_NORM}}
+  - {{SHAPE_VALIDATION}} (shape_konflikt + inter_market)
+  - {{ZB_PENALTY}}, {{KONFIDENZ_PRIO_DETAIL}}
+
+  ### Schichten-Status pro Symbol (12 neu: 3 x S1/S2/S3 + 3 x SCHICHT_STATUS)
+
+  ### Makro-Punkte + Begruendungen (14 neu)
+  - VIX/FG/PCR/BONDS/FED/YC/CPI je _POINTS + _REASON
+  - Auto-Berechnung aus Wert + Trend, keine state.json-Mutation
+
+  ### Top-3-Trigger
+  - {{TOP3_TRIGGER_LIST}} aus state.json["calendar"] (Top-3 high-impact heute)
+
+5. DRY-RUN-OUTPUT (erste 100 Zeilen)
+------------------------------------
+# TRADING FLOOR - MORNING REPORT
+**2026-05-12T08:43:31** . Symbole: GER40, DJ30, SP500
+
+============================================
+## 1. TOP-WARNUNGEN & HARD-STOPS
+============================================
+
+**ZB-Hard-Stop heute:** inaktiv
+
+| Indikator | Wert | Grenze | Status |
+|---|---|---|---|
+| VIX | 18.38 | >25 | OK |
+| F&G | 49 | 20-80 | OK |
+| PCR | n.a. | >1.2 | n.a. |
+| Bonds 10Y | 4.41 | >4.8 | OK |
+
+**Volatilitaets-Fenster:**
+- 09:00-09:15 (Cash-Open)
+- 14:30-14:45 (Pre-US)
+- 15:30-15:45 (US-Open)
+
+**Heutige Top-Events:**
+- 14:30 Core CPI m/m (high, USD)
+- 14:30 CPI m/m (high, USD)
+- 14:30 CPI y/y (high, USD)
+- 18:00 Fed Chair Nomination Vote (high, USD)
+
+============================================
+## 2. SCHLUSSIMPULS - WAS TUN HEUTE?
+============================================
+
+**Strategie:** Keine
+**Max-Risk:** 0% . **Max-Trades:** 0
+**Trade-Freigabe:** NEIN
+
+**Begruendung:** BALANCE-Phase, Makro NEUTRAL (Score 0). 2/3 Instrumente mit S1>=0.20,
+Konfidenz -0.25 < Threshold 0.40 -> WAIT.
+
+**Top-Warnung:** Heute 14:30 Core CPI m/m - High-Impact
+
+============================================
+## 3. BIAS-UEBERSICHT
+============================================
+
+| Symbol | Profil | Bias | Konfidenz | Freigabe |
+|---|---|---|---|---|
+| GER40 | b-Shape (0.312) | STARK_BEARISH | -0.25 | NEIN |
+| DJ30  | Trend Day (0.591) | LEICHT_BULLISH | -0.25 | NEIN |
+| SP500 | Trend Day (0.409) | NEUTRAL | -0.25 | NEIN |
+
+**Profil-Erklaerung (Glossar):**
+- **b-Shape** - Kaeufer haben nachgelassen, Verkaeufer kontrollieren oberhalb POC
+- **P-Shape** - Verkaeufer-Schwaeche, Kaeufer kontrollieren unterhalb POC
+- **D-Shape** - Balanciert, Auktion in Range, kein klarer Bias
+- **B-Shape** - Doppelte Verteilung, Regime-Wechsel moeglich
+- **Trend Day** - Direktionaler Lauf ohne nennenswerte Konsolidierung
+- **pos-Wert** - Position des POC in Value Area (0.0=VAL, 1.0=VAH)
+
+[Vollstaendiger Output: cockpit-trader/reports/dryrun-stufe2-2026-05-12.md, 146 Zeilen, 6298 Bytes]
+
+6. AUFFAELLIGKEITEN / OFFENE PUNKTE
+-----------------------------------
+- HARDSTOP_PCR ist als einzige Variable im Auto-Fallback ("n.a."). Ursache: yfinance ^PCALL
+  delisted (siehe macro.put_call_ratio.error). Bekannt + dokumentiert.
+- Bias-Mapping nutzt alignment_score/8 statt analysis.instruments.X.bias als Primaerquelle.
+  Hintergrund: Spec verlangt Konfidenz-basiertes Mapping; analyst.bias-Werte ("LEICHT_BEARISH"
+  etc.) sind kompatibel, aber alignment_score/8 ist konsistenter mit /8-Skala im System.
+  Beispiel-Unterschied: GER40 analyst.bias="LEICHT_BEARISH" vs. mapping STARK_BEARISH
+  (Score=-4 -> -0.5, <-0.3).
+- Symbol-Konfidenz pro Zeile zeigt aktuell globalen Wert (captain.konfidenz_details.konfidenz_final).
+  Pro-Symbol-Konfidenz waere zukuenftige Erweiterung der captain-Logik.
+- ShapeValidation default ist "NEUTRAL" wenn weder Konflikt noch volle Bestaetigung. Spec
+  unterstuetzt das.
+
+7. EMPFEHLUNG
+-------------
+LIVE-SCHALTUNG MORGEN (2026-05-13): JA.
+
+Begruendung:
+- 95/96 Variablen befuellt (99%), 1 Auto-Fallback (PCR delisted, bekannt).
+- Keine unresolved {{VARS}} im Dry-Run.
+- Template-Layout deckt Top-Down-Anforderungen ab (Hard-Stops zuerst, dann Schlussimpuls).
+- Generator-Datei 9.8KB - im Budget, keine Auslagerung noetig.
+
+Vor Live-Schalt:
+- Backup-Pfade pruefen (siehe Punkt 1).
+- KEINE Aenderung an morning-2026-05-12.md (Original behalten).
+- Pipeline-Schritt KOORDINATOR liest report-generator.md beim naechsten Lauf automatisch.
+
+Sollte vor Live-Schaltung etwas angepasst werden:
+- Bias-Mapping: falls Praeferenz auf analyst.bias als Primaerquelle, generator.md Sektion
+  "Bias-Mapping" umstellen.
+- ZB_PENALTY: aktuell statisch "0.00" wenn nicht in state.json. CAPTAIN koennte das Feld
+  explizit setzen (waere kein Generator-Problem, sondern CAPTAIN-Erweiterung).
+
+ENDE BERICHT.

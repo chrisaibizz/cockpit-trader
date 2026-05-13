@@ -1,0 +1,88 @@
+PHASE-1 MORNING-REPORT-GENERATOR - MANUAL RUN
+==============================================
+Datum:     2026-05-12
+Ausfuehrer: Claude Code (manuell, /loop-Hook-Fallback)
+Quelle:    agents/shared/state.json (Pipeline 2026-05-12T08:43:31 completed)
+
+FILE-CHECK
+----------
+[OK] morning-2026-05-12.md  exists  size=2204 bytes
+[OK] latest.md              exists  size=2204 bytes
+
+VARIABLE-SUBSTITUTION
+---------------------
+Total Template-Variablen (unique):  49
+Substituiert:                       49
+Verbliebene {{VARIABLE}}:           0
+Empty/n.a. Felder (Default "-"):    1
+  - HARDSTOP_PCR  (macro.put_call_ratio.value = null, ^PCALL delisted yfinance)
+Empty-Variable-Quote:               1/49 = 2.04 %
+Erwartung laut Generator-Spec:      ~8 % (4/49 mit FRED+PCR)
+Ist-Wert besser als Erwartung:      FRED-Felder sind in diesem Run vorhanden,
+                                    nur PCR fehlt -> 2.04 % statt 8.2 %.
+
+ERSTE 30 ZEILEN INHALT
+----------------------
+# TRADING FLOOR - MORNING REPORT
+
+**2026-05-12**
+Symbole: GER40, DJ30, SP500
+
+---
+
+## 1. EXECUTIVE SUMMARY
+
+> **Kern-Lesart:** BALANCE-Phase, Makro NEUTRAL (Score 0). Bestes Instrument: GER40 mit Score -4/8 (LEICHT_BEARISH). Konfidenz -0.25 -> WAIT.
+
+| Symbol | MP-Bias | Makro | Konfidenz | Freigabe |
+|---|---|---|---|---|
+| GER40 | b-Shape (pos=0.312) | NEUTRAL | -0.25 | NEIN |
+| DJ30 | Trend Day (pos=0.591) | NEUTRAL | -0.25 | NEIN |
+| SP500 | Trend Day (pos=0.409) | NEUTRAL | -0.25 | NEIN |
+
+Top-3-Trigger: TBD Phase 2
+
+---
+
+## 2. PRE-OPEN-CHECK
+
+### GER40
+| Trigger | Level | Lese-Logik |
+|---|---|---|
+| POC | 24263.37 | Halten=Bias bestaetigt |
+| VAH | 24309.38 | Bruch oben=Extension |
+| VAL | 24242.46 | Bruch unten=Trend-Wechsel |
+| VWAP 30M | 24152.4 | Bias-Bestaetigung |
+
+LEERE / "n.a." FELDER (DETAIL)
+------------------------------
+HARDSTOP_PCR        -> "-"   (Grund: ^PCALL delisted bei yfinance, persistenter Bug)
+ZB_HARDSTOP_STATUS  -> "inaktiv" (regulaerer Default, captain.zentralbank_stop=false; NICHT als leer gezaehlt)
+
+GENERIERTE FELDER
+-----------------
+KERN_LESART  (3 Saetze):
+  1. "BALANCE-Phase, Makro NEUTRAL (Score 0)."
+  2. "Bestes Instrument: GER40 mit Score -4/8 (LEICHT_BEARISH)."
+  3. "Konfidenz -0.25 -> WAIT."
+
+SCHLUSSIMPULS (5 Zeilen):
+  1. Strategie: Keine
+  2. Entry-Fenster: London/NY
+  3. Max-Risk: 0% | Max-Trades: 0
+  4. Top-Warnung: Heute 14:30 Core CPI m/m - High-Impact
+  5. Plan: trade_plan (newlines flattened, em-dash -> hyphen, truncated 200 chars)
+
+EMPTY-VARIABLE-QUOTE-VERGLEICH
+------------------------------
+Spec (2026-05-11):  4/49 = 8.2 % (FRED x3, PCR x1)
+Heute (2026-05-12): 1/49 = 2.0 %
+Diff:              -6.2 pp  (FRED jetzt befuellt, nur PCR fehlt)
+
+STATUS: OK
+- Generator-Logik laeuft sauber, alle Pfade aufloesbar.
+- Quote unter 20 % -> kein WARN-Log noetig.
+- Keine state.json-Mutation, keine Aenderung in agents/.
+- Nur 2 neue Files (morning-2026-05-12.md, latest.md) + dieser Bericht.
+
+ENDE

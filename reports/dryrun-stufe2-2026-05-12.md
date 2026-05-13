@@ -1,18 +1,18 @@
 # TRADING FLOOR — MORNING REPORT
-**{{DATE_CET}}** · Symbole: GER40, DJ30, SP500
+**2026-05-12T08:43:31** · Symbole: GER40, DJ30, SP500
 
 ══════════════════════════════════════════════
 ## 1. TOP-WARNUNGEN & HARD-STOPS
 ══════════════════════════════════════════════
 
-**ZB-Hard-Stop heute:** {{ZB_HARDSTOP_STATUS}}
+**ZB-Hard-Stop heute:** inaktiv
 
 | Indikator | Wert | Grenze | Status |
 |---|---|---|---|
-| VIX | {{HARDSTOP_VIX}} | >25 | {{HARDSTOP_VIX_STATUS}} |
-| F&G | {{HARDSTOP_FG}} | 20-80 | {{HARDSTOP_FG_STATUS}} |
-| PCR | {{HARDSTOP_PCR}} | >1.2 | {{HARDSTOP_PCR_STATUS}} |
-| Bonds 10Y | {{HARDSTOP_BONDS}} | >4.8 | {{HARDSTOP_BONDS_STATUS}} |
+| VIX | 18.38 | >25 | OK |
+| F&G | 49 | 20-80 | OK |
+| PCR | n.a. | >1.2 | n.a. |
+| Bonds 10Y | 4.41 | >4.8 | OK |
 
 **Volatilitäts-Fenster (Setups pausieren):**
 - 09:00–09:15 (Cash-Open)
@@ -20,19 +20,22 @@
 - 15:30–15:45 (US-Open)
 
 **Heutige Top-Events:**
-{{TOP_EVENTS_TODAY}}
+- 14:30 Core CPI m/m (high, USD)
+- 14:30 CPI m/m (high, USD)
+- 14:30 CPI y/y (high, USD)
+- 18:00 Fed Chair Nomination Vote (high, USD)
 
 ══════════════════════════════════════════════
 ## 2. SCHLUSSIMPULS — WAS TUN HEUTE?
 ══════════════════════════════════════════════
 
-**Strategie:** {{STRATEGY_LABEL}}
-**Max-Risk:** {{MAX_RISK}}% · **Max-Trades:** {{MAX_TRADES}}
-**Trade-Freigabe:** {{TRADE_FREIGABE}}
+**Strategie:** Keine
+**Max-Risk:** 0% · **Max-Trades:** 0
+**Trade-Freigabe:** NEIN
 
-**Begründung:** {{SCHLUSSIMPULS_BEGRUENDUNG}}
+**Begründung:** BALANCE-Phase, Makro NEUTRAL (Score 0). 2/3 Instrumente mit S1>=0.20, Konfidenz -0.25 < Threshold 0.40 → WAIT.
 
-**Top-Warnung:** {{TOP_WARNING}}
+**Top-Warnung:** Heute 14:30 Core CPI m/m — High-Impact
 
 ══════════════════════════════════════════════
 ## 3. BIAS-ÜBERSICHT
@@ -40,9 +43,9 @@
 
 | Symbol | Profil | Bias | Konfidenz | Freigabe |
 |---|---|---|---|---|
-| GER40 | {{GER40_SHAPE}} ({{GER40_POS}}) | {{GER40_BIAS}} | {{GER40_KONFIDENZ}} | {{GER40_FREIGABE}} |
-| DJ30 | {{DJ30_SHAPE}} ({{DJ30_POS}}) | {{DJ30_BIAS}} | {{DJ30_KONFIDENZ}} | {{DJ30_FREIGABE}} |
-| SP500 | {{SP500_SHAPE}} ({{SP500_POS}}) | {{SP500_BIAS}} | {{SP500_KONFIDENZ}} | {{SP500_FREIGABE}} |
+| GER40 | b-Shape (0.312) | STARK_BEARISH | -0.25 | NEIN |
+| DJ30 | Trend Day (0.591) | LEICHT_BULLISH | -0.25 | NEIN |
+| SP500 | Trend Day (0.409) | NEUTRAL | -0.25 | NEIN |
 
 **Profil-Erklärung (Glossar):**
 - **b-Shape** — Käufer haben nachgelassen, Verkäufer kontrollieren oberhalb POC
@@ -56,16 +59,16 @@
 ## 4. KONFIDENZ-DETAIL
 ══════════════════════════════════════════════
 
-**Gesamt-Konfidenz:** {{GLOBAL_KONFIDENZ}} (Threshold 0.40 → {{TRADE_FREIGABE}})
+**Gesamt-Konfidenz:** -0.25 (Threshold 0.40 → NEIN)
 
 | Komponente | Anteil | Wert |
 |---|---|---|
-| Chart-Score | {{CHART_WEIGHT}}% | {{CHART_SCORE}} |
-| Makro-Score | {{MACRO_WEIGHT}}% | {{MACRO_SCORE_NORM}} |
-| Shape-Validierung | — | {{SHAPE_VALIDATION}} |
-| ZB-Event-Penalty | — | {{ZB_PENALTY}} |
+| Chart-Score | 50% | -0.25 |
+| Makro-Score | 50% | 0.0 |
+| Shape-Validierung | — | NEUTRAL |
+| ZB-Event-Penalty | — | 0.00 |
 
-**Prio-Profil:** {{KONFIDENZ_PRIO_DETAIL}}
+**Prio-Profil:** Phase BALANCE
 
 ══════════════════════════════════════════════
 ## 5. SCHICHTEN-CHECK
@@ -73,9 +76,9 @@
 
 | Symbol | S1 Context | S2 Struktur | S3 Entry | Freigabe |
 |---|---|---|---|---|
-| GER40 | {{GER40_S1}} {{GER40_S1_STATUS}} | {{GER40_S2}} {{GER40_S2_STATUS}} | {{GER40_S3}} {{GER40_S3_STATUS}} | {{GER40_SCHICHT_STATUS}} |
-| DJ30 | {{DJ30_S1}} {{DJ30_S1_STATUS}} | {{DJ30_S2}} {{DJ30_S2_STATUS}} | {{DJ30_S3}} {{DJ30_S3_STATUS}} | {{DJ30_SCHICHT_STATUS}} |
-| SP500 | {{SP500_S1}} {{SP500_S1_STATUS}} | {{SP500_S2}} {{SP500_S2_STATUS}} | {{SP500_S3}} {{SP500_S3_STATUS}} | {{SP500_SCHICHT_STATUS}} |
+| GER40 | -0.7 FAIL | 0.0 FAIL | -0.333 FAIL | BLOCKIERT durch S1, S2, S3 |
+| DJ30 | 0.3 OK | 0.0 FAIL | -0.167 FAIL | BLOCKIERT durch S2, S3 |
+| SP500 | 0.2 OK | -0.25 FAIL | 0.0 OK | BLOCKIERT durch S2 |
 
 **Was die Schichten messen:**
 - **S1 Context (60%)** — Market Profile + Volume Profile auf 30M
@@ -91,51 +94,53 @@
 ### GER40
 | Trigger | Level | Lese-Logik |
 |---|---|---|
-| POC | {{GER40_POC}} | Halten = Bias bestätigt |
-| VAH | {{GER40_VAH}} | Bruch oben = Extension |
-| VAL | {{GER40_VAL}} | Bruch unten = Trend-Wechsel |
-| VWAP 30M | {{GER40_VWAP}} | Über = bullish, drunter = bearish |
-| 200-SMA | {{GER40_200SMA}} | Trend-Filter (HTF) |
+| POC | 24263.37 | Halten = Bias bestätigt |
+| VAH | 24309.38 | Bruch oben = Extension |
+| VAL | 24242.46 | Bruch unten = Trend-Wechsel |
+| VWAP 30M | 24152.4 | Über = bullish, drunter = bearish |
+| 200-SMA | 24516.35 | Trend-Filter (HTF) |
 
 ### DJ30
 | Trigger | Level | Lese-Logik |
 |---|---|---|
-| POC | {{DJ30_POC}} | Halten = Bias bestätigt |
-| VAH | {{DJ30_VAH}} | Bruch oben = Entry |
-| VAL | {{DJ30_VAL}} | Bruch unten = Entry |
-| VWAP 30M | {{DJ30_VWAP}} | Über = bullish, drunter = bearish |
-| 200-SMA | {{DJ30_200SMA}} | Trend-Filter (HTF) |
+| POC | 49633.94 | Halten = Bias bestätigt |
+| VAH | 49725.27 | Bruch oben = Entry |
+| VAL | 49502.03 | Bruch unten = Entry |
+| VWAP 30M | 49713.61 | Über = bullish, drunter = bearish |
+| 200-SMA | 49717.44 | Trend-Filter (HTF) |
 
 ### SP500
 | Trigger | Level | Lese-Logik |
 |---|---|---|
-| POC | {{SP500_POC}} | Halten = Bias bestätigt |
-| VAH | {{SP500_VAH}} | Bruch oben = Continuation |
-| VAL | {{SP500_VAL}} | Bruch unten = Schwäche |
-| VWAP 30M | {{SP500_VWAP}} | Über = bullish, drunter = bearish |
-| 200-SMA | {{SP500_200SMA}} | Trend-Filter (HTF) |
+| POC | 7394.62 | Halten = Bias bestätigt |
+| VAH | 7415.34 | Bruch oben = Continuation |
+| VAL | 7380.28 | Bruch unten = Schwäche |
+| VWAP 30M | 7409.31 | Über = bullish, drunter = bearish |
+| 200-SMA | 7371.68 | Trend-Filter (HTF) |
 
 ══════════════════════════════════════════════
 ## 7. MAKRO-SCORE DETAIL
 ══════════════════════════════════════════════
 
-**Gesamt-Score:** {{MAKRO_SCORE}} / [-12 bis +12] · **Bias:** {{MAKRO_BIAS}}
+**Gesamt-Score:** 0 / [-12 bis +12] · **Bias:** NEUTRAL
 
 | Signal | Wert | Punkte | Begründung |
 |---|---|---|---|
-| VIX | {{HARDSTOP_VIX}} | {{VIX_POINTS}} | {{VIX_REASON}} |
-| F&G | {{HARDSTOP_FG}} | {{FG_POINTS}} | {{FG_REASON}} |
-| PCR | {{HARDSTOP_PCR}} | {{PCR_POINTS}} | {{PCR_REASON}} |
-| Bonds 10Y | {{HARDSTOP_BONDS}} | {{BONDS_POINTS}} | {{BONDS_REASON}} |
-| FRED FedFunds | {{FRED_FEDFUNDS}} | {{FED_POINTS}} | {{FED_REASON}} |
-| FRED YieldCurve | {{FRED_YIELDCURVE}} | {{YC_POINTS}} | {{YC_REASON}} |
-| FRED CPI | {{FRED_CPI}} | {{CPI_POINTS}} | {{CPI_REASON}} |
+| VIX | 18.38 | 0 | mittlere Vola |
+| F&G | 49 | 0 | neutral |
+| PCR | n.a. | - | delisted |
+| Bonds 10Y | 4.41 | -1 | rising |
+| FRED FedFunds | 3.64 | 0 | neutral |
+| FRED YieldCurve | 0.47 | +1 | flach positiv |
+| FRED CPI | 3.32 | 0 | moderate Inflation |
 
 ══════════════════════════════════════════════
 ## 8. TOP-3-TRIGGER HEUTE
 ══════════════════════════════════════════════
 
-{{TOP3_TRIGGER_LIST}}
+- 14:30 Core CPI m/m (USD, high)
+- 14:30 CPI m/m (USD, high)
+- 14:30 CPI y/y (USD, high)
 
 ---
 *Auto-generated by KOORDINATOR · Source: agents/shared/state.json*

@@ -138,21 +138,124 @@
         "pdl": 24202.33,
         "tpo_distribution": [],
         "mp_history": [
-          {"session": 0, "date": "2026-05-12", "poc": 24263.37, "vah": 24309.38, "val": 24242.46, "shape": "b-Shape", "mp_shape_pos": 0.312, "va_breite_pct": 0.28, "naked_poc": false},
-          {"session": 1, "date": "2026-05-11", "poc": 24445.42, "vah": 24476.98, "val": 24363.36, "shape": "P-Shape", "mp_shape_pos": 0.722, "va_breite_pct": 0.46, "naked_poc": true},
-          {"session": 2, "date": "2026-05-08", "poc": 24929.43, "vah": 25009.63, "val": 24624.67, "shape": "P-Shape", "mp_shape_pos": 0.792, "va_breite_pct": 1.54, "naked_poc": true},
-          {"session": 3, "date": "2026-05-07", "poc": 24928.87, "vah": 25144.03, "val": 24713.71, "shape": "B-Shape", "mp_shape_pos": 0.5, "va_breite_pct": 1.73, "naked_poc": false},
-          {"session": 4, "date": "2026-05-06", "poc": 24378.56, "vah": 24452.87, "val": 24096.16, "shape": "P-Shape", "mp_shape_pos": 0.792, "va_breite_pct": 1.46, "naked_poc": false},
-          {"session": 5, "date": "2026-05-05", "poc": 24319.17, "vah": 24389.7, "val": 24079.36, "shape": "P-Shape", "mp_shape_pos": 0.773, "va_breite_pct": 1.28, "naked_poc": false},
-          {"session": 6, "date": "2026-05-04", "poc": 24269.1, "vah": 24322.99, "val": 23820.04, "shape": "P-Shape", "mp_shape_pos": 0.893, "va_breite_pct": 2.07, "naked_poc": false},
-          {"session": 7, "date": "2026-05-01", "poc": 24005.25, "vah": 24071.34, "val": 23882.52, "shape": "Trend Day", "mp_shape_pos": 0.65, "va_breite_pct": 0.79, "naked_poc": false},
-          {"session": 8, "date": "2026-04-30", "poc": 23985.99, "vah": 24102.38, "val": 23965.46, "shape": "b-Shape", "mp_shape_pos": 0.15, "va_breite_pct": 0.57, "naked_poc": false},
-          {"session": 9, "date": "2026-04-29", "poc": 24144.32, "vah": 24253.85, "val": 24102.2, "shape": "b-Shape", "mp_shape_pos": 0.278, "va_breite_pct": 0.63, "naked_poc": false}
+          {
+            "session": 0,
+            "date": "2026-05-12",
+            "poc": 24263.37,
+            "vah": 24309.38,
+            "val": 24242.46,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.312,
+            "va_breite_pct": 0.28,
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "date": "2026-05-11",
+            "poc": 24445.42,
+            "vah": 24476.98,
+            "val": 24363.36,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.722,
+            "va_breite_pct": 0.46,
+            "naked_poc": true
+          },
+          {
+            "session": 2,
+            "date": "2026-05-08",
+            "poc": 24929.43,
+            "vah": 25009.63,
+            "val": 24624.67,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.792,
+            "va_breite_pct": 1.54,
+            "naked_poc": true
+          },
+          {
+            "session": 3,
+            "date": "2026-05-07",
+            "poc": 24928.87,
+            "vah": 25144.03,
+            "val": 24713.71,
+            "shape": "B-Shape",
+            "mp_shape_pos": 0.5,
+            "va_breite_pct": 1.73,
+            "naked_poc": false
+          },
+          {
+            "session": 4,
+            "date": "2026-05-06",
+            "poc": 24378.56,
+            "vah": 24452.87,
+            "val": 24096.16,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.792,
+            "va_breite_pct": 1.46,
+            "naked_poc": false
+          },
+          {
+            "session": 5,
+            "date": "2026-05-05",
+            "poc": 24319.17,
+            "vah": 24389.7,
+            "val": 24079.36,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.773,
+            "va_breite_pct": 1.28,
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "date": "2026-05-04",
+            "poc": 24269.1,
+            "vah": 24322.99,
+            "val": 23820.04,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.893,
+            "va_breite_pct": 2.07,
+            "naked_poc": false
+          },
+          {
+            "session": 7,
+            "date": "2026-05-01",
+            "poc": 24005.25,
+            "vah": 24071.34,
+            "val": 23882.52,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.65,
+            "va_breite_pct": 0.79,
+            "naked_poc": false
+          },
+          {
+            "session": 8,
+            "date": "2026-04-30",
+            "poc": 23985.99,
+            "vah": 24102.38,
+            "val": 23965.46,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.15,
+            "va_breite_pct": 0.57,
+            "naked_poc": false
+          },
+          {
+            "session": 9,
+            "date": "2026-04-29",
+            "poc": 24144.32,
+            "vah": 24253.85,
+            "val": 24102.2,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.278,
+            "va_breite_pct": 0.63,
+            "naked_poc": false
+          }
         ],
         "mp_context": {
           "poc_migration": "fallend",
           "shape_sequenz": "2x P-Shape + 1x b-Shape",
-          "naked_pocs": [24445.42, 24929.43],
+          "naked_pocs": [
+            24445.42,
+            24929.43
+          ],
           "composite_poc": 24466.47
         }
       },
@@ -190,21 +293,126 @@
         "pdl": 49404.27,
         "tpo_distribution": [],
         "mp_history": [
-          {"session": 0, "date": "2026-05-12", "poc": 49633.94, "vah": 49725.27, "val": 49502.03, "shape": "Trend Day", "mp_shape_pos": 0.591, "va_breite_pct": 0.45, "naked_poc": false},
-          {"session": 1, "date": "2026-05-11", "poc": 49663.6, "vah": 49785.32, "val": 49616.78, "shape": "b-Shape", "mp_shape_pos": 0.278, "va_breite_pct": 0.34, "naked_poc": false},
-          {"session": 2, "date": "2026-05-08", "poc": 50020.04, "vah": 50134.66, "val": 49741.66, "shape": "P-Shape", "mp_shape_pos": 0.708, "va_breite_pct": 0.79, "naked_poc": true},
-          {"session": 3, "date": "2026-05-07", "poc": 49449.76, "vah": 49858.71, "val": 49352.4, "shape": "b-Shape", "mp_shape_pos": 0.192, "va_breite_pct": 1.02, "naked_poc": true},
-          {"session": 4, "date": "2026-05-06", "poc": 49031.41, "vah": 49249.83, "val": 49000.2, "shape": "b-Shape", "mp_shape_pos": 0.125, "va_breite_pct": 0.51, "naked_poc": true},
-          {"session": 5, "date": "2026-05-05", "poc": 49538.15, "vah": 49674.92, "val": 49205.99, "shape": "P-Shape", "mp_shape_pos": 0.708, "va_breite_pct": 0.95, "naked_poc": false},
-          {"session": 6, "date": "2026-05-04", "poc": 49796.08, "vah": 49980.68, "val": 49753.48, "shape": "b-Shape", "mp_shape_pos": 0.187, "va_breite_pct": 0.46, "naked_poc": false},
-          {"session": 7, "date": "2026-05-01", "poc": 48732.57, "vah": 49362.42, "val": 48500.52, "shape": "b-Shape", "mp_shape_pos": 0.269, "va_breite_pct": 1.77, "naked_poc": true},
-          {"session": 8, "date": "2026-04-30", "poc": 49259.4, "vah": 49306.5, "val": 48866.91, "shape": "P-Shape", "mp_shape_pos": 0.893, "va_breite_pct": 0.89, "naked_poc": false},
-          {"session": 9, "date": "2026-04-29", "poc": 49280.88, "vah": 49351.75, "val": 49210.0, "shape": "Trend Day", "mp_shape_pos": 0.5, "va_breite_pct": 0.29, "naked_poc": false}
+          {
+            "session": 0,
+            "date": "2026-05-12",
+            "poc": 49633.94,
+            "vah": 49725.27,
+            "val": 49502.03,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.591,
+            "va_breite_pct": 0.45,
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "date": "2026-05-11",
+            "poc": 49663.6,
+            "vah": 49785.32,
+            "val": 49616.78,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.278,
+            "va_breite_pct": 0.34,
+            "naked_poc": false
+          },
+          {
+            "session": 2,
+            "date": "2026-05-08",
+            "poc": 50020.04,
+            "vah": 50134.66,
+            "val": 49741.66,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.708,
+            "va_breite_pct": 0.79,
+            "naked_poc": true
+          },
+          {
+            "session": 3,
+            "date": "2026-05-07",
+            "poc": 49449.76,
+            "vah": 49858.71,
+            "val": 49352.4,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.192,
+            "va_breite_pct": 1.02,
+            "naked_poc": true
+          },
+          {
+            "session": 4,
+            "date": "2026-05-06",
+            "poc": 49031.41,
+            "vah": 49249.83,
+            "val": 49000.2,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.125,
+            "va_breite_pct": 0.51,
+            "naked_poc": true
+          },
+          {
+            "session": 5,
+            "date": "2026-05-05",
+            "poc": 49538.15,
+            "vah": 49674.92,
+            "val": 49205.99,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.708,
+            "va_breite_pct": 0.95,
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "date": "2026-05-04",
+            "poc": 49796.08,
+            "vah": 49980.68,
+            "val": 49753.48,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.187,
+            "va_breite_pct": 0.46,
+            "naked_poc": false
+          },
+          {
+            "session": 7,
+            "date": "2026-05-01",
+            "poc": 48732.57,
+            "vah": 49362.42,
+            "val": 48500.52,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.269,
+            "va_breite_pct": 1.77,
+            "naked_poc": true
+          },
+          {
+            "session": 8,
+            "date": "2026-04-30",
+            "poc": 49259.4,
+            "vah": 49306.5,
+            "val": 48866.91,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.893,
+            "va_breite_pct": 0.89,
+            "naked_poc": false
+          },
+          {
+            "session": 9,
+            "date": "2026-04-29",
+            "poc": 49280.88,
+            "vah": 49351.75,
+            "val": 49210.0,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.5,
+            "va_breite_pct": 0.29,
+            "naked_poc": false
+          }
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "gemischt",
-          "naked_pocs": [50020.04, 49449.76, 49031.41, 48732.57],
+          "naked_pocs": [
+            50020.04,
+            49449.76,
+            49031.41,
+            48732.57
+          ],
           "composite_poc": 49539.66
         }
       },
@@ -242,25 +450,203 @@
         "pdl": 7384.2,
         "tpo_distribution": [],
         "mp_history": [
-          {"session": 0, "date": "2026-05-12", "poc": 7394.62, "vah": 7415.34, "val": 7380.28, "shape": "Trend Day", "mp_shape_pos": 0.409, "va_breite_pct": 0.47, "naked_poc": false},
-          {"session": 1, "date": "2026-05-11", "poc": 7403.4, "vah": 7410.0, "val": 7370.38, "shape": "P-Shape", "mp_shape_pos": 0.833, "va_breite_pct": 0.54, "naked_poc": false},
-          {"session": 2, "date": "2026-05-08", "poc": 7378.79, "vah": 7393.45, "val": 7357.61, "shape": "Trend Day", "mp_shape_pos": 0.591, "va_breite_pct": 0.49, "naked_poc": false},
-          {"session": 3, "date": "2026-05-07", "poc": 7288.15, "vah": 7336.8, "val": 7280.47, "shape": "b-Shape", "mp_shape_pos": 0.136, "va_breite_pct": 0.77, "naked_poc": true},
-          {"session": 4, "date": "2026-05-06", "poc": 7234.63, "vah": 7256.82, "val": 7204.38, "shape": "Trend Day", "mp_shape_pos": 0.577, "va_breite_pct": 0.72, "naked_poc": true},
-          {"session": 5, "date": "2026-05-05", "poc": 7247.79, "vah": 7254.05, "val": 7216.48, "shape": "P-Shape", "mp_shape_pos": 0.833, "va_breite_pct": 0.52, "naked_poc": false},
-          {"session": 6, "date": "2026-05-04", "poc": 7238.07, "vah": 7254.4, "val": 7227.67, "shape": "Trend Day", "mp_shape_pos": 0.389, "va_breite_pct": 0.37, "naked_poc": false},
-          {"session": 7, "date": "2026-05-01", "poc": 7175.69, "vah": 7184.57, "val": 7131.32, "shape": "P-Shape", "mp_shape_pos": 0.833, "va_breite_pct": 0.74, "naked_poc": true},
-          {"session": 8, "date": "2026-04-30", "poc": 7156.58, "vah": 7167.06, "val": 7140.13, "shape": "Trend Day", "mp_shape_pos": 0.611, "va_breite_pct": 0.38, "naked_poc": false},
-          {"session": 9, "date": "2026-04-29", "poc": 7150.39, "vah": 7179.0, "val": 7125.6, "shape": "Trend Day", "mp_shape_pos": 0.464, "va_breite_pct": 0.75, "naked_poc": false}
+          {
+            "session": 0,
+            "date": "2026-05-12",
+            "poc": 7394.62,
+            "vah": 7415.34,
+            "val": 7380.28,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.409,
+            "va_breite_pct": 0.47,
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "date": "2026-05-11",
+            "poc": 7403.4,
+            "vah": 7410.0,
+            "val": 7370.38,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.833,
+            "va_breite_pct": 0.54,
+            "naked_poc": false
+          },
+          {
+            "session": 2,
+            "date": "2026-05-08",
+            "poc": 7378.79,
+            "vah": 7393.45,
+            "val": 7357.61,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.591,
+            "va_breite_pct": 0.49,
+            "naked_poc": false
+          },
+          {
+            "session": 3,
+            "date": "2026-05-07",
+            "poc": 7288.15,
+            "vah": 7336.8,
+            "val": 7280.47,
+            "shape": "b-Shape",
+            "mp_shape_pos": 0.136,
+            "va_breite_pct": 0.77,
+            "naked_poc": true
+          },
+          {
+            "session": 4,
+            "date": "2026-05-06",
+            "poc": 7234.63,
+            "vah": 7256.82,
+            "val": 7204.38,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.577,
+            "va_breite_pct": 0.72,
+            "naked_poc": true
+          },
+          {
+            "session": 5,
+            "date": "2026-05-05",
+            "poc": 7247.79,
+            "vah": 7254.05,
+            "val": 7216.48,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.833,
+            "va_breite_pct": 0.52,
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "date": "2026-05-04",
+            "poc": 7238.07,
+            "vah": 7254.4,
+            "val": 7227.67,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.389,
+            "va_breite_pct": 0.37,
+            "naked_poc": false
+          },
+          {
+            "session": 7,
+            "date": "2026-05-01",
+            "poc": 7175.69,
+            "vah": 7184.57,
+            "val": 7131.32,
+            "shape": "P-Shape",
+            "mp_shape_pos": 0.833,
+            "va_breite_pct": 0.74,
+            "naked_poc": true
+          },
+          {
+            "session": 8,
+            "date": "2026-04-30",
+            "poc": 7156.58,
+            "vah": 7167.06,
+            "val": 7140.13,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.611,
+            "va_breite_pct": 0.38,
+            "naked_poc": false
+          },
+          {
+            "session": 9,
+            "date": "2026-04-29",
+            "poc": 7150.39,
+            "vah": 7179.0,
+            "val": 7125.6,
+            "shape": "Trend Day",
+            "mp_shape_pos": 0.464,
+            "va_breite_pct": 0.75,
+            "naked_poc": false
+          }
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "2x Trend Day + 1x P-Shape",
-          "naked_pocs": [7288.15, 7234.63, 7175.69],
+          "naked_pocs": [
+            7288.15,
+            7234.63,
+            7175.69
+          ],
           "composite_poc": 7312.98
         }
       }
-    }
+    },
+    "calendar": [
+      {
+        "date": "2026-05-13",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Core PPI m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.3%",
+        "previous": "0.1%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-13",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "PPI m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.5%",
+        "previous": "0.5%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-13",
+        "time": "18:29",
+        "currency": "USD",
+        "name": "Fed Chair Nomination Vote",
+        "impact": "high",
+        "actual": "",
+        "forecast": "Pass",
+        "previous": "",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-14",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Core Retail Sales m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.7%",
+        "previous": "1.9%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-14",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Retail Sales m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.5%",
+        "previous": "1.7%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-14",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Unemployment Claims",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "205K",
+        "previous": "200K",
+        "better": null,
+        "source": "forexfactory"
+      }
+    ]
   },
   "analysis": {
     "_agent": "ANALYST",
@@ -467,7 +853,7 @@
       "alle_bearish": false,
       "gemischt": true
     },
-    "summary": "Phase=BALANCE post-CPI, Regime=NEUTRAL. GER40 leicht bearish (-3), DJ30 leicht bullish (+4) mit allen 3 Schichten OK, SPX500 neutral (+1). 1/3 alle_schichten_ok. Trade-Freigabe NEIN — Fed Chair Nomination 18:00 ausstehend."
+    "summary": "Phase=BALANCE post-CPI, Regime=NEUTRAL. GER40 leicht bearish (-3), DJ30 leicht bullish (+4) mit allen 3 Schichten OK, SPX500 neutral (+1). 1/3 alle_schichten_ok. Trade-Freigabe NEIN \u2014 Fed Chair Nomination 18:00 ausstehend."
   },
   "captain": {
     "_agent": "CAPTAIN",
@@ -543,14 +929,77 @@
     }
   },
   "calendar": [
-    {"date": "2026-05-12", "time": "14:30", "currency": "USD", "name": "Core CPI m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.2%", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-12", "time": "14:30", "currency": "USD", "name": "CPI m/m", "impact": "high", "actual": "", "forecast": "0.6%", "previous": "0.9%", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-12", "time": "14:30", "currency": "USD", "name": "CPI y/y", "impact": "high", "actual": "", "forecast": "3.7%", "previous": "3.3%", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-12", "time": "18:00", "currency": "USD", "name": "Fed Chair Nomination Vote", "impact": "high", "actual": "", "forecast": "Pass", "previous": "", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-13", "time": "14:30", "currency": "USD", "name": "Core PPI m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.1%", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-13", "time": "14:30", "currency": "USD", "name": "PPI m/m", "impact": "high", "actual": "", "forecast": "0.5%", "previous": "0.5%", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-14", "time": "14:30", "currency": "USD", "name": "Core Retail Sales m/m", "impact": "high", "actual": "", "forecast": "0.7%", "previous": "1.9%", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-14", "time": "14:30", "currency": "USD", "name": "Retail Sales m/m", "impact": "high", "actual": "", "forecast": "0.5%", "previous": "1.7%", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-14", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "205K", "previous": "200K", "better": null, "source": "forexfactory"}
+    {
+      "date": "2026-05-13",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Core PPI m/m",
+      "impact": "high",
+      "actual": "",
+      "forecast": "0.3%",
+      "previous": "0.1%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-13",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "PPI m/m",
+      "impact": "high",
+      "actual": "",
+      "forecast": "0.5%",
+      "previous": "0.5%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-13",
+      "time": "18:29",
+      "currency": "USD",
+      "name": "Fed Chair Nomination Vote",
+      "impact": "high",
+      "actual": "",
+      "forecast": "Pass",
+      "previous": "",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-14",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Core Retail Sales m/m",
+      "impact": "high",
+      "actual": "",
+      "forecast": "0.7%",
+      "previous": "1.9%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-14",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Retail Sales m/m",
+      "impact": "high",
+      "actual": "",
+      "forecast": "0.5%",
+      "previous": "1.7%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-14",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Unemployment Claims",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "205K",
+      "previous": "200K",
+      "better": null,
+      "source": "forexfactory"
+    }
   ]
 }

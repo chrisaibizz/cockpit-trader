@@ -1,0 +1,177 @@
+CC MORNING RECOVERY REPORT - 2026-05-12 (FINAL)
+================================================
+Bearbeitet: 2026-05-12 ~08:48 (nach Pipeline-Ende)
+Auftrag:    Morning-Pipeline nachholen (08:00 SKIPPED wegen Heartbeat-Timeout)
+Vorgaenger: Zwischenbericht vom 08:45:47 (Pipeline lief noch) wurde ueberschrieben.
+
+
+SCHRITT A - HEARTBEAT-TEST (VOR Cleanup)
+----------------------------------------
+Aufruf : powershell -File C:\Users\chris\TradingFloor\scripts\check-claude-login.ps1
+Ergebnis: ExitCode 0 (OK, eingeloggt)
+Output : keine (Script schreibt nur in heartbeat-Log)
+heartbeat-20260512.log Stand vor Lauf:
+  [2026-05-12 08:00:03] ERROR timeout after 30s     <- der Skip-Trigger
+  [2026-05-12 08:27:09] OK exit=                    <- separater Probe-Check
+  [2026-05-12 08:27:33] OK exit=                    <- mein SCHRITT-A-Call
+
+Folge: ExitCode 0 -> SCHRITT B (Zombie-Cleanup) UEBERSPRUNGEN, direkt SCHRITT C.
+
+
+SCHRITT B - ZOMBIE-CLEANUP
+--------------------------
+NICHT AUSGEFUEHRT (Heartbeat war gruen).
+Beobachtung: 9 alte claude.exe-Prozesse aus 11.05.2026 16:41 sind nach
+wie vor aktiv (siehe DAUERHAFTE LOESUNG unten). Keine PIDs gekillt.
+
+
+SCHRITT C - NACHHOL-LAUF MORNING-PIPELINE
+-----------------------------------------
+Trigger:        schtasks /Run /TN "TradingFloor-Morning" um 08:32:58
+Trigger-Ausgabe: "ERFOLGREICH: Es wurde versucht..."
+Wichtig:        Eine fruehere Pipeline lief bereits seit 08:26:43 (durch
+                anderen Mechanismus / parallelen Auftrag gestartet). Der manuelle
+                /Run wurde von schtasks als NO-OP behandelt (Letztes Ergebnis
+                -2147020576 = ERROR_OPERATION_IN_PROGRESS). Kein Doppellauf.
+                Die laufende Pipeline wurde regulaer zu Ende geführt.
+
+Polling (Status ueber schtasks /Query):
+  bis 08:33    Status=Wird ausgefuehrt
+  08:33-08:47  Status=Wird ausgefuehrt, state.json kontinuierlich aktualisiert
+  08:47:39     Status=Bereit, Letztes Ergebnis=0  -> Pipeline beendet
+
+Zeitstrahl (aus cockpit-run.log + state.json):
+  08:26:43  BAT-Start (TradingCockpit.bat)
+  08:27:51  Brave-CDP gestartet
+  08:30:06  cockpit-morning.py fertig (data.json, Sheet/Doc, Git Push 1e2b6a9)
+  08:33:57  MACRO    _last_run gesetzt
+  08:40:23  MARKETDATA _last_run gesetzt
+  08:42:13  ANALYST   _last_run gesetzt
+  08:42:59  CAPTAIN   _last_run gesetzt
+  08:46:32  MONITOR   _last_run gesetzt
+  08:46:59  Claude Code fertig (cockpit-run.log)
+  08:47:08  Cleanup + DONE  (cockpit-run.log)
+
+
+SCHRITT D - VERIFIKATION (4 PUNKTE)
+-----------------------------------
+1) cockpit-trader\reports\morning-2026-05-12.md
+   STATUS: NICHT VORHANDEN.
+   Reports-Verzeichnis enthaelt heute nur:
+     - cc-morning-recovery-20260512.txt (diese Datei)
+     - _template.md, README.md, dryrun-2026-05-11.md (alt)
+   Diese Datei wird vom aktuellen EXECUTOR/MONITOR-Workflow nicht
+   erzeugt. Der gleichwertige Output sind:
+     - DailyMon\monitor_20260512_0831_Morning.txt (MONITOR-Report, voll)
+     - Google Doc "Cockpit Briefing 2026-05-12" + cockpit-trader Git-Commit
+
+2) cockpit-trader\state.json LastWriteTime
+   STATUS: OK.
+   LastWriteTime = 2026-05-12 08:46:32 (heute).
+   Size = 27794 Bytes.
+   _last_run je Agent:
+     macro       2026-05-12 08:33:57  OK
+     market      2026-05-12 08:40:23  OK
+     analysis    2026-05-12 08:42:13  OK
+     captain     2026-05-12 08:42:59  OK
+     monitor     2026-05-12 08:46:32  OK
+     executor    fehlt (null im JSON)   - aber Git Push a885072 belegt Lauf
+     koordinator fehlt (null im JSON)   - bekanntes Verhalten
+
+3) logs\pipeline\pipeline_20260512_*.log
+   STATUS: NICHT VORHANDEN.
+   logs\pipeline\ enthaelt heute KEIN pipeline_20260512_*.log.
+   Stattdessen schreibt der Lauf nach C:\Users\chris\TradingFloor\cockpit-run.log
+   (Tail zeigt "Cleanup OK" + "DONE 12.05.2026 8:47:08,19" - sauberer Abschluss).
+   Auch DailyMon\monitor_20260512_0831_Morning.txt liegt regulaer vor.
+
+4) logs\heartbeat-20260512.log mit neuem "OK" Eintrag
+   STATUS: TEILWEISE OK.
+   Eintraege:
+     [2026-05-12 08:00:03] ERROR timeout after 30s   (08:00 Skip-Ursache)
+     [2026-05-12 08:27:09] OK exit=
+     [2026-05-12 08:27:33] OK exit=                  (mein SCHRITT A)
+   Die OK-Eintraege sind neu vs. dem ERROR von 08:00, aber waehrend
+   des Pipeline-Laufs (08:33-08:47) wurde keine weitere Sonde
+   geschrieben. Das Script wird offenbar nur on-demand aufgerufen,
+   nicht periodisch im Pipeline-Tree.
+
+
+PIPELINE-ERGEBNIS
+-----------------
+Entscheidung des Tages (aus MONITOR-Report + state.json):
+  Score          : -4/8
+  Phase          : BALANCE
+  Regime         : EVENT-DRIVEN
+  Session-Bias   : WAIT
+  Trade-Freigabe : NEIN
+  Orders heute   : 0
+  WAIT-Grund     : 0/3 Instrumente alle_schichten_ok,
+                   Konfidenz -0.25 < 0.40, Pre-CPI 14:30 (<6h)
+  Naechste Bewertung: 14:00 US Update nach CPI-Release
+
+Git Commits heute:
+  1e2b6a9  Morning Briefing 2026-05-12 (cockpit-morning.py, 08:30)
+  a885072  Cockpit Briefing 2026-05-12 ... Score:-4/8 WAIT (Claude-Pipeline, 08:35-08:47)
+
+GitHub Pages: state.json + journal-data.json aktuell (2026-05-12).
+
+
+SCHRITT E - HINWEIS ZUM MORNING-REPORT-INHALT
+---------------------------------------------
+morning-2026-05-12.md wurde NICHT erzeugt -> kein Inhalt einzubinden.
+Aequivalent: Inhalt des MONITOR-Reports siehe
+  C:\Users\chris\TradingFloor\logs\DailyMon\monitor_20260512_0831_Morning.txt
+
+
+EMPFEHLUNG - DAUERHAFTE LOESUNG
+-------------------------------
+1) ZOMBIE-CLEANUP-HOOK (hoechste Prioritaet):
+   9 claude.exe-Prozesse aus 11.05.2026 16:41 (US-Update-Lauf gestern)
+   leben heute noch. PIDs: 4328, 5176, 6504, 8320, 8636, 9108, 9128,
+   9740, 10376. CPU-Werte teils >1000s (4328: 4603s; 6504: 986s; 8636: 1022s)
+   = haengen oder loopen. Diese sind die wahrscheinliche Ursache des
+   Heartbeat-Timeouts um 08:00 (Login-Check landet auf einem belegten
+   IPC-Endpoint).
+   Empfehlung: Im TradingCockpit-US.bat Schritt 5 (Cleanup) den
+   taskkill nicht nur per "claude.exe" pauschal, sondern explizit per
+   Sitzung + ParentProcessId Filter haerten; oder einen Post-Run-Hook
+   anlegen, der vor Pipeline-Start "claude.exe AELTER ALS 2h KILLEN"
+   sicherstellt (ausser dem laufenden Bridge-Spawn).
+
+2) HEARTBEAT-TIMEOUT ERHOEHEN:
+   Aktuell timed das Skript nach 30s (heartbeat-20260512.log Zeile 1).
+   Vorschlag: -TimeoutSec 60 als Default. Bei kalten Anthropic-API-
+   Erstaufrufen + lokalem MCP-Bridge-Warmup koennen 30s im Edge-Fall
+   nicht reichen, ohne dass tatsaechlich ein Login-Problem vorliegt.
+
+3) PIPELINE-LOG IN logs\pipeline\ WIEDERHERSTELLEN ODER PFAD-ERWARTUNG
+   ANPASSEN:
+   Recovery-Checks (wie dieser hier) erwarten pipeline_YYYYMMDD_HHMMSS.log
+   in logs\pipeline\, der Lauf schreibt aber nach cockpit-run.log
+   (Root). Entweder im TradingCockpit.bat Redirection auf
+   logs\pipeline\pipeline_%datum%_%uhrzeit%.log einrichten ODER die
+   Verifikations-Templates (CLAUDE.md, MONITOR-Agent) auf
+   cockpit-run.log umstellen.
+
+4) MORNING-REPORT-DATEI optional:
+   Falls cockpit-trader\reports\morning-YYYY-MM-DD.md ein gewuenschtes
+   Artefakt bleibt, EXECUTOR-Agent erweitern um eine kompakte md-Datei
+   (analog dryrun-2026-05-11.md) zu schreiben. Andernfalls die
+   Erwartung aus den Recovery-Templates entfernen.
+
+
+REGEL-COMPLIANCE
+----------------
+- KEINE Kills ausgefuehrt (Heartbeat war gruen, SCHRITT B uebersprungen).
+- Eigene CC-Session nicht angetastet.
+- Bridge-claude.exe (Sitzung 0 / nssm) nicht angetastet.
+- ASCII-only Text.
+- Bei Unsicherheit ueber morning-2026-05-12.md: stoppen + dokumentieren
+  statt erfinden.
+
+GESAMT-STATUS: PIPELINE RECOVERY ERFOLGREICH.
+               Erwartung "morning-2026-05-12.md" + "pipeline_*.log in
+               logs\pipeline\" konnte nicht erfuellt werden, weil diese
+               Artefakte vom aktuellen Workflow nicht erzeugt werden -
+               keine echte Lauf-Lücke, nur eine Template-/Pfad-Diskrepanz.
