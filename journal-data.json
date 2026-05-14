@@ -1,12 +1,12 @@
 {
   "date": "2026-05-14",
-  "timestamp": "2026-05-14T08:17:14.293739",
-  "phase": "AUSBRUCH",
-  "regime": "MIXED",
+  "timestamp": "2026-05-14T12:45:30.000Z",
+  "phase": "AUSBRUCH_FORTSETZUNG",
+  "regime": "BULLISCH_DOMINANT",
   "session_bias": "WAIT",
-  "alignment_score": 5,
+  "alignment_score": 6,
   "trade_freigabe": false,
-  "konfidenz": 0.308,
+  "konfidenz": 0.383,
   "makro_bias": "LEICHT_RISK_OFF",
   "makro_score": -2,
   "debrief": {
@@ -19,32 +19,32 @@
   "instruments": [
     {
       "name": "GER40",
-      "bias": "LEICHT_BULLISH",
-      "bias_pct": 25,
-      "score": 2,
+      "bias": "BULLISH",
+      "bias_pct": 50,
+      "score": 3,
       "poc": 24106.48,
       "vah": 24171.36,
       "val": 24056.02,
       "mp_shape": "Trend Day",
       "mp_shape_pos": 0.437,
-      "vwap": 24222.59,
-      "vwap_upper": 24247.32,
-      "vwap_lower": 24197.86,
-      "er": 2.0,
-      "sma200": 24262.53,
+      "vwap": 24324.9,
+      "vwap_upper": 24418.88,
+      "vwap_lower": 24230.92,
+      "er": 16.9,
+      "sma200": 24237.57,
       "pdh": 24226.17,
       "pdl": 24002.46,
-      "current_price": 24270.0,
+      "current_price": 24400,
       "price_vs_va": "ueber_VAH",
       "key_levels": {
         "poc": 24106.48,
         "vah": 24171.36,
         "val": 24056.02,
-        "vwap": 24222.59,
-        "current": 24270.0,
+        "vwap": 24324.9,
+        "current": 24400,
         "pdh": 24226.17,
         "pdl": 24002.46,
-        "sma200": 24262.53,
+        "sma200": 24237.57,
         "pivot": 24061.19
       },
       "schichten": {
@@ -61,32 +61,32 @@
           }
         },
         "s2_struktur": {
-          "score": 0.5,
-          "raw": 2,
+          "score": 1,
+          "raw": 4,
           "signale": {
             "vwap": 1,
             "cvd": 1,
-            "er_trend": 0,
-            "er_qualitaet": 0
+            "er_trend": 1,
+            "er_qualitaet": 1
           }
         },
         "s3_entry": {
-          "score": 0.5,
-          "raw": 3,
+          "score": 0.333,
+          "raw": 2,
           "signale": {
             "ichimoku": 1,
             "sma200": 1,
             "smc": 0,
             "sr_channel": 0,
             "pivot": 1,
-            "autofibo": 0
+            "autofibo": -1
           }
         },
         "freigabe_s1": false,
         "freigabe_s2": true,
         "freigabe_s3": true,
         "alle_schichten_ok": false,
-        "alignment_score": 2
+        "alignment_score": 3
       },
       "mp_context": {
         "poc_migration": "fallend",
@@ -99,37 +99,37 @@
         "composite_poc": 24378.35
       },
       "orders": [],
-      "invalidation": "Schluss unter VAL 24056.02 oder VWAP 24222.59 negiert bullische Setup-Lage.",
-      "h30m_summary": "30M: Trend Day (pos=0.437). Preis 24270.00 ueber_VAH (ueber VWAP). ER=2.0 CDV=29424.41."
+      "invalidation": "Schluss unter VWAP 24324.90 negiert bullische Intraday-Lage; unter VAH 24171.36 = klares Versagen.",
+      "h30m_summary": "30M US-Update: Trend Day (pos=0.437). Preis 24400.00 klar ueber_VAH (ueber VWAP 24324.90). ER 2.0->16.9 stark_bullish, CDV 29424->36962 Kauffluss."
     },
     {
       "name": "DJ30",
-      "bias": "BULLISH",
-      "bias_pct": 50,
-      "score": 4,
+      "bias": "STARK_BULLISH",
+      "bias_pct": 70,
+      "score": 5,
       "poc": 49790.65,
       "vah": 49837.65,
       "val": 49630.85,
       "mp_shape": "P-Shape",
       "mp_shape_pos": 0.773,
-      "vwap": 49857.45,
-      "vwap_upper": 49870.64,
-      "vwap_lower": 49844.26,
-      "er": 40.54,
-      "sma200": 49691.1,
+      "vwap": 49961.75,
+      "vwap_upper": 50065.81,
+      "vwap_lower": 49857.69,
+      "er": 86.93,
+      "sma200": 49714.45,
       "pdh": 49747.61,
-      "pdl": 49451.0,
-      "current_price": 49905.38,
+      "pdl": 49451,
+      "current_price": 50163.88,
       "price_vs_va": "ueber_VAH",
       "key_levels": {
         "poc": 49790.65,
         "vah": 49837.65,
         "val": 49630.85,
-        "vwap": 49857.45,
-        "current": 49905.38,
+        "vwap": 49961.75,
+        "current": 50163.88,
         "pdh": 49747.61,
-        "pdl": 49451.0,
-        "sma200": 49691.1,
+        "pdl": 49451,
+        "sma200": 49714.45,
         "pivot": 49653.06
       },
       "schichten": {
@@ -146,7 +146,93 @@
           }
         },
         "s2_struktur": {
-          "score": 1.0,
+          "score": 1,
+          "raw": 4,
+          "signale": {
+            "vwap": 1,
+            "cvd": 1,
+            "er_trend": 1,
+            "er_qualitaet": 1
+          }
+        },
+        "s3_entry": {
+          "score": 0.5,
+          "raw": 3,
+          "signale": {
+            "ichimoku": 1,
+            "sma200": 1,
+            "smc": 0,
+            "sr_channel": 0,
+            "pivot": 1,
+            "autofibo": 0
+          }
+        },
+        "freigabe_s1": true,
+        "freigabe_s2": true,
+        "freigabe_s3": true,
+        "alle_schichten_ok": true,
+        "alignment_score": 5
+      },
+      "mp_context": {
+        "poc_migration": "fallend",
+        "shape_sequenz": "2x Trend Day + 1x P-Shape",
+        "naked_pocs": [
+          50020.04,
+          49449.76,
+          49031.41,
+          48732.57
+        ],
+        "composite_poc": 49645.95
+      },
+      "orders": [],
+      "invalidation": "Schluss unter VWAP-Lower 49857.69 negiert bullische Intraday-Lage; unter VAH 49837.65 = klares Versagen.",
+      "h30m_summary": "30M US-Update: P-Shape (pos=0.773). Preis 50163.88 +325 ueber VAH, ueber VWAP-Upper 50065.81 (Premium-Zone). ER 40->86.9 extrem, CDV 190k->197k."
+    },
+    {
+      "name": "SPX500",
+      "bias": "STARK_BULLISH",
+      "bias_pct": 75,
+      "score": 6,
+      "poc": 7423.71,
+      "vah": 7434.3,
+      "val": 7396.16,
+      "mp_shape": "P-Shape",
+      "mp_shape_pos": 0.722,
+      "vwap": 7468.9,
+      "vwap_upper": 7473.83,
+      "vwap_lower": 7463.97,
+      "er": 32.21,
+      "sma200": 7414.27,
+      "pdh": 7460.04,
+      "pdl": 7375.13,
+      "current_price": 7476.6,
+      "price_vs_va": "ueber_VAH",
+      "key_levels": {
+        "poc": 7423.71,
+        "vah": 7434.3,
+        "val": 7396.16,
+        "vwap": 7468.9,
+        "current": 7476.6,
+        "pdh": 7460.04,
+        "pdl": 7375.13,
+        "sma200": 7414.27,
+        "pivot": 7412.04
+      },
+      "schichten": {
+        "s1_kontext": {
+          "score": 0.8,
+          "raw": 8,
+          "signale": {
+            "mp_shape": 3,
+            "preis_vs_va": 2,
+            "preis_vs_poc": 1,
+            "poc_migration": 2,
+            "shape_sequenz": 0,
+            "vp_hvn_lvn": 0
+          }
+        },
+        "s2_struktur": {
+          "score": 1,
           "raw": 4,
           "signale": {
             "vwap": 1,
@@ -171,93 +257,7 @@
         "freigabe_s2": true,
         "freigabe_s3": true,
         "alle_schichten_ok": true,
-        "alignment_score": 4
-      },
-      "mp_context": {
-        "poc_migration": "fallend",
-        "shape_sequenz": "2x Trend Day + 1x P-Shape",
-        "naked_pocs": [
-          50020.04,
-          49449.76,
-          49031.41,
-          48732.57
-        ],
-        "composite_poc": 49645.95
-      },
-      "orders": [],
-      "invalidation": "Schluss unter VAL 49630.85 oder VWAP 49857.45 negiert bullische Setup-Lage.",
-      "h30m_summary": "30M: P-Shape (pos=0.773). Preis 49905.38 ueber_VAH (ueber VWAP). ER=40.54 CDV=190076.43."
-    },
-    {
-      "name": "SPX500",
-      "bias": "BULLISH",
-      "bias_pct": 62,
-      "score": 5,
-      "poc": 7423.71,
-      "vah": 7434.3,
-      "val": 7396.16,
-      "mp_shape": "P-Shape",
-      "mp_shape_pos": 0.722,
-      "vwap": 7465.4,
-      "vwap_upper": 7468.61,
-      "vwap_lower": 7462.2,
-      "er": 4.0,
-      "sma200": 7406.56,
-      "pdh": 7460.04,
-      "pdl": 7375.13,
-      "current_price": 7472.85,
-      "price_vs_va": "ueber_VAH",
-      "key_levels": {
-        "poc": 7423.71,
-        "vah": 7434.3,
-        "val": 7396.16,
-        "vwap": 7465.4,
-        "current": 7472.85,
-        "pdh": 7460.04,
-        "pdl": 7375.13,
-        "sma200": 7406.56,
-        "pivot": 7412.04
-      },
-      "schichten": {
-        "s1_kontext": {
-          "score": 0.8,
-          "raw": 8,
-          "signale": {
-            "mp_shape": 3,
-            "preis_vs_va": 2,
-            "preis_vs_poc": 1,
-            "poc_migration": 2,
-            "shape_sequenz": 0,
-            "vp_hvn_lvn": 0
-          }
-        },
-        "s2_struktur": {
-          "score": 0.5,
-          "raw": 2,
-          "signale": {
-            "vwap": 1,
-            "cvd": 1,
-            "er_trend": 0,
-            "er_qualitaet": 0
-          }
-        },
-        "s3_entry": {
-          "score": 0.333,
-          "raw": 2,
-          "signale": {
-            "ichimoku": 1,
-            "sma200": 1,
-            "smc": 0,
-            "sr_channel": 0,
-            "pivot": 1,
-            "autofibo": -1
-          }
-        },
-        "freigabe_s1": true,
-        "freigabe_s2": true,
-        "freigabe_s3": true,
-        "alle_schichten_ok": true,
-        "alignment_score": 5
+        "alignment_score": 6
       },
       "mp_context": {
         "poc_migration": "steigend",
@@ -270,20 +270,19 @@
         "composite_poc": 7361.33
       },
       "orders": [],
-      "invalidation": "Schluss unter VAL 7396.16 oder VWAP 7465.4 negiert bullische Setup-Lage.",
-      "h30m_summary": "30M: P-Shape (pos=0.722). Preis 7472.85 ueber_VAH (ueber VWAP). ER=4.0 CDV=51718.86."
+      "invalidation": "Schluss unter VWAP 7468.90 negiert bullische Intraday-Lage; unter VAH 7434.30 = klares Versagen.",
+      "h30m_summary": "30M US-Update: P-Shape (pos=0.722). Preis 7476.60 +43 ueber VAH, genau an VWAP-Upper 7473.83. ER 4->32.2 stark_bullish."
     }
   ],
   "summary": {
     "best_instrument": "SPX500",
     "total_orders": 0,
     "warnings": [
-      "High-Impact heute: Core Retail Sales m/m 14:30 - 60min Sperre davor/danach",
-      "High-Impact heute: Retail Sales m/m 14:30 - 60min Sperre davor/danach",
-      "Makro LEICHT_RISK_OFF (Score -2) - bullische Chart-Setups vorsichtig pruefen",
-      "Chart-bullish (align 5/8) aber Konfidenz 0.308<0.40 - WAIT durch Makro-Drag"
+      "Bullische Intraday-Bestaetigung aber Makro-Score -2 unveraendert (keine MACRO-Update um 14:45)",
+      "Alle 3 Preise zu weit ueber VAH fuer Limit-Long Pullback (P_fill<30%)",
+      "Konfidenz 0.383 knapp unter 0.40 Schwelle - WAIT"
     ],
-    "notes": "WAIT - kein Trade trotz bullischer Chart-Lage (alle 3 Indizes ueber VAH, 2 Instr alle Schichten OK). Konfidenz 0.308 (alignment 5/8 x 0.6 + makro -2/12 x 0.4). Risk-Off Makro (Oel/Gold steigend + F&G 34 Fear) drueckt Konfidenz unter Schwelle. Setup beobachten: bei Konfidenz-Verbesserung (Gold/Oel drehen oder VIX faellt unter 15) oder klarem 30M Bestaetigungs-Schluss > VAH koennte Long entstehen."
+    "notes": "US-Update 14:45: Breakout-Fortsetzung. DJ30 +258pts (ER86.9), GER40 +130pts (ER16.9), SPX500 +4pts (ER32). 2/3 alle Schichten OK. Konfidenz 0.383<0.40 wegen unveraendertem Makro-Drag - kein neuer Trade. NY-Cash 15:30 abwarten; bei Pullback zu VWAP+Doji koennte Long entstehen."
   },
   "stats": {
     "total": 0,
@@ -291,5 +290,27 @@
     "tp1_rate": "n/a",
     "trend": "n/a"
   },
-  "orders_count": 0
+  "orders_count": 0,
+  "session": "us_update",
+  "delta": {
+    "vs_morning": {
+      "GER40": {
+        "delta_pct": 0.54,
+        "richtung": "steigend",
+        "kommentar": "Plus 130 pts seit 08:11 - klar ueber VAH, ueber VWAP, ER 2.0->16.9"
+      },
+      "DJ30": {
+        "delta_pct": 0.52,
+        "richtung": "steigend",
+        "kommentar": "Plus 258 pts - sehr stark, ueber VWAP-Upper, ER 40.5->86.9 (extrem bullish)"
+      },
+      "SPX500": {
+        "delta_pct": 0.05,
+        "richtung": "steigend",
+        "kommentar": "Plus 3.75 pts - knapp ueber VAH, ER 4.0->32.2 stark bullish"
+      }
+    },
+    "trigger": "Retail Sales 14:30 - alle 3 Indizes Risk-On Reaktion",
+    "bias_jetzt": "GER40 BULLISH / DJ30 STARK_BULLISH / SPX500 STARK_BULLISH"
+  }
 }
