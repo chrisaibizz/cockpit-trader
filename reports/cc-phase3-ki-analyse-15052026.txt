@@ -1,0 +1,159 @@
+================================================
+PHASE 3 - KI-ANALYSE SUBPAGE + REPORT SYNC
+Datum: 2026-05-15
+================================================
+
+==== TEIL A: REPO-SYNC ====
+
+BEFUND journal.js (trading-journal/journal.js):
+- Keine eingebaute Git-Logik. journal.js orchestriert Google Sheets / Docs / lokale Logs.
+- Kein getGit(), kein commit, kein push.
+- Backup angelegt: trading-journal/journal.js.backup-20260515-phase3
+- Keine Aenderung an journal.js noetig - es war eine Annahme im Briefing.
+
+WIE WERDEN REPORTS HEUTE GEPUSHT:
+- Morning-Pipeline: EXECUTOR-Agent fuehrt aus cockpit-trader/ aus:
+    git add -A
+    git commit -m "Cockpit Briefing ..."
+    git push
+  (siehe agents/executor/CLAUDE_ref.md:127-130)
+- US-Update: koordinator/CLAUDE.md.backup:283-285 (auch git add -A)
+- "git add -A" inkludiert reports/*.md automatisch, sofern nicht in .gitignore.
+
+.GITIGNORE STATUS (cockpit-trader/.gitignore):
+- KEIN reports/ Exclusion vorhanden.
+- Inhalt: .env, venv/, __pycache__/, *.pyc, *.log, .vscode/, Thumbs.db, Desktop.ini
+- => Markdown-Reports werden bereits durch "git add -A" gepusht.
+- Keine Anpassung der .gitignore noetig.
+
+GIT-PUSH.BAT ERWEITERUNG (Belt-and-Suspenders fuer manuelle Pushes):
+- Backup: cockpit-trader/git-push.bat.backup-20260515-phase3
+- Diff:
+    - git add data.json cockpit-briefing.html dashboard-legacy.html journal-data.json index.html
+    + git add data.json cockpit-briefing.html dashboard-legacy.html journal-data.json index.html ki-analyse.html
+    + git add reports/morning-*.md reports/usupdate-*.md reports/latest.md reports/latest-usupdate.md
+- Damit deckt der manuelle Daily-Push die neue Subpage und alle Report-Files explizit ab.
+
+==== TEIL B: KI-ANALYSE.HTML ====
+
+Datei: cockpit-trader/ki-analyse.html
+Groesse: 13569 Bytes (~13.3 KB)
+Backup: nicht noetig (Neuanlage)
+
+LAYOUT-KONSISTENZ mit index.html: HART umgesetzt
+- Gleiche CSS-Variablen (--bg, --card, --border, --text, --muted, --green, --red, --yellow, --blue, --cyan, --white)
+- Gleicher Header (Gradient cyan->blue, Letter-Spacing, .ts Subline)
+- Gleiche .nav Struktur (zentriert, gleiche Padding/Border/Hover/Active-Styles)
+- Gleiche .main Container (max-width 1400px)
+- Gleicher 'SF Mono','Fira Code',monospace Font
+- Gleiche Responsive-Breakpoints (900px / 600px)
+
+NAV-LINK PLATZIERUNG: korrekt zwischen "Journal" und "Orders"
+- index.html geaendert (Backup: index.html.backup-20260515-phase3):
+    <a href="journal.html">Journal</a>
+    + <a href="ki-analyse.html">KI-Analyse</a>
+    <a href="orders.html">Orders</a>
+- ki-analyse.html selbst: gleicher Nav-Block, "KI-Analyse" ist .active
+
+FEATURES (Variante C):
+[OK]   1. Heutige Analyse via fetch reports/latest.md
+       - marked.js v? von https://cdn.jsdelivr.net/npm/marked/marked.min.js
+       - reports/latest.md (heute) bzw reports/morning-YYYY-MM-DD.md (Archiv)
+
+[OK]   2. Sticky-TOC fuer Sektionen (Desktop)
+       - Rechte Sidebar, sticky top:12px, scrollbar bei langen Reports
+       - Auto-extracted aus h2-Tags, smooth-scroll bei Click
+       - Mobile (max-width 900px): TOC ausgeblendet, Accordion-Button "Inhalt"
+
+[OK]   3. Tab-System Morning / US-Update 14:45
+       - Default: Morning
+       - HEAD-Request auf reports/latest-usupdate.md prueft Verfuegbarkeit
+       - Wenn fehlt: Tab grayed-out + Tooltip "Erscheint nach 14:45"
+       - Aktuell: latest-usupdate.md existiert NICHT => Tab disabled
+
+[OK]   4. Tagesarchiv-Dropdown
+       - 30 Tage rueckwaerts ab heute
+       - Bei Datum = heute: reports/latest.md (bzw latest-usupdate.md)
+       - Sonst: reports/morning-YYYY-MM-DD.md (bzw usupdate-YYYY-MM-DD.md)
+       - Fehlende Datei: Empty-State mit klarer Fehlermeldung
+
+[STUB] 5. Filter-Buttons "Alle / Mit Freigabe / Hohe Konfidenz (>0.4)"
+       - UI gerendert, active-Toggle funktioniert
+       - Logik: NICHT implementiert (Static-MD-Parsing zu komplex)
+       - Hinweis sichtbar: "Filter + Volltextsuche: Phase 3.2 in Arbeit"
+
+[STUB] 6. Volltextsuche
+       - Komplett weggelassen wie im Briefing erlaubt
+       - Phase-3.2-Hinweis im UI
+
+[OK]   7. Mobile-Optimierung
+       - Breakpoints 900px (TOC -> Accordion) und 600px (kompaktes Layout)
+       - Tap-Areas: .tab und .accordion-header haben min-height 44px
+       - Tabellen scrollen horizontal auf kleinen Screens (overflow-x:auto + white-space:nowrap)
+       - Toolbar wird auf Mobile vertikal stacked
+
+[OK]   Markdown-Styling
+       - Tabellen: Border, Hover-Effekt (rgba(59,130,246,0.04))
+       - Trennlinien "===" / Unicode-Box-Drawing: regex-strip auf <hr>
+       - h2 mit Background + Left-Border (visuell wie Sektion)
+       - h3 cyan, h1 mit Border-Bottom, blockquote yellow-tinted
+
+INDEX.HTML DIFF (nur Top-Nav):
+  vorher:
+    <a href="journal.html">Journal</a>
+    <a href="orders.html">Orders</a>
+  nachher:
+    <a href="journal.html">Journal</a>
+    <a href="ki-analyse.html">KI-Analyse</a>
+    <a href="orders.html">Orders</a>
+
+==== TEIL C: GIT-PUSH ====
+
+git add: ki-analyse.html index.html git-push.bat reports/morning-2026-05-15.md reports/latest.md
+git commit: "Phase 3: ki-analyse.html + report sync"
+Commit-Hash: 759cf65e89e8117b3260d1f14c6a05107fde8b4a
+Branch: main (lokal 1 commit ahead von origin/main)
+
+PUSH STATUS: BLOCKIERT - credential.helper=manager kann in dieser non-interactive Shell
+   keinen Windows-Credential-GUI-Prompt oeffnen. Push hing >3 Min, dann abgebrochen.
+   Errors: "fatal: could not read Username for 'https://github.com'"
+   (GIT_TERMINAL_PROMPT=0 nur als Diagnose - default-Push hing am GUI-Prompt der Manager).
+
+USER-ACTION REQUIRED:
+   Aus normalem Terminal (PowerShell oder cmd):
+       cd C:\Users\chris\TradingFloor\cockpit-trader
+       git push origin main
+   Oder einfach: C:\Users\chris\TradingFloor\cockpit-trader\git-push.bat
+   (Pre-Commit-Datei bereits committed - Batch-Push pusht nur den ausstehenden Commit.)
+
+   Alternativ: Push laeuft automatisch beim naechsten 08:00- oder 14:00-Pipeline-Run mit.
+
+LIVE-URL (nach manuellem Push + Pages-Build 1-2 Min):
+  https://chrisaibizz.github.io/cockpit-trader/ki-analyse.html
+
+LOKALER TEST: empfohlen via file:// URL im Browser
+  file:///C:/Users/chris/TradingFloor/cockpit-trader/ki-analyse.html
+  Hinweis: file://-fetch kann durch CORS blockiert sein.
+  Empfohlen: lokaler Webserver (python -m http.server 8000) oder direkt Pages-URL pruefen.
+
+==== BEKANNTE LIMITS / PHASE-3.2-TODO ====
+
+- Filter-Buttons sind UI-Stubs ohne Logik (Briefing erlaubt das)
+- Volltextsuche komplett verschoben auf Phase 3.2
+- Tagesarchiv-Dropdown buildet hardcoded 30 Tage; nicht-existente Tage zeigen Empty-State
+- US-Update-Tab bleibt grau bis reports/latest-usupdate.md existiert
+- Filter-Logik koennte serverseitig (state.json[captain].konfidenz) gebaut werden -
+  z.B. fetch state.json + Whitelist von Datums fuer "Mit Freigabe" / "Hohe Konfidenz"
+- marked.js wird ohne Pin-Version geladen (latest); fuer Reproduzierbarkeit
+  Pin auf Version-Tag empfohlen (z.B. marked@13.0.0)
+
+==== VERIFIKATIONS-CHECKLIST FUER USER ====
+
+[ ] https://chrisaibizz.github.io/cockpit-trader/ki-analyse.html laedt nach Pages-Build
+[ ] Top-Nav zeigt: Dashboard | Journal | KI-Analyse | Orders | Indicators | Wiki
+[ ] KI-Analyse-Link aktiv markiert (cyan border)
+[ ] Markdown-Render funktioniert (Tabellen, Headings)
+[ ] Sticky-TOC auf Desktop rechts
+[ ] Mobile: Accordion-Button "Inhalt" sichtbar, Tabellen horizontal scrollbar
+[ ] US-Update-Tab grayed-out mit Tooltip "Erscheint nach 14:45"
+[ ] Dropdown listet letzte 30 Tage

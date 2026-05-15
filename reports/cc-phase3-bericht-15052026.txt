@@ -1,0 +1,122 @@
+================================================
+PHASE 3 TEIL 1 - BERICHT
+Datum: 2026-05-15
+================================================
+
+ZUSAMMENFASSUNG
+- Alle Datei-Aenderungen vorhanden + bereits in lokalem Commit 759cf65 versioniert.
+- git push origin main hat in dieser Session NICHT erfolgreich abgeschlossen
+  (Git Credential Manager kann in der nicht-interaktiven Shell nicht prompten).
+- HEAD = 759cf65 / origin/main = eee5437 -> User-Push manuell erforderlich.
+
+================================================
+TEIL A: REPO-SYNC
+================================================
+
+BEFUND journal.js (trading-journal/journal.js)
+- Keine git-Logik vorhanden (Google Sheets / Docs / Logs Orchestrator).
+- Backup trading-journal/journal.js.backup-20260515-phase3 existiert.
+- diff journal.js vs Backup: identisch (keine Aenderung noetig).
+
+WIE REPORTS GEPUSHT WERDEN
+- Morning/US-Pipeline pusht via Executor-Agent mit "git add -A" aus cockpit-trader/.
+- "git add -A" zieht reports/*.md automatisch ein, da .gitignore reports/ NICHT
+  ausschliesst (.env, venv/, __pycache__/, *.pyc, *.log, .vscode/, Thumbs.db,
+  Desktop.ini).
+
+GIT-PUSH.BAT-DIFF (Belt-and-Suspenders fuer manuelle Pushes)
+Backup: cockpit-trader/git-push.bat.backup-20260515-phase3
+  - git add data.json cockpit-briefing.html dashboard-legacy.html journal-data.json index.html
+  + git add data.json cockpit-briefing.html dashboard-legacy.html journal-data.json index.html ki-analyse.html
+  + git add reports/morning-*.md reports/usupdate-*.md reports/latest.md reports/latest-usupdate.md
+Hinweis: Bei Lauf am 2026-05-15 hat der Wildcard "reports/usupdate-*.md"
+mangels existierender usupdate-Files einen pathspec-Hinweis erzeugt. Nicht
+fatal, der Rest der Adds laeuft trotzdem. Wenn der erste usupdate-md vorhanden
+ist, verschwindet die Meldung.
+
+.GITIGNORE: KEINE AENDERUNG NOETIG
+- reports/ wird nicht ignoriert -> negative pattern entfaellt.
+
+================================================
+TEIL B: KI-ANALYSE.HTML
+================================================
+
+Datei: cockpit-trader/ki-analyse.html
+Groesse: 299 Zeilen / ~13.3 KB
+Layout-Konsistenz mit index.html: 1:1 uebernommen
+  - CSS-Variablen, Header-Gradient, .nav-Block, .main Container, Fonts
+  - Responsive-Breakpoints 900px / 600px
+
+INDEX.HTML TOP-NAV DIFF (Backup: index.html.backup-20260515-phase3)
+  vorher  ... <a href="journal.html">Journal</a>
+              <a href="orders.html">Orders</a> ...
+  nachher ... <a href="journal.html">Journal</a>
+              <a href="ki-analyse.html">KI-Analyse</a>
+              <a href="orders.html">Orders</a> ...
+Verifikation: cockpit-trader/index.html:111-113 zeigt die neue Reihenfolge.
+
+FEATURES
+[OK]   marked.js CDN (https://cdn.jsdelivr.net/npm/marked/marked.min.js)
+[OK]   Datum-Dropdown: 30 Tage rueckwaerts ab heute (heute -> latest.md)
+[OK]   Tabs: Morning (default) + US-Update 14:45
+       - HEAD-Probe auf reports/latest-usupdate.md
+       - Fehlt -> Tab disabled mit Tooltip "Erscheint nach 14:45"
+[OK]   Sticky-TOC rechts (h2-Autoextract, smooth-scroll)
+[OK]   Mobile: TOC -> Accordion, Tabellen overflow-x:auto, Tap-Areas 44px
+[OK]   404 -> Empty-State "Kein Report verfuegbar"
+[STUB] Filter-Buttons "Alle / Mit Freigabe / Hohe Konfidenz" sichtbar, Logik
+       in Phase 3.2 (Volltextsuche dort ebenfalls)
+
+================================================
+TEIL C: GIT-COMMIT + PUSH
+================================================
+
+COMMIT
+  Hash:    759cf65e89e8117b3260d1f14c6a05107fde8b4a
+  Branch:  main
+  Message: Phase 3: ki-analyse.html + report sync
+  Files:   git-push.bat (+1/-1), index.html (+1), ki-analyse.html (+299, neu),
+           reports/latest.md (+/-), reports/morning-2026-05-15.md (+143, neu)
+
+PUSH STATUS: NICHT ABGESCHLOSSEN IN DIESER SESSION
+  HEAD          = 759cf65e89e8117b3260d1f14c6a05107fde8b4a
+  origin/main   = eee5437376ceb52fb2183ebc3378434bd6d7c361
+  Grund:        Credential Manager kann ohne Terminal-Prompt nicht
+                authentifizieren (GIT_TERMINAL_PROMPT=0 -> "could not read
+                Username for 'https://github.com'").
+  Manuelle Loesung (PowerShell, im cockpit-trader/ Verzeichnis):
+       git push origin main
+  Beim ersten Prompt einmal authentifizieren -> Git Credential Manager cached
+  den Token fuer die Folge-Pushes (08:00 und 14:00 Pipeline).
+
+LIVE-URL (nach GitHub-Pages-Rebuild ca. 1-2 Minuten nach Push)
+  https://chrisaibizz.github.io/cockpit-trader/ki-analyse.html
+
+================================================
+UNTRACKED FILES IM REPO (cockpit-trader/)
+================================================
+
+  git-push.bat.backup-20260515-phase3       (lokaler Backup, NICHT pushen)
+  index.html.backup-20260515-phase3         (lokaler Backup, NICHT pushen)
+  reports/_template-usupdate.md             (Templates)
+  reports/cc-fix1-trial-15052026.txt        (Berichte)
+  reports/cc-phase1-reactivation-15052026.txt
+  reports/cc-phase3-ki-analyse-15052026.txt (Vor-Bericht, derselbe Phase-3-Lauf)
+  reports/cc-phase3-bericht-15052026.txt    (DIESER Bericht)
+  reports/cc-usupdate-append-15052026.txt
+  reports/dryrun-usupdate-2026-05-15.md
+Hinweis: Diese Files sind absichtlich untracked. Backups schuetzen vor
+versehentlichem Pages-Deploy. .txt-Berichte koennten optional eingecheckt
+werden, gehoeren aber nicht ins Live-Dashboard.
+
+================================================
+VERIFIKATIONS-CHECKLIST (nach manuellem Push)
+================================================
+[ ] git push origin main aus C:\Users\chris\TradingFloor\cockpit-trader laeuft
+    sauber durch und HEAD == origin/main
+[ ] https://chrisaibizz.github.io/cockpit-trader/ki-analyse.html laedt nach
+    GitHub-Pages-Build
+[ ] Top-Nav zeigt: Dashboard | Journal | KI-Analyse | Orders | Indicators | Wiki
+[ ] Markdown-Render zeigt morning-2026-05-15 inkl. Tabellen
+[ ] US-Update-Tab grayed-out mit Tooltip "Erscheint nach 14:45"
+[ ] Datum-Dropdown listet 30 Tage, heute mit "(heute)" markiert

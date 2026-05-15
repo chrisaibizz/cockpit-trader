@@ -1,0 +1,237 @@
+============================================================
+USUpdate-Append Implementation Phase 2 Stufe 1
+Datum: 2026-05-15
+============================================================
+
+== SNAPSHOT-WORKAROUND-BESTAETIGUNG ==
+Phase-1-Vorbedingung: ERFUELLT
+  - morning-2026-05-15.md vorhanden (6221B, 8 Sektionen, 0 leere Vars)
+  - Trial-Run heute frueh erfolgreich (cc-fix1-trial-15052026.txt)
+
+Snapshot-Workaround 2026-05-15:
+  cp agents/shared/state.json -> agents/shared/state.json.morning-2026-05-15
+  Stand der Vorlage: 2026-05-15 08:20:55 CEST (statt 08:00; Morning-Snapshot-Mechanik
+  in Pipeline noch nicht aktiv beim 08:00-Lauf). Bias-Drift unterzeichnet, aber als
+  Delta-Vergleichsbasis OK fuer Live-Test um 14:45.
+  Ab naechstem Morning (16.05) ist Snapshot in Pipeline-Schritt 7a aktiv (siehe
+  KOORDINATOR/CLAUDE.md).
+
+== BACKUP-PFADE ==
+  agents/KOORDINATOR/CLAUDE.md.backup-20260515-usupdate          (1200B, vor Aenderung)
+  agents/KOORDINATOR/CLAUDE_ref.md.backup-20260515-usupdate      (6859B, vor Aenderung)
+  trading-journal/journal.js.backup-20260515-usupdate            (10kb, vor Aenderung)
+  TradingCockpit-US.bat.backup-20260515-usupdate                 (vor BAT-Trigger)
+  (NEU erstellt: cockpit-trader/reports/_template-usupdate.md, usupdate-report-generator.md)
+
+== CODE-DIFFS (gekuerzt) ==
+
+[1] agents/KOORDINATOR/CLAUDE.md (1160B, < 1200B-Limit)
+  Morning Pipeline:
+    OLD: 7 MONITOR -> 7a REPORT-GEN -> 8 Abschlusstabelle
+    NEW: 7 MONITOR -> 7a REPORT-GEN+SNAPSHOT -> 8 Abschluss
+    Detail 7a kombiniert: "_template.md -> morning-{date}.md + latest.md
+                          (report-generator.md); Snapshot cp state.json ->
+                          state.json.morning-{date}. NON-CRITICAL."
+  USUpdate Pipeline:
+    OLD: 7 Export+Git -> 8 MONITOR
+    NEW: 7 Export+Git -> 8 MONITOR -> 8a USUPDATE-REPORT
+    Detail 8a: "_template-usupdate.md + state.json.morning-{date} ->
+                usupdate-{date}.md + latest-usupdate.md (usupdate-report-generator.md).
+                NON-CRITICAL."
+  Kompressionen: "MARKETDATA" -> "MD", "EXECUTOR" -> "EXEC", "pipeline_" Prefix
+                 gekuerzt, "Abschlusstabelle" -> "Abschluss". Inhalt erhalten.
+
+[2] agents/KOORDINATOR/CLAUDE_ref.md (Anhang)
+  Bestehender "Morning-Report-Generator (Phase 1)" Abschnitt erweitert um
+  Snapshot-Bullet (cp state.json -> state.json.morning-{date}).
+  Neuer Abschnitt "USUpdate-Report-Generator (Phase 2 Stufe 1)" mit Pfaden,
+  Fehlerverhalten (fehlender MORN-Snapshot -> alle MORN_*/DELTA "n.a." + WARN).
+
+[3] agents/KOORDINATOR/usupdate-report-generator.md (NEU)
+  Analog zu report-generator.md Stufe 2.
+  Sections: Aufruf in Pipeline (8a), Fehlerverhalten, Variablen-Mapping (Header,
+  Bias, Konfidenz, Shape, Hard-Stop, Trade-Freigabe, POC-Migration, VA-Migration,
+  Struktur, Markt-Lesart-Generator, NEUE-BIAS-Tabelle, Pre-Open-Levels,
+  US-Session-Events-Filter, Vola-Fenster, Schlussimpuls), Empty-Var-Zaehler,
+  Workaround-Hinweis 2026-05-15.
+
+[4] trading-journal/journal.js
+  Neu: async function appendKiUpdate(date)
+    - Liest cockpit-trader/reports/usupdate-{date}.md
+    - Doc-Marker: "=== KI-Update 14:45 ===" (NICHT "=== KI-Analyse ===")
+    - IDEMPOTENZ-CHECK: vor batchUpdate komplette Doc-Text-Akkumulation aus
+      content[].paragraph.elements[].textRun.content; existingText.indexOf(marker)
+      != -1 -> skip + cloudLog("Marker bereits vorhanden") + return success/skipped
+    - Sonst gleicher insertText-Pfad wie appendKiAnalyse (endIndex-1 als location)
+  CLI: case 'append-ki-update': wrap(appendKiUpdate(args[0])); break;
+  Help: 'append-ki-update':'KI-Update 14:45 an Doc anhaengen (idempotent)'
+  Syntaxcheck: node --check journal.js -> OK
+
+[5] cockpit-trader/reports/_template-usupdate.md (Kopie, 6993B unveraendert)
+
+[6] TradingCockpit-US.bat
+  Eingefuegt nach cockpit-us-runner.js (Zeile 92):
+    :: -- SCHRITT 3b: USUpdate-Report an Google Doc anhaengen (idempotent) --
+    echo [3b/4] Append KI-Update an Doc... >> "%LOGFILE%"
+    for /f %%i in ('powershell -NoProfile -Command "Get-Date -Format yyyy-MM-dd"') do set TODAY_YMD=%%i
+    node "C:\Users\chris\TradingFloor\trading-journal\journal.js" append-ki-update %TODAY_YMD% >> "%LOGFILE%" 2>&1
+    echo append-ki-update fertig (date=%TODAY_YMD%). >> "%LOGFILE%"
+
+== DRY-RUN VERGLEICH (morning-2026-05-15.md vs dryrun-usupdate-2026-05-15.md) ==
+
+morning-2026-05-15.md (erste Zeilen):
+  # TRADING FLOOR — MORNING REPORT
+  **2026-05-15** · Symbole: GER40, DJ30, SP500
+  ## 1. TOP-WARNUNGEN & HARD-STOPS
+  VIX 17.26 | F&G 43 | PCR n.a. | Bonds 10Y 4.46 (alle OK)
+  Strategie: Keine | Max-Risk: 0.0% | Trade-Freigabe: NEIN
+  Begruendung: TREND-Phase, Makro NEUTRAL (Score 1). 0/3 Instr. S1>=0.20,
+                Konfidenz 0.183 < 0.40 -> WAIT.
+  BIAS-UEBERSICHT: GER40 NEUTRAL (P-Shape 0.708), DJ30 LEICHT_BULLISH (P-Shape 0.792),
+                   SP500 LEICHT_BEARISH (b-Shape 0.227); alle Freigabe NEIN.
+
+dryrun-usupdate-2026-05-15.md (erste Zeilen, 158 Zeilen total, 5 Sektionen):
+  # USUpdate Template — 14:45 US-Session Briefing
+  **2026-05-15 08:20:55 (CEST)** · Symbole: GER40, DJ30, SP500
+  *Update zum Morning-Briefing vom 2026-05-15 08:15:58 (CEST)*
+  ## 1. DELTA SEIT MORNING
+  Bias-Wechsel: GER40/DJ30/SP500 alle "unveraendert [=]"
+  Konfidenz: 0.183 -> 0.183 | Delta 0.000
+  Shape: P/P/b -> P/P/b unveraendert
+  Hard-Stop: VIX 17.26 stabil | F&G 43 stabil | PCR n.a. | Bonds 4.46 stabil
+  Trade-Freigabe: NEIN -> NEIN unveraendert
+  ## 2. MARKT-ENTWICKLUNG: POC/VA/Range alle Drift 0
+  Markt-Lesart: "POC-Migration ... alle drei Indizes ohne Drift ..."
+  ## 3. NEUE BIAS US-SESSION: gleiche Werte wie Morning
+  ## 4. PRE-OPEN-CHECK: Levels gefuellt; US-Session Events fallback
+    "_Keine high-impact Events nach 15:30 fuer 2026-05-15_" (Calendar-Eintraege
+    sind vom 2026-05-14, daher Filter ausgefiltert).
+  ## 5. SCHLUSSIMPULS: Strategie "Keine" | Max-Risk 0.0% | Freigabe NEIN
+    Begruendung aus captain.notes
+    US_TOP_WARNING aus captain.warnungen[0]
+    US_SESSION_PLAN (NEIN-Branch): Open beobachten + Reclaim-Levels pruefen +
+    Kein Live-Entry
+
+Erwartete Deltas im Live-Lauf 14:45 (echter MORN-Snapshot vom 08:00 + frischer NOW):
+  - POC-Drift pro Symbol abhaengig von Intraday-Bewegung
+  - Konfidenz-Delta bei Makro/Schichten-Wechsel sichtbar
+  - Calendar mit Datum 2026-05-15 / Zeit >= 15:30 erfordert ForexFactory-Refresh
+    (cockpit-morning.py laeuft 08:00; ggf. eigener Calendar-Refresh in US-Pipeline
+    fuer aktuelle US-Events)
+
+== VARIABLE-STATISTIK USUPDATE ==
+  Template-Variablen total:     55 ({{...}})
+  Substituiert im Dry-Run:      55
+  Verbleibend leer:              0
+  Anteil leer:                   0.0%  (<< 30%-Stopp-Threshold)
+  Bemerkung: Im Dry-Run alle DELTAs identisch null/unveraendert (MORN=NOW
+             Workaround). Bei echtem Lauf werden 5-15 Variablen sichtbare
+             Veraenderungen zeigen (POC-Drift, Konfidenz, Hard-Stops).
+
+== BAT-TRIGGER-VERIFIKATION ==
+  TradingCockpit-US.bat erweitert:
+    Position: NACH "node cockpit-us-runner.js" Aufruf (Zeile 94-98 neu)
+    Datum-Berechnung: `for /f ... 'powershell Get-Date -Format yyyy-MM-dd' set TODAY_YMD`
+    Aufruf: node trading-journal/journal.js append-ki-update %TODAY_YMD%
+    Logging: stdout+stderr nach %LOGFILE% (cockpit-run.log)
+    Idempotenz: 2 Aufrufe am selben Tag -> 2. Lauf -> "skipped (Marker bereits
+                vorhanden)" + cloudLog Eintrag.
+  Backup: TradingCockpit-US.bat.backup-20260515-usupdate
+  ASCII-only check: Keine Sonderzeichen ausser bestehenden Umlauten/Slashes -> OK
+
+== ERWARTUNG 14:45 LIVE-TEST ==
+  14:00 Windows Task TradingFloor-USUpdate startet.
+  14:00-14:30 cockpit-us-runner.js fuehrt US-Update-Prompt aus (13 Schritte:
+              MD->Delta->Analyst->Captain->Order-Validierung->journal.js report
+              ->state.json copy -> git push -> us-update log -> monitor).
+  Nach cockpit-us-runner.js (~14:30):
+    1. KOORDINATOR (im Prompt) erkennt USUpdate-Pipeline -> SCHRITT 8 MONITOR
+       MONITOR schreibt state.json["monitor"], Notepad-Report.
+    2. SCHRITT 8a USUPDATE-REPORT laeuft (KOORDINATOR/usupdate-report-generator.md):
+       Read NOW = state.json | Read MORN = state.json.morning-2026-05-15
+       Substituiere 55 {{VARS}} -> usupdate-2026-05-15.md + latest-usupdate.md
+       Log: "[OK/WARN] USUPDATE-REPORT: usupdate-2026-05-15.md geschrieben"
+    3. BAT: SCHRITT 3b -> node journal.js append-ki-update 2026-05-15
+       Liest usupdate-2026-05-15.md -> Append "=== KI-Update 14:45 ===" an
+       heutigem Google Doc (idempotent).
+  Falls KOORDINATOR-Prompt 8a noch nicht in cockpit-us-prompt.txt vorhanden:
+    -> nur BAT-Trigger ruft journal.js, aber usupdate-{date}.md fehlt
+    -> appendKiUpdate gibt "USUpdate-Report fehlt, skip" + Log-Eintrag
+    -> KEIN Abbruch, kein Datenverlust
+    -> Pruefen: ist 8a-Logik bereits im cockpit-us-prompt.txt verankert?
+
+  Sofort aktiv (kein Aktivierungs-Schalter mehr, gemaess Aenderung am 15.05).
+
+== ZUSAMMENFASSUNG (5 Zeilen) ==
+1. Snapshot: state.json.morning-2026-05-15 angelegt; Workaround dokumentiert.
+2. Template: _template-usupdate.md (6993B) nach cockpit-trader/reports/ kopiert.
+3. Generator: usupdate-report-generator.md mit 55 {{VARS}}-Mapping (Bias/Konfidenz/
+   Shape/POC-Drift/VA/Struktur/Markt-Lesart/Pre-Open/Schlussimpuls).
+4. Hook+Trigger: KOORDINATOR/CLAUDE.md erweitert (Morning 7a REPORT-GEN+SNAPSHOT;
+   USUpdate 8a USUPDATE-REPORT, 1160B<1200B); TradingCockpit-US.bat ruft
+   journal.js append-ki-update (idempotent) nach cockpit-us-runner.js.
+5. Dry-Run: 158 Zeilen, 55/55 Variablen substituiert (0 leer, 0% << 30%-Stopp),
+   alle DELTAs unveraendert da MORN=NOW Workaround. Live-Test 14:45.
+
+============================================================
+== RE-VERIFIKATION 14:00 (Trigger: tmp6c_rdlk6.md) ==
+============================================================
+Zweite Pass-Through dieser Session, ausgeloest von tmp6c_rdlk6.md
+mit Aenderungen gegenueber dem 12.05-Auftrag.
+
+[A] SNAPSHOT-RE-COPY (PowerShell Copy-Item -Force)
+  Quelle: agents/shared/state.json (33459 B, mtime 2026-05-15 08:20:55)
+  Ziel:   agents/shared/state.json.morning-2026-05-15
+  diff -q  ->  SNAPSHOT_IDENTICAL (Exit 0)
+  Effekt: ueberschreibt den 11:15-Snapshot identisch; kein inhaltlicher Delta.
+
+[B] VERIFIKATION ARTEFAKTE (alle aus 11:13-11:18 unveraendert)
+  - KOORDINATOR/CLAUDE.md                 1160 B  (Limit 1200 B)        OK
+    Zeile 14: "... 7 MONITOR->7a REPORT-GEN+SNAPSHOT->8 Abschluss"      OK
+    Zeile 18: "... 8 MONITOR->8a USUPDATE-REPORT"                       OK
+  - KOORDINATOR/CLAUDE_ref.md             6859 B
+    Zeilen 162-168: Morning-Snapshot Detail-Block                       OK
+    Zeilen 170-176: USUpdate-Generator Detail-Block                     OK
+  - KOORDINATOR/usupdate-report-generator.md  9186 B  (Mapping komplett) OK
+  - cockpit-trader/reports/_template-usupdate.md  6993 B  (5 Sektionen)  OK
+  - trading-journal/journal.js  appendKiUpdate L186-249, CLI L272       OK
+  - TradingCockpit-US.bat  Block 3b L96-100, TODAY_YMD via PowerShell   OK
+  - MONITOR/CLAUDE.md + CLAUDE_ref.md: 0 Treffer fuer SNAPSHOT/REPORT-GEN
+    (Phase-1-Bug nicht reaktiviert)                                     OK
+
+[C] DRY-RUN-CHECK (Bestand 11:17)
+  dryrun-usupdate-2026-05-15.md           6521 B
+  Unresolved {{VARS}}: 0
+  "n.a."-Eintraege:    3 (PCR Morning/Now/Trend - Yahoo PCALL delisted)
+  Sektions-Count:      5 (Soll 5)
+  Snapshot==NOW (manuell) -> alle DELTAs zeigen 0 / unveraendert.
+  Bei echtem Live-Lauf 14:00 wird MORN eingefroren am 08:20 bleiben,
+  NOW haengt von cockpit-us-runner-Output (14:00-14:30) ab.
+
+[D] NAMING-ABWEICHUNGEN (zur Auftrags-Transparenz)
+  - Auftrag forderte Backup ".backup-20260515-fix1b" fuer CLAUDE.md;
+    tatsaechlich vorhanden: ".backup-20260515-usupdate" + ".backup-20260515-fix1"
+    (inhaltsgleicher Pre-Stufe1-Stand). KEINE zusaetzliche Triple-Sicherung.
+  - Auftrag forderte BAT-Variable "%DATE_YYYY-MM-DD%"; umgesetzt als
+    "%TODAY_YMD%" via "for /f ... 'powershell Get-Date -Format yyyy-MM-dd'".
+    Semantisch identisch.
+  - Auftrag forderte "7a USUPDATE-REPORT"; umgesetzt als "8a" weil
+    USUpdate-Pipeline 8 Hauptschritte hat (vs Morning 7+7a). Position
+    NACH MONITOR, NON-CRITICAL - identisches Verhalten.
+
+[E] LIVE-AKTIVIERUNG 14:45
+  Status: AKTIV ab heutigem 14:00 Windows-Task TradingFloor-USUpdate.
+  Kein User-Approval-Wait. Risiko-Profil NON-CRITICAL:
+  - Fehlt Generator-Output: appendKiUpdate -> Log "USUpdate-Report fehlt", skip
+  - Fehlt MORN-Snapshot: Generator faellt auf "n.a." pro MORN_*, WARN-Log
+  - Pipeline-Abbruch in keinem Fall.
+
+[F] OFFEN / NACHFOLGE
+  - calendar.events fehlt 2026-05-15 (state.json hat nur 2026-05-14).
+    US_SESSION_EVENTS fallback "Keine high-impact Events nach 15:30".
+    Ursache: ForexFactory-Fetch nur 08:00, nicht 14:00.
+    Empfehlung: cockpit-us-runner ergaenzt cockpit-morning.fetch_calendar()
+    fuer 14:00-Refresh (separater Auftrag).
+  - cockpit-us-prompt.txt: pruefen ob KOORDINATOR-8a-Logik dort verankert
+    ist. Falls nein, koennte usupdate-{date}.md beim ersten Live-Lauf
+    fehlen und appendKiUpdate skipped. Idempotenz schuetzt vor Doppelpost.

@@ -1,0 +1,120 @@
+============================================================
+CC-FIX1 + TRIAL-RUN REPORT - 2026-05-15
+============================================================
+
+============================================================
+FIX 1: agents/KOORDINATOR/CLAUDE.md
+============================================================
+
+Backup: CLAUDE.md.backup-20260515-fix1 (existiert)
+Byte-Count vor: 1200 B
+Byte-Count nach: 1200 B
+1200B-Limit: OK (genau auf Limit)
+
+Diff (alt -> neu, nur geaenderte Zeilen):
+
+L4  - Steuert alle Pipelines (Morning + USUpdate). Bist EIN Prozess - NIEMALS Agent-Tool, TaskCreate, claude als Shell oder Sub-Prozess spawnen. Read-Tool -> Inhalt lesen -> Logik SELBST ausfuehren.
+L4  + Steuert Morning + USUpdate. EIN Prozess - NIEMALS Agent/Task/claude-Subprozess spawnen. Read-Tool -> Logik SELBST ausfuehren.
+
+L7  - SOFORT starten: "Morning"->Morning, "USUpdate"->USUpdate. Kein Menue, kein Warten.
+L7  + SOFORT starten: "Morning"->Morning, "USUpdate"->USUpdate. Kein Menue.
+
+L9  - MarketData/Analyst-Fehler: STOP. MACRO/CAPTAIN/MONITOR-Fehler: WARN, weiter.
+L9  + MarketData/Analyst-Fehler: STOP. MACRO/CAPTAIN/MONITOR/REPORT: WARN, weiter.
+
+L11 - Git Commit nur aus `cockpit-trader/`. ASCII only. Commit-Format->ref
+L11 + Git Commit nur aus `cockpit-trader/`. ASCII only. Format->ref
+
+L14 - 0 Log-Init -> 1 MACRO -> 2 MARKETDATA -> 3 ANALYST -> 4 CAPTAIN -> 5 EXECUTOR -> 6 Export+Git -> 7 MONITOR -> 8 Abschlusstabelle
+L14 + 0 Log-Init -> 1 MACRO -> 2 MARKETDATA -> 3 ANALYST -> 4 CAPTAIN -> 5 EXECUTOR -> 6 Export+Git -> 7 MONITOR -> 7a REPORT-GEN -> 8 Abschlusstabelle
+L15 + 7a (Morning) Markdown: state.json + reports/_template.md -> reports/morning-{date}.md + latest.md. Logik: KOORDINATOR/report-generator.md. NON-CRITICAL.
+
+L17 - 0 Kontext-Snapshot -> 1 MACRO-Mini -> 2 MARKETDATA(30M) -> 3 Delta-Analyse -> 4 ANALYST -> 5 CAPTAIN(NY) -> 6 EXECUTOR-Validierung -> 7 Export+Git -> 8 MONITOR
+L18 + 0 Kontext -> 1 MACRO-Mini -> 2 MARKETDATA(30M) -> 3 Delta -> 4 ANALYST -> 5 CAPTAIN(NY) -> 6 EXECUTOR-Valid -> 7 Export+Git -> 8 MONITOR
+
+L19 - ## Details (Log-Templates, Fehler-Tabellen, USUpdate-Pflicht-Abschluss)
+L20 + ## Details
+
+Hinweis: Begleitende Verdichtungen in L4/L7/L9/L11/L17/L19 waren noetig,
+um das 1200B-Limit trotz neuer Zeile L15 (7a-Detail) zu halten.
+
+============================================================
+FIX 4: TRIAL-RUN
+============================================================
+
+Inputs:
+- agents/shared/state.json (33459 B, mtime 2026-05-15 08:20)
+- cockpit-trader/reports/_template.md (6973 B, Stufe 2)
+- agents/KOORDINATOR/report-generator.md (9799 B, Mapping)
+
+Outputs:
+- cockpit-trader/reports/morning-2026-05-15.md
+  Existenz: OK
+  Groesse: 6221 B
+  {{VARS}}-Count nach Substitution: 0
+  Sektions-Count (## H2): 8 (1..8 vollstaendig)
+- cockpit-trader/reports/latest.md
+  Existenz: OK
+  Groesse: 6221 B
+  Identisch zu morning-2026-05-15.md: JA
+
+Substitutions-Sample (Top-Level):
+- DATE_CET=2026-05-15
+- HARDSTOP_VIX=17.26 (Status OK)
+- HARDSTOP_FG=43 (Status OK)
+- HARDSTOP_PCR=n.a. (delisted)
+- HARDSTOP_BONDS=4.46 (Status OK)
+- MAKRO_SCORE=1, MAKRO_BIAS=NEUTRAL
+- GLOBAL_KONFIDENZ=0.183 < 0.40 -> TRADE_FREIGABE=NEIN
+- TOP3_TRIGGER_LIST: 3 Events (14:30 Core Retail Sales, Retail Sales, Unemployment Claims)
+
+============================================================
+ERSTE 40 ZEILEN morning-2026-05-15.md
+============================================================
+# TRADING FLOOR - MORNING REPORT
+**2026-05-15** - Symbole: GER40, DJ30, SP500
+
+==============================================
+## 1. TOP-WARNUNGEN & HARD-STOPS
+==============================================
+
+**ZB-Hard-Stop heute:** inaktiv
+
+| Indikator | Wert | Grenze | Status |
+|---|---|---|---|
+| VIX | 17.26 | >25 | OK |
+| F&G | 43 | 20-80 | OK |
+| PCR | n.a. | >1.2 | n.a. |
+| Bonds 10Y | 4.46 | >4.8 | OK |
+
+**Volatilitaets-Fenster (Setups pausieren):**
+- 09:00-09:15 (Cash-Open)
+- 14:30-14:45 (Pre-US)
+- 15:30-15:45 (US-Open)
+
+**Heutige Top-Events:**
+_TBD (News-Feed nicht im state.json)_
+
+==============================================
+## 2. SCHLUSSIMPULS - WAS TUN HEUTE?
+==============================================
+
+**Strategie:** Keine
+**Max-Risk:** 0.0% - **Max-Trades:** 0
+**Trade-Freigabe:** NEIN
+
+**Begruendung:** TREND-Phase, Makro NEUTRAL (Score 1). 0/3 Instrumente mit S1>=0.20, Konfidenz 0.183 < Threshold 0.40 -> WAIT.
+
+**Top-Warnung:** Schichten-Freigabe: 0/3 Instrumente OK (Soll 2+)
+
+==============================================
+## 3. BIAS-UEBERSICHT
+==============================================
+
+(Hinweis: Original-Datei enthaelt UTF-8 Box-Lines und Umlaute; hier ASCII-transkribiert.)
+
+============================================================
+ERGEBNIS
+============================================================
+FIX 1: OK (CLAUDE.md 1200B, Backup vorhanden, Pipeline-Zeile + 7a-Detail eingefuegt).
+TRIAL: OK (morning-2026-05-15.md + latest.md, 6221B, 0 leere Vars, 8 Sektionen).

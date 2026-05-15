@@ -1,0 +1,184 @@
+================================================================
+  PHASE 1 REPORT-GENERATOR — REAKTIVIERUNG
+  Datum: 2026-05-15  | Trigger: tmpns4sszug.md
+================================================================
+
+ZIEL
+----
+Generator wieder aktivieren: Hook musste vom MONITOR-Pflicht-Abschluss
+in den KOORDINATOR-Orchestrator (vor SCHRITT 8) verschoben werden.
+Diagnose: reports/cc-phase1-no-output-diagnose.txt (stilles Skip seit 13.5.).
+
+----------------------------------------------------------------
+FIX 1 — KOORDINATOR/CLAUDE.md (Pipeline-Liste + 7a Detail)
+----------------------------------------------------------------
+Status:  OK
+Datei:   C:\Users\chris\TradingFloor\agents\KOORDINATOR\CLAUDE.md
+Backup:  CLAUDE.md.backup-20260515-fix1  (1200 B, alt)
+Byte:    1200 B vorher  ->  1200 B nachher  (exakt am Limit)
+
+Diff-Auszug:
+  ## Morning Pipeline (8 Schritte)
+- 0 Log-Init -> ... -> 7 MONITOR -> 8 Abschlusstabelle
++ 0 Log-Init -> ... -> 7 MONITOR -> 7a REPORT-GEN -> 8 Abschlusstabelle
++ 7a (Morning) Markdown: state.json + reports/_template.md ->
++ reports/morning-{date}.md + latest.md. Logik:
++ KOORDINATOR/report-generator.md. NON-CRITICAL.
+
+Kompaktierungen (noetig wegen 1200B-Limit, +200B Neutext):
+- "Steuert alle Pipelines (Morning + USUpdate). Bist EIN Prozess
+   - NIEMALS Agent-Tool, TaskCreate, claude als Shell oder Sub-Prozess spawnen."
+  -> "Steuert Morning + USUpdate. EIN Prozess
+      - NIEMALS Agent/Task/claude-Subprozess spawnen."
+- "Read-Tool -> Inhalt lesen -> Logik SELBST ausfuehren."
+  -> "Read-Tool -> Logik SELBST ausfuehren."
+- "SOFORT starten: ... Kein Menue, kein Warten."  -> "Kein Menue."
+- "NIEMALS delegieren - jeden CLAUDE.md mit Read-Tool lesen..."
+  -> "NIEMALS delegieren - jeden CLAUDE.md ..."
+- "MACRO/CAPTAIN/MONITOR-Fehler: WARN"
+  -> "MACRO/CAPTAIN/MONITOR/REPORT: WARN"
+- "Commit-Format->ref"  -> "Format->ref"
+- USUpdate-Pipeline gekuerzt (Kontext-Snapshot -> Kontext, EXECUTOR-Validierung -> EXECUTOR-Valid)
+- "## Details (Log-Templates, Fehler-Tabellen, USUpdate-Pflicht-Abschluss)"
+  -> "## Details"
+- MONITOR-Fehlerklasse zu REPORT erweitert (gleicher WARN-Modus)
+
+Pruef-Check:
+- Pipeline-Sektion zaehlt 9 Eintraege (0..8 + 7a)
+- "7a" referenziert in 2 Zeilen (Liste + Detail)
+- ASCII only fuer Code-Pfade, Unicode "->" als "→" (wie im Original)
+
+
+----------------------------------------------------------------
+FIX 2 — KOORDINATOR/CLAUDE_ref.md (Hook-Block wieder einsetzen)
+----------------------------------------------------------------
+Status:  OK
+Datei:   C:\Users\chris\TradingFloor\agents\KOORDINATOR\CLAUDE_ref.md
+Backup:  CLAUDE_ref.md.backup-20260515-fix2  (6473 B)
+Byte:    6473 B vorher  ->  6859 B nachher  (+386 B)
+Quelle:  CLAUDE_ref.md.backup-20260512-hook-move, Zeilen 160-166
+
+Diff (am Datei-Ende eingefuegt):
++
++ ---
++
++ ## Morning-Report-Generator (Phase 1, additiv, NON-CRITICAL)
++ Aufruf am Ende der Morning-Pipeline NACH SCHRITT 7 (MONITOR),
++ VOR SCHRITT 8 (Abschlusstabelle).
++ Logik + Variablen-Mapping: `agents/KOORDINATOR/report-generator.md`.
++ Schreibt: `cockpit-trader/reports/morning-{YYYY-MM-DD}.md` + `latest.md`.
++ Fehler: WARN-Log, Pipeline nicht abbrechen. USUpdate-Pipeline: KEINE Aenderung.
+
+
+----------------------------------------------------------------
+FIX 3 — MONITOR/CLAUDE_ref.md (SCHRITT 8 Block entfernen)
+----------------------------------------------------------------
+Status:  OK
+Datei:   C:\Users\chris\TradingFloor\agents\MONITOR\CLAUDE_ref.md
+Backup:  CLAUDE_ref.md.backup-20260515-fix3  (6574 B)
+Byte:    6574 B vorher  ->  6166 B nachher  (-408 B)
+
+Entfernter Block (alte Zeilen 191-198):
+- ---
+- ## SCHRITT 8 (last) - Markdown-Report-Generator triggern
+- Nach Erstellung des MONITOR-Reports und vor PFLICHT-ABSCHLUSS
+- des KOORDINATORs:
+- - Logik + Variablen-Mapping: agents/KOORDINATOR/report-generator.md
+- - Output: cockpit-trader/reports/morning-{YYYY-MM-DD}.md
+- - Output: cockpit-trader/reports/latest.md
+- - Fehler: WARN-Log, Pipeline NICHT abbrechen.
+- - USUpdate-Pipeline: KEINE Aenderung (nur Morning).
+
+Begruendung: Nach FIX 1+2 ist der Hook im KOORDINATOR die einzige Quelle.
+Doppelte Definition wuerde MONITOR weiterhin in die alte Skip-Falle ziehen.
+
+
+----------------------------------------------------------------
+FIX 4 — Manueller Trial-Run (Generator)
+----------------------------------------------------------------
+Status:  OK
+Input:   agents/shared/state.json  (last_run 2026-05-15T06:20:55Z)
+Input:   cockpit-trader/reports/_template.md  (6973 B)
+Output:  cockpit-trader/reports/morning-2026-05-15.md  (6221 B)
+Output:  cockpit-trader/reports/latest.md  (6221 B, identische Kopie)
+
+Verifikation:
+- {{VARIABLE}} restlos substituiert  : 0 leer  (Ziel 0, max 5)  OK
+- File-Groesse                       : 6221 B (Ziel 6-7 KB)    OK
+- Sektions-Count (## 1..8)           : 8       (Ziel 8)         OK
+- Header korrekt (DATE_CET 2026-05-15)                          OK
+
+Substituierte Schluesselwerte (Auszug):
+- MAKRO_SCORE          : 1  (NEUTRAL)
+- GLOBAL_KONFIDENZ     : 0.183  (< Threshold 0.40 -> WAIT)
+- TRADE_FREIGABE       : NEIN
+- GER40_SHAPE/POS      : P-Shape (0.708)  Bias NEUTRAL
+- DJ30_SHAPE/POS       : P-Shape (0.792)  Bias LEICHT_BULLISH
+- SP500_SHAPE/POS      : b-Shape (0.227)  Bias LEICHT_BEARISH
+- VIX_POINTS/REASON    : +1 / mittlere Vola (trend fallend)
+- PCR_POINTS/REASON    : -  / delisted  (PCR null)
+- BONDS_POINTS/REASON  : +1 / falling
+- YC_POINTS/REASON     : +1 / flach positiv
+- CPI_POINTS/REASON    : -1 / ueber Ziel
+
+Fallbacks aktiv (kein Defekt, ueberlebt mit Default):
+- HARDSTOP_PCR / HARDSTOP_PCR_STATUS  -> "n.a."  (Yahoo PCALL delisted)
+- TOP_EVENTS_TODAY                    -> "_TBD (News-Feed nicht im state.json)_"
+  Grund: calendar enthaelt nur 2026-05-14 Eintraege, kein 2026-05-15.
+- ZB_PENALTY                          -> "0.00"  (Feld noch nicht im captain-Block)
+
+Erste 30 Zeilen Inhalt morning-2026-05-15.md:
+  # TRADING FLOOR — MORNING REPORT
+  **2026-05-15** · Symbole: GER40, DJ30, SP500
+  ════════════════════════════════════════════
+  ## 1. TOP-WARNUNGEN & HARD-STOPS
+  ════════════════════════════════════════════
+  **ZB-Hard-Stop heute:** inaktiv
+  | Indikator | Wert | Grenze | Status |
+  | VIX | 17.26 | >25 | OK |
+  | F&G | 43 | 20-80 | OK |
+  | PCR | n.a. | >1.2 | n.a. |
+  | Bonds 10Y | 4.46 | >4.8 | OK |
+  **Volatilitäts-Fenster (Setups pausieren):**
+  - 09:00–09:15 (Cash-Open)
+  - 14:30–14:45 (Pre-US)
+  - 15:30–15:45 (US-Open)
+  **Heutige Top-Events:**
+  _TBD (News-Feed nicht im state.json)_
+  ════════════════════════════════════════════
+  ## 2. SCHLUSSIMPULS — WAS TUN HEUTE?
+  ════════════════════════════════════════════
+  **Strategie:** Keine
+  **Max-Risk:** 0.0% · **Max-Trades:** 0
+  **Trade-Freigabe:** NEIN
+  **Begründung:** TREND-Phase, Makro NEUTRAL (Score 1).
+    0/3 Instrumente mit S1>=0.20, Konfidenz 0.183
+    < Threshold 0.40 → WAIT.
+  **Top-Warnung:** Schichten-Freigabe: 0/3 Instrumente OK (Soll 2+)
+
+
+----------------------------------------------------------------
+EMPFEHLUNG — naechster Live-Test
+----------------------------------------------------------------
+- 2026-05-16 (Sa) und 2026-05-17 (So): KEIN Pipeline-Lauf
+  (TradingFloor-Morning Task laeuft nur werktags).
+- Realer Live-Test: Montag 2026-05-18 08:00 (regulaerer Morning-Run).
+- Erwartung: KOORDINATOR liest neue Pipeline-Liste, fuehrt nach
+  MONITOR und vor SCHRITT 8 den 7a-Block aus, erzeugt
+  cockpit-trader/reports/morning-2026-05-18.md + latest.md
+  und loggt "[HH:MM:SS] [OK] REPORT: morning-2026-05-18.md geschrieben (n {{VARS}} leer)".
+
+Optional: Heute manueller Smoke-Test ueber /loop
+  /loop 1m "Read agents/shared/state.json + cockpit-trader/reports/_template.md.
+  Substituiere {{VARS}} laut agents/KOORDINATOR/report-generator.md.
+  Write cockpit-trader/reports/morning-{date}.md + latest.md."
+  Hinweis: Heute (15.5.) bereits manuell erzeugt, /loop nur fuer Folge-Tests sinnvoll.
+
+
+----------------------------------------------------------------
+ZUSAMMENFASSUNG (4 Zeilen)
+----------------------------------------------------------------
+FIX 1 KOORD/CLAUDE.md       : OK  1200B (+0, kompaktiert wegen Limit)
+FIX 2 KOORD/CLAUDE_ref.md   : OK  6473 -> 6859 B (+386, Hook restored)
+FIX 3 MONITOR/CLAUDE_ref.md : OK  6574 -> 6166 B (-408, Duplikat weg)
+FIX 4 Generator-Trial-Run   : OK  morning-2026-05-15.md 6221B, 0 leere VARS, 8 Sektionen
