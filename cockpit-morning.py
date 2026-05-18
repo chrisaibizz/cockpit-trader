@@ -1336,18 +1336,22 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
             "invalidation":        invalidation,
         })
 
-        for ord_data in orders_list:
-            sheet_order = {
-                "date":        today,
-                "time":        today_time,
-                "instrument":  display_name,
-                "bias":        bias_de,
-                "bias_pct":    str(bias_pct),
-                "confluence":  conf_label,
-                "notes":       f"Auto-generiert | VIX={vix_price:.1f}",
-            }
-            sheet_order.update(ord_data)
-            all_orders_for_sheet.append(sheet_order)
+        # Sheet-Write nur bei klarer Direktion + ausreichender Konfluenz.
+        # Verhindert Phantom-Orders bei NEUTRAL/schwacher Bias.
+        # Quelle: reports/fillrate-rootcause-2026-05-15.md (Root-Cause #1)
+        if bias_str != "NEUTRAL" and abs(score) >= 4:
+            for ord_data in orders_list:
+                sheet_order = {
+                    "date":        today,
+                    "time":        today_time,
+                    "instrument":  display_name,
+                    "bias":        bias_de,
+                    "bias_pct":    str(bias_pct),
+                    "confluence":  conf_label,
+                    "notes":       f"Auto-generiert | VIX={vix_price:.1f}",
+                }
+                sheet_order.update(ord_data)
+                all_orders_for_sheet.append(sheet_order)
 
         if score > best_score:
             best_score = score
