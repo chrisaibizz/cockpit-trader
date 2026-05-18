@@ -1,23 +1,22 @@
 {
   "pipeline": {
     "status": "completed",
-    "last_run": "2026-05-15T12:50:00.000Z",
-    "run_date": "2026-05-15",
-    "run_type": "us_update",
+    "last_run": "2026-05-18T06:18:39.000Z",
+    "run_date": "2026-05-18",
+    "run_type": "morning",
     "steps_completed": [
-      "context",
-      "macro_mini",
+      "macro",
       "marketdata",
-      "delta",
       "analyst",
       "captain",
       "executor",
       "export",
-      "monitor"
+      "monitor",
+      "report"
     ],
     "result": "WAIT",
-    "score": "-3/8 - 0 Orders - Konfidenz -0.225 < 0.40",
-    "morning_last_run": "2026-05-15T06:15:58.208Z",
+    "score": "-3/8 - 0 Orders - Konfidenz -0.258",
+    "morning_last_run": "2026-05-18T06:18:39.000Z",
     "us_update_last_run": "2026-05-15T12:50:00.000Z"
   },
   "macro": {
@@ -1329,14 +1328,13 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-15T12:51:00.000Z",
+    "_last_run": "2026-05-18T06:16:54.000Z",
     "_status": "ready",
-    "session": "USUpdate",
+    "session": "Morning",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "warnungen_count": 3,
-    "report_datei": "C:/Users/chris/TradingFloor/logs/DailyMon/monitor_20260515_1445_USUpdate.txt",
+    "report_datei": "C:/Users/chris/TradingFloor/logs/DailyMon/monitor_20260518_0815_Morning.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
       "sheet_doc": "OK",
@@ -1344,12 +1342,7 @@
       "datenqualitaet": "OK",
       "entscheidung": "WAIT",
       "anomalien": "OK"
-    },
-    "warnungen": [
-      "Put/Call Ratio (^PCALL) delisted bei Yahoo - dauerhafte Datenluecke",
-      "Schichten-Logik nicht fuer Short-Setups ausgelegt - Bear-Trades blockiert",
-      "VIX-Anstieg +11% seit Morning beobachten"
-    ]
+    }
   },
   "calendar": [
     {
