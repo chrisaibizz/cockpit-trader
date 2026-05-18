@@ -1,72 +1,176 @@
 {
   "date": "2026-05-18",
-  "timestamp": "2026-05-18T06:14:05.000Z",
-  "phase": "TREND",
-  "regime": "NEUTRAL",
-  "session_bias": "WAIT",
-  "alignment_score": -3,
-  "makro_bias": "NEUTRAL",
-  "makro_score": -1,
-  "konfidenz_final": -0.258,
-  "trade_freigabe": false,
-  "instruments": {
-    "GER40": {
-      "bias": "NEUTRAL",
-      "score": -1,
-      "poc": 24147.18,
-      "vah": 24183.66,
-      "val": 23940.47,
-      "mp_shape": "P-Shape",
-      "mp_shape_pos": 0.85,
-      "er": -1.2,
-      "price": 23716.55,
-      "vwap": 23724.29,
-      "sma200": 24132.76,
-      "onh": null,
-      "pdh": null,
-      "schichten_ok": false
-    },
-    "DJ30": {
-      "bias": "LEICHT_BEARISH",
-      "score": -3,
-      "poc": 49650.16,
-      "vah": 49956.39,
-      "val": 49596.12,
-      "mp_shape": "b-Shape",
-      "mp_shape_pos": 0.15,
-      "er": 12.67,
-      "price": 49213.45,
-      "vwap": 49272.63,
-      "sma200": 49758.2,
-      "onh": null,
-      "pdh": null,
-      "schichten_ok": true
-    },
-    "SPX500": {
-      "bias": "NEUTRAL",
-      "score": -1,
-      "poc": 7432.98,
-      "vah": 7465.97,
-      "val": 7411.99,
-      "mp_shape": "Trend Day",
-      "mp_shape_pos": 0.389,
-      "er": 8.29,
-      "price": 7369.45,
-      "vwap": 7381.81,
-      "sma200": 7434.91,
-      "onh": null,
-      "pdh": null,
-      "schichten_ok": false
-    }
+  "timestamp": "2026-05-18T12:56:09.000Z",
+  "session": "usupdate",
+  "time_disp": "2026-05-18 14:56",
+  "debrief": {
+    "orders_checked": 0,
+    "fill_rate": "n.a.",
+    "tp1_rate": "n.a.",
+    "trend": "morning WAIT, keine Orders",
+    "learnings": [
+      "Morning WAIT war korrekt (alignment -3, Konfidenz negativ)",
+      "USUpdate: Setup gedreht (alignment +5), aber Makro NEUTRAL bremst Konfidenz unter 0.40"
+    ]
   },
-  "orders_count": 0,
-  "orders": [],
-  "warnungen": [
-    "Schichten-Freigabe nur bei 1/3 Instrumenten (min 2 noetig)",
-    "Konfidenz -0.258 < 0.40 -> WAIT",
-    "Alignment-Score |-3|<4 -> WAIT (keine Ausnahme)",
-    "TNX 4.59 > 4.5% zinsdruck",
-    "F&G 28 Extreme/High Fear"
+  "macro": {
+    "vix": 18.62,
+    "dxy": 99.047,
+    "tnx": 4.599,
+    "gesamt_score": 0,
+    "bias": "NEUTRAL"
+  },
+  "instruments": [
+    {
+      "name": "GER40",
+      "bias": "BULLISH",
+      "bias_pct": "90",
+      "daily_summary": "TF Daily: keine neue Daten im USUpdate (Morning Snapshot gueltig).",
+      "h4_summary": "TF 4H: ER 65.26 (Morning n.a.), Trend bestaetigt.",
+      "h1_summary": "TF 1H: VWAP 23843.55, Preis ueber_upper.",
+      "h30m_summary": "TF 30M: MP Shape P-Shape pos=0.85, Preis ueber_VAH. ER 65.26 stark_bullisch.",
+      "mp_shape_yesterday": "P-Shape pos=0.85",
+      "mp_shape_forecast": "Trend-Continuation moeglich, ER>50 = starker Impulse",
+      "mp_5day_sequence": "2x P-Shape + 1x Trend Day",
+      "delta_vs_morning": 2.65,
+      "delta_kommentar": "Plus 627.9 pts seit 08:00 - BRUCH ueber VAH 24183.66 (P-Shape Bias bestaetigt). ER -1.2 -> 65.26 (massiver Bullish-Flip). VWAP-Reclaim und ueber Upper Band 24013.32.",
+      "key_levels": [
+        {
+          "level": "POC",
+          "price": "24147.18",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAH",
+          "price": "24183.66",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL",
+          "price": "23940.47",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP",
+          "price": "23843.55",
+          "source": "VWAP"
+        },
+        {
+          "level": "SMA200",
+          "price": "24114.04",
+          "source": "SMA200"
+        }
+      ],
+      "orders": [],
+      "invalidation": "WAIT (Konfidenz <0.40). Watch: GER40 unter VWAP-Upper 24013 = Trend-Schwaeche."
+    },
+    {
+      "name": "DJ30",
+      "bias": "NEUTRAL",
+      "bias_pct": "58",
+      "daily_summary": "TF Daily: keine neue Daten im USUpdate (Morning Snapshot gueltig).",
+      "h4_summary": "TF 4H: ER 63.0 (Morning n.a.), Trend bestaetigt.",
+      "h1_summary": "TF 1H: VWAP 49286.94, Preis ueber_upper.",
+      "h30m_summary": "TF 30M: MP Shape b-Shape pos=0.15, Preis in_VA. ER 63.0 stark_bullisch.",
+      "mp_shape_yesterday": "b-Shape pos=0.15",
+      "mp_shape_forecast": "Trend-Continuation moeglich, ER>50 = starker Impulse",
+      "mp_5day_sequence": "2x P-Shape + 1x b-Shape",
+      "delta_vs_morning": 0.88,
+      "delta_kommentar": "Plus 434.0 pts - reclaimed VAL 49596.12 und POC 49650.16. ER 12.67 -> 63.0 (Trendwechsel bestaetigt). VWAP-Reclaim ueber Upper 49385.03.",
+      "key_levels": [
+        {
+          "level": "POC",
+          "price": "49650.16",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAH",
+          "price": "49956.39",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL",
+          "price": "49596.12",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP",
+          "price": "49286.94",
+          "source": "VWAP"
+        },
+        {
+          "level": "SMA200",
+          "price": "49731.47",
+          "source": "SMA200"
+        }
+      ],
+      "orders": [],
+      "invalidation": "WAIT (Konfidenz <0.40). Watch: GER40 unter VWAP-Upper 24013 = Trend-Schwaeche."
+    },
+    {
+      "name": "SPX500",
+      "bias": "LEICHT_BULLISH",
+      "bias_pct": "82",
+      "daily_summary": "TF Daily: keine neue Daten im USUpdate (Morning Snapshot gueltig).",
+      "h4_summary": "TF 4H: ER 56.26 (Morning n.a.), Trend bestaetigt.",
+      "h1_summary": "TF 1H: VWAP 7386.13, Preis ueber_upper.",
+      "h30m_summary": "TF 30M: MP Shape Trend Day pos=0.389, Preis in_VA. ER 56.26 stark_bullisch.",
+      "mp_shape_yesterday": "Trend Day pos=0.389",
+      "mp_shape_forecast": "Trend-Continuation moeglich, ER>50 = starker Impulse",
+      "mp_5day_sequence": "gemischt: Trend Day, b-Shape, P-Shape",
+      "delta_vs_morning": 0.9,
+      "delta_kommentar": "Plus 66.1 pts - reclaimed VAL 7411.99, naehert sich POC 7432.98. ER 8.29 -> 56.26. VWAP-Reclaim ueber Upper 7400.56.",
+      "key_levels": [
+        {
+          "level": "POC",
+          "price": "7432.98",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAH",
+          "price": "7465.97",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL",
+          "price": "7411.99",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP",
+          "price": "7386.13",
+          "source": "VWAP"
+        },
+        {
+          "level": "SMA200",
+          "price": "7433.84",
+          "source": "SMA200"
+        }
+      ],
+      "orders": [],
+      "invalidation": "WAIT (Konfidenz <0.40). Watch: GER40 unter VWAP-Upper 24013 = Trend-Schwaeche."
+    }
   ],
-  "notes": "Pipeline WAIT-Entscheidung: Konfidenz -0.258 < 0.40 Schwelle. Trotz technischem Short-Bias bei DJ30 (b-Shape pos=0.15, alle 3 Schichten OK) reicht |score|=3 nicht fuer Order-Freigabe (>=4 noetig). GER40 P-Shape mit Preis weit unter POC = Risiko Long-Squeeze ueber kommende Stunden. SPX500 Trend Day pos=0.39 unklar. Beobachtung: Auf VWAP-Reclaim aller 3 Indizes oder Bruch unter S1 (MRI) warten."
+  "summary": {
+    "best_instrument": "GER40",
+    "total_orders": 0,
+    "session_bias": "WAIT",
+    "alignment_score": 5,
+    "konfidenz": 0.375,
+    "warnings": [
+      "Konfidenz 0.375 < 0.40 -> WAIT trotz alignment +5",
+      "Schichten-OK: 2/3 (GER40 + SPX500, DJ30 BLOCKIERT durch S1 b-Shape)",
+      "TNX 4.599 > 4.5% zinsdruck",
+      "F&G 28 Fear (unveraendert)",
+      "Morgen ZB-Event: FOMC Meeting Minutes 20:00 - WAIT-Risiko morgen",
+      "Massiver V-Reversal seit 08:00 - moegliche Falle, Vorsicht bei Late-Entries"
+    ],
+    "notes": "USUpdate 14:50: Massiver V-Reversal seit 08:00. GER40 BULLISH-Breakout (+2.65%, ueber VAH). Trotz alignment +5 und 2/3 Schichten OK -> WAIT da Makro neutral."
+  },
+  "stats": {
+    "total": 0,
+    "fill_rate": "n.a.",
+    "tp1_rate": "n.a.",
+    "trend": "WAIT"
+  }
 }
