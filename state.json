@@ -1,7 +1,7 @@
 {
   "pipeline": {
-    "status": "running",
-    "last_run": "2026-05-19T14:48:00.000Z",
+    "status": "completed",
+    "last_run": "2026-05-19T14:49:00.000Z",
     "run_date": "2026-05-19",
     "run_type": "usupdate",
     "steps_completed": [
@@ -9,7 +9,11 @@
       "marketdata",
       "delta",
       "analyst",
-      "captain"
+      "captain",
+      "executor",
+      "export",
+      "git_push",
+      "monitor"
     ],
     "result": "WAIT",
     "score": "+7/8 GER40 LONG isolated - 0 Orders - intermarket gemischt",
@@ -691,13 +695,14 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-19T08:16:00.000Z",
+    "_last_run": "2026-05-19T14:49:00.000Z",
     "_status": "ready",
-    "session": "Morning",
+    "_update_type": "usupdate",
+    "session": "USUpdate",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:/Users/chris/TradingFloor/logs/DailyMon/monitor_20260519_0816_Morning.txt",
+    "report_datei": "C:/Users/chris/TradingFloor/logs/DailyMon/monitor_20260519_1449_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
       "sheet_doc": "WARN",
