@@ -1,7 +1,7 @@
 {
   "pipeline": {
-    "status": "in_progress",
-    "last_run": "2026-05-19T08:15:00.000Z",
+    "status": "completed",
+    "last_run": "2026-05-19T08:17:00.000Z",
     "run_date": "2026-05-19",
     "run_type": "morning",
     "steps_completed": [
@@ -9,11 +9,14 @@
       "marketdata",
       "analyst",
       "captain",
-      "executor"
+      "executor",
+      "export",
+      "monitor",
+      "report_snapshot"
     ],
     "result": "WAIT",
     "score": "-4/8 - 0 Orders - Konfidenz 0.25",
-    "morning_last_run": "2026-05-19T08:15:00.000Z",
+    "morning_last_run": "2026-05-19T08:17:00.000Z",
     "us_update_last_run": "2026-05-18T12:56:09.000Z"
   },
   "macro": {
@@ -907,16 +910,16 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-18T12:57:38.000Z",
+    "_last_run": "2026-05-19T08:16:00.000Z",
     "_status": "ready",
-    "session": "USUpdate",
+    "session": "Morning",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:/Users/chris/TradingFloor/logs/DailyMon/monitor_20260518_1450_USUpdate.txt",
+    "report_datei": "C:/Users/chris/TradingFloor/logs/DailyMon/monitor_20260519_0816_Morning.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK",
+      "sheet_doc": "WARN",
       "github_web": "OK",
       "datenqualitaet": "OK",
       "entscheidung": "WAIT",
