@@ -1,100 +1,109 @@
 {
   "date": "2026-05-19",
-  "timestamp": "2026-05-19T08:15:00.000Z",
+  "timestamp": "2026-05-19T14:48:00.000Z",
+  "session": "USUpdate",
   "debrief": {
     "orders_checked": 0,
     "fill_rate": "n.a.",
     "tp1_rate": "n.a.",
     "trend": "WAIT",
     "learnings": [
-      "Vortag (USUpdate) endete in WAIT mit alignment+5 (BULLISH-Reversal) - Konfidenz blockierte trotz starkem Chart-Setup",
-      "Morning 19.05: ER auf allen 3 Indizes negativ (-21 bis -41) - Trend ist seit gestern Abend zurueck nach unten gedreht"
+      "Morning 08:14 endete in WAIT (Konfidenz 0.25 < 0.40, 1/3 Schichten-OK SPX500 SHORT)",
+      "USUpdate 14:48: GER40 ralliert isoliert +1.49% (massiver Bullish-Flip ER -33 -> +22, Bruch VAH+VWAP_Upper) waehrend DJ30/SPX500 flat - Inter-Market Divergenz",
+      "best_direction=NONE blockiert Trade-Freigabe trotz GER40-Setup +7 / konfidenz_long 0.479"
     ]
   },
   "instruments": [
     {
       "name": "GER40",
-      "bias": "Leicht Bullisch (Kontext) / Neutral (Struktur)",
-      "bias_color": "yellow",
-      "bias_pct": "55",
-      "daily_summary": "P-Shape pos=0.767 (BULLISCH-Kontext), 3x P-Shape Sequenz, POC-Migration steigend. Preis 24259 in_VA (oberer Bereich).",
-      "h4_summary": "VAH 24430 als Resistance, VAL 23822 als Support. Composite-POC 24315 nah am Kurs.",
-      "h1_summary": "VWAP 24291 - Preis knapp drunter (-32 pts). VWAP Lower 24256 als unmittelbarer Support.",
-      "h30m_summary": "ER -33 bearisch, CDV 24309 positiv. Preis zwischen VWAP-Lower und VWAP. Ichimoku IN Kumo (24025-24277).",
+      "bias": "Stark Bullisch (alle 3 Schichten OK LONG, alignment +7)",
+      "bias_color": "green",
+      "bias_pct": "85",
+      "daily_summary": "P-Shape pos=0.767 (BULLISCH), 3x P-Shape Sequenz, POC-Migration steigend. Preis 24620 ueber VAH 24430 (Breakout-Mode).",
+      "h4_summary": "VAH 24430 als nun Support, VAL 23822 deep support. Composite-POC 24315 unter Kurs - Bullish.",
+      "h1_summary": "VWAP 24422 - Preis 24620 ueber VWAP-Upper 24574 (over_band). Strong Trend-Indikation.",
+      "h30m_summary": "ER -33 -> +22.86 (kompletter Bullish-Flip seit Morning). CDV 32463 positiv. Ueber Kijun 24437 + Kumo A 24526.",
       "mp_shape_yesterday": "P-Shape pos=0.85 va_breite 1.01%",
-      "mp_shape_forecast": "P-Shape Continuation bei Bruch ueber VWAP, sonst Pullback in VA-Mitte",
-      "mp_5day_sequence": "3x P-Shape (S0=0.767, S1=0.85, S2=0.708) - Bullish Bias-Kontext aber heute Struktur schwach",
+      "mp_shape_forecast": "Naked POC 24929 als Long-Magnet. Pullback an VAH 24430 = Long-Entry.",
+      "mp_5day_sequence": "3x P-Shape (S0=0.767, S1=0.85, S2=0.708) - Bullish bestaetigt durch heutige Breakout.",
       "key_levels": [
+        {"level": "Preis", "price": "24620", "source": "live 14:48"},
         {"level": "POC", "price": "24288", "source": "Market Profile S0"},
-        {"level": "VAH", "price": "24430", "source": "Market Profile S0"},
+        {"level": "VAH", "price": "24430", "source": "Market Profile S0 / neue Support"},
         {"level": "VAL", "price": "23822", "source": "Market Profile S0"},
-        {"level": "VWAP", "price": "24291", "source": "VWAP Stdev"},
-        {"level": "SMA200", "price": "24131", "source": "30M SMA"},
-        {"level": "Composite POC", "price": "24315", "source": "MP History"},
-        {"level": "Naked POC S7", "price": "24929", "source": "MP History"}
+        {"level": "VWAP", "price": "24423", "source": "VWAP Stdev"},
+        {"level": "VWAP Upper", "price": "24574", "source": "VWAP Stdev"},
+        {"level": "SMA200", "price": "24170", "source": "30M SMA"},
+        {"level": "Naked POC S7", "price": "24929", "source": "MP History (Long-Magnet)"}
       ],
       "orders": [],
-      "invalidation": "Unter VAL 23822 negiert P-Shape Kontext; ueber VWAP 24291 reaktiviert Long-Bias."
+      "setup_watch": "LONG: Entry 24430 (VAH-Pullback), SL 24380, TP1 24800, TP2 24929 - aktiv bei US-Bestaetigung",
+      "invalidation": "Rejection unter VAH 24430 mit Klose unter VWAP 24423 negiert Long-Breakout."
     },
     {
       "name": "DJ30",
-      "bias": "Neutral (alignment -1)",
-      "bias_color": "gray",
-      "bias_pct": "50",
-      "daily_summary": "b-Shape pos=0.208 (BAERISCH-Kontext) ABER Preis 49623 ueber VAH 49564 = Bullisch-Bruch.",
-      "h4_summary": "Composite-POC 49667, Preis darunter. VAH 49564, VAL 49149.",
-      "h1_summary": "VWAP 49681, Preis 49623 unter VWAP-Lower 49631. Knapp drunter.",
-      "h30m_summary": "ER -21 schwach bearisch, CDV 175k positiv. Ichimoku knapp ueber Kumo (49616-49460).",
+      "bias": "Leicht Baerisch (alle_short_ok, alignment -3 unter Threshold 4)",
+      "bias_color": "yellow",
+      "bias_pct": "55",
+      "daily_summary": "b-Shape pos=0.208 (BAERISCH), Preis 49641 ueber VAH 49564 ABER unter VWAP+Kijun+SMA200.",
+      "h4_summary": "Composite-POC 49667 ueber Preis. Naked POCs 49650/50103/49031 - mixed.",
+      "h1_summary": "VWAP 49668, Preis 49641 zwischen VWAP-Lower 49619 und VWAP. In Band aber unten.",
+      "h30m_summary": "ER -21 -> -34.77 (verschlechtert seit Morning), CDV 180k positiv (Divergenz). Unter Kumo A 49653.",
       "mp_shape_yesterday": "b-Shape pos=0.15 va_breite 0.73%",
-      "mp_shape_forecast": "Reversal-Watch: Preis ueber VAH + Kumo-Bruch waere Long-Trigger.",
-      "mp_5day_sequence": "2x b-Shape + 1x P-Shape - gemischt, Trend unklar.",
+      "mp_shape_forecast": "Bei US-Schwaeche -> Test POC 49236. Bei Bruch ueber VWAP 49668 -> Reversal Long.",
+      "mp_5day_sequence": "2x b-Shape + 1x P-Shape - gemischt, leicht bearisch.",
       "key_levels": [
+        {"level": "Preis", "price": "49641", "source": "live 14:48"},
         {"level": "POC", "price": "49236", "source": "Market Profile S0"},
         {"level": "VAH", "price": "49565", "source": "Market Profile S0"},
         {"level": "VAL", "price": "49149", "source": "Market Profile S0"},
-        {"level": "VWAP", "price": "49681", "source": "VWAP Stdev"},
-        {"level": "SMA200", "price": "49725", "source": "30M SMA"},
-        {"level": "PDH", "price": "49956", "source": "Vortag VAH S1"}
+        {"level": "VWAP", "price": "49669", "source": "VWAP Stdev"},
+        {"level": "SMA200", "price": "49717", "source": "30M SMA"},
+        {"level": "Kijun", "price": "49671", "source": "Ichimoku"}
       ],
       "orders": [],
-      "invalidation": "Unter POC 49236 negiert Pullback-Setup; ueber VWAP 49681 reaktiviert Long-Bias."
+      "setup_watch": "SHORT-Setup zu schwach (alignment -3 unter Threshold). Bei Bruch unter VAL 49149 -> Reaktivierung.",
+      "invalidation": "Bruch ueber VWAP 49668 + SMA200 49717 negiert SHORT - reaktiviert LONG."
     },
     {
       "name": "SPX500",
-      "bias": "Bearisch (alignment -4 SHORT-LEAN Setup)",
-      "bias_color": "red",
-      "bias_pct": "65",
-      "daily_summary": "b-Shape pos=0.25 (BAERISCH), Preis 7387 in_VA (mittlerer Bereich). Einziges Instrument mit alle_short_ok=true.",
+      "bias": "Leicht Baerisch (alle_short_ok, alignment -3 unter Threshold 4)",
+      "bias_color": "yellow",
+      "bias_pct": "55",
+      "daily_summary": "b-Shape pos=0.25 (BAERISCH), Preis 7391 in_VA (mittlerer Bereich, leicht oberhalb POC).",
       "h4_summary": "POC-Migration fallend, Naked POCs bei 7432/7468/7288/7234 - Magneten unten.",
-      "h1_summary": "VWAP 7404, Preis 7387 unter VWAP-Lower 7392. SMA200 7436 als Resistance.",
-      "h30m_summary": "ER -41 bearisch (staerkster Trend), CDV 27k positiv (Divergenz). Ichimoku Preis unter Kumo (7394-7400).",
+      "h1_summary": "VWAP 7398, Preis 7391 zwischen VWAP-Lower 7386 und VWAP. Knapp unter Kijun 7399.73.",
+      "h30m_summary": "ER -40 -> -36.57 (marginal besser, bleibt bearish). CDV 33k positiv. Unter Kumo A 7394.",
       "mp_shape_yesterday": "Trend Day pos=0.389 va_breite 0.73%",
-      "mp_shape_forecast": "b-Shape Continuation: Test VAL 7364, Bruch -> Composite-POC 7405 als Re-test, Ziel Naked POC 7288.",
+      "mp_shape_forecast": "b-Shape Continuation: Test VAL 7364 (Long-Magnet) oder Bruch -> Naked POC 7288.",
       "mp_5day_sequence": "2x b-Shape + 1x Trend Day - mehrheitlich bearisch.",
       "key_levels": [
+        {"level": "Preis", "price": "7391", "source": "live 14:48"},
         {"level": "POC", "price": "7374.5", "source": "Market Profile S0"},
         {"level": "VAH", "price": "7404.7", "source": "Market Profile S0"},
         {"level": "VAL", "price": "7364.4", "source": "Market Profile S0"},
-        {"level": "VWAP", "price": "7403.5", "source": "VWAP Stdev"},
-        {"level": "SMA200", "price": "7435.9", "source": "30M SMA"},
-        {"level": "Composite POC", "price": "7405", "source": "MP History"},
-        {"level": "Naked POC S8", "price": "7288", "source": "MP History"}
+        {"level": "VWAP", "price": "7399", "source": "VWAP Stdev"},
+        {"level": "SMA200", "price": "7435", "source": "30M SMA"},
+        {"level": "Naked POC S8", "price": "7288", "source": "MP History (Short-Ziel)"}
       ],
       "orders": [],
-      "invalidation": "Ueber VWAP 7404 negiert SHORT-Setup; Bruch unter VAL 7364 aktiviert Naked-POC-Ziele bei 7288 (Trade ohne Top-Down-Freigabe nicht ausgefuehrt)."
+      "setup_watch": "SHORT-Setup zu schwach (alignment -3 unter Threshold). Bei Bruch unter VAL 7364 -> Reaktivierung.",
+      "invalidation": "Ueber VWAP 7399 + Kijun + SMA200 7435 negiert SHORT-Setup."
     }
   ],
   "summary": {
-    "best_instrument": "SPX500",
+    "best_instrument": "GER40",
     "total_orders": 0,
     "warnings": [
-      "Konfidenz 0.25 < 0.40 - WAIT",
-      "Nur 1/3 Schichten-OK (SPX500 SHORT)",
-      "Morgen 20:00 FOMC Meeting Minutes - High-Impact Event",
-      "TNX 4.623 weiter > 4.5% Zinsdruck",
-      "F&G 25 Extreme Fear (Vortag 28)"
+      "Inter-Market DIVERGENZ: GER40 +1.49% isoliert vs DJ30/SPX500 flat (+0.04/+0.05%)",
+      "best_direction=NONE blockiert trade_freigabe trotz konfidenz_long 0.479",
+      "GER40 Setup +7 stark aber ohne US-Konfirmation",
+      "VIX 17.82 -> 18.0 steigend - leicht_bearish flip",
+      "DXY 99.236 staerker - belastet US-Indizes",
+      "Heute 16:00: Pending Home Sales (medium) - innerhalb 2h",
+      "Morgen 20:00: FOMC Meeting Minutes (High-Impact)"
     ],
-    "notes": "BALANCE-Phase mit gemischten Shapes (P/b/b). Alle Preise unter VWAP = strukturell schwach. Setup-Watch: SPX500 SHORT-LEAN aktiviert bei Bestaetigung durch DJ30 oder GER40 (Bruch unter VWAP-Lower)."
+    "notes": "BALANCE-Phase mit klarer Inter-Market Divergenz. GER40 isolated Long-Breakout (Bruch VAH+VWAP_Upper, ER-Flip auf +22.86, alle 3 Schichten LONG-OK +7). DJ30+SPX500 SHORT alignment je -3 zu schwach. WAIT bis NY Open 15:30 fuer US-Bestaetigung. Setup-Watch GER40 LONG: Entry VAH 24430 Pullback, SL 24380, TP1 24800, TP2 Naked POC 24929 (R:R ~5)."
   },
   "stats": {
     "total": 0,
