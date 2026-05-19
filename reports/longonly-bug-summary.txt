@@ -1,0 +1,84 @@
+LONG-only Bug Diagnose - 2026-05-18 (Kurzfassung)
+=================================================
+
+ROOT-CAUSE (3 Saetze)
+---------------------
+Die Pipeline misst Markt-Bias symmetrisch (-1..+1 in S1/S2/S3, -100..+100 in
+Bias-Score, -12..+12 im Makro-Score), aber drei nachgeschaltete Entscheidungs-
+schritte werten nur die POSITIVE Richtung aus: (a) Analyst `alle_schichten_ok`
+prueft ausschliesslich s1>=0.20 / s2>=0.25 / s3>=0.00, (b) Captain Konfidenz =
+alignment/8*chart_w + macro/12*makro_w erzeugt bei bearischen Setups NEGATIVE
+Werte, die strukturell nie das Filter +0.40 erreichen, (c) Captain Session-
+Bias-Mapping verlangt fuer SHORT-LEAN ein `alignment >= 4`, was bei wirklich
+bearischer Lage (alignment NEGATIV) mathematisch nie zutrifft. Order-Erzeugung
+und Sheet-Schema sind bereits SHORT-faehig - dies ist KEIN Output-Bug.
+
+
+HAUPTVERURSACHER
+----------------
+1. agents/analyst/_update_state.py:122-125  und  _usupdate_compute.py:32-34
+   `alle_schichten_ok` nur LONG. Fehlt: alle_short_ok = (s1<=-0.20) AND
+   (s2<=-0.25) AND (s3<=0.00). top_down.trade_freigabe folgt LONG.
+   Spec-Quelle: agents/analyst/CLAUDE.md Z.7, CLAUDE_ref.md Z.75-81.
+
+2. agents/captain/_update_state.py:92-94, 112  und  _usupdate_compute.py:47-49
+   Konfidenz-Formel kennt kein Vorzeichen. Negative Konfidenz fuer bearische
+   Setups wird als "schlechte LONG-Konfidenz" gelesen statt als "starke SHORT-
+   Konfidenz". Fehlt: konfidenz = max(konfidenz_long, konfidenz_short).
+
+3. agents/captain/_update_state.py:117, 138-141  und  _usupdate_compute.py:89-92
+   `alignment < 4 -> WAIT` (statt abs()<4). SHORT-LEAN-Branch braucht
+   `alignment >= 4` (unerreichbar). _usupdate_compute.py hardcoded LONG-BIAS/
+   LONG-LEAN ohne SHORT-Branch.
+
+
+FIX-PLAN UEBERBLICK
+-------------------
+Reihenfolge:
+  1) Specs aktualisieren (Analyst + Captain CLAUDE.md + CLAUDE_ref.md)
+  2) Analyst _update_state.py + _usupdate_compute.py:
+     - alle_long_ok / alle_short_ok / bias_direction in Schichten
+     - top_down.best_direction + alignment_score_abs
+  3) Captain _update_state.py + _usupdate_compute.py:
+     - konfidenz_long / konfidenz_short / konfidenz=max(...) /
+       konfidenz_direction
+     - Schwellenchecks mit abs()
+     - SHORT-Branches im Session-Bias-Mapping
+     - Hard-LONG-Hardcode in _usupdate_compute.py entfernen
+  4) Dashboard- und Monitor-Felder gegenchecken
+  5) Regression-Run gegen state.json.morning-2026-05-15 (Bear-Setup) +
+     Bull-Tag 2026-05-06
+
+
+WAS NICHT ANFASSEN
+------------------
+- cockpit-morning.py compute_bias() (symmetrisch, Z.768-1081)
+- cockpit-morning.py generate_order() (Limit Sell schon korrekt, Z.1135-1214)
+- trading-journal/journal.js writeMultiple (Typ akzeptiert Buy + Sell)
+- agents/macro/_update_state.py Scoring (-12..+12 symmetrisch)
+- Hard-Stops VIX>30 / F&G<20 / Bonds>4.8% (semantisch korrekt symmetrisch)
+
+
+VANTAGE-RESTRIKTION
+-------------------
+KEINE. System ist Trade-Journal ohne Broker-API
+(fillrate-rootcause-2026-05-15.md). "Vantage:GER40" ist nur TradingView-
+Ticker-String. CFDs erlauben Long + Short. Annahme fuer Fix: SHORTs erlaubt.
+
+
+AUFWAND-SCHAETZUNG
+------------------
+- Code-Aenderung: ca. 80-100 Zeilen in 4 Python-Dateien
+- Spec-Updates: ca. 20-30 Zeilen in 4 CLAUDE.md-Dateien
+- Spawn-Zeit: 40-60 Min inkl. Verifikation
+- Risiko: NIEDRIG (Symmetrisierung, keine neue Logik)
+
+
+ERSTE EMPFEHLUNG
+----------------
+Im Fix-Spawn die SPEC-DATEIEN (CLAUDE.md/CLAUDE_ref.md) ZUERST aktualisieren
+- damit nachfolgende Code-Aenderungen den richtigen Vorbild-Algorithmus
+referenzieren koennen. Dann Analyst-Files, dann Captain-Files, dann
+Regression-Run gegen 2026-05-15-Snapshot.
+
+Vollstaendiger Bericht: longonly-bug-diagnosis-2026-05-18.md

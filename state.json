@@ -912,7 +912,7 @@
         "name": "Pending Home Sales m/m",
         "impact": "medium",
         "actual": "",
-        "forecast": "1.2%",
+        "forecast": "1.0%",
         "previous": "1.5%",
         "better": null,
         "source": "forexfactory"
@@ -936,7 +936,7 @@
         "name": "French Flash Manufacturing PMI",
         "impact": "medium",
         "actual": "",
-        "forecast": "52.3",
+        "forecast": "52.1",
         "previous": "52.8",
         "better": null,
         "source": "forexfactory"
@@ -984,7 +984,7 @@
         "name": "Philly Fed Manufacturing Index",
         "impact": "medium",
         "actual": "",
-        "forecast": "17.9",
+        "forecast": "17.8",
         "previous": "26.7",
         "better": null,
         "source": "forexfactory"
@@ -1008,7 +1008,7 @@
         "name": "Flash Manufacturing PMI",
         "impact": "medium",
         "actual": "",
-        "forecast": "53.6",
+        "forecast": "53.7",
         "previous": "54.0",
         "better": null,
         "source": "forexfactory"
@@ -1032,7 +1032,7 @@
         "name": "Revised UoM Consumer Sentiment",
         "impact": "medium",
         "actual": "",
-        "forecast": "48.2",
+        "forecast": "48.3",
         "previous": "48.2",
         "better": null,
         "source": "forexfactory"
@@ -1357,7 +1357,7 @@
       "name": "Pending Home Sales m/m",
       "impact": "medium",
       "actual": "",
-      "forecast": "1.2%",
+      "forecast": "1.0%",
       "previous": "1.5%",
       "better": null,
       "source": "forexfactory"
@@ -1381,7 +1381,7 @@
       "name": "French Flash Manufacturing PMI",
       "impact": "medium",
       "actual": "",
-      "forecast": "52.3",
+      "forecast": "52.1",
       "previous": "52.8",
       "better": null,
       "source": "forexfactory"
@@ -1429,7 +1429,7 @@
       "name": "Philly Fed Manufacturing Index",
       "impact": "medium",
       "actual": "",
-      "forecast": "17.9",
+      "forecast": "17.8",
       "previous": "26.7",
       "better": null,
       "source": "forexfactory"
@@ -1453,7 +1453,7 @@
       "name": "Flash Manufacturing PMI",
       "impact": "medium",
       "actual": "",
-      "forecast": "53.6",
+      "forecast": "53.7",
       "previous": "54.0",
       "better": null,
       "source": "forexfactory"
@@ -1477,7 +1477,7 @@
       "name": "Revised UoM Consumer Sentiment",
       "impact": "medium",
       "actual": "",
-      "forecast": "48.2",
+      "forecast": "48.3",
       "previous": "48.2",
       "better": null,
       "source": "forexfactory"

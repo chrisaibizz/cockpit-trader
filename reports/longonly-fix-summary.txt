@@ -1,0 +1,34 @@
+LONG-only Bug Fix - 2026-05-18 (Kurzfassung)
+================================================
+
+STATUS: Alle 7 Phasen OK. 19/19 Tests PASSED.
+
+GEAENDERT (8 Dateien, alle in agents/analyst/ + agents/captain/):
+  - analyst/CLAUDE.md           Spec LONG+SHORT-Freigabe + neue Schichten-Felder
+  - analyst/CLAUDE_ref.md       Spec gespiegelte Schwellen + top_down-Erweiterung
+  - analyst/_update_state.py    Schichten: alle_long_ok / alle_short_ok / bias_direction
+                                Top-Down: best_direction, alignment_score_abs, ok_long/short
+  - analyst/_usupdate_compute.py analog (USUpdate-Pfad)
+  - captain/CLAUDE.md           Spec konfidenz_long/_short/_direction + abs-Schwellen
+  - captain/CLAUDE_ref.md       Spec direction-aware Bias-Tabellen
+  - captain/_update_state.py    Konfidenz max(long,short); abs(alignment)<4;
+                                Session-Bias-Branches LONG/SHORT; Plan + Warnungen direction-aware
+  - captain/_usupdate_compute.py analog; LONG-Hardcode entfernt
+
+KERN-ERGEBNIS:
+  Snapshot 2026-05-18 morning (alignment=-3, makro=-1) wurde alt mit
+  konfidenz_final=-0.258 als WAIT abgelehnt (Vorzeichen-Bug).
+  Neu: konfidenz_long=0.0, konfidenz_short=0.258 SHORT, korrekt klassifiziert
+  (WAIT bleibt hier wegen ok_count<2 + Konfidenz<0.40 - Schichten-Grenze, NICHT
+  versteckter LONG-Bias).
+
+  Pure-Bear-Setup (align=-6, macro=-8): jetzt SHORT-BIAS (stark), freigabe=True,
+  konfidenz=0.708.
+
+BACKUPS: C:\Users\chris\TradingFloor\backups\longonly-fix-20260518-171752\
+TESTS:   C:\Users\chris\TradingFloor\tests\longonly-fix\
+
+OFFEN (ausserhalb Scope, dokumentiert im langen Report):
+  - agents/shared/analyst_write.py     (legacy)
+  - agents/shared/captain_write.py     (teilsymmetrisch)
+  - agents/executor/CLAUDE.md/_ref.md  (alignment_score<4 LONG-zentrisch)

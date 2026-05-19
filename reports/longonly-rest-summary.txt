@@ -1,0 +1,39 @@
+LONG-only Restbestaende Fix - 2026-05-18 (Spawn 3 / Kurzfassung)
+=================================================================
+
+DISCOVERY (Phase A):
+  shared/analyst_write.py   -> TOT (keine Aufrufe, Snapshot-Script)
+  shared/captain_write.py   -> TOT (keine Aufrufe, Snapshot-Script)
+  executor/CLAUDE.md+_ref   -> AKTIV (Spec-Doku)
+
+PATCHES (Phase C):
+  agents/executor/CLAUDE.md:9
+    alt: "R:R < 1.5 oder alignment_score < 4"
+    neu: "R:R < 1.5 oder abs(alignment_score) < 4 (LONG+SHORT symmetrisch)"
+
+  agents/executor/CLAUDE_ref.md:8
+    alt: "alignment_score >= 4"
+    neu: "abs(alignment_score) >= 4 (LONG: >= 4, SHORT: <= -4 — symmetrisch)"
+
+BACKUPS:
+  C:\Users\chris\TradingFloor\backups\longonly-rest-20260518-174220\
+    executor-CLAUDE.md.backup-longonly-rest
+    executor-CLAUDE_ref.md.backup-longonly-rest
+
+VERIFIKATION:
+  grep "alignment_score < 4" agents/executor/  -> nur in .backup
+  grep "alignment_score >= 4" agents/executor/ -> nur in .backup
+  grep "abs(alignment_score)" agents/executor/ -> 2 Treffer (neu, OK)
+  py_compile nicht noetig (keine Python-Files gepatched).
+
+WAS UEBRIG BLEIBT (informativ, nicht gepatched):
+  - shared/analyst_write.py + captain_write.py:  legacy Snapshot, nicht
+    in Pipeline aktiv. Falls reaktiviert: Symmetrie nachziehen.
+  - executor/_export.py:41 "negiert bullische Setup-Lage" (LONG-only string).
+  - executor/_export.py:27 bias_pct = score/8*100 (negativ bei SHORT).
+  - executor/_usupdate_export.py: weitere hartkodierte Doku-Strings.
+  Empfehlung: separater Patch fuer _export.py wenn Dashboard SHORT zeigt.
+
+ROLLBACK:
+  Copy-Item "$src\executor-CLAUDE.md.backup-longonly-rest"     ...\CLAUDE.md -Force
+  Copy-Item "$src\executor-CLAUDE_ref.md.backup-longonly-rest" ...\CLAUDE_ref.md -Force
