@@ -146,45 +146,225 @@
           "top": 24687.6
         },
         "tpo_distribution": [
-          {"price": 23620.2, "count": 1, "type": "tail"},
-          {"price": 23660.7, "count": 8, "type": "tail"},
-          {"price": 23701.2, "count": 10, "type": "tail"},
-          {"price": 23741.7, "count": 10, "type": "tail"},
-          {"price": 23782.2, "count": 8, "type": "tail"},
-          {"price": 23822.7, "count": 3, "type": "va"},
-          {"price": 23863.2, "count": 2, "type": "va"},
-          {"price": 23903.7, "count": 3, "type": "va"},
-          {"price": 23944.2, "count": 6, "type": "va"},
-          {"price": 23984.7, "count": 6, "type": "va"},
-          {"price": 24025.2, "count": 5, "type": "va"},
-          {"price": 24065.7, "count": 1, "type": "va"},
-          {"price": 24106.2, "count": 2, "type": "va"},
-          {"price": 24146.7, "count": 4, "type": "va"},
-          {"price": 24187.2, "count": 4, "type": "va"},
-          {"price": 24227.7, "count": 8, "type": "va"},
-          {"price": 24268.2, "count": 11, "type": "va"},
-          {"price": 24288.45, "count": 1, "type": "poc"},
-          {"price": 24308.7, "count": 11, "type": "va"},
-          {"price": 24349.2, "count": 9, "type": "va"},
-          {"price": 24389.7, "count": 7, "type": "va"},
-          {"price": 24430.2, "count": 2, "type": "va"}
+          {
+            "price": 23620.2,
+            "count": 1,
+            "type": "tail"
+          },
+          {
+            "price": 23660.7,
+            "count": 8,
+            "type": "tail"
+          },
+          {
+            "price": 23701.2,
+            "count": 10,
+            "type": "tail"
+          },
+          {
+            "price": 23741.7,
+            "count": 10,
+            "type": "tail"
+          },
+          {
+            "price": 23782.2,
+            "count": 8,
+            "type": "tail"
+          },
+          {
+            "price": 23822.7,
+            "count": 3,
+            "type": "va"
+          },
+          {
+            "price": 23863.2,
+            "count": 2,
+            "type": "va"
+          },
+          {
+            "price": 23903.7,
+            "count": 3,
+            "type": "va"
+          },
+          {
+            "price": 23944.2,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 23984.7,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 24025.2,
+            "count": 5,
+            "type": "va"
+          },
+          {
+            "price": 24065.7,
+            "count": 1,
+            "type": "va"
+          },
+          {
+            "price": 24106.2,
+            "count": 2,
+            "type": "va"
+          },
+          {
+            "price": 24146.7,
+            "count": 4,
+            "type": "va"
+          },
+          {
+            "price": 24187.2,
+            "count": 4,
+            "type": "va"
+          },
+          {
+            "price": 24227.7,
+            "count": 8,
+            "type": "va"
+          },
+          {
+            "price": 24268.2,
+            "count": 11,
+            "type": "va"
+          },
+          {
+            "price": 24288.45,
+            "count": 1,
+            "type": "poc"
+          },
+          {
+            "price": 24308.7,
+            "count": 11,
+            "type": "va"
+          },
+          {
+            "price": 24349.2,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 24389.7,
+            "count": 7,
+            "type": "va"
+          },
+          {
+            "price": 24430.2,
+            "count": 2,
+            "type": "va"
+          }
         ],
         "mp_history": [
-          {"session": 0, "poc": 24288.45, "vah": 24430.2, "val": 23822.7, "mp_shape_pos": 0.767, "va_breite_pct": 2.5, "shape": "P-Shape", "naked_poc": false},
-          {"session": 1, "poc": 24147.18, "vah": 24183.66, "val": 23940.47, "mp_shape_pos": 0.85, "va_breite_pct": 1.01, "shape": "P-Shape", "naked_poc": false},
-          {"session": 2, "poc": 24425.54, "vah": 24478.5, "val": 24296.92, "mp_shape_pos": 0.708, "va_breite_pct": 0.74, "shape": "P-Shape", "naked_poc": false},
-          {"session": 3, "poc": 24106.48, "vah": 24171.36, "val": 24056.02, "mp_shape_pos": 0.437, "va_breite_pct": 0.48, "shape": "Trend Day", "naked_poc": false},
-          {"session": 4, "poc": 24142.58, "vah": 24168.54, "val": 24012.82, "mp_shape_pos": 0.833, "va_breite_pct": 0.65, "shape": "P-Shape", "naked_poc": false},
-          {"session": 5, "poc": 24263.37, "vah": 24309.38, "val": 24242.46, "mp_shape_pos": 0.312, "va_breite_pct": 0.28, "shape": "b-Shape", "naked_poc": false},
-          {"session": 6, "poc": 24445.42, "vah": 24476.98, "val": 24363.36, "mp_shape_pos": 0.722, "va_breite_pct": 0.46, "shape": "P-Shape", "naked_poc": false},
-          {"session": 7, "poc": 24929.43, "vah": 25009.63, "val": 24624.67, "mp_shape_pos": 0.792, "va_breite_pct": 1.54, "shape": "P-Shape", "naked_poc": true},
-          {"session": 8, "poc": 24928.87, "vah": 25144.03, "val": 24713.71, "mp_shape_pos": 0.5, "va_breite_pct": 1.73, "shape": "D-Shape", "naked_poc": false},
-          {"session": 9, "poc": 24378.56, "vah": 24452.87, "val": 24096.16, "mp_shape_pos": 0.792, "va_breite_pct": 1.46, "shape": "P-Shape", "naked_poc": false}
+          {
+            "session": 0,
+            "poc": 24288.45,
+            "vah": 24430.2,
+            "val": 23822.7,
+            "mp_shape_pos": 0.767,
+            "va_breite_pct": 2.5,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "poc": 24147.18,
+            "vah": 24183.66,
+            "val": 23940.47,
+            "mp_shape_pos": 0.85,
+            "va_breite_pct": 1.01,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 2,
+            "poc": 24425.54,
+            "vah": 24478.5,
+            "val": 24296.92,
+            "mp_shape_pos": 0.708,
+            "va_breite_pct": 0.74,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 3,
+            "poc": 24106.48,
+            "vah": 24171.36,
+            "val": 24056.02,
+            "mp_shape_pos": 0.437,
+            "va_breite_pct": 0.48,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 4,
+            "poc": 24142.58,
+            "vah": 24168.54,
+            "val": 24012.82,
+            "mp_shape_pos": 0.833,
+            "va_breite_pct": 0.65,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 5,
+            "poc": 24263.37,
+            "vah": 24309.38,
+            "val": 24242.46,
+            "mp_shape_pos": 0.312,
+            "va_breite_pct": 0.28,
+            "shape": "b-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "poc": 24445.42,
+            "vah": 24476.98,
+            "val": 24363.36,
+            "mp_shape_pos": 0.722,
+            "va_breite_pct": 0.46,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 7,
+            "poc": 24929.43,
+            "vah": 25009.63,
+            "val": 24624.67,
+            "mp_shape_pos": 0.792,
+            "va_breite_pct": 1.54,
+            "shape": "P-Shape",
+            "naked_poc": true
+          },
+          {
+            "session": 8,
+            "poc": 24928.87,
+            "vah": 25144.03,
+            "val": 24713.71,
+            "mp_shape_pos": 0.5,
+            "va_breite_pct": 1.73,
+            "shape": "D-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 9,
+            "poc": 24378.56,
+            "vah": 24452.87,
+            "val": 24096.16,
+            "mp_shape_pos": 0.792,
+            "va_breite_pct": 1.46,
+            "shape": "P-Shape",
+            "naked_poc": false
+          }
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "3x P-Shape",
-          "naked_pocs": [24929.43],
+          "naked_pocs": [
+            24929.43
+          ],
           "composite_poc": 24315.23
         },
         "mri": {
@@ -229,45 +409,227 @@
           "top": 50239.45
         },
         "tpo_distribution": [
-          {"price": 49114.45, "count": 2, "type": "tail"},
-          {"price": 49149.1, "count": 8, "type": "va"},
-          {"price": 49183.75, "count": 8, "type": "va"},
-          {"price": 49218.4, "count": 9, "type": "va"},
-          {"price": 49235.73, "count": 1, "type": "poc"},
-          {"price": 49253.05, "count": 9, "type": "va"},
-          {"price": 49287.7, "count": 8, "type": "va"},
-          {"price": 49322.35, "count": 5, "type": "va"},
-          {"price": 49357, "count": 2, "type": "va"},
-          {"price": 49391.65, "count": 5, "type": "va"},
-          {"price": 49426.3, "count": 5, "type": "va"},
-          {"price": 49460.95, "count": 6, "type": "va"},
-          {"price": 49495.6, "count": 7, "type": "va"},
-          {"price": 49530.25, "count": 7, "type": "va"},
-          {"price": 49564.9, "count": 8, "type": "va"},
-          {"price": 49599.55, "count": 8, "type": "tail"},
-          {"price": 49634.2, "count": 8, "type": "tail"},
-          {"price": 49668.85, "count": 7, "type": "tail"},
-          {"price": 49703.5, "count": 4, "type": "tail"},
-          {"price": 49738.15, "count": 3, "type": "tail"},
-          {"price": 49772.8, "count": 2, "type": "tail"},
-          {"price": 49807.45, "count": 1, "type": "tail"}
+          {
+            "price": 49114.45,
+            "count": 2,
+            "type": "tail"
+          },
+          {
+            "price": 49149.1,
+            "count": 8,
+            "type": "va"
+          },
+          {
+            "price": 49183.75,
+            "count": 8,
+            "type": "va"
+          },
+          {
+            "price": 49218.4,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 49235.73,
+            "count": 1,
+            "type": "poc"
+          },
+          {
+            "price": 49253.05,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 49287.7,
+            "count": 8,
+            "type": "va"
+          },
+          {
+            "price": 49322.35,
+            "count": 5,
+            "type": "va"
+          },
+          {
+            "price": 49357,
+            "count": 2,
+            "type": "va"
+          },
+          {
+            "price": 49391.65,
+            "count": 5,
+            "type": "va"
+          },
+          {
+            "price": 49426.3,
+            "count": 5,
+            "type": "va"
+          },
+          {
+            "price": 49460.95,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 49495.6,
+            "count": 7,
+            "type": "va"
+          },
+          {
+            "price": 49530.25,
+            "count": 7,
+            "type": "va"
+          },
+          {
+            "price": 49564.9,
+            "count": 8,
+            "type": "va"
+          },
+          {
+            "price": 49599.55,
+            "count": 8,
+            "type": "tail"
+          },
+          {
+            "price": 49634.2,
+            "count": 8,
+            "type": "tail"
+          },
+          {
+            "price": 49668.85,
+            "count": 7,
+            "type": "tail"
+          },
+          {
+            "price": 49703.5,
+            "count": 4,
+            "type": "tail"
+          },
+          {
+            "price": 49738.15,
+            "count": 3,
+            "type": "tail"
+          },
+          {
+            "price": 49772.8,
+            "count": 2,
+            "type": "tail"
+          },
+          {
+            "price": 49807.45,
+            "count": 1,
+            "type": "tail"
+          }
         ],
         "mp_history": [
-          {"session": 0, "poc": 49235.73, "vah": 49564.9, "val": 49149.1, "mp_shape_pos": 0.208, "va_breite_pct": 0.84, "shape": "b-Shape", "naked_poc": false},
-          {"session": 1, "poc": 49650.16, "vah": 49956.39, "val": 49596.12, "mp_shape_pos": 0.15, "va_breite_pct": 0.73, "shape": "b-Shape", "naked_poc": true},
-          {"session": 2, "poc": 50103.9, "vah": 50156.04, "val": 49905.79, "mp_shape_pos": 0.792, "va_breite_pct": 0.5, "shape": "P-Shape", "naked_poc": true},
-          {"session": 3, "poc": 49790.65, "vah": 49837.65, "val": 49630.85, "mp_shape_pos": 0.773, "va_breite_pct": 0.42, "shape": "P-Shape", "naked_poc": false},
-          {"session": 4, "poc": 49718.9, "vah": 49838.52, "val": 49625.86, "mp_shape_pos": 0.438, "va_breite_pct": 0.43, "shape": "Trend Day", "naked_poc": false},
-          {"session": 5, "poc": 49633.94, "vah": 49725.27, "val": 49502.03, "mp_shape_pos": 0.591, "va_breite_pct": 0.45, "shape": "Trend Day", "naked_poc": false},
-          {"session": 6, "poc": 49663.6, "vah": 49785.32, "val": 49616.78, "mp_shape_pos": 0.278, "va_breite_pct": 0.34, "shape": "b-Shape", "naked_poc": false},
-          {"session": 7, "poc": 50020.04, "vah": 50134.66, "val": 49741.66, "mp_shape_pos": 0.708, "va_breite_pct": 0.79, "shape": "P-Shape", "naked_poc": false},
-          {"session": 8, "poc": 49449.76, "vah": 49858.71, "val": 49352.4, "mp_shape_pos": 0.192, "va_breite_pct": 1.02, "shape": "b-Shape", "naked_poc": false},
-          {"session": 9, "poc": 49031.41, "vah": 49249.83, "val": 49000.2, "mp_shape_pos": 0.125, "va_breite_pct": 0.51, "shape": "b-Shape", "naked_poc": true}
+          {
+            "session": 0,
+            "poc": 49235.73,
+            "vah": 49564.9,
+            "val": 49149.1,
+            "mp_shape_pos": 0.208,
+            "va_breite_pct": 0.84,
+            "shape": "b-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "poc": 49650.16,
+            "vah": 49956.39,
+            "val": 49596.12,
+            "mp_shape_pos": 0.15,
+            "va_breite_pct": 0.73,
+            "shape": "b-Shape",
+            "naked_poc": true
+          },
+          {
+            "session": 2,
+            "poc": 50103.9,
+            "vah": 50156.04,
+            "val": 49905.79,
+            "mp_shape_pos": 0.792,
+            "va_breite_pct": 0.5,
+            "shape": "P-Shape",
+            "naked_poc": true
+          },
+          {
+            "session": 3,
+            "poc": 49790.65,
+            "vah": 49837.65,
+            "val": 49630.85,
+            "mp_shape_pos": 0.773,
+            "va_breite_pct": 0.42,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 4,
+            "poc": 49718.9,
+            "vah": 49838.52,
+            "val": 49625.86,
+            "mp_shape_pos": 0.438,
+            "va_breite_pct": 0.43,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 5,
+            "poc": 49633.94,
+            "vah": 49725.27,
+            "val": 49502.03,
+            "mp_shape_pos": 0.591,
+            "va_breite_pct": 0.45,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "poc": 49663.6,
+            "vah": 49785.32,
+            "val": 49616.78,
+            "mp_shape_pos": 0.278,
+            "va_breite_pct": 0.34,
+            "shape": "b-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 7,
+            "poc": 50020.04,
+            "vah": 50134.66,
+            "val": 49741.66,
+            "mp_shape_pos": 0.708,
+            "va_breite_pct": 0.79,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 8,
+            "poc": 49449.76,
+            "vah": 49858.71,
+            "val": 49352.4,
+            "mp_shape_pos": 0.192,
+            "va_breite_pct": 1.02,
+            "shape": "b-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 9,
+            "poc": 49031.41,
+            "vah": 49249.83,
+            "val": 49000.2,
+            "mp_shape_pos": 0.125,
+            "va_breite_pct": 0.51,
+            "shape": "b-Shape",
+            "naked_poc": true
+          }
         ],
         "mp_context": {
           "poc_migration": "fallend",
           "shape_sequenz": "2x b-Shape + 1x P-Shape",
-          "naked_pocs": [49650.16, 50103.9, 49031.41],
+          "naked_pocs": [
+            49650.16,
+            50103.9,
+            49031.41
+          ],
           "composite_poc": 49667.33
         },
         "mri": {
@@ -312,45 +674,228 @@
           "top": 7525.1
         },
         "tpo_distribution": [
-          {"price": 7360.4, "count": 4, "type": "tail"},
-          {"price": 7364.43, "count": 9, "type": "va"},
-          {"price": 7368.46, "count": 12, "type": "va"},
-          {"price": 7372.48, "count": 13, "type": "va"},
-          {"price": 7374.5, "count": 1, "type": "poc"},
-          {"price": 7376.51, "count": 13, "type": "va"},
-          {"price": 7380.54, "count": 12, "type": "va"},
-          {"price": 7384.57, "count": 11, "type": "va"},
-          {"price": 7388.59, "count": 11, "type": "va"},
-          {"price": 7392.62, "count": 11, "type": "va"},
-          {"price": 7396.65, "count": 12, "type": "va"},
-          {"price": 7400.67, "count": 12, "type": "va"},
-          {"price": 7404.7, "count": 10, "type": "va"},
-          {"price": 7408.73, "count": 8, "type": "tail"},
-          {"price": 7412.76, "count": 7, "type": "tail"},
-          {"price": 7416.79, "count": 6, "type": "tail"},
-          {"price": 7420.81, "count": 5, "type": "tail"},
-          {"price": 7424.84, "count": 4, "type": "tail"},
-          {"price": 7428.87, "count": 4, "type": "tail"},
-          {"price": 7432.9, "count": 3, "type": "tail"},
-          {"price": 7436.92, "count": 3, "type": "tail"},
-          {"price": 7440.95, "count": 2, "type": "tail"}
+          {
+            "price": 7360.4,
+            "count": 4,
+            "type": "tail"
+          },
+          {
+            "price": 7364.43,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 7368.46,
+            "count": 12,
+            "type": "va"
+          },
+          {
+            "price": 7372.48,
+            "count": 13,
+            "type": "va"
+          },
+          {
+            "price": 7374.5,
+            "count": 1,
+            "type": "poc"
+          },
+          {
+            "price": 7376.51,
+            "count": 13,
+            "type": "va"
+          },
+          {
+            "price": 7380.54,
+            "count": 12,
+            "type": "va"
+          },
+          {
+            "price": 7384.57,
+            "count": 11,
+            "type": "va"
+          },
+          {
+            "price": 7388.59,
+            "count": 11,
+            "type": "va"
+          },
+          {
+            "price": 7392.62,
+            "count": 11,
+            "type": "va"
+          },
+          {
+            "price": 7396.65,
+            "count": 12,
+            "type": "va"
+          },
+          {
+            "price": 7400.67,
+            "count": 12,
+            "type": "va"
+          },
+          {
+            "price": 7404.7,
+            "count": 10,
+            "type": "va"
+          },
+          {
+            "price": 7408.73,
+            "count": 8,
+            "type": "tail"
+          },
+          {
+            "price": 7412.76,
+            "count": 7,
+            "type": "tail"
+          },
+          {
+            "price": 7416.79,
+            "count": 6,
+            "type": "tail"
+          },
+          {
+            "price": 7420.81,
+            "count": 5,
+            "type": "tail"
+          },
+          {
+            "price": 7424.84,
+            "count": 4,
+            "type": "tail"
+          },
+          {
+            "price": 7428.87,
+            "count": 4,
+            "type": "tail"
+          },
+          {
+            "price": 7432.9,
+            "count": 3,
+            "type": "tail"
+          },
+          {
+            "price": 7436.92,
+            "count": 3,
+            "type": "tail"
+          },
+          {
+            "price": 7440.95,
+            "count": 2,
+            "type": "tail"
+          }
         ],
         "mp_history": [
-          {"session": 0, "poc": 7374.5, "vah": 7404.7, "val": 7364.43, "mp_shape_pos": 0.25, "va_breite_pct": 0.55, "shape": "b-Shape", "naked_poc": false},
-          {"session": 1, "poc": 7432.98, "vah": 7465.97, "val": 7411.99, "mp_shape_pos": 0.389, "va_breite_pct": 0.73, "shape": "Trend Day", "naked_poc": true},
-          {"session": 2, "poc": 7468.38, "vah": 7497.6, "val": 7459.79, "mp_shape_pos": 0.227, "va_breite_pct": 0.51, "shape": "b-Shape", "naked_poc": true},
-          {"session": 3, "poc": 7423.71, "vah": 7434.3, "val": 7396.16, "mp_shape_pos": 0.722, "va_breite_pct": 0.51, "shape": "P-Shape", "naked_poc": false},
-          {"session": 4, "poc": 7400.87, "vah": 7415.02, "val": 7378.64, "mp_shape_pos": 0.611, "va_breite_pct": 0.49, "shape": "Trend Day", "naked_poc": false},
-          {"session": 5, "poc": 7394.62, "vah": 7415.34, "val": 7380.28, "mp_shape_pos": 0.409, "va_breite_pct": 0.47, "shape": "Trend Day", "naked_poc": false},
-          {"session": 6, "poc": 7403.4, "vah": 7410.0, "val": 7370.38, "mp_shape_pos": 0.833, "va_breite_pct": 0.54, "shape": "P-Shape", "naked_poc": false},
-          {"session": 7, "poc": 7378.79, "vah": 7393.45, "val": 7357.61, "mp_shape_pos": 0.591, "va_breite_pct": 0.49, "shape": "Trend Day", "naked_poc": false},
-          {"session": 8, "poc": 7288.15, "vah": 7336.8, "val": 7280.47, "mp_shape_pos": 0.136, "va_breite_pct": 0.77, "shape": "b-Shape", "naked_poc": true},
-          {"session": 9, "poc": 7234.63, "vah": 7256.82, "val": 7204.38, "mp_shape_pos": 0.577, "va_breite_pct": 0.72, "shape": "Trend Day", "naked_poc": true}
+          {
+            "session": 0,
+            "poc": 7374.5,
+            "vah": 7404.7,
+            "val": 7364.43,
+            "mp_shape_pos": 0.25,
+            "va_breite_pct": 0.55,
+            "shape": "b-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "poc": 7432.98,
+            "vah": 7465.97,
+            "val": 7411.99,
+            "mp_shape_pos": 0.389,
+            "va_breite_pct": 0.73,
+            "shape": "Trend Day",
+            "naked_poc": true
+          },
+          {
+            "session": 2,
+            "poc": 7468.38,
+            "vah": 7497.6,
+            "val": 7459.79,
+            "mp_shape_pos": 0.227,
+            "va_breite_pct": 0.51,
+            "shape": "b-Shape",
+            "naked_poc": true
+          },
+          {
+            "session": 3,
+            "poc": 7423.71,
+            "vah": 7434.3,
+            "val": 7396.16,
+            "mp_shape_pos": 0.722,
+            "va_breite_pct": 0.51,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 4,
+            "poc": 7400.87,
+            "vah": 7415.02,
+            "val": 7378.64,
+            "mp_shape_pos": 0.611,
+            "va_breite_pct": 0.49,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 5,
+            "poc": 7394.62,
+            "vah": 7415.34,
+            "val": 7380.28,
+            "mp_shape_pos": 0.409,
+            "va_breite_pct": 0.47,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "poc": 7403.4,
+            "vah": 7410.0,
+            "val": 7370.38,
+            "mp_shape_pos": 0.833,
+            "va_breite_pct": 0.54,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 7,
+            "poc": 7378.79,
+            "vah": 7393.45,
+            "val": 7357.61,
+            "mp_shape_pos": 0.591,
+            "va_breite_pct": 0.49,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 8,
+            "poc": 7288.15,
+            "vah": 7336.8,
+            "val": 7280.47,
+            "mp_shape_pos": 0.136,
+            "va_breite_pct": 0.77,
+            "shape": "b-Shape",
+            "naked_poc": true
+          },
+          {
+            "session": 9,
+            "poc": 7234.63,
+            "vah": 7256.82,
+            "val": 7204.38,
+            "mp_shape_pos": 0.577,
+            "va_breite_pct": 0.72,
+            "shape": "Trend Day",
+            "naked_poc": true
+          }
         ],
         "mp_context": {
           "poc_migration": "fallend",
           "shape_sequenz": "2x b-Shape + 1x Trend Day",
-          "naked_pocs": [7432.98, 7468.38, 7288.15, 7234.63],
+          "naked_pocs": [
+            7432.98,
+            7468.38,
+            7288.15,
+            7234.63
+          ],
           "composite_poc": 7405.35
         },
         "mri": {
@@ -361,17 +906,126 @@
       }
     },
     "calendar": [
-      {"date": "2026-05-19", "time": "16:00", "currency": "USD", "name": "Pending Home Sales m/m", "impact": "medium", "actual": "", "forecast": "1.0%", "previous": "1.5%", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-20", "time": "20:00", "currency": "USD", "name": "FOMC Meeting Minutes", "impact": "high", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-21", "time": "09:15", "currency": "EUR", "name": "French Flash Manufacturing PMI", "impact": "medium", "actual": "", "forecast": "52.1", "previous": "52.8", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-21", "time": "09:15", "currency": "EUR", "name": "French Flash Services PMI", "impact": "medium", "actual": "", "forecast": "46.6", "previous": "46.5", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-21", "time": "09:30", "currency": "EUR", "name": "German Flash Manufacturing PMI", "impact": "medium", "actual": "", "forecast": "51.0", "previous": "51.2", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-21", "time": "09:30", "currency": "EUR", "name": "German Flash Services PMI", "impact": "medium", "actual": "", "forecast": "47.1", "previous": "46.9", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-21", "time": "14:30", "currency": "USD", "name": "Philly Fed Manufacturing Index", "impact": "medium", "actual": "", "forecast": "17.8", "previous": "26.7", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-21", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "210K", "previous": "211K", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-21", "time": "15:45", "currency": "USD", "name": "Flash Manufacturing PMI", "impact": "medium", "actual": "", "forecast": "53.7", "previous": "54.0", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-21", "time": "15:45", "currency": "USD", "name": "Flash Services PMI", "impact": "medium", "actual": "", "forecast": "51.1", "previous": "51.3", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-22", "time": "16:00", "currency": "USD", "name": "Revised UoM Consumer Sentiment", "impact": "medium", "actual": "", "forecast": "48.3", "previous": "48.2", "better": null, "source": "forexfactory"}
+      {
+        "date": "2026-05-20",
+        "time": "20:00",
+        "currency": "USD",
+        "name": "FOMC Meeting Minutes",
+        "impact": "high",
+        "actual": "",
+        "forecast": "",
+        "previous": "",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-21",
+        "time": "09:15",
+        "currency": "EUR",
+        "name": "French Flash Manufacturing PMI",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "52.1",
+        "previous": "52.8",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-21",
+        "time": "09:15",
+        "currency": "EUR",
+        "name": "French Flash Services PMI",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "46.6",
+        "previous": "46.5",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-21",
+        "time": "09:30",
+        "currency": "EUR",
+        "name": "German Flash Manufacturing PMI",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "51.0",
+        "previous": "51.2",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-21",
+        "time": "09:30",
+        "currency": "EUR",
+        "name": "German Flash Services PMI",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "47.1",
+        "previous": "46.9",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-21",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Philly Fed Manufacturing Index",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "17.6",
+        "previous": "26.7",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-21",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Unemployment Claims",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "210K",
+        "previous": "211K",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-21",
+        "time": "15:45",
+        "currency": "USD",
+        "name": "Flash Manufacturing PMI",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "53.8",
+        "previous": "54.0",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-21",
+        "time": "15:45",
+        "currency": "USD",
+        "name": "Flash Services PMI",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "51.1",
+        "previous": "51.3",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-22",
+        "time": "16:00",
+        "currency": "USD",
+        "name": "Revised UoM Consumer Sentiment",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "48.2",
+        "previous": "48.2",
+        "better": null,
+        "source": "forexfactory"
+      }
     ]
   },
   "delta": {
@@ -713,16 +1367,125 @@
     }
   },
   "calendar": [
-    {"date": "2026-05-19", "time": "16:00", "currency": "USD", "name": "Pending Home Sales m/m", "impact": "medium", "actual": "", "forecast": "1.0%", "previous": "1.5%", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-20", "time": "20:00", "currency": "USD", "name": "FOMC Meeting Minutes", "impact": "high", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-21", "time": "09:15", "currency": "EUR", "name": "French Flash Manufacturing PMI", "impact": "medium", "actual": "", "forecast": "52.1", "previous": "52.8", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-21", "time": "09:15", "currency": "EUR", "name": "French Flash Services PMI", "impact": "medium", "actual": "", "forecast": "46.6", "previous": "46.5", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-21", "time": "09:30", "currency": "EUR", "name": "German Flash Manufacturing PMI", "impact": "medium", "actual": "", "forecast": "51.0", "previous": "51.2", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-21", "time": "09:30", "currency": "EUR", "name": "German Flash Services PMI", "impact": "medium", "actual": "", "forecast": "47.1", "previous": "46.9", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-21", "time": "14:30", "currency": "USD", "name": "Philly Fed Manufacturing Index", "impact": "medium", "actual": "", "forecast": "17.8", "previous": "26.7", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-21", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "210K", "previous": "211K", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-21", "time": "15:45", "currency": "USD", "name": "Flash Manufacturing PMI", "impact": "medium", "actual": "", "forecast": "53.7", "previous": "54.0", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-21", "time": "15:45", "currency": "USD", "name": "Flash Services PMI", "impact": "medium", "actual": "", "forecast": "51.1", "previous": "51.3", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-22", "time": "16:00", "currency": "USD", "name": "Revised UoM Consumer Sentiment", "impact": "medium", "actual": "", "forecast": "48.3", "previous": "48.2", "better": null, "source": "forexfactory"}
+    {
+      "date": "2026-05-20",
+      "time": "20:00",
+      "currency": "USD",
+      "name": "FOMC Meeting Minutes",
+      "impact": "high",
+      "actual": "",
+      "forecast": "",
+      "previous": "",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "09:15",
+      "currency": "EUR",
+      "name": "French Flash Manufacturing PMI",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "52.1",
+      "previous": "52.8",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "09:15",
+      "currency": "EUR",
+      "name": "French Flash Services PMI",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "46.6",
+      "previous": "46.5",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "09:30",
+      "currency": "EUR",
+      "name": "German Flash Manufacturing PMI",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "51.0",
+      "previous": "51.2",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "09:30",
+      "currency": "EUR",
+      "name": "German Flash Services PMI",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "47.1",
+      "previous": "46.9",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Philly Fed Manufacturing Index",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "17.6",
+      "previous": "26.7",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Unemployment Claims",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "210K",
+      "previous": "211K",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "15:45",
+      "currency": "USD",
+      "name": "Flash Manufacturing PMI",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "53.8",
+      "previous": "54.0",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-21",
+      "time": "15:45",
+      "currency": "USD",
+      "name": "Flash Services PMI",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "51.1",
+      "previous": "51.3",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-22",
+      "time": "16:00",
+      "currency": "USD",
+      "name": "Revised UoM Consumer Sentiment",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "48.2",
+      "previous": "48.2",
+      "better": null,
+      "source": "forexfactory"
+    }
   ]
 }
