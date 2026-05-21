@@ -1359,21 +1359,22 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-21T08:18:00.000Z",
+    "_last_run": "2026-05-21T14:59:00.000Z",
     "_status": "ready",
-    "session": "Morning",
+    "_update_type": "usupdate",
+    "session": "USUpdate",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
     "warnungen_count": 3,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260521_0818_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260521_1459_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK (0 Orders, Doc 1wMCIXeHwc4)",
-      "github_web": "OK (Push 6f4c036)",
-      "datenqualitaet": "OK (PCR null, ONH/ONL null bekannt)",
-      "entscheidung": "WAIT (Score 4/8, Konfidenz 0.333, 0/3 Top-Down)",
-      "anomalien": "3 Beobachtungen: GER40 ER neg, SPX500 b-Shape+VAH-Above, synchroner Rally"
+      "sheet_doc": "OK (0 Orders, kein neues Doc)",
+      "github_web": "OK (Push 3f3ccca)",
+      "datenqualitaet": "OK (ONH/ONL null, PCR delisted - bekannt)",
+      "entscheidung": "WAIT (align -4 abs, Konfidenz 0.40 Schwelle, 0/3 alle_short_ok)",
+      "anomalien": "3 Beobachtungen: alle ER gedreht, Pre-NY Pullback komplett, SMA200 S3-Blocker"
     }
   },
   "calendar": [
