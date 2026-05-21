@@ -915,18 +915,6 @@
     },
     "calendar": [
       {
-        "date": "2026-05-20",
-        "time": "20:00",
-        "currency": "USD",
-        "name": "FOMC Meeting Minutes",
-        "impact": "high",
-        "actual": "",
-        "forecast": "",
-        "previous": "",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-05-21",
         "time": "09:15",
         "currency": "EUR",
@@ -1381,18 +1369,6 @@
     }
   },
   "calendar": [
-    {
-      "date": "2026-05-20",
-      "time": "20:00",
-      "currency": "USD",
-      "name": "FOMC Meeting Minutes",
-      "impact": "high",
-      "actual": "",
-      "forecast": "",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
     {
       "date": "2026-05-21",
       "time": "09:15",
