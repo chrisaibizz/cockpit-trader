@@ -1,6 +1,6 @@
 {
   "pipeline": {
-    "status": "in_progress",
+    "status": "completed",
     "last_run": "2026-05-21T08:10:00.000Z",
     "run_date": "2026-05-21",
     "run_type": "morning",
@@ -9,7 +9,8 @@
       "marketdata",
       "analyst",
       "captain",
-      "executor"
+      "executor",
+      "monitor"
     ],
     "result": "WAIT",
     "score": "+4/8 best=NONE - 0 Orders - Konfidenz 0.333",
@@ -1343,21 +1344,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-20T14:45:00.000Z",
+    "_last_run": "2026-05-21T08:18:00.000Z",
     "_status": "ready",
-    "session": "USUpdate",
+    "session": "Morning",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "warnungen_count": 2,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260520_1445_USUpdate.txt",
+    "warnungen_count": 3,
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260521_0818_Morning.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK (0 neue Orders)",
-      "github_web": "OK (Push folgt)",
-      "datenqualitaet": "OK (PCR null, OIL/GOLD nicht refreshed)",
-      "entscheidung": "WAIT (Score 5/8, Konfidenz 0.31, Top-Down 1/3)",
-      "anomalien": "Synchroner +0.42-0.72% Rally seit 08:00 ohne erkennbare News - Yield-getrieben"
+      "sheet_doc": "OK (0 Orders, Doc 1wMCIXeHwc4)",
+      "github_web": "OK (Push 6f4c036)",
+      "datenqualitaet": "OK (PCR null, ONH/ONL null bekannt)",
+      "entscheidung": "WAIT (Score 4/8, Konfidenz 0.333, 0/3 Top-Down)",
+      "anomalien": "3 Beobachtungen: GER40 ER neg, SPX500 b-Shape+VAH-Above, synchroner Rally"
     }
   },
   "calendar": [
