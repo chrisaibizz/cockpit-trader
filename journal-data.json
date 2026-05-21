@@ -1,267 +1,191 @@
 {
   "date": "2026-05-21",
-  "timestamp": "2026-05-21T08:13:00.000Z",
-  "phase": "AUSBRUCH_LONG_LEAN",
-  "regime": "NEUTRAL",
-  "session_bias": "WAIT",
-  "alignment_score": 4,
-  "makro_bias": "NEUTRAL",
-  "konfidenz": 0.3333,
+  "timestamp": "2026-05-21T14:50:00.000Z",
+  "phase": "AUSBRUCH_GESCHEITERT_PULLBACK",
+  "regime": "NEUTRAL_BAERISCH",
+  "session_bias": "WAIT (SHORT-LEAN Tendenz)",
+  "alignment_score": -4,
+  "alignment_score_abs": 4,
+  "makro_bias": "LEICHT_RISK_OFF",
+  "konfidenz": 0.4,
+  "update_type": "usupdate",
   "debrief": {
     "orders_checked": 0,
     "fill_rate": "n.a.",
     "tp1_rate": "n.a.",
-    "trend": "WAIT (USUpdate gestern 14:45 ebenfalls WAIT - 0 Orders)",
+    "trend": "WAIT (Morning 08:10 + USUpdate 14:50 beide WAIT - 0 Orders)",
     "learnings": [
-      "Gestern (20.05) Morning + USUpdate beide WAIT - keine Trades, keine Validierung",
-      "Konfidenz lag 14:45 bei 0.31 mit GER40 alle_long_ok isoliert (1/3)",
-      "Heute 08:10: Konfidenz 0.33 - aehnliches Bild, aber 0/3 Top-Down (GER40 verliert S2 wegen VWAP-Below + ER neg)"
+      "Morning 08:10: alle 3 Instr Pre-NY-Bullish +1.0-1.4%, GER40 align +4 isoliert, Konfidenz 0.333 -> WAIT",
+      "USUpdate 14:50: vollstaendiger Pullback - alle 3 ER gedreht von bullish zu bearish, alle unter VWAP",
+      "Konfidenz 0.40 GENAU Schwelle - kein Sicherheitsabstand fuer Short-Entry",
+      "Top-Down 0/3 alle_short_ok wegen sma200 unter Preis (S3-Blocker)"
     ]
   },
   "instruments": [
     {
       "name": "GER40",
-      "bias": "Bullisch",
-      "bias_color": "green",
-      "bias_score": 4,
-      "bias_pct": "75",
-      "confluence_score": 4,
-      "confluence_against": 0,
+      "bias": "Neutral",
+      "bias_color": "yellow",
+      "bias_score": 1,
+      "bias_pct": "56",
+      "confluence_score": 1,
+      "confluence_against": 3,
       "confluence_total": 8,
-      "confluence_pct": 75,
-      "confluence_label": "4/8 (bullisch)",
+      "confluence_pct": 56,
+      "confluence_label": "1/8 (neutral mit bearish-Drift)",
       "quote": {
-        "price": 24705.69,
-        "change": 305.01,
-        "change_pct": 1.25,
-        "source": "vantage_cdp_30M"
+        "price": 24553.50,
+        "change": -152.19,
+        "change_pct": -0.62,
+        "source": "vantage_cdp_30M_usupdate"
       },
-      "current_price": 24705.69,
+      "current_price": 24553.50,
       "market_profile": {
         "poc": 24757.75,
         "vah": 24813.12,
         "val": 24333.23,
-        "vwap": 24733.41,
+        "vwap": 24699.48,
         "shape": {
-          "name": "P-Shape",
-          "description": "pos=0.885 BULLISCH"
+          "name": "P-Shape (Session) / Intraday bearish",
+          "description": "pos=0.885 Session aber price_pos_in_VA=0.459 mid-VA"
         }
       },
-      "daily_summary": "Bias BULLISCH (Score 4/8). MP=P-Shape pos=0.885. Preis 24705.69 vs VWAP 24733.41 (unter_VWAP). ER=-44.61.",
-      "h4_summary": "4H-Daten via 30M-Kontext: Preis ueber/im VA-Bereich 24333.23-24813.12, POC 24757.75.",
-      "h1_summary": "1H: VWAP-Band 24701.72-24765.1, Ichimoku Kijun 24712.7, SMA200 24292.69.",
-      "h30m_summary": "Kurs 24705.69 vs VWAP 24733.41 (unter_VWAP). POC=24757.75 VAH=24813.12 VAL=24333.23. Shape: P-Shape pos=0.885. S1=0.7 S2=0.0 S3=0.167. alle_long_ok=False.",
+      "daily_summary": "Bias NEUTRAL (Score 1/8). MP=P-Shape Session pos=0.885 (Session unveraendert) aber Preis im VA-mid 0.459. Preis 24553.50 unter VWAP-Lower 24617.30. ER=-58.83 stark_bearish.",
+      "h4_summary": "4H-Daten: Preis 24553 zurueck im VA-Bereich 24333-24813, unter Kumo (B 24587 ueber Preis).",
+      "h1_summary": "1H: VWAP-Band 24617-24781, Ichimoku Kijun/Tenkan 24706.53, SMA200 24311.85.",
+      "h30m_summary": "Kurs 24553.50 unter VWAP-Lower 24617.30. POC=24757.75 VAH=24813.12 VAL=24333.23. S1=+0.6 S2=-1.0 S3=0.0 align=+1. alle_long_ok=False (S2 fail) alle_short_ok=False (S1 noch positiv via Session-Bias).",
       "mp_shape_yesterday": "P-Shape",
-      "mp_shape_forecast": "P-Shape",
+      "mp_shape_forecast": "Pullback in P-Shape (Session-Werte unveraendert)",
       "mp_5day_sequence": "3x P-Shape",
       "key_levels": [
-        {
-          "level": "POC",
-          "price": "24757.75",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAH",
-          "price": "24813.12",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL",
-          "price": "24333.23",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP",
-          "price": "24733.41",
-          "source": "VWAP 30M"
-        },
-        {
-          "level": "PDH",
-          "price": "24430.98",
-          "source": "Vortag"
-        },
-        {
-          "level": "PDL",
-          "price": "23797.33",
-          "source": "Vortag"
-        },
-        {
-          "level": "SMA200",
-          "price": "24292.69",
-          "source": "SMA200"
-        }
+        {"level": "POC", "price": "24757.75", "source": "Market Profile"},
+        {"level": "VAH", "price": "24813.12", "source": "Market Profile"},
+        {"level": "VAL", "price": "24333.23", "source": "Market Profile"},
+        {"level": "VWAP", "price": "24699.48", "source": "VWAP 30M"},
+        {"level": "VWAP_Lower", "price": "24617.30", "source": "VWAP Lower SD"},
+        {"level": "Kumo_B", "price": "24587.45", "source": "Ichimoku"},
+        {"level": "PDH", "price": "24430.98", "source": "Vortag"},
+        {"level": "PDL", "price": "23797.33", "source": "Vortag"},
+        {"level": "SMA200", "price": "24311.85", "source": "SMA200"}
       ],
       "orders": [],
-      "invalidation": "Bias dreht unter 24333.23 (P-Shape VAL) oder ueber 24813.12 (VAH-Reclaim)."
+      "invalidation": "Bias dreht klar bearish unter PDH 24430.98 (Bestaetigung Pullback). Bias dreht zurueck bullish ueber VWAP 24699.48 (Reclaim)."
     },
     {
       "name": "US30",
-      "bias": "Bullisch Neutral",
-      "bias_color": "green",
-      "bias_score": 2,
-      "bias_pct": "62",
-      "confluence_score": 2,
-      "confluence_against": 0,
+      "bias": "Neutral Bearisch",
+      "bias_color": "yellow",
+      "bias_score": -1,
+      "bias_pct": "48",
+      "confluence_score": -1,
+      "confluence_against": 3,
       "confluence_total": 8,
-      "confluence_pct": 62,
-      "confluence_label": "2/8 (bullisch_neutral)",
+      "confluence_pct": 48,
+      "confluence_label": "-1/8 (neutral_bearisch)",
       "quote": {
-        "price": 50004.41,
-        "change": 641.72,
-        "change_pct": 1.3,
-        "source": "vantage_cdp_30M"
+        "price": 49909.51,
+        "change": -94.90,
+        "change_pct": -0.19,
+        "source": "vantage_cdp_30M_usupdate"
       },
-      "current_price": 50004.41,
+      "current_price": 49909.51,
       "market_profile": {
         "poc": 49405.66,
         "vah": 49686.46,
         "val": 49254.46,
-        "vwap": 49953.85,
+        "vwap": 49990.67,
         "shape": {
-          "name": "D-Shape",
-          "description": "pos=0.35 NEUTRAL"
+          "name": "D-Shape (Session) / Pullback",
+          "description": "pos=0.35 Session, price_pos_in_VA=1.516 noch ueber VAH"
         }
       },
-      "daily_summary": "Bias BULLISCH_NEUTRAL (Score 2/8). MP=D-Shape pos=0.35. Preis 50004.41 vs VWAP 49953.85 (ueber_upper). ER=28.21.",
-      "h4_summary": "4H-Daten via 30M-Kontext: Preis ueber/im VA-Bereich 49254.46-49686.46, POC 49405.66.",
-      "h1_summary": "1H: VWAP-Band 49924.04-49983.66, Ichimoku Kijun 49976.46, SMA200 49629.35.",
-      "h30m_summary": "Kurs 50004.41 vs VWAP 49953.85 (ueber_upper). POC=49405.66 VAH=49686.46 VAL=49254.46. Shape: D-Shape pos=0.35. S1=0.1 S2=0.75 S3=0.333. alle_long_ok=False.",
-      "mp_shape_yesterday": "Trend Day",
-      "mp_shape_forecast": "D-Shape",
+      "daily_summary": "Bias NEUTRAL_BEARISCH (Score -1/8). MP=D-Shape Session pos=0.35. Preis 49909 noch ueber VAH 49686 (price_pos 1.516) aber knapp unter VWAP-Lower 49919. ER=-9.45 gedreht.",
+      "h4_summary": "4H-Daten: Preis 49909 ueber VAH 49686 aber in Kumo (T/K 50049 ueber Preis, B 49752 unter).",
+      "h1_summary": "1H: VWAP-Band 49919-50062, Ichimoku Tenkan/Kijun 50049.96, SMA200 49629.19.",
+      "h30m_summary": "Kurs 49909.51 knapp unter VWAP-Lower 49919.11. POC=49405.66 VAH=49686.46 VAL=49254.46. S1=+0.1 S2=-0.75 S3=+0.167 align=-1. alle_long_ok=False alle_short_ok=False (S1 positiv).",
+      "mp_shape_yesterday": "D-Shape",
+      "mp_shape_forecast": "Pullback - Konsolidierung ueber VAH",
       "mp_5day_sequence": "gemischt",
       "key_levels": [
-        {
-          "level": "POC",
-          "price": "49405.66",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAH",
-          "price": "49686.46",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL",
-          "price": "49254.46",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP",
-          "price": "49953.85",
-          "source": "VWAP 30M"
-        },
-        {
-          "level": "PDH",
-          "price": "49761.16",
-          "source": "Vortag"
-        },
-        {
-          "level": "PDL",
-          "price": "49352.56",
-          "source": "Vortag"
-        },
-        {
-          "level": "SMA200",
-          "price": "49629.35",
-          "source": "SMA200"
-        }
+        {"level": "POC", "price": "49405.66", "source": "Market Profile"},
+        {"level": "VAH", "price": "49686.46", "source": "Market Profile"},
+        {"level": "VAL", "price": "49254.46", "source": "Market Profile"},
+        {"level": "VWAP", "price": "49990.67", "source": "VWAP 30M"},
+        {"level": "VWAP_Lower", "price": "49919.11", "source": "VWAP Lower SD"},
+        {"level": "Tenkan/Kijun", "price": "50049.96", "source": "Ichimoku"},
+        {"level": "PDH", "price": "49761.16", "source": "Vortag"},
+        {"level": "SMA200", "price": "49629.19", "source": "SMA200"}
       ],
       "orders": [],
-      "invalidation": "Bias dreht unter 49254.46 (D-Shape VAL) oder ueber 49686.46 (VAH-Reclaim)."
+      "invalidation": "Bearish-Setup wenn klar unter VAH 49686 fallend. Bullish-Reclaim wenn VWAP 49990 zurueckerobert."
     },
     {
       "name": "SPX500",
-      "bias": "Bullisch Neutral",
-      "bias_color": "green",
-      "bias_score": 1,
-      "bias_pct": "56",
-      "confluence_score": 1,
-      "confluence_against": 0,
+      "bias": "Baerisch Lean",
+      "bias_color": "red",
+      "bias_score": -4,
+      "bias_pct": "25",
+      "confluence_score": -4,
+      "confluence_against": 5,
       "confluence_total": 8,
-      "confluence_pct": 56,
-      "confluence_label": "1/8 (bullisch_neutral)",
+      "confluence_pct": 25,
+      "confluence_label": "-4/8 (baerisch_lean)",
       "quote": {
-        "price": 7436.09,
-        "change": 82.36,
-        "change_pct": 1.12,
-        "source": "vantage_cdp_30M"
+        "price": 7412.84,
+        "change": -23.25,
+        "change_pct": -0.31,
+        "source": "vantage_cdp_30M_usupdate"
       },
-      "current_price": 7436.09,
+      "current_price": 7412.84,
       "market_profile": {
         "poc": 7367.81,
         "vah": 7416.08,
         "val": 7344.94,
-        "vwap": 7419.38,
+        "vwap": 7424.18,
         "shape": {
           "name": "b-Shape",
-          "description": "pos=0.321 BAERISCH"
+          "description": "pos=0.321 BAERISCH Session"
         }
       },
-      "daily_summary": "Bias BULLISCH_NEUTRAL (Score 1/8). MP=b-Shape pos=0.321. Preis 7436.09 vs VWAP 7419.38 (ueber_upper). ER=44.68.",
-      "h4_summary": "4H-Daten via 30M-Kontext: Preis ueber/im VA-Bereich 7344.94-7416.08, POC 7367.81.",
-      "h1_summary": "1H: VWAP-Band 7407.25-7431.52, Ichimoku Kijun 7421.28, SMA200 7407.8.",
-      "h30m_summary": "Kurs 7436.09 vs VWAP 7419.38 (ueber_upper). POC=7367.81 VAH=7416.08 VAL=7344.94. Shape: b-Shape pos=0.321. S1=-0.3 S2=1.0 S3=0.333. alle_long_ok=False.",
-      "mp_shape_yesterday": "Trend Day",
-      "mp_shape_forecast": "b-Shape",
+      "daily_summary": "Bias BAERISCH_LEAN (Score -4/8). MP=b-Shape pos=0.321. Preis 7412.84 ZURUECK IN VA (war ueber_VAH 7436), unter VWAP 7424. ER=-17.25 gedreht. alle_short_ok blockiert weil sma200 7403 unter Preis = S3 +0.167.",
+      "h4_summary": "4H-Daten: Preis 7412 in VA-Bereich 7345-7416, in Kumo bottom (KumoB 7412 = aktuelle Preis).",
+      "h1_summary": "1H: VWAP-Band 7411-7436, Ichimoku Tenkan 7428 Kijun 7431, SMA200 7403.37.",
+      "h30m_summary": "Kurs 7412.84 unter VWAP 7424.18 (knapp ueber Lower 7411.57). S1=-0.5 S2=-0.75 S3=+0.167 align=-4. alle_short_ok=False (S3 +0.167 wegen sma200 unter Preis).",
+      "mp_shape_yesterday": "b-Shape",
+      "mp_shape_forecast": "b-Shape Bestaetigung durch Pullback zurueck unter VAH",
       "mp_5day_sequence": "2x b-Shape + 1x Trend Day",
       "key_levels": [
-        {
-          "level": "POC",
-          "price": "7367.81",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAH",
-          "price": "7416.08",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL",
-          "price": "7344.94",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP",
-          "price": "7419.38",
-          "source": "VWAP 30M"
-        },
-        {
-          "level": "PDH",
-          "price": "7434.06",
-          "source": "Vortag"
-        },
-        {
-          "level": "PDL",
-          "price": "7353.17",
-          "source": "Vortag"
-        },
-        {
-          "level": "SMA200",
-          "price": "7407.8",
-          "source": "SMA200"
-        }
+        {"level": "POC", "price": "7367.81", "source": "Market Profile"},
+        {"level": "VAH", "price": "7416.08", "source": "Market Profile"},
+        {"level": "VAL", "price": "7344.94", "source": "Market Profile"},
+        {"level": "VWAP", "price": "7424.18", "source": "VWAP 30M"},
+        {"level": "VWAP_Lower", "price": "7411.57", "source": "VWAP Lower SD"},
+        {"level": "Kumo_B", "price": "7412.02", "source": "Ichimoku"},
+        {"level": "PDH", "price": "7434.06", "source": "Vortag"},
+        {"level": "PDL", "price": "7353.17", "source": "Vortag"},
+        {"level": "SMA200", "price": "7403.37", "source": "SMA200"}
       ],
       "orders": [],
-      "invalidation": "Bias dreht unter 7344.94 (b-Shape VAL) oder ueber 7416.08 (VAH-Reclaim)."
+      "invalidation": "Short-Setup aktiv wenn unter SMA200 7403.37 (S3-Trigger). Bullish-Reclaim wenn ueber VWAP 7424.18 + VAH 7416.08."
     }
   ],
   "summary": {
-    "best_instrument": "GER40 (align 4/8 BULLISCH, aber S2=0 -> nicht alle_long_ok)",
+    "best_instrument": "SPX500 (align -4 BAERISCH_LEAN aber alle_short_ok blockiert durch sma200)",
     "total_orders": 0,
     "warnings": [
-      "Top-Down isoliert: nur 0/3 alle_long_ok",
-      "Konfidenz 0.333 < 0.40 Schwelle - kein Trade trotz 4/8 bei GER40",
-      "SPX500 b-Shape (pos 0.321) bei Preis ueber VAH - Strukturelle Spannung",
-      "GER40 ER negativ -44.61 trotz Tag +1.25% - intraday Pullback in Range",
-      "Calendar 14:30 Philly Fed + Unemployment Claims (MEDIUM), 15:45 US Flash PMI (MEDIUM)"
+      "Konfidenz 0.40 GENAU Schwelle - kein Sicherheitsabstand",
+      "Alle 3 ER gedreht von bullish zu bearish in 6h",
+      "SPX500 align -4 = klarste Bearish-Tendenz aber S3 blockiert wegen sma200 unter Preis",
+      "GER40 unter Kumo + unter VWAP-Lower aber Session P-Shape (Shape-Konflikt)",
+      "Calendar 14:30 Philly Fed/Claims + 15:45 PMI ausstehend - kann auf beide Seiten triggern"
     ],
-    "notes": "Morning 08:10: 3 Instrumente synchron +1.0-1.4% Pre-NY, alle ueber prev_close. GER40 ueber Vortag-POC 24600 (jetzt 24705), DJ30 ueber gestrige VAH 49743 (50004), SPX500 ueber gestrige VAH 7406 (7436). Aber: GER40 zog von Session-High 24813 zurueck (jetzt 24705 unter VWAP). DJ30 D-Shape pos 0.35 = Grenzbereich. SPX500 b-Shape (pos 0.321) bei Preis ueber VAH = klassischer 'Break-and-Fail-Setup-Risk'. Konfidenz 0.333 reflektiert die strukturelle Inkonsistenz. WAIT bis 2/3 alle_long_ok ODER klare Direction emerged."
+    "notes": "USUpdate 14:50: Pre-NY-Bullish-Bid vom Morgen vollstaendig retraced. Alle 3 ER gedreht (Morning stark_bullish auf 2/3 -> bearish auf 3/3). Alle 3 unter VWAP. SPX500 zurueck in VA (war ueber VAH), DJ30 noch knapp ueber VAH (wackelig), GER40 unter Kumo + unter VWAP-Lower (techn. bearish). Aber: Session-MP-Werte unveraendert seit Morning. SMA200 unter allen Preisen = S3-Blocker fuer alle_short_ok. Konfidenz 0.40 GENAU Schwelle = WAIT. Re-Trigger SPX500 < 7403 (sma200) oder neue Session-Shape-Update."
   },
   "stats": {
     "total": 0,
     "fill_rate": "n.a.",
     "tp1_rate": "n.a.",
-    "trend": "WAIT"
+    "trend": "WAIT (Morning + USUpdate beide WAIT - 0 Orders)"
   },
   "orders_count": 0
 }
