@@ -1,13 +1,13 @@
 {
   "date": "2026-05-22",
-  "timestamp": "2026-05-22T06:20:44",
-  "phase": "AUSBRUCH_LONG",
+  "timestamp": "2026-05-22T14:57:30",
+  "phase": "TREND",
   "regime": "NEUTRAL",
-  "session_bias": "WAIT",
-  "alignment_score": 5,
-  "alignment_score_abs": 5,
-  "trade_freigabe": false,
-  "konfidenz": 0.375,
+  "session_bias": "LONG-LEAN",
+  "alignment_score": 7,
+  "alignment_score_abs": 7,
+  "trade_freigabe": true,
+  "konfidenz": 0.525,
   "konfidenz_direction": "LONG",
   "makro_bias": "NEUTRAL",
   "makro_score": -1,
@@ -15,53 +15,57 @@
     "orders_checked": 0,
     "fill_rate": "n.a.",
     "tp1_rate": "n.a.",
-    "trend": "WAIT (USUpdate 14:50 0 Orders + Morning 08:11 0 Orders)",
-    "learnings": []
+    "trend": "USUpdate 14:45 Bias-Drehung: WAIT->LONG-LEAN (0 Orders). Morning 08:11 WAIT.",
+    "learnings": [
+      "ER kann von -8.46 auf +32.04 in 6h drehen (GER40) -> S2 von 0 auf 1.0 -> alle_long_ok aktiviert",
+      "Pre-NY-Bullish-Continuation bestaetigt: alle 3 Instr steigend trotz NEUTRAL Makro",
+      "Konfidenz 0.525 grenzwertig: Trade nur bei P-Shape (GER40 qualifiziert, DJ30/SPX500 Trend Day NEUTRAL nicht)"
+    ]
   },
   "instruments": [
     {
       "name": "GER40",
-      "bias": "LEICHT_BULLISH",
-      "bias_score": 5,
-      "bias_pct": "81",
-      "score": 5,
+      "bias": "BULLISH",
+      "bias_score": 7,
+      "bias_pct": "88",
+      "score": 7,
       "poc": 24748.09,
       "vah": 24797.4,
       "val": 24580.43,
-      "vwap": 24864.16,
-      "vwap_upper": 24879.52,
-      "vwap_lower": 24848.8,
-      "current_price": 24835.15,
-      "change_pct": 0.4,
+      "vwap": 24817.1,
+      "vwap_upper": 24875.22,
+      "vwap_lower": 24758.98,
+      "current_price": 24852.7,
+      "change_pct": 0.47,
       "mp_shape": "P-Shape",
       "mp_shape_pos": 0.773,
       "mp_shape_bias": "BULLISCH",
-      "er": -8.46,
-      "er_qualitaet": "leicht_bearish",
-      "sma200": 24396.82,
+      "er": 32.04,
+      "er_qualitaet": "klarer_trend_bullish",
+      "sma200": 24455.17,
       "pdh": 24894.63,
       "pdl": 24534.79,
       "onh": null,
       "onl": null,
-      "cdv": 52220.99,
+      "cdv": 51315.44,
       "ichimoku": {
-        "tenkan": 24865.0,
-        "kijun": 24759.35,
-        "kumo_a": 24812.18,
-        "kumo_b": 24720.8
+        "tenkan": 24824.13,
+        "kijun": 24807.0,
+        "kumo_a": 24815.57,
+        "kumo_b": 24734.35
       },
       "fibo": {
-        "level_0": 24920.35,
-        "level_50": 24534.5,
-        "level_618": 24443.44,
-        "top": 24920.35
+        "level_0": 24947.45,
+        "level_50": 24548.05,
+        "level_618": 24453.79,
+        "top": 24947.45
       },
       "mri": {
-        "mean": 24672.54,
-        "s1": 24446.13,
-        "r1": 24898.96,
-        "s2": 24125.75,
-        "r2": 25219.33
+        "mean": 24727.63,
+        "s1": 24505.25,
+        "r1": 24950.0,
+        "s2": 24190.59,
+        "r2": 25264.66
       },
       "mp_context": {
         "poc_migration": "steigend",
@@ -72,96 +76,96 @@
         "composite_poc": 24471.96
       },
       "schichten_s1": 1.0,
-      "schichten_s2": 0.0,
+      "schichten_s2": 1.0,
       "schichten_s3": 0.333,
-      "alle_long_ok": false,
+      "alle_long_ok": true,
       "alle_short_ok": false,
-      "bias_direction": "NONE",
-      "daily_summary": "Bias LEICHT_BULLISH align +5/8. Phase AUSBRUCH_LONG.",
-      "h30m_summary": "Kurs 24835.15 vs VWAP 24864.16 (unter_lower). POC=24748.09 VAH=24797.4 VAL=24580.43. Shape: P-Shape pos=0.773. ER=-8.46.",
+      "bias_direction": "LONG",
+      "daily_summary": "USUpdate 14:45: Bias BULLISH align +7/8 (vorher +5). Phase TREND_LONG. ER drehte -8.46 -> +32.04.",
+      "h30m_summary": "Kurs 24852.70 vs VWAP 24817.10 (ueber_VWAP). POC=24748.09 VAH=24797.40 VAL=24580.43. Shape P-Shape pos=0.773. ER=+32.04 klarer Trend. S1=1.0 S2=1.0 S3=0.333.",
       "key_levels": [
         {
+          "level": "PDH",
+          "price": "24894.63",
+          "source": "Vortag"
+        },
+        {
+          "level": "Fibo 0",
+          "price": "24947.45",
+          "source": "Auto Fibo"
+        },
+        {
+          "level": "VWAP_upper",
+          "price": "24875.22",
+          "source": "VWAP 30M"
+        },
+        {
+          "level": "VWAP",
+          "price": "24817.10",
+          "source": "VWAP 30M (Entry-Zone)"
+        },
+        {
           "level": "VAH",
-          "price": "24797.4",
+          "price": "24797.40",
           "source": "Market Profile"
         },
         {
           "level": "POC",
           "price": "24748.09",
-          "source": "Market Profile"
+          "source": "Market Profile (Pullback-Ziel)"
         },
         {
           "level": "VAL",
           "price": "24580.43",
           "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "24864.16",
-          "source": "VWAP Stdev Bands"
-        },
-        {
-          "level": "SMA200",
-          "price": "24396.82",
-          "source": "SMA"
-        },
-        {
-          "level": "PDH",
-          "price": "24894.63",
-          "source": "Vortag High"
-        },
-        {
-          "level": "PDL",
-          "price": "24534.79",
-          "source": "Vortag Low"
         }
       ],
       "orders": [],
-      "invalidation": "Kurs unter VAL 24580.43 - Bias negiert"
+      "invalidation": "Unter VAH 24797 = neutralisiert. Unter VWAP_lower 24758 = bearish-Drehung. SL fuer Pullback-Long bei 24770."
     },
     {
       "name": "DJ30",
-      "bias": "LEICHT_BULLISH",
-      "bias_score": 4,
-      "bias_pct": "75",
-      "score": 4,
+      "bias": "BULLISH",
+      "bias_score": 5,
+      "bias_pct": "72",
+      "score": 5,
       "poc": 49968.01,
       "vah": 50124.83,
       "val": 49880.88,
-      "vwap": 50456.67,
-      "vwap_upper": 50492.32,
-      "vwap_lower": 50421.02,
-      "current_price": 50475.41,
-      "change_pct": 0.93,
+      "vwap": 50496.21,
+      "vwap_upper": 50562.85,
+      "vwap_lower": 50429.57,
+      "current_price": 50714.41,
+      "change_pct": 1.41,
       "mp_shape": "Trend Day",
       "mp_shape_pos": 0.357,
       "mp_shape_bias": "BAERISCH",
-      "er": 8.98,
-      "er_qualitaet": "leicht_bullish",
-      "sma200": 49727.97,
+      "er": 52.08,
+      "er_qualitaet": "stark_bullish",
+      "sma200": 49810.0,
       "pdh": 50381.41,
       "pdl": 49697.47,
       "onh": null,
       "onl": null,
-      "cdv": 218854.89,
+      "cdv": 226584.47,
       "ichimoku": {
-        "tenkan": 50486.41,
-        "kijun": 50218.95,
-        "kumo_a": 50352.68,
-        "kumo_b": 50138.95
+        "tenkan": 50568.51,
+        "kijun": 50563.71,
+        "kumo_a": 50566.11,
+        "kumo_b": 50234.75
       },
       "fibo": {
-        "level_0": 50536.41,
-        "level_50": 49895.44,
-        "level_618": 49744.16,
-        "top": 50536.41
+        "level_0": 50728.01,
+        "level_50": 49991.24,
+        "level_618": 49817.36,
+        "top": 50728.01
       },
       "mri": {
-        "mean": 49979.17,
-        "s1": 49681.8,
-        "r1": 50276.54,
-        "s2": 49261.02,
-        "r2": 50697.32
+        "mean": 50115.43,
+        "s1": 49835.11,
+        "r1": 50395.75,
+        "s2": 49438.45,
+        "r2": 50792.41
       },
       "mp_context": {
         "poc_migration": "steigend",
@@ -173,14 +177,34 @@
         "composite_poc": 49670.63
       },
       "schichten_s1": 0.5,
-      "schichten_s2": 0.5,
+      "schichten_s2": 1.0,
       "schichten_s3": 0.167,
       "alle_long_ok": true,
       "alle_short_ok": false,
       "bias_direction": "LONG",
-      "daily_summary": "Bias LEICHT_BULLISH align +4/8. Phase AUSBRUCH_LONG.",
-      "h30m_summary": "Kurs 50475.41 vs VWAP 50456.67 (ueber_VWAP). POC=49968.01 VAH=50124.83 VAL=49880.88. Shape: Trend Day pos=0.357. ER=8.98.",
+      "daily_summary": "USUpdate 14:45: BULLISH align +5/8. ER +52 starker Trend, aber Trend Day Shape (NEUTRAL) - kein Trade bei Konfidenz<0.55.",
+      "h30m_summary": "Kurs 50714.41 vs VWAP 50496.21 (ueber_upper 50562). POC=49968.01 VAH=50124.83 VAL=49880.88. Shape Trend Day pos=0.357. ER=+52.08. S1=0.5 S2=1.0 S3=0.167.",
       "key_levels": [
+        {
+          "level": "Fibo 0",
+          "price": "50728.01",
+          "source": "Auto Fibo (Resistance)"
+        },
+        {
+          "level": "VWAP_upper",
+          "price": "50562.85",
+          "source": "VWAP 30M"
+        },
+        {
+          "level": "VWAP",
+          "price": "50496.21",
+          "source": "VWAP 30M"
+        },
+        {
+          "level": "PDH",
+          "price": "50381.41",
+          "source": "Vortag"
+        },
         {
           "level": "VAH",
           "price": "50124.83",
@@ -195,74 +219,54 @@
           "level": "VAL",
           "price": "49880.88",
           "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "50456.67",
-          "source": "VWAP Stdev Bands"
-        },
-        {
-          "level": "SMA200",
-          "price": "49727.97",
-          "source": "SMA"
-        },
-        {
-          "level": "PDH",
-          "price": "50381.41",
-          "source": "Vortag High"
-        },
-        {
-          "level": "PDL",
-          "price": "49697.47",
-          "source": "Vortag Low"
         }
       ],
       "orders": [],
-      "invalidation": "Kurs unter VAL 49880.88 - Bias negiert"
+      "invalidation": "Unter VAH 50125 = neutralisiert. Trend Day Shape - kein direkter Trade bei Konfidenz<0.55."
     },
     {
       "name": "SPX500",
-      "bias": "NEUTRAL_BULLISCH",
+      "bias": "LEICHT_BULLISH",
       "bias_score": 3,
-      "bias_pct": "69",
+      "bias_pct": "65",
       "score": 3,
       "poc": 7418.16,
       "vah": 7443.79,
       "val": 7404.36,
-      "vwap": 7472.32,
-      "vwap_upper": 7477.63,
-      "vwap_lower": 7467.02,
-      "current_price": 7475.9,
-      "change_pct": 0.58,
+      "vwap": 7473.43,
+      "vwap_upper": 7479.42,
+      "vwap_lower": 7467.44,
+      "current_price": 7487.28,
+      "change_pct": 0.73,
       "mp_shape": "Trend Day",
       "mp_shape_pos": 0.35,
       "mp_shape_bias": "BAERISCH",
-      "er": 20.78,
-      "er_qualitaet": "bullish",
-      "sma200": 7406.06,
+      "er": 14.13,
+      "er_qualitaet": "leicht_bullish",
+      "sma200": 7412.12,
       "pdh": 7465.96,
       "pdl": 7389.48,
       "onh": null,
       "onl": null,
-      "cdv": 62682.96,
+      "cdv": 63557.11,
       "ichimoku": {
-        "tenkan": 7476.03,
-        "kijun": 7445.5,
-        "kumo_a": 7460.77,
-        "kumo_b": 7441.0
+        "tenkan": 7473.84,
+        "kijun": 7474.53,
+        "kumo_a": 7474.19,
+        "kumo_b": 7443.94
       },
       "fibo": {
-        "level_0": 7484.16,
-        "level_50": 7413.33,
-        "level_618": 7396.61,
-        "top": 7484.16
+        "level_0": 7490.03,
+        "level_50": 7416.26,
+        "level_618": 7398.85,
+        "top": 7490.03
       },
       "mri": {
-        "mean": 7423.45,
-        "s1": 7379.23,
-        "r1": 7467.67,
-        "s2": 7316.66,
-        "r2": 7530.25
+        "mean": 7436.75,
+        "s1": 7395.65,
+        "r1": 7477.84,
+        "s2": 7337.5,
+        "r2": 7535.99
       },
       "mp_context": {
         "poc_migration": "seitwarts",
@@ -279,9 +283,29 @@
       "alle_long_ok": true,
       "alle_short_ok": false,
       "bias_direction": "LONG",
-      "daily_summary": "Bias NEUTRAL_BULLISCH align +3/8. Phase AUSBRUCH_LONG.",
-      "h30m_summary": "Kurs 7475.9 vs VWAP 7472.32 (ueber_VWAP). POC=7418.16 VAH=7443.79 VAL=7404.36. Shape: Trend Day pos=0.35. ER=20.78.",
+      "daily_summary": "USUpdate 14:45: LEICHT_BULLISH align +3/8 (unter Schwelle 4) - kein Trade. ER +14 abgeschwaecht.",
+      "h30m_summary": "Kurs 7487.28 vs VWAP 7473.43 (ueber_upper 7479). POC=7418.16 VAH=7443.79 VAL=7404.36. Shape Trend Day pos=0.35. ER=+14.13. S1=0.3 S2=0.75 S3=0.167.",
       "key_levels": [
+        {
+          "level": "Fibo 0",
+          "price": "7490.03",
+          "source": "Auto Fibo (Resistance)"
+        },
+        {
+          "level": "VWAP_upper",
+          "price": "7479.42",
+          "source": "VWAP 30M"
+        },
+        {
+          "level": "VWAP",
+          "price": "7473.43",
+          "source": "VWAP 30M"
+        },
+        {
+          "level": "PDH",
+          "price": "7465.96",
+          "source": "Vortag"
+        },
         {
           "level": "VAH",
           "price": "7443.79",
@@ -296,110 +320,40 @@
           "level": "VAL",
           "price": "7404.36",
           "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "7472.32",
-          "source": "VWAP Stdev Bands"
-        },
-        {
-          "level": "SMA200",
-          "price": "7406.06",
-          "source": "SMA"
-        },
-        {
-          "level": "PDH",
-          "price": "7465.96",
-          "source": "Vortag High"
-        },
-        {
-          "level": "PDL",
-          "price": "7389.48",
-          "source": "Vortag Low"
         }
       ],
       "orders": [],
-      "invalidation": "Kurs unter VAL 7404.36 - Bias negiert"
+      "invalidation": "Align +3 unter Schwelle 4 - kein Trade. Unter VAH 7443 = neutralisiert."
     }
   ],
   "orders_count": 0,
   "summary": {
-    "best_instrument": "DJ30 (align +4 alle_long_ok)",
+    "best_instrument": "GER40 (P-Shape +7 alle_long_ok)",
     "total_orders": 0,
     "warnings": [
-      "F&G 28 weiter Fear-Zone (gestern 29, leicht fallend)",
-      "Bonds 4.586 steigend >4.5% Schwelle (zinsdruck_hoch)",
-      "Oel 97.97 steigend (Inflationsdruck, aber unter 100$)",
-      "Calendar 16:00 UoM Consumer Sentiment Forecast 48.2 (MEDIUM, kein ZB-Stop)",
-      "Konfidenz 0.375 unter 0.40 - WAIT bleibt",
-      "Calendar 16:00 UoM Consumer Sentiment Forecast 48.2 (MEDIUM)"
+      "USUpdate 14:45: 0 Orders (Morning hatte 0)",
+      "Konfidenz 0.525 grenzwertig (<0.55) - Trade nur bei P-Shape",
+      "DJ30/SPX500 Trend Day NEUTRAL Shape - nicht trade-qualifiziert",
+      "Calendar 16:00 UoM Consumer Sentiment (MEDIUM)"
     ],
-    "notes": "Morning 08:11: Pre-NY-Bullish-Setup (alle 3 ueber VAH, alle ueber kumo). DJ30+SPX500 mit alle_long_ok (S1+S2+S3 voll fuer LONG). GER40 verfehlt alle_long_ok wegen Preis 24835<VWAP 24864 (S2=0). Makro NEUTRAL (-1) liefert 0 Beitrag zu konfidenz_long. Konfidenz 0.375 = 0.025 unter Schwelle. Phase AUSBRUCH_LONG bestaetigt durch Top-Down +5 best."
+    "notes": "USUpdate 14:45: BIAS-DREHUNG WAIT->LONG-LEAN. GER40 P-Shape align +7, Trade-Setup identifiziert (Pullback VWAP 24817 / POC 24748) aber konservativ NICHT ausgefuehrt (Konfidenz 0.525<0.55 grenzwertig, UoM 16:00 abwarten). Re-Eval nach NY Open 15:30 + UoM 16:00."
   },
   "stats": {
     "total": 0,
     "fill_rate": "n.a.",
     "tp1_rate": "n.a.",
-    "trend": "WAIT (0 Orders Morning)"
+    "trend": "0 Orders heute"
   },
-  "captain_trade_plan": "WAIT - kein Trade. Konfidenz 0.375 = unter Schwelle 0.40. GER40 align +5 hat S2=0 (Preis 24835<VWAP 24864) -> wenn GER40 ueber VWAP schliesst, S2>=0.25, alle_long_ok=True, dann 3/3 long_ok und konfidenz steigt. Alternativ: Makro dreht positiv (+1+) -> Beitrag erhoeht konfidenz. Re-Eval bei London Open 09:00 + nach UoM Consumer Sentiment 16:00.",
+  "captain_trade_plan": "LONG-LEAN GER40 (P-Shape +7 alle_long_ok). Trend-Following Pullback-Entry: VWAP 24817 als primaere Zone, POC 24748 als sekundaere. SL unter Tail-Beginn 24777 (oder konservativer unter VAH 24797). TP1 VWAP_upper 24875, TP2 Fibo 0 24947 (PDH 24894 als Zwischenmagnet). DJ30+SPX500 zwar alle_long_ok aber Trend Day Shape (NEUTRAL) + Konfidenz<0.55 -> kein Trade. UoM 16:00 (MEDIUM) abwarten fuer Bestaetigung.",
   "macro_dashboard": {
-    "vix": {
-      "value": 16.76,
-      "prev": 17.44,
-      "level": "normal",
-      "trend": "fallend",
-      "bias_einfluss": "leicht_bearish"
-    },
-    "dxy": {
-      "value": 99.24,
-      "prev": 99.19,
-      "trend": "steigend",
-      "interpretation": "dollar_schwach"
-    },
-    "bonds_10y": {
-      "yield": 4.586,
-      "prev": 4.572,
-      "trend": "steigend",
-      "interpretation": "zinsdruck_hoch"
-    },
-    "oil_wti": {
-      "value": 97.97,
-      "prev": 96.35,
-      "trend": "steigend",
-      "interpretation": "inflationsdruck_hoch"
-    },
-    "gold": {
-      "value": 4524.0,
-      "prev": 4539.8,
-      "trend": "fallend",
-      "interpretation": "risk_on"
-    },
-    "fear_greed": {
-      "value": 28,
-      "classification": "Fear",
-      "yesterday": 29,
-      "trend": "fallend"
-    },
-    "fred": {
-      "fed_funds": {
-        "value": 3.64,
-        "interpretation": "neutral"
-      },
-      "yield_curve": {
-        "value": 0.49,
-        "interpretation": "steil"
-      },
-      "cpi": {
-        "value": 3.95,
-        "interpretation": "hoch"
-      },
-      "unemployment": {
-        "value": 4.3,
-        "interpretation": "normal"
-      },
-      "last_updated": "2026-05-22 08:02"
-    }
+    "vix": 16.81,
+    "dxy": 99.334,
+    "bonds_10y": 4.552,
+    "oil_wti": 96.54,
+    "gold": 4518.6,
+    "fear_greed": 28,
+    "makro_score": -1,
+    "makro_bias": "NEUTRAL"
   },
   "calendar": [
     {
