@@ -1,267 +1,117 @@
 {
   "date": "2026-05-25",
-  "timestamp": "2026-05-25T08:12:00",
-  "phase": "TREND",
-  "regime": "RISK-ON",
-  "session_bias": "LONG-BIAS",
-  "alignment_score": 5,
-  "makro_bias": "LEICHT_RISK_ON",
+  "timestamp": "2026-05-25T14:50:00",
+  "session_type": "usupdate",
   "debrief": {
-    "orders_checked": 0,
-    "fill_rate": "n.a.",
+    "orders_checked": 1,
+    "fill_rate": "0%",
     "tp1_rate": "n.a.",
-    "trend": "0 Orders gestern",
-    "learnings": []
+    "trend": "stark_bullish",
+    "learnings": [
+      "Morning Order GER40 LONG @ 24870 VERFALLEN - Markt 25297 entfernt sich 427 pts, TP1 25229 bereits ueberschritten ohne Fill.",
+      "Trend-Day GER40 hat sich verstaerkt (ER 37 -> 65, +169 pts seit Morning) - Pullback fuer Entry erforderlich.",
+      "Pre-NY-Divergenz: DAX explodiert, DJ stabil, SPX ER dreht negativ (64 -> -7) - SPX-Trend bricht."
+    ]
   },
   "instruments": [
     {
       "name": "GER40",
-      "bias": "BULLISH",
-      "bias_color": "green",
-      "bias_score": 5,
-      "bias_pct": "80",
-      "confluence_score": 11,
-      "confluence_total": 20,
-      "confluence_pct": 75,
-      "confluence_label": "6+4+1/20",
-      "manual_checks": [],
-      "cvd": {
-        "value": 53263.81
-      },
-      "quote": {
-        "price": 25128.8,
-        "change_pct": 2.12,
-        "high": null,
-        "low": null,
-        "open": null,
-        "prev_close": null,
-        "source": "tradingview"
-      },
-      "market_profile": {
-        "poc": 24870.2,
-        "vah": 24919.36,
-        "val": 24778.91,
-        "vwap": 25119.86,
-        "shape": {
-          "name": "Trend Day",
-          "description": ""
-        },
-        "volume_profile": []
-      },
-      "current_price": 25128.8,
-      "daily_summary": "Bias BULLISH (Score 5/8). MP Trend Day pos=0.65. ER=37.41.",
-      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
-      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 25128.8 ueber_VWAP (VWAP 25119.86), ueber_VAH. POC=24870.2 VAH=24919.36 VAL=24778.91. Shape: Trend Day (pos=0.65).",
-      "mp_shape_yesterday": "Trend Day",
-      "mp_shape_forecast": "Trend Day",
-      "mp_5day_sequence": "2x P-Shape + 1x Trend Day",
+      "bias": "Bullisch",
+      "bias_pct": "65",
+      "daily_summary": "GER40 25297.80 (+0.67% seit Morning, +2.81% Tagesgewinn). Trend-Day verstaerkt sich massiv: ER 65.84 ultra-stark, Position 3.695 (sehr weit ueber VAH). VWAP 25163 als Magnet, AutoFibo Top 25330 als Resistance.",
+      "h4_summary": "Ichimoku above_kumo (KumoA 25212, KumoB 24998). Tenkan 25254, Kijun 25170. SMA200 24676 weit unten.",
+      "h1_summary": "VWAP 25163 (Bands 25098-25228). Preis 25297 ueber Upper-Band - Trend-Verstaerkung. MRI R1 25108, R2 25403.",
+      "h30m_summary": "MP Trend Day pos=0.65 direktional bullish. POC 24870, VAH 24919, VAL 24779. POC-Migration steigend, 2x P-Shape + 1x Trend Day Sequenz. CDV +57354 starke Akkumulation.",
+      "mp_shape_yesterday": "Heute laufend: Trend Day (pos=0.65, va_breite 0.56%)",
+      "mp_shape_forecast": "Trend-Continuation. Pullback an VWAP 25163 oder Tenkan 25254 wahrscheinlich vor NY-Open. Erwartete VA-Extension nach oben.",
+      "mp_5day_sequence": "S0 Trend Day | S1 P-Shape | S2 P-Shape | S3 P-Shape | S4 P-Shape - bullischer Cluster, POC migration steigend von 24288 -> 24870 (+582 pts in 5 Tagen)",
       "key_levels": [
-        {
-          "level": "VAH Session 0",
-          "price": "24919.36",
-          "source": "Market Profile"
-        },
-        {
-          "level": "POC Session 0",
-          "price": "24870.2",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL Session 0",
-          "price": "24778.91",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "25119.86",
-          "source": "VWAP"
-        },
-        {
-          "level": "SMA200",
-          "price": "24607.5",
-          "source": "SMA"
-        }
+        {"level": "POC", "price": "24870.20", "source": "Market Profile"},
+        {"level": "VAH", "price": "24919.36", "source": "Market Profile"},
+        {"level": "VAL", "price": "24778.91", "source": "Market Profile"},
+        {"level": "VWAP", "price": "25163.67", "source": "VWAP Stdev Bands"},
+        {"level": "VWAP Upper", "price": "25228.71", "source": "VWAP Stdev Bands"},
+        {"level": "Tenkan", "price": "25254.55", "source": "Ichimoku"},
+        {"level": "Kijun", "price": "25170.47", "source": "Ichimoku"},
+        {"level": "AutoFibo Top", "price": "25330.80", "source": "Auto Fibonacci"},
+        {"level": "MRI R2", "price": "25403.28", "source": "Mean Reversion"}
       ],
       "orders": [
         {
           "type": "Limit Buy",
-          "entry": "24870",
-          "sl": "24754",
-          "tp1": "25229",
-          "tp2": "25344",
-          "rr": "3.09",
-          "p_fill": "55",
-          "p_tp1": "40",
+          "entry": "25180",
+          "sl": "25140",
+          "tp1": "25330",
+          "tp2": "25403",
+          "rr": "3.75",
+          "p_fill": "60",
+          "p_tp1": "45",
           "tf": "30M",
-          "confluence": "MP Trend Day + Preis>VAH + POC-Migration+Sequenz + ER 37.4 + CVD + VWAP + Ichimoku",
-          "mp_shape_yesterday": "Trend Day (pos=0.65)",
-          "mp_shape_forecast": "Trend Day",
-          "vwap_position": "Preis ueber VWAP"
+          "confluence": "VWAP-Pullback + Tenkan-Bounce + Trend Day + ER 65 + CVD-Akkumulation + above_kumo + SMA200",
+          "status": "NEU (NY-Setup)"
         }
       ],
-      "invalidation": "Kurs schliesst unter 24778.91 - bullischer Bias negiert"
+      "invalidation": "Unter VWAP_Lower 25098 oder Sprung ueber AutoFibo 25330 ohne Pullback negiert Setup. Hard-Stop bei SPX-Trendbruch (ER negativ koennte DAX nachziehen)."
     },
     {
       "name": "DJ30",
-      "bias": "LEICHT_BULLISH",
-      "bias_color": "green",
-      "bias_score": 3,
-      "bias_pct": "60",
-      "confluence_score": 7,
-      "confluence_total": 20,
-      "confluence_pct": 75,
-      "confluence_label": "2+4+1/20",
-      "manual_checks": [],
-      "cvd": {
-        "value": 219428.23
-      },
-      "quote": {
-        "price": 51029.45,
-        "change_pct": 1.49,
-        "high": null,
-        "low": null,
-        "open": null,
-        "prev_close": null,
-        "source": "tradingview"
-      },
-      "market_profile": {
-        "poc": 50466.62,
-        "vah": 50680.85,
-        "val": 50403.61,
-        "vwap": 50945.46,
-        "shape": {
-          "name": "b-Shape",
-          "description": ""
-        },
-        "volume_profile": []
-      },
-      "current_price": 51029.45,
-      "daily_summary": "Bias LEICHT_BULLISH (Score 3/8). MP b-Shape pos=0.227. ER=58.78.",
-      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
-      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 51029.45 ueber_VWAP (VWAP 50945.46), ueber_VAH. POC=50466.62 VAH=50680.85 VAL=50403.61. Shape: b-Shape (pos=0.227).",
-      "mp_shape_yesterday": "b-Shape",
-      "mp_shape_forecast": "b-Shape",
-      "mp_5day_sequence": "1x b-Shape + 1x Trend Day + 1x D-Shape",
+      "bias": "Leicht_Bullisch",
+      "bias_pct": "55",
+      "daily_summary": "DJ30 51105.45 (+0.15% seit Morning, +1.64% Tag). Trend abgeschwaecht aber stabil bullisch (ER 32.40 von 58.78). Position 2.532 ueber VAH.",
+      "h4_summary": "Ichimoku above_kumo grenzwertig (KumoA 51059, Preis 51105). Tenkan 51092, Kijun 51026 nahe Kurs.",
+      "h1_summary": "VWAP 51007, Upper 51084 - Preis knapp ueber. MRI R1 50886 ueberwunden, R2 51232 Ziel.",
+      "h30m_summary": "MP b-Shape pos=0.227 BAERISCH-Konflikt mit LONG-Bias. POC 50466, VAH 50680. CDV +220572 (+1144 seit Morning).",
+      "mp_shape_yesterday": "Heute laufend: b-Shape (pos=0.227, KONFLIKT mit LONG)",
+      "mp_shape_forecast": "Konsolidierung nahe AutoFibo Top 51165. Pullback an VWAP 51007 wahrscheinlich.",
+      "mp_5day_sequence": "S0 b-Shape | S1 Trend Day | S2 D-Shape | S3 Trend Day | S4 b-Shape - gemischt mit POC-Migration steigend (49235 -> 50466)",
       "key_levels": [
-        {
-          "level": "VAH Session 0",
-          "price": "50680.85",
-          "source": "Market Profile"
-        },
-        {
-          "level": "POC Session 0",
-          "price": "50466.62",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL Session 0",
-          "price": "50403.61",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "50945.46",
-          "source": "VWAP"
-        },
-        {
-          "level": "SMA200",
-          "price": "50038.9",
-          "source": "SMA"
-        }
+        {"level": "POC", "price": "50466.62", "source": "Market Profile"},
+        {"level": "VAH", "price": "50680.85", "source": "Market Profile"},
+        {"level": "VWAP", "price": "51007.76", "source": "VWAP Stdev Bands"},
+        {"level": "AutoFibo Top", "price": "51165.15", "source": "Auto Fibonacci"},
+        {"level": "MRI R2", "price": "51232.90", "source": "Mean Reversion"}
       ],
       "orders": [],
-      "invalidation": "Kurs schliesst unter 50403.61 - bullischer Bias negiert"
+      "invalidation": "b-Shape Konflikt + nahe AutoFibo Top - keine neue Order, Setup nicht stark genug. ER unter 25 = Trend-Beendigungs-Warnung."
     },
     {
       "name": "SPX500",
-      "bias": "LEICHT_BULLISH",
-      "bias_color": "green",
-      "bias_score": 2,
-      "bias_pct": "60",
-      "confluence_score": 5,
-      "confluence_total": 20,
-      "confluence_pct": 75,
-      "confluence_label": "0+4+1/20",
-      "manual_checks": [],
-      "cvd": {
-        "value": 66232.32
-      },
-      "quote": {
-        "price": 7552.82,
-        "change_pct": 1.42,
-        "high": null,
-        "low": null,
-        "open": null,
-        "prev_close": null,
-        "source": "tradingview"
-      },
-      "market_profile": {
-        "poc": 7472.27,
-        "vah": 7493.41,
-        "val": 7465.22,
-        "vwap": 7534.53,
-        "shape": {
-          "name": "b-Shape",
-          "description": ""
-        },
-        "volume_profile": []
-      },
-      "current_price": 7552.82,
-      "daily_summary": "Bias LEICHT_BULLISH (Score 2/8). MP b-Shape pos=0.25. ER=64.29.",
-      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
-      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 7552.82 ueber_VWAP (VWAP 7534.53), ueber_VAH. POC=7472.27 VAH=7493.41 VAL=7465.22. Shape: b-Shape (pos=0.25).",
-      "mp_shape_yesterday": "b-Shape",
-      "mp_shape_forecast": "b-Shape",
-      "mp_5day_sequence": "2x b-Shape + 1x Trend Day",
+      "bias": "BLOCKED",
+      "bias_pct": "30",
+      "daily_summary": "SPX500 7551.70 (-0.01% seit Morning, +1.40% Tag). TREND-BRUCH-WARNUNG: ER 64.29 -> -7.37 NEGATIV gedreht. b-Shape + S1 FAIL (0.1 < 0.20).",
+      "h4_summary": "Ichimoku grenzwertig (Preis 7551 knapp ueber KumoA 7548). Tenkan 7553 jetzt ueber Kurs - leichtes Reversal-Signal.",
+      "h1_summary": "VWAP 7541, Upper 7553 - Preis genau am Upper-Band. MRI mean 7492, R1 7527 ueberwunden.",
+      "h30m_summary": "MP b-Shape pos=0.25 BAERISCH. POC 7472, VAH 7493. CDV +66256 (+24 nahezu flat - Akkumulation gestoppt).",
+      "mp_shape_yesterday": "Heute laufend: b-Shape (pos=0.25, BAERISCH)",
+      "mp_shape_forecast": "Trend bricht zusammen - Pullback in die VA (7465-7493) oder weiter Konsolidierung wahrscheinlich. Reversal-Risiko erhoeht.",
+      "mp_5day_sequence": "S0 b-Shape | S1 Trend Day | S2 b-Shape | S3 Trend Day | S4 b-Shape - 2x b-Shape + 1x Trend Day (bearisches Bias-Risiko)",
       "key_levels": [
-        {
-          "level": "VAH Session 0",
-          "price": "7493.41",
-          "source": "Market Profile"
-        },
-        {
-          "level": "POC Session 0",
-          "price": "7472.27",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL Session 0",
-          "price": "7465.22",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "7534.53",
-          "source": "VWAP"
-        },
-        {
-          "level": "SMA200",
-          "price": "7432.11",
-          "source": "SMA"
-        }
+        {"level": "POC", "price": "7472.27", "source": "Market Profile"},
+        {"level": "VAH", "price": "7493.41", "source": "Market Profile"},
+        {"level": "VWAP", "price": "7541.18", "source": "VWAP Stdev Bands"},
+        {"level": "AutoFibo Top", "price": "7560.70", "source": "Auto Fibonacci"},
+        {"level": "Tenkan", "price": "7553.01", "source": "Ichimoku"}
       ],
       "orders": [],
-      "invalidation": "Kurs schliesst unter 7465.22 - bullischer Bias negiert"
+      "invalidation": "BLOCKED: S1=0.1 unter Schwelle, ER -7.37 negativ, b-Shape Konflikt. Kein Trade bis ER >25 zurueckkehrt."
     }
   ],
   "summary": {
     "best_instrument": "GER40",
     "total_orders": 1,
     "warnings": [
-      "DJ30/SPX500 b-Shape session 0 + LONG-Bias = Shape-Konflikt — reduziertes Risk",
-      "SPX500 nicht freigegeben (S1=0.00) — Auto-Fibo-Top 7557 nahe Kurs 7552",
-      "GER40 nahe Tagestop 25229 (Auto-Fibo level_0) — Resistance-Risiko",
-      "Morgen 16:00 USD CB Consumer Confidence (medium impact)"
+      "Morning Order GER40 LONG @ 24870 VERFALLEN (TP1 ueberschritten ohne Fill)",
+      "SPX500 ER 64.29 -> -7.37 - Trend-Bruch-Warnung, BLOCKED",
+      "GER40 nahe AutoFibo Top 25330 - knapper TP1",
+      "DJ30 b-Shape Konflikt + nahe Fibo-Top - keine neue Order",
+      "Morgen 16:00 USD CB Consumer Confidence (medium)"
     ],
-    "notes": "TREND-Folgetag nach gestrigem Anstieg. GER40 LONG freigegeben (align=5), DJ30/SPX500 blockiert (align<4 / S1 fail)."
+    "notes": "USUpdate 14:45 NY-SETUP: GER40 dominiert (alignment 5, Konfidenz 0.5125). VWAP-Pullback-Setup fuer NY-Open 15:30-16:30. Bei Sprung ueber 25330 = ablaufen lassen."
   },
   "stats": {
-    "total": 1,
+    "total": "n.a.",
     "fill_rate": "n.a.",
     "tp1_rate": "n.a.",
-    "trend": "1 Order heute"
+    "trend": "Pipeline aktiv"
   }
 }
