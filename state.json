@@ -154,45 +154,226 @@
           "r2": 25403.28
         },
         "tpo_distribution": [
-          {"price": 24666.55, "count": 1, "type": "tail"},
-          {"price": 24680.6, "count": 1, "type": "tail"},
-          {"price": 24694.64, "count": 2, "type": "tail"},
-          {"price": 24708.69, "count": 2, "type": "tail"},
-          {"price": 24722.73, "count": 2, "type": "tail"},
-          {"price": 24736.78, "count": 5, "type": "tail"},
-          {"price": 24750.82, "count": 5, "type": "tail"},
-          {"price": 24764.87, "count": 4, "type": "tail"},
-          {"price": 24778.91, "count": 5, "type": "va"},
-          {"price": 24792.96, "count": 5, "type": "va"},
-          {"price": 24807, "count": 6, "type": "va"},
-          {"price": 24821.05, "count": 8, "type": "va"},
-          {"price": 24835.09, "count": 10, "type": "va"},
-          {"price": 24849.14, "count": 11, "type": "va"},
-          {"price": 24863.18, "count": 12, "type": "va"},
-          {"price": 24870.2, "count": 1, "type": "poc"},
-          {"price": 24877.23, "count": 12, "type": "va"},
-          {"price": 24891.27, "count": 9, "type": "va"},
-          {"price": 24905.32, "count": 7, "type": "va"},
-          {"price": 24919.36, "count": 6, "type": "va"},
-          {"price": 24933.41, "count": 3, "type": "tail"},
-          {"price": 24947.45, "count": 2, "type": "tail"}
+          {
+            "price": 24666.55,
+            "count": 1,
+            "type": "tail"
+          },
+          {
+            "price": 24680.6,
+            "count": 1,
+            "type": "tail"
+          },
+          {
+            "price": 24694.64,
+            "count": 2,
+            "type": "tail"
+          },
+          {
+            "price": 24708.69,
+            "count": 2,
+            "type": "tail"
+          },
+          {
+            "price": 24722.73,
+            "count": 2,
+            "type": "tail"
+          },
+          {
+            "price": 24736.78,
+            "count": 5,
+            "type": "tail"
+          },
+          {
+            "price": 24750.82,
+            "count": 5,
+            "type": "tail"
+          },
+          {
+            "price": 24764.87,
+            "count": 4,
+            "type": "tail"
+          },
+          {
+            "price": 24778.91,
+            "count": 5,
+            "type": "va"
+          },
+          {
+            "price": 24792.96,
+            "count": 5,
+            "type": "va"
+          },
+          {
+            "price": 24807,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 24821.05,
+            "count": 8,
+            "type": "va"
+          },
+          {
+            "price": 24835.09,
+            "count": 10,
+            "type": "va"
+          },
+          {
+            "price": 24849.14,
+            "count": 11,
+            "type": "va"
+          },
+          {
+            "price": 24863.18,
+            "count": 12,
+            "type": "va"
+          },
+          {
+            "price": 24870.2,
+            "count": 1,
+            "type": "poc"
+          },
+          {
+            "price": 24877.23,
+            "count": 12,
+            "type": "va"
+          },
+          {
+            "price": 24891.27,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 24905.32,
+            "count": 7,
+            "type": "va"
+          },
+          {
+            "price": 24919.36,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 24933.41,
+            "count": 3,
+            "type": "tail"
+          },
+          {
+            "price": 24947.45,
+            "count": 2,
+            "type": "tail"
+          }
         ],
         "mp_history": [
-          {"session": 0, "poc": 24870.2, "vah": 24919.36, "val": 24778.91, "mp_shape_pos": 0.65, "va_breite_pct": 0.56, "shape": "Trend Day", "naked_poc": false},
-          {"session": 1, "poc": 24748.09, "vah": 24797.4, "val": 24580.43, "mp_shape_pos": 0.773, "va_breite_pct": 0.88, "shape": "P-Shape", "naked_poc": true},
-          {"session": 2, "poc": 24757.75, "vah": 24813.12, "val": 24333.23, "mp_shape_pos": 0.885, "va_breite_pct": 1.94, "shape": "P-Shape", "naked_poc": false},
-          {"session": 3, "poc": 24600.2, "vah": 24662.63, "val": 24337.99, "mp_shape_pos": 0.808, "va_breite_pct": 1.32, "shape": "P-Shape", "naked_poc": false},
-          {"session": 4, "poc": 24288.45, "vah": 24430.2, "val": 23822.7, "mp_shape_pos": 0.767, "va_breite_pct": 2.5, "shape": "P-Shape", "naked_poc": true},
-          {"session": 5, "poc": 24147.18, "vah": 24183.66, "val": 23940.47, "mp_shape_pos": 0.85, "va_breite_pct": 1.01, "shape": "P-Shape", "naked_poc": false},
-          {"session": 6, "poc": 24425.54, "vah": 24478.5, "val": 24296.92, "mp_shape_pos": 0.708, "va_breite_pct": 0.74, "shape": "P-Shape", "naked_poc": false},
-          {"session": 7, "poc": 24106.48, "vah": 24171.36, "val": 24056.02, "mp_shape_pos": 0.437, "va_breite_pct": 0.48, "shape": "Trend Day", "naked_poc": false},
-          {"session": 8, "poc": 24142.58, "vah": 24168.54, "val": 24012.82, "mp_shape_pos": 0.833, "va_breite_pct": 0.65, "shape": "P-Shape", "naked_poc": false},
-          {"session": 9, "poc": 24263.37, "vah": 24309.38, "val": 24242.46, "mp_shape_pos": 0.312, "va_breite_pct": 0.28, "shape": "b-Shape", "naked_poc": false}
+          {
+            "session": 0,
+            "poc": 24870.2,
+            "vah": 24919.36,
+            "val": 24778.91,
+            "mp_shape_pos": 0.65,
+            "va_breite_pct": 0.56,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "poc": 24748.09,
+            "vah": 24797.4,
+            "val": 24580.43,
+            "mp_shape_pos": 0.773,
+            "va_breite_pct": 0.88,
+            "shape": "P-Shape",
+            "naked_poc": true
+          },
+          {
+            "session": 2,
+            "poc": 24757.75,
+            "vah": 24813.12,
+            "val": 24333.23,
+            "mp_shape_pos": 0.885,
+            "va_breite_pct": 1.94,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 3,
+            "poc": 24600.2,
+            "vah": 24662.63,
+            "val": 24337.99,
+            "mp_shape_pos": 0.808,
+            "va_breite_pct": 1.32,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 4,
+            "poc": 24288.45,
+            "vah": 24430.2,
+            "val": 23822.7,
+            "mp_shape_pos": 0.767,
+            "va_breite_pct": 2.5,
+            "shape": "P-Shape",
+            "naked_poc": true
+          },
+          {
+            "session": 5,
+            "poc": 24147.18,
+            "vah": 24183.66,
+            "val": 23940.47,
+            "mp_shape_pos": 0.85,
+            "va_breite_pct": 1.01,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "poc": 24425.54,
+            "vah": 24478.5,
+            "val": 24296.92,
+            "mp_shape_pos": 0.708,
+            "va_breite_pct": 0.74,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 7,
+            "poc": 24106.48,
+            "vah": 24171.36,
+            "val": 24056.02,
+            "mp_shape_pos": 0.437,
+            "va_breite_pct": 0.48,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 8,
+            "poc": 24142.58,
+            "vah": 24168.54,
+            "val": 24012.82,
+            "mp_shape_pos": 0.833,
+            "va_breite_pct": 0.65,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 9,
+            "poc": 24263.37,
+            "vah": 24309.38,
+            "val": 24242.46,
+            "mp_shape_pos": 0.312,
+            "va_breite_pct": 0.28,
+            "shape": "b-Shape",
+            "naked_poc": false
+          }
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "2x P-Shape + 1x Trend Day",
-          "naked_pocs": [24748.09, 24288.45],
+          "naked_pocs": [
+            24748.09,
+            24288.45
+          ],
           "composite_poc": 24558.82
         }
       },
@@ -241,45 +422,227 @@
           "r2": 51232.9
         },
         "tpo_distribution": [
-          {"price": 50378.41, "count": 4, "type": "tail"},
-          {"price": 50403.61, "count": 7, "type": "va"},
-          {"price": 50428.82, "count": 13, "type": "va"},
-          {"price": 50454.02, "count": 15, "type": "va"},
-          {"price": 50466.62, "count": 1, "type": "poc"},
-          {"price": 50479.22, "count": 15, "type": "va"},
-          {"price": 50504.43, "count": 14, "type": "va"},
-          {"price": 50529.63, "count": 12, "type": "va"},
-          {"price": 50554.83, "count": 6, "type": "va"},
-          {"price": 50580.04, "count": 6, "type": "va"},
-          {"price": 50605.24, "count": 9, "type": "va"},
-          {"price": 50630.45, "count": 9, "type": "va"},
-          {"price": 50655.65, "count": 9, "type": "va"},
-          {"price": 50680.85, "count": 10, "type": "va"},
-          {"price": 50706.06, "count": 11, "type": "tail"},
-          {"price": 50731.26, "count": 11, "type": "tail"},
-          {"price": 50756.46, "count": 11, "type": "tail"},
-          {"price": 50781.67, "count": 8, "type": "tail"},
-          {"price": 50806.87, "count": 6, "type": "tail"},
-          {"price": 50832.07, "count": 3, "type": "tail"},
-          {"price": 50857.28, "count": 2, "type": "tail"},
-          {"price": 50882.48, "count": 2, "type": "tail"}
+          {
+            "price": 50378.41,
+            "count": 4,
+            "type": "tail"
+          },
+          {
+            "price": 50403.61,
+            "count": 7,
+            "type": "va"
+          },
+          {
+            "price": 50428.82,
+            "count": 13,
+            "type": "va"
+          },
+          {
+            "price": 50454.02,
+            "count": 15,
+            "type": "va"
+          },
+          {
+            "price": 50466.62,
+            "count": 1,
+            "type": "poc"
+          },
+          {
+            "price": 50479.22,
+            "count": 15,
+            "type": "va"
+          },
+          {
+            "price": 50504.43,
+            "count": 14,
+            "type": "va"
+          },
+          {
+            "price": 50529.63,
+            "count": 12,
+            "type": "va"
+          },
+          {
+            "price": 50554.83,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 50580.04,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 50605.24,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 50630.45,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 50655.65,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 50680.85,
+            "count": 10,
+            "type": "va"
+          },
+          {
+            "price": 50706.06,
+            "count": 11,
+            "type": "tail"
+          },
+          {
+            "price": 50731.26,
+            "count": 11,
+            "type": "tail"
+          },
+          {
+            "price": 50756.46,
+            "count": 11,
+            "type": "tail"
+          },
+          {
+            "price": 50781.67,
+            "count": 8,
+            "type": "tail"
+          },
+          {
+            "price": 50806.87,
+            "count": 6,
+            "type": "tail"
+          },
+          {
+            "price": 50832.07,
+            "count": 3,
+            "type": "tail"
+          },
+          {
+            "price": 50857.28,
+            "count": 2,
+            "type": "tail"
+          },
+          {
+            "price": 50882.48,
+            "count": 2,
+            "type": "tail"
+          }
         ],
         "mp_history": [
-          {"session": 0, "poc": 50466.62, "vah": 50680.85, "val": 50403.61, "mp_shape_pos": 0.227, "va_breite_pct": 0.55, "shape": "b-Shape", "naked_poc": false},
-          {"session": 1, "poc": 49968.01, "vah": 50124.83, "val": 49880.88, "mp_shape_pos": 0.357, "va_breite_pct": 0.49, "shape": "Trend Day", "naked_poc": true},
-          {"session": 2, "poc": 49405.66, "vah": 49686.46, "val": 49254.46, "mp_shape_pos": 0.35, "va_breite_pct": 0.87, "shape": "D-Shape", "naked_poc": true},
-          {"session": 3, "poc": 49654.04, "vah": 49743.74, "val": 49538.73, "mp_shape_pos": 0.562, "va_breite_pct": 0.41, "shape": "Trend Day", "naked_poc": false},
-          {"session": 4, "poc": 49235.73, "vah": 49564.9, "val": 49149.1, "mp_shape_pos": 0.208, "va_breite_pct": 0.84, "shape": "b-Shape", "naked_poc": true},
-          {"session": 5, "poc": 49650.16, "vah": 49956.39, "val": 49596.12, "mp_shape_pos": 0.15, "va_breite_pct": 0.73, "shape": "b-Shape", "naked_poc": false},
-          {"session": 6, "poc": 50103.9, "vah": 50156.04, "val": 49905.79, "mp_shape_pos": 0.792, "va_breite_pct": 0.5, "shape": "P-Shape", "naked_poc": false},
-          {"session": 7, "poc": 49790.65, "vah": 49837.65, "val": 49630.85, "mp_shape_pos": 0.773, "va_breite_pct": 0.42, "shape": "P-Shape", "naked_poc": false},
-          {"session": 8, "poc": 49718.9, "vah": 49838.52, "val": 49625.86, "mp_shape_pos": 0.438, "va_breite_pct": 0.43, "shape": "Trend Day", "naked_poc": false},
-          {"session": 9, "poc": 49633.94, "vah": 49725.27, "val": 49502.03, "mp_shape_pos": 0.591, "va_breite_pct": 0.45, "shape": "Trend Day", "naked_poc": false}
+          {
+            "session": 0,
+            "poc": 50466.62,
+            "vah": 50680.85,
+            "val": 50403.61,
+            "mp_shape_pos": 0.227,
+            "va_breite_pct": 0.55,
+            "shape": "b-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "poc": 49968.01,
+            "vah": 50124.83,
+            "val": 49880.88,
+            "mp_shape_pos": 0.357,
+            "va_breite_pct": 0.49,
+            "shape": "Trend Day",
+            "naked_poc": true
+          },
+          {
+            "session": 2,
+            "poc": 49405.66,
+            "vah": 49686.46,
+            "val": 49254.46,
+            "mp_shape_pos": 0.35,
+            "va_breite_pct": 0.87,
+            "shape": "D-Shape",
+            "naked_poc": true
+          },
+          {
+            "session": 3,
+            "poc": 49654.04,
+            "vah": 49743.74,
+            "val": 49538.73,
+            "mp_shape_pos": 0.562,
+            "va_breite_pct": 0.41,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 4,
+            "poc": 49235.73,
+            "vah": 49564.9,
+            "val": 49149.1,
+            "mp_shape_pos": 0.208,
+            "va_breite_pct": 0.84,
+            "shape": "b-Shape",
+            "naked_poc": true
+          },
+          {
+            "session": 5,
+            "poc": 49650.16,
+            "vah": 49956.39,
+            "val": 49596.12,
+            "mp_shape_pos": 0.15,
+            "va_breite_pct": 0.73,
+            "shape": "b-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "poc": 50103.9,
+            "vah": 50156.04,
+            "val": 49905.79,
+            "mp_shape_pos": 0.792,
+            "va_breite_pct": 0.5,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 7,
+            "poc": 49790.65,
+            "vah": 49837.65,
+            "val": 49630.85,
+            "mp_shape_pos": 0.773,
+            "va_breite_pct": 0.42,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 8,
+            "poc": 49718.9,
+            "vah": 49838.52,
+            "val": 49625.86,
+            "mp_shape_pos": 0.438,
+            "va_breite_pct": 0.43,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 9,
+            "poc": 49633.94,
+            "vah": 49725.27,
+            "val": 49502.03,
+            "mp_shape_pos": 0.591,
+            "va_breite_pct": 0.45,
+            "shape": "Trend Day",
+            "naked_poc": false
+          }
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "1x b-Shape + 1x Trend Day + 1x D-Shape",
-          "naked_pocs": [49968.01, 49405.66, 49235.73],
+          "naked_pocs": [
+            49968.01,
+            49405.66,
+            49235.73
+          ],
           "composite_poc": 49813.21
         }
       },
@@ -328,58 +691,339 @@
           "r2": 7576.18
         },
         "tpo_distribution": [
-          {"price": 7456.76, "count": 1, "type": "tail"},
-          {"price": 7459.58, "count": 4, "type": "tail"},
-          {"price": 7462.4, "count": 5, "type": "tail"},
-          {"price": 7465.22, "count": 9, "type": "va"},
-          {"price": 7468.04, "count": 10, "type": "va"},
-          {"price": 7470.86, "count": 14, "type": "va"},
-          {"price": 7472.27, "count": 1, "type": "poc"},
-          {"price": 7473.68, "count": 14, "type": "va"},
-          {"price": 7476.5, "count": 13, "type": "va"},
-          {"price": 7479.32, "count": 13, "type": "va"},
-          {"price": 7482.14, "count": 12, "type": "va"},
-          {"price": 7484.96, "count": 11, "type": "va"},
-          {"price": 7487.77, "count": 6, "type": "va"},
-          {"price": 7490.59, "count": 8, "type": "va"},
-          {"price": 7493.41, "count": 8, "type": "va"},
-          {"price": 7496.23, "count": 7, "type": "tail"},
-          {"price": 7499.05, "count": 7, "type": "tail"},
-          {"price": 7501.87, "count": 5, "type": "tail"},
-          {"price": 7504.69, "count": 4, "type": "tail"},
-          {"price": 7507.51, "count": 3, "type": "tail"},
-          {"price": 7510.33, "count": 2, "type": "tail"},
-          {"price": 7513.15, "count": 2, "type": "tail"}
+          {
+            "price": 7456.76,
+            "count": 1,
+            "type": "tail"
+          },
+          {
+            "price": 7459.58,
+            "count": 4,
+            "type": "tail"
+          },
+          {
+            "price": 7462.4,
+            "count": 5,
+            "type": "tail"
+          },
+          {
+            "price": 7465.22,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 7468.04,
+            "count": 10,
+            "type": "va"
+          },
+          {
+            "price": 7470.86,
+            "count": 14,
+            "type": "va"
+          },
+          {
+            "price": 7472.27,
+            "count": 1,
+            "type": "poc"
+          },
+          {
+            "price": 7473.68,
+            "count": 14,
+            "type": "va"
+          },
+          {
+            "price": 7476.5,
+            "count": 13,
+            "type": "va"
+          },
+          {
+            "price": 7479.32,
+            "count": 13,
+            "type": "va"
+          },
+          {
+            "price": 7482.14,
+            "count": 12,
+            "type": "va"
+          },
+          {
+            "price": 7484.96,
+            "count": 11,
+            "type": "va"
+          },
+          {
+            "price": 7487.77,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 7490.59,
+            "count": 8,
+            "type": "va"
+          },
+          {
+            "price": 7493.41,
+            "count": 8,
+            "type": "va"
+          },
+          {
+            "price": 7496.23,
+            "count": 7,
+            "type": "tail"
+          },
+          {
+            "price": 7499.05,
+            "count": 7,
+            "type": "tail"
+          },
+          {
+            "price": 7501.87,
+            "count": 5,
+            "type": "tail"
+          },
+          {
+            "price": 7504.69,
+            "count": 4,
+            "type": "tail"
+          },
+          {
+            "price": 7507.51,
+            "count": 3,
+            "type": "tail"
+          },
+          {
+            "price": 7510.33,
+            "count": 2,
+            "type": "tail"
+          },
+          {
+            "price": 7513.15,
+            "count": 2,
+            "type": "tail"
+          }
         ],
         "mp_history": [
-          {"session": 0, "poc": 7472.27, "vah": 7493.41, "val": 7465.22, "mp_shape_pos": 0.25, "va_breite_pct": 0.38, "shape": "b-Shape", "naked_poc": false},
-          {"session": 1, "poc": 7418.16, "vah": 7443.79, "val": 7404.36, "mp_shape_pos": 0.35, "va_breite_pct": 0.53, "shape": "Trend Day", "naked_poc": true},
-          {"session": 2, "poc": 7367.81, "vah": 7416.08, "val": 7344.94, "mp_shape_pos": 0.321, "va_breite_pct": 0.97, "shape": "b-Shape", "naked_poc": true},
-          {"session": 3, "poc": 7387.21, "vah": 7406.38, "val": 7359.53, "mp_shape_pos": 0.591, "va_breite_pct": 0.63, "shape": "Trend Day", "naked_poc": false},
-          {"session": 4, "poc": 7374.5, "vah": 7404.7, "val": 7364.43, "mp_shape_pos": 0.25, "va_breite_pct": 0.55, "shape": "b-Shape", "naked_poc": false},
-          {"session": 5, "poc": 7432.98, "vah": 7465.97, "val": 7411.99, "mp_shape_pos": 0.389, "va_breite_pct": 0.73, "shape": "Trend Day", "naked_poc": false},
-          {"session": 6, "poc": 7468.38, "vah": 7497.6, "val": 7459.79, "mp_shape_pos": 0.227, "va_breite_pct": 0.51, "shape": "b-Shape", "naked_poc": false},
-          {"session": 7, "poc": 7423.71, "vah": 7434.3, "val": 7396.16, "mp_shape_pos": 0.722, "va_breite_pct": 0.51, "shape": "P-Shape", "naked_poc": false},
-          {"session": 8, "poc": 7400.87, "vah": 7415.02, "val": 7378.64, "mp_shape_pos": 0.611, "va_breite_pct": 0.49, "shape": "Trend Day", "naked_poc": false},
-          {"session": 9, "poc": 7394.62, "vah": 7415.34, "val": 7380.28, "mp_shape_pos": 0.409, "va_breite_pct": 0.47, "shape": "Trend Day", "naked_poc": false}
+          {
+            "session": 0,
+            "poc": 7472.27,
+            "vah": 7493.41,
+            "val": 7465.22,
+            "mp_shape_pos": 0.25,
+            "va_breite_pct": 0.38,
+            "shape": "b-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 1,
+            "poc": 7418.16,
+            "vah": 7443.79,
+            "val": 7404.36,
+            "mp_shape_pos": 0.35,
+            "va_breite_pct": 0.53,
+            "shape": "Trend Day",
+            "naked_poc": true
+          },
+          {
+            "session": 2,
+            "poc": 7367.81,
+            "vah": 7416.08,
+            "val": 7344.94,
+            "mp_shape_pos": 0.321,
+            "va_breite_pct": 0.97,
+            "shape": "b-Shape",
+            "naked_poc": true
+          },
+          {
+            "session": 3,
+            "poc": 7387.21,
+            "vah": 7406.38,
+            "val": 7359.53,
+            "mp_shape_pos": 0.591,
+            "va_breite_pct": 0.63,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 4,
+            "poc": 7374.5,
+            "vah": 7404.7,
+            "val": 7364.43,
+            "mp_shape_pos": 0.25,
+            "va_breite_pct": 0.55,
+            "shape": "b-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 5,
+            "poc": 7432.98,
+            "vah": 7465.97,
+            "val": 7411.99,
+            "mp_shape_pos": 0.389,
+            "va_breite_pct": 0.73,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 6,
+            "poc": 7468.38,
+            "vah": 7497.6,
+            "val": 7459.79,
+            "mp_shape_pos": 0.227,
+            "va_breite_pct": 0.51,
+            "shape": "b-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 7,
+            "poc": 7423.71,
+            "vah": 7434.3,
+            "val": 7396.16,
+            "mp_shape_pos": 0.722,
+            "va_breite_pct": 0.51,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 8,
+            "poc": 7400.87,
+            "vah": 7415.02,
+            "val": 7378.64,
+            "mp_shape_pos": 0.611,
+            "va_breite_pct": 0.49,
+            "shape": "Trend Day",
+            "naked_poc": false
+          },
+          {
+            "session": 9,
+            "poc": 7394.62,
+            "vah": 7415.34,
+            "val": 7380.28,
+            "mp_shape_pos": 0.409,
+            "va_breite_pct": 0.47,
+            "shape": "Trend Day",
+            "naked_poc": false
+          }
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "2x b-Shape + 1x Trend Day",
-          "naked_pocs": [7418.16, 7367.81],
+          "naked_pocs": [
+            7418.16,
+            7367.81
+          ],
           "composite_poc": 7416.22
         }
       }
     },
     "calendar": [
-      {"date": "2026-05-26", "time": "16:00", "currency": "USD", "name": "CB Consumer Confidence", "impact": "medium", "actual": "", "forecast": "91.9", "previous": "92.8", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-27", "time": "10:00", "currency": "EUR", "name": "ECB Financial Stability Review", "impact": "medium", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-28", "time": "14:30", "currency": "USD", "name": "Core PCE Price Index m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.3%", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-28", "time": "14:30", "currency": "USD", "name": "Prelim GDP q/q", "impact": "high", "actual": "", "forecast": "2.1%", "previous": "0.7%", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-28", "time": "14:30", "currency": "USD", "name": "Prelim GDP Price Index q/q", "impact": "medium", "actual": "", "forecast": "3.6%", "previous": "3.8%", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-28", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "210K", "previous": "209K", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-28", "time": "16:00", "currency": "USD", "name": "New Home Sales", "impact": "medium", "actual": "", "forecast": "661K", "previous": "682K", "better": null, "source": "forexfactory"},
-      {"date": "2026-05-29", "time": "08:29", "currency": "EUR", "name": "German Prelim CPI m/m", "impact": "medium", "actual": "", "forecast": "0.2%", "previous": "0.6%", "better": null, "source": "forexfactory"}
+      {
+        "date": "2026-05-26",
+        "time": "16:00",
+        "currency": "USD",
+        "name": "CB Consumer Confidence",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "91.9",
+        "previous": "92.8",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-27",
+        "time": "10:00",
+        "currency": "EUR",
+        "name": "ECB Financial Stability Review",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "",
+        "previous": "",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-28",
+        "time": "09:20",
+        "currency": "EUR",
+        "name": "ECB President Lagarde Speaks",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "",
+        "previous": "",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-28",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Core PCE Price Index m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.3%",
+        "previous": "0.3%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-28",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Prelim GDP q/q",
+        "impact": "high",
+        "actual": "",
+        "forecast": "2.0%",
+        "previous": "0.7%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-28",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Prelim GDP Price Index q/q",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "3.6%",
+        "previous": "3.8%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-28",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Unemployment Claims",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "211K",
+        "previous": "209K",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-28",
+        "time": "16:00",
+        "currency": "USD",
+        "name": "New Home Sales",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "661K",
+        "previous": "682K",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-05-29",
+        "time": "08:29",
+        "currency": "EUR",
+        "name": "German Prelim CPI m/m",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "0.1%",
+        "previous": "0.6%",
+        "better": null,
+        "source": "forexfactory"
+      }
     ]
   },
   "delta": {
@@ -659,8 +1303,12 @@
       "konfidenz_final": 0.5125,
       "entscheidung": "0.40 <= 0.5125 < 0.55: Trade NUR bei P-Shape pos>0.65 (LONG). GER40 Trend Day pos=0.65 (Schwelle), Shape-Konflikt-Reduzierung aktiv. Neue Order auf VWAP-Pullback fuer NY-Session da Morning Entry 24870 vom Markt verlassen."
     },
-    "trade_plan": "USUpdate 14:45 NY-SETUP: GER40 dominiert (price 25297, ER 65 ultra-stark, +169 pts seit Morning).\n\nMORNING-ORDER GER40 LONG @ 24870 STATUS: VERFALLEN — Markt 427 pts entfernt, TP1 25229 bereits ueberschritten ohne Fill.\n\nNEUE NY-ORDER: GER40 LONG VWAP-Pullback Setup\n  Entry:    25180 (knapp ueber VWAP 25163, Tenkan 25254 Magnet-Bounce-Zone)\n  Stop:     25140 (unter VWAP 25163 + Buffer, 40 pts Risk)\n  Target 1: 25330 (Auto-Fibo Top — Resistance)\n  Target 2: 25403 (MRI R2 — Trend-Extension)\n  R:R 3.75 / P(Fill) 60% / P(TP1) 45%\n  Bestaetigung: VWAP-Bounce + Tenkan/Kijun-Magnet + POC-Migration steigend + ER 65 ultra-stark + CDV +4091 Akkumulation\n\nDJ30 SEKUNDAER (align=3, b-Shape KONFLIKT) - keine neue Order, Setup nicht stark genug fuer 2. Trade.\n\nSPX500 BLOCKED: S1=0.1 FAIL, ER -7.37 NEGATIV (Trend bricht), b-Shape Konflikt. NICHT TRADEN.\n\nEntry-Fenster: NY Open 15:30-16:30 (T-45min). Bei Sprung ueber 25330 = Order ablaufen lassen (Setup invalidated).",
-    "instrument_prioritaet": ["GER40", "DJ30", "SPX500"],
+    "trade_plan": "USUpdate 14:45 NY-SETUP: GER40 dominiert (price 25297, ER 65 ultra-stark, +169 pts seit Morning).\n\nMORNING-ORDER GER40 LONG @ 24870 STATUS: VERFALLEN \u2014 Markt 427 pts entfernt, TP1 25229 bereits ueberschritten ohne Fill.\n\nNEUE NY-ORDER: GER40 LONG VWAP-Pullback Setup\n  Entry:    25180 (knapp ueber VWAP 25163, Tenkan 25254 Magnet-Bounce-Zone)\n  Stop:     25140 (unter VWAP 25163 + Buffer, 40 pts Risk)\n  Target 1: 25330 (Auto-Fibo Top \u2014 Resistance)\n  Target 2: 25403 (MRI R2 \u2014 Trend-Extension)\n  R:R 3.75 / P(Fill) 60% / P(TP1) 45%\n  Bestaetigung: VWAP-Bounce + Tenkan/Kijun-Magnet + POC-Migration steigend + ER 65 ultra-stark + CDV +4091 Akkumulation\n\nDJ30 SEKUNDAER (align=3, b-Shape KONFLIKT) - keine neue Order, Setup nicht stark genug fuer 2. Trade.\n\nSPX500 BLOCKED: S1=0.1 FAIL, ER -7.37 NEGATIV (Trend bricht), b-Shape Konflikt. NICHT TRADEN.\n\nEntry-Fenster: NY Open 15:30-16:30 (T-45min). Bei Sprung ueber 25330 = Order ablaufen lassen (Setup invalidated).",
+    "instrument_prioritaet": [
+      "GER40",
+      "DJ30",
+      "SPX500"
+    ],
     "entry_fenster": "NY Open 15:30-16:30",
     "max_risk_today": "1.0%",
     "max_trades_heute": 2,
@@ -758,13 +1406,113 @@
     }
   },
   "calendar": [
-    {"date": "2026-05-26", "time": "16:00", "currency": "USD", "name": "CB Consumer Confidence", "impact": "medium", "actual": "", "forecast": "91.9", "previous": "92.8", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-27", "time": "10:00", "currency": "EUR", "name": "ECB Financial Stability Review", "impact": "medium", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-28", "time": "14:30", "currency": "USD", "name": "Core PCE Price Index m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.3%", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-28", "time": "14:30", "currency": "USD", "name": "Prelim GDP q/q", "impact": "high", "actual": "", "forecast": "2.1%", "previous": "0.7%", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-28", "time": "14:30", "currency": "USD", "name": "Prelim GDP Price Index q/q", "impact": "medium", "actual": "", "forecast": "3.6%", "previous": "3.8%", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-28", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "210K", "previous": "209K", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-28", "time": "16:00", "currency": "USD", "name": "New Home Sales", "impact": "medium", "actual": "", "forecast": "661K", "previous": "682K", "better": null, "source": "forexfactory"},
-    {"date": "2026-05-29", "time": "08:29", "currency": "EUR", "name": "German Prelim CPI m/m", "impact": "medium", "actual": "", "forecast": "0.2%", "previous": "0.6%", "better": null, "source": "forexfactory"}
+    {
+      "date": "2026-05-26",
+      "time": "16:00",
+      "currency": "USD",
+      "name": "CB Consumer Confidence",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "91.9",
+      "previous": "92.8",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-27",
+      "time": "10:00",
+      "currency": "EUR",
+      "name": "ECB Financial Stability Review",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "",
+      "previous": "",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-28",
+      "time": "09:20",
+      "currency": "EUR",
+      "name": "ECB President Lagarde Speaks",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "",
+      "previous": "",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-28",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Core PCE Price Index m/m",
+      "impact": "high",
+      "actual": "",
+      "forecast": "0.3%",
+      "previous": "0.3%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-28",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Prelim GDP q/q",
+      "impact": "high",
+      "actual": "",
+      "forecast": "2.0%",
+      "previous": "0.7%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-28",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Prelim GDP Price Index q/q",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "3.6%",
+      "previous": "3.8%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-28",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Unemployment Claims",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "211K",
+      "previous": "209K",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-28",
+      "time": "16:00",
+      "currency": "USD",
+      "name": "New Home Sales",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "661K",
+      "previous": "682K",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-05-29",
+      "time": "08:29",
+      "currency": "EUR",
+      "name": "German Prelim CPI m/m",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "0.1%",
+      "previous": "0.6%",
+      "better": null,
+      "source": "forexfactory"
+    }
   ]
 }
