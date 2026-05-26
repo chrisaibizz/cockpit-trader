@@ -1,50 +1,63 @@
 {
   "date": "2026-05-26",
-  "timestamp": "2026-05-26T08:16:26",
+  "timestamp": "2026-05-26T14:51:00",
+  "update_type": "usupdate",
   "phase": "BALANCE",
-  "regime": "LEICHT_RISK_ON",
+  "regime": "NEUTRAL",
   "session_bias": "WAIT",
   "alignment_score": 4,
-  "makro_bias": "LEICHT_RISK_ON",
+  "makro_bias": "NEUTRAL",
   "instruments": {
     "GER40": {
       "bias": "LEICHT_BULLISH",
       "score": 4,
+      "price": 25268.25,
       "poc": 25393.97,
       "vah": 25426.87,
       "val": 25141.75,
       "mp_shape": "P-Shape",
       "mp_shape_pos": 0.885,
-      "er": -4.41,
+      "er": 33.33,
+      "vwap": 25290.94,
       "onh": null,
       "pdh": 24919.36
     },
     "DJ30": {
-      "bias": "NEUTRAL",
-      "score": 0,
+      "bias": "LEICHT_BAERISCH",
+      "score": -1,
+      "price": 50888.15,
       "poc": 51076.34,
       "vah": 51153.95,
       "val": 50998.73,
       "mp_shape": "Trend Day",
       "mp_shape_pos": 0.5,
-      "er": 24.32,
+      "er": -20.07,
+      "vwap": 50930.96,
       "onh": null,
       "pdh": 50680.85
     },
     "SPX500": {
       "bias": "NEUTRAL",
-      "score": -1,
+      "score": 2,
+      "price": 7536.45,
       "poc": 7552.6,
       "vah": 7559.19,
       "val": 7543.37,
       "mp_shape": "Trend Day",
       "mp_shape_pos": 0.583,
-      "er": 25.93,
+      "er": 48.15,
+      "vwap": 7532.83,
       "onh": null,
       "pdh": 7493.41
     }
   },
   "orders_count": 0,
-  "konfidenz": 0.3333,
-  "trade_freigabe": false
+  "konfidenz": 0.25,
+  "trade_freigabe": false,
+  "delta_morning": {
+    "GER40": -0.205,
+    "DJ30": -0.156,
+    "SPX500": 0.060
+  },
+  "notes": "USUpdate 14:51: WAIT bestaetigt. ER-Divergenz Pre-NY: GER40 -4->+33, DJ30 +24->-20 (gedreht bearish!), SPX500 +26->+48 (verstaerkt bullisch). VIX 16.59->16.71 leichter Risk-Off. Konfidenz 0.25 < 0.40. Nur GER40 LONG-Schichten OK isoliert."
 }
