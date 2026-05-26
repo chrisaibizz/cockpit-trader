@@ -975,13 +975,13 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-26T08:18:14",
+    "_last_run": "2026-05-26T14:52:00",
     "_status": "ready",
-    "session": "Morning",
+    "session": "USUpdate",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260526_0817_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260526_1452_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
       "sheet_doc": "OK",
