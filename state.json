@@ -550,18 +550,6 @@
     },
     "calendar": [
       {
-        "date": "2026-05-26",
-        "time": "16:00",
-        "currency": "USD",
-        "name": "CB Consumer Confidence",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "91.9",
-        "previous": "92.8",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-05-27",
         "time": "10:00",
         "currency": "EUR",
@@ -575,7 +563,7 @@
       },
       {
         "date": "2026-05-28",
-        "time": "09:20",
+        "time": "08:10",
         "currency": "EUR",
         "name": "ECB President Lagarde Speaks",
         "impact": "medium",
@@ -993,18 +981,6 @@
   },
   "calendar": [
     {
-      "date": "2026-05-26",
-      "time": "16:00",
-      "currency": "USD",
-      "name": "CB Consumer Confidence",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "91.9",
-      "previous": "92.8",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
       "date": "2026-05-27",
       "time": "10:00",
       "currency": "EUR",
@@ -1018,7 +994,7 @@
     },
     {
       "date": "2026-05-28",
-      "time": "09:20",
+      "time": "08:10",
       "currency": "EUR",
       "name": "ECB President Lagarde Speaks",
       "impact": "medium",
