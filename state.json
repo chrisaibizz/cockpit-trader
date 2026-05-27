@@ -990,20 +990,20 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-27T08:20:10",
+    "_last_run": "2026-05-27T14:49:00",
     "_status": "ready",
-    "session": "Morning",
+    "session": "USUpdate",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260527_0819_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260527_1449_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
       "sheet_doc": "OK",
-      "github_web": "OK",
-      "datenqualitaet": "OK (1 Warnung: SPX500 ER -13.10)",
-      "entscheidung": "WAIT",
-      "anomalien": "OK"
+      "github_web": "OK (1 Retry)",
+      "datenqualitaet": "OK",
+      "entscheidung": "LONG-LEAN",
+      "anomalien": "WARN (3 Anomalien)"
     }
   },
   "calendar": [
