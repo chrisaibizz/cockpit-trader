@@ -983,20 +983,20 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-05-27T14:49:00",
+    "_last_run": "2026-05-28T14:55:00",
     "_status": "ready",
     "session": "USUpdate",
-    "gesamt_status": "OK",
-    "probleme_count": 0,
+    "gesamt_status": "PROBLEME",
+    "probleme_count": 3,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260527_1449_USUpdate.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260528_1455_USUpdate.txt",
     "bereiche": {
-      "lokale_prozesse": "OK",
-      "sheet_doc": "OK",
-      "github_web": "OK (1 Retry)",
+      "lokale_prozesse": "WARN (data.json stale, kein Morning)",
+      "sheet_doc": "WARN (uebersprungen - keine Orders)",
+      "github_web": "OK (Commit 287b5b9)",
       "datenqualitaet": "OK",
-      "entscheidung": "LONG-LEAN",
-      "anomalien": "WARN (3 Anomalien)"
+      "entscheidung": "WAIT",
+      "anomalien": "WARN (3: kein Morning / data.json stale / Makro -6 Drehung)"
     }
   },
   "calendar": [
