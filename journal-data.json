@@ -1,83 +1,89 @@
 {
   "date": "2026-06-01",
-  "timestamp": "2026-06-01T08:08:00",
+  "timestamp": "2026-06-01T14:48:00",
+  "update_type": "usupdate",
   "debrief": {
     "orders_checked": 2,
     "fill_rate": "44.0%",
     "tp1_rate": "22.7%",
     "trend": "Stabil",
     "learnings": [
-      "Fr 29.05 Zeile 216 (DJ30) + 217 (GER40) wegen Spalten-Skalierung nicht eindeutig debriefbar - manuelle Pruefung empfohlen",
-      "Gesamt 217 Orders, 23% debrief coverage - Trefferquote stabil bei niedrigem Niveau",
+      "Morning-Setup (Long SPX500 only) hat sich um 14:48 als richtig erwiesen: SPX schwach (ER kollabiert) aber bullish hold, GER40/DJ30 stark gestiegen.",
+      "ISM 16:00 high impact zwingt Konfidenz unter 0.40 (adaptive 30/70) - WAIT-NEW Status.",
       "Konfluenzen mit Preis > VWAP + Ueber VAH-Breakout + Preis > POC haben historisch beste Fill-Rates"
     ]
   },
   "instruments": [
     {
       "name": "GER40",
-      "bias": "NONE",
-      "bias_pct": "50",
-      "daily_summary": "Manuelle Daily-Analyse erforderlich (kein TF-Wechsel im Morning)",
-      "h4_summary": "Manuelle 4H-Analyse erforderlich",
-      "h1_summary": "Manuelle 1H-Analyse erforderlich",
-      "h30m_summary": "Kurs 25129.95 leicht ueber VWAP (25121.35) in_VA. POC=25112.70 VAH=25162.47 VAL=25062.92. Shape: Trend Day pos 0.5 (DIREKTIONAL_NEUTRAL). ER=9.95 schwacher Chop. Unter SMA200 (25198). POC-Migration fallend.",
-      "mp_shape_yesterday": "Trend Day pos 0.35 (DIREKTIONAL_BEARISCH)",
-      "mp_shape_forecast": "Range zwischen 25060-25195 wahrscheinlich (3x Trend Day Sequenz)",
+      "bias": "Bullisch",
+      "bias_pct": "62",
+      "daily_summary": "Manuelle Daily-Analyse - 14:48 Kurs ueber SMA200",
+      "h4_summary": "Manuelle 4H-Analyse",
+      "h1_summary": "Manuelle 1H-Analyse",
+      "h30m_summary": "14:48 Kurs 25297.20 (+167 vs Morning) WEIT ueber VWAP (25151), ueber VWAP-Upper (25197), ueber VAH (25162) - Breakout. ER explodiert 9.95 -> 50.36 STARKER BULLISH TREND. Ueber SMA200 (25190). Tenkan 25212 > Kijun 25182 bullisch. Ichi Preis ueber Kumo (kumo_a 25197).",
+      "mp_shape_yesterday": "Trend Day pos 0.5 (DIREKTIONAL_NEUTRAL gleiche Session)",
+      "mp_shape_forecast": "Continuation up nach Breakout - aber Event-Risk ISM 16:00",
       "mp_5day_sequence": "Sess 0..4: Trend|Trend|Trend|Trend|P-Shape - POC fallend von 25394 auf 25113. Naked POCs upside: 25236, 25394",
       "key_levels": [
-        {"level": "VAH Sess 0", "price": "25162.47", "source": "Market Profile"},
+        {"level": "Fibo Top", "price": "25402.65", "source": "Auto Fibonacci"},
+        {"level": "MRI R1", "price": "25275.11", "source": "Mean Reversion (DURCHBROCHEN)"},
+        {"level": "Tenkan", "price": "25212.70", "source": "Ichimoku"},
+        {"level": "VAH Sess 0", "price": "25162.47", "source": "Market Profile (DURCHBROCHEN)"},
+        {"level": "VWAP 30M", "price": "25151.16", "source": "VWAP"},
         {"level": "POC Sess 0", "price": "25112.70", "source": "Market Profile"},
-        {"level": "VAL Sess 0", "price": "25062.92", "source": "Market Profile"},
-        {"level": "VWAP 30M", "price": "25121.35", "source": "VWAP"},
-        {"level": "SMA200", "price": "25198.51", "source": "Daily Bias-Filter (bearish unter)"},
-        {"level": "PDH", "price": "25244.71", "source": "Vortag (DAX Cash)"}
+        {"level": "VAL Sess 0", "price": "25062.92", "source": "Market Profile"}
       ],
       "orders": [],
-      "invalidation": "Kein Setup heute (bias_direction=NONE, alle_schichten_ok=false)"
+      "invalidation": "FREIGEGEBEN LONG (align 4) aber KEIN neuer Trade vor ISM 16:00 (Konf 0.27 < 0.40 wegen adaptive 30/70)"
     },
     {
       "name": "DJ30",
-      "bias": "NONE",
-      "bias_pct": "50",
-      "daily_summary": "Manuelle Daily-Analyse erforderlich",
-      "h4_summary": "Manuelle 4H-Analyse erforderlich",
-      "h1_summary": "Manuelle 1H-Analyse erforderlich",
-      "h30m_summary": "Kurs 51117.45 ueber VWAP (51096) und ueber VAH (50999.95) - BREAKOUT. POC=50748.68 (sess 0 b-Shape pos 0.18). ER=11.56 chop. Ueber SMA200 (50775). Ichi above Kumo. POC-Migration fallend.",
-      "mp_shape_yesterday": "Trend Day pos 0.643 (DIREKTIONAL_BULLISCH)",
-      "mp_shape_forecast": "b-Shape sess 0 mit Preis darueber = Breakout-Reversal oder Failed-Breakdown - Direktion unklar bis VWAP-Test bestaetigt",
+      "bias": "Long_Tendenz",
+      "bias_pct": "55",
+      "daily_summary": "Manuelle Daily-Analyse",
+      "h4_summary": "Manuelle 4H-Analyse",
+      "h1_summary": "Manuelle 1H-Analyse",
+      "h30m_summary": "14:48 Kurs 51234.45 (+117 vs Morning) weit ueber VWAP (51169) und VAH (50999). Breakout-Reversal anhaltend. ER 11.56 -> 30.18 starker bullish. Ueber SMA200 (50792). Tenkan 51258 > Kijun 51224 bullisch. CDV +2759 bullisch.",
+      "mp_shape_yesterday": "b-Shape pos 0.179 (BAERISCH technisch) - Preis aber im Breakout",
+      "mp_shape_forecast": "Breakout-Reversal verstaerkt - aber S1 blockt formal LONG-Freigabe",
       "mp_5day_sequence": "b-Shape | Trend | P-Shape | P-Shape | Trend | b-Shape - mixed mit naked POC oben 51076",
       "key_levels": [
-        {"level": "VAH Sess 0", "price": "50999.95", "source": "Market Profile"},
-        {"level": "POC Sess 0", "price": "50748.68", "source": "Market Profile (b-Shape)"},
-        {"level": "VAL Sess 0", "price": "50694.05", "source": "Market Profile"},
-        {"level": "Naked POC up", "price": "51076.34", "source": "Sess 4 - magnet up"},
-        {"level": "VWAP 30M", "price": "51096.00", "source": "VWAP"},
-        {"level": "SMA200", "price": "50775.49", "source": "Daily Bias-Filter (bullish)"}
+        {"level": "Fibo Top", "price": "51373.45", "source": "Auto Fibonacci"},
+        {"level": "MRI R2", "price": "51366.20", "source": "Mean Reversion"},
+        {"level": "Tenkan", "price": "51258.30", "source": "Ichimoku"},
+        {"level": "VWAP Upper", "price": "51257.81", "source": "VWAP Stdev"},
+        {"level": "Kijun", "price": "51224.05", "source": "Ichimoku"},
+        {"level": "VWAP 30M", "price": "51169.73", "source": "VWAP"},
+        {"level": "MRI R1", "price": "51099.28", "source": "Mean Reversion (DURCHBROCHEN)"},
+        {"level": "Naked POC up", "price": "51076.34", "source": "Sess 4 magnet"},
+        {"level": "VAH Sess 0", "price": "50999.95", "source": "Market Profile (DURCHBROCHEN)"}
       ],
       "orders": [],
-      "invalidation": "Kein Setup heute (bias_direction=NONE, S2 ok aber S1 nur -0.20 = exakt Short-Threshold, S2 widerspricht Short)"
+      "invalidation": "S1 blockiert wegen b-Shape pos 0.179 trotz Breakout - KEIN Trade"
     },
     {
       "name": "SPX500",
-      "bias": "Bullisch",
-      "bias_pct": "60",
-      "daily_summary": "Manuelle Daily-Analyse erforderlich",
-      "h4_summary": "Manuelle 4H-Analyse erforderlich",
-      "h1_summary": "Manuelle 1H-Analyse erforderlich",
-      "h30m_summary": "Kurs 7614.95 ueber VWAP (7604.44), ueber VAH (7593.92). POC=7583.30 sess 0 pos 0.39 (Trend Day lean bear technisch). ER=27.62 STARKER TREND. Ueber SMA200 (7552). Ichi above Kumo. POC-Migration steigend +0.4%.",
-      "mp_shape_yesterday": "Trend Day pos 0.591 (DIREKTIONAL_BULLISCH)",
-      "mp_shape_forecast": "Breakout-Continuation - sess 0 lean bear technisch aber Preis > VAH + starker ER + Migration up = bullisch dominant",
+      "bias": "Bullisch_konsolidierend",
+      "bias_pct": "50",
+      "daily_summary": "Manuelle Daily-Analyse",
+      "h4_summary": "Manuelle 4H-Analyse",
+      "h1_summary": "Manuelle 1H-Analyse",
+      "h30m_summary": "14:48 Kurs 7609.25 (-5 vs Morning) nahe VWAP (7607), ueber VAH (7593). ER KOLLABIERT 27.62 -> 3.57 (Range-Bound). Tenkan 7610 ~ Kijun 7610 (Cross-Naehe, neutral). CDV -2335. Konsolidierung im Breakout.",
+      "mp_shape_yesterday": "Trend Day pos 0.389 (DIREKTIONAL_NEUTRAL gleiche Session)",
+      "mp_shape_forecast": "Range-Bound 7595-7615 vor ISM 16:00",
       "mp_5day_sequence": "Trend | Trend | P-Shape | Trend | Trend - POC steigend 7553 -> 7583. Composite POC 7512",
       "key_levels": [
-        {"level": "Fibo-Top / Sess 0 ONH", "price": "7616.45", "source": "Auto Fibonacci / OHLC ON"},
-        {"level": "MRI R1", "price": "7601.25", "source": "Mean Reversion"},
-        {"level": "VAH Sess 0", "price": "7593.92", "source": "Market Profile"},
-        {"level": "VWAP 30M", "price": "7604.44", "source": "VWAP"},
-        {"level": "VWAP Lower", "price": "7595.97", "source": "VWAP Stdev"},
+        {"level": "Fibo-Top / Sess 0 ONH", "price": "7618.95", "source": "Auto Fibonacci / OHLC ON"},
+        {"level": "VWAP Upper", "price": "7614.08", "source": "VWAP Stdev"},
+        {"level": "Tenkan/Kijun (Cross)", "price": "7610.50", "source": "Ichimoku"},
+        {"level": "MRI R1", "price": "7610.01", "source": "Mean Reversion (RESISTANCE)"},
+        {"level": "VWAP 30M", "price": "7607.11", "source": "VWAP"},
+        {"level": "VWAP Lower", "price": "7600.13", "source": "VWAP Stdev"},
+        {"level": "VAH Sess 0 (Entry)", "price": "7593.92", "source": "Market Profile"},
         {"level": "POC Sess 0", "price": "7583.30", "source": "Market Profile"},
         {"level": "VAL Sess 0", "price": "7576.55", "source": "Market Profile"},
-        {"level": "Sess 1 POC", "price": "7526.63", "source": "Naked POC unten"},
-        {"level": "MRI R2", "price": "7638.69", "source": "Mean Reversion"}
+        {"level": "Sess 1 POC", "price": "7526.63", "source": "Naked POC unten"}
       ],
       "orders": [
         {
@@ -90,25 +96,27 @@
           "p_fill": "55",
           "p_tp1": "55",
           "tf": "30M",
-          "confluence": "VAH-Retest 7593.92 + VWAP-Lower 7595.97 + Ichi ueber Kumo + SMA200 7552 + ER 27.62 + Migration steigend",
+          "confluence": "VAH-Retest 7593.92 + VWAP-Lower 7600 + Ichi ueber Kumo + SMA200 7557 + Migration steigend",
           "mp_shape_yesterday": "Trend Day pos 0.591",
-          "mp_shape_forecast": "Breakout-Continuation"
+          "mp_shape_forecast": "Breakout-Continuation",
+          "validation_status": "VALID_BIS_15_55",
+          "validation_reason": "US14:48: Bias LONG unveraendert. POC unveraendert. Entry 7594 noch 15pts unter Preis 7609 - erreichbar bei Konsolidierung. ABBRUCH wenn nicht gefilled bis 15:55 wegen ISM 16:00."
         }
       ],
-      "invalidation": "Schluss unter Composite-POC 7512 oder Sess 1 POC 7526 negiert bullischen Bias. SL 7572 unter VAL mit Buffer."
+      "invalidation": "Schluss unter Composite-POC 7512 oder Sess 1 POC 7526. SL 7572 unter VAL mit Buffer."
     }
   ],
   "summary": {
-    "best_instrument": "SPX500",
+    "best_instrument": "GER40",
     "total_orders": 1,
     "warnings": [
-      "Nur 1/3 Instrumente alle_schichten_ok (Solo-Setup SPX)",
-      "Konfidenz 0.40 genau an Schwelle - Vorsicht",
-      "ISM Manufacturing PMI 16:00 USD high impact - vor 15:30 Profit sichern",
-      "F&G 29 (Fear) - Stimmung defensiv",
-      "GER40 unter SMA200 - Daily Trend bearish"
+      "US-Update 14:48: VALIDATE-EXISTING SPX500-Order + KEINE NEUEN VOR ISM 16:00",
+      "Konfidenz 0.27 < 0.40 (adaptive 30/70 wegen ISM <2h)",
+      "GER40 NEU LONG freigegeben (Morning NONE) - aber Event-Risk blockt Neueintritt",
+      "DJ30 +117 aber b-Shape S1 blockt formal",
+      "SPX500-Order LOESCHEN um 15:55 wenn nicht gefilled (Event-Risk)"
     ],
-    "notes": "Cockpit Morning 2026-06-01 08:08. Phase: AUSBRUCH-MIX. Makro: LEICHT_RISK_ON Score +3. Captain Bias: LONG-LEAN-SOLO. Strategie: BREAKOUT-LONG SPX500 only."
+    "notes": "US-Update 2026-06-01 14:48. Phase: AUSBRUCH-MIX. Makro: LEICHT_RISK_ON Score +2 (VIX 15.32 -> 15.84). Captain Bias: LONG-LEAN_VOR_ISM. Strategie: VALIDATE-EXISTING SPX500 + WAIT-NEW."
   },
   "stats": {
     "total": 217,
