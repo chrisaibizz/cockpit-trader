@@ -1,12 +1,13 @@
 {
   "pipeline": {
-    "status": "running_usupdate",
+    "status": "completed",
     "last_run": "2026-06-02T14:47:00",
     "run_date": "2026-06-02",
     "run_type": "usupdate",
     "steps_completed": [
-      "macro",
+      "macro_mini",
       "marketdata",
+      "delta",
       "analyst",
       "captain",
       "executor",
@@ -14,7 +15,7 @@
       "monitor"
     ],
     "morning_last_run": "2026-06-02T08:04:00",
-    "usupdate_last_run": "2026-06-02T14:47:00"
+    "usupdate_last_run": "2026-06-02T14:48:00"
   },
   "macro": {
     "_agent": "MACRO",
@@ -1033,29 +1034,28 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-02T08:15:00",
+    "_last_run": "2026-06-02T14:48:00",
     "_status": "ready",
-    "session": "Morning 2026-06-02 08:15",
+    "session": "USUpdate 2026-06-02 14:47",
     "gesamt_status": "OK_mit_Warnungen",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260602_0815_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260602_1447_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
       "sheet_doc": "OK_WAIT",
       "github_web": "OK",
       "datenqualitaet": "OK_mit_Warnung",
-      "entscheidung": "OK",
+      "entscheidung": "WAIT",
       "anomalien": "OK_Warnung"
     },
     "warnungen": [
-      "WAIT-Modus: 0 Orders - Sheet leer (korrekt nach Konfidenz-Entscheidung)",
-      "ONH/ONL aus 5-bar 30M approximiert (kein dedizierter Overnight-Feed)",
-      "PDH/PDL aus 50-bar 30M approximiert",
-      "GER40 ER 87.9 + POC-Migration fallend = Divergenz (Topping?)",
-      "Gold +75 Risk-Off Signal trotz LONG-Lean Indizes - beachten",
-      "F&G 23 Extreme Fear (gefallen 29->23) - sentiment-Risk",
-      "Event-Risk Woche: ADP Mi + ISM Mi + NFP Fr"
+      "ER-Reversal: alle 3 Instrumente von Morning (+) auf USUpdate (-) gedreht",
+      "Shape-Konflikt: MP P-Shape (BULL) vs ER alle bearish",
+      "DJ30 Preis unter VAL 50898 - P-Shape Setup negiert",
+      "GER40 Distribution nach Run-up 25368 -> 25166 ~POC",
+      "Nur 1 Instr Schichten ok (Top-Down fordert 2+) - WAIT korrekt",
+      "JOLTS 16:00 USD medium - naechster Re-Eval Punkt"
     ]
   },
   "calendar": [
