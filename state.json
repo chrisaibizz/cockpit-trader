@@ -552,7 +552,141 @@
           "composite_poc": 7512.42
         }
       }
-    }
+    },
+    "calendar": [
+      {
+        "date": "2026-06-02",
+        "time": "11:00",
+        "currency": "EUR",
+        "name": "Core CPI Flash Estimate y/y",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "2.4%",
+        "previous": "2.2%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "11:00",
+        "currency": "EUR",
+        "name": "CPI Flash Estimate y/y",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "3.2%",
+        "previous": "3.0%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-02",
+        "time": "16:00",
+        "currency": "USD",
+        "name": "JOLTS Job Openings",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "6.87M",
+        "previous": "6.87M",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "14:15",
+        "currency": "USD",
+        "name": "ADP Non-Farm Employment Change",
+        "impact": "high",
+        "actual": "",
+        "forecast": "116K",
+        "previous": "109K",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "16:00",
+        "currency": "USD",
+        "name": "ISM Services PMI",
+        "impact": "high",
+        "actual": "",
+        "forecast": "53.7",
+        "previous": "53.6",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-03",
+        "time": "16:00",
+        "currency": "USD",
+        "name": "Treasury Sec Bessent Speaks",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "",
+        "previous": "",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "10:00",
+        "currency": "EUR",
+        "name": "ECB President Lagarde Speaks",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "",
+        "previous": "",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Unemployment Claims",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "214K",
+        "previous": "215K",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Average Hourly Earnings m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.3%",
+        "previous": "0.2%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Non-Farm Employment Change",
+        "impact": "high",
+        "actual": "",
+        "forecast": "85K",
+        "previous": "115K",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Unemployment Rate",
+        "impact": "high",
+        "actual": "",
+        "forecast": "4.3%",
+        "previous": "4.3%",
+        "better": null,
+        "source": "forexfactory"
+      }
+    ]
   },
   "delta": {
     "_agent": "DELTA",
@@ -826,42 +960,6 @@
   },
   "calendar": [
     {
-      "date": "2026-06-01",
-      "time": "02:30",
-      "currency": "USD",
-      "name": "FOMC Member Powell Speaks",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-01",
-      "time": "16:00",
-      "currency": "USD",
-      "name": "ISM Manufacturing PMI",
-      "impact": "high",
-      "actual": "",
-      "forecast": "53.3",
-      "previous": "52.7",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-01",
-      "time": "16:00",
-      "currency": "USD",
-      "name": "ISM Manufacturing Prices",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "85.3",
-      "previous": "84.6",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
       "date": "2026-06-02",
       "time": "11:00",
       "currency": "EUR",
@@ -880,7 +978,7 @@
       "name": "CPI Flash Estimate y/y",
       "impact": "medium",
       "actual": "",
-      "forecast": "3.3%",
+      "forecast": "3.2%",
       "previous": "3.0%",
       "better": null,
       "source": "forexfactory"
@@ -916,7 +1014,7 @@
       "name": "ISM Services PMI",
       "impact": "high",
       "actual": "",
-      "forecast": "53.8",
+      "forecast": "53.7",
       "previous": "53.6",
       "better": null,
       "source": "forexfactory"
@@ -952,7 +1050,7 @@
       "name": "Unemployment Claims",
       "impact": "medium",
       "actual": "",
-      "forecast": "211K",
+      "forecast": "214K",
       "previous": "215K",
       "better": null,
       "source": "forexfactory"
@@ -976,7 +1074,7 @@
       "name": "Non-Farm Employment Change",
       "impact": "high",
       "actual": "",
-      "forecast": "95K",
+      "forecast": "85K",
       "previous": "115K",
       "better": null,
       "source": "forexfactory"
