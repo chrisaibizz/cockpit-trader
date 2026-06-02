@@ -1,15 +1,16 @@
 {
   "date": "2026-06-02",
-  "timestamp": "2026-06-02T08:12:00",
+  "timestamp": "2026-06-02T14:47:00",
   "debrief": {
     "orders_checked": 0,
     "fill_rate": "44.0%",
     "tp1_rate": "22.7%",
     "trend": "Stabil",
     "learnings": [
-      "Letzter US-Update 14:48 SPX500 Order VALID gelassen - heute Re-Check beim Fill-Status erforderlich",
-      "Konfidenz-Schwelle 0.40 erneut nicht erreicht - Marktphase TREND aber Score-Untergrenze 4 verfehlt",
-      "GER40 ER 87.9 mit POC-Migration fallend = Divergenz (Topping Pattern?)"
+      "USUpdate 14:47: alle 3 ERs gedreht negativ (Morning waren alle +) - bullisches Setup zerbrochen",
+      "DJ30 unter VAL+VWAP - P-Shape negiert durch Schwaeche",
+      "GER40 Distribution nach Run-up bis 25368 zurueck zu 25166 ~POC",
+      "WAIT bleibt: kein 2-Instrumente-Konsens fuer LONG oder SHORT"
     ]
   },
   "instruments": [
@@ -17,11 +18,11 @@
       "name": "GER40",
       "bias": "Neutral",
       "bias_color": "gray",
-      "bias_pct": "60",
-      "daily_summary": "Phase TREND. ER 87.9 (sehr_starker_trend). Shape D-Shape pos=0.55. Migration fallend.",
+      "bias_pct": "50",
+      "daily_summary": "Phase TREND. ER 87.9 -> -71.62 (gedreht). Shape D-Shape pos=0.55 (MP unveraendert). Migration fallend.",
       "h4_summary": "Manuelle 4H-Analyse erforderlich.",
       "h1_summary": "Manuelle 1H-Analyse erforderlich.",
-      "h30m_summary": "Kurs 25144.31 ueber_VWAP (25055.78), in_VA. POC=25136.23 VAH=25227.8 VAL=25024.3. ER=87.9 (sehr_starker_trend). Ichimoku Tenkan=25078.01 Kijun=25043.08. Schichten S1=-0.1 S2=0.75 S3=0.167 Direction=NONE",
+      "h30m_summary": "USUpdate 14:47: Kurs 25166.14 (+21.83/+0.087%) ~VWAP 25167.20 (gleich), in_VA. POC/VAH/VAL unveraendert. ER -71.62 (sehr_starker_bearish_trend). Tenkan=25226.14 Kijun=25177.13. Schichten S1=0.0 S2=0.0 S3=0.167 Direction=NONE. Intraday-High 25368 erreicht und zurueck - Distribution.",
       "mp_shape_yesterday": "Trend Day",
       "mp_shape_forecast": "D-Shape",
       "mp_5day_sequence": "D-Shape | Trend Day | Trend Day | Trend Day | b-Shape",
@@ -43,7 +44,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "25055.78",
+          "price": "25167.20",
           "source": "VWAP"
         },
         {
@@ -58,7 +59,7 @@
         },
         {
           "level": "SMA200",
-          "price": "25153.21",
+          "price": "25152.30",
           "source": "Simple MA"
         },
         {
@@ -68,17 +69,17 @@
         }
       ],
       "orders": [],
-      "invalidation": "WAIT-Modus aktiv - keine Order, keine Invalidierung definiert."
+      "invalidation": "WAIT-Modus - kein Trade. Reaktivierung nur falls ER zurueck >+25 + Preis ueber VAH 25227."
     },
     {
       "name": "US30",
-      "bias": "Bullisch",
-      "bias_color": "green",
-      "bias_pct": "80",
-      "daily_summary": "Phase TREND. ER 44.53 (starker_bullish_trend). Shape P-Shape pos=0.75. Migration steigend.",
+      "bias": "Neutral",
+      "bias_color": "gray",
+      "bias_pct": "45",
+      "daily_summary": "Phase TREND. ER 44.53 -> -61.97 (gedreht). Shape P-Shape pos=0.75 (MP unveraendert). Preis unter VAL.",
       "h4_summary": "Manuelle 4H-Analyse erforderlich.",
       "h1_summary": "Manuelle 1H-Analyse erforderlich.",
-      "h30m_summary": "Kurs 50961.38 ueber_VWAP (50938.24), in_VA. POC=51107.93 VAH=51177.8 VAL=50898.3. ER=44.53 (starker_bullish_trend). Ichimoku Tenkan=50921.38 Kijun=51011.71. Schichten S1=0.3 S2=0.75 S3=0.167 Direction=LONG",
+      "h30m_summary": "USUpdate 14:47: Kurs 50881.38 (-80.00/-0.157%) UNTER VWAP 50947.00 UND unter VAL 50898.30. POC/VAH/VAL unveraendert. ER -61.97 (sehr_starker_bearish_trend). Tenkan=50934.18 < Kijun=50961.68 bearish. Schichten S1=0.2 S2=0.0 S3=0.0 Direction=NONE. P-Shape Setup negiert durch Schwaeche.",
       "mp_shape_yesterday": "b-Shape",
       "mp_shape_forecast": "P-Shape",
       "mp_5day_sequence": "P-Shape | b-Shape | Trend Day | P-Shape | P-Shape",
@@ -100,7 +101,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "50938.24",
+          "price": "50947.00",
           "source": "VWAP"
         },
         {
@@ -115,7 +116,7 @@
         },
         {
           "level": "SMA200",
-          "price": "50834.99",
+          "price": "50860.04",
           "source": "Simple MA"
         },
         {
@@ -125,17 +126,17 @@
         }
       ],
       "orders": [],
-      "invalidation": "WAIT-Modus aktiv - keine Order, keine Invalidierung definiert."
+      "invalidation": "WAIT-Modus - kein Trade. Reaktivierung nur bei Rueckkehr ueber VAL 50898 + ER >+25."
     },
     {
       "name": "SPX500",
-      "bias": "Bullisch",
-      "bias_color": "green",
-      "bias_pct": "80",
-      "daily_summary": "Phase TREND. ER 43.33 (starker_bullish_trend). Shape P-Shape pos=0.722. Migration steigend.",
+      "bias": "Leicht Bullisch",
+      "bias_color": "yellow",
+      "bias_pct": "55",
+      "daily_summary": "Phase TREND. ER 43.33 -> -27.27 (gedreht). Shape P-Shape pos=0.722 (MP unveraendert). Knapp Schichten ok.",
       "h4_summary": "Manuelle 4H-Analyse erforderlich.",
       "h1_summary": "Manuelle 1H-Analyse erforderlich.",
-      "h30m_summary": "Kurs 7593.8 ueber_VWAP (7584.97), in_VA. POC=7610.8 VAH=7617.8 VAL=7592.6. ER=43.33 (starker_bullish_trend). Ichimoku Tenkan=7585.05 Kijun=7601.65. Schichten S1=0.3 S2=0.75 S3=0.333 Direction=LONG",
+      "h30m_summary": "USUpdate 14:47: Kurs 7597.30 (+3.50/+0.046%) ueber VWAP 7590.56, in_VA. POC/VAH/VAL unveraendert. ER -27.27 (starker_bearish_trend). Tenkan=7599.18 > Kijun=7591.30 marginal bullisch. Schichten S1=0.3 S2=0.25 S3=0.167 Direction=LONG knapp. Einziger LONG-Kandidat, aber Score 2/8 zu schwach fuer Trade.",
       "mp_shape_yesterday": "Trend Day",
       "mp_shape_forecast": "P-Shape",
       "mp_5day_sequence": "P-Shape | Trend Day | Trend Day | P-Shape | Trend Day",
@@ -157,7 +158,7 @@
         },
         {
           "level": "VWAP 30M",
-          "price": "7584.97",
+          "price": "7590.56",
           "source": "VWAP"
         },
         {
@@ -172,7 +173,7 @@
         },
         {
           "level": "SMA200",
-          "price": "7568.02",
+          "price": "7572.23",
           "source": "Simple MA"
         },
         {
@@ -182,21 +183,22 @@
         }
       ],
       "orders": [],
-      "invalidation": "WAIT-Modus aktiv - keine Order, keine Invalidierung definiert."
+      "invalidation": "WAIT-Modus - knapp LONG-Schichten ok aber 1/3 zu wenig. Re-Eval nach JOLTS 16:00."
     }
   ],
   "summary": {
-    "best_instrument": "DJ30",
+    "best_instrument": "SPX500",
     "total_orders": 0,
     "warnings": [
-      "WAIT-Modus: Konfidenz 0.225 < 0.40",
-      "F&G 23 Extreme Fear",
-      "Gold +75 Risk-Off Signal trotz LONG-Lean Indizes",
-      "EUR CPI 11:00 medium, JOLTS 16:00 medium",
-      "ISM PMI Mi 16:00 high impact",
-      "ADP Mi 14:15 + NFP Fr 14:30 - viel Event-Risk Woche"
+      "USUpdate WAIT: Shape-Konflikt MP=P-Shape vs ER alle bearish",
+      "Konfidenz 0.217 < 0.40 - kein Trade",
+      "Nur 1 Instrument (SPX500) alle Schichten ok (Top-Down fordert 2+)",
+      "DJ30 unter VAL+VWAP - P-Shape negiert",
+      "GER40 Distribution nach 25368-Run - lokales Topping",
+      "JOLTS 16:00 USD medium in 73min - Re-Eval danach",
+      "Makro verbessert auf LEICHT_RISK_ON (+2), aber Chart-Schwaeche bremst"
     ],
-    "notes": "Morning 08:12: WAIT trotz 2 Instr Schichten freigegeben. Re-Eval 11:00 CPI / 16:00 JOLTS."
+    "notes": "USUpdate 14:47: WAIT bleibt. Morning hatte 0 Orders, USUpdate auch 0. Alle 3 ER gedreht negativ aber MP-Setup weiter bullish -> Konflikt. Re-Eval nach JOLTS 16:00 (medium impact)."
   },
   "stats": {
     "total": 217,
@@ -205,18 +207,21 @@
     "trend": "Stabil"
   },
   "captain": {
-    "session_bias": "WAIT (LONG-LEAN)",
-    "aktive_strategie": "WAIT - keine neuen Trades. Beobachten DJ30+SPX500 bis Konfidenz >0.40 oder abs(align)>=4. Re-Eval 11:00 EUR CPI.",
-    "alignment_score": 3,
+    "session_bias": "WAIT",
+    "aktive_strategie": "WAIT - Shape/ER-Konflikt, kein 2-Instrumente Konsens. Re-Eval nach JOLTS 16:00.",
+    "alignment_score": 2,
     "trade_freigabe": false,
-    "konfidenz": 0.225,
+    "konfidenz": 0.217,
     "max_risk_today": 0.5,
-    "max_trades_heute": 0
+    "max_trades_heute": 0,
+    "konfidenz_direction": "LONG",
+    "shape_konflikt": true
   },
   "macro": {
-    "gesamt_score": 0,
-    "makro_bias": "NEUTRAL",
-    "vix": 16.05,
+    "gesamt_score": 2,
+    "makro_bias": "LEICHT_RISK_ON",
+    "vix": 16.17,
     "fear_greed": 23
-  }
+  },
+  "update_type": "usupdate"
 }
