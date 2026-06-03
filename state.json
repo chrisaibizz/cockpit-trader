@@ -554,49 +554,13 @@
     },
     "calendar": [
       {
-        "date": "2026-06-02",
-        "time": "11:00",
-        "currency": "EUR",
-        "name": "Core CPI Flash Estimate y/y",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "2.4%",
-        "previous": "2.2%",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-02",
-        "time": "11:00",
-        "currency": "EUR",
-        "name": "CPI Flash Estimate y/y",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "3.2%",
-        "previous": "3.0%",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-02",
-        "time": "16:00",
-        "currency": "USD",
-        "name": "JOLTS Job Openings",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "6.87M",
-        "previous": "6.87M",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-06-03",
         "time": "14:15",
         "currency": "USD",
         "name": "ADP Non-Farm Employment Change",
         "impact": "high",
         "actual": "",
-        "forecast": "116K",
+        "forecast": "118K",
         "previous": "109K",
         "better": null,
         "source": "forexfactory"
@@ -1060,49 +1024,13 @@
   },
   "calendar": [
     {
-      "date": "2026-06-02",
-      "time": "11:00",
-      "currency": "EUR",
-      "name": "Core CPI Flash Estimate y/y",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "2.4%",
-      "previous": "2.2%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-02",
-      "time": "11:00",
-      "currency": "EUR",
-      "name": "CPI Flash Estimate y/y",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "3.2%",
-      "previous": "3.0%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-02",
-      "time": "16:00",
-      "currency": "USD",
-      "name": "JOLTS Job Openings",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "6.87M",
-      "previous": "6.87M",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
       "date": "2026-06-03",
       "time": "14:15",
       "currency": "USD",
       "name": "ADP Non-Farm Employment Change",
       "impact": "high",
       "actual": "",
-      "forecast": "116K",
+      "forecast": "118K",
       "previous": "109K",
       "better": null,
       "source": "forexfactory"
