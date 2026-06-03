@@ -1,24 +1,28 @@
 {
   "pipeline": {
-    "status": "running",
-    "last_run": "2026-06-03T08:05:57",
+    "status": "completed",
+    "last_run": "2026-06-03T14:48:00",
     "run_date": "2026-06-03",
-    "run_type": "morning",
+    "run_type": "usupdate",
     "steps_completed": [
-      "macro",
+      "macro_mini",
       "marketdata",
+      "delta",
       "analyst",
       "captain",
-      "executor"
+      "executor",
+      "export",
+      "monitor",
+      "report"
     ],
-    "morning_last_run": "2026-06-02T08:04:00",
-    "usupdate_last_run": "2026-06-02T14:48:00"
+    "morning_last_run": "2026-06-03T08:22:00",
+    "usupdate_last_run": "2026-06-03T14:48:00"
   },
   "macro": {
     "_agent": "MACRO",
     "_last_run": "2026-06-03T08:05:57",
-    "_status": "ready",
-    "_update_type": "morning",
+    "_status": "ready_morning_inherited",
+    "_update_type": "usupdate_warn_inherited",
     "fear_greed": {
       "value": 11,
       "classification": "Extreme Fear",
@@ -88,28 +92,27 @@
       "bearish_punkte": 4,
       "gesamt_score": -1,
       "makro_bias": "NEUTRAL",
-      "erklaerung": "Morning 08:04: F&G 23->11 Extreme Fear (-1). VIX 16.05->15.77 fallend (+1). Bonds 4.475->4.455 fallend (+1, raus aus 4.5er Schwelle). DXY 99.22->99.294 steigend (<104, kein Bear). Oil 93.76->95.52 steigend >90 (-1). Gold 4489->4492 steigend (-1). Basis=-1 + FRED=0 (YieldCurve+1 CPI-1 FedFunds=0) = gesamt -1 NEUTRAL."
+      "erklaerung": "USUpdate 14:48 - MACRO-Mini WARN: keine yfinance-Fetch in dieser Session. Werte aus Morning 08:04 uebernommen. ADP 14:15 erschienen (actual nicht abrufbar), ISM Services 16:00 noch ausstehend."
     },
     "warnungen": [
+      "MACRO-Mini WARN: Morning-Werte uebernommen (kein yfinance Fetch in Session)",
       "F&G 11 Extreme Fear - Stimmung sehr defensiv (gestern 23)",
       "Oil WTI 95.52 > 90 - Inflationsdruck hoch",
       "Gold 4492.1 steigend - Risk-Off Signal",
-      "Bonds 4.455 unter 4.5 Schwelle - Zinsdruck moderat",
-      "CPI 3.95% > 3.5 - Inflation hoch (FRED bearish)",
-      "ADP 14:15 USD high impact heute",
-      "ISM Services 16:00 USD high impact heute"
+      "ADP 14:15 USD high impact - bereits ausgegeben (actual nicht erfasst)",
+      "ISM Services 16:00 USD high impact - Re-Eval Punkt vor NY-Close"
     ]
   },
   "market": {
     "_agent": "MARKETDATA",
-    "_last_run": "2026-06-03T08:12:12",
+    "_last_run": "2026-06-03T14:47:30",
     "_status": "ready",
-    "_update_type": "morning",
-    "timestamp": "2026-06-03 08:12",
+    "_update_type": "usupdate",
+    "timestamp": "2026-06-03 14:47",
     "instruments": {
       "GER40": {
-        "last_run": "2026-06-03T08:12:12",
-        "price": 25032.54,
+        "last_run": "2026-06-03T14:47:30",
+        "price": 24894.04,
         "poc": 25110.09,
         "vah": 25215.43,
         "val": 25023.91,
@@ -117,146 +120,61 @@
         "va_breite_pct": 0.76,
         "mp_shape": "Trend Day",
         "mp_shape_bias": "NEUTRAL",
-        "price_vs_va": "in_VA",
-        "vwap": 25094.61,
-        "vwap_upper": 25110.61,
-        "vwap_lower": 25078.61,
+        "price_vs_va": "unter_VA",
+        "vwap": 24975.02,
+        "vwap_upper": 25060.26,
+        "vwap_lower": 24889.77,
         "price_vs_vwap": "unter_VWAP",
-        "er": -44.27,
-        "er_qualitaet": "starker_bearish_trend",
-        "sma200": 25129.26,
+        "er": -22.45,
+        "er_qualitaet": "moderater_bearish_trend",
+        "sma200": 25105.76,
         "ichimoku": {
-          "tenkan": 25077.31,
-          "kijun": 25092.18,
-          "kumo_a": 25084.75,
-          "kumo_b": 25187.38
+          "tenkan": 24897.04,
+          "kijun": 24979.72,
+          "kumo_a": 24938.38,
+          "kumo_b": 25089.34
         },
         "fibo": {
-          "level_0": 25368.64,
-          "level_50": 25135.42,
-          "level_618": 25080.38,
+          "level_0": 24834.04,
+          "level_50": 25101.34,
+          "level_618": 25164.42,
           "top": 25368.64
         },
         "mri": {
-          "mean": 25120.85,
-          "r1": 25290.38,
-          "s1": 24951.33,
-          "r2": 25530.25,
-          "s2": 24711.45
+          "mean": 25104.84,
+          "r1": 25266.92,
+          "s1": 24942.76,
+          "r2": 25496.26,
+          "s2": 24713.42
         },
-        "cdv": 52750.26,
-        "smc": 25031.54,
+        "cdv": 46994.04,
+        "smc": 24894.04,
         "pdh": 25362.83,
         "pdl": 25061.66,
         "onh": 25128.41,
         "onl": 25028.54,
         "mp_history": [
-          {
-            "session": 0,
-            "poc": 25110.09,
-            "vah": 25215.43,
-            "val": 25023.91,
-            "mp_shape_pos": 0.45,
-            "va_breite_pct": 0.76,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 1,
-            "poc": 25136.23,
-            "vah": 25227.8,
-            "val": 25024.3,
-            "mp_shape_pos": 0.55,
-            "va_breite_pct": 0.81,
-            "shape": "D-Shape"
-          },
-          {
-            "session": 2,
-            "poc": 25112.7,
-            "vah": 25162.47,
-            "val": 25062.92,
-            "mp_shape_pos": 0.5,
-            "va_breite_pct": 0.4,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 3,
-            "poc": 25097.86,
-            "vah": 25195.02,
-            "val": 25045.55,
-            "mp_shape_pos": 0.35,
-            "va_breite_pct": 0.6,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 4,
-            "poc": 25236.34,
-            "vah": 25330.34,
-            "val": 25171.27,
-            "mp_shape_pos": 0.409,
-            "va_breite_pct": 0.63,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 5,
-            "poc": 25217.4,
-            "vah": 25308.35,
-            "val": 25201.35,
-            "mp_shape_pos": 0.15,
-            "va_breite_pct": 0.42,
-            "shape": "b-Shape"
-          },
-          {
-            "session": 6,
-            "poc": 25393.97,
-            "vah": 25426.87,
-            "val": 25141.75,
-            "mp_shape_pos": 0.885,
-            "va_breite_pct": 1.12,
-            "shape": "P-Shape"
-          },
-          {
-            "session": 7,
-            "poc": 24870.2,
-            "vah": 24919.36,
-            "val": 24778.91,
-            "mp_shape_pos": 0.65,
-            "va_breite_pct": 0.56,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 8,
-            "poc": 24748.09,
-            "vah": 24797.4,
-            "val": 24580.43,
-            "mp_shape_pos": 0.773,
-            "va_breite_pct": 0.88,
-            "shape": "P-Shape"
-          },
-          {
-            "session": 9,
-            "poc": 24757.75,
-            "vah": 24813.12,
-            "val": 24333.23,
-            "mp_shape_pos": 0.885,
-            "va_breite_pct": 1.94,
-            "shape": "P-Shape"
-          }
+          {"session": 0, "poc": 25110.09, "vah": 25215.43, "val": 25023.91, "mp_shape_pos": 0.45, "va_breite_pct": 0.76, "shape": "Trend Day"},
+          {"session": 1, "poc": 25136.23, "vah": 25227.8, "val": 25024.3, "mp_shape_pos": 0.55, "va_breite_pct": 0.81, "shape": "D-Shape"},
+          {"session": 2, "poc": 25112.7, "vah": 25162.47, "val": 25062.92, "mp_shape_pos": 0.5, "va_breite_pct": 0.4, "shape": "Trend Day"},
+          {"session": 3, "poc": 25097.86, "vah": 25195.02, "val": 25045.55, "mp_shape_pos": 0.35, "va_breite_pct": 0.6, "shape": "Trend Day"},
+          {"session": 4, "poc": 25236.34, "vah": 25330.34, "val": 25171.27, "mp_shape_pos": 0.409, "va_breite_pct": 0.63, "shape": "Trend Day"},
+          {"session": 5, "poc": 25217.4, "vah": 25308.35, "val": 25201.35, "mp_shape_pos": 0.15, "va_breite_pct": 0.42, "shape": "b-Shape"},
+          {"session": 6, "poc": 25393.97, "vah": 25426.87, "val": 25141.75, "mp_shape_pos": 0.885, "va_breite_pct": 1.12, "shape": "P-Shape"},
+          {"session": 7, "poc": 24870.2, "vah": 24919.36, "val": 24778.91, "mp_shape_pos": 0.65, "va_breite_pct": 0.56, "shape": "Trend Day"},
+          {"session": 8, "poc": 24748.09, "vah": 24797.4, "val": 24580.43, "mp_shape_pos": 0.773, "va_breite_pct": 0.88, "shape": "P-Shape"},
+          {"session": 9, "poc": 24757.75, "vah": 24813.12, "val": 24333.23, "mp_shape_pos": 0.885, "va_breite_pct": 1.94, "shape": "P-Shape"}
         ],
         "mp_context": {
           "poc_migration": "fallend",
           "shape_sequenz": "Trend Day | D-Shape | Trend Day",
-          "naked_pocs": [
-            25236.34,
-            25393.97,
-            24870.2,
-            24748.09
-          ],
+          "naked_pocs": [25236.34, 25393.97, 24870.2, 24748.09],
           "composite_poc": 25124.71
         }
       },
       "DJ30": {
-        "last_run": "2026-06-03T08:12:12",
-        "price": 51318.44,
+        "last_run": "2026-06-03T14:47:30",
+        "price": 51173.44,
         "poc": 50902.29,
         "vah": 51188.46,
         "val": 50857.1,
@@ -264,18 +182,18 @@
         "va_breite_pct": 0.65,
         "mp_shape": "b-Shape",
         "mp_shape_bias": "BAERISCH",
-        "price_vs_va": "ueber_VA",
-        "vwap": 51366.88,
-        "vwap_upper": 51388.14,
-        "vwap_lower": 51345.62,
+        "price_vs_va": "in_VA",
+        "vwap": 51287.26,
+        "vwap_upper": 51356.23,
+        "vwap_lower": 51218.29,
         "price_vs_vwap": "unter_VWAP",
-        "er": -59.49,
-        "er_qualitaet": "sehr_starker_bearish_trend",
-        "sma200": 50961.64,
+        "er": -43.85,
+        "er_qualitaet": "starker_bearish_trend",
+        "sma200": 50996.58,
         "ichimoku": {
-          "tenkan": 51348.44,
-          "kijun": 51321.45,
-          "kumo_a": 51334.95,
+          "tenkan": 51206.29,
+          "kijun": 51270.79,
+          "kumo_a": 51238.54,
           "kumo_b": 51128.21
         },
         "fibo": {
@@ -285,125 +203,40 @@
           "top": 51429.45
         },
         "mri": {
-          "mean": 51110.97,
-          "r1": 51321.05,
-          "s1": 50900.89,
-          "r2": 51618.3,
-          "s2": 50603.64
+          "mean": 51164.11,
+          "r1": 51357.24,
+          "s1": 50970.98,
+          "r2": 51630.51,
+          "s2": 50697.70
         },
-        "cdv": 244138.68,
-        "smc": 51318.44,
+        "cdv": 238402.64,
+        "smc": 51173.44,
         "pdh": 51369.61,
         "pdl": 50829.55,
         "onh": 51429.45,
         "onl": 51267.44,
         "mp_history": [
-          {
-            "session": 0,
-            "poc": 50902.29,
-            "vah": 51188.46,
-            "val": 50857.1,
-            "mp_shape_pos": 0.136,
-            "va_breite_pct": 0.65,
-            "shape": "b-Shape"
-          },
-          {
-            "session": 1,
-            "poc": 51107.93,
-            "vah": 51177.8,
-            "val": 50898.3,
-            "mp_shape_pos": 0.75,
-            "va_breite_pct": 0.55,
-            "shape": "P-Shape"
-          },
-          {
-            "session": 2,
-            "poc": 50748.68,
-            "vah": 50999.95,
-            "val": 50694.05,
-            "mp_shape_pos": 0.179,
-            "va_breite_pct": 0.6,
-            "shape": "b-Shape"
-          },
-          {
-            "session": 3,
-            "poc": 50705.95,
-            "vah": 50759.57,
-            "val": 50609.42,
-            "mp_shape_pos": 0.643,
-            "va_breite_pct": 0.3,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 4,
-            "poc": 50726.71,
-            "vah": 50775.96,
-            "val": 50598.65,
-            "mp_shape_pos": 0.722,
-            "va_breite_pct": 0.35,
-            "shape": "P-Shape"
-          },
-          {
-            "session": 5,
-            "poc": 50950.68,
-            "vah": 51039.75,
-            "val": 50612.22,
-            "mp_shape_pos": 0.792,
-            "va_breite_pct": 0.84,
-            "shape": "P-Shape"
-          },
-          {
-            "session": 6,
-            "poc": 51076.34,
-            "vah": 51153.95,
-            "val": 50998.73,
-            "mp_shape_pos": 0.5,
-            "va_breite_pct": 0.3,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 7,
-            "poc": 50466.62,
-            "vah": 50680.85,
-            "val": 50403.61,
-            "mp_shape_pos": 0.227,
-            "va_breite_pct": 0.55,
-            "shape": "b-Shape"
-          },
-          {
-            "session": 8,
-            "poc": 49968.01,
-            "vah": 50124.83,
-            "val": 49880.88,
-            "mp_shape_pos": 0.357,
-            "va_breite_pct": 0.49,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 9,
-            "poc": 49405.66,
-            "vah": 49686.46,
-            "val": 49254.46,
-            "mp_shape_pos": 0.35,
-            "va_breite_pct": 0.87,
-            "shape": "D-Shape"
-          }
+          {"session": 0, "poc": 50902.29, "vah": 51188.46, "val": 50857.1, "mp_shape_pos": 0.136, "va_breite_pct": 0.65, "shape": "b-Shape"},
+          {"session": 1, "poc": 51107.93, "vah": 51177.8, "val": 50898.3, "mp_shape_pos": 0.75, "va_breite_pct": 0.55, "shape": "P-Shape"},
+          {"session": 2, "poc": 50748.68, "vah": 50999.95, "val": 50694.05, "mp_shape_pos": 0.179, "va_breite_pct": 0.6, "shape": "b-Shape"},
+          {"session": 3, "poc": 50705.95, "vah": 50759.57, "val": 50609.42, "mp_shape_pos": 0.643, "va_breite_pct": 0.3, "shape": "Trend Day"},
+          {"session": 4, "poc": 50726.71, "vah": 50775.96, "val": 50598.65, "mp_shape_pos": 0.722, "va_breite_pct": 0.35, "shape": "P-Shape"},
+          {"session": 5, "poc": 50950.68, "vah": 51039.75, "val": 50612.22, "mp_shape_pos": 0.792, "va_breite_pct": 0.84, "shape": "P-Shape"},
+          {"session": 6, "poc": 51076.34, "vah": 51153.95, "val": 50998.73, "mp_shape_pos": 0.5, "va_breite_pct": 0.3, "shape": "Trend Day"},
+          {"session": 7, "poc": 50466.62, "vah": 50680.85, "val": 50403.61, "mp_shape_pos": 0.227, "va_breite_pct": 0.55, "shape": "b-Shape"},
+          {"session": 8, "poc": 49968.01, "vah": 50124.83, "val": 49880.88, "mp_shape_pos": 0.357, "va_breite_pct": 0.49, "shape": "Trend Day"},
+          {"session": 9, "poc": 49405.66, "vah": 49686.46, "val": 49254.46, "mp_shape_pos": 0.35, "va_breite_pct": 0.87, "shape": "D-Shape"}
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "b-Shape | P-Shape | b-Shape",
-          "naked_pocs": [
-            50748.68,
-            50466.62,
-            49968.01,
-            49405.66
-          ],
+          "naked_pocs": [50748.68, 50466.62, 49968.01, 49405.66],
           "composite_poc": 50801.56
         }
       },
       "SPX500": {
-        "last_run": "2026-06-03T08:12:12",
-        "price": 7617.51,
+        "last_run": "2026-06-03T14:47:30",
+        "price": 7606.26,
         "poc": 7600.66,
         "vah": 7610.38,
         "val": 7574.3,
@@ -411,485 +244,204 @@
         "va_breite_pct": 0.47,
         "mp_shape": "P-Shape",
         "mp_shape_bias": "BULLISCH",
-        "price_vs_va": "ueber_VA",
-        "vwap": 7619.28,
-        "vwap_upper": 7623.13,
-        "vwap_lower": 7615.42,
+        "price_vs_va": "in_VA",
+        "vwap": 7617.64,
+        "vwap_upper": 7621.57,
+        "vwap_lower": 7613.70,
         "price_vs_vwap": "unter_VWAP",
-        "er": -26.88,
+        "er": -42.00,
         "er_qualitaet": "starker_bearish_trend",
-        "sma200": 7585.58,
+        "sma200": 7591.27,
         "ichimoku": {
-          "tenkan": 7620.75,
-          "kijun": 7614.54,
-          "kumo_a": 7617.65,
-          "kumo_b": 7602.43
+          "tenkan": 7611.76,
+          "kijun": 7614.26,
+          "kumo_a": 7613.01,
+          "kumo_b": 7607.68
         },
         "fibo": {
-          "level_0": 7629.8,
+          "level_0": 7629.80,
           "level_50": 7600.72,
           "level_618": 7593.86,
-          "top": 7629.8
+          "top": 7629.80
         },
         "mri": {
-          "mean": 7606.68,
-          "r1": 7630.75,
-          "s1": 7582.61,
-          "r2": 7664.81,
-          "s2": 7548.55
+          "mean": 7610.08,
+          "r1": 7632.70,
+          "s1": 7587.46,
+          "r2": 7664.71,
+          "s2": 7555.45
         },
-        "cdv": 75399.83,
-        "smc": 7617.26,
+        "cdv": 76311.16,
+        "smc": 7606.26,
         "pdh": 7620.9,
         "pdl": 7582.99,
         "onh": 7627.81,
         "onl": 7601.26,
         "mp_history": [
-          {
-            "session": 0,
-            "poc": 7600.66,
-            "vah": 7610.38,
-            "val": 7574.3,
-            "mp_shape_pos": 0.731,
-            "va_breite_pct": 0.47,
-            "shape": "P-Shape"
-          },
-          {
-            "session": 1,
-            "poc": 7610.8,
-            "vah": 7617.8,
-            "val": 7592.6,
-            "mp_shape_pos": 0.722,
-            "va_breite_pct": 0.33,
-            "shape": "P-Shape"
-          },
-          {
-            "session": 2,
-            "poc": 7583.3,
-            "vah": 7593.92,
-            "val": 7576.55,
-            "mp_shape_pos": 0.389,
-            "va_breite_pct": 0.23,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 3,
-            "poc": 7526.63,
-            "vah": 7545.87,
-            "val": 7498.85,
-            "mp_shape_pos": 0.591,
-            "va_breite_pct": 0.62,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 4,
-            "poc": 7537.27,
-            "vah": 7544.21,
-            "val": 7519.23,
-            "mp_shape_pos": 0.722,
-            "va_breite_pct": 0.33,
-            "shape": "P-Shape"
-          },
-          {
-            "session": 5,
-            "poc": 7530.04,
-            "vah": 7538.52,
-            "val": 7519.14,
-            "mp_shape_pos": 0.562,
-            "va_breite_pct": 0.26,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 6,
-            "poc": 7552.6,
-            "vah": 7559.19,
-            "val": 7543.37,
-            "mp_shape_pos": 0.583,
-            "va_breite_pct": 0.21,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 7,
-            "poc": 7472.27,
-            "vah": 7493.41,
-            "val": 7465.22,
-            "mp_shape_pos": 0.25,
-            "va_breite_pct": 0.38,
-            "shape": "b-Shape"
-          },
-          {
-            "session": 8,
-            "poc": 7418.16,
-            "vah": 7443.79,
-            "val": 7404.36,
-            "mp_shape_pos": 0.35,
-            "va_breite_pct": 0.53,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 9,
-            "poc": 7367.81,
-            "vah": 7416.08,
-            "val": 7344.94,
-            "mp_shape_pos": 0.321,
-            "va_breite_pct": 0.97,
-            "shape": "b-Shape"
-          }
+          {"session": 0, "poc": 7600.66, "vah": 7610.38, "val": 7574.3, "mp_shape_pos": 0.731, "va_breite_pct": 0.47, "shape": "P-Shape"},
+          {"session": 1, "poc": 7610.8, "vah": 7617.8, "val": 7592.6, "mp_shape_pos": 0.722, "va_breite_pct": 0.33, "shape": "P-Shape"},
+          {"session": 2, "poc": 7583.3, "vah": 7593.92, "val": 7576.55, "mp_shape_pos": 0.389, "va_breite_pct": 0.23, "shape": "Trend Day"},
+          {"session": 3, "poc": 7526.63, "vah": 7545.87, "val": 7498.85, "mp_shape_pos": 0.591, "va_breite_pct": 0.62, "shape": "Trend Day"},
+          {"session": 4, "poc": 7537.27, "vah": 7544.21, "val": 7519.23, "mp_shape_pos": 0.722, "va_breite_pct": 0.33, "shape": "P-Shape"},
+          {"session": 5, "poc": 7530.04, "vah": 7538.52, "val": 7519.14, "mp_shape_pos": 0.562, "va_breite_pct": 0.26, "shape": "Trend Day"},
+          {"session": 6, "poc": 7552.6, "vah": 7559.19, "val": 7543.37, "mp_shape_pos": 0.583, "va_breite_pct": 0.21, "shape": "Trend Day"},
+          {"session": 7, "poc": 7472.27, "vah": 7493.41, "val": 7465.22, "mp_shape_pos": 0.25, "va_breite_pct": 0.38, "shape": "b-Shape"},
+          {"session": 8, "poc": 7418.16, "vah": 7443.79, "val": 7404.36, "mp_shape_pos": 0.35, "va_breite_pct": 0.53, "shape": "Trend Day"},
+          {"session": 9, "poc": 7367.81, "vah": 7416.08, "val": 7344.94, "mp_shape_pos": 0.321, "va_breite_pct": 0.97, "shape": "b-Shape"}
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "P-Shape | P-Shape | Trend Day",
-          "naked_pocs": [
-            7610.8,
-            7526.63,
-            7552.6,
-            7472.27,
-            7418.16,
-            7367.81
-          ],
+          "naked_pocs": [7610.8, 7526.63, 7552.6, 7472.27, 7418.16, 7367.81],
           "composite_poc": 7555.67
         }
       }
     },
     "calendar": [
-      {
-        "date": "2026-06-03",
-        "time": "14:15",
-        "currency": "USD",
-        "name": "ADP Non-Farm Employment Change",
-        "impact": "high",
-        "actual": "",
-        "forecast": "118K",
-        "previous": "109K",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-03",
-        "time": "16:00",
-        "currency": "USD",
-        "name": "ISM Services PMI",
-        "impact": "high",
-        "actual": "",
-        "forecast": "53.7",
-        "previous": "53.6",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-03",
-        "time": "16:00",
-        "currency": "USD",
-        "name": "Treasury Sec Bessent Speaks",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "",
-        "previous": "",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-04",
-        "time": "10:00",
-        "currency": "EUR",
-        "name": "ECB President Lagarde Speaks",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "",
-        "previous": "",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-04",
-        "time": "14:30",
-        "currency": "USD",
-        "name": "Unemployment Claims",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "214K",
-        "previous": "215K",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-05",
-        "time": "14:30",
-        "currency": "USD",
-        "name": "Average Hourly Earnings m/m",
-        "impact": "high",
-        "actual": "",
-        "forecast": "0.3%",
-        "previous": "0.2%",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-05",
-        "time": "14:30",
-        "currency": "USD",
-        "name": "Non-Farm Employment Change",
-        "impact": "high",
-        "actual": "",
-        "forecast": "85K",
-        "previous": "115K",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-05",
-        "time": "14:30",
-        "currency": "USD",
-        "name": "Unemployment Rate",
-        "impact": "high",
-        "actual": "",
-        "forecast": "4.3%",
-        "previous": "4.3%",
-        "better": null,
-        "source": "forexfactory"
-      }
+      {"date": "2026-06-03", "time": "14:15", "currency": "USD", "name": "ADP Non-Farm Employment Change", "impact": "high", "actual": "", "forecast": "118K", "previous": "109K", "better": null, "source": "forexfactory"},
+      {"date": "2026-06-03", "time": "16:00", "currency": "USD", "name": "ISM Services PMI", "impact": "high", "actual": "", "forecast": "53.7", "previous": "53.6", "better": null, "source": "forexfactory"},
+      {"date": "2026-06-03", "time": "16:00", "currency": "USD", "name": "Treasury Sec Bessent Speaks", "impact": "medium", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
+      {"date": "2026-06-04", "time": "10:00", "currency": "EUR", "name": "ECB President Lagarde Speaks", "impact": "medium", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
+      {"date": "2026-06-04", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "214K", "previous": "215K", "better": null, "source": "forexfactory"},
+      {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Average Hourly Earnings m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.2%", "better": null, "source": "forexfactory"},
+      {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Non-Farm Employment Change", "impact": "high", "actual": "", "forecast": "85K", "previous": "115K", "better": null, "source": "forexfactory"},
+      {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Unemployment Rate", "impact": "high", "actual": "", "forecast": "4.3%", "previous": "4.3%", "better": null, "source": "forexfactory"}
     ]
   },
   "delta": {
     "_agent": "DELTA",
-    "_last_run": "2026-06-02T14:47:00",
+    "_last_run": "2026-06-03T14:48:00",
     "_update_type": "usupdate",
     "vs_morning": {
       "GER40": {
-        "delta_pct": 0.087,
-        "delta_pts": 21.83,
-        "richtung": "steigend",
-        "kommentar": "GER40 +21.83 pts (+0.087%) seit 08:06. Intraday-High 25368.64 erreicht und zurueck. ER massiv gedreht 87.9 -> -71.62 (sehr stark bearish). Preis 25166 ~VWAP 25167 (flat), POC/VAH/VAL unveraendert. Distribution nach Run-up: Bullish Setup VERFALLEN."
+        "delta_pct": -0.553,
+        "delta_pts": -138.50,
+        "richtung": "fallend",
+        "kommentar": "GER40 -138.50 pts (-0.553%) seit 08:12. Preis 25032.54 -> 24894.04. Bruch unter VAL 25023.91 (in_VA -> unter_VA). Unter VWAP geblieben (24894 vs 24975). ER deutlich entspannt -44.27 -> -22.45 (Bearish-Druck schwaecher). MP-Session unveraendert (POC/VAH/VAL gleich). SHORT-Druck bestaetigt: alle 3 Schichten short freigegeben."
       },
       "DJ30": {
-        "delta_pct": -0.157,
-        "delta_pts": -80.0,
+        "delta_pct": -0.283,
+        "delta_pts": -145.00,
         "richtung": "fallend",
-        "kommentar": "DJ30 -80.0 pts (-0.157%) seit 08:06. ER gedreht +44.53 -> -61.97. Preis 50881 UNTER VAL 50898 UND UNTER VWAP 50947. Tenkan<Kijun bearish. P-Shape (pos 0.75) wird vom Markt unter VA gedrueckt - Shape-Konflikt aktiv. Bullish Setup VERFALLEN."
+        "kommentar": "DJ30 -145.00 pts (-0.283%) seit 08:12. Preis 51318.44 -> 51173.44. Faellt zurueck IN_VA (war ueber_VA). Tenkan 51206 < Kijun 51270 bearish. Preis am Kumo (51128-51238). ER -59.49 -> -43.85 etwas entspannt. b-Shape POC-Migration steigend bleibt - Konflikt: bearish ER vs steigender POC. S1 short fail (-0.1 > -0.20)."
       },
       "SPX500": {
-        "delta_pct": 0.046,
-        "delta_pts": 3.5,
-        "richtung": "flat",
-        "kommentar": "SPX500 +3.5 pts (+0.046%) seit 08:06. ER gedreht +43.33 -> -27.27. Preis 7597 ueber VWAP (+7), unter POC (-13), in VA. P-Shape Setup geschwaecht aber haelt. Einziger verbleibender LONG-Kandidat - Score 2/8 zu schwach."
+        "delta_pct": -0.148,
+        "delta_pts": -11.25,
+        "richtung": "fallend",
+        "kommentar": "SPX500 -11.25 pts (-0.148%) seit 08:12. Preis 7617.51 -> 7606.26. Faellt zurueck IN_VA (war ueber_VA), aber haelt ueber POC 7600.66. ER -26.88 -> -42.00 verschlechtert (starker bearish). VWAP 7617 weiter ueber Preis. P-Shape (pos 0.731) intakt. LONG-Kandidat schwaecher: S2 weiter fail (vwap+er_trend bearish)."
       }
     },
-    "trigger": "USUpdate 14:47: Alle 3 ERs flippten negativ (GER40 87.9->-71.62, DJ30 44.53->-61.97, SPX500 43.33->-27.27). DJ30 unter VAL+VWAP. GER40 nach 25368-Run zurueck. MP-Sessions unveraendert. Makro LEICHT_RISK_ON (war NEUTRAL) durch Bonds-Entspannung.",
-    "bias_morning": "WAIT (LONG-LEAN) Konfidenz 0.225 - 0 Orders (Schichten 2x ok, Score 3 zu schwach)",
-    "bias_jetzt": "WAIT bleibt - alle 3 ERs bearish gedreht aber MP weiter P-Shape -> Konfliktzone. Nur SPX500 LONG-Schichten ok (Score 2). Kein klarer SHORT da S1 noch positiv. KEINE ORDERS."
+    "trigger": "USUpdate 14:48: Alle 3 Instr -0.15% bis -0.55% gefallen. GER40 unter VA gebrochen + S1/S2/S3 short freigegeben (alle_short_ok=true). DJ30 zurueck in VA, S1 marginal short-fail. SPX500 hat P-Shape behalten aber S2 weiter fail. Phase TREND BEARISH bleibt, GER40 ist primaerer SHORT-Kandidat. Konfidenz_short 0.333 < 0.40 -> WAIT mit SHORT-LEAN.",
+    "bias_morning": "WAIT (LONG-LEAN) Konfidenz 0.300 - 0 Orders (Schichten 0/3 ok, Score 4 SPX)",
+    "bias_jetzt": "WAIT (SHORT-LEAN) Konfidenz 0.333 - GER40 vollst. SHORT-Freigabe (Score -4), DJ30/SPX nicht aligned. Kein 2-Instr-Konsens. KEINE NEUEN ORDERS, kein Re-Open der Morning-Orders (0 vorhanden)."
   },
   "analysis": {
     "_agent": "ANALYST",
-    "_last_run": "2026-06-03T08:14:43",
+    "_last_run": "2026-06-03T14:48:30",
     "_status": "ready",
-    "_update_type": "morning",
+    "_update_type": "usupdate",
     "marktphase": {
       "phase": "TREND",
       "begruendung": [
-        "ER alle 3 Instr (GER40=-44.27, DJ30=-59.49, SPX500=-26.88) - alle bearish, Phase TREND BEARISH",
-        "Shapes gemischt: GER40 Trend Day (pos 0.45), DJ30 b-Shape (pos 0.136), SPX500 P-Shape (pos 0.731).",
-        "GER40: Trend Day pos 0.45 in_VA, Migration fallend - bearish Druck. ER -44 sehr stark. Preis unter VWAP. Alignment -2.",
-        "DJ30: b-Shape BAER aber Preis ueber VA (51318 > 51188). POC steigend. Konflikt: Setup short MP vs above VA. Alignment 1.",
-        "SPX500: P-Shape pos 0.73 ueber VA (7617>7610), POC steigend. Bullish Setup aber ER -27 bearish + VWAP unter. Alignment 4.",
-        "Regime MIXED_TREND_CONFLICT - kein klarer Konsens. ADP 14:15 + ISM 16:00 als Risiko-Events."
+        "ER alle 3 Instr negativ (GER40=-22.45, DJ30=-43.85, SPX500=-42.00) - Phase TREND BEARISH bleibt aktiv",
+        "GER40 ER entspannt -44 -> -22 (Bearish-Druck schwaecher), DJ30 -59 -> -43 (auch schwaecher), SPX -27 -> -42 (verstaerkt)",
+        "GER40: Trend Day pos 0.45, jetzt unter_VA (24894<VAL 25023). S1=-0.5 S2=-0.5 S3=-0.333 -> ALLE_SHORT_OK",
+        "DJ30: b-Shape pos 0.136 BAER. Preis zurueck IN_VA (51173 zwischen VAL 50857 und VAH 51188). S1=-0.1 (knapp short-fail). Alignment -1.",
+        "SPX500: P-Shape pos 0.731 BULL erhalten. Preis IN_VA (7606<VAH 7610, ueber POC 7600). S1=+0.7 ok aber S2 0.0 fail (VWAP+ER). Alignment 3.",
+        "Regime: SHIFT_TO_SHORT (war MIXED_TREND_CONFLICT) - GER40 fuehrt, DJ30 folgt schwach, SPX widerstaendig. ISM Services 16:00 als naechster Re-Eval.",
+        "Top-Down: 0 LONG / 1 SHORT (GER40) - Mehrheit (2+) fehlt -> best_direction=NONE trade_freigabe=False"
       ],
-      "aktive_strategie": "WAIT-bis-Konsens",
+      "aktive_strategie": "WAIT-bis-Konsens (SHORT-LEAN durch GER40)",
       "er_bestaetigung": "ja"
     },
-    "regime": "MIXED_TREND_CONFLICT",
+    "regime": "SHIFT_TO_SHORT",
     "risk_level": "MEDIUM",
     "top_down": {
-      "alignment_score": 4,
+      "alignment_score": -4,
       "alignment_score_abs": 4,
       "best_direction": "NONE",
       "trade_freigabe": false,
-      "m30_entry_zone": {
-        "preis_von": null,
-        "preis_bis": null
-      },
+      "m30_entry_zone": {"preis_von": null, "preis_bis": null},
       "begruendung": [
-        "GER40: NONE Score:-2 S1=-0.4 S2=0.0 S3=-0.333",
-        "DJ30: NONE Score:1 S1=0.1 S2=0.0 S3=0.167",
-        "SPX500: NONE Score:4 S1=0.9 S2=-0.25 S3=0.167",
-        "Top-Down: 0 LONG / 0 SHORT - best_direction=NONE trade_freigabe=False",
-        "Phase TREND Regime MIXED_TREND_CONFLICT - WAIT bis 2 Instr in einer Richtung"
+        "GER40: SHORT Score:-4 S1=-0.5 S2=-0.5 S3=-0.333 alle_short_ok=true",
+        "DJ30: NONE Score:-1 S1=-0.1 S2=-0.25 S3=0.167 (S1 short-fail bei -0.1)",
+        "SPX500: NONE Score:3 S1=0.7 S2=0.0 S3=0.0 (S2 long-fail bei 0.0)",
+        "Top-Down: 0 LONG / 1 SHORT - kein 2-Instr-Konsens -> best_direction=NONE trade_freigabe=False",
+        "Phase TREND Regime SHIFT_TO_SHORT - WAIT bis 2 Instr in einer Richtung (DJ30 S1 muss <=-0.20 fallen)"
       ]
     },
     "instruments": {
       "GER40": {
         "schichten": {
           "s1_kontext": {
-            "score": -4,
-            "norm": -0.4,
+            "score": -5,
+            "norm": -0.5,
             "max": 10,
-            "signale": {
-              "mp_shape": 0,
-              "preis_vs_va": -1,
-              "preis_vs_poc": -1,
-              "poc_migration": -2,
-              "shape_sequenz": 0,
-              "vp_hvn_lvn": 0
-            }
+            "signale": {"mp_shape": 0, "preis_vs_va": -2, "preis_vs_poc": -1, "poc_migration": -2, "shape_sequenz": 0, "vp_hvn_lvn": 0}
           },
           "s2_struktur": {
-            "score": 0,
-            "norm": 0.0,
+            "score": -2,
+            "norm": -0.5,
             "max": 4,
-            "signale": {
-              "vwap": -1,
-              "cvd": 1,
-              "er_trend": -1,
-              "er_qualitaet": 1
-            }
+            "signale": {"vwap": -1, "cvd": 0, "er_trend": -1, "er_qualitaet": 0}
           },
           "s3_entry": {
             "score": -2,
             "norm": -0.333,
             "max": 6,
-            "signale": {
-              "ichimoku": -1,
-              "sma200": -1,
-              "smc": 0,
-              "sr_channel": 0,
-              "pivot": 0,
-              "autofibo": 0
-            }
+            "signale": {"ichimoku": -1, "sma200": -1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 0}
           },
           "freigabe_s1": false,
           "freigabe_s2": false,
           "freigabe_s3": false,
           "freigabe_s1_short": true,
-          "freigabe_s2_short": false,
+          "freigabe_s2_short": true,
           "freigabe_s3_short": true,
           "alle_long_ok": false,
-          "alle_short_ok": false,
-          "alle_schichten_ok": false,
-          "bias_direction": "NONE",
-          "alignment_score": -2
+          "alle_short_ok": true,
+          "alle_schichten_ok": true,
+          "bias_direction": "SHORT",
+          "alignment_score": -4
         },
-        "bias": "NEUTRAL",
-        "bias_text": "NONE Score:-2",
-        "alignment_score": -2,
-        "er_wert": -44.27,
+        "bias": "BAERISCH",
+        "bias_text": "SHORT Score:-4",
+        "alignment_score": -4,
+        "er_wert": -22.45,
         "mp_shape": "Trend Day",
         "mp_shape_pos": 0.45,
         "key_levels": {
           "poc": 25110.09,
           "vah": 25215.43,
           "val": 25023.91,
-          "vwap": 25094.61,
-          "current": 25032.54,
+          "vwap": 24975.02,
+          "current": 24894.04,
           "onh": 25128.41,
           "pdh": 25362.83
-        }
+        },
+        "bias_score": -4
       },
       "DJ30": {
         "schichten": {
           "s1_kontext": {
-            "score": 1,
-            "norm": 0.1,
+            "score": -1,
+            "norm": -0.1,
             "max": 10,
-            "signale": {
-              "mp_shape": -3,
-              "preis_vs_va": 2,
-              "preis_vs_poc": 1,
-              "poc_migration": 2,
-              "shape_sequenz": -1,
-              "vp_hvn_lvn": 0
-            }
-          },
-          "s2_struktur": {
-            "score": 0,
-            "norm": 0.0,
-            "max": 4,
-            "signale": {
-              "vwap": -1,
-              "cvd": 1,
-              "er_trend": -1,
-              "er_qualitaet": 1
-            }
-          },
-          "s3_entry": {
-            "score": 1,
-            "norm": 0.167,
-            "max": 6,
-            "signale": {
-              "ichimoku": 0,
-              "sma200": 1,
-              "smc": 0,
-              "sr_channel": 0,
-              "pivot": 0,
-              "autofibo": 0
-            }
-          },
-          "freigabe_s1": false,
-          "freigabe_s2": false,
-          "freigabe_s3": true,
-          "freigabe_s1_short": false,
-          "freigabe_s2_short": false,
-          "freigabe_s3_short": false,
-          "alle_long_ok": false,
-          "alle_short_ok": false,
-          "alle_schichten_ok": false,
-          "bias_direction": "NONE",
-          "alignment_score": 1
-        },
-        "bias": "NEUTRAL",
-        "bias_text": "NONE Score:1",
-        "alignment_score": 1,
-        "er_wert": -59.49,
-        "mp_shape": "b-Shape",
-        "mp_shape_pos": 0.136,
-        "key_levels": {
-          "poc": 50902.29,
-          "vah": 51188.46,
-          "val": 50857.1,
-          "vwap": 51366.88,
-          "current": 51318.44,
-          "onh": 51429.45,
-          "pdh": 51369.61
-        }
-      },
-      "SPX500": {
-        "schichten": {
-          "s1_kontext": {
-            "score": 9,
-            "norm": 0.9,
-            "max": 10,
-            "signale": {
-              "mp_shape": 3,
-              "preis_vs_va": 2,
-              "preis_vs_poc": 1,
-              "poc_migration": 2,
-              "shape_sequenz": 1,
-              "vp_hvn_lvn": 0
-            }
+            "signale": {"mp_shape": -3, "preis_vs_va": 0, "preis_vs_poc": 1, "poc_migration": 2, "shape_sequenz": -1, "vp_hvn_lvn": 0}
           },
           "s2_struktur": {
             "score": -1,
             "norm": -0.25,
             "max": 4,
-            "signale": {
-              "vwap": -1,
-              "cvd": 1,
-              "er_trend": -1,
-              "er_qualitaet": 0
-            }
+            "signale": {"vwap": -1, "cvd": 0, "er_trend": -1, "er_qualitaet": 1}
           },
           "s3_entry": {
             "score": 1,
             "norm": 0.167,
             "max": 6,
-            "signale": {
-              "ichimoku": 0,
-              "sma200": 1,
-              "smc": 0,
-              "sr_channel": 0,
-              "pivot": 0,
-              "autofibo": 0
-            }
+            "signale": {"ichimoku": 0, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 0}
           },
-          "freigabe_s1": true,
+          "freigabe_s1": false,
           "freigabe_s2": false,
           "freigabe_s3": true,
           "freigabe_s1_short": false,
@@ -899,23 +451,73 @@
           "alle_short_ok": false,
           "alle_schichten_ok": false,
           "bias_direction": "NONE",
-          "alignment_score": 4
+          "alignment_score": -1
+        },
+        "bias": "NEUTRAL",
+        "bias_text": "NONE Score:-1",
+        "alignment_score": -1,
+        "er_wert": -43.85,
+        "mp_shape": "b-Shape",
+        "mp_shape_pos": 0.136,
+        "key_levels": {
+          "poc": 50902.29,
+          "vah": 51188.46,
+          "val": 50857.1,
+          "vwap": 51287.26,
+          "current": 51173.44,
+          "onh": 51429.45,
+          "pdh": 51369.61
+        },
+        "bias_score": -1
+      },
+      "SPX500": {
+        "schichten": {
+          "s1_kontext": {
+            "score": 7,
+            "norm": 0.7,
+            "max": 10,
+            "signale": {"mp_shape": 3, "preis_vs_va": 0, "preis_vs_poc": 1, "poc_migration": 2, "shape_sequenz": 1, "vp_hvn_lvn": 0}
+          },
+          "s2_struktur": {
+            "score": 0,
+            "norm": 0.0,
+            "max": 4,
+            "signale": {"vwap": -1, "cvd": 1, "er_trend": -1, "er_qualitaet": 1}
+          },
+          "s3_entry": {
+            "score": 0,
+            "norm": 0.0,
+            "max": 6,
+            "signale": {"ichimoku": -1, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 0}
+          },
+          "freigabe_s1": true,
+          "freigabe_s2": false,
+          "freigabe_s3": true,
+          "freigabe_s1_short": false,
+          "freigabe_s2_short": true,
+          "freigabe_s3_short": true,
+          "alle_long_ok": false,
+          "alle_short_ok": false,
+          "alle_schichten_ok": false,
+          "bias_direction": "NONE",
+          "alignment_score": 3
         },
         "bias": "LEICHT_BULLISH",
-        "bias_text": "NONE Score:4",
-        "alignment_score": 4,
-        "er_wert": -26.88,
+        "bias_text": "NONE Score:3",
+        "alignment_score": 3,
+        "er_wert": -42.00,
         "mp_shape": "P-Shape",
         "mp_shape_pos": 0.731,
         "key_levels": {
           "poc": 7600.66,
           "vah": 7610.38,
           "val": 7574.3,
-          "vwap": 7619.28,
-          "current": 7617.51,
+          "vwap": 7617.64,
+          "current": 7606.26,
           "onh": 7627.81,
           "pdh": 7620.9
-        }
+        },
+        "bias_score": 3
       }
     },
     "inter_market": {
@@ -923,206 +525,124 @@
       "alle_bearish": false,
       "gemischt": true
     },
-    "summary": "Morning 08:08: Phase TREND, alle ER bearish (sehr_stark_bearish_trend). Shapes gemischt (GER Trend Day, DJ b-Shape ABER ueber_VA, SPX P-Shape ueber_VA). SPX einziger LONG-Kandidat (Score 4) aber S2 fail (VWAP knapp unter). DJ Score 1 GER Score -2. WAIT - kein 2-Instr-Konsens. ADP 14:15 + ISM 16:00 als Re-Eval Punkte."
+    "summary": "USUpdate 14:48: Phase TREND BEARISH, alle 3 Instr -0.15 bis -0.55% gefallen. GER40 voll SHORT freigegeben (Score -4, alle_short_ok=true). DJ30 S1=-0.1 short marginal-fail. SPX500 noch P-Shape aber S2 long-fail. Kein 2-Instr-Konsens. WAIT bleibt. ISM Services 16:00 als naechster Re-Eval."
   },
   "captain": {
     "_agent": "CAPTAIN",
-    "_last_run": "2026-06-03T08:15:55",
+    "_last_run": "2026-06-03T14:49:00",
     "_status": "ready",
-    "_update_type": "morning",
-    "session_bias": "WAIT (LONG-LEAN)",
-    "aktive_strategie": "WAIT - Schichten 0/3 voll freigegeben, kein 2-Instr-Konsens. Re-Eval nach ADP 14:15 + ISM 16:00.",
+    "_update_type": "usupdate",
+    "session_bias": "WAIT (SHORT-LEAN)",
+    "aktive_strategie": "WAIT - 1/3 Schichten voll freigegeben (GER40 SHORT). Re-Eval nach ISM Services 16:00, falls DJ30 S1 unter -0.20 fallen kann.",
     "alignment_score": 4,
     "trade_freigabe": false,
     "shape_konflikt": true,
     "konfidenz_details": {
       "chart_gewichtung": 0.6,
       "makro_gewichtung": 0.4,
-      "gewichtungs_grund": "Default 60/40 (TREND-Phase, NEUTRAL Makro)",
-      "alignment_beitrag": 0.3,
-      "makro_beitrag": 0.0,
-      "konfidenz_long": 0.3,
-      "konfidenz_short": 0.0333,
-      "konfidenz_direction": "LONG",
-      "konfidenz_final": 0.3,
-      "entscheidung": "WAIT (LONG-LEAN)",
-      "schichten_freigegeben": 0,
+      "gewichtungs_grund": "Default 60/40 (TREND-Phase, NEUTRAL Makro). ISM in 1h12min - noch nicht <2h-Schwelle.",
+      "alignment_beitrag": 0.30,
+      "makro_beitrag": 0.0333,
+      "konfidenz_long": 0.0,
+      "konfidenz_short": 0.3333,
+      "konfidenz_direction": "SHORT",
+      "konfidenz_final": 0.3333,
+      "entscheidung": "WAIT (SHORT-LEAN)",
+      "schichten_freigegeben": 1,
       "warnungen": [
-        "Konfidenz 0.300 < 0.40",
-        "Shape-Konflikt: bullische MP-Setups vs bearishe ERs auf 2+ Instr",
+        "Konfidenz 0.333 < 0.40",
+        "Nur GER40 voll SHORT freigegeben (1/3) - kein 2-Instr-Konsens",
+        "Shape-Konflikt: GER40 Trend Day NEUTRAL + DJ30 b-Shape BAER + SPX P-Shape BULL gemischt",
         "Shape-Konflikt aktiv: max_risk -0.25%",
-        "GER40 Trend Day in_VA bei VAL nahe Buy-Zone aber Migration fallend - BLOCK",
-        "DJ30 b-Shape pos 0.136 BAER aber Preis ueber VA - Konflikt",
-        "SPX500 LEICHT_BULLISH Score 4 aber S2 fail (VWAP 7619 knapp ueber Preis 7617)",
+        "DJ30 S1=-0.1 knapp short-fail (-0.20 Schwelle)",
+        "SPX500 S2=0.0 weiter long-fail (VWAP + ER bearish)",
         "Makro NEUTRAL (-1) - F&G Extreme Fear, Oil >90, Gold steigend",
-        "ADP 14:15 USD high impact - Re-Eval Punkt",
-        "ISM Services 16:00 USD high impact - 2. Re-Eval Punkt"
+        "MACRO-Mini WARN: Morning-Werte uebernommen (kein Live-Fetch)",
+        "ADP 14:15 bereits ausgegeben - actual nicht erfasst",
+        "ISM Services 16:00 USD high impact - naechster Re-Eval Punkt"
       ]
     },
-    "max_risk_today": 0.25,
+    "max_risk_today": "0.25%",
     "max_trades_heute": 0,
     "trade_plan": [
-      "WAIT: Konfidenz 0.300 < 0.40 ODER abs(align) 4 < 4 - keine neuen Orders",
-      "Phase TREND BEARISH (ER alle 3 negativ: GER -44, DJ -59, SPX -27)",
-      "MP-Setup Mixed: GER Trend Day, DJ b-Shape (aber ueber VA), SPX P-Shape (aber S2 VWAP fail)",
-      "GER40: Trend Day pos 0.45 in_VA, Migration fallend - bearish Druck bleibt BLOCK",
-      "DJ30: Preis 51318 ueber VAH 51188 (ueber_VA), aber VWAP 51366 unter - Konflikt -> kein klarer Setup",
-      "SPX500: P-Shape pos 0.73, ueber VAH 7610 (7617), Migration steigend - LONG-Kandidat #1 wenn VWAP knackt",
-      "Re-Eval ADP 14:15: Falls SPX > 7625 + VWAP geknackt + DJ klarer Bias -> Reaktivieren",
-      "Re-Eval ISM 16:00: Letzter Sanity-Check vor NY Close"
+      "WAIT: Konfidenz 0.333 < 0.40 - keine neuen Orders",
+      "Phase TREND BEARISH bleibt (alle 3 ER negativ, GER40 ER entspannt -22 aber alle Schichten short ok)",
+      "GER40: alle_short_ok=true, Score -4 - waere SHORT-Kandidat #1 wenn 2-Instr-Konsens kommt",
+      "DJ30: S1=-0.1 marginal short-fail - braucht Bruch unter VAL 50857 fuer S1 <=-0.20",
+      "SPX500: P-Shape haelt aber S2 weiter long-fail - LONG-Kandidat eingefroren",
+      "Re-Eval ISM 16:00: Falls DJ30 unter VAL bricht -> 2-Instr-Konsens SHORT moeglich",
+      "Bis NY-Close: WAIT, MORNING hatte 0 Orders -> nichts zu validieren/canceln"
     ],
-    "instrument_prioritaet": [
-      "SPX500",
-      "DJ30",
-      "GER40"
-    ],
+    "instrument_prioritaet": ["GER40", "DJ30", "SPX500"],
     "zentralbank_stop": false,
     "zentralbank_stop_grund": ""
   },
   "orders": {
     "_agent": "EXECUTOR",
-    "_last_run": "2026-06-03T08:16:30",
+    "_last_run": "2026-06-03T14:49:30",
     "_status": "ready",
-    "_update_type": "morning",
+    "_update_type": "usupdate",
     "orders": [],
+    "validation": {
+      "morning_orders_count": 0,
+      "valid": 0,
+      "angepasst": 0,
+      "verfallen": 0,
+      "begruendung": "Morning hatte 0 Orders - nichts zu validieren oder canceln."
+    },
     "summary": {
       "best_instrument": null,
       "total_orders": 0,
       "trade_freigabe": false,
       "shape_konflikt": true,
       "warnungen": [
-        "WAIT: Konfidenz 0.300 < 0.40 ODER abs(align) 4 < 4",
-        "Schichten 0+0 freigegeben - Top-Down fordert 2+",
-        "Shape-Konflikt aktiv (MP-Setups bullish, ER bearish)",
-        "GER40 Trend Day mit Migration fallend - bearish Druck",
-        "DJ30 b-Shape aber ueber VA - Konflikt-Setup",
-        "SPX500 LEICHT_BULLISH Score 4 - S2 fail (VWAP 7619 knapp ueber Preis 7617)",
-        "Doc + GitHub Push erfolgen trotzdem (Pipeline-Pflicht)"
+        "WAIT: Konfidenz 0.333 < 0.40 (kein 2-Instr-Konsens)",
+        "1 Instr voll freigegeben (GER40 SHORT) - Top-Down fordert 2+",
+        "Morning hatte 0 Orders - nichts zu validieren",
+        "Shape-Konflikt aktiv (Mixed Bias)",
+        "DJ30 S1 marginal short-fail (-0.1 vs -0.20)",
+        "SPX500 S2 weiter long-fail",
+        "ISM 16:00 als naechster Re-Eval - Pipeline-Pflicht Doc+Push trotzdem"
       ]
     }
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-02T14:48:00",
+    "_last_run": "2026-06-03T14:50:00",
     "_status": "ready",
-    "session": "USUpdate 2026-06-02 14:47",
+    "session": "USUpdate 2026-06-03 14:48",
     "gesamt_status": "OK_mit_Warnungen",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260602_1447_USUpdate.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260603_1448_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
       "sheet_doc": "OK_WAIT",
       "github_web": "OK",
       "datenqualitaet": "OK_mit_Warnung",
       "entscheidung": "WAIT",
-      "anomalien": "OK_Warnung"
+      "anomalien": "OK"
     },
     "warnungen": [
-      "ER-Reversal: alle 3 Instrumente von Morning (+) auf USUpdate (-) gedreht",
-      "Shape-Konflikt: MP P-Shape (BULL) vs ER alle bearish",
-      "DJ30 Preis unter VAL 50898 - P-Shape Setup negiert",
-      "GER40 Distribution nach Run-up 25368 -> 25166 ~POC",
-      "Nur 1 Instr Schichten ok (Top-Down fordert 2+) - WAIT korrekt",
-      "JOLTS 16:00 USD medium - naechster Re-Eval Punkt"
+      "MACRO-Mini WARN: Morning-Werte uebernommen (kein yfinance Fetch)",
+      "Phase TREND BEARISH - alle 3 Instr gefallen (-0.15 bis -0.55%)",
+      "Regime SHIFT_TO_SHORT (war MIXED_TREND_CONFLICT) - GER40 fuehrt",
+      "GER40 unter_VA gebrochen + alle 3 Schichten short freigegeben",
+      "DJ30 S1=-0.1 marginal short-fail - watch VAL 50857",
+      "SPX500 P-Shape haelt aber S2 weiter long-fail",
+      "Konfidenz 0.333 < 0.40 - WAIT bleibt",
+      "Morning hatte 0 Orders - nichts zu validieren/canceln",
+      "ISM Services 16:00 USD high impact - Re-Eval Punkt"
     ]
   },
   "calendar": [
-    {
-      "date": "2026-06-03",
-      "time": "14:15",
-      "currency": "USD",
-      "name": "ADP Non-Farm Employment Change",
-      "impact": "high",
-      "actual": "",
-      "forecast": "118K",
-      "previous": "109K",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-03",
-      "time": "16:00",
-      "currency": "USD",
-      "name": "ISM Services PMI",
-      "impact": "high",
-      "actual": "",
-      "forecast": "53.7",
-      "previous": "53.6",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-03",
-      "time": "16:00",
-      "currency": "USD",
-      "name": "Treasury Sec Bessent Speaks",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-04",
-      "time": "10:00",
-      "currency": "EUR",
-      "name": "ECB President Lagarde Speaks",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-04",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Unemployment Claims",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "214K",
-      "previous": "215K",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-05",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Average Hourly Earnings m/m",
-      "impact": "high",
-      "actual": "",
-      "forecast": "0.3%",
-      "previous": "0.2%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-05",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Non-Farm Employment Change",
-      "impact": "high",
-      "actual": "",
-      "forecast": "85K",
-      "previous": "115K",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-05",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Unemployment Rate",
-      "impact": "high",
-      "actual": "",
-      "forecast": "4.3%",
-      "previous": "4.3%",
-      "better": null,
-      "source": "forexfactory"
-    }
+    {"date": "2026-06-03", "time": "14:15", "currency": "USD", "name": "ADP Non-Farm Employment Change", "impact": "high", "actual": "", "forecast": "118K", "previous": "109K", "better": null, "source": "forexfactory"},
+    {"date": "2026-06-03", "time": "16:00", "currency": "USD", "name": "ISM Services PMI", "impact": "high", "actual": "", "forecast": "53.7", "previous": "53.6", "better": null, "source": "forexfactory"},
+    {"date": "2026-06-03", "time": "16:00", "currency": "USD", "name": "Treasury Sec Bessent Speaks", "impact": "medium", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
+    {"date": "2026-06-04", "time": "10:00", "currency": "EUR", "name": "ECB President Lagarde Speaks", "impact": "medium", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
+    {"date": "2026-06-04", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "214K", "previous": "215K", "better": null, "source": "forexfactory"},
+    {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Average Hourly Earnings m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.2%", "better": null, "source": "forexfactory"},
+    {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Non-Farm Employment Change", "impact": "high", "actual": "", "forecast": "85K", "previous": "115K", "better": null, "source": "forexfactory"},
+    {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Unemployment Rate", "impact": "high", "actual": "", "forecast": "4.3%", "previous": "4.3%", "better": null, "source": "forexfactory"}
   ]
 }

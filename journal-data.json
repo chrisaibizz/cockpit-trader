@@ -1,6 +1,7 @@
 {
   "date": "2026-06-03",
-  "timestamp": "2026-06-03T08:17:42.191773",
+  "timestamp": "2026-06-03T14:50:00",
+  "session": "USUpdate 14:48",
   "debrief": {
     "yesterday_date": "2026-06-02",
     "orders_checked": 0,
@@ -15,190 +16,85 @@
   "instruments": [
     {
       "name": "GER40",
-      "bias": "NEUTRAL",
-      "bias_pct": "40",
-      "daily_summary": "Phase TREND (alle ERs negativ), ER -44.27 (starker_bearish_trend). Migration fallend.",
-      "h4_summary": "Shape Trend Day pos 0.45, VA breite 0.76%.",
-      "h1_summary": "VWAP 25094.61 (price unter), SMA200 25129.26.",
-      "h30m_summary": "POC 25110.09, VAH 25215.43, VAL 25023.91, Sequenz: Trend Day | D-Shape | Trend Day.",
+      "bias": "BAERISCH",
+      "bias_pct": "65",
+      "daily_summary": "Phase TREND BEARISH. ER entspannt -44.27 -> -22.45 (moderater_bearish_trend). Migration fallend.",
+      "h4_summary": "Trend Day pos 0.45, VA-Breite 0.76%. POC/VAH/VAL Session unveraendert seit Morning.",
+      "h1_summary": "VWAP 24975.02 (Preis 24894 darunter), SMA200 25105.76 darueber.",
+      "h30m_summary": "Bruch unter VAL 25023.91 -> price_vs_va=unter_VA. Tenkan 24897 < Kijun 24980. Kumo 24938-25089 oben. ALLE 3 Schichten short freigegeben (S1=-0.5 S2=-0.5 S3=-0.333).",
       "mp_shape_yesterday": "D-Shape",
-      "mp_shape_forecast": "Trend Day",
+      "mp_shape_forecast": "Trend Day -> b-Shape moeglich",
       "mp_5day_sequence": "Trend Day | D-Shape | Trend Day | Trend Day | Trend Day",
       "key_levels": [
-        {
-          "level": "POC",
-          "price": "25110.09",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAH",
-          "price": "25215.43",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL",
-          "price": "25023.91",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP",
-          "price": "25094.61",
-          "source": "VWAP Stdev"
-        },
-        {
-          "level": "PDH",
-          "price": "25362.83",
-          "source": "Yesterday"
-        },
-        {
-          "level": "PDL",
-          "price": "25061.66",
-          "source": "Yesterday"
-        },
-        {
-          "level": "ONH",
-          "price": "25128.41",
-          "source": "Overnight"
-        },
-        {
-          "level": "SMA200",
-          "price": "25129.26",
-          "source": "30M SMA200"
-        }
+        {"level": "POC", "price": "25110.09", "source": "Market Profile"},
+        {"level": "VAH", "price": "25215.43", "source": "Market Profile"},
+        {"level": "VAL", "price": "25023.91", "source": "Market Profile"},
+        {"level": "VWAP", "price": "24975.02", "source": "VWAP Bands"},
+        {"level": "Kumo Lower", "price": "24938.38", "source": "Ichimoku"},
+        {"level": "Price NOW", "price": "24894.04", "source": "Live"}
       ],
       "orders": [],
-      "invalidation": "Konfidenz 0.300 < 0.40, Schichten 0/3 nicht voll - WAIT bleibt bis ADP 14:15"
+      "invalidation": "Konfidenz_short 0.333 < 0.40 - kein 2-Instr-Konsens. Reaktivieren falls DJ30 unter VAL 50857 (S1 dann <=-0.20)."
     },
     {
       "name": "DJ30",
       "bias": "NEUTRAL",
-      "bias_pct": "45",
-      "daily_summary": "Phase TREND (alle ERs negativ), ER -59.49 (sehr_starker_bearish_trend). Migration steigend.",
-      "h4_summary": "Shape b-Shape pos 0.136, VA breite 0.65%.",
-      "h1_summary": "VWAP 51366.88 (price unter), SMA200 50961.64.",
-      "h30m_summary": "POC 50902.29, VAH 51188.46, VAL 50857.1, Sequenz: b-Shape | P-Shape | b-Shape.",
+      "bias_pct": "50",
+      "daily_summary": "Phase TREND BEARISH. ER -59.49 -> -43.85 entspannt aber bleibt bearish. Migration POC steigend.",
+      "h4_summary": "b-Shape pos 0.136 BAER. VA-Breite 0.65%. POC/VAH/VAL unveraendert.",
+      "h1_summary": "VWAP 51287.26 (Preis 51173 darunter), SMA200 50996.58 darunter.",
+      "h30m_summary": "Faellt zurueck IN_VA (51173 zwischen VAL 50857 und VAH 51188). Tenkan 51206 < Kijun 51271. Preis am Kumo (51128-51238). S1=-0.1 marginal short-fail.",
       "mp_shape_yesterday": "P-Shape",
-      "mp_shape_forecast": "b-Shape",
+      "mp_shape_forecast": "b-Shape persistent",
       "mp_5day_sequence": "b-Shape | P-Shape | b-Shape | Trend Day | P-Shape",
       "key_levels": [
-        {
-          "level": "POC",
-          "price": "50902.29",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAH",
-          "price": "51188.46",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL",
-          "price": "50857.1",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP",
-          "price": "51366.88",
-          "source": "VWAP Stdev"
-        },
-        {
-          "level": "PDH",
-          "price": "51369.61",
-          "source": "Yesterday"
-        },
-        {
-          "level": "PDL",
-          "price": "50829.55",
-          "source": "Yesterday"
-        },
-        {
-          "level": "ONH",
-          "price": "51429.45",
-          "source": "Overnight"
-        },
-        {
-          "level": "SMA200",
-          "price": "50961.64",
-          "source": "30M SMA200"
-        }
+        {"level": "POC", "price": "50902.29", "source": "Market Profile"},
+        {"level": "VAH", "price": "51188.46", "source": "Market Profile"},
+        {"level": "VAL", "price": "50857.10", "source": "Market Profile"},
+        {"level": "VWAP", "price": "51287.26", "source": "VWAP Bands"},
+        {"level": "Price NOW", "price": "51173.44", "source": "Live"}
       ],
       "orders": [],
-      "invalidation": "Konfidenz 0.300 < 0.40, Schichten 0/3 nicht voll - WAIT bleibt bis ADP 14:15"
+      "invalidation": "Bias-Wechsel bei Bruch unter VAL 50857.10 (-> S1 short freigegeben + 2-Instr-Konsens mit GER40)."
     },
     {
       "name": "SPX500",
       "bias": "LEICHT_BULLISH",
-      "bias_pct": "60",
-      "daily_summary": "Phase TREND (alle ERs negativ), ER -26.88 (starker_bearish_trend). Migration steigend.",
-      "h4_summary": "Shape P-Shape pos 0.731, VA breite 0.47%.",
-      "h1_summary": "VWAP 7619.28 (price unter), SMA200 7585.58.",
-      "h30m_summary": "POC 7600.66, VAH 7610.38, VAL 7574.3, Sequenz: P-Shape | P-Shape | Trend Day.",
+      "bias_pct": "55",
+      "daily_summary": "Phase TREND BEARISH. ER -26.88 -> -42.00 verschlechtert (starker_bearish_trend). POC steigend.",
+      "h4_summary": "P-Shape pos 0.731 BULL erhalten. VA-Breite 0.47%.",
+      "h1_summary": "VWAP 7617.64 (Preis 7606 darunter), SMA200 7591.27 darunter.",
+      "h30m_summary": "Faellt zurueck IN_VA (war ueber_VA), aber haelt ueber POC 7600.66. Tenkan 7611 < Kijun 7614. S1=0.7 ok aber S2=0.0 weiter fail (VWAP+ER bearish).",
       "mp_shape_yesterday": "P-Shape",
-      "mp_shape_forecast": "P-Shape",
+      "mp_shape_forecast": "P-Shape gefaehrdet wenn Preis unter POC bricht",
       "mp_5day_sequence": "P-Shape | P-Shape | Trend Day | Trend Day | P-Shape",
       "key_levels": [
-        {
-          "level": "POC",
-          "price": "7600.66",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAH",
-          "price": "7610.38",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL",
-          "price": "7574.3",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP",
-          "price": "7619.28",
-          "source": "VWAP Stdev"
-        },
-        {
-          "level": "PDH",
-          "price": "7620.9",
-          "source": "Yesterday"
-        },
-        {
-          "level": "PDL",
-          "price": "7582.99",
-          "source": "Yesterday"
-        },
-        {
-          "level": "ONH",
-          "price": "7627.81",
-          "source": "Overnight"
-        },
-        {
-          "level": "SMA200",
-          "price": "7585.58",
-          "source": "30M SMA200"
-        }
+        {"level": "POC", "price": "7600.66", "source": "Market Profile"},
+        {"level": "VAH", "price": "7610.38", "source": "Market Profile"},
+        {"level": "VAL", "price": "7574.30", "source": "Market Profile"},
+        {"level": "VWAP", "price": "7617.64", "source": "VWAP Bands"},
+        {"level": "Price NOW", "price": "7606.26", "source": "Live"}
       ],
       "orders": [],
-      "invalidation": "Konfidenz 0.300 < 0.40, Schichten 0/3 nicht voll - WAIT bleibt bis ADP 14:15"
+      "invalidation": "Bruch unter POC 7600.66 negiert P-Shape -> dann SHORT-Kandidat #2. VWAP-Reclaim ueber 7617 reaktiviert LONG."
     }
   ],
   "summary": {
-    "best_instrument": "SPX500",
+    "best_instrument": "GER40",
     "total_orders": 0,
+    "session_bias": "WAIT (SHORT-LEAN)",
+    "konfidenz": 0.333,
     "warnings": [
-      "WAIT: Konfidenz 0.300 < 0.40 - kein Trade-Setup voll bestaetigt",
-      "Shape-Konflikt: MP-Setups bullish vs ERs alle bearish",
-      "GER40 Trend Day mit POC-Migration fallend - bearish Druck",
-      "DJ30 b-Shape pos 0.136 aber Preis ueber VAH - Konflikt",
-      "SPX500 LEICHT_BULLISH Score 4 - bestes Setup aber VWAP 7619 knapp ueber Preis",
-      "ADP 14:15 USD high impact - Re-Eval Punkt #1",
-      "ISM Services 16:00 USD high impact - Re-Eval Punkt #2",
-      "VIX 15.77 normal, F&G 11 Extreme Fear, Makro NEUTRAL Score -1"
+      "Alle 3 Instr -0.15 bis -0.55% gefallen seit Morning",
+      "GER40 ist primaerer SHORT-Kandidat (alle 3 Schichten ok, Score -4)",
+      "Konfidenz 0.333 < 0.40 - kein 2-Instr-Konsens -> WAIT",
+      "ISM Services 16:00 USD high impact - naechster Re-Eval",
+      "MACRO-Mini WARN: Morning-Werte uebernommen"
     ],
-    "notes": "Pipeline 08:04 - 3-Schichten-Bias auf allen Instr unter Freigabe-Schwelle. Captain WAIT (LONG-LEAN). 0 Orders heute Morning. Naechster Re-Eval ADP 14:15."
+    "notes": "Regime-Shift MIXED_TREND_CONFLICT -> SHIFT_TO_SHORT. GER40 fuehrt mit unter_VA + alle_short_ok. DJ30 + SPX widerstaendig. Morning hatte 0 Orders - nichts zu validieren oder canceln."
   },
   "stats": {
-    "total": 217,
+    "total": 22,
     "fill_rate": "44.0%",
     "tp1_rate": "22.7%",
     "trend": "Stabil"
