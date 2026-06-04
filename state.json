@@ -154,21 +154,106 @@
         "onh": 25128.41,
         "onl": 25028.54,
         "mp_history": [
-          {"session": 0, "poc": 25110.09, "vah": 25215.43, "val": 25023.91, "mp_shape_pos": 0.45, "va_breite_pct": 0.76, "shape": "Trend Day"},
-          {"session": 1, "poc": 25136.23, "vah": 25227.8, "val": 25024.3, "mp_shape_pos": 0.55, "va_breite_pct": 0.81, "shape": "D-Shape"},
-          {"session": 2, "poc": 25112.7, "vah": 25162.47, "val": 25062.92, "mp_shape_pos": 0.5, "va_breite_pct": 0.4, "shape": "Trend Day"},
-          {"session": 3, "poc": 25097.86, "vah": 25195.02, "val": 25045.55, "mp_shape_pos": 0.35, "va_breite_pct": 0.6, "shape": "Trend Day"},
-          {"session": 4, "poc": 25236.34, "vah": 25330.34, "val": 25171.27, "mp_shape_pos": 0.409, "va_breite_pct": 0.63, "shape": "Trend Day"},
-          {"session": 5, "poc": 25217.4, "vah": 25308.35, "val": 25201.35, "mp_shape_pos": 0.15, "va_breite_pct": 0.42, "shape": "b-Shape"},
-          {"session": 6, "poc": 25393.97, "vah": 25426.87, "val": 25141.75, "mp_shape_pos": 0.885, "va_breite_pct": 1.12, "shape": "P-Shape"},
-          {"session": 7, "poc": 24870.2, "vah": 24919.36, "val": 24778.91, "mp_shape_pos": 0.65, "va_breite_pct": 0.56, "shape": "Trend Day"},
-          {"session": 8, "poc": 24748.09, "vah": 24797.4, "val": 24580.43, "mp_shape_pos": 0.773, "va_breite_pct": 0.88, "shape": "P-Shape"},
-          {"session": 9, "poc": 24757.75, "vah": 24813.12, "val": 24333.23, "mp_shape_pos": 0.885, "va_breite_pct": 1.94, "shape": "P-Shape"}
+          {
+            "session": 0,
+            "poc": 25110.09,
+            "vah": 25215.43,
+            "val": 25023.91,
+            "mp_shape_pos": 0.45,
+            "va_breite_pct": 0.76,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 1,
+            "poc": 25136.23,
+            "vah": 25227.8,
+            "val": 25024.3,
+            "mp_shape_pos": 0.55,
+            "va_breite_pct": 0.81,
+            "shape": "D-Shape"
+          },
+          {
+            "session": 2,
+            "poc": 25112.7,
+            "vah": 25162.47,
+            "val": 25062.92,
+            "mp_shape_pos": 0.5,
+            "va_breite_pct": 0.4,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 3,
+            "poc": 25097.86,
+            "vah": 25195.02,
+            "val": 25045.55,
+            "mp_shape_pos": 0.35,
+            "va_breite_pct": 0.6,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 4,
+            "poc": 25236.34,
+            "vah": 25330.34,
+            "val": 25171.27,
+            "mp_shape_pos": 0.409,
+            "va_breite_pct": 0.63,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 5,
+            "poc": 25217.4,
+            "vah": 25308.35,
+            "val": 25201.35,
+            "mp_shape_pos": 0.15,
+            "va_breite_pct": 0.42,
+            "shape": "b-Shape"
+          },
+          {
+            "session": 6,
+            "poc": 25393.97,
+            "vah": 25426.87,
+            "val": 25141.75,
+            "mp_shape_pos": 0.885,
+            "va_breite_pct": 1.12,
+            "shape": "P-Shape"
+          },
+          {
+            "session": 7,
+            "poc": 24870.2,
+            "vah": 24919.36,
+            "val": 24778.91,
+            "mp_shape_pos": 0.65,
+            "va_breite_pct": 0.56,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 8,
+            "poc": 24748.09,
+            "vah": 24797.4,
+            "val": 24580.43,
+            "mp_shape_pos": 0.773,
+            "va_breite_pct": 0.88,
+            "shape": "P-Shape"
+          },
+          {
+            "session": 9,
+            "poc": 24757.75,
+            "vah": 24813.12,
+            "val": 24333.23,
+            "mp_shape_pos": 0.885,
+            "va_breite_pct": 1.94,
+            "shape": "P-Shape"
+          }
         ],
         "mp_context": {
           "poc_migration": "fallend",
           "shape_sequenz": "Trend Day | D-Shape | Trend Day",
-          "naked_pocs": [25236.34, 25393.97, 24870.2, 24748.09],
+          "naked_pocs": [
+            25236.34,
+            25393.97,
+            24870.2,
+            24748.09
+          ],
           "composite_poc": 25124.71
         }
       },
@@ -207,7 +292,7 @@
           "r1": 51357.24,
           "s1": 50970.98,
           "r2": 51630.51,
-          "s2": 50697.70
+          "s2": 50697.7
         },
         "cdv": 238402.64,
         "smc": 51173.44,
@@ -216,21 +301,106 @@
         "onh": 51429.45,
         "onl": 51267.44,
         "mp_history": [
-          {"session": 0, "poc": 50902.29, "vah": 51188.46, "val": 50857.1, "mp_shape_pos": 0.136, "va_breite_pct": 0.65, "shape": "b-Shape"},
-          {"session": 1, "poc": 51107.93, "vah": 51177.8, "val": 50898.3, "mp_shape_pos": 0.75, "va_breite_pct": 0.55, "shape": "P-Shape"},
-          {"session": 2, "poc": 50748.68, "vah": 50999.95, "val": 50694.05, "mp_shape_pos": 0.179, "va_breite_pct": 0.6, "shape": "b-Shape"},
-          {"session": 3, "poc": 50705.95, "vah": 50759.57, "val": 50609.42, "mp_shape_pos": 0.643, "va_breite_pct": 0.3, "shape": "Trend Day"},
-          {"session": 4, "poc": 50726.71, "vah": 50775.96, "val": 50598.65, "mp_shape_pos": 0.722, "va_breite_pct": 0.35, "shape": "P-Shape"},
-          {"session": 5, "poc": 50950.68, "vah": 51039.75, "val": 50612.22, "mp_shape_pos": 0.792, "va_breite_pct": 0.84, "shape": "P-Shape"},
-          {"session": 6, "poc": 51076.34, "vah": 51153.95, "val": 50998.73, "mp_shape_pos": 0.5, "va_breite_pct": 0.3, "shape": "Trend Day"},
-          {"session": 7, "poc": 50466.62, "vah": 50680.85, "val": 50403.61, "mp_shape_pos": 0.227, "va_breite_pct": 0.55, "shape": "b-Shape"},
-          {"session": 8, "poc": 49968.01, "vah": 50124.83, "val": 49880.88, "mp_shape_pos": 0.357, "va_breite_pct": 0.49, "shape": "Trend Day"},
-          {"session": 9, "poc": 49405.66, "vah": 49686.46, "val": 49254.46, "mp_shape_pos": 0.35, "va_breite_pct": 0.87, "shape": "D-Shape"}
+          {
+            "session": 0,
+            "poc": 50902.29,
+            "vah": 51188.46,
+            "val": 50857.1,
+            "mp_shape_pos": 0.136,
+            "va_breite_pct": 0.65,
+            "shape": "b-Shape"
+          },
+          {
+            "session": 1,
+            "poc": 51107.93,
+            "vah": 51177.8,
+            "val": 50898.3,
+            "mp_shape_pos": 0.75,
+            "va_breite_pct": 0.55,
+            "shape": "P-Shape"
+          },
+          {
+            "session": 2,
+            "poc": 50748.68,
+            "vah": 50999.95,
+            "val": 50694.05,
+            "mp_shape_pos": 0.179,
+            "va_breite_pct": 0.6,
+            "shape": "b-Shape"
+          },
+          {
+            "session": 3,
+            "poc": 50705.95,
+            "vah": 50759.57,
+            "val": 50609.42,
+            "mp_shape_pos": 0.643,
+            "va_breite_pct": 0.3,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 4,
+            "poc": 50726.71,
+            "vah": 50775.96,
+            "val": 50598.65,
+            "mp_shape_pos": 0.722,
+            "va_breite_pct": 0.35,
+            "shape": "P-Shape"
+          },
+          {
+            "session": 5,
+            "poc": 50950.68,
+            "vah": 51039.75,
+            "val": 50612.22,
+            "mp_shape_pos": 0.792,
+            "va_breite_pct": 0.84,
+            "shape": "P-Shape"
+          },
+          {
+            "session": 6,
+            "poc": 51076.34,
+            "vah": 51153.95,
+            "val": 50998.73,
+            "mp_shape_pos": 0.5,
+            "va_breite_pct": 0.3,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 7,
+            "poc": 50466.62,
+            "vah": 50680.85,
+            "val": 50403.61,
+            "mp_shape_pos": 0.227,
+            "va_breite_pct": 0.55,
+            "shape": "b-Shape"
+          },
+          {
+            "session": 8,
+            "poc": 49968.01,
+            "vah": 50124.83,
+            "val": 49880.88,
+            "mp_shape_pos": 0.357,
+            "va_breite_pct": 0.49,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 9,
+            "poc": 49405.66,
+            "vah": 49686.46,
+            "val": 49254.46,
+            "mp_shape_pos": 0.35,
+            "va_breite_pct": 0.87,
+            "shape": "D-Shape"
+          }
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "b-Shape | P-Shape | b-Shape",
-          "naked_pocs": [50748.68, 50466.62, 49968.01, 49405.66],
+          "naked_pocs": [
+            50748.68,
+            50466.62,
+            49968.01,
+            49405.66
+          ],
           "composite_poc": 50801.56
         }
       },
@@ -247,9 +417,9 @@
         "price_vs_va": "in_VA",
         "vwap": 7617.64,
         "vwap_upper": 7621.57,
-        "vwap_lower": 7613.70,
+        "vwap_lower": 7613.7,
         "price_vs_vwap": "unter_VWAP",
-        "er": -42.00,
+        "er": -42.0,
         "er_qualitaet": "starker_bearish_trend",
         "sma200": 7591.27,
         "ichimoku": {
@@ -259,14 +429,14 @@
           "kumo_b": 7607.68
         },
         "fibo": {
-          "level_0": 7629.80,
+          "level_0": 7629.8,
           "level_50": 7600.72,
           "level_618": 7593.86,
-          "top": 7629.80
+          "top": 7629.8
         },
         "mri": {
           "mean": 7610.08,
-          "r1": 7632.70,
+          "r1": 7632.7,
           "s1": 7587.46,
           "r2": 7664.71,
           "s2": 7555.45
@@ -278,34 +448,173 @@
         "onh": 7627.81,
         "onl": 7601.26,
         "mp_history": [
-          {"session": 0, "poc": 7600.66, "vah": 7610.38, "val": 7574.3, "mp_shape_pos": 0.731, "va_breite_pct": 0.47, "shape": "P-Shape"},
-          {"session": 1, "poc": 7610.8, "vah": 7617.8, "val": 7592.6, "mp_shape_pos": 0.722, "va_breite_pct": 0.33, "shape": "P-Shape"},
-          {"session": 2, "poc": 7583.3, "vah": 7593.92, "val": 7576.55, "mp_shape_pos": 0.389, "va_breite_pct": 0.23, "shape": "Trend Day"},
-          {"session": 3, "poc": 7526.63, "vah": 7545.87, "val": 7498.85, "mp_shape_pos": 0.591, "va_breite_pct": 0.62, "shape": "Trend Day"},
-          {"session": 4, "poc": 7537.27, "vah": 7544.21, "val": 7519.23, "mp_shape_pos": 0.722, "va_breite_pct": 0.33, "shape": "P-Shape"},
-          {"session": 5, "poc": 7530.04, "vah": 7538.52, "val": 7519.14, "mp_shape_pos": 0.562, "va_breite_pct": 0.26, "shape": "Trend Day"},
-          {"session": 6, "poc": 7552.6, "vah": 7559.19, "val": 7543.37, "mp_shape_pos": 0.583, "va_breite_pct": 0.21, "shape": "Trend Day"},
-          {"session": 7, "poc": 7472.27, "vah": 7493.41, "val": 7465.22, "mp_shape_pos": 0.25, "va_breite_pct": 0.38, "shape": "b-Shape"},
-          {"session": 8, "poc": 7418.16, "vah": 7443.79, "val": 7404.36, "mp_shape_pos": 0.35, "va_breite_pct": 0.53, "shape": "Trend Day"},
-          {"session": 9, "poc": 7367.81, "vah": 7416.08, "val": 7344.94, "mp_shape_pos": 0.321, "va_breite_pct": 0.97, "shape": "b-Shape"}
+          {
+            "session": 0,
+            "poc": 7600.66,
+            "vah": 7610.38,
+            "val": 7574.3,
+            "mp_shape_pos": 0.731,
+            "va_breite_pct": 0.47,
+            "shape": "P-Shape"
+          },
+          {
+            "session": 1,
+            "poc": 7610.8,
+            "vah": 7617.8,
+            "val": 7592.6,
+            "mp_shape_pos": 0.722,
+            "va_breite_pct": 0.33,
+            "shape": "P-Shape"
+          },
+          {
+            "session": 2,
+            "poc": 7583.3,
+            "vah": 7593.92,
+            "val": 7576.55,
+            "mp_shape_pos": 0.389,
+            "va_breite_pct": 0.23,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 3,
+            "poc": 7526.63,
+            "vah": 7545.87,
+            "val": 7498.85,
+            "mp_shape_pos": 0.591,
+            "va_breite_pct": 0.62,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 4,
+            "poc": 7537.27,
+            "vah": 7544.21,
+            "val": 7519.23,
+            "mp_shape_pos": 0.722,
+            "va_breite_pct": 0.33,
+            "shape": "P-Shape"
+          },
+          {
+            "session": 5,
+            "poc": 7530.04,
+            "vah": 7538.52,
+            "val": 7519.14,
+            "mp_shape_pos": 0.562,
+            "va_breite_pct": 0.26,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 6,
+            "poc": 7552.6,
+            "vah": 7559.19,
+            "val": 7543.37,
+            "mp_shape_pos": 0.583,
+            "va_breite_pct": 0.21,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 7,
+            "poc": 7472.27,
+            "vah": 7493.41,
+            "val": 7465.22,
+            "mp_shape_pos": 0.25,
+            "va_breite_pct": 0.38,
+            "shape": "b-Shape"
+          },
+          {
+            "session": 8,
+            "poc": 7418.16,
+            "vah": 7443.79,
+            "val": 7404.36,
+            "mp_shape_pos": 0.35,
+            "va_breite_pct": 0.53,
+            "shape": "Trend Day"
+          },
+          {
+            "session": 9,
+            "poc": 7367.81,
+            "vah": 7416.08,
+            "val": 7344.94,
+            "mp_shape_pos": 0.321,
+            "va_breite_pct": 0.97,
+            "shape": "b-Shape"
+          }
         ],
         "mp_context": {
           "poc_migration": "steigend",
           "shape_sequenz": "P-Shape | P-Shape | Trend Day",
-          "naked_pocs": [7610.8, 7526.63, 7552.6, 7472.27, 7418.16, 7367.81],
+          "naked_pocs": [
+            7610.8,
+            7526.63,
+            7552.6,
+            7472.27,
+            7418.16,
+            7367.81
+          ],
           "composite_poc": 7555.67
         }
       }
     },
     "calendar": [
-      {"date": "2026-06-03", "time": "14:15", "currency": "USD", "name": "ADP Non-Farm Employment Change", "impact": "high", "actual": "", "forecast": "118K", "previous": "109K", "better": null, "source": "forexfactory"},
-      {"date": "2026-06-03", "time": "16:00", "currency": "USD", "name": "ISM Services PMI", "impact": "high", "actual": "", "forecast": "53.7", "previous": "53.6", "better": null, "source": "forexfactory"},
-      {"date": "2026-06-03", "time": "16:00", "currency": "USD", "name": "Treasury Sec Bessent Speaks", "impact": "medium", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
-      {"date": "2026-06-04", "time": "10:00", "currency": "EUR", "name": "ECB President Lagarde Speaks", "impact": "medium", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
-      {"date": "2026-06-04", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "214K", "previous": "215K", "better": null, "source": "forexfactory"},
-      {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Average Hourly Earnings m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.2%", "better": null, "source": "forexfactory"},
-      {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Non-Farm Employment Change", "impact": "high", "actual": "", "forecast": "85K", "previous": "115K", "better": null, "source": "forexfactory"},
-      {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Unemployment Rate", "impact": "high", "actual": "", "forecast": "4.3%", "previous": "4.3%", "better": null, "source": "forexfactory"}
+      {
+        "date": "2026-06-04",
+        "time": "10:00",
+        "currency": "EUR",
+        "name": "ECB President Lagarde Speaks",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "",
+        "previous": "",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-04",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Unemployment Claims",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "214K",
+        "previous": "215K",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Average Hourly Earnings m/m",
+        "impact": "high",
+        "actual": "",
+        "forecast": "0.3%",
+        "previous": "0.2%",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Non-Farm Employment Change",
+        "impact": "high",
+        "actual": "",
+        "forecast": "85K",
+        "previous": "115K",
+        "better": null,
+        "source": "forexfactory"
+      },
+      {
+        "date": "2026-06-05",
+        "time": "14:30",
+        "currency": "USD",
+        "name": "Unemployment Rate",
+        "impact": "high",
+        "actual": "",
+        "forecast": "4.3%",
+        "previous": "4.3%",
+        "better": null,
+        "source": "forexfactory"
+      }
     ]
   },
   "delta": {
@@ -315,13 +624,13 @@
     "vs_morning": {
       "GER40": {
         "delta_pct": -0.553,
-        "delta_pts": -138.50,
+        "delta_pts": -138.5,
         "richtung": "fallend",
         "kommentar": "GER40 -138.50 pts (-0.553%) seit 08:12. Preis 25032.54 -> 24894.04. Bruch unter VAL 25023.91 (in_VA -> unter_VA). Unter VWAP geblieben (24894 vs 24975). ER deutlich entspannt -44.27 -> -22.45 (Bearish-Druck schwaecher). MP-Session unveraendert (POC/VAH/VAL gleich). SHORT-Druck bestaetigt: alle 3 Schichten short freigegeben."
       },
       "DJ30": {
         "delta_pct": -0.283,
-        "delta_pts": -145.00,
+        "delta_pts": -145.0,
         "richtung": "fallend",
         "kommentar": "DJ30 -145.00 pts (-0.283%) seit 08:12. Preis 51318.44 -> 51173.44. Faellt zurueck IN_VA (war ueber_VA). Tenkan 51206 < Kijun 51270 bearish. Preis am Kumo (51128-51238). ER -59.49 -> -43.85 etwas entspannt. b-Shape POC-Migration steigend bleibt - Konflikt: bearish ER vs steigender POC. S1 short fail (-0.1 > -0.20)."
       },
@@ -362,7 +671,10 @@
       "alignment_score_abs": 4,
       "best_direction": "NONE",
       "trade_freigabe": false,
-      "m30_entry_zone": {"preis_von": null, "preis_bis": null},
+      "m30_entry_zone": {
+        "preis_von": null,
+        "preis_bis": null
+      },
       "begruendung": [
         "GER40: SHORT Score:-4 S1=-0.5 S2=-0.5 S3=-0.333 alle_short_ok=true",
         "DJ30: NONE Score:-1 S1=-0.1 S2=-0.25 S3=0.167 (S1 short-fail bei -0.1)",
@@ -378,19 +690,38 @@
             "score": -5,
             "norm": -0.5,
             "max": 10,
-            "signale": {"mp_shape": 0, "preis_vs_va": -2, "preis_vs_poc": -1, "poc_migration": -2, "shape_sequenz": 0, "vp_hvn_lvn": 0}
+            "signale": {
+              "mp_shape": 0,
+              "preis_vs_va": -2,
+              "preis_vs_poc": -1,
+              "poc_migration": -2,
+              "shape_sequenz": 0,
+              "vp_hvn_lvn": 0
+            }
           },
           "s2_struktur": {
             "score": -2,
             "norm": -0.5,
             "max": 4,
-            "signale": {"vwap": -1, "cvd": 0, "er_trend": -1, "er_qualitaet": 0}
+            "signale": {
+              "vwap": -1,
+              "cvd": 0,
+              "er_trend": -1,
+              "er_qualitaet": 0
+            }
           },
           "s3_entry": {
             "score": -2,
             "norm": -0.333,
             "max": 6,
-            "signale": {"ichimoku": -1, "sma200": -1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 0}
+            "signale": {
+              "ichimoku": -1,
+              "sma200": -1,
+              "smc": 0,
+              "sr_channel": 0,
+              "pivot": 0,
+              "autofibo": 0
+            }
           },
           "freigabe_s1": false,
           "freigabe_s2": false,
@@ -427,19 +758,38 @@
             "score": -1,
             "norm": -0.1,
             "max": 10,
-            "signale": {"mp_shape": -3, "preis_vs_va": 0, "preis_vs_poc": 1, "poc_migration": 2, "shape_sequenz": -1, "vp_hvn_lvn": 0}
+            "signale": {
+              "mp_shape": -3,
+              "preis_vs_va": 0,
+              "preis_vs_poc": 1,
+              "poc_migration": 2,
+              "shape_sequenz": -1,
+              "vp_hvn_lvn": 0
+            }
           },
           "s2_struktur": {
             "score": -1,
             "norm": -0.25,
             "max": 4,
-            "signale": {"vwap": -1, "cvd": 0, "er_trend": -1, "er_qualitaet": 1}
+            "signale": {
+              "vwap": -1,
+              "cvd": 0,
+              "er_trend": -1,
+              "er_qualitaet": 1
+            }
           },
           "s3_entry": {
             "score": 1,
             "norm": 0.167,
             "max": 6,
-            "signale": {"ichimoku": 0, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 0}
+            "signale": {
+              "ichimoku": 0,
+              "sma200": 1,
+              "smc": 0,
+              "sr_channel": 0,
+              "pivot": 0,
+              "autofibo": 0
+            }
           },
           "freigabe_s1": false,
           "freigabe_s2": false,
@@ -476,19 +826,38 @@
             "score": 7,
             "norm": 0.7,
             "max": 10,
-            "signale": {"mp_shape": 3, "preis_vs_va": 0, "preis_vs_poc": 1, "poc_migration": 2, "shape_sequenz": 1, "vp_hvn_lvn": 0}
+            "signale": {
+              "mp_shape": 3,
+              "preis_vs_va": 0,
+              "preis_vs_poc": 1,
+              "poc_migration": 2,
+              "shape_sequenz": 1,
+              "vp_hvn_lvn": 0
+            }
           },
           "s2_struktur": {
             "score": 0,
             "norm": 0.0,
             "max": 4,
-            "signale": {"vwap": -1, "cvd": 1, "er_trend": -1, "er_qualitaet": 1}
+            "signale": {
+              "vwap": -1,
+              "cvd": 1,
+              "er_trend": -1,
+              "er_qualitaet": 1
+            }
           },
           "s3_entry": {
             "score": 0,
             "norm": 0.0,
             "max": 6,
-            "signale": {"ichimoku": -1, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 0, "autofibo": 0}
+            "signale": {
+              "ichimoku": -1,
+              "sma200": 1,
+              "smc": 0,
+              "sr_channel": 0,
+              "pivot": 0,
+              "autofibo": 0
+            }
           },
           "freigabe_s1": true,
           "freigabe_s2": false,
@@ -505,7 +874,7 @@
         "bias": "LEICHT_BULLISH",
         "bias_text": "NONE Score:3",
         "alignment_score": 3,
-        "er_wert": -42.00,
+        "er_wert": -42.0,
         "mp_shape": "P-Shape",
         "mp_shape_pos": 0.731,
         "key_levels": {
@@ -541,7 +910,7 @@
       "chart_gewichtung": 0.6,
       "makro_gewichtung": 0.4,
       "gewichtungs_grund": "Default 60/40 (TREND-Phase, NEUTRAL Makro). ISM in 1h12min - noch nicht <2h-Schwelle.",
-      "alignment_beitrag": 0.30,
+      "alignment_beitrag": 0.3,
       "makro_beitrag": 0.0333,
       "konfidenz_long": 0.0,
       "konfidenz_short": 0.3333,
@@ -573,7 +942,11 @@
       "Re-Eval ISM 16:00: Falls DJ30 unter VAL bricht -> 2-Instr-Konsens SHORT moeglich",
       "Bis NY-Close: WAIT, MORNING hatte 0 Orders -> nichts zu validieren/canceln"
     ],
-    "instrument_prioritaet": ["GER40", "DJ30", "SPX500"],
+    "instrument_prioritaet": [
+      "GER40",
+      "DJ30",
+      "SPX500"
+    ],
     "zentralbank_stop": false,
     "zentralbank_stop_grund": ""
   },
@@ -636,13 +1009,65 @@
     ]
   },
   "calendar": [
-    {"date": "2026-06-03", "time": "14:15", "currency": "USD", "name": "ADP Non-Farm Employment Change", "impact": "high", "actual": "", "forecast": "118K", "previous": "109K", "better": null, "source": "forexfactory"},
-    {"date": "2026-06-03", "time": "16:00", "currency": "USD", "name": "ISM Services PMI", "impact": "high", "actual": "", "forecast": "53.7", "previous": "53.6", "better": null, "source": "forexfactory"},
-    {"date": "2026-06-03", "time": "16:00", "currency": "USD", "name": "Treasury Sec Bessent Speaks", "impact": "medium", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
-    {"date": "2026-06-04", "time": "10:00", "currency": "EUR", "name": "ECB President Lagarde Speaks", "impact": "medium", "actual": "", "forecast": "", "previous": "", "better": null, "source": "forexfactory"},
-    {"date": "2026-06-04", "time": "14:30", "currency": "USD", "name": "Unemployment Claims", "impact": "medium", "actual": "", "forecast": "214K", "previous": "215K", "better": null, "source": "forexfactory"},
-    {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Average Hourly Earnings m/m", "impact": "high", "actual": "", "forecast": "0.3%", "previous": "0.2%", "better": null, "source": "forexfactory"},
-    {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Non-Farm Employment Change", "impact": "high", "actual": "", "forecast": "85K", "previous": "115K", "better": null, "source": "forexfactory"},
-    {"date": "2026-06-05", "time": "14:30", "currency": "USD", "name": "Unemployment Rate", "impact": "high", "actual": "", "forecast": "4.3%", "previous": "4.3%", "better": null, "source": "forexfactory"}
+    {
+      "date": "2026-06-04",
+      "time": "10:00",
+      "currency": "EUR",
+      "name": "ECB President Lagarde Speaks",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "",
+      "previous": "",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-06-04",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Unemployment Claims",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "214K",
+      "previous": "215K",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-06-05",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Average Hourly Earnings m/m",
+      "impact": "high",
+      "actual": "",
+      "forecast": "0.3%",
+      "previous": "0.2%",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-06-05",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Non-Farm Employment Change",
+      "impact": "high",
+      "actual": "",
+      "forecast": "85K",
+      "previous": "115K",
+      "better": null,
+      "source": "forexfactory"
+    },
+    {
+      "date": "2026-06-05",
+      "time": "14:30",
+      "currency": "USD",
+      "name": "Unemployment Rate",
+      "impact": "high",
+      "actual": "",
+      "forecast": "4.3%",
+      "previous": "4.3%",
+      "better": null,
+      "source": "forexfactory"
+    }
   ]
 }
