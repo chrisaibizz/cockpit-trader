@@ -1,57 +1,57 @@
 {
   "date": "2026-06-04",
-  "timestamp": "2026-06-04T08:12:00",
+  "timestamp": "2026-06-04T14:47:00",
   "phase": "BALANCE",
   "regime": "NEUTRAL",
-  "session_bias": "WAIT",
-  "alignment_score": 3,
+  "session_bias": "LONG-LEAN",
+  "alignment_score": 6,
   "makro_bias": "NEUTRAL",
-  "makro_score": -1,
-  "trade_freigabe": false,
-  "konfidenz": 0.188,
+  "makro_score": 1,
+  "trade_freigabe": true,
+  "konfidenz": 0.417,
   "konfidenz_direction": "LONG",
   "instruments": {
     "GER40": {
-      "bias": "NEUTRAL",
-      "score": 0,
+      "bias": "LEICHT_BULLISH",
+      "score": 2,
       "poc": 24912.83,
       "vah": 24991.15,
       "val": 24745.01,
       "mp_shape": "P-Shape",
       "mp_shape_pos": 0.682,
-      "er": 8.16,
+      "er": 11.11,
       "onh": 24923.04,
       "pdh": 25362.83,
-      "current_price": 24795.54,
-      "vwap": 24742.53
+      "current_price": 24985.54,
+      "vwap": 24848.34
     },
     "DJ30": {
-      "bias": "LEICHT_BULLISH",
-      "score": 2,
+      "bias": "BULLISCH",
+      "score": 6,
       "poc": 51360.36,
       "vah": 51411.64,
       "val": 51001.42,
       "mp_shape": "P-Shape",
       "mp_shape_pos": 0.875,
-      "er": 19.18,
+      "er": 69.79,
       "onh": 51057.44,
       "pdh": 51369.61,
-      "current_price": 50826.39,
-      "vwap": 50793.1
+      "current_price": 51269.89,
+      "vwap": 50935.48
     },
     "SPX500": {
       "bias": "LEICHT_BULLISH",
-      "score": 3,
+      "score": 2,
       "poc": 7620.25,
       "vah": 7626.71,
       "val": 7579.3,
       "mp_shape": "P-Shape",
       "mp_shape_pos": 0.864,
-      "er": 4.46,
+      "er": -11.99,
       "onh": 7595.76,
       "pdh": 7620.9,
-      "current_price": 7545.86,
-      "vwap": 7539.21
+      "current_price": 7546.49,
+      "vwap": 7540.23
     }
   },
   "orders_count": 0,
@@ -62,5 +62,17 @@
     "Morgen 14:30 USD: Unemployment Rate",
     "F&G Extreme Fear (12) bei niedrigem VIX (16.06) = Capitulation-Setup, Caution",
     "Lagarde Speaks 10:00 EUR (medium) - kurze Volatilitaet moeglich"
-  ]
+  ],
+  "update_type": "usupdate",
+  "orders": [],
+  "summary": {
+    "total_orders": 0,
+    "best_instrument": "DJ30",
+    "warnings": [
+      "NFP morgen 14:30 - keine Trades overnight Friday",
+      "DJ30 RSI 78 ueberkauft - Pullback abwarten",
+      "Konfidenz 0.417 knapp ueber 0.40 Schwelle"
+    ],
+    "notes": "USUpdate 14:47: Bias-Wechsel von Morning WAIT zu LONG-LEAN. GER40+DJ30 alle_long_ok, SPX500 fail. trade_freigabe=true ABER 0 valide Orders durch R:R Filter + pre-NFP Vorsicht."
+  }
 }
