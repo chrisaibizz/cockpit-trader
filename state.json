@@ -1,7 +1,7 @@
 {
   "pipeline": {
-    "status": "running_usupdate",
-    "last_run": "2026-06-04T14:47:00",
+    "status": "completed_usupdate",
+    "last_run": "2026-06-04T14:47:30",
     "run_date": "2026-06-04",
     "run_type": "usupdate",
     "steps_completed": [
@@ -10,7 +10,10 @@
       "delta",
       "analyst",
       "captain",
-      "executor"
+      "executor",
+      "export_git",
+      "monitor",
+      "report"
     ],
     "morning_last_run": "2026-06-04T08:12:00",
     "usupdate_last_run": "2026-06-04T14:47:00"
@@ -1282,19 +1285,19 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-04T08:15:00",
+    "_last_run": "2026-06-04T14:47:30",
     "_status": "ready",
-    "session": "Morning",
+    "session": "USUpdate",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260604_0815_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260604_1447_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK",
-      "github_web": "OK",
-      "datenqualitaet": "OK (1 Warnung: Put/Call ^PCALL delisted)",
-      "entscheidung": "WAIT - Score 3/8 (abs), Schichten fehlen, konfidenz 0.19",
+      "sheet_doc": "OK (keine Orders, keine Updates noetig)",
+      "github_web": "OK (Push 7e9c6b1)",
+      "datenqualitaet": "OK",
+      "entscheidung": "OK - LONG-LEAN Score 6/8 konfidenz 0.417, 0 Orders durch R:R+pre-NFP",
       "anomalien": "OK"
     }
   },
