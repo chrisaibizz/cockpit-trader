@@ -1274,20 +1274,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-05T08:18:00",
+    "_last_run": "2026-06-05T12:55:53",
     "_status": "ready",
-    "session": "Morning",
+    "_update_type": "usupdate",
+    "session": "USUpdate",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260605_0818_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260605_1450_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK (0 Orders WAIT, Doc erstellt)",
-      "github_web": "OK (Push 5332f00)",
-      "datenqualitaet": "OK (1 WARN GER40 naked POCs oben als Magnete)",
-      "entscheidung": "OK - WAIT Score 2/8 Konfidenz 0.15 (Pre-NFP korrekt)",
-      "anomalien": "OK (data.json SPX/DJI null = bekannt premarket)"
+      "sheet_doc": "n.a. (0 Orders WAIT)",
+      "github_web": "OK (Push 62fb133)",
+      "datenqualitaet": "OK (2 WARN: ER kollabiert GER40+SPX, Bonds>=4.5)",
+      "entscheidung": "OK - WAIT Score 2/8 Konfidenz 0.15 (Friday Post-NFP korrekt)",
+      "anomalien": "OK (Calendar NFP actual leer, bekannt)"
     }
   },
   "calendar": [
