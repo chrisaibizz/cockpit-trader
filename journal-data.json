@@ -1,96 +1,123 @@
 {
   "date": "2026-06-05",
-  "timestamp": "2026-06-05T08:16:00",
+  "timestamp": "2026-06-05T14:47:00",
+  "session": "usupdate",
   "debrief": {
     "orders_checked": 0,
-    "fill_rate": "0%",
-    "tp1_rate": "0%",
-    "trend": "Vortag 0 Orders (Pre-NFP-Filter)",
+    "fill_rate": "n.a.",
+    "tp1_rate": "n.a.",
+    "trend": "Morning hatte 0 Orders (Pre-NFP WAIT) - keine offenen Orders zu validieren.",
     "learnings": [
-      "USUpdate 14:47 hatte trade_freigabe=true aber 0 Orders durch R:R-Filter",
-      "Pre-NFP-Risk-Management bewahrte vor Friday-Overnight Risk"
+      "Morning WAIT war korrekt: NFP-Risk vermieden, kein Friday-Overnight.",
+      "USUpdate 14:47: DJ30 alleine im starken Trend (ER 37) aber S1=0 b-Shape blockiert alle_long_ok.",
+      "GER40 ER kollabiert 42->17.6 = Trend-Schwaeche. SPX500 ER 30->8.39 = totaler Trend-Verlust.",
+      "Konfidenz 0.15 << 0.40 trotz teilweise bullischem Setup - Makro NEUTRAL drueckt."
     ]
   },
   "instruments": [
     {
       "name": "GER40",
       "bias": "NEUTRAL",
-      "bias_pct": "50",
-      "daily_summary": "Trend Day pos 0.55, Preis 24886.04 in_VA",
-      "h4_summary": "POC-Migration 5d fallend",
-      "h1_summary": "Ueber VWAP_Upper 24835 (+50 pts), ER 42 starker Bull",
-      "h30m_summary": "POC 24937 VAH 25013 VAL 24844, Naked POCs oben 25110/25236/25393",
-      "mp_shape_yesterday": "P-Shape pos 0.682",
-      "mp_shape_forecast": "NFP-Beat -> breakout ueber VAH 25013; NFP-Miss -> Pullback zu VWAP 24819 oder VAL 24844",
-      "mp_5day_sequence": "Trend Day | P-Shape | Trend Day | D-Shape | Trend Day",
+      "bias_pct": "49",
+      "daily_summary": "Trend Day pos 0.55 unveraendert seit 08:00.",
+      "h4_summary": "ER 17.60 (Morning 42.0) - Trend abgeschwaecht stark.",
+      "h1_summary": "VWAP 24893.73, Preis 24951 ueber VWAP aber unter Upper 24964.",
+      "h30m_summary": "MP Trend Day pos 0.55. Preis 24951 in_VA (POC 24937 / VAH 25013 / VAL 24844). Unter SMA200 24997.",
+      "mp_shape_yesterday": "Trend Day pos 0.55",
+      "mp_shape_forecast": "Range zwischen VAL 24844 und VAH 25013 - Konsolidierung nach NFP. Reclaim ueber SMA200 24997 brauchst fuer Long.",
+      "mp_5day_sequence": "Trend Day | P-Shape | Trend Day",
+      "delta_vs_morning": 0.261,
+      "delta_kommentar": "+0.26% (+65 pts), ER 42->17.6 Trend stark abgeschwaecht, in VA gehalten.",
       "key_levels": [
         {"level": "POC", "price": "24937.26", "source": "MP S0"},
         {"level": "VAH", "price": "25013.54", "source": "MP S0"},
         {"level": "VAL", "price": "24844.03", "source": "MP S0"},
-        {"level": "VWAP", "price": "24819.26", "source": "VWAP"},
-        {"level": "SMA200", "price": "25008.63", "source": "SMA200 30M"}
+        {"level": "VWAP", "price": "24893.73", "source": "VWAP"},
+        {"level": "VWAP Upper", "price": "24964.63", "source": "VWAP"},
+        {"level": "SMA200", "price": "24997.66", "source": "SMA200 30M"}
       ],
       "orders": [],
-      "invalidation": "Unter VAL 24844 + VWAP 24819 = bearish; ueber VAH 25013 = bullish breakout"
+      "invalidation": "Unter VAL 24844 + VWAP 24893 = bearish. Ueber VAH 25013 + SMA200 24997 = bullish breakout."
     },
     {
       "name": "DJ30",
       "bias": "LEICHT_BULLISH",
-      "bias_pct": "55",
-      "daily_summary": "b-Shape pos 0.107 POC unten, Preis 51684 ueber VAH 51445 = bullish breakout",
-      "h4_summary": "ER 64.62 sehr stark, RSI 67 nahe ueberkauft",
-      "h1_summary": "Preis ueber VWAP_Upper 51647, ueber Kumo Top 51646, weit ueber SMA200 51161",
-      "h30m_summary": "Auto Fibo 0 = 51747 = Resistance (+63 pts)",
-      "mp_shape_yesterday": "P-Shape pos 0.875",
-      "mp_shape_forecast": "NFP-Beat -> Test Fibo 51747; NFP-Miss -> Pullback in VA 51445",
-      "mp_5day_sequence": "b-Shape | P-Shape | b-Shape | P-Shape | b-Shape",
+      "bias_pct": "57",
+      "daily_summary": "b-Shape pos 0.107 unveraendert. Preis 51758 ueber VAH 51445 = Breakout bestaetigt.",
+      "h4_summary": "ER 37.64 (Morning 64.62) - immer noch starker_bullish_trend, RSI 64.39.",
+      "h1_summary": "VWAP 51681, Preis 51758 ueber VWAP_Upper 51728.",
+      "h30m_summary": "Preis ueber VAH/VWAP_Upper/Kumo (51717)/SMA200 (51200). Naehert sich Auto-Fibo 0 51821 + MRI R2 51803.",
+      "mp_shape_yesterday": "b-Shape pos 0.107",
+      "mp_shape_forecast": "Bullish breakout ueber VAH bleibt. Resistance: 51821 (Fibo) / 51803 (MRI R2). Bei Rejection Pullback zu VWAP 51681 oder Kumo Top 51717.",
+      "mp_5day_sequence": "b-Shape | P-Shape | b-Shape",
+      "delta_vs_morning": 0.143,
+      "delta_kommentar": "+0.14% (+74 pts), ER 64.62->37.64 (immer noch starker Trend), Preis ueber VAH ausgebrochen, Auto-Fibo 0 jetzt 51821.",
       "key_levels": [
         {"level": "POC", "price": "50815.92", "source": "MP S0"},
         {"level": "VAH", "price": "51445.34", "source": "MP S0"},
-        {"level": "VWAP", "price": "51628.54", "source": "VWAP"},
-        {"level": "Fibo 0 Resistance", "price": "51747.46", "source": "AutoFibo"}
+        {"level": "VWAP", "price": "51681.24", "source": "VWAP"},
+        {"level": "VWAP Upper", "price": "51728.55", "source": "VWAP"},
+        {"level": "Kumo Top", "price": "51717.49", "source": "Ichimoku"},
+        {"level": "Auto Fibo 0 Resistance", "price": "51821.16", "source": "AutoFibo"},
+        {"level": "MRI R2", "price": "51803.98", "source": "MRI"}
       ],
       "orders": [],
-      "invalidation": "Unter VAH 51445 zurueck in_VA = Bias schwaecht"
+      "invalidation": "Unter VWAP 51681 + Kumo Top 51717 = Pullback in VA, Bias schwaecht. Bruch ueber 51821 = neuer Impuls."
     },
     {
       "name": "SPX500",
       "bias": "LEICHT_BULLISH",
-      "bias_pct": "52",
-      "daily_summary": "Trend Day pos 0.563, Preis 7561.79 knapp ueber VAH 7558",
-      "h4_summary": "Schwaechster der 3 - POC-Migration fallend",
-      "h1_summary": "Knapp unter VWAP 7562.98, unter Kumo 7567-7569, unter SMA200 7589",
-      "h30m_summary": "Schicht 3 -0.5 (Ichimoku/SMA200/Pivot bearish)",
-      "mp_shape_yesterday": "P-Shape pos 0.864",
-      "mp_shape_forecast": "NFP-Beat -> Test SMA200 7589; NFP-Miss -> Pullback POC 7543 oder VAL 7523",
-      "mp_5day_sequence": "Trend Day | P-Shape | P-Shape | P-Shape | Trend Day",
+      "bias_pct": "53",
+      "daily_summary": "Trend Day pos 0.563, Preis 7560 knapp ueber VAH 7558.",
+      "h4_summary": "ER 8.39 (Morning 30.32) KOLLABIERT - kein Trend mehr.",
+      "h1_summary": "VWAP 7561.91, Preis 7560.66 knapp_unter_VWAP. Unter Kumo Bottom 7561.51.",
+      "h30m_summary": "Range-bound zwischen POC 7543 und VAH 7558. Unter SMA200 7586 und Kumo. MACD-Hist drehte positiv 0.36.",
+      "mp_shape_yesterday": "Trend Day pos 0.563",
+      "mp_shape_forecast": "Konsolidierung nach NFP. Reclaim VWAP 7562 + Bruch SMA200 7586 brauchst fuer Long. Unter VAL 7523 -> Naked POC 7472 als Magnet.",
+      "mp_5day_sequence": "Trend Day | P-Shape | P-Shape",
+      "delta_vs_morning": -0.015,
+      "delta_kommentar": "Effektiv flat (-1 pt), ER 30.32->8.39 (kollabiert, kein Trend), MACD-Hist drehte positiv aber Konsolidierung dominiert.",
       "key_levels": [
         {"level": "POC", "price": "7543.38", "source": "MP S0"},
         {"level": "VAH", "price": "7558.56", "source": "MP S0"},
-        {"level": "VWAP", "price": "7562.98", "source": "VWAP"},
-        {"level": "SMA200", "price": "7589.77", "source": "SMA200 30M"}
+        {"level": "VAL", "price": "7523.86", "source": "MP S0"},
+        {"level": "VWAP", "price": "7561.91", "source": "VWAP"},
+        {"level": "Kumo Bottom", "price": "7561.51", "source": "Ichimoku"},
+        {"level": "SMA200", "price": "7586.75", "source": "SMA200 30M"}
       ],
       "orders": [],
-      "invalidation": "Unter VAL 7523 + Naked POC 7472 = bearish; ueber SMA200 7589 = breakout"
+      "invalidation": "Unter VAL 7523 + Naked POC 7472 magnetisch = bearish. Reclaim VWAP 7562 + SMA200 7586 = bullish."
     }
   ],
+  "macro": {
+    "vix": 15.72,
+    "dxy": 99.45,
+    "tnx": 4.532,
+    "gesamt_score": -1,
+    "bias": "NEUTRAL"
+  },
   "summary": {
     "best_instrument": "DJ30",
     "total_orders": 0,
+    "session_bias": "WAIT",
+    "alignment_score": 2,
+    "konfidenz": 0.15,
     "warnings": [
-      "HEUTE 14:30 USD NFP + AHE + UR - alle HIGH IMPACT",
-      "Keine Pre-Event Trades, kein Overnight Friday",
-      "0/3 Instrumente haben alle_long_ok",
-      "Konfidenz 0.15 << 0.40 Schwelle",
-      "F&G 12 Extreme Fear - Capitulation moeglich",
-      "Re-Eval um 14:47 US-Update nach NFP"
+      "Konfidenz 0.15 < 0.40 -> WAIT trotz DJ30 starker Setup",
+      "Friday: NUR INTRADAY - kein Overnight Hold",
+      "Shape-Konflikt: DJ30 b-Shape vs bullish Breakout - max_risk -0.25%",
+      "NFP-Resultat im Calendar noch leer - Marktreaktion live ohne Datenpunkt",
+      "DJ30 RSI 64 ueberkauft + nahe Auto-Fibo 0 51821 = Rejection-Risiko",
+      "GER40 ER 17.6 (von 42 abgestuerzt) = Trend-Schwaeche",
+      "SPX500 ER 8.39 = praktisch kein Trend, Range-bound",
+      "Bonds 10Y 4.532% >= 4.5 Schwelle - zinsdruck hoch"
     ],
-    "notes": "WAIT-Modus. Phase TREND aber Schichten nicht synchron. NFP definiert Tagesrichtung."
+    "notes": "USUpdate 14:47 (post-NFP): DJ30 staerkstes Setup aber b-Shape blockiert S1. GER40+SPX Trend kollabiert. Friday-Filter + NEUTRAL-Makro druecken Konfidenz auf 0.15 << 0.40 -> WAIT, 0 Orders."
   },
   "stats": {
     "total": 0,
-    "fill_rate": "0%",
-    "tp1_rate": "0%",
-    "trend": "Pre-Event Stillstand"
+    "fill_rate": "n.a.",
+    "tp1_rate": "n.a.",
+    "trend": "Pre-Event Filter + Post-Event WAIT haben Friday-Risk reduziert"
   }
 }
