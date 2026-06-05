@@ -889,30 +889,6 @@
     },
     "calendar": [
       {
-        "date": "2026-06-04",
-        "time": "10:00",
-        "currency": "EUR",
-        "name": "ECB President Lagarde Speaks",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "",
-        "previous": "",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-04",
-        "time": "14:30",
-        "currency": "USD",
-        "name": "Unemployment Claims",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "214K",
-        "previous": "215K",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-06-05",
         "time": "14:30",
         "currency": "USD",
@@ -1302,30 +1278,6 @@
     }
   },
   "calendar": [
-    {
-      "date": "2026-06-04",
-      "time": "10:00",
-      "currency": "EUR",
-      "name": "ECB President Lagarde Speaks",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-04",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Unemployment Claims",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "214K",
-      "previous": "215K",
-      "better": null,
-      "source": "forexfactory"
-    },
     {
       "date": "2026-06-05",
       "time": "14:30",
