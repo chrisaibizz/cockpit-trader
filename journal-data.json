@@ -1,78 +1,139 @@
 {
   "date": "2026-06-08",
-  "timestamp": "2026-06-08T08:17:04",
-  "phase": "AUSBRUCH",
-  "regime": "RISK-OFF",
-  "session_bias": "WAIT",
-  "alignment_score": -5,
-  "makro_bias": "LEICHT_RISK_OFF",
-  "makro_score": -4,
-  "vix": 21.51,
-  "instruments": {
-    "GER40": {
-      "bias": "LEICHT_BAERISCH",
-      "score": -5,
-      "poc": 24811.07,
-      "vah": 25008.69,
-      "val": 24771.54,
-      "mp_shape": "b-Shape",
-      "mp_shape_pos": 0.167,
-      "er": -47.95,
-      "onh": 25008.69,
-      "onl": 24508.04,
-      "pdh": 25013.54,
-      "pdl": 24844.03,
-      "vwap": 24500.58,
-      "price": 24375.25,
-      "price_vs_va": "unter_VA",
-      "price_vs_vwap": "unter_VWAP_Lower"
-    },
-    "DJ30": {
-      "bias": "NEUTRAL",
-      "score": -1,
-      "poc": 51632.21,
-      "vah": 51821.16,
-      "val": 51335.3,
-      "mp_shape": "D-Shape",
-      "mp_shape_pos": 0.611,
-      "er": -7.75,
-      "onh": 51821.16,
-      "onl": 50741.46,
-      "pdh": 51445.34,
-      "pdl": 50740.39,
-      "vwap": 50814.07,
-      "price": 50739.45,
-      "price_vs_va": "unter_VA",
-      "price_vs_vwap": "unter_VWAP_Lower"
-    },
-    "SPX500": {
-      "bias": "NEUTRAL",
-      "score": -1,
-      "poc": 7561.18,
-      "vah": 7590.04,
-      "val": 7486.14,
-      "mp_shape": "P-Shape",
-      "mp_shape_pos": 0.722,
-      "er": 2.79,
-      "onh": 7590.04,
-      "onl": 7359.16,
-      "pdh": 7558.56,
-      "pdl": 7523.86,
-      "vwap": 7401.36,
-      "price": 7396.0,
-      "price_vs_va": "unter_VA",
-      "price_vs_vwap": "unter_VWAP"
-    }
+  "timestamp": "2026-06-08T14:57:17",
+  "session": "USUpdate 14:45",
+  "debrief": {
+    "orders_checked": 0,
+    "fill_rate": "n.a.",
+    "tp1_rate": "n.a.",
+    "trend": "Keine offenen Orders (Morning WAIT, letzter Handelstag 06-05: 0 Orders)",
+    "learnings": [
+      "Risk-Off-Morning (VIX 21.5, Extreme Fear) intraday komplett gekauft - ER auf allen 3 von negativ/flat zu +44..+47 gedreht.",
+      "Recovery laeuft von unten in VA-Widerstand: Momentum bullish, Tagesstruktur (Preis unter VA) baerisch -> kein sauberes Setup."
+    ]
   },
-  "orders_count": 0,
-  "orders": [],
-  "captain_notes": "Morning Mon 06-08 08:03: Risk-Off-Schub nach Wochenende. Konfidenz 0.45 (SHORT) UEBER 0.40 Schwelle. Trade-Freigabe verlangt 2+ Instrumente in Schichten - nur GER40 ok_short. WAIT.",
-  "trade_plan": "WAIT-Setup Morning Mon 06-08: Konfidenz=0.45 (SHORT) align=-5/8 abs=5. Schichten-Mehrheit fehlt (ok_short=1/3, brauche 2+). Nur GER40 alle_short_ok (S1=-0.8 S2=-0.5 S3=-0.33). DJ30+SPX500 in Konflikt (D-Shape steigender POC vs Preis unter VA / P-Shape vs Preis unter VA). Watch: GER40 Reclaim ueber VWAP 24501 oder Bruch unter ON-Low 24508 = Continuation Short. DJ30 Bruch unter 50723 (MRI S2) = Continuation; Reclaim ueber VAL 51335 = neue Lage. SPX500 Halt ueber 7388 (VWAP_Lower) = Mean-Reversion-Try; Bruch unter 7388 = Continuation Short. CPI Mi 14:30 + ECB Do 14:15 = bevorstehende Vola-Events.",
-  "warnings": [
-    "VIX 21.51 > 20 -> erhoehte Vola, max_risk reduziert",
-    "Bonds 4.536 > 4.5 -> Zinsdruck hoch",
-    "Oel 94.66 > 90 + steigend -> Inflationsdruck",
-    "CPI USA Mi 14:30 (Core CPI m/m 0.5%) + ECB Do 14:15 - hohe Eventrisiken",
-    "Montag Pre-Cash 08:03: alle Indizes Overnight-Crash, breite Risk-Off-Bewegung, kein Setup-Filter ok"
-  ]
+  "macro": {
+    "makro_bias": "NEUTRAL",
+    "gesamt_score": 0,
+    "vix": 18.72,
+    "dxy": 99.931,
+    "tnx": 4.528,
+    "delta_vs_morning": "Makro-Score -4 -> 0 (LEICHT_RISK_OFF -> NEUTRAL): VIX 21.51->18.72 (unter 20), DXY schwaecher, Bonds leicht fallend."
+  },
+  "instruments": [
+    {
+      "name": "GER40",
+      "bias": "LEICHT_BAERISCH",
+      "bias_pct": "40",
+      "daily_summary": "Preis 24659 unter SMA200 24897, in Kumo (Transition). Tagesstruktur baerisch (Overnight-Crash).",
+      "h4_summary": "Reclaim ueber Kijun 24546; testet Cloud-Oberkante 24688.",
+      "h1_summary": "Ueber VWAP 24535 (Upper 24630). ER +46.5 starker Bull-Intraday-Trend.",
+      "h30m_summary": "b-Shape pos 0.167 (Friday-Profil). Preis rallyt von unten an VAL 24771/POC 24811. align -2 (S1 baerisch -0.8 vs S2 bullish +1.0 Konflikt).",
+      "mp_shape_yesterday": "b-Shape (pos 0.167)",
+      "mp_shape_forecast": "Recovery-Test der VA von unten; Bestaetigung erst bei Reclaim ueber VAL",
+      "mp_5day_sequence": "b-Shape | Trend Day | P-Shape | POC-Migration fallend",
+      "key_levels": [
+        {
+          "level": "POC",
+          "price": "24811.07",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL",
+          "price": "24771.54",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP",
+          "price": "24535.26",
+          "source": "VWAP Stdev"
+        }
+      ],
+      "orders": [],
+      "invalidation": "LONG ungueltig wenn Rueckfall unter VWAP 24535. SHORT-Setup wenn unter ON-Low/Tagestief."
+    },
+    {
+      "name": "DJ30",
+      "bias": "NEUTRAL",
+      "bias_pct": "50",
+      "daily_summary": "Preis 51075 unter SMA200 51186. D-Shape neutral, POC-Migration steigend.",
+      "h4_summary": "Ueber Kijun 50917, testet Cloud 51209.",
+      "h1_summary": "Ueber VWAP 50860 (Upper 50961). ER +47.4 starker Bull-Intraday.",
+      "h30m_summary": "D-Shape pos 0.611. Preis unter VAL 51335, rallyt von unten. align +1 NEUTRAL.",
+      "mp_shape_yesterday": "D-Shape (pos 0.611)",
+      "mp_shape_forecast": "Recovery-Test der VA von unten; Bestaetigung erst bei Reclaim ueber VAL",
+      "mp_5day_sequence": "D-Shape | b-Shape | P-Shape | POC-Migration steigend",
+      "key_levels": [
+        {
+          "level": "POC",
+          "price": "51632.21",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL",
+          "price": "51335.3",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP",
+          "price": "50860.4",
+          "source": "VWAP Stdev"
+        }
+      ],
+      "orders": [],
+      "invalidation": "LONG ungueltig unter VWAP 50860; ueber VAL 51335 = Eintritt in Value."
+    },
+    {
+      "name": "SPX500",
+      "bias": "NEUTRAL",
+      "bias_pct": "50",
+      "daily_summary": "Preis 7459 unter SMA200 7548. P-Shape, POC-Migration fallend.",
+      "h4_summary": "Ueber Kijun 7427, an Cloud-Oberkante 7465.",
+      "h1_summary": "Ueber VWAP 7410 (Upper 7430). ER +44.4 starker Bull-Intraday.",
+      "h30m_summary": "P-Shape pos 0.722. Preis knapp unter VAL 7486, rallyt von unten. align +1 NEUTRAL.",
+      "mp_shape_yesterday": "P-Shape (pos 0.722)",
+      "mp_shape_forecast": "Recovery-Test der VA von unten; Bestaetigung erst bei Reclaim ueber VAL",
+      "mp_5day_sequence": "P-Shape | Trend Day | P-Shape | POC-Migration fallend",
+      "key_levels": [
+        {
+          "level": "POC",
+          "price": "7561.18",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL",
+          "price": "7486.14",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP",
+          "price": "7410.74",
+          "source": "VWAP Stdev"
+        }
+      ],
+      "orders": [],
+      "invalidation": "LONG ungueltig unter VWAP 7410; ueber VAL 7486 = Eintritt in Value."
+    }
+  ],
+  "summary": {
+    "best_instrument": "NONE",
+    "total_orders": 0,
+    "session_bias": "WAIT",
+    "konfidenz": "0.075 (LONG)",
+    "alignment_score": "+1/8",
+    "warnings": [
+      "Intraday-Recovery laeuft in VA-Widerstand von unten - Momentum(bullish)/Struktur(baerisch)-Konflikt",
+      "Extreme Fear bleibt (F&G 8) trotz VIX-Entspannung unter 20",
+      "Oel 91.8 > 90 + Gold steigend = latenter Inflations-/Risk-Off-Unterton",
+      "CPI USA Mi 14:30 (CPI y/y Fcst 4.2%) + ECB Do 14:15/14:45 - hohe Eventrisiken voraus",
+      "NY-Open 15:30: kein Trade bei unklarem Bias (Regel)"
+    ],
+    "notes": "USUpdate Mon 06-08 14:45: WAIT (Konfidenz 0.075 LONG, align +1/8, Schichten 0/3). Keine neuen Orders. Intraday-Recovery (ER>40 alle 3, VWAP reclaimed) laeuft von unten in VA-Widerstand. Watch LONG: Reclaim ueber VAL (GER40 24771 / DJ30 51335 / SPX 7486). Watch SHORT: Rueckfall unter VWAP (GER40 24535 / DJ30 50860 / SPX 7410)."
+  },
+  "stats": {
+    "total": 0,
+    "fill_rate": "n.a.",
+    "tp1_rate": "n.a.",
+    "trend": "WAIT"
+  }
 }
