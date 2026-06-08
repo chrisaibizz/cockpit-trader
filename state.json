@@ -1379,21 +1379,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-08T08:21:18",
+    "_last_run": "2026-06-08T14:59:30",
     "_status": "ready",
-    "_update_type": "morning",
-    "session": "Morning",
+    "_update_type": "usupdate",
+    "session": "USUpdate",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260608_0808_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260608_1459_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
       "sheet_doc": "OK (Doc erstellt, 0 Orders WAIT)",
-      "github_web": "OK (Push 9c75ed6)",
+      "github_web": "OK (Push 33c7cf3)",
       "datenqualitaet": "OK (1 WARN: PCR n.v.)",
-      "entscheidung": "WAIT - Score:-5/8 Konfidenz 0.45 SHORT (Schichten nur 1/3)",
-      "anomalien": "OK (2 OBSERVATIONS: Risk-Off-Schub Mon, SPX P-Shape vs Preis unter VA)"
+      "entscheidung": "WAIT - Score:+1/8 Konfidenz 0.075 LONG (Schichten 0/3)",
+      "anomalien": "OK (2 OBSERVATIONS: Intraday-Recovery in VA-Widerstand, PCR n.v.)"
     }
   },
   "calendar": [
