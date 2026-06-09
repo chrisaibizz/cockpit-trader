@@ -1,6 +1,6 @@
 {
   "date": "2026-06-09",
-  "timestamp": "2026-06-09T08:15:49",
+  "timestamp": "2026-06-09T14:52:49",
   "debrief": {
     "orders_checked": 0,
     "fill_rate": "n.a.",
@@ -15,14 +15,19 @@
       "name": "GER40",
       "bias": "Neutral",
       "bias_pct": "50",
-      "daily_summary": "b-Shape (pos 0.25) baerische Tagesstruktur, POC 24556.37 unten in VA. Preis 24623.52 ueber SMA200? False. align 0/8.",
-      "h4_summary": "Recovery-Kontext: ER 70.23 (starker Intraday-Trend), CDV bullish, VWAP 24570.82 reclaimed (Preis ueber Upper-Band).",
+      "daily_summary": "b-Shape (pos 0.25) baerische Tagesstruktur, POC 24556.37 unten. Preis 24733.52 BRACH ueber VAH 24710.03 (Value Area verlassen). align 0/8.",
+      "h4_summary": "ER 70.23->7.34 KOLLABIERT (Trend -> Chop), CDV 46780 steigt, Recovery stallt an VAH-Widerstand. Momentum tot.",
       "h1_summary": "Ichimoku above Kumo, Pivot 24555.53, RSI 55.36.",
-      "h30m_summary": "Preis 24623.52 in oberer VA ueber POC 24556.37 (VAH 24710.03 / VAL 24505.15). Momentum bullish vs Struktur b-Shape baerisch (S1/S2-Konflikt).",
+      "h30m_summary": "Preis 24733.52 knapp ueber VAH 24710.03 ohne Akzeptanz. b-Shape-Struktur intakt, ER-Kollaps -> kein Setup.",
       "mp_shape_yesterday": "b-Shape",
-      "mp_shape_forecast": "b-Shape (Tagesstruktur) - Recovery testet VA-Widerstand von unten",
+      "mp_shape_forecast": "b-Shape - Recovery testet/bricht VAH, Akzeptanz schwach",
       "mp_5day_sequence": "b-Shape | b-Shape | Trend Day | POC-Migration fallend",
       "key_levels": [
+        {
+          "level": "Preis aktuell",
+          "price": "24733.52",
+          "source": "Quote 14:52"
+        },
         {
           "level": "VAH",
           "price": "24710.03",
@@ -50,20 +55,25 @@
         }
       ],
       "orders": [],
-      "invalidation": "LONG-Reclaim: Akzeptanz ueber VAH 24710.03. SHORT-Resumption: Rueckfall unter VWAP 24570.82."
+      "invalidation": "LONG: 30M-Schluss + Akzeptanz UEBER VAH 24710 mit ER-Reanstieg. SHORT: Rueckfall unter VWAP/POC 24556."
     },
     {
       "name": "US30",
       "bias": "Neutral",
       "bias_pct": "50",
-      "daily_summary": "b-Shape (pos 0.278) baerische Tagesstruktur, POC 50838.11 unten in VA. Preis 50915.38 ueber SMA200? False. align 1/8.",
-      "h4_summary": "Recovery-Kontext: ER 65.0 (starker Intraday-Trend), CDV bullish, VWAP 50847.72 reclaimed (Preis ueber Upper-Band).",
+      "daily_summary": "b-Shape (pos 0.278) baerische Tagesstruktur, POC 50838.11 unten. Preis 51047.38 testet VAH 51067.33 von unten. align 2/8.",
+      "h4_summary": "ER 65.0->42.19 (kuehlt ab, stabil >30), CDV 212309 steigt, Ichimoku jetzt ueber Kumo. Staerkstes der 3.",
       "h1_summary": "Ichimoku inside Kumo, Pivot 50945.25, RSI 51.9.",
-      "h30m_summary": "Preis 50915.38 in oberer VA ueber POC 50838.11 (VAH 51067.33 / VAL 50749.95). Momentum bullish vs Struktur b-Shape baerisch (S1/S2-Konflikt).",
+      "h30m_summary": "Preis 51047.38 in oberer VA, testet VAH 51067.33. RSI 62 ueberkauft. Momentum stabil aber Struktur b-Shape.",
       "mp_shape_yesterday": "D-Shape",
-      "mp_shape_forecast": "b-Shape (Tagesstruktur) - Recovery testet VA-Widerstand von unten",
+      "mp_shape_forecast": "b-Shape - Recovery testet/bricht VAH, Akzeptanz schwach",
       "mp_5day_sequence": "b-Shape | D-Shape | b-Shape | POC-Migration seitwaerts",
       "key_levels": [
+        {
+          "level": "Preis aktuell",
+          "price": "51047.38",
+          "source": "Quote 14:52"
+        },
         {
           "level": "VAH",
           "price": "51067.33",
@@ -91,20 +101,25 @@
         }
       ],
       "orders": [],
-      "invalidation": "LONG-Reclaim: Akzeptanz ueber VAH 51067.33. SHORT-Resumption: Rueckfall unter VWAP 50847.72."
+      "invalidation": "LONG: Akzeptanz UEBER VAH 51067. SHORT: Rueckfall unter VWAP/POC 50838."
     },
     {
       "name": "SPX500",
       "bias": "Neutral",
       "bias_pct": "50",
-      "daily_summary": "b-Shape (pos 0.313) baerische Tagesstruktur, POC 7414.73 unten in VA. Preis 7439.78 ueber SMA200? False. align 1/8.",
-      "h4_summary": "Recovery-Kontext: ER 87.04 (starker Intraday-Trend), CDV bullish, VWAP 7417.98 reclaimed (Preis ueber Upper-Band).",
+      "daily_summary": "b-Shape (pos 0.313) baerische Tagesstruktur, POC 7414.73 unten. Preis 7451.65 BRACH ueber VAH 7448.0. align 1/8.",
+      "h4_summary": "ER 87.04->45.79 (kuehlt ab, noch starker Trend), CDV 50799 steigt. Schwache VAH-Akzeptanz.",
       "h1_summary": "Ichimoku above Kumo, Pivot 7416.48, RSI 57.72.",
-      "h30m_summary": "Preis 7439.78 in oberer VA ueber POC 7414.73 (VAH 7448.0 / VAL 7399.6). Momentum bullish vs Struktur b-Shape baerisch (S1/S2-Konflikt).",
+      "h30m_summary": "Preis 7451.65 knapp ueber VAH 7448.0 ohne Bestaetigung. b-Shape-Struktur intakt.",
       "mp_shape_yesterday": "P-Shape",
-      "mp_shape_forecast": "b-Shape (Tagesstruktur) - Recovery testet VA-Widerstand von unten",
+      "mp_shape_forecast": "b-Shape - Recovery testet/bricht VAH, Akzeptanz schwach",
       "mp_5day_sequence": "b-Shape | P-Shape | Trend Day | POC-Migration fallend",
       "key_levels": [
+        {
+          "level": "Preis aktuell",
+          "price": "7451.65",
+          "source": "Quote 14:52"
+        },
         {
           "level": "VAH",
           "price": "7448.0",
@@ -132,18 +147,19 @@
         }
       ],
       "orders": [],
-      "invalidation": "LONG-Reclaim: Akzeptanz ueber VAH 7448.0. SHORT-Resumption: Rueckfall unter VWAP 7417.98."
+      "invalidation": "LONG: Akzeptanz UEBER VAH 7448. SHORT: Rueckfall unter VWAP/POC 7415."
     }
   ],
   "summary": {
     "best_instrument": "NONE",
     "total_orders": 0,
     "warnings": [
-      "Alle 3 b-Shape (baerische Tagesstruktur) - Recovery laeuft in VA-Widerstand",
-      "Extreme Fear (F&G 10), Bonds 4.55 steigend, Gold steigend",
-      "CPI USA Mi 06-10 14:30 + ECB Do 06-11 14:15/14:45 (HIGH-Impact)"
+      "US-Update 14:52: Morning-Recovery kuehlt ab - ER GER40 70->7 (Kollaps), DJ30 65->42, SPX 87->46",
+      "2/3 ueber VAH (GER40 24733, SPX 7451) aber Akzeptanz schwach, DJ30 testet VAH",
+      "Makro +2 LEICHT_RISK_ON (VIX 17.99 fallend) aber Extreme Fear (FaG 10) + Gold steigend",
+      "CPI USA Mi 06-10 14:30 (y/y Fcst 4.2%) + ECB Do 06-11 14:15/14:45 (HIGH-Impact)"
     ],
-    "notes": "Morning Di 06-09 08:05: WAIT. Makro 0 NEUTRAL. Konfidenz 0.075 LONG, align +1/8, Schichten 0/3. Momentum(bullish)/Struktur(b-Shape baerisch)-Konflikt. Kein Trade bis VA-Reclaim haelt oder Recovery scheitert."
+    "notes": "US-Update Di 06-09 14:52: WAIT. Makro +2 LEICHT_RISK_ON. Konfidenz 0.217 LONG, align +2/8 (DJ30), ok_long=0 ok_short=0. Morning-Recovery hat 2/3 ueber VAH gedrueckt aber ER kuehlt ab + Akzeptanz schwach. b-Shape-Struktur intakt. Kein Trade bis Schluss-Akzeptanz >VAH oder Rueckfall unter VWAP/POC."
   },
   "stats": {
     "total": 0,
