@@ -96,7 +96,7 @@
     },
     "warnungen": [
       "ACHTUNG: Extreme Fear (FaG 8)",
-      "VIX 18.72 faellt unter 20 (Entspannung ggü. Morning 21.51)",
+      "VIX 18.72 faellt unter 20 (Entspannung gg\u00fc. Morning 21.51)",
       "Bonds 4.528 > 4.5 (zinsdruck_hoch, leicht fallend)",
       "Oel 91.8 > 90 + steigend (inflationsdruck_hoch)",
       "Gold steigend (risk_off-Signal trotz VIX-Entspannung)",
@@ -895,7 +895,7 @@
         "name": "Core CPI m/m",
         "impact": "high",
         "actual": "",
-        "forecast": "0.5%",
+        "forecast": "0.3%",
         "previous": "0.4%",
         "better": null,
         "source": "forexfactory"
@@ -919,7 +919,7 @@
         "name": "CPI m/m",
         "impact": "high",
         "actual": "",
-        "forecast": "0.3%",
+        "forecast": "0.5%",
         "previous": "0.6%",
         "better": null,
         "source": "forexfactory"
@@ -991,7 +991,7 @@
         "name": "Unemployment Claims",
         "impact": "medium",
         "actual": "",
-        "forecast": "",
+        "forecast": "220K",
         "previous": "225K",
         "better": null,
         "source": "forexfactory"
@@ -1015,7 +1015,7 @@
         "name": "Prelim UoM Consumer Sentiment",
         "impact": "medium",
         "actual": "",
-        "forecast": "46.6",
+        "forecast": "46.1",
         "previous": "48.2",
         "better": null,
         "source": "forexfactory"
@@ -1404,7 +1404,7 @@
       "name": "Core CPI m/m",
       "impact": "high",
       "actual": "",
-      "forecast": "0.5%",
+      "forecast": "0.3%",
       "previous": "0.4%",
       "better": null,
       "source": "forexfactory"
@@ -1428,7 +1428,7 @@
       "name": "CPI m/m",
       "impact": "high",
       "actual": "",
-      "forecast": "0.3%",
+      "forecast": "0.5%",
       "previous": "0.6%",
       "better": null,
       "source": "forexfactory"
@@ -1500,7 +1500,7 @@
       "name": "Unemployment Claims",
       "impact": "medium",
       "actual": "",
-      "forecast": "",
+      "forecast": "220K",
       "previous": "225K",
       "better": null,
       "source": "forexfactory"
@@ -1524,7 +1524,7 @@
       "name": "Prelim UoM Consumer Sentiment",
       "impact": "medium",
       "actual": "",
-      "forecast": "46.6",
+      "forecast": "46.1",
       "previous": "48.2",
       "better": null,
       "source": "forexfactory"
