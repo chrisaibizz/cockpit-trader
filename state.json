@@ -1,7 +1,7 @@
 {
   "pipeline": {
-    "status": "running_morning",
-    "last_run": "2026-06-09T08:04:59",
+    "status": "completed_morning",
+    "last_run": "2026-06-09T08:19:52",
     "run_date": "2026-06-09",
     "run_type": "morning",
     "steps_completed": [
@@ -9,9 +9,12 @@
       "marketdata",
       "analyst",
       "captain",
-      "executor"
+      "executor",
+      "export",
+      "monitor",
+      "report"
     ],
-    "morning_last_run": "2026-06-09T08:04:59",
+    "morning_last_run": "2026-06-09T08:19:52",
     "usupdate_last_run": "2026-06-08T14:56:06",
     "result": "WAIT",
     "score": "+1/8 - 0 Orders - Konfidenz 0.075 LONG"
@@ -1379,21 +1382,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-08T14:59:30",
+    "_last_run": "2026-06-09T08:18:03",
     "_status": "ready",
-    "_update_type": "usupdate",
-    "session": "USUpdate",
+    "_update_type": "morning",
+    "session": "Morning",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260608_1459_USUpdate.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260609_0817_Morning.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
       "sheet_doc": "OK (Doc erstellt, 0 Orders WAIT)",
-      "github_web": "OK (Push 33c7cf3)",
+      "github_web": "OK (Push fc59231)",
       "datenqualitaet": "OK (1 WARN: PCR n.v.)",
-      "entscheidung": "WAIT - Score:+1/8 Konfidenz 0.075 LONG (Schichten 0/3)",
-      "anomalien": "OK (2 OBSERVATIONS: Intraday-Recovery in VA-Widerstand, PCR n.v.)"
+      "entscheidung": "WAIT - Score:1/8 Konfidenz 0.075 LONG (Schichten 0/3)",
+      "anomalien": "OK (2 OBSERVATIONS: Momentum/Struktur-Konflikt, PCR n.v.)"
     }
   },
   "calendar": [
