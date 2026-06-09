@@ -1378,21 +1378,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-09T08:18:03",
+    "_last_run": "2026-06-09T14:53:00",
     "_status": "ready",
-    "_update_type": "morning",
-    "session": "Morning",
+    "_update_type": "usupdate",
+    "session": "USUpdate",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260609_0817_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260609_1452_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK (Doc erstellt, 0 Orders WAIT)",
-      "github_web": "OK (Push fc59231)",
-      "datenqualitaet": "OK (1 WARN: PCR n.v.)",
-      "entscheidung": "WAIT - Score:1/8 Konfidenz 0.075 LONG (Schichten 0/3)",
-      "anomalien": "OK (2 OBSERVATIONS: Momentum/Struktur-Konflikt, PCR n.v.)"
+      "sheet_doc": "OK (Doc angehaengt, 0 Orders WAIT)",
+      "github_web": "OK (Push 61a042a)",
+      "datenqualitaet": "OK (2 WARN: PCR n.v., VWAP-Tool)",
+      "entscheidung": "WAIT - Score:2/8 Konfidenz 0.217 LONG (ok_long=0 ok_short=0)",
+      "anomalien": "OK (2 OBS: ER-Kollaps GER40 70->7, schwache VAH-Akzeptanz)"
     }
   },
   "calendar": [
