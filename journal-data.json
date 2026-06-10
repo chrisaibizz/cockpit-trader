@@ -1,6 +1,6 @@
 {
   "date": "2026-06-10",
-  "timestamp": "2026-06-10T11:26:33.637495",
+  "timestamp": "2026-06-10T11:31:08.038135",
   "debrief": {
     "orders_checked": 0,
     "fill_rate": "n.a.",
@@ -17,21 +17,21 @@
       "bias_pct": "95",
       "bias_signals": [
         {
-          "label": "Preis < VWAP (24305 < 24756)",
+          "label": "Preis < VWAP (24239 < 24756)",
           "score": -2,
           "direction": "bearish",
           "category": "vwap",
           "auto": true
         },
         {
-          "label": "Unter VAL â€“ Breakdown (24305 < 24630)",
+          "label": "Unter VAL â€“ Breakdown (24239 < 24630)",
           "score": -2,
           "direction": "bearish",
           "category": "value_area",
           "auto": true
         },
         {
-          "label": "Preis < POC (24305 < 24756)",
+          "label": "Preis < POC (24239 < 24756)",
           "score": -1,
           "direction": "bearish",
           "category": "poc",
@@ -52,7 +52,7 @@
           "auto": true
         },
         {
-          "label": "VIX 21.02 â€“ Elevated",
+          "label": "VIX 21.43 â€“ Elevated",
           "score": -1,
           "direction": "bearish",
           "category": "vix",
@@ -85,13 +85,13 @@
       ],
       "cvd": {},
       "quote": {
-        "price": 24305.43,
+        "price": 24238.59,
         "change": 0.0,
         "change_pct": 0.0,
         "high": 24517.48,
-        "low": 24287.41,
+        "low": 24238.02,
         "open": 24507.4,
-        "prev_close": 24305.43,
+        "prev_close": 24238.59,
         "source": "yahoo_eod"
       },
       "market_profile": {
@@ -268,11 +268,11 @@
           }
         ]
       },
-      "current_price": 24305.43,
-      "daily_summary": "Bias Baerisch (Score -80, Confluence 88%). Vortag Range: 24419.73 â€“ 24820.95. VIX=21.0.",
+      "current_price": 24238.59,
+      "daily_summary": "Bias Baerisch (Score -80, Confluence 88%). Vortag Range: 24419.73 â€“ 24820.95. VIX=21.4.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs 24305.43 unter VWAP (24755.75), ausserhalb Value Area. POC=24755.75 VAH=24820.95 VAL=24630.37. Shape: P-Shape. Confluence: 7/8 (bearisch).",
+      "h30m_summary": "Kurs 24238.59 unter VWAP (24755.75), ausserhalb Value Area. POC=24755.75 VAH=24820.95 VAL=24630.37. Shape: P-Shape. Confluence: 7/8 (bearisch).",
       "mp_shape_yesterday": "P-Shape",
       "mp_shape_forecast": "P-Shape",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -309,7 +309,7 @@
           "p_fill": "66",
           "p_tp1": "52",
           "tf": "30M",
-          "confluence": "Preis < VWAP (24305 < 24756) + Unter VAL â€“ Breakdown (24305 < 24630) + Preis < POC (24305 < 24756)",
+          "confluence": "Preis < VWAP (24239 < 24756) + Unter VAL â€“ Breakdown (24239 < 24630) + Preis < POC (24239 < 24756)",
           "mp_shape_yesterday": "P-Shape",
           "mp_shape_forecast": "P-Shape",
           "vwap_position": "Preis unter VWAP"
@@ -360,7 +360,7 @@
           "auto": true
         },
         {
-          "label": "VIX 21.02 â€“ Elevated",
+          "label": "VIX 21.43 â€“ Elevated",
           "score": -1,
           "direction": "bearish",
           "category": "vix",
@@ -577,7 +577,7 @@
         ]
       },
       "current_price": null,
-      "daily_summary": "Bias Baerisch (Score -71, Confluence 62%). Vortag Range: 50732.35 â€“ 51277.15. VIX=21.0.",
+      "daily_summary": "Bias Baerisch (Score -71, Confluence 62%). Vortag Range: 50732.35 â€“ 51277.15. VIX=21.4.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
       "h30m_summary": "Kurs nan unter VWAP (50922.12), ausserhalb Value Area. POC=50848.12 VAH=51045.61 VAL=50759.59. Shape: Normal Day. Confluence: 5/8 (bearisch).",
@@ -629,25 +629,25 @@
       "name": "SPX500",
       "bias": "Baerisch",
       "bias_color": "red",
-      "bias_score": -71,
+      "bias_score": -78,
       "bias_pct": "95",
       "bias_signals": [
         {
-          "label": "Preis < VWAP (nan < 7429)",
+          "label": "Preis < VWAP (7338 < 7429)",
           "score": -2,
           "direction": "bearish",
           "category": "vwap",
           "auto": true
         },
         {
-          "label": "In Value Area (7420 â€“ 7458)",
-          "score": 0,
-          "direction": "neutral",
+          "label": "Unter VAL â€“ Breakdown (7338 < 7420)",
+          "score": -2,
+          "direction": "bearish",
           "category": "value_area",
           "auto": true
         },
         {
-          "label": "Preis < POC (nan < 7434)",
+          "label": "Preis < POC (7338 < 7434)",
           "score": -1,
           "direction": "bearish",
           "category": "poc",
@@ -668,7 +668,7 @@
           "auto": true
         },
         {
-          "label": "VIX 21.02 â€“ Elevated",
+          "label": "VIX 21.43 â€“ Elevated",
           "score": -1,
           "direction": "bearish",
           "category": "vix",
@@ -689,11 +689,11 @@
           "auto": true
         }
       ],
-      "confluence_score": 5,
+      "confluence_score": 6,
       "confluence_against": 1,
       "confluence_total": 8,
-      "confluence_pct": 62,
-      "confluence_label": "5/8 (bearisch)",
+      "confluence_pct": 75,
+      "confluence_label": "6/8 (bearisch)",
       "manual_checks": [
         "Daily OTF Check (4H/Daily Trend manuell pruefen)",
         "Gap Analysis (Gap vom Vortag open/close pruefen)",
@@ -701,14 +701,14 @@
       ],
       "cvd": {},
       "quote": {
-        "price": null,
-        "change": null,
-        "change_pct": null,
+        "price": 7338.3,
+        "change": -67.43,
+        "change_pct": -0.91,
         "high": null,
         "low": null,
         "open": null,
         "prev_close": 7405.73,
-        "source": "yahoo_eod"
+        "source": "tradingview_live"
       },
       "market_profile": {
         "poc": 7433.66,
@@ -884,11 +884,11 @@
           }
         ]
       },
-      "current_price": null,
-      "daily_summary": "Bias Baerisch (Score -71, Confluence 62%). Vortag Range: 7395.13 â€“ 7466.81. VIX=21.0.",
+      "current_price": 7338.3,
+      "daily_summary": "Bias Baerisch (Score -78, Confluence 75%). Vortag Range: 7395.13 â€“ 7466.81. VIX=21.4.",
       "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
       "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
-      "h30m_summary": "Kurs nan unter VWAP (7429.43), ausserhalb Value Area. POC=7433.66 VAH=7457.85 VAL=7420.22. Shape: Normal Day. Confluence: 5/8 (bearisch).",
+      "h30m_summary": "Kurs 7338.3 unter VWAP (7429.43), ausserhalb Value Area. POC=7433.66 VAH=7457.85 VAL=7420.22. Shape: Normal Day. Confluence: 6/8 (bearisch).",
       "mp_shape_yesterday": "Normal Day",
       "mp_shape_forecast": "Normal Day",
       "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
@@ -922,13 +922,13 @@
           "tp1": "7420.22",
           "tp2": "7401.41",
           "rr": "3.17",
-          "p_fill": "46",
-          "p_tp1": "37",
+          "p_fill": "56",
+          "p_tp1": "45",
           "tf": "30M",
-          "confluence": "Preis < VWAP (nan < 7429) + Preis < POC (nan < 7434) + Overnight Inventory: Short (Preis < VA-Mitte)",
+          "confluence": "Preis < VWAP (7338 < 7429) + Unter VAL â€“ Breakdown (7338 < 7420) + Preis < POC (7338 < 7434)",
           "mp_shape_yesterday": "Normal Day",
           "mp_shape_forecast": "Normal Day",
-          "vwap_position": "Preis an VWAP"
+          "vwap_position": "Preis unter VWAP"
         }
       ],
       "invalidation": "Kurs schliesst ueber 7457.85 â€“ bearischer Bias negiert"
@@ -938,9 +938,9 @@
     "best_instrument": "US30",
     "total_orders": 0,
     "warnings": [
-      "VIX 21.0 â€“ Elevated, Vorsicht bei Einstiegen"
+      "VIX 21.4 â€“ Elevated, Vorsicht bei Einstiegen"
     ],
-    "notes": "Auto-generiert 11:26. VIX=21.0. Beste Konfluenz: US30."
+    "notes": "Auto-generiert 11:31. VIX=21.4. Beste Konfluenz: US30."
   },
   "stats": {
     "total": 0,
