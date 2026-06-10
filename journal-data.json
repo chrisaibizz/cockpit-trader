@@ -1,176 +1,951 @@
 {
   "date": "2026-06-10",
-  "timestamp": "2026-06-10T08:14:00",
+  "timestamp": "2026-06-10T11:26:33.637495",
   "debrief": {
     "orders_checked": 0,
     "fill_rate": "n.a.",
     "tp1_rate": "n.a.",
     "trend": "WAIT",
-    "learnings": [
-      "Vortag (06-09) 0 Orders (WAIT). Mehrere WAIT-Tage in Folge: b-Shape/Pullback-Struktur + Eventrisiko (CPI/ECB) blockieren klare Setups."
-    ]
+    "learnings": []
   },
   "instruments": [
     {
       "name": "GER40",
       "bias": "Baerisch",
-      "bias_pct": "63",
-      "daily_summary": "align -3/8, S1=-0.5 S2=0.0 S3=-0.25. Shape D-Shape (pos 0.375). POC-Migration fallend (5T).",
-      "h4_summary": "Ichimoku 30M Position inside, Kijun 24492.61. SMA 24715.93.",
-      "h1_summary": "ER -8.7 (kein_trend_chop), RSI 50.54, CDV 33325.71.",
-      "h30m_summary": "Preis 24514.14 in_VA_unten / unter_VWAP (VWAP-Anch 24771.15). POC 24550.83 VAH 24771.64 VAL 24418.34.",
-      "mp_shape_yesterday": "b-Shape (pos 0.25)",
-      "mp_shape_forecast": "D-Shape",
-      "mp_5day_sequence": "D-Shape(24550.83) | b-Shape(24556.37) | b-Shape(24811.07) | Trend Day(24937.26) | P-Shape(24912.83)",
-      "key_levels": [
+      "bias_color": "red",
+      "bias_score": -80,
+      "bias_pct": "95",
+      "bias_signals": [
         {
-          "level": "POC",
-          "price": "24550.83",
-          "source": "Market Profile"
+          "label": "Preis < VWAP (24305 < 24756)",
+          "score": -2,
+          "direction": "bearish",
+          "category": "vwap",
+          "auto": true
         },
         {
-          "level": "VAH",
-          "price": "24771.64",
-          "source": "Market Profile"
+          "label": "Unter VAL â€“ Breakdown (24305 < 24630)",
+          "score": -2,
+          "direction": "bearish",
+          "category": "value_area",
+          "auto": true
         },
         {
-          "level": "VAL",
-          "price": "24418.34",
-          "source": "Market Profile"
+          "label": "Preis < POC (24305 < 24756)",
+          "score": -1,
+          "direction": "bearish",
+          "category": "poc",
+          "auto": true
         },
         {
-          "level": "VWAP-Anch",
-          "price": "24771.15",
-          "source": "VWAP"
+          "label": "Shape: P-Shape",
+          "score": -1,
+          "direction": "bearish",
+          "category": "shape",
+          "auto": true
         },
         {
-          "level": "PDH",
-          "price": "24732.6",
-          "source": "Vortag"
+          "label": "Overnight Inventory: Short (Preis < VA-Mitte)",
+          "score": -1,
+          "direction": "bearish",
+          "category": "inventory",
+          "auto": true
         },
         {
-          "level": "PDL",
-          "price": "24426.61",
-          "source": "Vortag"
+          "label": "VIX 21.02 â€“ Elevated",
+          "score": -1,
+          "direction": "bearish",
+          "category": "vix",
+          "auto": true
+        },
+        {
+          "label": "Fed Funds sinkend (3.63%)",
+          "score": 1,
+          "direction": "bullish",
+          "category": "fred_fedfunds",
+          "auto": true
+        },
+        {
+          "label": "CPI 3.95% â€” erhoeht",
+          "score": -1,
+          "direction": "bearish",
+          "category": "fred_cpi",
+          "auto": true
         }
       ],
-      "orders": [],
-      "invalidation": "LONG-Trigger: Rueckeroberung POC 24550.83 + VWAP. SHORT-Trigger: Bruch unter VAL 24418.34."
+      "confluence_score": 7,
+      "confluence_against": 1,
+      "confluence_total": 8,
+      "confluence_pct": 88,
+      "confluence_label": "7/8 (bearisch)",
+      "manual_checks": [
+        "Daily OTF Check (4H/Daily Trend manuell pruefen)",
+        "Gap Analysis (Gap vom Vortag open/close pruefen)",
+        "Session Expectation (Makro-Kontext / News manuell bewerten)"
+      ],
+      "cvd": {},
+      "quote": {
+        "price": 24305.43,
+        "change": 0.0,
+        "change_pct": 0.0,
+        "high": 24517.48,
+        "low": 24287.41,
+        "open": 24507.4,
+        "prev_close": 24305.43,
+        "source": "yahoo_eod"
+      },
+      "market_profile": {
+        "poc": 24755.75,
+        "vah": 24820.95,
+        "val": 24630.37,
+        "vwap": 24755.75,
+        "day_high": 24820.95,
+        "day_low": 24419.73,
+        "shape": {
+          "name": "P-Shape",
+          "description": "Short Covering Rally. Oft bearish reversal am Folgetag."
+        },
+        "volume_profile": [
+          {
+            "price": 24424.75,
+            "volume": 1.0
+          },
+          {
+            "price": 24434.78,
+            "volume": 1.0
+          },
+          {
+            "price": 24444.81,
+            "volume": 1.0
+          },
+          {
+            "price": 24454.84,
+            "volume": 1.0
+          },
+          {
+            "price": 24464.87,
+            "volume": 1.0
+          },
+          {
+            "price": 24474.9,
+            "volume": 1.0
+          },
+          {
+            "price": 24484.93,
+            "volume": 1.0
+          },
+          {
+            "price": 24494.96,
+            "volume": 1.0
+          },
+          {
+            "price": 24504.99,
+            "volume": 1.0
+          },
+          {
+            "price": 24515.02,
+            "volume": 1.0
+          },
+          {
+            "price": 24525.05,
+            "volume": 1.0
+          },
+          {
+            "price": 24535.08,
+            "volume": 2.0
+          },
+          {
+            "price": 24545.11,
+            "volume": 2.0
+          },
+          {
+            "price": 24555.14,
+            "volume": 3.0
+          },
+          {
+            "price": 24565.17,
+            "volume": 4.0
+          },
+          {
+            "price": 24575.2,
+            "volume": 4.0
+          },
+          {
+            "price": 24585.23,
+            "volume": 4.0
+          },
+          {
+            "price": 24595.26,
+            "volume": 4.0
+          },
+          {
+            "price": 24605.29,
+            "volume": 4.0
+          },
+          {
+            "price": 24615.32,
+            "volume": 4.0
+          },
+          {
+            "price": 24625.36,
+            "volume": 4.0
+          },
+          {
+            "price": 24635.39,
+            "volume": 3.0
+          },
+          {
+            "price": 24645.42,
+            "volume": 4.0
+          },
+          {
+            "price": 24655.45,
+            "volume": 5.0
+          },
+          {
+            "price": 24665.48,
+            "volume": 4.0
+          },
+          {
+            "price": 24675.51,
+            "volume": 4.0
+          },
+          {
+            "price": 24685.54,
+            "volume": 5.0
+          },
+          {
+            "price": 24695.57,
+            "volume": 4.0
+          },
+          {
+            "price": 24705.6,
+            "volume": 5.0
+          },
+          {
+            "price": 24715.63,
+            "volume": 7.0
+          },
+          {
+            "price": 24725.66,
+            "volume": 7.0
+          },
+          {
+            "price": 24735.69,
+            "volume": 9.0
+          },
+          {
+            "price": 24745.72,
+            "volume": 8.0
+          },
+          {
+            "price": 24755.75,
+            "volume": 10.0
+          },
+          {
+            "price": 24765.78,
+            "volume": 8.0
+          },
+          {
+            "price": 24775.81,
+            "volume": 9.0
+          },
+          {
+            "price": 24785.84,
+            "volume": 8.0
+          },
+          {
+            "price": 24795.87,
+            "volume": 6.0
+          },
+          {
+            "price": 24805.9,
+            "volume": 4.0
+          },
+          {
+            "price": 24815.93,
+            "volume": 3.0
+          }
+        ]
+      },
+      "current_price": 24305.43,
+      "daily_summary": "Bias Baerisch (Score -80, Confluence 88%). Vortag Range: 24419.73 â€“ 24820.95. VIX=21.0.",
+      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
+      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
+      "h30m_summary": "Kurs 24305.43 unter VWAP (24755.75), ausserhalb Value Area. POC=24755.75 VAH=24820.95 VAL=24630.37. Shape: P-Shape. Confluence: 7/8 (bearisch).",
+      "mp_shape_yesterday": "P-Shape",
+      "mp_shape_forecast": "P-Shape",
+      "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
+      "key_levels": [
+        {
+          "level": "VAH Vortag",
+          "price": "24820.95",
+          "source": "Market Profile"
+        },
+        {
+          "level": "POC Vortag",
+          "price": "24755.75",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL Vortag",
+          "price": "24630.37",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP 30M",
+          "price": "24755.75",
+          "source": "VWAP"
+        }
+      ],
+      "orders": [
+        {
+          "type": "Limit Sell",
+          "entry": "24811.42",
+          "sl": "24868.59",
+          "tp1": "24630.37",
+          "tp2": "24535.08",
+          "rr": "3.17",
+          "p_fill": "66",
+          "p_tp1": "52",
+          "tf": "30M",
+          "confluence": "Preis < VWAP (24305 < 24756) + Unter VAL â€“ Breakdown (24305 < 24630) + Preis < POC (24305 < 24756)",
+          "mp_shape_yesterday": "P-Shape",
+          "mp_shape_forecast": "P-Shape",
+          "vwap_position": "Preis unter VWAP"
+        }
+      ],
+      "invalidation": "Kurs schliesst ueber 24820.95 â€“ bearischer Bias negiert"
     },
     {
-      "name": "DJ30",
-      "bias": "Leicht Baerisch",
-      "bias_pct": "57",
-      "daily_summary": "align -1/8, S1=0.0 S2=-0.2 S3=-0.125. Shape P-Shape (pos 0.687). POC-Migration fallend (5T).",
-      "h4_summary": "Ichimoku 30M Position above, Kijun 50642.63. SMA 51090.51.",
-      "h1_summary": "ER -13.58 (moderat_bearish), RSI 51.13, CDV 218131.61.",
-      "h30m_summary": "Preis 50868.55 in_VA_mitte / unter_VWAP (VWAP-Anch 51058.94). POC 50947.14 VAH 51078.25 VAL 50658.72.",
-      "mp_shape_yesterday": "b-Shape (pos 0.278)",
-      "mp_shape_forecast": "P-Shape",
-      "mp_5day_sequence": "P-Shape(50947.14) | b-Shape(50838.11) | D-Shape(51632.21) | b-Shape(50815.92) | P-Shape(51360.36)",
-      "key_levels": [
+      "name": "US30",
+      "bias": "Baerisch",
+      "bias_color": "red",
+      "bias_score": -71,
+      "bias_pct": "95",
+      "bias_signals": [
         {
-          "level": "POC",
-          "price": "50947.14",
-          "source": "Market Profile"
+          "label": "Preis < VWAP (nan < 50922)",
+          "score": -2,
+          "direction": "bearish",
+          "category": "vwap",
+          "auto": true
         },
         {
-          "level": "VAH",
-          "price": "51078.25",
-          "source": "Market Profile"
+          "label": "In Value Area (50760 â€“ 51046)",
+          "score": 0,
+          "direction": "neutral",
+          "category": "value_area",
+          "auto": true
         },
         {
-          "level": "VAL",
-          "price": "50658.72",
-          "source": "Market Profile"
+          "label": "Preis < POC (nan < 50848)",
+          "score": -1,
+          "direction": "bearish",
+          "category": "poc",
+          "auto": true
         },
         {
-          "level": "VWAP-Anch",
-          "price": "51058.94",
-          "source": "VWAP"
+          "label": "Shape: Normal Day",
+          "score": 0,
+          "direction": "neutral",
+          "category": "shape",
+          "auto": true
         },
         {
-          "level": "PDH",
-          "price": "51277.15",
-          "source": "Vortag"
+          "label": "Overnight Inventory: Short (Preis < VA-Mitte)",
+          "score": -1,
+          "direction": "bearish",
+          "category": "inventory",
+          "auto": true
         },
         {
-          "level": "PDL",
-          "price": "50732.35",
-          "source": "Vortag"
+          "label": "VIX 21.02 â€“ Elevated",
+          "score": -1,
+          "direction": "bearish",
+          "category": "vix",
+          "auto": true
+        },
+        {
+          "label": "Fed Funds sinkend (3.63%)",
+          "score": 1,
+          "direction": "bullish",
+          "category": "fred_fedfunds",
+          "auto": true
+        },
+        {
+          "label": "CPI 3.95% â€” erhoeht",
+          "score": -1,
+          "direction": "bearish",
+          "category": "fred_cpi",
+          "auto": true
         }
       ],
-      "orders": [],
-      "invalidation": "LONG-Trigger: Rueckeroberung POC 50947.14 + VWAP. SHORT-Trigger: Bruch unter VAL 50658.72."
+      "confluence_score": 5,
+      "confluence_against": 1,
+      "confluence_total": 8,
+      "confluence_pct": 62,
+      "confluence_label": "5/8 (bearisch)",
+      "manual_checks": [
+        "Daily OTF Check (4H/Daily Trend manuell pruefen)",
+        "Gap Analysis (Gap vom Vortag open/close pruefen)",
+        "Session Expectation (Makro-Kontext / News manuell bewerten)"
+      ],
+      "cvd": {},
+      "quote": {
+        "price": null,
+        "change": null,
+        "change_pct": null,
+        "high": null,
+        "low": null,
+        "open": null,
+        "prev_close": 50786.01,
+        "source": "yahoo_eod"
+      },
+      "market_profile": {
+        "poc": 50848.12,
+        "vah": 51045.61,
+        "val": 50759.59,
+        "vwap": 50922.12,
+        "day_high": 51277.15,
+        "day_low": 50732.35,
+        "shape": {
+          "name": "Normal Day",
+          "description": "Ausbalanciert â€“ Range-Trading um POC."
+        },
+        "volume_profile": [
+          {
+            "price": 50739.16,
+            "volume": 22766140.0
+          },
+          {
+            "price": 50752.78,
+            "volume": 73237000.0
+          },
+          {
+            "price": 50766.4,
+            "volume": 94812676.0
+          },
+          {
+            "price": 50780.02,
+            "volume": 120084563.0
+          },
+          {
+            "price": 50793.64,
+            "volume": 120084563.0
+          },
+          {
+            "price": 50807.26,
+            "volume": 120084563.0
+          },
+          {
+            "price": 50820.88,
+            "volume": 143989020.0
+          },
+          {
+            "price": 50834.5,
+            "volume": 143989020.0
+          },
+          {
+            "price": 50848.12,
+            "volume": 162354605.0
+          },
+          {
+            "price": 50861.74,
+            "volume": 111883745.0
+          },
+          {
+            "price": 50875.36,
+            "volume": 128111705.0
+          },
+          {
+            "price": 50888.98,
+            "volume": 124049153.0
+          },
+          {
+            "price": 50902.6,
+            "volume": 79707337.0
+          },
+          {
+            "price": 50916.22,
+            "volume": 99024781.0
+          },
+          {
+            "price": 50929.84,
+            "volume": 111814210.0
+          },
+          {
+            "price": 50943.46,
+            "volume": 119278606.0
+          },
+          {
+            "price": 50957.08,
+            "volume": 103050646.0
+          },
+          {
+            "price": 50970.7,
+            "volume": 157824629.0
+          },
+          {
+            "price": 50984.32,
+            "volume": 157824629.0
+          },
+          {
+            "price": 50997.94,
+            "volume": 157824629.0
+          },
+          {
+            "price": 51011.56,
+            "volume": 157824629.0
+          },
+          {
+            "price": 51025.18,
+            "volume": 117297850.0
+          },
+          {
+            "price": 51038.8,
+            "volume": 117297850.0
+          },
+          {
+            "price": 51052.42,
+            "volume": 117297850.0
+          },
+          {
+            "price": 51066.04,
+            "volume": 117297850.0
+          },
+          {
+            "price": 51079.66,
+            "volume": 117297850.0
+          },
+          {
+            "price": 51093.28,
+            "volume": 117297850.0
+          },
+          {
+            "price": 51106.9,
+            "volume": 58374458.0
+          },
+          {
+            "price": 51120.52,
+            "volume": 58374458.0
+          },
+          {
+            "price": 51134.14,
+            "volume": 36693886.0
+          },
+          {
+            "price": 51147.76,
+            "volume": 36693886.0
+          },
+          {
+            "price": 51161.38,
+            "volume": 36693886.0
+          },
+          {
+            "price": 51175.0,
+            "volume": 36693886.0
+          },
+          {
+            "price": 51188.62,
+            "volume": 36693886.0
+          },
+          {
+            "price": 51202.24,
+            "volume": 36693886.0
+          },
+          {
+            "price": 51215.86,
+            "volume": 36693886.0
+          },
+          {
+            "price": 51229.48,
+            "volume": 36693886.0
+          },
+          {
+            "price": 51243.1,
+            "volume": 36693886.0
+          },
+          {
+            "price": 51256.72,
+            "volume": 36693886.0
+          },
+          {
+            "price": 51270.34,
+            "volume": 36693886.0
+          }
+        ]
+      },
+      "current_price": null,
+      "daily_summary": "Bias Baerisch (Score -71, Confluence 62%). Vortag Range: 50732.35 â€“ 51277.15. VIX=21.0.",
+      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
+      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
+      "h30m_summary": "Kurs nan unter VWAP (50922.12), ausserhalb Value Area. POC=50848.12 VAH=51045.61 VAL=50759.59. Shape: Normal Day. Confluence: 5/8 (bearisch).",
+      "mp_shape_yesterday": "Normal Day",
+      "mp_shape_forecast": "Normal Day",
+      "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
+      "key_levels": [
+        {
+          "level": "VAH Vortag",
+          "price": "51045.61",
+          "source": "Market Profile"
+        },
+        {
+          "level": "POC Vortag",
+          "price": "50848.12",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL Vortag",
+          "price": "50759.59",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP 30M",
+          "price": "50922.12",
+          "source": "VWAP"
+        }
+      ],
+      "orders": [
+        {
+          "type": "Limit Sell",
+          "entry": "51031.31",
+          "sl": "51117.12",
+          "tp1": "50759.59",
+          "tp2": "50616.58",
+          "rr": "3.17",
+          "p_fill": "46",
+          "p_tp1": "37",
+          "tf": "30M",
+          "confluence": "Preis < VWAP (nan < 50922) + Preis < POC (nan < 50848) + Overnight Inventory: Short (Preis < VA-Mitte)",
+          "mp_shape_yesterday": "Normal Day",
+          "mp_shape_forecast": "Normal Day",
+          "vwap_position": "Preis an VWAP"
+        }
+      ],
+      "invalidation": "Kurs schliesst ueber 51045.61 â€“ bearischer Bias negiert"
     },
     {
       "name": "SPX500",
-      "bias": "Leicht Baerisch",
-      "bias_pct": "57",
-      "daily_summary": "align -1/8, S1=0.0 S2=-0.2 S3=-0.125. Shape P-Shape (pos 0.722). POC-Migration fallend (5T).",
-      "h4_summary": "Ichimoku 30M Position above, Kijun 7325.5. SMA 7471.27.",
-      "h1_summary": "ER -20.69 (moderat_bearish), RSI 47.83, CDV 36852.06.",
-      "h30m_summary": "Preis 7376.3 in_VA_unten / unter_VWAP (VWAP-Anch 7471.12). POC 7438.54 VAH 7469.02 VAL 7359.31.",
-      "mp_shape_yesterday": "b-Shape (pos 0.313)",
-      "mp_shape_forecast": "P-Shape",
-      "mp_5day_sequence": "P-Shape(7438.54) | b-Shape(7414.73) | P-Shape(7561.18) | Trend Day(7543.38) | P-Shape(7620.25)",
-      "key_levels": [
+      "bias": "Baerisch",
+      "bias_color": "red",
+      "bias_score": -71,
+      "bias_pct": "95",
+      "bias_signals": [
         {
-          "level": "POC",
-          "price": "7438.54",
-          "source": "Market Profile"
+          "label": "Preis < VWAP (nan < 7429)",
+          "score": -2,
+          "direction": "bearish",
+          "category": "vwap",
+          "auto": true
         },
         {
-          "level": "VAH",
-          "price": "7469.02",
-          "source": "Market Profile"
+          "label": "In Value Area (7420 â€“ 7458)",
+          "score": 0,
+          "direction": "neutral",
+          "category": "value_area",
+          "auto": true
         },
         {
-          "level": "VAL",
-          "price": "7359.31",
-          "source": "Market Profile"
+          "label": "Preis < POC (nan < 7434)",
+          "score": -1,
+          "direction": "bearish",
+          "category": "poc",
+          "auto": true
         },
         {
-          "level": "VWAP-Anch",
-          "price": "7471.12",
-          "source": "VWAP"
+          "label": "Shape: Normal Day",
+          "score": 0,
+          "direction": "neutral",
+          "category": "shape",
+          "auto": true
         },
         {
-          "level": "PDH",
-          "price": "7466.81",
-          "source": "Vortag"
+          "label": "Overnight Inventory: Short (Preis < VA-Mitte)",
+          "score": -1,
+          "direction": "bearish",
+          "category": "inventory",
+          "auto": true
         },
         {
-          "level": "PDL",
-          "price": "7395.13",
-          "source": "Vortag"
+          "label": "VIX 21.02 â€“ Elevated",
+          "score": -1,
+          "direction": "bearish",
+          "category": "vix",
+          "auto": true
+        },
+        {
+          "label": "Fed Funds sinkend (3.63%)",
+          "score": 1,
+          "direction": "bullish",
+          "category": "fred_fedfunds",
+          "auto": true
+        },
+        {
+          "label": "CPI 3.95% â€” erhoeht",
+          "score": -1,
+          "direction": "bearish",
+          "category": "fred_cpi",
+          "auto": true
         }
       ],
-      "orders": [],
-      "invalidation": "LONG-Trigger: Rueckeroberung POC 7438.54 + VWAP. SHORT-Trigger: Bruch unter VAL 7359.31."
+      "confluence_score": 5,
+      "confluence_against": 1,
+      "confluence_total": 8,
+      "confluence_pct": 62,
+      "confluence_label": "5/8 (bearisch)",
+      "manual_checks": [
+        "Daily OTF Check (4H/Daily Trend manuell pruefen)",
+        "Gap Analysis (Gap vom Vortag open/close pruefen)",
+        "Session Expectation (Makro-Kontext / News manuell bewerten)"
+      ],
+      "cvd": {},
+      "quote": {
+        "price": null,
+        "change": null,
+        "change_pct": null,
+        "high": null,
+        "low": null,
+        "open": null,
+        "prev_close": 7405.73,
+        "source": "yahoo_eod"
+      },
+      "market_profile": {
+        "poc": 7433.66,
+        "vah": 7457.85,
+        "val": 7420.22,
+        "vwap": 7429.43,
+        "day_high": 7466.81,
+        "day_low": 7395.13,
+        "shape": {
+          "name": "Normal Day",
+          "description": "Ausbalanciert â€“ Range-Trading um POC."
+        },
+        "volume_profile": [
+          {
+            "price": 7396.03,
+            "volume": 154155000.0
+          },
+          {
+            "price": 7397.82,
+            "volume": 154155000.0
+          },
+          {
+            "price": 7399.61,
+            "volume": 154155000.0
+          },
+          {
+            "price": 7401.4,
+            "volume": 566972000.0
+          },
+          {
+            "price": 7403.19,
+            "volume": 566972000.0
+          },
+          {
+            "price": 7404.99,
+            "volume": 566972000.0
+          },
+          {
+            "price": 7406.78,
+            "volume": 566972000.0
+          },
+          {
+            "price": 7408.57,
+            "volume": 566972000.0
+          },
+          {
+            "price": 7410.36,
+            "volume": 566972000.0
+          },
+          {
+            "price": 7412.15,
+            "volume": 566972000.0
+          },
+          {
+            "price": 7413.95,
+            "volume": 566972000.0
+          },
+          {
+            "price": 7415.74,
+            "volume": 271998000.0
+          },
+          {
+            "price": 7417.53,
+            "volume": 395576000.0
+          },
+          {
+            "price": 7419.32,
+            "volume": 608912688.0
+          },
+          {
+            "price": 7421.11,
+            "volume": 942130143.0
+          },
+          {
+            "price": 7422.91,
+            "volume": 942130143.0
+          },
+          {
+            "price": 7424.7,
+            "volume": 1062628143.0
+          },
+          {
+            "price": 7426.49,
+            "volume": 908473143.0
+          },
+          {
+            "price": 7428.28,
+            "volume": 908473143.0
+          },
+          {
+            "price": 7430.07,
+            "volume": 1010468143.0
+          },
+          {
+            "price": 7431.87,
+            "volume": 1010468143.0
+          },
+          {
+            "price": 7433.66,
+            "volume": 1307737624.0
+          },
+          {
+            "price": 7435.45,
+            "volume": 1305724624.0
+          },
+          {
+            "price": 7437.24,
+            "volume": 1185226624.0
+          },
+          {
+            "price": 7439.03,
+            "volume": 943597624.0
+          },
+          {
+            "price": 7440.83,
+            "volume": 943597624.0
+          },
+          {
+            "price": 7442.62,
+            "volume": 943597624.0
+          },
+          {
+            "price": 7444.41,
+            "volume": 841602624.0
+          },
+          {
+            "price": 7446.2,
+            "volume": 774845488.0
+          },
+          {
+            "price": 7447.99,
+            "volume": 774845488.0
+          },
+          {
+            "price": 7449.79,
+            "volume": 774845488.0
+          },
+          {
+            "price": 7451.58,
+            "volume": 774845488.0
+          },
+          {
+            "price": 7453.37,
+            "volume": 774845488.0
+          },
+          {
+            "price": 7455.16,
+            "volume": 659015488.0
+          },
+          {
+            "price": 7456.95,
+            "volume": 659015488.0
+          },
+          {
+            "price": 7458.75,
+            "volume": 532559090.0
+          },
+          {
+            "price": 7460.54,
+            "volume": 317392635.0
+          },
+          {
+            "price": 7462.33,
+            "volume": 317392635.0
+          },
+          {
+            "price": 7464.12,
+            "volume": 146579552.0
+          },
+          {
+            "price": 7465.91,
+            "volume": 146579552.0
+          }
+        ]
+      },
+      "current_price": null,
+      "daily_summary": "Bias Baerisch (Score -71, Confluence 62%). Vortag Range: 7395.13 â€“ 7466.81. VIX=21.0.",
+      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht verfuegbar)",
+      "h1_summary": "Manuelle Analyse erforderlich (1H-Daten nicht verfuegbar)",
+      "h30m_summary": "Kurs nan unter VWAP (7429.43), ausserhalb Value Area. POC=7433.66 VAH=7457.85 VAL=7420.22. Shape: Normal Day. Confluence: 5/8 (bearisch).",
+      "mp_shape_yesterday": "Normal Day",
+      "mp_shape_forecast": "Normal Day",
+      "mp_5day_sequence": "5-Tage-Sequenz: automatische Berechnung folgt",
+      "key_levels": [
+        {
+          "level": "VAH Vortag",
+          "price": "7457.85",
+          "source": "Market Profile"
+        },
+        {
+          "level": "POC Vortag",
+          "price": "7433.66",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL Vortag",
+          "price": "7420.22",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP 30M",
+          "price": "7429.43",
+          "source": "VWAP"
+        }
+      ],
+      "orders": [
+        {
+          "type": "Limit Sell",
+          "entry": "7455.97",
+          "sl": "7467.26",
+          "tp1": "7420.22",
+          "tp2": "7401.41",
+          "rr": "3.17",
+          "p_fill": "46",
+          "p_tp1": "37",
+          "tf": "30M",
+          "confluence": "Preis < VWAP (nan < 7429) + Preis < POC (nan < 7434) + Overnight Inventory: Short (Preis < VA-Mitte)",
+          "mp_shape_yesterday": "Normal Day",
+          "mp_shape_forecast": "Normal Day",
+          "vwap_position": "Preis an VWAP"
+        }
+      ],
+      "invalidation": "Kurs schliesst ueber 7457.85 â€“ bearischer Bias negiert"
     }
   ],
   "summary": {
-    "best_instrument": "GER40",
+    "best_instrument": "US30",
     "total_orders": 0,
     "warnings": [
-      "MORGEN ZB-Event: ECB Main Refinancing Rate + Press Conference Do 06-11 14:15/14:45 (Rate Fcst 2.40% vs 2.15%) -> WAIT morgen erwartet",
-      "CPI USA heute Mi 06-10 14:30 (CPI y/y Fcst 4.2% vs prev 3.8%) = hohes Eventrisiko vor NY-Open",
-      "Struktur-vs-Momentum-Konflikt: 2/3 P-Shape aber Preise unter POC/VWAP, ER negativ",
-      "Makro +4 LEICHT_RISK_ON aber POC-Migration auf allen 3 fallend (5-Tage) = uebergeordneter Abwaertsdruck",
-      "NY-Open 15:30: kein Trade bei unklarem Bias (Regel)"
+      "VIX 21.0 â€“ Elevated, Vorsicht bei Einstiegen"
     ],
-    "notes": "Morning 06-10 08:14: WAIT (Konfidenz 0.188 SHORT, align -3/8). 2/3 P-Shape aber Preise unter POC/VWAP + ER negativ. CPI USA 14:30 + ECB morgen."
+    "notes": "Auto-generiert 11:26. VIX=21.0. Beste Konfluenz: US30."
   },
   "stats": {
     "total": 0,
     "fill_rate": "n.a.",
     "tp1_rate": "n.a.",
     "trend": "WAIT"
-  },
-  "phase": "BALANCE",
-  "regime": "NEUTRAL",
-  "session_bias": "WAIT",
-  "alignment_score": -3,
-  "makro_bias": "LEICHT_RISK_ON"
+  }
 }
