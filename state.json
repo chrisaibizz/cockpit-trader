@@ -1,34 +1,32 @@
 {
   "pipeline": {
-    "status": "completed_usupdate",
-    "last_run": "2026-06-09T14:52:49",
-    "run_date": "2026-06-09",
-    "run_type": "usupdate",
+    "status": "running_morning",
+    "last_run": "2026-06-10T08:06:00",
+    "run_date": "2026-06-10",
+    "run_type": "morning",
     "steps_completed": [
       "macro",
       "marketdata",
       "analyst",
       "captain",
-      "executor",
-      "export",
-      "monitor",
-      "report"
+      "executor"
     ],
-    "morning_last_run": "2026-06-09T08:19:52",
+    "morning_last_run": "2026-06-10T08:06:00",
     "usupdate_last_run": "2026-06-09T14:52:49",
     "result": "WAIT",
-    "score": "+2/8 - 0 Orders - Konfidenz 0.217 LONG"
+    "score": "-3/8 - 0 Orders - Konfidenz 0.188 SHORT"
   },
   "macro": {
     "_agent": "MACRO",
-    "_last_run": "2026-06-09T14:50:00",
+    "_last_run": "2026-06-10T08:06:00",
     "_status": "ready",
-    "_update_type": "usupdate",
+    "_update_type": "morning",
     "fear_greed": {
-      "value": 10,
-      "classification": "Extreme Fear",
-      "yesterday": 8,
-      "trend": "steigend"
+      "value": 71,
+      "classification": "Greed",
+      "yesterday": 10,
+      "trend": "steigend",
+      "source": "synthetic_stock (VIX+Bonds+DXY+Gold)"
     },
     "put_call_ratio": {
       "value": null,
@@ -36,35 +34,36 @@
       "error": "^PCALL nicht bei Yahoo verfuegbar"
     },
     "vix": {
-      "value": 17.99,
-      "prev": 18.92,
+      "value": 18.92,
+      "prev": 21.51,
       "level": "normal",
       "trend": "fallend",
       "bias_einfluss": "leicht bullish"
     },
     "bonds_10y": {
-      "yield": 4.54,
-      "prev": 4.552,
-      "trend": "fallend",
-      "interpretation": "zinsdruck_nachlassend"
+      "yield": 4.552,
+      "prev": 4.536,
+      "trend": "steigend",
+      "interpretation": "zinsdruck_hoch"
     },
     "dxy": {
-      "value": 99.711,
+      "value": 99.884,
       "prev": 100.05,
       "trend": "fallend",
       "interpretation": "dollar_schwach"
     },
     "oil_wti": {
-      "value": 90.04,
-      "prev": 91.3,
+      "value": 91.32,
+      "prev": 91.45,
       "trend": "fallend",
-      "interpretation": "inflationsdruck_hoch"
+      "interpretation": "inflationsdruck_hoch",
+      "instrument": "Brent (BZ=F)"
     },
     "gold": {
-      "value": 4368.5,
-      "prev": 4335.9,
-      "trend": "steigend",
-      "interpretation": "risk_off"
+      "value": 4227.1,
+      "prev": 4260.0,
+      "trend": "fallend",
+      "interpretation": "risk_on"
     },
     "fred": {
       "fed_funds": {
@@ -72,7 +71,7 @@
         "interpretation": "neutral"
       },
       "yield_curve": {
-        "value": 0.41,
+        "value": 0.4,
         "interpretation": "steil"
       },
       "cpi": {
@@ -83,782 +82,840 @@
         "value": 4.3,
         "interpretation": "normal"
       },
-      "last_updated": "2026-06-09 08:02"
+      "last_updated": "2026-06-10 08:02"
     },
     "scoring": {
-      "basis_score": 2,
+      "basis_score": 4,
       "fred_score": 0,
-      "bullish_punkte": 4,
+      "bullish_punkte": 6,
       "bearish_punkte": 2,
-      "gesamt_score": 2,
+      "gesamt_score": 4,
       "makro_bias": "LEICHT_RISK_ON",
-      "erklaerung": "USUpdate Di 06-09 14:50: Basis +2 (FaG 10 < 40 -1 / PCR n.v. 0 / VIX 17.99 < 20 neutral 0 / VIX 18.92->17.99 fallend +1 / Bonds 4.552->4.54 fallend +1 / DXY 99.881->99.711 fallend +1 / Oel 90.04 fallend +1 / Gold 4368.5 steigend risk_off -1) + FRED 0 (FedFunds 3.63 neutral 0, YieldCurve 0.41 steil +1, CPI 3.95 hoch -1) = +2 LEICHT_RISK_ON. Bonds-Flip steigend->fallend (4.54) ist Haupttreiber. VIX faellt weiter unter 18."
+      "erklaerung": "Morning Mi 06-10 08:06: Basis +4 (FaG 71>60 +1 / PCR n.v. 0 / VIX 18.92 normal 0 / VIX 21.51->18.92 fallend +1 / Bonds 4.536->4.552 steigend & >4.5 -1 / DXY 100.05->99.884 fallend +1 / Brent 91.32 fallend +1 / Gold 4260->4227 fallend risk_on +1) + FRED 0 (FedFunds 3.63 neutral 0, YieldCurve 0.4 steil +1, CPI 3.95 hoch -1) = +4 LEICHT_RISK_ON. VIX entspannt deutlich (21.5->18.9), Gold dreht auf risk_on. Bonds 4.552 leicht steigend bleibt einziger Gegenwind."
     },
     "warnungen": [
-      "VIX 17.99 faellt weiter unter 18 (Entspannung)",
-      "Bonds 4.54 fallend (Zinsdruck laesst nach, aber noch >4.5)",
-      "Gold 4368.5 steigend = latentes risk_off-Signal bleibt",
-      "Extreme Fear (FaG 10) trotz VIX-Entspannung",
-      "US CPI Mi 06-10 14:30 (CPI y/y Fcst 4.2%) + ECB Do 06-11 14:15/14:45 voraus"
+      "Bonds 4.552 leicht steigend ueber 4.5 (einziger Risk-Off-Faktor)",
+      "VIX 18.92 entspannt deutlich (von 21.51) = Risk-On-Signal",
+      "Gold dreht auf fallend = risk_on (Gegensatz zu gestern)",
+      "US CPI heute Mi 06-10 14:30 (CPI y/y Fcst 4.2% vs prev 3.8%) = hohes Eventrisiko vor NY",
+      "ECB Do 06-11 14:15/14:45 (Rate Fcst 2.40%) voraus"
     ]
   },
   "market": {
     "_agent": "MARKETDATA",
-    "_last_run": "2026-06-09T14:52:49",
+    "_last_run": "2026-06-10T08:10:00",
     "_status": "ready",
-    "_update_type": "usupdate",
-    "timestamp": "2026-06-09 14:52",
+    "_update_type": "morning",
+    "timestamp": "2026-06-10 08:10",
     "instruments": {
       "GER40": {
-        "last_run": "2026-06-09T14:52:49",
-        "price": 24733.52,
-        "poc": 24556.37,
-        "vah": 24710.03,
-        "val": 24505.15,
-        "mp_shape_pos": 0.25,
-        "va_breite_pct": 0.83,
-        "mp_shape": "b-Shape",
-        "mp_shape_bias": "BAERISCH",
-        "price_vs_va": "ueber_VAH",
-        "vwap": 24570.82,
-        "vwap_upper": 24609.4,
-        "vwap_lower": 24532.24,
-        "price_vs_vwap": "ueber_VWAP_Upper",
-        "er": 7.34,
+        "last_run": "2026-06-10T08:10:00",
+        "price": 24514.14,
+        "poc": 24550.83,
+        "vah": 24771.64,
+        "val": 24418.34,
+        "mp_shape_pos": 0.375,
+        "va_breite_pct": 1.44,
+        "mp_shape": "D-Shape",
+        "mp_shape_bias": "NEUTRAL",
+        "price_vs_va": "in_VA_unten",
+        "vwap": 24771.15,
+        "vwap_upper": null,
+        "vwap_lower": null,
+        "vwap_source": "VWAP Anchored (EU-Stdev-Bands nicht geladen)",
+        "price_vs_vwap": "unter_VWAP",
+        "er": -8.7,
         "er_qualitaet": "kein_trend_chop",
-        "sma200": 24822.18,
+        "sma200": 24715.93,
         "ichimoku": {
-          "tenkan": 24769.52,
-          "kijun": 24659.92,
-          "kumo_a": 24714.72,
-          "kumo_b": 24659.92,
-          "position": "above"
+          "tenkan": 24458.67,
+          "kijun": 24492.61,
+          "kumo_a": 24475.64,
+          "kumo_b": 24536.11,
+          "position": "inside"
         },
         "fibo": {
-          "level_0": 24341.25,
-          "level_50": 24688.15,
-          "level_618": 24770.01,
+          "level_0": 24241.69,
+          "level_50": 24638.37,
+          "level_618": 24731.98,
           "top": 25035.04
         },
         "mri": {
-          "mean": 24664.27,
-          "r1": 24867.78,
-          "s1": 24460.77,
-          "r2": 25155.73,
-          "s2": 24172.82
+          "mean": 24598.65,
+          "r1": 24810.42,
+          "s1": 24386.88,
+          "r2": 25110.07,
+          "s2": 24087.23
         },
-        "cdv": 46779.6,
-        "smc": 24732.52,
+        "cdv": 33325.71,
+        "smc": 24510.74,
         "smc_bias": "neutral",
-        "rsi": 56.54,
-        "macd_hist": 10.57,
-        "pivot": 24555.53,
+        "rsi": 50.54,
+        "macd_hist": null,
+        "pivot": 24591.81,
         "pdh": 24732.6,
         "pdl": 24426.61,
-        "onh": 24751.0,
-        "onl": 24341.25,
-        "vp_poc": 25106.66,
-        "vp_vah": 25265.9,
-        "vp_val": 24772.75,
+        "onh": 24830.52,
+        "onl": 24241.69,
+        "vp_poc": null,
+        "vp_vah": null,
+        "vp_val": null,
+        "squeeze": {
+          "momentum": 0.0,
+          "squeeze_on": false
+        },
         "tpo_distribution": [
           {
-            "price": 24341.25,
+            "price": 24241.69,
             "count": 2,
             "type": "tail"
           },
           {
-            "price": 24361.74,
-            "count": 4,
+            "price": 24271.13,
+            "count": 2,
             "type": "tail"
           },
           {
-            "price": 24382.23,
-            "count": 4,
+            "price": 24300.57,
+            "count": 2,
             "type": "tail"
           },
           {
-            "price": 24402.71,
-            "count": 5,
-            "type": "tail"
-          },
-          {
-            "price": 24423.2,
-            "count": 5,
-            "type": "tail"
-          },
-          {
-            "price": 24443.69,
-            "count": 6,
-            "type": "tail"
-          },
-          {
-            "price": 24464.18,
-            "count": 6,
-            "type": "tail"
-          },
-          {
-            "price": 24484.66,
-            "count": 5,
-            "type": "tail"
-          },
-          {
-            "price": 24505.15,
-            "count": 8,
-            "type": "va"
-          },
-          {
-            "price": 24525.64,
-            "count": 10,
-            "type": "va"
-          },
-          {
-            "price": 24546.13,
-            "count": 14,
-            "type": "va"
-          },
-          {
-            "price": 24556.37,
-            "count": 1,
-            "type": "poc"
-          },
-          {
-            "price": 24566.61,
-            "count": 14,
-            "type": "va"
-          },
-          {
-            "price": 24587.1,
-            "count": 13,
-            "type": "va"
-          },
-          {
-            "price": 24607.59,
-            "count": 12,
-            "type": "va"
-          },
-          {
-            "price": 24628.08,
-            "count": 11,
-            "type": "va"
-          },
-          {
-            "price": 24648.56,
-            "count": 11,
-            "type": "va"
-          },
-          {
-            "price": 24669.05,
-            "count": 11,
-            "type": "va"
-          },
-          {
-            "price": 24689.54,
-            "count": 9,
-            "type": "va"
-          },
-          {
-            "price": 24710.03,
-            "count": 7,
-            "type": "va"
-          },
-          {
-            "price": 24730.51,
+            "price": 24330.01,
             "count": 3,
             "type": "tail"
           },
           {
-            "price": 24751,
+            "price": 24359.46,
+            "count": 3,
+            "type": "tail"
+          },
+          {
+            "price": 24388.9,
+            "count": 4,
+            "type": "tail"
+          },
+          {
+            "price": 24418.34,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 24447.78,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 24477.22,
+            "count": 8,
+            "type": "va"
+          },
+          {
+            "price": 24506.66,
+            "count": 8,
+            "type": "va"
+          },
+          {
+            "price": 24536.11,
+            "count": 10,
+            "type": "va"
+          },
+          {
+            "price": 24550.83,
             "count": 1,
+            "type": "poc"
+          },
+          {
+            "price": 24565.55,
+            "count": 10,
+            "type": "va"
+          },
+          {
+            "price": 24594.99,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 24624.43,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 24653.87,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 24683.31,
+            "count": 4,
+            "type": "va"
+          },
+          {
+            "price": 24712.75,
+            "count": 7,
+            "type": "va"
+          },
+          {
+            "price": 24742.2,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 24771.64,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 24801.08,
+            "count": 8,
+            "type": "tail"
+          },
+          {
+            "price": 24830.52,
+            "count": 5,
             "type": "tail"
           }
         ],
         "mp_history": [
           {
             "session": 0,
+            "poc": 24550.83,
+            "vah": 24771.64,
+            "val": 24418.34,
+            "mp_shape_pos": 0.375,
+            "va_breite_pct": 1.44,
+            "shape": "D-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 1,
             "poc": 24556.37,
             "vah": 24710.03,
             "val": 24505.15,
             "mp_shape_pos": 0.25,
             "va_breite_pct": 0.83,
-            "shape": "b-Shape"
+            "shape": "b-Shape",
+            "naked_poc": false
           },
           {
-            "session": 1,
+            "session": 2,
             "poc": 24811.07,
             "vah": 25008.69,
             "val": 24771.54,
             "mp_shape_pos": 0.167,
             "va_breite_pct": 0.96,
-            "shape": "b-Shape"
+            "shape": "b-Shape",
+            "naked_poc": false
           },
           {
-            "session": 2,
+            "session": 3,
             "poc": 24937.26,
             "vah": 25013.54,
             "val": 24844.03,
             "mp_shape_pos": 0.55,
             "va_breite_pct": 0.68,
-            "shape": "Trend Day"
+            "shape": "Trend Day",
+            "naked_poc": false
           },
           {
-            "session": 3,
+            "session": 4,
             "poc": 24912.83,
             "vah": 24991.15,
             "val": 24745.01,
             "mp_shape_pos": 0.682,
             "va_breite_pct": 0.99,
-            "shape": "P-Shape"
+            "shape": "P-Shape",
+            "naked_poc": false
           },
           {
-            "session": 4,
+            "session": 5,
             "poc": 25110.09,
             "vah": 25215.43,
             "val": 25023.91,
             "mp_shape_pos": 0.45,
             "va_breite_pct": 0.76,
-            "shape": "Trend Day"
+            "shape": "Trend Day",
+            "naked_poc": false
           },
           {
-            "session": 5,
+            "session": 6,
             "poc": 25136.23,
             "vah": 25227.8,
             "val": 25024.3,
             "mp_shape_pos": 0.55,
             "va_breite_pct": 0.81,
-            "shape": "D-Shape"
+            "shape": "D-Shape",
+            "naked_poc": false
           },
           {
-            "session": 6,
+            "session": 7,
             "poc": 25112.7,
             "vah": 25162.47,
             "val": 25062.92,
             "mp_shape_pos": 0.5,
             "va_breite_pct": 0.4,
-            "shape": "Trend Day"
+            "shape": "Trend Day",
+            "naked_poc": false
           },
           {
-            "session": 7,
+            "session": 8,
             "poc": 25097.86,
             "vah": 25195.02,
             "val": 25045.55,
             "mp_shape_pos": 0.35,
             "va_breite_pct": 0.6,
-            "shape": "Trend Day"
+            "shape": "Trend Day",
+            "naked_poc": false
           },
           {
-            "session": 8,
+            "session": 9,
             "poc": 25236.34,
             "vah": 25330.34,
             "val": 25171.27,
             "mp_shape_pos": 0.409,
             "va_breite_pct": 0.63,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 9,
-            "poc": 25217.4,
-            "vah": 25308.35,
-            "val": 25201.35,
-            "mp_shape_pos": 0.15,
-            "va_breite_pct": 0.42,
-            "shape": "b-Shape"
+            "shape": "Trend Day",
+            "naked_poc": false
           }
         ],
         "mp_context": {
           "poc_migration": "fallend",
-          "shape_sequenz": "b-Shape | b-Shape | Trend Day",
+          "shape_sequenz": "D-Shape | b-Shape | b-Shape",
           "naked_pocs": [
             24811.07,
             25110.09,
             25236.34
           ],
-          "composite_poc": 24918.68
+          "composite_poc": 24834.68
         }
       },
       "DJ30": {
-        "last_run": "2026-06-09T14:52:49",
-        "price": 51047.38,
-        "poc": 50838.11,
-        "vah": 51067.33,
-        "val": 50749.95,
-        "mp_shape_pos": 0.278,
-        "va_breite_pct": 0.62,
-        "mp_shape": "b-Shape",
-        "mp_shape_bias": "BAERISCH",
-        "price_vs_va": "in_VA_oben",
-        "vwap": 50847.72,
-        "vwap_upper": 50909.83,
-        "vwap_lower": 50785.61,
-        "price_vs_vwap": "ueber_VWAP_Upper",
-        "er": 42.19,
-        "er_qualitaet": "starker_bullish_trend",
-        "sma200": 51155.53,
+        "last_run": "2026-06-10T08:10:00",
+        "price": 50868.55,
+        "poc": 50947.14,
+        "vah": 51078.25,
+        "val": 50658.72,
+        "mp_shape_pos": 0.687,
+        "va_breite_pct": 0.82,
+        "mp_shape": "P-Shape",
+        "mp_shape_bias": "BULLISCH",
+        "price_vs_va": "in_VA_mitte",
+        "vwap": 51058.94,
+        "vwap_upper": null,
+        "vwap_lower": null,
+        "vwap_source": "VWAP Anchored (EU-Stdev-Bands nicht geladen)",
+        "price_vs_vwap": "unter_VWAP",
+        "er": -13.58,
+        "er_qualitaet": "moderat_bearish",
+        "sma200": 51090.51,
         "ichimoku": {
-          "tenkan": 50981.19,
-          "kijun": 50899.88,
-          "kumo_a": 50940.54,
-          "kumo_b": 51029.91,
+          "tenkan": 50845.05,
+          "kijun": 50642.63,
+          "kumo_a": 50743.84,
+          "kumo_b": 50816.04,
           "position": "above"
         },
         "fibo": {
-          "level_0": 50644.15,
-          "level_50": 51232.66,
-          "level_618": 51371.54,
+          "level_0": 50291.63,
+          "level_50": 51056.4,
+          "level_618": 51236.88,
           "top": 51821.16
         },
         "mri": {
-          "mean": 51065.58,
-          "r1": 51388.02,
-          "s1": 50743.15,
-          "r2": 51844.26,
-          "s2": 50286.9
+          "mean": 50896.89,
+          "r1": 51265.93,
+          "s1": 50527.84,
+          "r2": 51788.12,
+          "s2": 50005.65
         },
-        "cdv": 212308.59,
-        "smc": 51047.38,
+        "cdv": 218131.61,
+        "smc": 50867.55,
         "smc_bias": "neutral",
-        "rsi": 62.3,
-        "macd_hist": 16.58,
-        "pivot": 50945.25,
+        "rsi": 51.13,
+        "macd_hist": null,
+        "pivot": 50931.84,
         "pdh": 51277.15,
         "pdl": 50732.35,
-        "onh": 51349.45,
-        "onl": 50644.15,
+        "onh": 51340.45,
+        "onl": 50291.63,
         "vp_poc": null,
         "vp_vah": null,
         "vp_val": null,
+        "squeeze": {
+          "momentum": 0.0,
+          "squeeze_on": false
+        },
         "tpo_distribution": [
           {
-            "price": 50644.15,
+            "price": 50291.63,
             "count": 1,
             "type": "tail"
           },
           {
-            "price": 50679.42,
-            "count": 2,
-            "type": "tail"
-          },
-          {
-            "price": 50714.68,
-            "count": 4,
-            "type": "tail"
-          },
-          {
-            "price": 50749.95,
-            "count": 9,
-            "type": "va"
-          },
-          {
-            "price": 50785.21,
-            "count": 11,
-            "type": "va"
-          },
-          {
-            "price": 50820.48,
-            "count": 13,
-            "type": "va"
-          },
-          {
-            "price": 50838.11,
+            "price": 50344.07,
             "count": 1,
-            "type": "poc"
-          },
-          {
-            "price": 50855.74,
-            "count": 13,
-            "type": "va"
-          },
-          {
-            "price": 50891.01,
-            "count": 12,
-            "type": "va"
-          },
-          {
-            "price": 50926.27,
-            "count": 10,
-            "type": "va"
-          },
-          {
-            "price": 50961.54,
-            "count": 8,
-            "type": "va"
-          },
-          {
-            "price": 50996.8,
-            "count": 6,
-            "type": "va"
-          },
-          {
-            "price": 51032.07,
-            "count": 8,
-            "type": "va"
-          },
-          {
-            "price": 51067.33,
-            "count": 8,
-            "type": "va"
-          },
-          {
-            "price": 51102.6,
-            "count": 7,
             "type": "tail"
           },
           {
-            "price": 51137.86,
-            "count": 4,
-            "type": "tail"
-          },
-          {
-            "price": 51173.13,
+            "price": 50396.51,
             "count": 3,
             "type": "tail"
           },
           {
-            "price": 51208.39,
+            "price": 50448.95,
+            "count": 3,
+            "type": "tail"
+          },
+          {
+            "price": 50501.39,
+            "count": 5,
+            "type": "tail"
+          },
+          {
+            "price": 50553.84,
+            "count": 5,
+            "type": "tail"
+          },
+          {
+            "price": 50606.28,
+            "count": 6,
+            "type": "tail"
+          },
+          {
+            "price": 50658.72,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 50711.16,
+            "count": 7,
+            "type": "va"
+          },
+          {
+            "price": 50763.6,
+            "count": 8,
+            "type": "va"
+          },
+          {
+            "price": 50816.04,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 50868.48,
+            "count": 10,
+            "type": "va"
+          },
+          {
+            "price": 50920.92,
+            "count": 11,
+            "type": "va"
+          },
+          {
+            "price": 50947.14,
+            "count": 1,
+            "type": "poc"
+          },
+          {
+            "price": 50973.36,
+            "count": 11,
+            "type": "va"
+          },
+          {
+            "price": 51025.8,
+            "count": 9,
+            "type": "va"
+          },
+          {
+            "price": 51078.25,
+            "count": 7,
+            "type": "va"
+          },
+          {
+            "price": 51130.69,
+            "count": 5,
+            "type": "tail"
+          },
+          {
+            "price": 51183.13,
+            "count": 4,
+            "type": "tail"
+          },
+          {
+            "price": 51235.57,
+            "count": 3,
+            "type": "tail"
+          },
+          {
+            "price": 51288.01,
             "count": 2,
             "type": "tail"
           },
           {
-            "price": 51243.66,
-            "count": 1,
+            "price": 51340.45,
+            "count": 2,
             "type": "tail"
           }
         ],
         "mp_history": [
           {
             "session": 0,
+            "poc": 50947.14,
+            "vah": 51078.25,
+            "val": 50658.72,
+            "mp_shape_pos": 0.687,
+            "va_breite_pct": 0.82,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 1,
             "poc": 50838.11,
             "vah": 51067.33,
             "val": 50749.95,
             "mp_shape_pos": 0.278,
             "va_breite_pct": 0.62,
-            "shape": "b-Shape"
+            "shape": "b-Shape",
+            "naked_poc": false
           },
           {
-            "session": 1,
+            "session": 2,
             "poc": 51632.21,
             "vah": 51821.16,
             "val": 51335.3,
             "mp_shape_pos": 0.611,
             "va_breite_pct": 0.94,
-            "shape": "D-Shape"
+            "shape": "D-Shape",
+            "naked_poc": false
           },
           {
-            "session": 2,
+            "session": 3,
             "poc": 50815.92,
             "vah": 51445.34,
             "val": 50740.39,
             "mp_shape_pos": 0.107,
             "va_breite_pct": 1.39,
-            "shape": "b-Shape"
+            "shape": "b-Shape",
+            "naked_poc": false
           },
           {
-            "session": 3,
+            "session": 4,
             "poc": 51360.36,
             "vah": 51411.64,
             "val": 51001.42,
             "mp_shape_pos": 0.875,
             "va_breite_pct": 0.8,
-            "shape": "P-Shape"
+            "shape": "P-Shape",
+            "naked_poc": false
           },
           {
-            "session": 4,
+            "session": 5,
             "poc": 50902.29,
             "vah": 51188.46,
             "val": 50857.1,
             "mp_shape_pos": 0.136,
             "va_breite_pct": 0.65,
-            "shape": "b-Shape"
+            "shape": "b-Shape",
+            "naked_poc": false
           },
           {
-            "session": 5,
+            "session": 6,
             "poc": 51107.93,
             "vah": 51177.8,
             "val": 50898.3,
             "mp_shape_pos": 0.75,
             "va_breite_pct": 0.55,
-            "shape": "P-Shape"
+            "shape": "P-Shape",
+            "naked_poc": false
           },
           {
-            "session": 6,
+            "session": 7,
             "poc": 50748.68,
             "vah": 50999.95,
             "val": 50694.05,
             "mp_shape_pos": 0.179,
             "va_breite_pct": 0.6,
-            "shape": "b-Shape"
+            "shape": "b-Shape",
+            "naked_poc": false
           },
           {
-            "session": 7,
+            "session": 8,
             "poc": 50705.95,
             "vah": 50759.57,
             "val": 50609.42,
             "mp_shape_pos": 0.643,
             "va_breite_pct": 0.3,
-            "shape": "Trend Day"
+            "shape": "Trend Day",
+            "naked_poc": false
           },
           {
-            "session": 8,
+            "session": 9,
             "poc": 50726.71,
             "vah": 50775.96,
             "val": 50598.65,
             "mp_shape_pos": 0.722,
             "va_breite_pct": 0.35,
-            "shape": "P-Shape"
-          },
-          {
-            "session": 9,
-            "poc": 50950.68,
-            "vah": 51039.75,
-            "val": 50612.22,
-            "mp_shape_pos": 0.792,
-            "va_breite_pct": 0.84,
-            "shape": "P-Shape"
+            "shape": "P-Shape",
+            "naked_poc": false
           }
         ],
         "mp_context": {
-          "poc_migration": "seitwaerts",
-          "shape_sequenz": "b-Shape | D-Shape | b-Shape",
+          "poc_migration": "fallend",
+          "shape_sequenz": "P-Shape | b-Shape | D-Shape",
           "naked_pocs": [
             51632.21
           ],
-          "composite_poc": 51047.11
+          "composite_poc": 51041.34
         }
       },
       "SPX500": {
-        "last_run": "2026-06-09T14:52:49",
-        "price": 7451.65,
-        "poc": 7414.73,
-        "vah": 7448.0,
-        "val": 7399.6,
-        "mp_shape_pos": 0.313,
-        "va_breite_pct": 0.65,
-        "mp_shape": "b-Shape",
-        "mp_shape_bias": "BAERISCH",
-        "price_vs_va": "ueber_VAH",
-        "vwap": 7417.98,
-        "vwap_upper": 7430.89,
-        "vwap_lower": 7405.06,
-        "price_vs_vwap": "ueber_VWAP_Upper",
-        "er": 45.79,
-        "er_qualitaet": "starker_bullish_trend",
-        "sma200": 7518.71,
+        "last_run": "2026-06-10T08:10:00",
+        "price": 7376.3,
+        "poc": 7438.54,
+        "vah": 7469.02,
+        "val": 7359.31,
+        "mp_shape_pos": 0.722,
+        "va_breite_pct": 1.47,
+        "mp_shape": "P-Shape",
+        "mp_shape_bias": "BULLISCH",
+        "price_vs_va": "in_VA_unten",
+        "vwap": 7471.12,
+        "vwap_upper": null,
+        "vwap_lower": null,
+        "vwap_source": "VWAP Anchored (EU-Stdev-Bands nicht geladen)",
+        "price_vs_vwap": "unter_VWAP",
+        "er": -20.69,
+        "er_qualitaet": "moderat_bearish",
+        "sma200": 7471.27,
         "ichimoku": {
-          "tenkan": 7448.19,
-          "kijun": 7425.53,
-          "kumo_a": 7436.86,
-          "kumo_b": 7435.52,
+          "tenkan": 7371.05,
+          "kijun": 7325.5,
+          "kumo_a": 7348.28,
+          "kumo_b": 7371.5,
           "position": "above"
         },
         "fibo": {
-          "level_0": 7357.25,
-          "level_50": 7483.93,
-          "level_618": 7513.83,
-          "top": 7610.61
+          "level_0": 7249.6,
+          "level_50": 7414.01,
+          "level_618": 7452.8,
+          "top": 7578.41
         },
         "mri": {
-          "mean": 7446.04,
-          "r1": 7501.18,
-          "s1": 7390.9,
-          "r2": 7579.2,
-          "s2": 7312.88
+          "mean": 7409.14,
+          "r1": 7472.87,
+          "s1": 7345.42,
+          "r2": 7563.03,
+          "s2": 7255.26
         },
-        "cdv": 50799.04,
-        "smc": 7451.15,
+        "cdv": 36852.06,
+        "smc": 7376.3,
         "smc_bias": "neutral",
-        "rsi": 60.75,
-        "macd_hist": 3.8,
-        "pivot": 7416.48,
+        "rsi": 47.83,
+        "macd_hist": null,
+        "pivot": 7422.56,
         "pdh": 7466.81,
         "pdl": 7395.13,
-        "onh": 7478.25,
-        "onl": 7357.25,
+        "onh": 7493.4,
+        "onl": 7249.6,
         "vp_poc": null,
         "vp_vah": null,
         "vp_val": null,
+        "squeeze": {
+          "momentum": 0.0,
+          "squeeze_on": false
+        },
         "tpo_distribution": [
           {
-            "price": 7357.25,
+            "price": 7249.6,
             "count": 1,
             "type": "tail"
           },
           {
-            "price": 7363.3,
+            "price": 7261.79,
             "count": 1,
             "type": "tail"
           },
           {
-            "price": 7369.35,
+            "price": 7273.98,
             "count": 2,
             "type": "tail"
           },
           {
-            "price": 7375.4,
-            "count": 2,
+            "price": 7286.17,
+            "count": 3,
             "type": "tail"
           },
           {
-            "price": 7381.45,
+            "price": 7298.36,
+            "count": 3,
+            "type": "tail"
+          },
+          {
+            "price": 7310.55,
+            "count": 3,
+            "type": "tail"
+          },
+          {
+            "price": 7322.74,
             "count": 4,
             "type": "tail"
           },
           {
-            "price": 7387.5,
+            "price": 7334.93,
+            "count": 4,
+            "type": "tail"
+          },
+          {
+            "price": 7347.12,
             "count": 5,
             "type": "tail"
           },
           {
-            "price": 7393.55,
+            "price": 7359.31,
             "count": 6,
-            "type": "tail"
+            "type": "va"
           },
           {
-            "price": 7399.6,
+            "price": 7371.5,
+            "count": 6,
+            "type": "va"
+          },
+          {
+            "price": 7383.69,
+            "count": 7,
+            "type": "va"
+          },
+          {
+            "price": 7395.88,
             "count": 10,
             "type": "va"
           },
           {
-            "price": 7405.65,
-            "count": 12,
+            "price": 7408.07,
+            "count": 10,
             "type": "va"
           },
           {
-            "price": 7411.7,
-            "count": 13,
-            "type": "va"
-          },
-          {
-            "price": 7414.73,
-            "count": 1,
-            "type": "poc"
-          },
-          {
-            "price": 7417.75,
-            "count": 13,
-            "type": "va"
-          },
-          {
-            "price": 7423.8,
-            "count": 11,
-            "type": "va"
-          },
-          {
-            "price": 7429.85,
+            "price": 7420.26,
             "count": 9,
             "type": "va"
           },
           {
-            "price": 7435.9,
-            "count": 8,
+            "price": 7432.45,
+            "count": 12,
             "type": "va"
           },
           {
-            "price": 7441.95,
-            "count": 10,
+            "price": 7438.54,
+            "count": 1,
+            "type": "poc"
+          },
+          {
+            "price": 7444.64,
+            "count": 12,
             "type": "va"
           },
           {
-            "price": 7448,
-            "count": 10,
+            "price": 7456.83,
+            "count": 11,
             "type": "va"
           },
           {
-            "price": 7454.05,
-            "count": 8,
-            "type": "tail"
-          },
-          {
-            "price": 7460.1,
-            "count": 8,
-            "type": "tail"
-          },
-          {
-            "price": 7466.15,
-            "count": 6,
-            "type": "tail"
-          },
-          {
-            "price": 7472.2,
+            "price": 7469.02,
             "count": 5,
+            "type": "va"
+          },
+          {
+            "price": 7481.21,
+            "count": 2,
             "type": "tail"
           },
           {
-            "price": 7478.25,
-            "count": 3,
+            "price": 7493.4,
+            "count": 1,
             "type": "tail"
           }
         ],
         "mp_history": [
           {
             "session": 0,
+            "poc": 7438.54,
+            "vah": 7469.02,
+            "val": 7359.31,
+            "mp_shape_pos": 0.722,
+            "va_breite_pct": 1.47,
+            "shape": "P-Shape",
+            "naked_poc": false
+          },
+          {
+            "session": 1,
             "poc": 7414.73,
             "vah": 7448.0,
             "val": 7399.6,
             "mp_shape_pos": 0.313,
             "va_breite_pct": 0.65,
-            "shape": "b-Shape"
+            "shape": "b-Shape",
+            "naked_poc": false
           },
           {
-            "session": 1,
+            "session": 2,
             "poc": 7561.18,
             "vah": 7590.04,
             "val": 7486.14,
             "mp_shape_pos": 0.722,
             "va_breite_pct": 1.37,
-            "shape": "P-Shape"
+            "shape": "P-Shape",
+            "naked_poc": false
           },
           {
-            "session": 2,
+            "session": 3,
             "poc": 7543.38,
             "vah": 7558.56,
             "val": 7523.86,
             "mp_shape_pos": 0.563,
             "va_breite_pct": 0.46,
-            "shape": "Trend Day"
+            "shape": "Trend Day",
+            "naked_poc": false
           },
           {
-            "session": 3,
+            "session": 4,
             "poc": 7620.25,
             "vah": 7626.71,
             "val": 7579.3,
             "mp_shape_pos": 0.864,
             "va_breite_pct": 0.62,
-            "shape": "P-Shape"
+            "shape": "P-Shape",
+            "naked_poc": false
           },
           {
-            "session": 4,
+            "session": 5,
             "poc": 7600.66,
             "vah": 7610.38,
             "val": 7574.3,
             "mp_shape_pos": 0.731,
             "va_breite_pct": 0.47,
-            "shape": "P-Shape"
+            "shape": "P-Shape",
+            "naked_poc": false
           },
           {
-            "session": 5,
+            "session": 6,
             "poc": 7610.8,
             "vah": 7617.8,
             "val": 7592.6,
             "mp_shape_pos": 0.722,
             "va_breite_pct": 0.33,
-            "shape": "P-Shape"
+            "shape": "P-Shape",
+            "naked_poc": false
           },
           {
-            "session": 6,
+            "session": 7,
             "poc": 7583.3,
             "vah": 7593.92,
             "val": 7576.55,
             "mp_shape_pos": 0.389,
-            "va_breite_pct": 0.23,
-            "shape": "Trend Day"
-          },
-          {
-            "session": 7,
-            "poc": 7526.63,
-            "vah": 7545.87,
-            "val": 7498.85,
-            "mp_shape_pos": 0.591,
             "va_breite_pct": 0.62,
-            "shape": "Trend Day"
+            "shape": "Trend Day",
+            "naked_poc": false
           },
           {
             "session": 8,
@@ -867,7 +924,8 @@
             "val": 7519.23,
             "mp_shape_pos": 0.722,
             "va_breite_pct": 0.33,
-            "shape": "P-Shape"
+            "shape": "P-Shape",
+            "naked_poc": false
           },
           {
             "session": 9,
@@ -876,17 +934,18 @@
             "val": 7519.14,
             "mp_shape_pos": 0.562,
             "va_breite_pct": 0.26,
-            "shape": "Trend Day"
+            "shape": "Trend Day",
+            "naked_poc": false
           }
         ],
         "mp_context": {
           "poc_migration": "fallend",
-          "shape_sequenz": "b-Shape | P-Shape | Trend Day",
+          "shape_sequenz": "P-Shape | b-Shape | P-Shape",
           "naked_pocs": [
             7561.18,
             7620.25
           ],
-          "composite_poc": 7546.59
+          "composite_poc": 7526.06
         }
       }
     },
@@ -1039,68 +1098,40 @@
   },
   "delta": {
     "_agent": "DELTA",
-    "_last_run": "2026-06-09T14:52:49",
-    "_update_type": "usupdate",
-    "vs_morning": {
-      "GER40": {
-        "price_morning": 24623.52,
-        "price_now": 24733.52,
-        "delta_pct": 0.447,
-        "er_morning": 70.23,
-        "er_now": 7.34,
-        "er_delta": -62.89,
-        "kommentar": "GER40 +0.45% (+110 pts) seit 08:12. Preis 24733 BRACH ueber VAH 24710 (Value Area verlassen), ABER ER 70->7.34 KOLLABIERT (starker Trend -> Chop). Recovery stallt an VAH-Widerstand, Momentum tot. RSI 55->56, CDV 42551->46780 (steigt). b-Shape-Tagesstruktur bleibt."
-      },
-      "DJ30": {
-        "price_morning": 50915.38,
-        "price_now": 51047.38,
-        "delta_pct": 0.259,
-        "er_morning": 65.0,
-        "er_now": 42.19,
-        "er_delta": -22.81,
-        "kommentar": "DJ30 +0.26% (+132 pts). Preis 51047 testet VAH 51067 von unten (obere VA), ER 65->42 (Trend kuehlt ab aber stabil >30). Ichimoku jetzt ueber Kumo (war inside), RSI 52->62 (ueberkauft). CDV 207002->212309 steigt. Staerkstes der 3 (align +2)."
-      },
-      "SPX500": {
-        "price_morning": 7439.78,
-        "price_now": 7451.65,
-        "delta_pct": 0.16,
-        "er_morning": 87.04,
-        "er_now": 45.79,
-        "er_delta": -41.25,
-        "kommentar": "SPX500 +0.16% (+12 pts). Preis 7451 BRACH ueber VAH 7448, ER 87->46 (kuehlt ab, noch starker Trend). RSI 58->61, CDV 49975->50799 steigt. b-Shape-Struktur bleibt, schwache VAH-Akzeptanz."
-      }
-    },
-    "trigger": "USUpdate 14:52 (Pre-US-Open) - VAH-Akzeptanz-Check nach Morning-Recovery",
+    "_last_run": "2026-06-10T08:10:00",
+    "_update_type": "morning",
+    "vs_morning": {},
+    "trigger": "Morning 08:10 - kein Intraday-Delta (Basis-Lauf)",
     "bias_morning": "WAIT",
-    "bias_jetzt": "WAIT (siehe captain)"
+    "bias_jetzt": "WAIT"
   },
   "analysis": {
     "_agent": "ANALYST",
-    "_last_run": "2026-06-09T14:52:49",
+    "_last_run": "2026-06-10T08:10:00",
     "_status": "ready",
-    "_update_type": "usupdate",
+    "_update_type": "morning",
     "marktphase": {
-      "phase": "TREND",
+      "phase": "BALANCE",
       "begruendung": [
-        "USUpdate Di 06-09 14:52: Alle 3 Session-0 b-Shape (GER40 0.25, DJ30 0.278, SPX 0.313) - baerische Tagesstruktur, POC unten, unveraendert seit Morning.",
-        "Morning-Recovery hat 2 von 3 ueber VAH getrieben: GER40 24733>VAH 24710, SPX 7451>VAH 7448 (Breakout), DJ30 51047 testet VAH 51067 von unten. ABER VAH-Akzeptanz schwach.",
-        "ER kuehlt synchron ab: GER40 70->7.34 (KOLLABIERT, Chop an VAH), DJ30 65->42 (stabil >30), SPX 87->46 (stabil). Momentum laesst nach, GER40 Recovery tot.",
-        "GER40: align 0 (s1=-0.3 b-Shape+POC fallend, s2=0.5 ER-Kollaps zieht Struktur runter, s3=0.17). DJ30: align +2 (s2=1.0 stark, s1=-0.1). SPX: align +1 (s1=-0.2, s2=1.0).",
-        "ok_long=0 ok_short=0 -> trade_freigabe=FALSE. Makro +2 LEICHT_RISK_ON (VIX 17.99 faellt, Bonds 4.54 fallend). Momentum(abkuehlend bullish)/Struktur(b-Shape baerisch)-Konflikt bleibt. WAIT bis VAH-Akzeptanz haelt (Schluss >VAH) oder Rueckfall unter VWAP/POC."
+        "Morning Mi 06-10 08:10: Session-0 Shapes GER40 D-Shape(0.375) / DJ30 P-Shape(0.687) / SPX P-Shape(0.722). 2/3 bullische Struktur, aber alle 3 Preise UNTER POC und unter VWAP-Anchored (Pullback am EU-Open).",
+        "ER schwach/negativ auf allen 3 (GER -8.7 Chop, DJ -13.6, SPX -20.7) = kein direktionaler Antrieb, baerisches Intraday-Momentum. Phase BALANCE.",
+        "GER40: align -3 (s1=-0.5 D-Shape+POC fallend+Preis unter VAL-Bereich, s2=0.0, s3=-0.25). DJ30: align -1 (s1=0.0 P-Shape kompensiert POC fallend, s2=-0.2, s3=-0.125). SPX: align -1 (s1=-0.1, s2=-0.2, s3=-0.125).",
+        "ok_long=0 ok_short=0 -> trade_freigabe=FALSE. Keine Schicht erreicht symmetrische Mehrheit. Makro +4 LEICHT_RISK_ON (VIX 18.9 entspannt, Gold dreht risk_on, Bonds 4.55 leicht steigend).",
+        "WAIT: Struktur (P-Shape) vs Momentum (Preis unter POC/VWAP, ER negativ)-Konflikt. CPI USA heute 14:30 (y/y Fcst 4.2%) blockiert Direktionalitaet vor NY. Trigger LONG: Rueckeroberung POC+VWAP mit ER-Anstieg. Trigger SHORT: Bruch unter VAL."
       ],
-      "aktive_strategie": "WAIT - Morning-Recovery hat 2/3 ueber VAH gedrueckt aber ER kuehlt ab (GER40 kollabiert auf 7). Keine Akzeptanz, b-Shape-Struktur intakt, Schichten-Mehrheit fehlt.",
-      "er_bestaetigung": "teilweise (DJ30 42 / SPX 46 >25, GER40 7 Chop)"
+      "aktive_strategie": "WAIT - 2/3 P-Shape-Struktur aber Pullback unter POC/VWAP mit negativem ER. Kein Setup vor CPI 14:30.",
+      "er_bestaetigung": "nein (alle ER negativ/schwach: GER -8.7 / DJ -13.6 / SPX -20.7)"
     },
     "regime": "NEUTRAL",
     "risk_level": "MEDIUM",
     "top_down": {
-      "alignment_score": 2,
-      "alignment_score_abs": 2,
+      "alignment_score": -3,
+      "alignment_score_abs": 3,
       "best_direction": "NONE",
       "trade_freigabe": false,
       "ok_count_long": 0,
       "ok_count_short": 0,
-      "best_instrument": "DJ30",
+      "best_instrument": "GER40",
       "m30_entry_zone": {
         "preis_von": null,
         "preis_bis": null
@@ -1108,199 +1139,211 @@
     },
     "instruments": {
       "GER40": {
-        "bias": "NEUTRAL",
-        "bias_score": 0,
-        "er_wert": 7.34,
-        "mp_shape": "b-Shape",
-        "mp_shape_pos": 0.25,
+        "bias": "STARK_BEARISH",
+        "bias_score": -3,
+        "er_wert": -8.7,
+        "mp_shape": "D-Shape",
+        "mp_shape_pos": 0.375,
         "schichten": {
           "s1_kontext": {
-            "score": -0.3,
-            "raw": -3,
+            "score": -0.5,
+            "raw": -5,
             "signale": {
-              "mp_shape": -3,
-              "preis_vs_va": 2,
-              "preis_vs_poc": 1,
+              "mp_shape": 0,
+              "preis_vs_va": -1,
+              "preis_vs_poc": -1,
               "poc_migration": -2,
               "shape_sequenz": -1,
               "vp_hvn_lvn": 0
             }
           },
           "s2_struktur": {
-            "score": 0.5,
-            "raw": 2,
+            "score": 0.0,
+            "raw": 0,
             "signale": {
-              "vwap": 1,
+              "vwap": -1,
               "cvd": 1,
               "er_trend": 0,
               "er_qualitaet": 0
             }
           },
           "s3_entry": {
-            "score": 0.1667,
-            "raw": 1,
+            "score": -0.25,
+            "raw": -2,
             "signale": {
-              "ichimoku": 1,
+              "ichimoku": 0,
               "sma200": -1,
               "smc": 0,
               "autofibo": 0,
               "sr_channel": 0,
-              "pivot": 1
+              "pivot": -1,
+              "rsi": 0,
+              "squeeze": 0
             }
           },
           "freigabe_s1": false,
-          "freigabe_s2": true,
-          "freigabe_s3": true,
+          "freigabe_s2": false,
+          "freigabe_s3": false,
           "freigabe_s1_short": true,
           "freigabe_s2_short": false,
-          "freigabe_s3_short": false,
+          "freigabe_s3_short": true,
           "alle_long_ok": false,
           "alle_short_ok": false,
           "alle_schichten_ok": false,
           "bias_direction": "NONE"
         },
         "key_levels": {
-          "poc": 24556.37,
-          "vah": 24710.03,
-          "val": 24505.15,
-          "vwap": 24570.82,
-          "current": 24733.52,
-          "onh": 24751.0,
-          "onl": 24341.25,
+          "poc": 24550.83,
+          "vah": 24771.64,
+          "val": 24418.34,
+          "vwap": 24771.15,
+          "current": 24514.14,
+          "onh": 24830.52,
+          "onl": 24241.69,
           "pdh": 24732.6,
           "pdl": 24426.61
         },
-        "alignment_score": 0
+        "alignment_score": -3,
+        "_day_dir": "bearish",
+        "_chg_pct": -0.415
       },
       "DJ30": {
-        "bias": "NEUTRAL",
-        "bias_score": 2,
-        "er_wert": 42.19,
-        "mp_shape": "b-Shape",
-        "mp_shape_pos": 0.278,
+        "bias": "LEICHT_BEARISH",
+        "bias_score": -1,
+        "er_wert": -13.58,
+        "mp_shape": "P-Shape",
+        "mp_shape_pos": 0.687,
         "schichten": {
           "s1_kontext": {
-            "score": -0.1,
-            "raw": -1,
+            "score": 0.0,
+            "raw": 0,
             "signale": {
-              "mp_shape": -3,
-              "preis_vs_va": 1,
-              "preis_vs_poc": 1,
-              "poc_migration": 0,
-              "shape_sequenz": 0,
-              "vp_hvn_lvn": 0
-            }
-          },
-          "s2_struktur": {
-            "score": 1.0,
-            "raw": 4,
-            "signale": {
-              "vwap": 1,
-              "cvd": 1,
-              "er_trend": 1,
-              "er_qualitaet": 1
-            }
-          },
-          "s3_entry": {
-            "score": 0.1667,
-            "raw": 1,
-            "signale": {
-              "ichimoku": 1,
-              "sma200": -1,
-              "smc": 0,
-              "autofibo": 0,
-              "sr_channel": 0,
-              "pivot": 1
-            }
-          },
-          "freigabe_s1": false,
-          "freigabe_s2": true,
-          "freigabe_s3": true,
-          "freigabe_s1_short": false,
-          "freigabe_s2_short": false,
-          "freigabe_s3_short": false,
-          "alle_long_ok": false,
-          "alle_short_ok": false,
-          "alle_schichten_ok": false,
-          "bias_direction": "NONE"
-        },
-        "key_levels": {
-          "poc": 50838.11,
-          "vah": 51067.33,
-          "val": 50749.95,
-          "vwap": 50847.72,
-          "current": 51047.38,
-          "onh": 51349.45,
-          "onl": 50644.15,
-          "pdh": 51277.15,
-          "pdl": 50732.35
-        },
-        "alignment_score": 2
-      },
-      "SPX500": {
-        "bias": "NEUTRAL",
-        "bias_score": 1,
-        "er_wert": 45.79,
-        "mp_shape": "b-Shape",
-        "mp_shape_pos": 0.313,
-        "schichten": {
-          "s1_kontext": {
-            "score": -0.2,
-            "raw": -2,
-            "signale": {
-              "mp_shape": -3,
-              "preis_vs_va": 2,
-              "preis_vs_poc": 1,
+              "mp_shape": 3,
+              "preis_vs_va": 0,
+              "preis_vs_poc": -1,
               "poc_migration": -2,
               "shape_sequenz": 0,
               "vp_hvn_lvn": 0
             }
           },
           "s2_struktur": {
-            "score": 1.0,
-            "raw": 4,
+            "score": -0.2,
+            "raw": -1,
             "signale": {
-              "vwap": 1,
+              "vwap": -1,
               "cvd": 1,
-              "er_trend": 1,
-              "er_qualitaet": 1
+              "er_trend": -1,
+              "er_qualitaet": 0
             }
           },
           "s3_entry": {
-            "score": 0.1667,
-            "raw": 1,
+            "score": -0.125,
+            "raw": -1,
             "signale": {
               "ichimoku": 1,
               "sma200": -1,
               "smc": 0,
               "autofibo": 0,
               "sr_channel": 0,
-              "pivot": 1
+              "pivot": -1,
+              "rsi": 0,
+              "squeeze": 0
             }
           },
           "freigabe_s1": false,
-          "freigabe_s2": true,
-          "freigabe_s3": true,
-          "freigabe_s1_short": true,
+          "freigabe_s2": false,
+          "freigabe_s3": false,
+          "freigabe_s1_short": false,
           "freigabe_s2_short": false,
-          "freigabe_s3_short": false,
+          "freigabe_s3_short": true,
           "alle_long_ok": false,
           "alle_short_ok": false,
           "alle_schichten_ok": false,
           "bias_direction": "NONE"
         },
         "key_levels": {
-          "poc": 7414.73,
-          "vah": 7448.0,
-          "val": 7399.6,
-          "vwap": 7417.98,
-          "current": 7451.65,
-          "onh": 7478.25,
-          "onl": 7357.25,
+          "poc": 50947.14,
+          "vah": 51078.25,
+          "val": 50658.72,
+          "vwap": 51058.94,
+          "current": 50868.55,
+          "onh": 51340.45,
+          "onl": 50291.63,
+          "pdh": 51277.15,
+          "pdl": 50732.35
+        },
+        "alignment_score": -1,
+        "_day_dir": "neutral",
+        "_chg_pct": 0.163
+      },
+      "SPX500": {
+        "bias": "LEICHT_BEARISH",
+        "bias_score": -1,
+        "er_wert": -20.69,
+        "mp_shape": "P-Shape",
+        "mp_shape_pos": 0.722,
+        "schichten": {
+          "s1_kontext": {
+            "score": 0.0,
+            "raw": 0,
+            "signale": {
+              "mp_shape": 3,
+              "preis_vs_va": -1,
+              "preis_vs_poc": -1,
+              "poc_migration": -2,
+              "shape_sequenz": 1,
+              "vp_hvn_lvn": 0
+            }
+          },
+          "s2_struktur": {
+            "score": -0.2,
+            "raw": -1,
+            "signale": {
+              "vwap": -1,
+              "cvd": 1,
+              "er_trend": -1,
+              "er_qualitaet": 0
+            }
+          },
+          "s3_entry": {
+            "score": -0.125,
+            "raw": -1,
+            "signale": {
+              "ichimoku": 1,
+              "sma200": -1,
+              "smc": 0,
+              "autofibo": 0,
+              "sr_channel": 0,
+              "pivot": -1,
+              "rsi": 0,
+              "squeeze": 0
+            }
+          },
+          "freigabe_s1": false,
+          "freigabe_s2": false,
+          "freigabe_s3": false,
+          "freigabe_s1_short": false,
+          "freigabe_s2_short": false,
+          "freigabe_s3_short": true,
+          "alle_long_ok": false,
+          "alle_short_ok": false,
+          "alle_schichten_ok": false,
+          "bias_direction": "NONE"
+        },
+        "key_levels": {
+          "poc": 7438.54,
+          "vah": 7469.02,
+          "val": 7359.31,
+          "vwap": 7471.12,
+          "current": 7376.3,
+          "onh": 7493.4,
+          "onl": 7249.6,
           "pdh": 7466.81,
           "pdl": 7395.13
         },
-        "alignment_score": 1
+        "alignment_score": -1,
+        "_day_dir": "bearish",
+        "_chg_pct": -0.397
       }
     },
     "inter_market": {
@@ -1308,72 +1351,72 @@
       "alle_bearish": false,
       "gemischt": true
     },
-    "summary": "USUpdate Di 06-09 14:52: Alle 3 b-Shape (baerisch). Morning-Recovery trieb GER40 24733 + SPX 7451 ueber VAH, DJ30 51047 testet VAH 51067. VAH-Akzeptanz aber schwach + ER kuehlt ab (GER40 70->7 Kollaps/Chop, DJ30 65->42, SPX 87->46). align GER40 0 / DJ30 +2 / SPX +1. ok_long=0 ok_short=0 -> KEINE Freigabe. Makro +2 LEICHT_RISK_ON (VIX 17.99 fallend, Bonds 4.54 fallend, DXY fallend). Phase TREND (abkuehlend). Konflikt Momentum/Struktur bleibt. WAIT bis Schluss-Akzeptanz >VAH (LONG) oder Rueckfall unter VWAP/POC (SHORT). CPI Mi 14:30 + ECB Do 14:15 voraus - Eventrisiko."
+    "summary": "Morning Mi 06-10 08:10: Session-0 GER40 D-Shape / DJ30+SPX P-Shape (2/3 bullische Struktur), ABER alle 3 unter POC und VWAP-Anchored mit negativem ER (Pullback EU-Open). align GER40 -3 / DJ30 -1 / SPX -1. ok_long=0 ok_short=0 -> KEINE Freigabe. Makro +4 LEICHT_RISK_ON (VIX 18.9, Gold risk_on, Bonds 4.55). Phase BALANCE / Regime NEUTRAL. Struktur-vs-Momentum-Konflikt. CPI USA heute 14:30 (y/y 4.2%) + ECB morgen 14:15 = hohe Eventrisiken. WAIT bis POC/VWAP-Rueckeroberung (LONG) oder VAL-Bruch (SHORT)."
   },
   "captain": {
     "_agent": "CAPTAIN",
-    "_last_run": "2026-06-09T14:52:49",
+    "_last_run": "2026-06-10T08:12:00",
     "_status": "ready",
-    "_update_type": "usupdate",
+    "_update_type": "morning",
     "session_bias": "WAIT",
-    "aktive_strategie": "WAIT (Schichten: ok_long=0 ok_short=0 (brauche 2+); abs(align)=2 < 4; Konfidenz 0.217 < 0.40)",
-    "alignment_score": 2,
+    "aktive_strategie": "WAIT (Schichten: ok_long=0 ok_short=0 (brauche 2+); abs(align)=3 < 4; Konfidenz 0.188 < 0.40)",
+    "alignment_score": -3,
     "trade_freigabe": false,
     "shape_konflikt": false,
     "konfidenz_details": {
-      "chart_gewichtung": 0.6,
-      "makro_gewichtung": 0.4,
-      "gewichtungs_grund": "Default 60/40 (VIX 17.99 < 20, Phase TREND aber Regime NEUTRAL)",
-      "alignment_beitrag": 0.15,
-      "makro_beitrag": 0.0667,
-      "konfidenz_long": 0.2167,
-      "konfidenz_short": 0.0,
-      "konfidenz_direction": "LONG",
-      "konfidenz_final": 0.2167,
-      "entscheidung": "WAIT (Konfidenz 0.217 LONG << 0.40, align 2/8 abs<4, ok_long=0 ok_short=0)"
+      "chart_gewichtung": 0.5,
+      "makro_gewichtung": 0.5,
+      "gewichtungs_grund": "BALANCE-Phase (ER schwach <25, Preise innerhalb VA, kein Trend) -> 50/50",
+      "alignment_beitrag": 0.1875,
+      "makro_beitrag": 0.1667,
+      "konfidenz_long": 0.1667,
+      "konfidenz_short": 0.1875,
+      "konfidenz_direction": "SHORT",
+      "konfidenz_final": 0.1875,
+      "entscheidung": "WAIT (Konfidenz 0.188 SHORT << 0.40, align -3/8 abs<4, ok_long=0 ok_short=0)"
     },
-    "trade_plan": "WAIT-Setup USUpdate Di 06-09 14:52: Konfidenz=0.217 (LONG) align=+2/8 (DJ30). Morning-Recovery hat 2/3 ueber VAH gedrueckt (GER40 24733>24710, SPX 7451>7448; DJ30 51047 testet VAH 51067), ABER VAH-Akzeptanz schwach und ER kuehlt ab (GER40 70->7 Kollaps/Chop, DJ30 65->42, SPX 87->46). b-Shape-Tagesstruktur intakt, Momentum laesst nach. Keine Schichten-Mehrheit (ok_long=0 ok_short=0). TRIGGER LONG: 30M-Schluss + Akzeptanz UEBER VAH (GER40 24710 / DJ30 51067 / SPX 7448) mit ER-Reanstieg = Value nach oben, Ziel naked POCs / SMA200 (GER40 24822 / DJ30 51156 / SPX 7519). TRIGGER SHORT: Rueckfall + Halt unter VWAP/POC (GER40 24556 / DJ30 50838 / SPX 7415) = Recovery abverkauft, b-Shape resumiert, Ziel VAL / Tagestief. Bis dahin KEIN Trade. NY-Open 15:30 + CPI Mi 14:30 (y/y Fcst 4.2%) + ECB Do 14:15 beachten.",
+    "trade_plan": "WAIT-Setup Morning Mi 06-10 08:10: Konfidenz=0.188 (SHORT) align=-3/8 (GER40). Session-0 zeigt 2/3 P-Shape (DJ30 0.687 / SPX 0.722) bullische Struktur, GER40 D-Shape (0.375), ABER alle 3 Preise UNTER POC (GER 24551 / DJ 50947 / SPX 7439) und unter VWAP-Anchored, ER negativ (GER -8.7 Chop / DJ -13.6 / SPX -20.7) = baerisches Intraday-Momentum, Pullback am EU-Open. Keine Schichten-Mehrheit (ok_long=0 ok_short=0), abs(align)=3<4. TRIGGER LONG: Rueckeroberung POC + VWAP mit ER-Reanstieg ueber +10 (Value haelt, P-Shape bestaetigt), Ziel VAH (GER 24772 / DJ 51078 / SPX 7469) bzw. naked POCs. TRIGGER SHORT: Bruch + Halt unter VAL (GER 24418 / DJ 50659 / SPX 7359) mit ER-Beschleunigung, Ziel PDL / Tagestief. Bis dahin KEIN Trade. CPI USA heute 14:30 (y/y Fcst 4.2% vs prev 3.8%) + ECB morgen 14:15/14:45 = hohe Eventrisiken vor NY-Open 15:30.",
     "instrument_prioritaet": [
+      "GER40",
       "DJ30",
-      "SPX500",
-      "GER40"
+      "SPX500"
     ],
-    "entry_fenster": "WAIT - NY Open 15:30 abwarten (Momentum kuehlt ab, b-Shape-Struktur, kein klares Setup)",
+    "entry_fenster": "WAIT - CPI 14:30 + NY-Open 15:30 abwarten (Struktur-vs-Momentum-Konflikt, kein klares Setup)",
     "max_risk_today": "0%",
     "max_trades_heute": 0,
     "trades_today": 0,
     "active_positions": [],
-    "notes": "USUpdate Di 06-09 14:52: 2/3 ueber VAH gedrueckt (GER40 24733, SPX 7451), DJ30 testet VAH. VAH-Akzeptanz schwach, ER kuehlt ab (GER40 Kollaps auf 7). Makro +2 LEICHT_RISK_ON (VIX 17.99, Bonds 4.54, DXY fallend) - leicht verbessert seit Morning. b-Shape-Struktur intakt, abs(align)=2<4 -> WAIT. Watch LONG: Schluss-Akzeptanz >VAH. Watch SHORT: Rueckfall unter VWAP/POC.",
+    "notes": "Morning Mi 06-10 08:10: 2/3 P-Shape-Struktur (DJ30/SPX) aber Preise unter POC/VWAP mit negativem ER = Pullback. Makro +4 LEICHT_RISK_ON (VIX 18.9 entspannt von 21.5, Gold dreht risk_on, Bonds 4.55). abs(align)=3<4 + Konfidenz 0.188 -> WAIT. Watch LONG: POC/VWAP-Rueckeroberung. Watch SHORT: VAL-Bruch. CPI 14:30 abwarten.",
     "zentralbank_stop": false,
-    "zentralbank_stop_grund": "Kein ZB-Event heute/morgen (CPI USA Mi 06-10 14:30 = kein ZB-Trigger; ECB Do 06-11 14:15/14:45)",
+    "zentralbank_stop_grund": "Kein ZB-Event heute (CPI USA Mi 06-10 14:30 = kein ZB-Trigger). MORGEN ECB Do 06-11 14:15/14:45 (Rate Fcst 2.40%) -> WAIT morgen erwartet.",
     "warnungen": [
-      "Morning-Recovery kuehlt ab: ER GER40 70->7 (Kollaps), DJ30 65->42, SPX 87->46",
-      "VAH-Akzeptanz schwach: 2/3 knapp ueber VAH ohne Bestaetigung, GER40 stallt",
-      "Makro +2 LEICHT_RISK_ON aber Extreme Fear (FaG 10) + Gold steigend = latenter Risk-Off-Unterton",
-      "CPI USA Mi 06-10 14:30 (CPI y/y Fcst 4.2%) + ECB Do 06-11 14:15/14:45 - hohe Eventrisiken",
+      "MORGEN ZB-Event: ECB Main Refinancing Rate + Press Conference Do 06-11 14:15/14:45 (Rate Fcst 2.40% vs 2.15%) -> WAIT morgen erwartet",
+      "CPI USA heute Mi 06-10 14:30 (CPI y/y Fcst 4.2% vs prev 3.8%) = hohes Eventrisiko vor NY-Open",
+      "Struktur-vs-Momentum-Konflikt: 2/3 P-Shape aber Preise unter POC/VWAP, ER negativ",
+      "Makro +4 LEICHT_RISK_ON aber POC-Migration auf allen 3 fallend (5-Tage) = uebergeordneter Abwaertsdruck",
       "NY-Open 15:30: kein Trade bei unklarem Bias (Regel)"
     ]
   },
   "orders": {
     "_agent": "EXECUTOR",
-    "_last_run": "2026-06-09T14:52:49",
+    "_last_run": "2026-06-10T08:12:00",
     "_status": "ready",
-    "_update_type": "usupdate",
+    "_update_type": "morning",
     "orders": [],
-    "validierung": "USUpdate 06-09 14:52: Letzter Handelstag 06-08 0 Orders, Morning 06-09 0 Orders. Keine offenen Orders zu validieren. trade_freigabe=false (WAIT). Keine neuen Orders berechnet.",
+    "validierung": "Morning 06-10 08:12: trade_freigabe=false (WAIT). ok_long=0 ok_short=0, abs(align)=3<4, Konfidenz 0.188<0.40. Keine Orders berechnet. Doc + Git Push trotzdem.",
     "summary": {
       "best_instrument": "NONE",
       "total_orders": 0,
       "trade_freigabe": false,
       "shape_konflikt": false,
       "warnings": [
-        "Morning-Recovery kuehlt ab: ER GER40 70->7 (Kollaps), DJ30 65->42, SPX 87->46",
-        "VAH-Akzeptanz schwach: 2/3 knapp ueber VAH ohne Bestaetigung, GER40 stallt",
-        "Makro +2 LEICHT_RISK_ON aber Extreme Fear (FaG 10) + Gold steigend = latenter Risk-Off-Unterton",
-        "CPI USA Mi 06-10 14:30 (CPI y/y Fcst 4.2%) + ECB Do 06-11 14:15/14:45 - hohe Eventrisiken",
+        "MORGEN ZB-Event: ECB Main Refinancing Rate + Press Conference Do 06-11 14:15/14:45 (Rate Fcst 2.40% vs 2.15%) -> WAIT morgen erwartet",
+        "CPI USA heute Mi 06-10 14:30 (CPI y/y Fcst 4.2% vs prev 3.8%) = hohes Eventrisiko vor NY-Open",
+        "Struktur-vs-Momentum-Konflikt: 2/3 P-Shape aber Preise unter POC/VWAP, ER negativ",
+        "Makro +4 LEICHT_RISK_ON aber POC-Migration auf allen 3 fallend (5-Tage) = uebergeordneter Abwaertsdruck",
         "NY-Open 15:30: kein Trade bei unklarem Bias (Regel)"
       ],
-      "notes": "USUpdate Di 06-09 14:52: WAIT (Konfidenz 0.217 LONG, align +2/8, ok_long=0 ok_short=0). Keine Orders. 2/3 ueber VAH (GER40 24733, SPX 7451) aber ER kuehlt ab + schwache Akzeptanz. Watch LONG: Schluss >VAH (GER40 24710 / DJ30 51067 / SPX 7448). Watch SHORT: Rueckfall unter VWAP/POC (GER40 24556 / DJ30 50838 / SPX 7415)."
+      "notes": "Morning Mi 06-10 08:12: WAIT (Konfidenz 0.188 SHORT, align -3/8, ok_long=0 ok_short=0). Keine Orders. 2/3 P-Shape aber Preise unter POC/VWAP + ER negativ. Watch LONG: POC/VWAP zurueck (GER 24551/24771, DJ 50947/51059, SPX 7439/7471). Watch SHORT: VAL-Bruch (GER 24418, DJ 50659, SPX 7359). CPI 14:30."
     }
   },
   "monitor": {
