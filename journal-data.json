@@ -1,6 +1,6 @@
 {
   "date": "2026-06-11",
-  "timestamp": "2026-06-11T08:10:00",
+  "timestamp": "2026-06-11T14:46:00",
   "phase": "BALANCE",
   "regime": "EVENT-DRIVEN",
   "session_bias": "WAIT",
@@ -22,30 +22,53 @@
       "bias_color": "red",
       "bias_score": -2,
       "bias_pct": "60",
-      "current_price": 24140.39,
+      "current_price": 24200.39,
       "market_profile": {
         "poc": 24251.78,
         "vah": 24394.86,
         "val": 24030.66,
         "vwap": 24668.96,
-        "shape": { "name": "D-Shape", "pos": 0.607 }
+        "shape": {
+          "name": "D-Shape",
+          "pos": 0.607
+        }
       },
       "daily_summary": "Preis 24140 unter SMA200 (24589) und unter VWAP (24669). Pivot 24215 bearish. Ichimoku inside Kumo.",
       "h4_summary": "POC-Migration 5 Tage fallend, Shape-Sequenz D|D|b. Composite-POC 24708 als Widerstand oben.",
       "h1_summary": "ER -0.76 (Chop), kein direktionaler Antrieb. RSI 48 neutral.",
-      "h30m_summary": "D-Shape (pos 0.607). Preis in VA-Unterhaelfte, unter POC. align -2. Keine Schichten-Freigabe.",
+      "h30m_summary": "USUpdate 14:46: D-Shape (pos 0.607) unveraendert. Preis 24200 (+0.25%) in VA-Unterhaelfte, unter POC/VWAP/SMA200. align -2. Keine Freigabe.",
       "mp_shape_yesterday": "D-Shape",
       "mp_shape_forecast": "D-Shape / Rotation um POC bis ECB",
       "mp_5day_sequence": "D-Shape | D-Shape | b-Shape (POC-Migration fallend, naked POCs 24551/24811/24937/25110 oben)",
       "key_levels": [
-        { "level": "VAH", "price": "24394.86", "source": "Market Profile" },
-        { "level": "POC", "price": "24251.78", "source": "Market Profile" },
-        { "level": "VAL", "price": "24030.66", "source": "Market Profile" },
-        { "level": "VWAP 30M", "price": "24668.96", "source": "VWAP" },
-        { "level": "ONL/Fibo0", "price": "23970.44", "source": "AutoFibo" }
+        {
+          "level": "VAH",
+          "price": "24394.86",
+          "source": "Market Profile"
+        },
+        {
+          "level": "POC",
+          "price": "24251.78",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL",
+          "price": "24030.66",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP 30M",
+          "price": "24668.96",
+          "source": "VWAP"
+        },
+        {
+          "level": "ONL/Fibo0",
+          "price": "23970.44",
+          "source": "AutoFibo"
+        }
       ],
       "orders": [],
-      "invalidation": "ZB-Hard-Stop aktiv. WATCH: LONG ueber 24252+24669 mit ER-Anstieg; SHORT bei Halt unter 24031 mit ER."
+      "invalidation": "ZB-Hard-Stop aktiv (ECB Press Conf LIVE 14:45). WATCH: LONG ueber 24252+24669 mit ER-Anstieg; SHORT bei Halt unter 24031 mit ER."
     },
     {
       "name": "DJ30",
@@ -53,30 +76,53 @@
       "bias_color": "gray",
       "bias_score": 0,
       "bias_pct": "50",
-      "current_price": 50100.88,
+      "current_price": 50279.88,
       "market_profile": {
         "poc": 50856.19,
         "vah": 50933.55,
         "val": 50366.24,
         "vwap": 50912.91,
-        "shape": { "name": "P-Shape", "pos": 0.864 }
+        "shape": {
+          "name": "P-Shape",
+          "pos": 0.864
+        }
       },
       "daily_summary": "Preis 50101 unter SMA200 (50895) und unter VWAP (50913). Pivot 50261 bearish. Ichimoku unter Kumo.",
       "h4_summary": "P-Shape oben aber Preis unter VAL gebrochen (Overnight-Selloff). POC-Migration seitwaerts. Composite-POC 51019.",
       "h1_summary": "ER -0.27 (Chop), kein Antrieb. RSI 45.",
-      "h30m_summary": "P-Shape (pos 0.864) BULLISCH-Struktur, ABER Preis 50101 unter VAL 50366 = Bruch unter Value. align 0. Keine Freigabe.",
+      "h30m_summary": "USUpdate 14:46: P-Shape (pos 0.864). Preis 50280 (+0.36%) weiter knapp unter VAL 50366 - kein Reclaim. align 0. Keine Freigabe.",
       "mp_shape_yesterday": "P-Shape",
       "mp_shape_forecast": "Konflikt P-Shape vs VAL-Bruch - Richtung offen bis ECB",
       "mp_5day_sequence": "P-Shape | P-Shape | b-Shape (POC-Migration seitwaerts, naked POCs 50947/51632)",
       "key_levels": [
-        { "level": "VAH", "price": "50933.55", "source": "Market Profile" },
-        { "level": "POC", "price": "50856.19", "source": "Market Profile" },
-        { "level": "VAL", "price": "50366.24", "source": "Market Profile" },
-        { "level": "VWAP 30M", "price": "50912.91", "source": "VWAP" },
-        { "level": "ONL/Fibo0", "price": "49786.88", "source": "AutoFibo" }
+        {
+          "level": "VAH",
+          "price": "50933.55",
+          "source": "Market Profile"
+        },
+        {
+          "level": "POC",
+          "price": "50856.19",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL",
+          "price": "50366.24",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP 30M",
+          "price": "50912.91",
+          "source": "VWAP"
+        },
+        {
+          "level": "ONL/Fibo0",
+          "price": "49786.88",
+          "source": "AutoFibo"
+        }
       ],
       "orders": [],
-      "invalidation": "ZB-Hard-Stop aktiv. WATCH: LONG bei Rueckeroberung 50366+50856; SHORT bei Halt unter 50366 mit ER."
+      "invalidation": "ZB-Hard-Stop aktiv (ECB Press Conf LIVE 14:45). WATCH: LONG bei Rueckeroberung 50366+50856; SHORT bei Halt unter 50366 mit ER."
     },
     {
       "name": "SPX500",
@@ -84,42 +130,66 @@
       "bias_color": "red",
       "bias_score": -1,
       "bias_pct": "55",
-      "current_price": 7298.55,
+      "current_price": 7313.05,
       "market_profile": {
         "poc": 7374.56,
         "vah": 7385.72,
         "val": 7318.74,
         "vwap": 7436.09,
-        "shape": { "name": "P-Shape", "pos": 0.833 }
+        "shape": {
+          "name": "P-Shape",
+          "pos": 0.833
+        }
       },
       "daily_summary": "Preis 7298.55 unter SMA200 (7415.84) und unter VWAP (7436). Pivot 7312.55 bearish. Ichimoku inside Kumo.",
       "h4_summary": "P-Shape oben aber Preis unter VAL gebrochen. POC-Migration fallend. Composite-POC 7494.",
       "h1_summary": "ER -10.86 (schwach bearish). RSI 48.",
-      "h30m_summary": "P-Shape (pos 0.833), ABER Preis 7298.55 unter VAL 7318.74 = Bruch unter Value. align -1. Keine Freigabe.",
+      "h30m_summary": "USUpdate 14:46: P-Shape (pos 0.833). Preis 7313 (+0.20%) weiter knapp unter VAL 7319 - kein Reclaim. align -1. Keine Freigabe.",
       "mp_shape_yesterday": "P-Shape",
       "mp_shape_forecast": "Konflikt P-Shape vs VAL-Bruch - Richtung offen bis ECB/PPI",
       "mp_5day_sequence": "P-Shape | P-Shape | b-Shape (POC-Migration fallend, naked POCs 7439/7561/7620)",
       "key_levels": [
-        { "level": "VAH", "price": "7385.72", "source": "Market Profile" },
-        { "level": "POC", "price": "7374.56", "source": "Market Profile" },
-        { "level": "VAL", "price": "7318.74", "source": "Market Profile" },
-        { "level": "VWAP 30M", "price": "7436.09", "source": "VWAP" },
-        { "level": "ONL/Fibo0", "price": "7236.63", "source": "AutoFibo" }
+        {
+          "level": "VAH",
+          "price": "7385.72",
+          "source": "Market Profile"
+        },
+        {
+          "level": "POC",
+          "price": "7374.56",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VAL",
+          "price": "7318.74",
+          "source": "Market Profile"
+        },
+        {
+          "level": "VWAP 30M",
+          "price": "7436.09",
+          "source": "VWAP"
+        },
+        {
+          "level": "ONL/Fibo0",
+          "price": "7236.63",
+          "source": "AutoFibo"
+        }
       ],
       "orders": [],
-      "invalidation": "ZB-Hard-Stop aktiv. WATCH: LONG bei Rueckeroberung 7319+7375+7436; SHORT bei Halt unter 7319 mit ER."
+      "invalidation": "ZB-Hard-Stop aktiv (ECB Press Conf LIVE 14:45). WATCH: LONG bei Rueckeroberung 7319+7375+7436; SHORT bei Halt unter 7319 mit ER."
     }
   ],
   "summary": {
     "best_instrument": "NONE",
     "total_orders": 0,
     "warnings": [
-      "ZENTRALBANK-HARD-STOP: ECB Main Refinancing Rate + Press Conference 14:15/14:45 (Fcst 2.40%)",
-      "USA Core PPI + PPI 14:30 (high impact)",
-      "2/3 P-Shape aber DJ30+SPX unter VAL gebrochen, ER null = Struktur-vs-Momentum-Konflikt",
-      "Makro -2 LEICHT_RISK_OFF: VIX dreht hoch, Brent+Gold steigen"
+      "ZENTRALBANK-HARD-STOP: ECB Press Conference LIVE 14:45 (actual leer) - kein Trade",
+      "Main Refinancing Rate 14:15 + USA Core PPI/PPI 14:30 released - Markt verdaut",
+      "VIX 19.87->21.71 seit Morning ueber 20 = erhoehte Vorsicht",
+      "2/3 P-Shape aber DJ30+SPX weiter unter VAL trotz +0.3% Erholung",
+      "Makro -3 LEICHT_RISK_OFF: Bonds 4.55 + DXY 100.16 steigend"
     ],
-    "notes": "WAIT - kein Trade vor ECB/PPI. Alle 3 unter VWAP+SMA200."
+    "notes": "USUpdate 14:46 WAIT - ECB Press Conf LIVE. Preise +0.2-0.4% seit Morning, MP unveraendert, alle 3 unter VWAP+SMA200."
   },
   "stats": {
     "total": 0,

@@ -1,12 +1,13 @@
 {
   "pipeline": {
-    "status": "completed_morning",
-    "last_run": "2026-06-11T08:11:00",
+    "status": "completed_usupdate",
+    "last_run": "2026-06-11T14:46:00",
     "run_date": "2026-06-11",
-    "run_type": "morning",
+    "run_type": "usupdate",
     "steps_completed": [
       "macro",
       "marketdata",
+      "delta",
       "analyst",
       "captain",
       "executor",
@@ -14,15 +15,15 @@
       "monitor"
     ],
     "morning_last_run": "2026-06-11T08:11:00",
-    "usupdate_last_run": "2026-06-09T14:52:49",
+    "usupdate_last_run": "2026-06-11T14:46:00",
     "result": "WAIT",
-    "score": "-2/8 - 0 Orders - ZB-Hard-Stop ECB - Konfidenz 0.208 SHORT"
+    "score": "-2/8 - 0 Orders - ZB-Hard-Stop ECB Press Conf live - Konfidenz 0.25 SHORT"
   },
   "macro": {
     "_agent": "MACRO",
-    "_last_run": "2026-06-11T08:04:30",
+    "_last_run": "2026-06-11T14:46:00",
     "_status": "ready",
-    "_update_type": "morning",
+    "_update_type": "usupdate",
     "fear_greed": {
       "value": 51,
       "classification": "Neutral",
@@ -36,23 +37,23 @@
       "error": "^PCALL nicht bei Yahoo verfuegbar"
     },
     "vix": {
-      "value": 19.87,
-      "prev": 18.92,
-      "level": "normal",
-      "trend": "steigend",
-      "bias_einfluss": "leicht bearish"
+      "value": 21.71,
+      "prev": 22.22,
+      "level": "erhoehte_vorsicht",
+      "trend": "fallend",
+      "bias_einfluss": "level>20 risk-off, intraday fallend von 22.22"
     },
     "bonds_10y": {
-      "yield": 4.528,
-      "prev": 4.552,
-      "trend": "fallend",
-      "interpretation": "zinsdruck_hoch"
+      "yield": 4.55,
+      "prev": 4.542,
+      "trend": "steigend",
+      "interpretation": "zinsdruck_hoch_>4.5"
     },
     "dxy": {
-      "value": 99.967,
-      "prev": 99.91,
+      "value": 100.155,
+      "prev": 99.95,
       "trend": "steigend",
-      "interpretation": "dollar_schwach"
+      "interpretation": "dollar_fest_<104"
     },
     "oil_wti": {
       "value": 93.44,
@@ -62,7 +63,7 @@
       "instrument": "Brent (BZ=F)"
     },
     "gold": {
-      "value": 4116.0,
+      "value": 4116,
       "prev": 4108.2,
       "trend": "steigend",
       "interpretation": "risk_off"
@@ -87,32 +88,32 @@
       "last_updated": "2026-06-11 08:02"
     },
     "scoring": {
-      "basis_score": -2,
+      "basis_score": -3,
       "fred_score": 0,
       "bullish_punkte": 2,
-      "bearish_punkte": 4,
-      "gesamt_score": -2,
+      "bearish_punkte": 5,
+      "gesamt_score": -3,
       "makro_bias": "LEICHT_RISK_OFF",
-      "erklaerung": "Morning Do 06-11 08:04: Basis -2 (FaG 51 neutral 0 / PCR n.v. 0 / VIX 19.87 normal 0 / VIX 18.92->19.87 steigend -1 / Bonds 4.552->4.528 fallend +1 / DXY 99.91->99.967 steigend <104 0 / Brent 93.1->93.44 steigend >90 -1 / Gold 4108->4116 steigend risk_off -1) + FRED 0 (FedFunds 3.63 neutral 0, YieldCurve 0.42 steil +1, CPI 4.27 hoch -1) = -2 LEICHT_RISK_OFF. VIX dreht hoch (18.9->19.9), Brent+Gold steigen = Inflations-/Risk-Off-Druck. ECB heute 14:15."
+      "erklaerung": "USUpdate Do 06-11 14:46 Mini-MACRO: Basis -3 (FaG 51 neutral 0 / PCR n.v. 0 / VIX 21.71 level>20 -1 / VIX 22.22->21.71 fallend +1 / Bonds 4.542->4.55 steigend >4.5 -1 / DXY 99.95->100.155 steigend <104 0 / Brent steigend >90 -1 / Gold steigend risk_off -1) + FRED 0 (YieldCurve steil +1, CPI hoch -1) = -3 LEICHT_RISK_OFF. VIX 19.87->21.71 seit Morning (Risk-Off-Anstieg ueber 20), DXY+Bonds fester. Makro-Score -2 -> -3."
     },
     "warnungen": [
-      "ECB-EVENT HEUTE Do 06-11 14:15 Main Refinancing Rate (Fcst 2.40% vs 2.15%) + 14:45 Press Conference = ZB-Hard-Stop, WAIT erwartet",
-      "USA Core PPI + PPI Do 06-11 14:30 (high impact) = zusaetzliches Eventrisiko vor NY-Open",
-      "VIX dreht von 18.92 auf 19.87 steigend = Risk-Off-Signal (Gegensatz zu gestern)",
-      "Brent 93.44 + Gold 4116 beide steigend = Inflations-/Risk-Off-Druck",
-      "Bonds 4.528 leicht fallend aber weiter >4.5 (Zinsdruck bleibt hoch)"
+      "VIX 19.87 (Morning) -> 21.71 (jetzt) ueber 20 gestiegen = erhoehte Vorsicht, intraday aber fallend von 22.22",
+      "ECB Press Conference LIVE 14:45 (actual leer) = ZB-Hard-Stop aktiv",
+      "USA Core PPI + PPI 14:30 (high) bereits released - zusaetzliches Eventrisiko vor NY-Open",
+      "Bonds 4.55 + DXY 100.155 beide steigend = Zinsdruck/Dollar fest",
+      "Brent + Gold weiter steigend = Inflations-/Risk-Off-Druck"
     ]
   },
   "market": {
     "_agent": "MARKETDATA",
-    "_last_run": "2026-06-11T08:06:00",
+    "_last_run": "2026-06-11T14:46:00",
     "_status": "ready",
-    "_update_type": "morning",
-    "timestamp": "2026-06-11 08:06",
+    "_update_type": "usupdate",
+    "timestamp": "2026-06-11 14:46",
     "instruments": {
       "GER40": {
-        "last_run": "2026-06-11T08:06:00",
-        "price": 24140.39,
+        "last_run": "2026-06-11T14:46:00",
+        "price": 24200.39,
         "poc": 24251.78,
         "vah": 24394.86,
         "val": 24030.66,
@@ -151,7 +152,7 @@
           "s2": 23839.24
         },
         "cdv": 9494.41,
-        "smc": 24140.39,
+        "smc": 24200.39,
         "smc_bias": "neutral",
         "rsi": 48.12,
         "macd_hist": null,
@@ -166,7 +167,7 @@
         "vwap_us": null,
         "vwap_swing": null,
         "squeeze": {
-          "momentum": 0.0,
+          "momentum": 0,
           "squeeze_on": false
         },
         "tpo_distribution": [
@@ -326,8 +327,8 @@
         }
       },
       "DJ30": {
-        "last_run": "2026-06-11T08:06:00",
-        "price": 50100.88,
+        "last_run": "2026-06-11T14:46:00",
+        "price": 50279.88,
         "poc": 50856.19,
         "vah": 50933.55,
         "val": 50366.24,
@@ -366,7 +367,7 @@
           "s2": 49653.99
         },
         "cdv": 183317.02,
-        "smc": 50100.88,
+        "smc": 50279.88,
         "smc_bias": "neutral",
         "rsi": 45.36,
         "macd_hist": null,
@@ -381,7 +382,7 @@
         "vwap_us": null,
         "vwap_swing": null,
         "squeeze": {
-          "momentum": 0.0,
+          "momentum": 0,
           "squeeze_on": false
         },
         "tpo_distribution": [
@@ -539,8 +540,8 @@
         }
       },
       "SPX500": {
-        "last_run": "2026-06-11T08:06:00",
-        "price": 7298.55,
+        "last_run": "2026-06-11T14:46:00",
+        "price": 7313.05,
         "poc": 7374.56,
         "vah": 7385.72,
         "val": 7318.74,
@@ -579,7 +580,7 @@
           "s2": 7182.83
         },
         "cdv": 28013.21,
-        "smc": 7298.8,
+        "smc": 7313.05,
         "smc_bias": "neutral",
         "rsi": 48.16,
         "macd_hist": null,
@@ -594,7 +595,7 @@
         "vwap_us": null,
         "vwap_swing": null,
         "squeeze": {
-          "momentum": 0.0,
+          "momentum": 0,
           "squeeze_on": false
         },
         "tpo_distribution": [
@@ -668,7 +669,7 @@
           {
             "session": 2,
             "poc": 7414.73,
-            "vah": 7448.0,
+            "vah": 7448,
             "val": 7399.6,
             "mp_shape_pos": 0.313,
             "va_breite_pct": 0.65,
@@ -859,18 +860,34 @@
   },
   "delta": {
     "_agent": "DELTA",
-    "_last_run": "2026-06-11T08:10:00",
-    "_update_type": "morning",
-    "vs_morning": {},
-    "trigger": "Morning 08:10 - kein Intraday-Delta (Basis-Lauf)",
+    "_last_run": "2026-06-11T14:46:00",
+    "_update_type": "usupdate",
+    "vs_morning": {
+      "GER40": {
+        "price_morning": 24140.39,
+        "price_now": 24200.39,
+        "chg_pct": 0.249
+      },
+      "DJ30": {
+        "price_morning": 50100.88,
+        "price_now": 50279.88,
+        "chg_pct": 0.357
+      },
+      "SPX500": {
+        "price_morning": 7298.55,
+        "price_now": 7313.05,
+        "chg_pct": 0.199
+      }
+    },
+    "trigger": "USUpdate 14:46 - alle 3 +0.2-0.4% seit 08:06, MP-Levels unveraendert, weiter unter VAL/POC/VWAP/SMA200",
     "bias_morning": "WAIT",
     "bias_jetzt": "WAIT"
   },
   "analysis": {
     "_agent": "ANALYST",
-    "_last_run": "2026-06-11T08:08:00",
+    "_last_run": "2026-06-11T14:46:00",
     "_status": "ready",
-    "_update_type": "morning",
+    "_update_type": "usupdate",
     "marktphase": {
       "phase": "BALANCE",
       "begruendung": [
@@ -880,7 +897,7 @@
         "ok_long=0 ok_short=0 -> trade_freigabe=FALSE. Keine Schicht erreicht symmetrische Mehrheit (S2 nirgends <=-0.25). Makro -2 LEICHT_RISK_OFF (VIX dreht 18.9->19.9 hoch, Brent+Gold steigen, Bonds 4.53 weiter >4.5).",
         "WAIT: Struktur (2/3 P-Shape) vs Momentum (Preis unter VAL/VWAP/SMA200, ER null)-Konflikt. ECB Do 06-11 14:15/14:45 (Rate Fcst 2.40%) + USA PPI 14:30 blockieren Direktionalitaet vor NY. Trigger LONG: Rueckeroberung VAL+POC+VWAP mit ER-Anstieg. Trigger SHORT: Halt unter VAL mit ER-Beschleunigung."
       ],
-      "aktive_strategie": "WAIT - 2/3 P-Shape-Struktur aber Bruch unter VAL mit ER~0. Kein Setup vor ECB 14:15 + PPI 14:30.",
+      "aktive_strategie": "WAIT - 2/3 P-Shape aber DJ30+SPX weiter unter VAL, ER schwach. ECB Press Conf LIVE + PPI released - kein Setup.",
       "er_bestaetigung": "nein (alle ER schwach/null: GER -0.76 / DJ -0.27 / SPX -10.86)"
     },
     "regime": "EVENT-DRIVEN",
@@ -919,7 +936,7 @@
             }
           },
           "s2_struktur": {
-            "score": 0.0,
+            "score": 0,
             "raw": 0,
             "signale": {
               "vwap": -1,
@@ -958,7 +975,7 @@
           "vah": 24394.86,
           "val": 24030.66,
           "vwap": 24668.96,
-          "current": 24140.39,
+          "current": 24200.39,
           "onh": 24830.52,
           "onl": 23970.44,
           "pdh": 24771.64,
@@ -966,7 +983,7 @@
         },
         "alignment_score": -2,
         "_day_dir": "bearish",
-        "_chg_pct": -1.198
+        "_chg_pct": 0.249
       },
       "DJ30": {
         "bias": "NEUTRAL",
@@ -988,7 +1005,7 @@
             }
           },
           "s2_struktur": {
-            "score": 0.0,
+            "score": 0,
             "raw": 0,
             "signale": {
               "vwap": -1,
@@ -1027,7 +1044,7 @@
           "vah": 50933.55,
           "val": 50366.24,
           "vwap": 50912.91,
-          "current": 50100.88,
+          "current": 50279.88,
           "onh": 51349.45,
           "onl": 49786.88,
           "pdh": 51078.25,
@@ -1035,7 +1052,7 @@
         },
         "alignment_score": 0,
         "_day_dir": "bearish",
-        "_chg_pct": -1.516
+        "_chg_pct": 0.357
       },
       "SPX500": {
         "bias": "LEICHT_BEARISH",
@@ -1096,7 +1113,7 @@
           "vah": 7385.72,
           "val": 7318.74,
           "vwap": 7436.09,
-          "current": 7298.55,
+          "current": 7313.05,
           "onh": 7493.4,
           "onl": 7236.63,
           "pdh": 7469.02,
@@ -1104,7 +1121,7 @@
         },
         "alignment_score": -1,
         "_day_dir": "bearish",
-        "_chg_pct": -1.193
+        "_chg_pct": 0.199
       }
     },
     "inter_market": {
@@ -1112,72 +1129,72 @@
       "alle_bearish": false,
       "gemischt": true
     },
-    "summary": "Morning Do 06-11 08:08: Session-0 GER40 D-Shape(0.607) / DJ30+SPX P-Shape (2/3 bullische Struktur), ABER DJ30 (50101) und SPX (7298.55) unter VAL gebrochen, GER40 in VA-Unterhaelfte. Alle 3 unter VWAP-Anchored und SMA200, ER nahe null (GER -0.76 / DJ -0.27 / SPX -10.86 = Chop). align GER40 -2 / DJ30 0 / SPX -1. ok_long=0 ok_short=0 -> KEINE Freigabe (S2 nirgends <=-0.25). Makro -2 LEICHT_RISK_OFF (VIX dreht hoch 18.9->19.9, Brent 93.4 + Gold 4116 steigen, Bonds 4.53 >4.5). Phase BALANCE / Regime EVENT-DRIVEN. Struktur-vs-Momentum-Konflikt (P-Shape oben, Bruch unter VAL ohne ER). ECB heute 14:15/14:45 (Rate Fcst 2.40%) + USA PPI 14:30 = ZB-Hard-Stop. WAIT bis VAL/POC/VWAP-Rueckeroberung (LONG) oder VAL-Halt mit ER (SHORT)."
+    "summary": "USUpdate Do 06-11 14:46: Preise +0.2-0.4% seit Morning (GER 24200 / DJ 50280 / SPX 7313), MP-Levels UNVERAENDERT (gleiche Entwicklungs-Session). 2/3 P-Shape (DJ30 0.864 / SPX 0.833), GER40 D-Shape 0.607. DJ30 (50280<VAL 50366) + SPX (7313<VAL 7319) weiter knapp unter VAL, GER40 untere VA-Haelfte. Alle 3 weiter unter VWAP-Anchored + SMA200. align GER40 -2 / DJ30 0 / SPX -1 unveraendert. ok_long=0 ok_short=0 -> KEINE Freigabe. Makro -2 -> -3 LEICHT_RISK_OFF (VIX 19.9->21.7 ueber 20). Phase BALANCE / Regime EVENT-DRIVEN. ECB Press Conf LIVE 14:45 + PPI 14:30 = ZB-Hard-Stop. WAIT bis VAL/POC/VWAP-Rueckeroberung (LONG) oder VAL-Halt mit ER (SHORT)."
   },
   "captain": {
     "_agent": "CAPTAIN",
-    "_last_run": "2026-06-11T08:09:00",
+    "_last_run": "2026-06-11T14:46:00",
     "_status": "ready",
-    "_update_type": "morning",
+    "_update_type": "usupdate",
     "session_bias": "WAIT",
-    "aktive_strategie": "Keine (ZENTRALBANK-HARD-STOP: ECB heute 14:15/14:45)",
+    "aktive_strategie": "Keine (ZENTRALBANK-HARD-STOP: ECB Press Conference LIVE 14:45)",
     "alignment_score": -2,
     "trade_freigabe": false,
     "shape_konflikt": false,
     "konfidenz_details": {
-      "chart_gewichtung": 0.5,
-      "makro_gewichtung": 0.5,
-      "gewichtungs_grund": "BALANCE-Phase 50/50 (informativ) - ueberschrieben durch ZB-Hard-Stop",
-      "alignment_beitrag": 0.125,
-      "makro_beitrag": 0.0833,
-      "konfidenz_long": 0.0,
-      "konfidenz_short": 0.2083,
+      "chart_gewichtung": 0.3,
+      "makro_gewichtung": 0.7,
+      "gewichtungs_grund": "High-Impact Event <2h (ECB Press Conf 14:45 + PPI 14:30) = Prio1 30/70 (informativ) - ueberschrieben durch ZB-Hard-Stop",
+      "alignment_beitrag": 0.075,
+      "makro_beitrag": 0.175,
+      "konfidenz_long": 0,
+      "konfidenz_short": 0.25,
       "konfidenz_direction": "SHORT",
-      "konfidenz_final": 0.2083,
-      "entscheidung": "WAIT (ZENTRALBANK-HARD-STOP ECB 14:15/14:45 aktiv; zusaetzlich Konfidenz 0.208 SHORT < 0.40, abs(align)=2 < 4, ok_long=0 ok_short=0)"
+      "konfidenz_final": 0.25,
+      "entscheidung": "WAIT (ZENTRALBANK-HARD-STOP ECB Press Conf 14:45 aktiv; zusaetzlich Konfidenz 0.25 SHORT < 0.40, abs(align)=2 < 4, ok_long=0 ok_short=0)"
     },
-    "trade_plan": "WAIT-Setup Morning Do 06-11 08:09: ZENTRALBANK-HARD-STOP aktiv - ECB Main Refinancing Rate + Monetary Policy Statement 14:15, ECB Press Conference 14:45 (Rate Fcst 2.40% vs 2.15%, actual leer). Kein Trade bis Ergebnis veroeffentlicht. Zusaetzlich USA Core PPI + PPI 14:30 (high). Unabhaengig davon: Session-0 zeigt 2/3 P-Shape (DJ30 0.864 / SPX 0.833) bullische Struktur, GER40 D-Shape (0.607), ABER DJ30 (50101) + SPX (7298.55) unter VAL gebrochen, alle 3 unter VWAP + SMA200, ER nahe null (Chop). align -2/0/-1, Konfidenz 0.208 SHORT, ok_long=0 ok_short=0. WATCH nach ECB: LONG bei Rueckeroberung VAL+POC+VWAP mit ER-Anstieg (Ziel VAH/naked POCs GER 24395/24551, DJ 50934/50947, SPX 7386/7439). SHORT bei Halt unter VAL mit ER-Beschleunigung (Ziel PDL/Tagestief, fibo_0 GER 23970, DJ 49787, SPX 7237).",
+    "trade_plan": "WAIT-Setup USUpdate Do 06-11 14:46: ZENTRALBANK-HARD-STOP - ECB Press Conference LIVE 14:45 (actual leer). Main Refinancing Rate 14:15 + USA Core PPI/PPI 14:30 bereits released, Markt verdaut. Kein Trade bis Press Conf beendet. Preise +0.2-0.4% seit Morning aber MP unveraendert: DJ30 (50280) + SPX (7313) weiter knapp unter VAL (50366/7319), GER40 (24200) untere VA, alle 3 unter VWAP + SMA200, Konfidenz 0.25 SHORT, ok_long=0 ok_short=0. WATCH nach ECB: LONG bei Rueckeroberung VAL+POC+VWAP mit ER-Anstieg (Ziel VAH/naked POCs GER 24395/24551, DJ 50934/50947, SPX 7386/7439). SHORT bei Halt/Bruch unter VAL mit ER-Beschleunigung (Ziel PDL/fibo_0 GER 23970, DJ 49787, SPX 7237).",
     "instrument_prioritaet": [
       "GER40",
       "DJ30",
       "SPX500"
     ],
-    "entry_fenster": "WAIT - ECB 14:15/14:45 + PPI 14:30 abwarten (ZB-Hard-Stop). Kein Trade vor Event-Ergebnis.",
+    "entry_fenster": "WAIT - ECB Press Conf 14:45 LIVE abwarten (ZB-Hard-Stop). NY-Open 15:30. Kein Trade vor Press-Conf-Ende.",
     "max_risk_today": "0%",
     "max_trades_heute": 0,
     "trades_today": 0,
     "active_positions": [],
-    "notes": "ZENTRALBANK-HARD-STOP: ECB Main Refinancing Rate + Monetary Policy Statement Do 06-11 14:15, ECB Press Conference 14:45 (Rate Fcst 2.40% vs 2.15%) - kein Trade. USA PPI/Core PPI 14:30 zusaetzlich. Makro -2 LEICHT_RISK_OFF (VIX dreht hoch 18.9->19.9, Brent+Gold steigen). Struktur-vs-Momentum-Konflikt: 2/3 P-Shape aber Bruch unter VAL, ER null. abs(align)=2<4 + Konfidenz 0.208 SHORT -> WAIT auch ohne Event.",
+    "notes": "ZENTRALBANK-HARD-STOP: ECB Press Conference 14:45 LIVE (actual leer) - kein Trade. Rate 14:15 + USA PPI 14:30 released. Makro -2->-3 LEICHT_RISK_OFF (VIX 19.9->21.7 ueber 20). 2/3 P-Shape aber DJ30+SPX weiter unter VAL, +0.2-0.4% seit Morning. abs(align)=2<4 + Konfidenz 0.25 SHORT -> WAIT auch ohne Event.",
     "zentralbank_stop": true,
-    "zentralbank_stop_grund": "ECB Main Refinancing Rate + Monetary Policy Statement 14:15, ECB Press Conference 14:45 (Do 2026-06-11, actual leer)",
+    "zentralbank_stop_grund": "ECB Press Conference LIVE 14:45 (Do 2026-06-11, actual leer)",
     "warnungen": [
-      "ZENTRALBANK-HARD-STOP HEUTE: ECB Main Refinancing Rate + Monetary Policy Statement 14:15 + Press Conference 14:45 (Rate Fcst 2.40% vs 2.15%) - kein Trade",
-      "USA Core PPI + PPI Do 06-11 14:30 (high impact) = zusaetzliches Eventrisiko",
-      "Struktur-vs-Momentum-Konflikt: 2/3 P-Shape aber DJ30+SPX unter VAL gebrochen, ER null",
-      "Makro -2 LEICHT_RISK_OFF: VIX dreht 18.9->19.9 hoch, Brent 93.4 + Gold 4116 steigen, Bonds 4.53 >4.5",
-      "Alle 3 Instrumente unter VWAP-Anchored und SMA200 = uebergeordneter Abwaertsdruck"
+      "ZENTRALBANK-HARD-STOP: ECB Press Conference 14:45 LIVE (actual leer) - kein Trade bis beendet",
+      "VIX 19.87->21.71 seit Morning ueber 20 = erhoehte Vorsicht (intraday fallend von 22.22)",
+      "DJ30 + SPX weiter knapp unter VAL trotz +0.3% Erholung - kein VAL-Reclaim",
+      "Makro -3 LEICHT_RISK_OFF: Bonds 4.55 + DXY 100.16 steigend, Brent+Gold hoch",
+      "Alle 3 unter VWAP-Anchored + SMA200 = uebergeordneter Abwaertsdruck"
     ]
   },
   "orders": {
     "_agent": "EXECUTOR",
-    "_last_run": "2026-06-11T08:10:00",
+    "_last_run": "2026-06-11T14:46:00",
     "_status": "ready",
-    "_update_type": "morning",
+    "_update_type": "usupdate",
     "orders": [],
-    "validierung": "Morning 06-11 08:10: trade_freigabe=false (WAIT, ZENTRALBANK-HARD-STOP ECB 14:15/14:45). ok_long=0 ok_short=0, abs(align)=2<4, Konfidenz 0.208 SHORT<0.40. Keine Orders berechnet. Doc + Git Push trotzdem.",
+    "validierung": "USUpdate 06-11 14:46: trade_freigabe=false (WAIT, ZENTRALBANK-HARD-STOP ECB Press Conf 14:45 LIVE). ok_long=0 ok_short=0, abs(align)=2<4, Konfidenz 0.25 SHORT<0.40. Morning hatte 0 Orders - nichts zu validieren. Keine neuen Orders. Doc + Git Push trotzdem.",
     "summary": {
       "best_instrument": "NONE",
       "total_orders": 0,
       "trade_freigabe": false,
       "shape_konflikt": false,
       "warnings": [
-        "ZENTRALBANK-HARD-STOP HEUTE: ECB Main Refinancing Rate + Monetary Policy Statement 14:15 + Press Conference 14:45 (Rate Fcst 2.40% vs 2.15%) - kein Trade",
-        "USA Core PPI + PPI Do 06-11 14:30 (high impact) = zusaetzliches Eventrisiko",
-        "Struktur-vs-Momentum-Konflikt: 2/3 P-Shape aber DJ30+SPX unter VAL gebrochen, ER null",
-        "Makro -2 LEICHT_RISK_OFF: VIX dreht 18.9->19.9 hoch, Brent + Gold steigen, Bonds 4.53 >4.5",
-        "Alle 3 unter VWAP-Anchored und SMA200 = uebergeordneter Abwaertsdruck"
+        "ZENTRALBANK-HARD-STOP: ECB Press Conference 14:45 LIVE (actual leer) - kein Trade bis beendet",
+        "VIX 19.87->21.71 seit Morning ueber 20 = erhoehte Vorsicht (intraday fallend von 22.22)",
+        "DJ30 + SPX weiter knapp unter VAL trotz +0.3% Erholung - kein VAL-Reclaim",
+        "Makro -3 LEICHT_RISK_OFF: Bonds 4.55 + DXY 100.16 steigend, Brent+Gold hoch",
+        "Alle 3 unter VWAP-Anchored + SMA200 = uebergeordneter Abwaertsdruck"
       ],
-      "notes": "Morning Do 06-11 08:10: WAIT (ZB-Hard-Stop ECB, Konfidenz 0.208 SHORT, align -2/8, ok_long=0 ok_short=0). Keine Orders. 2/3 P-Shape aber DJ30+SPX unter VAL. WATCH nach ECB: LONG bei Rueckeroberung VAL+POC+VWAP (GER 24031/24252/24669, DJ 50366/50856/50913, SPX 7319/7375/7436). SHORT bei VAL-Halt mit ER (GER 24031, DJ 50366, SPX 7319)."
+      "notes": "USUpdate Do 06-11 14:46: WAIT (ZB-Hard-Stop ECB Press Conf LIVE, Konfidenz 0.25 SHORT, align -2/8, ok_long=0 ok_short=0). Keine Orders. Preise +0.2-0.4% seit Morning, MP unveraendert. WATCH nach ECB: LONG bei VAL+POC+VWAP-Reclaim (GER 24031/24252/24669, DJ 50366/50856/50913, SPX 7319/7375/7436). SHORT bei VAL-Bruch mit ER (GER 24031, DJ 50366, SPX 7319)."
     }
   },
   "monitor": {
