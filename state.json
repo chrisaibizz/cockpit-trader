@@ -953,54 +953,6 @@
     },
     "calendar": [
       {
-        "date": "2026-06-10",
-        "time": "14:30",
-        "currency": "USD",
-        "name": "Core CPI m/m",
-        "impact": "high",
-        "actual": "",
-        "forecast": "0.3%",
-        "previous": "0.4%",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-10",
-        "time": "14:30",
-        "currency": "USD",
-        "name": "Core CPI y/y",
-        "impact": "high",
-        "actual": "",
-        "forecast": "2.9%",
-        "previous": "2.8%",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-10",
-        "time": "14:30",
-        "currency": "USD",
-        "name": "CPI m/m",
-        "impact": "high",
-        "actual": "",
-        "forecast": "0.5%",
-        "previous": "0.6%",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-10",
-        "time": "14:30",
-        "currency": "USD",
-        "name": "CPI y/y",
-        "impact": "high",
-        "actual": "",
-        "forecast": "4.2%",
-        "previous": "3.8%",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-06-11",
         "time": "14:15",
         "currency": "EUR",
@@ -1441,54 +1393,6 @@
     }
   },
   "calendar": [
-    {
-      "date": "2026-06-10",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Core CPI m/m",
-      "impact": "high",
-      "actual": "",
-      "forecast": "0.3%",
-      "previous": "0.4%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-10",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "Core CPI y/y",
-      "impact": "high",
-      "actual": "",
-      "forecast": "2.9%",
-      "previous": "2.8%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-10",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "CPI m/m",
-      "impact": "high",
-      "actual": "",
-      "forecast": "0.5%",
-      "previous": "0.6%",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-10",
-      "time": "14:30",
-      "currency": "USD",
-      "name": "CPI y/y",
-      "impact": "high",
-      "actual": "",
-      "forecast": "4.2%",
-      "previous": "3.8%",
-      "better": null,
-      "source": "forexfactory"
-    },
     {
       "date": "2026-06-11",
       "time": "14:15",
