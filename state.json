@@ -1,7 +1,7 @@
 {
   "pipeline": {
-    "status": "running_morning",
-    "last_run": "2026-06-11T08:10:00",
+    "status": "completed_morning",
+    "last_run": "2026-06-11T08:11:00",
     "run_date": "2026-06-11",
     "run_type": "morning",
     "steps_completed": [
@@ -9,9 +9,11 @@
       "marketdata",
       "analyst",
       "captain",
-      "executor"
+      "executor",
+      "export",
+      "monitor"
     ],
-    "morning_last_run": "2026-06-11T08:10:00",
+    "morning_last_run": "2026-06-11T08:11:00",
     "usupdate_last_run": "2026-06-09T14:52:49",
     "result": "WAIT",
     "score": "-2/8 - 0 Orders - ZB-Hard-Stop ECB - Konfidenz 0.208 SHORT"
@@ -1180,21 +1182,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-10T08:16:30",
+    "_last_run": "2026-06-11T08:11:00",
     "_status": "ready",
     "_update_type": "morning",
     "session": "Morning",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260610_0816_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260611_0811_Morning.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK (Doc Briefing 2026-06-10, 0 Orders WAIT)",
-      "github_web": "OK (Push 1866193)",
-      "datenqualitaet": "OK (2 WARN: VWAP-Stdev-Bands + VP-DGT nicht geladen)",
-      "entscheidung": "WAIT - Score:-3/8 Konfidenz 0.188 SHORT (ok_long=0 ok_short=0)",
-      "anomalien": "OK (2 OBS: Indikatoren-Load, Report-Template fehlt)"
+      "sheet_doc": "OK (Doc Briefing 2026-06-11, 0 Orders WAIT)",
+      "github_web": "OK (Push 2d0fc97)",
+      "datenqualitaet": "OK (3 WARN: PCR n.v., VP-DGT, VWAP-Stdev-Bands)",
+      "entscheidung": "WAIT - Score:-2/8 ZB-Hard-Stop ECB (Konfidenz 0.208 SHORT)",
+      "anomalien": "OK (1 OBS: 2/3 P-Shape aber Preis unter VAL gebrochen)"
     }
   },
   "calendar": [
