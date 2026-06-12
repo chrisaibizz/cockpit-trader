@@ -1265,21 +1265,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-12T08:41:00",
+    "_last_run": "2026-06-12T14:52:00",
     "_status": "ready",
-    "_update_type": "morning",
-    "session": "Morning",
+    "_update_type": "usupdate",
+    "session": "USUpdate",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260612_0840_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260612_1450_USUpdate.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK (Doc 2026-06-12 existiert, 0 Orders WAIT, Cloud-Log)",
-      "github_web": "OK (Push 1254a69)",
-      "datenqualitaet": "OK (2 WARN: PCR ^PCALL delisted, VWAP-Stdev Fallback Anchored)",
-      "entscheidung": "WAIT/WATCH - Score:+5/8 DJ30 (nur 1/3 Schichten-OK, Konfidenz 0.51 LONG)",
-      "anomalien": "OK (4 OBS: POC-Migration fallend vs Breakout; SPX VP bearish vs Preis>VAH; F&G 77 Greed; DAX-Kassa flat vs CFD +1.6%)"
+      "sheet_doc": "OK (0 Live-Orders, journal-data.json 14:50, Cloud-Log)",
+      "github_web": "OK (Push a9e7340)",
+      "datenqualitaet": "OK (2 WARN: PCR delisted, VWAP Anchored Fallback)",
+      "entscheidung": "LONG-LEAN Score:+5/8 DJ30 (2/3 Schichten-OK, Konfidenz 0.475 LONG, 0 Live-Orders WATCH)",
+      "anomalien": "OK (3 OBS: GER40-Divergenz, SPX grenzwertig, POC-Migration 5-Tage fallend)"
     }
   },
   "calendar": [
