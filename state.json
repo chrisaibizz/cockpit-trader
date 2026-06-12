@@ -1266,21 +1266,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-11T14:47:00",
+    "_last_run": "2026-06-12T08:41:00",
     "_status": "ready",
-    "_update_type": "usupdate",
-    "session": "USUpdate",
+    "_update_type": "morning",
+    "session": "Morning",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260611_1447_USUpdate.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260612_0840_Morning.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK (Doc Briefing 2026-06-11 angehaengt, 0 Orders WAIT)",
-      "github_web": "OK (Push 9f4ff92)",
-      "datenqualitaet": "OK (2 WARN: ER nicht neu gemessen, VP/VWAP-Stdev Fallback)",
-      "entscheidung": "WAIT - Score:-2/8 ZB-Hard-Stop ECB Press Conf LIVE (Konfidenz 0.25 SHORT)",
-      "anomalien": "OK (2 OBS: 2/3 P-Shape aber Preis unter VAL; VIX 19.9->21.7 ueber 20)"
+      "sheet_doc": "OK (Doc 2026-06-12 existiert, 0 Orders WAIT, Cloud-Log)",
+      "github_web": "OK (Push 1254a69)",
+      "datenqualitaet": "OK (2 WARN: PCR ^PCALL delisted, VWAP-Stdev Fallback Anchored)",
+      "entscheidung": "WAIT/WATCH - Score:+5/8 DJ30 (nur 1/3 Schichten-OK, Konfidenz 0.51 LONG)",
+      "anomalien": "OK (4 OBS: POC-Migration fallend vs Breakout; SPX VP bearish vs Preis>VAH; F&G 77 Greed; DAX-Kassa flat vs CFD +1.6%)"
     }
   },
   "calendar": [
