@@ -1,12 +1,12 @@
 {
   "date": "2026-06-12",
-  "timestamp": "2026-06-12T08:35:00",
+  "timestamp": "2026-06-12T14:50:00",
   "phase": "AUSBRUCH",
   "regime": "RISK-ON",
-  "session_bias": "WAIT",
+  "session_bias": "LONG-LEAN",
   "alignment_score": 5,
   "makro_bias": "LEICHT_RISK_ON",
-  "trade_freigabe": false,
+  "trade_freigabe": true,
   "debrief": {
     "orders_checked": 0,
     "fill_rate": "n.a.",
@@ -19,7 +19,7 @@
   "instruments": [
     {
       "name": "GER40",
-      "bias": "LEICHT_BULLISH",
+      "bias": "NEUTRAL",
       "bias_score": 1,
       "score": 1,
       "poc": 24228.7,
@@ -27,18 +27,18 @@
       "val": 24073.75,
       "mp_shape": "D-Shape",
       "mp_shape_pos": 0.643,
-      "er": -0.13,
-      "er_1h": 61.01,
-      "vwap": 24627.41,
-      "current_price": 24595.79,
+      "er": -63.04,
+      "er_1h": 4.04,
+      "vwap": 24626.66,
+      "current_price": 24495.29,
       "price_vs_va": "ueber_VAH",
       "price_vs_vwap": "unter_VWAP",
       "onh": 24830.52,
       "onl": 23970.44,
       "pdh": 24771.64,
       "pdl": 24030.66,
-      "sma200": 24484.81,
-      "rsi": 59.66,
+      "sma200": 24466.05,
+      "rsi": 43.09,
       "mp_context": {
         "poc_migration": "fallend",
         "shape_sequenz": "D-Shape | D-Shape | D-Shape",
@@ -51,7 +51,7 @@
       },
       "schichten": {
         "s1": 0.1,
-        "s2": 0.2,
+        "s2": -0.2,
         "s3": 0.375,
         "bias_direction": "NONE",
         "alle_long_ok": false
@@ -74,12 +74,12 @@
         },
         {
           "level": "VWAP",
-          "price": "24627.41",
+          "price": "24626.66",
           "source": "VWAP Anchored"
         },
         {
           "level": "SMA200",
-          "price": "24484.81",
+          "price": "24466.05",
           "source": "SMA200"
         }
       ],
@@ -96,18 +96,18 @@
       "val": 49975.88,
       "mp_shape": "P-Shape",
       "mp_shape_pos": 0.688,
-      "er": 29.24,
+      "er": 18.53,
       "er_1h": 29.04,
-      "vwap": 50860.46,
-      "current_price": 50973.4,
+      "vwap": 50871.57,
+      "current_price": 51158.8,
       "price_vs_va": "ueber_VAH",
       "price_vs_vwap": "ueber_VWAP",
       "onh": 51340.45,
       "onl": 49786.88,
       "pdh": 51078.25,
       "pdl": 50366.24,
-      "sma200": 50700.53,
-      "rsi": 63.33,
+      "sma200": 50721.45,
+      "rsi": 57.15,
       "mp_context": {
         "poc_migration": "fallend",
         "shape_sequenz": "P-Shape | P-Shape | P-Shape",
@@ -121,7 +121,7 @@
       "schichten": {
         "s1": 0.6,
         "s2": 0.8,
-        "s3": 0.25,
+        "s3": 0.375,
         "bias_direction": "LONG",
         "alle_long_ok": true
       },
@@ -143,12 +143,12 @@
         },
         {
           "level": "VWAP",
-          "price": "50860.46",
+          "price": "50871.57",
           "source": "VWAP Anchored"
         },
         {
           "level": "SMA200",
-          "price": "50700.53",
+          "price": "50721.45",
           "source": "SMA200"
         }
       ],
@@ -165,18 +165,18 @@
       "val": 7274.28,
       "mp_shape": "D-Shape",
       "mp_shape_pos": 0.438,
-      "er": 1.26,
-      "er_1h": 11.47,
-      "vwap": 7422.88,
-      "current_price": 7404.8,
+      "er": 13.92,
+      "er_1h": 4.04,
+      "vwap": 7422.91,
+      "current_price": 7422.92,
       "price_vs_va": "ueber_VAH",
-      "price_vs_vwap": "unter_VWAP",
+      "price_vs_vwap": "am_VWAP",
       "onh": 7493.4,
       "onl": 7236.63,
       "pdh": 7469.02,
       "pdl": 7318.74,
-      "sma200": 7379.62,
-      "rsi": 55.56,
+      "sma200": 7380.91,
+      "rsi": 52.95,
       "mp_context": {
         "poc_migration": "fallend",
         "shape_sequenz": "D-Shape | P-Shape | P-Shape",
@@ -191,8 +191,8 @@
         "s1": 0.2,
         "s2": 0.2,
         "s3": 0.375,
-        "bias_direction": "NONE",
-        "alle_long_ok": false
+        "bias_direction": "LONG",
+        "alle_long_ok": true
       },
       "key_levels": [
         {
@@ -212,12 +212,12 @@
         },
         {
           "level": "VWAP",
-          "price": "7422.88",
+          "price": "7422.91",
           "source": "VWAP Anchored"
         },
         {
           "level": "SMA200",
-          "price": "7379.62",
+          "price": "7380.91",
           "source": "SMA200"
         }
       ],
@@ -226,23 +226,24 @@
     }
   ],
   "orders_count": 0,
-  "trade_plan": "WATCH-Setup Morning Fr 06-12 08:30: AUSBRUCH/RISK-ON - alle 3 ueber VAH + SMA200 + Pivot, Ichimoku 1H strong_bullish. ABER nur DJ30 mit voller LONG-Schichten-Freigabe (align +5, P-Shape 0.688, VWAP+ CVD+ ER29). GER40 (+1) + SPX500 (+2) ueber VAH aber S1 durch POC-Migration fallend (-2) gezogen, SPX S2 0.20<0.25. ok_long=1/3 -> Top-Down-Freigabe NICHT erreicht (2/3 noetig) -> WAIT. WATCH DJ30 LONG bei Retest VAH 50480 / VWAP 50860 / Pivot 50592 / SMA200 50701 (Entry-Zone 50480-50860), SL unter VAL 49976 / ONL 49787, Ziele naked POCs 50856/50947 + R1 51397 + ONH 51340. AKTIVIERUNG: wenn (a) GER40 ODER SPX intraday S1/S2 bestaetigt (POC-Reclaim mit ER-Anstieg, 2. Instrument) ODER (b) DJ30 sauberer Retest-Long mit ER-Halt -> dann 1 Trade HIGH 0.5%. INVALIDIERUNG Long-Lean: DJ30 Schluss unter VAL 49976 / Ruecklauf in VA aller 3. Vorsicht: Sentiment Extreme Greed 77, RSI DJ 63 ueberkauft, POC-Migration aller 3 fallend (5-Tage-Gegentrend), UoM Consumer Sentiment + Inflation Expectations 16:00 (medium).",
+  "trade_plan": "US-Update 14:50 -> LONG-LEAN (von WAIT): AUSBRUCH/RISK-ON haelt, MP-Levels unveraendert. DJ30 align +5 VOLLE LONG-Freigabe (P-Shape 0.688, +0.36% ueber VWAP 50872, ER 18.5, RSI 57 abgekuehlt). SPX align +2 erreicht Freigabe durch knappen VWAP-Reclaim 7423 (S2 0.20 grenzwertig, ER chop). GER40 align +1 NEUTRAL dreht ab (-0.41% unter VWAP 24627, ER -63, RSI 43). ok_long 1->2 (DJ30+SPX) -> trade_freigabe=TRUE. Konfidenz 0.475 LONG (Band 0.40-0.55 -> nur P-Shape=DJ30). DJ30 extended nahe ONH 51340 -> KEIN Chase, 0 Live-Orders. WATCH Limit-Long DJ30 Pullback-Zone 50480-50872 (VWAP/naked-POC 50856/VAH), SL <49900 (unter VAL 49976/ONL 49787), Ziele ONH 51340 / R2 51416 / fibo 51385 fuer NY-Open 15:30. INVALIDIERUNG: DJ30 Schluss unter VAL 49976. Vorsicht: GER40-Divergenz, SPX grenzwertig, POC-Migration 5-Tage fallend, UoM Sentiment 16:00 (Forecast 46.1<48.2 schwaecher).",
   "summary": {
     "best_instrument": "DJ30",
     "total_orders": 0,
     "warnings": [
-      "Nur 1/3 Instrumente mit voller Schichten-Freigabe (DJ30) - Regel verlangt 2/3 -> WAIT trotz Konfidenz 0.51 LONG",
-      "Sentiment Extreme Greed 77 (nahe 80) + RSI DJ30 63 ueberkauft = Vorsicht bei Longs ins Hoch",
-      "POC-Migration aller 3 fallend (5-Tage) = heutiger Overnight-Anstieg ist Gegentrend zur laufenden Korrektur",
-      "Gold +2.6% einziges Makro-Risk-Off-Signal trotz VIX-Crash",
-      "UoM Consumer Sentiment + Inflation Expectations 16:00 (medium) vor US-Schluss"
+      "DJ30 extended nahe ONH 51340 - kein R:R>=1.5 Chase -> WATCH Pullback VWAP 50872/VAH 50480",
+      "GER40 dreht ab: -0.41% unter VWAP 24627, ER 30M -63, RSI 43 - keine Long-Freigabe (Divergenz)",
+      "SPX500 Freigabe nur grenzwertig (S2 0.20, VWAP-Reclaim knapp, ER 1H 4 chop, CDV 1H negativ)",
+      "POC-Migration aller 3 weiter fallend (5-Tage) = Index-Anstieg bleibt Gegentrend",
+      "UoM Consumer Sentiment + Inflation Expectations 16:00 (medium, Forecast 46.1 < 48.2 schwaecher)"
     ],
-    "notes": "WAIT/WATCH - nur DJ30 voll long-frei (1/3, Regel 2/3). AUSBRUCH/RISK-ON, Konfidenz 0.51 LONG. WATCH DJ30 Retest-Long 50480-50860."
+    "notes": "US-Update 14:50: WAIT->LONG-LEAN. ok_long 2/3 (DJ30+SPX), Konfidenz 0.475 LONG. 0 Live-Orders (DJ30 extended nahe ONH). WATCH DJ30 Pullback-Long 50480-50872 fuer NY. Makro +3 LEICHT_RISK_ON (VIX 19.19)."
   },
   "stats": {
     "total": 0,
     "fill_rate": "n.a.",
     "tp1_rate": "n.a.",
-    "trend": "WAIT"
-  }
+    "trend": "LONG-LEAN (WATCH)"
+  },
+  "update_type": "usupdate"
 }
