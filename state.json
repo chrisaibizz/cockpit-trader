@@ -1,7 +1,7 @@
 {
   "pipeline": {
-    "status": "running_morning",
-    "last_run": "2026-06-16T08:17:00",
+    "status": "completed_morning",
+    "last_run": "2026-06-16T08:20:58",
     "run_date": "2026-06-16",
     "run_type": "morning",
     "steps_completed": [
@@ -9,7 +9,9 @@
       "marketdata",
       "analyst",
       "captain",
-      "executor"
+      "executor",
+      "export",
+      "monitor"
     ],
     "morning_last_run": "2026-06-16T08:17:00",
     "usupdate_last_run": "2026-06-12T14:50:00",
@@ -1348,21 +1350,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-12T14:52:00",
+    "_last_run": "2026-06-16T08:20:58",
     "_status": "ready",
-    "_update_type": "usupdate",
-    "session": "USUpdate",
+    "_update_type": "morning",
+    "session": "Morning",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260612_1450_USUpdate.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260616_0820_Morning.txt",
     "bereiche": {
       "lokale_prozesse": "OK",
-      "sheet_doc": "OK (0 Live-Orders, journal-data.json 14:50, Cloud-Log)",
-      "github_web": "OK (Push a9e7340)",
+      "sheet_doc": "OK (0 Live-Orders, Doc 2026-06-16, journal-data 08:19)",
+      "github_web": "OK (Push c5938da)",
       "datenqualitaet": "OK (2 WARN: PCR delisted, VWAP Anchored Fallback)",
-      "entscheidung": "LONG-LEAN Score:+5/8 DJ30 (2/3 Schichten-OK, Konfidenz 0.475 LONG, 0 Live-Orders WATCH)",
-      "anomalien": "OK (3 OBS: GER40-Divergenz, SPX grenzwertig, POC-Migration 5-Tage fallend)"
+      "entscheidung": "WAIT Score:4/8 (Konfidenz 0.367 LONG <0.40, ok_long 2/3, 0 Orders)",
+      "anomalien": "OK (2 OBS: CFD/Cash-Divergenz erwartet, Verlust-Streak stale)"
     }
   },
   "calendar": [
