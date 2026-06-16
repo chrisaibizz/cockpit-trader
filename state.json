@@ -1,32 +1,29 @@
 {
   "pipeline": {
-    "status": "completed_usupdate",
-    "last_run": "2026-06-12T14:50:00",
-    "run_date": "2026-06-12",
-    "run_type": "usupdate",
+    "status": "running_morning",
+    "last_run": "2026-06-16T08:17:00",
+    "run_date": "2026-06-16",
+    "run_type": "morning",
     "steps_completed": [
       "macro",
       "marketdata",
       "analyst",
       "captain",
-      "executor",
-      "export",
-      "monitor"
+      "executor"
     ],
-    "morning_last_run": "2026-06-12T08:35:00",
+    "morning_last_run": "2026-06-16T08:17:00",
     "usupdate_last_run": "2026-06-12T14:50:00",
-    "result": "LONG-LEAN DJ30 - 0 Live-Orders (extended nahe ONH) - WATCH Pullback VWAP 50872 - Konfidenz 0.475 LONG - 2/3 Schichten-OK",
-    "score": "+5/8 (DJ30) - 0 Orders - WATCH DJ30 Long-Lean - Konfidenz 0.51 LONG - nur 1/3 Schichten-OK"
+    "result": "WAIT - Konfidenz 0.367 LONG <0.40 - ok_long 2/3 (DJ30+SPX align 4) aber Makro +2 schwach + alle 3 extended + FOMC morgen - 0 Orders",
+    "score": "+4/8 (DJ30/SPX500) - 0 Orders - WAIT - Konfidenz 0.367 LONG - 2/3 Schichten-OK"
   },
   "macro": {
     "_agent": "MACRO",
-    "_last_run": "2026-06-12T14:50:00",
+    "_last_run": "2026-06-16T08:06:04",
     "_status": "ready",
-    "_update_type": "usupdate",
+    "_update_type": "morning",
     "fear_greed": {
-      "value": 77,
-      "classification": "Extreme Greed",
-      "yesterday": 51,
+      "value": 56,
+      "classification": "Greed",
       "trend": "steigend",
       "source": "synthetic_stock (VIX+Bonds+DXY+Gold)"
     },
@@ -36,36 +33,36 @@
       "error": "^PCALL nicht bei Yahoo verfuegbar"
     },
     "vix": {
-      "value": 19.19,
+      "value": 17.68,
       "prev": 19.44,
       "level": "normal",
       "trend": "fallend",
-      "bias_einfluss": "leicht bullish (VIX 19.44->19.19 weiter fallend, level<20 normal)"
+      "bias_einfluss": "leicht bullish (VIX 19.44->17.68 fallend, level<20 normal)"
     },
     "bonds_10y": {
-      "yield": 4.477,
+      "yield": 4.487,
       "prev": 4.463,
       "trend": "steigend",
-      "interpretation": "zinsdruck_leicht_hoeher_aber_<4.5"
+      "interpretation": "zinsdruck_moderat (4.487 knapp unter 4.5)"
     },
     "dxy": {
-      "value": 99.843,
-      "prev": 99.86,
-      "trend": "fallend",
+      "value": 99.781,
+      "prev": 99.75,
+      "trend": "steigend",
       "interpretation": "dollar_schwach_<100"
     },
     "oil_wti": {
-      "value": 88.28,
-      "prev": 90.38,
+      "value": 82.72,
+      "prev": 83.17,
       "trend": "fallend",
       "interpretation": "inflationsdruck_moderat",
       "instrument": "Brent (BZ=F)"
     },
     "gold": {
-      "value": 4197.0,
-      "prev": 4090.3,
+      "value": 4340.7,
+      "prev": 4328.0,
       "trend": "steigend",
-      "interpretation": "risk_off"
+      "interpretation": "leicht_risk_off (+0.3% schwach)"
     },
     "fred": {
       "fed_funds": {
@@ -84,57 +81,57 @@
         "value": 4.3,
         "interpretation": "normal"
       },
-      "last_updated": "2026-06-12 08:01"
+      "last_updated": "2026-06-16 08:02"
     },
     "scoring": {
-      "basis_score": 3,
+      "basis_score": 2,
       "fred_score": 0,
-      "bullish_punkte": 4,
+      "bullish_punkte": 3,
       "bearish_punkte": 1,
-      "gesamt_score": 3,
+      "gesamt_score": 2,
       "makro_bias": "LEICHT_RISK_ON",
-      "erklaerung": "USUpdate Fr 06-12 14:50: Basis +3 (FaG 77 +1 / PCR n.v. 0 / VIX 19.19 level<20 0 / VIX 19.44->19.19 fallend +1 / Bonds 4.463->4.477 steigend (<4.5) 0 / DXY 99.86->99.843 fallend +1 / Brent fallend +1 / Gold steigend -1) + FRED 0 = +3 LEICHT_RISK_ON. Score 4->3: Bonds drehen leicht hoch (4.477) und verlieren den +1 vom Morning. VIX/DXY weiter entspannt. Gold bleibt einziger Gegenwind."
+      "erklaerung": "Morning Di 06-16 08:05: Basis +2 (FaG 56 0 / PCR n.v. 0 / VIX 17.68 level<20 0 / VIX 19.44->17.68 fallend +1 / Bonds 4.463->4.487 steigend (<4.5) 0 / DXY 99.75->99.781 steigend (<104) 0 / Brent 83.17->82.72 fallend +1 / Gold 4328->4340.7 +0.3% zu schwach fuer stark-steigend 0) + FRED 0 (FedFunds 3.63 neutral 0 / YieldCurve 0.4 steil +1 / CPI 4.27 hoch -1) = +2 LEICHT_RISK_ON. VIX-Crash 19.4->17.7 = Hauptentspannung. Gegenwind: CPI 4.27 hoch, Gold/Bonds latenter Risk-Off-Unterton."
     },
     "warnungen": [
-      "Fear&Greed 77 (Extreme Greed) nahe Schwelle 80 - Sentiment ueberhitzt, Vorsicht bei Longs ins Hoch",
-      "Gold 4090->4197 (+2.6%) steigend = einziges Risk-Off-Signal trotz VIX-Crash",
+      "FOMC morgen 17.06. 20:00 (high impact, actual leer) - ZB-Blackout-Warnung, WAIT morgen erwartet",
       "Put/Call Ratio nicht verfuegbar (^PCALL delisted bei Yahoo) - Signal faellt aus",
-      "CPI 4.27% weiter hoch (FRED) = Fed bleibt unter Inflationsdruck trotz fallender FedFunds 3.63%"
+      "CPI 4.27% weiter hoch (FRED) - Fed bleibt unter Inflationsdruck trotz fallender FedFunds 3.63%",
+      "Gold 4328->4340.7 (+0.3%) + Bonds 4.487 (knapp <4.5) - latenter Risk-Off-Unterton trotz VIX-Crash"
     ]
   },
   "market": {
     "_agent": "MARKETDATA",
-    "_last_run": "2026-06-12T14:50:00",
+    "_last_run": "2026-06-16T08:17:00",
     "_status": "ready",
-    "_update_type": "usupdate",
-    "timestamp": "2026-06-12 14:50",
+    "_update_type": "morning",
+    "timestamp": "2026-06-16 08:17",
     "instruments": {
       "GER40": {
-        "last_run": "2026-06-12T14:50:00",
-        "price": 24495.29,
-        "poc": 24228.7,
-        "vah": 24314.79,
-        "val": 24073.75,
-        "mp_shape_pos": 0.643,
-        "va_breite_pct": 0.99,
-        "mp_shape": "D-Shape",
-        "mp_shape_bias": "NEUTRAL",
-        "price_vs_va": "ueber_VAH",
-        "vwap": 24626.66,
+        "last_run": "2026-06-16T08:17:00",
+        "price": 24921.69,
+        "poc": 25037.07,
+        "vah": 25069.45,
+        "val": 24914.05,
+        "mp_shape_pos": 0.792,
+        "va_breite_pct": 0.62,
+        "mp_shape": "P-Shape",
+        "mp_shape_bias": "BULLISCH",
+        "price_vs_va": "unterer_VA_am_VAL",
+        "vwap": 24650.07,
         "vwap_upper": null,
         "vwap_lower": null,
         "vwap_source": "VWAP Anchored (EU-Stdev-Bands nicht geladen)",
-        "price_vs_vwap": "unter_VWAP",
-        "er": -63.04,
-        "er_1h": 61.01,
-        "er_qualitaet": "kein_trend_chop_30M_aber_1H_stark",
-        "sma200": 24466.05,
+        "price_vs_vwap": "ueber_VWAP",
+        "er": 31.11,
+        "er_1h": 18.03,
+        "er_qualitaet": "starker_trend_30M_>30",
+        "sma200": 24563.81,
         "ichimoku": {
-          "tenkan": 24565.91,
-          "kijun": 24335.39,
-          "kumo_a": 24450.65,
-          "kumo_b": 24318.43,
-          "position": "above"
+          "tenkan": 24886.18,
+          "kijun": 24975.98,
+          "kumo_a": 24931.08,
+          "kumo_b": 24641.95,
+          "position": "inside"
         },
         "fibo": {
           "level_0": 23970.44,
@@ -149,19 +146,19 @@
           "r2": 24859.54,
           "s2": 23712.56
         },
-        "cdv": 13763.99,
-        "smc": 24496.29,
+        "cdv": 9529.52,
+        "smc": 24926.69,
         "smc_bias": "neutral",
-        "rsi": 43.09,
+        "rsi": 56.28,
         "macd_hist": null,
-        "pivot": 24415.77,
-        "pdh": 24771.64,
-        "pdl": 24030.66,
-        "onh": 24830.52,
-        "onl": 23970.44,
-        "vp_poc": 24564.68,
-        "vp_vah": 25089.0,
-        "vp_val": 24375.92,
+        "pivot": 24939.08,
+        "pdh": 25108.3,
+        "pdl": 24849.3,
+        "onh": 25108.3,
+        "onl": 24849.3,
+        "vp_poc": 24567.82,
+        "vp_vah": 24960.38,
+        "vp_val": 24380.07,
         "vwap_us": null,
         "vwap_swing": null,
         "squeeze": {
@@ -358,41 +355,37 @@
           }
         ],
         "mp_context": {
-          "poc_migration": "fallend",
-          "shape_sequenz": "D-Shape | D-Shape | D-Shape",
-          "naked_pocs": [
-            24550.83,
-            24811.07,
-            25110.09
-          ],
-          "composite_poc": 24595.89
+          "poc_migration": "steigend",
+          "shape_sequenz": "P-Shape | Trend Day | D-Shape",
+          "naked_pocs": [],
+          "composite_poc": 24905.0
         }
       },
       "DJ30": {
-        "last_run": "2026-06-12T14:50:00",
-        "price": 51158.8,
-        "poc": 50322.38,
-        "vah": 50479.88,
-        "val": 49975.88,
-        "mp_shape_pos": 0.688,
-        "va_breite_pct": 1.0,
-        "mp_shape": "P-Shape",
-        "mp_shape_bias": "BULLISCH",
-        "price_vs_va": "ueber_VAH",
-        "vwap": 50871.57,
+        "last_run": "2026-06-16T08:17:00",
+        "price": 51839.45,
+        "poc": 51795.38,
+        "vah": 51943.05,
+        "val": 51701.4,
+        "mp_shape_pos": 0.389,
+        "va_breite_pct": 0.47,
+        "mp_shape": "Trend Day",
+        "mp_shape_bias": "DIREKTIONAL",
+        "price_vs_va": "in_VA_oberer_Bereich",
+        "vwap": 50968.51,
         "vwap_upper": null,
         "vwap_lower": null,
         "vwap_source": "VWAP Anchored (EU-Stdev-Bands nicht geladen)",
         "price_vs_vwap": "ueber_VWAP",
-        "er": 18.53,
-        "er_1h": 29.04,
+        "er": 18.25,
+        "er_1h": 13.89,
         "er_qualitaet": "trend_moderat",
-        "sma200": 50721.45,
+        "sma200": 51029.46,
         "ichimoku": {
-          "tenkan": 50955.4,
-          "kijun": 50562.88,
-          "kumo_a": 50759.14,
-          "kumo_b": 50416.88,
+          "tenkan": 51807.3,
+          "kijun": 51864.3,
+          "kumo_a": 51835.8,
+          "kumo_b": 51458.93,
           "position": "above"
         },
         "fibo": {
@@ -408,19 +401,19 @@
           "r2": 51350.95,
           "s2": 49507.52
         },
-        "cdv": 210975.89,
-        "smc": 51158.4,
+        "cdv": 225695.12,
+        "smc": 51840.45,
         "smc_bias": "neutral",
-        "rsi": 57.15,
+        "rsi": 53.77,
         "macd_hist": null,
-        "pivot": 50591.9,
-        "pdh": 51078.25,
-        "pdl": 50366.24,
-        "onh": 51340.45,
-        "onl": 49786.88,
-        "vp_poc": 50895.56,
-        "vp_vah": 51332.93,
-        "vp_val": 50417.51,
+        "pivot": 51788.3,
+        "pdh": 52050.45,
+        "pdl": 51513.45,
+        "onh": 52050.45,
+        "onl": 51513.45,
+        "vp_poc": 50907.35,
+        "vp_vah": 51348.74,
+        "vp_val": 50307.5,
         "vwap_us": null,
         "vwap_swing": null,
         "squeeze": {
@@ -622,41 +615,37 @@
           }
         ],
         "mp_context": {
-          "poc_migration": "fallend",
-          "shape_sequenz": "P-Shape | P-Shape | P-Shape",
-          "naked_pocs": [
-            50856.19,
-            50947.14,
-            51632.21
-          ],
-          "composite_poc": 50897.44
+          "poc_migration": "steigend",
+          "shape_sequenz": "Trend Day | b-Shape | P-Shape",
+          "naked_pocs": [],
+          "composite_poc": 51250.0
         }
       },
       "SPX500": {
-        "last_run": "2026-06-12T14:50:00",
-        "price": 7422.92,
-        "poc": 7307.23,
-        "vah": 7349.59,
-        "val": 7274.28,
-        "mp_shape_pos": 0.438,
-        "va_breite_pct": 1.03,
+        "last_run": "2026-06-16T08:17:00",
+        "price": 7568.25,
+        "poc": 7534.55,
+        "vah": 7562.96,
+        "val": 7495.82,
+        "mp_shape_pos": 0.577,
+        "va_breite_pct": 0.89,
         "mp_shape": "D-Shape",
         "mp_shape_bias": "NEUTRAL",
         "price_vs_va": "ueber_VAH",
-        "vwap": 7422.91,
+        "vwap": 7434.01,
         "vwap_upper": null,
         "vwap_lower": null,
         "vwap_source": "VWAP Anchored (EU-Stdev-Bands nicht geladen)",
-        "price_vs_vwap": "am_VWAP",
-        "er": 13.92,
-        "er_1h": 4.04,
-        "er_qualitaet": "kein_trend_chop",
-        "sma200": 7380.91,
+        "price_vs_vwap": "ueber_VWAP",
+        "er": 26.11,
+        "er_1h": -24.16,
+        "er_qualitaet": "trend_30M_aber_1H_pullback_neg",
+        "sma200": 7422.92,
         "ichimoku": {
-          "tenkan": 7409.8,
-          "kijun": 7346.73,
-          "kumo_a": 7378.27,
-          "kumo_b": 7331.72,
+          "tenkan": 7566.73,
+          "kijun": 7559.95,
+          "kumo_a": 7563.34,
+          "kumo_b": 7483.75,
           "position": "above"
         },
         "fibo": {
@@ -672,19 +661,19 @@
           "r2": 7500.38,
           "s2": 7165.76
         },
-        "cdv": 55228.34,
-        "smc": 7422.92,
+        "cdv": 106706.28,
+        "smc": 7568.25,
         "smc_bias": "neutral",
-        "rsi": 52.95,
+        "rsi": 55.45,
         "macd_hist": null,
-        "pivot": 7354.79,
-        "pdh": 7469.02,
-        "pdl": 7318.74,
-        "onh": 7493.4,
-        "onl": 7236.63,
-        "vp_poc": 7415.52,
-        "vp_vah": 7468.6,
-        "vp_val": 7295.61,
+        "pivot": 7551.32,
+        "pdh": 7593.95,
+        "pdl": 7490.65,
+        "onh": 7593.95,
+        "onl": 7490.65,
+        "vp_poc": 7418.01,
+        "vp_vah": 7468.5,
+        "vp_val": 7307.69,
         "vwap_us": null,
         "vwap_swing": null,
         "squeeze": {
@@ -886,14 +875,10 @@
           }
         ],
         "mp_context": {
-          "poc_migration": "fallend",
-          "shape_sequenz": "D-Shape | P-Shape | P-Shape",
-          "naked_pocs": [
-            7374.56,
-            7438.54,
-            7561.18
-          ],
-          "composite_poc": 7455.03
+          "poc_migration": "steigend",
+          "shape_sequenz": "D-Shape | b-Shape | D-Shape",
+          "naked_pocs": [],
+          "composite_poc": 7440.0
         }
       }
     },
@@ -1047,84 +1032,84 @@
   },
   "analysis": {
     "_agent": "ANALYST",
-    "_last_run": "2026-06-12T14:50:00",
+    "_last_run": "2026-06-16T08:17:00",
     "_status": "ready",
-    "_update_type": "usupdate",
+    "_update_type": "morning",
     "marktphase": {
       "phase": "AUSBRUCH",
       "begruendung": [
-        "USUpdate Fr 06-12 14:50: AUSBRUCH/RISK-ON haelt - alle 3 weiter ueber VAH+SMA200+Pivot, MP-Levels unveraendert.",
-        "DJ30 align +5 VOLLE LONG-Freigabe (P-Shape 0.688, +0.36% ueber VWAP 50872, ER 18.5, RSI 57 abgekuehlt von 63). Staerkstes Instrument.",
-        "SPX500 align +2: reclaimt VWAP 7423 knapp -> S2 0.20 (grenzwertig) -> LONG-Freigabe erreicht. ABER ER 30M 13.9 + ER 1H 4.04 chop + CDV 1H negativ = schwache Bestaetigung.",
-        "GER40 align +1 NEUTRAL: dreht ab -0.41% unter VWAP 24627, ER 30M -63 stark negativ, RSI 43 -> S2 negativ, keine Long-Freigabe (aber noch ueber VAH).",
-        "ok_long=2/3 (DJ30+SPX) -> Top-Down trade_freigabe=TRUE (Regel 2/3). Makro +3 LEICHT_RISK_ON (VIX 19.19). Gegenwind: GER40-Divergenz, SPX nur grenzwertig, POC-Migration aller 3 weiter fallend (5-Tage-Gegentrend), UoM Sentiment 16:00 (Forecast 46.1<48.2 = schwaecher)."
+        "Morning Di 06-16 08:25: AUSBRUCH/RISK-ON. Live-CFDs ueber Nacht stark gestiegen (vs Cash-Close: SP500 +1.8% / DJ30 +1.2% / GER40 +1.2%), POC-Migration jetzt bei ALLEN 3 steigend (vorher fallend) - 5-Tage-Aufwaertstrend bestaetigt.",
+        "SP500 align +4 VOLLE LONG-Freigabe: ueber VAH 7563 (+2), POC 7535 (+1), POC-Migration steigend (+2), ueber VWAP/SMA200/Pivot, ER 26, CDV bullish, Ichimoku 1H strong_bullish (+4). ABER extended ueber Value + ER 1H -24 (1H-Pullback).",
+        "DJ30 align +4 VOLLE LONG-Freigabe: Trend Day (0), oberer VA +1, POC +1, Migration steigend +2, ER 18.3, ER1H 13.9, ueber VWAP 50969/Pivot, Ichimoku 1H ueber Kumo. Inside VA = sauberster Entry-Kontext.",
+        "GER40 align +2 LEICHT_BULLISH NEUTRAL-Freigabe: P-Shape (+3) + Migration steigend (+2) stark, ER 31 starker Trend, ABER Preis am VAL 24914 (unterer VA -1, unter POC -1), unter Pivot 24939, CDV baerisch, Ichimoku 1H im Kumo (S3 -1) -> S3 negativ, keine Long-Freigabe.",
+        "ok_long=2/3 (DJ30+SPX500) -> Top-Down trade_freigabe=TRUE. Makro nur +2 LEICHT_RISK_ON (VIX-Crash 19.4->17.7, aber CPI 4.27 hoch, Gold/Bonds Risk-Off-Unterton). Gegenwind: alle 3 extended nach Rally, GER40-Divergenz (am VAL), SP500 ER1H neg, FOMC MORGEN 20:00."
       ],
-      "aktive_strategie": "Breakout-Pullback-Long (DJ30 voll, SPX grenzwertig) - Retest VWAP/VAH abwarten, kein Chase nahe ONH",
-      "er_bestaetigung": "gemischt (DJ30 ER 18.5 moderat / SPX 30M 14 1H 4 chop / GER40 -63 negativ)"
+      "aktive_strategie": "Breakout-Pullback-Long (DJ30 sauber inside VA, SPX500 extended) - Retest VWAP/VAH/POC abwarten, kein Chase ins Hoch vor FOMC",
+      "er_bestaetigung": "gemischt (GER40 31 stark / SPX 26 / DJ30 18 moderat; SPX ER1H -24 neg = 1H-Pullback)"
     },
     "regime": "RISK-ON",
     "risk_level": "MEDIUM",
     "top_down": {
-      "alignment_score": 5,
-      "alignment_score_abs": 5,
+      "alignment_score": 4,
+      "alignment_score_abs": 4,
       "best_direction": "LONG",
       "trade_freigabe": true,
       "ok_count_long": 2,
       "ok_count_short": 0,
       "best_instrument": "DJ30",
       "m30_entry_zone": {
-        "preis_von": 50480.0,
-        "preis_bis": 50872.0
+        "preis_von": 51701.0,
+        "preis_bis": 51943.0
       }
     },
     "instruments": {
       "GER40": {
-        "bias": "NEUTRAL",
-        "bias_score": 1,
-        "er_wert": -63.04,
-        "mp_shape": "D-Shape",
-        "mp_shape_pos": 0.643,
+        "bias": "LEICHT_BULLISH",
+        "bias_score": 2,
+        "er_wert": 31.11,
+        "mp_shape": "P-Shape",
+        "mp_shape_pos": 0.792,
         "schichten": {
           "s1_kontext": {
-            "score": 0.1,
-            "raw": 1,
+            "score": 0.3,
+            "raw": 3,
             "signale": {
-              "mp_shape": 0,
-              "preis_vs_va": 2,
-              "preis_vs_poc": 1,
-              "poc_migration": -2,
+              "mp_shape": 3,
+              "preis_vs_va": -1,
+              "preis_vs_poc": -1,
+              "poc_migration": 2,
               "shape_sequenz": 0,
               "vp_hvn_lvn": 0
             }
           },
           "s2_struktur": {
-            "score": -0.2,
-            "raw": -1,
+            "score": 0.6,
+            "raw": 3,
             "signale": {
-              "vwap": -1,
-              "cvd": 1,
-              "er_trend": -1,
-              "er_qualitaet": 0,
-              "er_1h": 0
+              "vwap": 1,
+              "cvd": -1,
+              "er_trend": 1,
+              "er_qualitaet": 1,
+              "er_1h": 1
             }
           },
           "s3_entry": {
-            "score": 0.375,
-            "raw": 3,
+            "score": -0.125,
+            "raw": -1,
             "signale": {
-              "ichimoku": 1,
+              "ichimoku": -1,
               "sma200": 1,
               "smc": 0,
               "sr_channel": 0,
-              "pivot": 1,
+              "pivot": -1,
               "autofibo": 0,
               "rsi": 0,
               "squeeze": 0
             }
           },
-          "freigabe_s1": false,
-          "freigabe_s2": false,
-          "freigabe_s3": true,
+          "freigabe_s1": true,
+          "freigabe_s2": true,
+          "freigabe_s3": false,
           "freigabe_s1_short": false,
           "freigabe_s2_short": false,
           "freigabe_s3_short": false,
@@ -1134,44 +1119,44 @@
           "bias_direction": "NONE"
         },
         "key_levels": {
-          "poc": 24228.7,
-          "vah": 24314.79,
-          "val": 24073.75,
-          "vwap": 24626.66,
-          "current": 24495.29,
-          "onh": 24830.52,
-          "onl": 23970.44,
-          "pdh": 24771.64,
-          "pdl": 24030.66
+          "poc": 25037.07,
+          "vah": 25069.45,
+          "val": 24914.05,
+          "vwap": 24650.07,
+          "current": 24921.69,
+          "onh": 25108.3,
+          "onl": 24849.3,
+          "pdh": 25108.3,
+          "pdl": 24849.3
         },
-        "alignment_score": 1,
+        "alignment_score": 2,
         "_day_dir": "bullish"
       },
       "DJ30": {
         "bias": "BULLISH",
-        "bias_score": 5,
-        "er_wert": 18.53,
-        "mp_shape": "P-Shape",
-        "mp_shape_pos": 0.688,
+        "bias_score": 4,
+        "er_wert": 18.25,
+        "mp_shape": "Trend Day",
+        "mp_shape_pos": 0.389,
         "schichten": {
           "s1_kontext": {
-            "score": 0.6,
-            "raw": 6,
+            "score": 0.4,
+            "raw": 4,
             "signale": {
-              "mp_shape": 3,
-              "preis_vs_va": 2,
+              "mp_shape": 0,
+              "preis_vs_va": 1,
               "preis_vs_poc": 1,
-              "poc_migration": -2,
-              "shape_sequenz": 2,
+              "poc_migration": 2,
+              "shape_sequenz": 0,
               "vp_hvn_lvn": 0
             }
           },
           "s2_struktur": {
-            "score": 0.8,
-            "raw": 4,
+            "score": 0.6,
+            "raw": 3,
             "signale": {
               "vwap": 1,
-              "cvd": 1,
+              "cvd": 0,
               "er_trend": 1,
               "er_qualitaet": 0,
               "er_1h": 1
@@ -1203,45 +1188,45 @@
           "bias_direction": "LONG"
         },
         "key_levels": {
-          "poc": 50322.38,
-          "vah": 50479.88,
-          "val": 49975.88,
-          "vwap": 50871.57,
-          "current": 51158.8,
-          "onh": 51340.45,
-          "onl": 49786.88,
-          "pdh": 51078.25,
-          "pdl": 50366.24
+          "poc": 51795.38,
+          "vah": 51943.05,
+          "val": 51701.4,
+          "vwap": 50968.51,
+          "current": 51839.45,
+          "onh": 52050.45,
+          "onl": 51513.45,
+          "pdh": 52050.45,
+          "pdl": 51513.45
         },
-        "alignment_score": 5,
+        "alignment_score": 4,
         "_day_dir": "bullish"
       },
       "SPX500": {
-        "bias": "LEICHT_BULLISH",
-        "bias_score": 2,
-        "er_wert": 13.92,
+        "bias": "BULLISH",
+        "bias_score": 4,
+        "er_wert": 26.11,
         "mp_shape": "D-Shape",
-        "mp_shape_pos": 0.438,
+        "mp_shape_pos": 0.577,
         "schichten": {
           "s1_kontext": {
-            "score": 0.2,
-            "raw": 2,
+            "score": 0.5,
+            "raw": 5,
             "signale": {
               "mp_shape": 0,
               "preis_vs_va": 2,
               "preis_vs_poc": 1,
-              "poc_migration": -2,
-              "shape_sequenz": 1,
+              "poc_migration": 2,
+              "shape_sequenz": 0,
               "vp_hvn_lvn": 0
             }
           },
           "s2_struktur": {
-            "score": 0.2,
-            "raw": 1,
+            "score": 0.6,
+            "raw": 3,
             "signale": {
-              "vwap": 0,
+              "vwap": 1,
               "cvd": 1,
-              "er_trend": 0,
+              "er_trend": 1,
               "er_qualitaet": 0,
               "er_1h": 0
             }
@@ -1272,17 +1257,17 @@
           "bias_direction": "LONG"
         },
         "key_levels": {
-          "poc": 7307.23,
-          "vah": 7349.59,
-          "val": 7274.28,
-          "vwap": 7422.91,
-          "current": 7422.92,
-          "onh": 7493.4,
-          "onl": 7236.63,
-          "pdh": 7469.02,
-          "pdl": 7318.74
+          "poc": 7534.55,
+          "vah": 7562.96,
+          "val": 7495.82,
+          "vwap": 7434.01,
+          "current": 7568.25,
+          "onh": 7593.95,
+          "onl": 7490.65,
+          "pdh": 7593.95,
+          "pdl": 7490.65
         },
-        "alignment_score": 2,
+        "alignment_score": 4,
         "_day_dir": "bullish"
       }
     },
@@ -1291,72 +1276,74 @@
       "alle_bearish": false,
       "gemischt": true
     },
-    "summary": "USUpdate Fr 06-12 14:50 AUSBRUCH/RISK-ON: MP-Levels unveraendert, alle 3 ueber VAH+SMA200. DJ30 align +5 VOLLE LONG-Freigabe (P-Shape 0.688, +0.36% ueber VWAP, ER 18.5, RSI 57). SPX align +2 erreicht LONG-Freigabe durch knappen VWAP-Reclaim (S2 0.20 grenzwertig, ER chop). GER40 align +1 NEUTRAL dreht ab (-0.41% unter VWAP, ER -63). ok_long=2/3 -> Top-Down trade_freigabe=TRUE. Makro +3 LEICHT_RISK_ON. Konfidenz 0.475 LONG (Band 0.40-0.55 -> nur P-Shape=DJ30). Preis extended nahe ONH 51340 -> WATCH Pullback. Vorsicht: GER40-Divergenz, SPX grenzwertig, POC-Migration 5-Tage fallend, UoM Sentiment 16:00."
+    "summary": "Morning Di 06-16 08:25 AUSBRUCH/RISK-ON: Live-CFDs ueber Nacht stark gestiegen, POC-Migration jetzt alle 3 steigend. SP500 align +4 (ueber VAH, Ichimoku 1H strong_bullish) + DJ30 align +4 (Trend Day, inside VA, sauberster Entry) = ok_long 2/3 -> Top-Down trade_freigabe TRUE. GER40 align +2 NEUTRAL (P-Shape stark, aber Preis am VAL, unter Pivot, CDV baerisch, Ichimoku 1H im Kumo -> S3 fail). ABER Makro nur +2 LEICHT_RISK_ON -> Konfidenz 0.367 LONG < 0.40-Schwelle -> CAPTAIN WAIT. Alle 3 extended nach Rally, FOMC MORGEN 20:00 (high). Re-Check 14:00 US-Update auf Pullback DJ30 VWAP/VAH 50969-51943."
   },
   "captain": {
     "_agent": "CAPTAIN",
-    "_last_run": "2026-06-12T14:50:00",
+    "_last_run": "2026-06-16T08:17:00",
     "_status": "ready",
-    "_update_type": "usupdate",
-    "session_bias": "LONG-LEAN",
-    "aktive_strategie": "Breakout-Pullback-Long (DJ30) - Retest VWAP/VAH abwarten, kein Chase",
-    "alignment_score": 5,
-    "trade_freigabe": true,
+    "_update_type": "morning",
+    "session_bias": "WAIT",
+    "aktive_strategie": "Keine (Konfidenz < 0.40)",
+    "alignment_score": 4,
+    "trade_freigabe": false,
     "shape_konflikt": false,
     "konfidenz_details": {
       "chart_gewichtung": 0.6,
       "makro_gewichtung": 0.4,
-      "gewichtungs_grund": "Default 60/40 (Phase AUSBRUCH nicht TREND, VIX 19.19<20, UoM 16:00 nur medium -> kein High-Impact<2h, kein EXTREM)",
-      "alignment_beitrag": 0.375,
-      "makro_beitrag": 0.1,
-      "konfidenz_long": 0.475,
+      "gewichtungs_grund": "Default 60/40 (Phase AUSBRUCH nicht TREND, VIX 17.68<20, FOMC erst morgen -> kein High-Impact<2h, kein EXTREM)",
+      "alignment_beitrag": 0.3,
+      "makro_beitrag": 0.067,
+      "konfidenz_long": 0.367,
       "konfidenz_short": 0.0,
       "konfidenz_direction": "LONG",
-      "konfidenz_final": 0.475,
-      "entscheidung": "LONG-LEAN: Konfidenz 0.475 LONG, align DJ30 +5>=4, 2/3 Schichten-OK (DJ30+SPX) -> trade_freigabe=TRUE. ABER Band 0.40-0.55 erlaubt Trade NUR bei P-Shape pos>0.65 -> nur DJ30 (0.688). SPX (D 0.438) + GER40 kein Trade. DJ30 Preis 51159 extended nahe ONH 51340 -> kein Chase, WATCH Pullback VWAP 50872/VAH 50480 fuer NY-Open 15:30."
+      "konfidenz_final": 0.367,
+      "entscheidung": "WAIT: Konfidenz 0.367 LONG < 0.40-Schwelle. Top-align 4 (DJ30+SPX500 long-ok), aber Makro nur +2 LEICHT_RISK_ON -> Makro-Beitrag 0.067 zu schwach (braeuchte +3 fuer 0.40). Alle 3 Indizes extended nach Rally (SP500 ueber VAH, GER40 am VAL Pullback, DJ30 Trend-Day mid-VA), FOMC MORGEN 20:00 -> kein Chase. Re-Check 14:00 US-Update."
     },
-    "trade_plan": "WATCH-Long-Lean USUpdate Fr 06-12 14:50: AUSBRUCH/RISK-ON, DJ30 voll long-frei (align +5, P-Shape 0.688, +0.36% ueber VWAP 50872/SMA200 50721/Pivot, ER 18.5, RSI 57 abgekuehlt). SPX align +2 grenzwertig (VWAP-Reclaim, ER chop). GER40 dreht ab (-0.41% unter VWAP 24627, ER -63 -> kein Long). Konfidenz 0.475 (Band 0.40-0.55) -> nur DJ30 (P-Shape). DJ30 ist extended nahe ONH 51340 -> KEIN Chase. WATCH Limit-Long Pullback-Zone 50480-50872 (VWAP/naked-POC 50856/VAH 50480), SL <49900 (unter VAL 49976/ONL 49787), Ziele ONH 51340 / R2 51416 / fibo 51385. AKTIVIERUNG: sauberer Pullback-Halt an VWAP/VAH mit ER-Anstieg im NY-Open. INVALIDIERUNG: DJ30 Schluss unter VAL 49976 / Ruecklauf aller 3 in VA. Vorsicht: GER40-Divergenz (rollt ab), SPX nur grenzwertig, POC-Migration 5-Tage fallend (Gegentrend), UoM Consumer Sentiment + Inflation Expectations 16:00 (medium, Forecast 46.1<48.2 schwaecher).",
+    "trade_plan": "WAIT Morning Di 06-16 08:25: AUSBRUCH/RISK-ON, ok_long 2/3 (DJ30 align +4 / SPX500 align +4), GER40 +2 NEUTRAL (am VAL). Konfidenz 0.367 LONG < 0.40 -> kein Trade heute frueh. GRUND: Makro nur +2 (VIX entspannt, aber CPI 4.27 hoch) + alle 3 extended nach Overnight-Rally. WATCH DJ30 Limit-Long Pullback-Zone 51701-51943 (VAL/POC/VAH), Entry ~51795 (POC) bei sauberem Halt mit ER-Anstieg, SL <51490 (unter ONL 51513), Ziele ONH 52050 / R1 52063. WATCH SP500 nur bei Ruecklauf in Value 7496-7563 (jetzt extended ueber VAH). GER40 erst bei Reclaim ueber Pivot 24939 + POC 25037. AKTIVIERUNG bei 14:00 US-Update: Makro-Upgrade auf >=+3 ODER sauberer Pullback-Halt mit Konfidenz >=0.40. INVALIDIERUNG: Ruecklauf aller 3 unter VWAP / FOMC-Risiko dominiert -> WAIT bleibt bis nach FOMC morgen.",
     "instrument_prioritaet": [
       "DJ30",
       "SPX500",
       "GER40"
     ],
-    "entry_fenster": "NY-Open 15:30 - Pullback VWAP 50872/VAH 50480 abwarten, kein Chase nahe ONH 51340. UoM 16:00 beachten.",
-    "max_risk_today": "0.5% HIGH (nur DJ30 bei Pullback-Trigger, max 1 Trade)",
-    "max_trades_heute": 1,
+    "entry_fenster": "WAIT - kein Entry heute frueh. Re-Check NY-Open 15:30 nach US-Update 14:00. FOMC morgen 20:00 = Vorsicht.",
+    "max_risk_today": "0.0% (WAIT)",
+    "max_trades_heute": 0,
     "trades_today": 0,
     "active_positions": [],
-    "notes": "USUpdate 14:50 Upgrade WAIT->LONG-LEAN: ok_long 1->2 (DJ30+SPX), trade_freigabe TRUE, Konfidenz 0.475 LONG. Trade nur DJ30 (P-Shape, Band 0.40-0.55). Preis extended nahe ONH -> 0 Live-Orders, WATCH Pullback. Makro +3 LEICHT_RISK_ON (VIX 19.19). Gegenwind: GER40 dreht ab, SPX grenzwertig, UoM 16:00 medium.",
+    "notes": "Morning 08:25 WAIT: Konfidenz 0.367 LONG knapp unter 0.40. Analyst ok_long 2/3 + align 4, aber Makro +2 zu schwach + alle 3 extended. Kein Verlust-Pause (streak 4 ist stale, 47d alt). FOMC morgen 17.06 20:00 high-impact -> ZB-Blackout-Warnung. WATCH Pullback DJ30 51701-51943 fuer US-Update.",
     "zentralbank_stop": false,
     "zentralbank_stop_grund": "",
     "warnungen": [
-      "DJ30 extended nahe ONH 51340 - kein Long mit R:R>=1.5 fuer Chase -> WATCH Pullback VWAP 50872/VAH 50480",
-      "GER40 dreht ab: -0.41% unter VWAP 24627, ER 30M -63, RSI 43 - keine Long-Freigabe (Divergenz zum Index-Long)",
-      "SPX500 LONG-Freigabe nur grenzwertig (S2 0.20, VWAP-Reclaim knapp, ER 1H 4 chop, CDV 1H negativ)",
-      "POC-Migration aller 3 weiter fallend (5-Tage) = Index-Anstieg bleibt Gegentrend zur Korrektur",
-      "UoM Consumer Sentiment + Inflation Expectations 16:00 (medium, Forecast 46.1 < prev 48.2 = schwaecher)"
-    ]
+      "FOMC MORGEN 17.06 20:00 (Federal Funds Rate + FOMC Statement + Press Conf, high impact, actual leer) - ZB-Blackout, WAIT morgen erwartet",
+      "Konfidenz 0.367 < 0.40 trotz align 4 - Makro nur +2 LEICHT_RISK_ON zieht runter",
+      "Alle 3 Indizes extended nach Overnight-Rally - SP500 ueber VAH, GER40 am VAL (Divergenz), DJ30 Trend-Day mid-VA",
+      "GER40 Long-Block: Preis am VAL 24914, unter Pivot 24939, CDV baerisch, Ichimoku 1H im Kumo (S3 -1)",
+      "SP500 ER 1H -24 (1H-Pullback trotz Tages-Up) + extended ueber VAH = Chase-Risiko"
+    ],
+    "verlust_pause": false,
+    "verlust_pause_grund": ""
   },
   "orders": {
     "_agent": "EXECUTOR",
-    "_last_run": "2026-06-12T14:50:00",
+    "_last_run": "2026-06-16T08:17:00",
     "_status": "ready",
-    "_update_type": "usupdate",
+    "_update_type": "morning",
     "orders": [],
-    "validierung": "USUpdate Fr 06-12 14:50: trade_freigabe=TRUE LONG-LEAN DJ30 (align +5, 2/3 long-ok). Konfidenz 0.475 (Band 0.40-0.55 -> nur P-Shape DJ30). ABER Preis 51159 extended nahe ONH 51340; struktureller SL unter VAL 49976/ONL 49787 zu weit -> kein Long mit R:R>=1.5 fuer Chase -> 0 Live-Orders. WATCH DJ30 Limit-Long Pullback-Zone 50480-50872: Entry ~50860 (VWAP/naked-POC 50856), SL <49900 (unter VAL/ONL), TP1 51340 (ONH) R:R ~0.5 bei Chase aber ~2.5 bei Pullback-Entry, TP2 51416 (R2). Morning-Orders waren 0 (WAIT) -> nichts zu validieren. GER40 dreht ab (kein Long), SPX grenzwertig. Doc + journal-data.json + Git Push trotzdem.",
+    "validierung": "Morning Di 06-16 08:25: trade_freigabe=FALSE (CAPTAIN WAIT, Konfidenz 0.367<0.40). Keine Live-Orders. WATCH DJ30 Limit-Long Pullback 51701-51943 (Entry ~51795 POC, SL <51490, TP1 52050 ONH) - aktiviert bei US-Update wenn Konfidenz >=0.40. Doc + journal-data.json + Git Push trotzdem.",
     "summary": {
       "best_instrument": "DJ30",
       "total_orders": 0,
-      "trade_freigabe": true,
+      "trade_freigabe": false,
       "shape_konflikt": false,
       "warnings": [
-        "DJ30 extended nahe ONH 51340 - kein Long mit R:R>=1.5 fuer Chase -> WATCH Pullback VWAP 50872/VAH 50480",
-        "GER40 dreht ab: -0.41% unter VWAP 24627, ER 30M -63, RSI 43 - keine Long-Freigabe (Divergenz zum Index-Long)",
-        "SPX500 LONG-Freigabe nur grenzwertig (S2 0.20, VWAP-Reclaim knapp, ER 1H 4 chop, CDV 1H negativ)",
-        "POC-Migration aller 3 weiter fallend (5-Tage) = Index-Anstieg bleibt Gegentrend zur Korrektur",
-        "UoM Consumer Sentiment + Inflation Expectations 16:00 (medium, Forecast 46.1 < prev 48.2 = schwaecher)"
+        "FOMC MORGEN 17.06 20:00 (Federal Funds Rate + FOMC Statement + Press Conf, high impact, actual leer) - ZB-Blackout, WAIT morgen erwartet",
+        "Konfidenz 0.367 < 0.40 trotz align 4 - Makro nur +2 LEICHT_RISK_ON zieht runter",
+        "Alle 3 Indizes extended nach Overnight-Rally - SP500 ueber VAH, GER40 am VAL (Divergenz), DJ30 Trend-Day mid-VA",
+        "GER40 Long-Block: Preis am VAL 24914, unter Pivot 24939, CDV baerisch, Ichimoku 1H im Kumo (S3 -1)",
+        "SP500 ER 1H -24 (1H-Pullback trotz Tages-Up) + extended ueber VAH = Chase-Risiko"
       ],
-      "notes": "USUpdate 14:50: WATCH/LONG-LEAN DJ30. AUSBRUCH/RISK-ON, ok_long 2/3 (DJ30+SPX). Konfidenz 0.475 LONG. 0 Live-Orders weil DJ30 extended nahe ONH 51340 (R:R<1.5 Chase). WATCH Pullback-Long 50480-50872 fuer NY-Open. Makro +3 LEICHT_RISK_ON."
+      "notes": "Morning 08:25 WAIT: 0 Orders. AUSBRUCH/RISK-ON aber Konfidenz 0.367<0.40 + FOMC morgen. WATCH Pullback DJ30 fuer 14:00."
     }
   },
   "monitor": {
