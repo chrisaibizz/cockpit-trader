@@ -1,35 +1,36 @@
 {
   "date": "2026-06-16",
-  "timestamp": "2026-06-16T08:18:28",
+  "timestamp": "2026-06-16T14:50:00",
   "phase": "AUSBRUCH",
   "regime": "RISK-ON",
-  "session_bias": "WAIT",
+  "session_bias": "LONG-LEAN",
   "alignment_score": 4,
-  "makro_bias": "LEICHT_RISK_ON",
+  "makro_bias": "LEICHT_RISK_ON (+4)",
   "debrief": {
     "orders_checked": 0,
     "fill_rate": "n.a.",
     "tp1_rate": "n.a.",
-    "trend": "WAIT (Konfidenz 0.367 < 0.40)",
+    "trend": "LONG-LEAN/0 Orders (Konfidenz 0.433, Makro +2->+4)",
     "learnings": [
-      "06-12 US-Update endete LONG-LEAN DJ30 mit 0 Live-Orders (extended nahe ONH) - kein Fill, kein Verlust.",
-      "Verlust-Streak 4 ist STALE (47 Tage, letzter Fill 30.04) -> keine Verlust-Pause aktiv.",
-      "Heute erneut WAIT: ok_long 2/3 + align 4 reichen nicht bei Makro nur +2 (Konfidenz 0.367<0.40)."
+      "US-Update 14:50: Makro-Upgrade +2->+4 (VIX 17.7->16.1, Bonds/DXY/Oil fallend) hob Konfidenz 0.367->0.433 ueber 0.40.",
+      "Trotz Schwelle ueberschritten: 0.40-0.55-Gate verlangt P-Shape pos>0.65 - DJ30 Trend-Day, GER40 P-Shape aber align 2<4 -> 0 Live-Orders.",
+      "GER40 reclaimte Pivot 24939 (S3 dreht positiv) -> jetzt long-ok 3/3, aber Bounce jung (unter POC, ER -29.8).",
+      "FOMC MORGEN 20:00 -> kein Live-Entry vor Ergebnis. WATCH DJ30 Pullback POC 51795."
     ]
   },
   "instruments": [
     {
       "name": "GER40",
       "bias": "Leicht Bullisch",
-      "bias_pct": "55",
+      "bias_pct": "56",
       "bias_score": 2,
       "alignment_score": 2,
-      "daily_summary": "P-Shape (pos 0.792, BULLISCH-Profil) + POC-Migration steigend, ER 31 starker Trend. ABER Preis 24921 am VAL 24914, unter Pivot 24939, CDV baerisch, Ichimoku 1H im Kumo -> S3 blockiert, keine Long-Freigabe.",
+      "daily_summary": "Bounce +0.37% vom VAL, Pivot 24939 zurueckerobert (CDV 9529->11357, S3 dreht positiv) -> jetzt long-ok. ABER unter POC 25037 + ER 30M -29.8 (Bounce jung), align nur 2<4.",
       "h4_summary": "SMA200 24564 darunter (bullischer Makro-Kontext), Ichimoku 1H im Kumo (neutral-baerisch).",
       "h1_summary": "ER 1H 18, RSI 1H 58, BOS bullish bei 24666. Pullback an VAL laeuft.",
-      "h30m_summary": "Kurs 24921 ueber VWAP 24650, am VAL 24914. POC=25037 VAH=25069 VAL=24914. Shape: P-Shape (0.792).",
+      "h30m_summary": "Kurs 25013 ueber VWAP 24659, in_VA unter POC (Bounce vom VAL). POC=25037 VAH=25069 VAL=24914. P-Shape (0.792).",
       "mp_shape_yesterday": "P-Shape (pos=0.792)",
-      "mp_shape_forecast": "P-Shape Pullback-Test VAL",
+      "mp_shape_forecast": "P-Shape - Reclaim POC 25037 noetig",
       "mp_5day_sequence": "P-Shape | Trend Day | D-Shape (gemischt), POC-Migration steigend",
       "key_levels": [
         {
@@ -59,7 +60,7 @@
         }
       ],
       "orders": [],
-      "invalidation": "Long erst bei Reclaim ueber Pivot 24939 + POC 25037. Unter VAL 24914 / ONL 24849 -> Schwaeche bestaetigt."
+      "invalidation": "Long erst bei sauberem Reclaim ueber POC 25037. Unter VAL 24914 / ONL 24849 -> Schwaeche."
     },
     {
       "name": "US30",
@@ -67,12 +68,12 @@
       "bias_pct": "75",
       "bias_score": 4,
       "alignment_score": 4,
-      "daily_summary": "Trend Day (pos 0.389, VA-Breite 0.47%), POC-Migration steigend +2, ueber VWAP 50969/SMA200 51029/Pivot 51788. Volle LONG-Freigabe (align +4). Inside VA = sauberster Entry-Kontext.",
+      "daily_summary": "LEADER: Trend Day, am VAH 51943 Breakout-Versuch, ER 18->25.5 verstaerkt, RSI 65, ueber VWAP/SMA200/Pivot/Kumo. Sauberster Long-Kandidat.",
       "h4_summary": "SMA200 51029 darunter, Ichimoku 1H ueber Kumo (Score 0 neutral, TK bearish).",
       "h1_summary": "ER 1H 13.9, RSI 1H 60, juengster CHoCH bullish bei 51821. Inside Value.",
-      "h30m_summary": "Kurs 51839 ueber VWAP 50969, inside VA (oberer Bereich, ueber POC 51795). POC=51795 VAH=51943 VAL=51701.",
+      "h30m_summary": "Kurs 51936 ueber VWAP 50982, am VAH 51943 (Breakout-Versuch). POC=51795 VAH=51943 VAL=51701. ER 25.5, RSI 65, ueber Kumo.",
       "mp_shape_yesterday": "Trend Day (pos=0.389)",
-      "mp_shape_forecast": "Pullback-Test POC/VAL erwartet",
+      "mp_shape_forecast": "Breakout ueber VAH 51943 ODER Pullback POC 51795",
       "mp_5day_sequence": "Trend Day | b-Shape | P-Shape (gemischt), POC-Migration steigend",
       "key_levels": [
         {
@@ -105,33 +106,33 @@
         {
           "type": "WATCH Limit Buy",
           "entry": "51795.38",
-          "sl": "51490.00",
-          "tp1": "52050.45",
-          "tp2": "52325.30",
-          "rr": "0.8",
+          "sl": "51690.00",
+          "tp1": "51943.05",
+          "tp2": "52050.45",
+          "rr": "1.4 / 2.5",
           "p_fill": "0",
           "p_tp1": "0",
           "tf": "30M",
-          "confluence": "POC 51795 + oberer VA + POC-Migration steigend + ueber VWAP - INAKTIV bis Konfidenz>=0.40 (US-Update 14:00)",
+          "confluence": "POC 51795 + oberer VA + Migration steigend + ueber VWAP - INAKTIV bis Post-FOMC (Konfidenz 0.433 im P-Shape-Gate)",
           "mp_shape_yesterday": "Trend Day",
-          "mp_shape_forecast": "Pullback",
+          "mp_shape_forecast": "Pullback POC",
           "vwap_position": "ueber VWAP"
         }
       ],
-      "invalidation": "Unter VAL 51701 / ONL 51513 -> Long-Setup negiert. Aktivierung erst bei Konfidenz >=0.40."
+      "invalidation": "Unter VAL 51701 / VWAP 50982 -> Long-Setup negiert. Aktivierung erst Post-FOMC morgen."
     },
     {
       "name": "SPX500",
       "bias": "Bullisch",
-      "bias_pct": "72",
+      "bias_pct": "65",
       "bias_score": 4,
       "alignment_score": 4,
-      "daily_summary": "D-Shape (pos 0.577), Preis 7568 ueber VAH 7563 (+2), POC-Migration steigend +2, Ichimoku 1H strong_bullish (+4), ueber VWAP/SMA200/Pivot. Volle LONG-Freigabe align +4. ABER extended ueber Value + ER 1H -24 (1H-Pullback).",
+      "daily_summary": "Extended ueber VAH 7563 (+2), POC-Migration steigend, ueber VWAP/SMA200/Pivot -> long-ok. ABER ER 30M 26->-1.8 kollabiert (Momentum weg, RSI 51 abgekuehlt, flat +0.02%) = Chase-Risiko.",
       "h4_summary": "SMA200 7423 darunter, Ichimoku 1H strong_bullish ueber Kumo.",
       "h1_summary": "ER 1H -24 (1H-Pullback im Up-Tag), RSI 1H 63 (warm), BOS bullish 7454.",
-      "h30m_summary": "Kurs 7568 ueber VWAP 7434, ueber VAH 7563 (extended). POC=7534 VAH=7563 VAL=7496. Shape: D-Shape.",
+      "h30m_summary": "Kurs 7570 ueber VWAP 7436, extended ueber VAH 7563. POC=7534 VAH=7563 VAL=7496. ER 26->-1.8 (Momentum weg), RSI 51.",
       "mp_shape_yesterday": "D-Shape (pos=0.577)",
-      "mp_shape_forecast": "Ruecklauf in Value moeglich (extended)",
+      "mp_shape_forecast": "Konsolidierung am Hoch / Ruecklauf in Value moeglich",
       "mp_5day_sequence": "D-Shape | b-Shape | D-Shape (gemischt), POC-Migration steigend",
       "key_levels": [
         {
@@ -161,26 +162,25 @@
         }
       ],
       "orders": [],
-      "invalidation": "Extended ueber VAH - Long nur bei Ruecklauf in Value 7496-7563. Unter VWAP 7434 -> Bias schwaecht."
+      "invalidation": "Extended ueber VAH - Long nur bei Ruecklauf in Value 7496-7563. Unter VWAP 7436 -> Bias schwaecht."
     }
   ],
   "summary": {
     "best_instrument": "DJ30",
     "total_orders": 0,
     "warnings": [
-      "FOMC MORGEN 17.06 20:00 (Federal Funds Rate + FOMC Statement + Press Conf, high impact, actual leer) - ZB-Blackout, WAIT morgen erwartet",
-      "Konfidenz 0.367 < 0.40 trotz align 4 - Makro nur +2 LEICHT_RISK_ON zieht runter",
-      "Alle 3 Indizes extended nach Overnight-Rally - SP500 ueber VAH, GER40 am VAL (Divergenz), DJ30 Trend-Day mid-VA",
-      "GER40 Long-Block: Preis am VAL 24914, unter Pivot 24939, CDV baerisch, Ichimoku 1H im Kumo (S3 -1)",
-      "SP500 ER 1H -24 (1H-Pullback trotz Tages-Up) + extended ueber VAH = Chase-Risiko"
+      "FOMC MORGEN 17.06 20:00 (high impact, actual leer) - ZB-Blackout, WAIT morgen erwartet -> kein Live-Entry",
+      "Konfidenz 0.433 knapp ueber 0.40 - im P-Shape-Gate: DJ30 Trend-Day + GER40 align 2<4 -> kein Order qualifiziert",
+      "SPX500 ER 26->-1.8 kollabiert + extended ueber VAH = Chase-Risiko",
+      "GER40 Bounce jung: unter POC 25037, ER -29.8"
     ],
-    "notes": "Morning 08:25 WAIT: AUSBRUCH/RISK-ON, ok_long 2/3 (DJ30+SPX align 4), aber Konfidenz 0.367<0.40 (Makro +2 schwach) + alle 3 extended + FOMC morgen 20:00. WATCH DJ30 Pullback 51701-51943 fuer US-Update 14:00."
+    "notes": "US-Update 14:50 LONG-LEAN: Makro +2->+4, DJ30 Breakout-Leader (am VAH, ER 25.5, RSI 65), ok_long 3/3. Konfidenz 0.367->0.433 (>0.40) ABER P-Shape-Gate + FOMC morgen -> 0 Live-Orders. WATCH DJ30 Pullback POC 51795 fuer Post-FOMC."
   },
   "stats": {
     "total": 0,
     "fill_rate": "n.a.",
     "tp1_rate": "n.a.",
-    "trend": "WAIT (Konfidenz <0.40)"
+    "trend": "LONG-LEAN (0 Orders, Konfidenz 0.433, FOMC morgen)"
   },
   "orders_count": 0
 }
