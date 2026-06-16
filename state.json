@@ -899,8 +899,8 @@
     },
     "calendar": [
       {
-        "date": "2026-06-15",
-        "time": "09:30",
+        "date": "2026-06-17",
+        "time": "12:50",
         "currency": "EUR",
         "name": "ECB President Lagarde Speaks",
         "impact": "medium",
@@ -917,7 +917,7 @@
         "name": "Core Retail Sales m/m",
         "impact": "medium",
         "actual": "",
-        "forecast": "0.5%",
+        "forecast": "0.6%",
         "previous": "0.7%",
         "better": null,
         "source": "forexfactory"
@@ -1001,7 +1001,7 @@
         "name": "Philly Fed Manufacturing Index",
         "impact": "medium",
         "actual": "",
-        "forecast": "11.4",
+        "forecast": "9.8",
         "previous": "-0.4",
         "better": null,
         "source": "forexfactory"
@@ -1380,8 +1380,8 @@
   },
   "calendar": [
     {
-      "date": "2026-06-15",
-      "time": "09:30",
+      "date": "2026-06-17",
+      "time": "12:50",
       "currency": "EUR",
       "name": "ECB President Lagarde Speaks",
       "impact": "medium",
@@ -1398,7 +1398,7 @@
       "name": "Core Retail Sales m/m",
       "impact": "medium",
       "actual": "",
-      "forecast": "0.5%",
+      "forecast": "0.6%",
       "previous": "0.7%",
       "better": null,
       "source": "forexfactory"
@@ -1482,7 +1482,7 @@
       "name": "Philly Fed Manufacturing Index",
       "impact": "medium",
       "actual": "",
-      "forecast": "11.4",
+      "forecast": "9.8",
       "previous": "-0.4",
       "better": null,
       "source": "forexfactory"
