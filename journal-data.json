@@ -1,6 +1,6 @@
 {
   "date": "2026-06-17",
-  "timestamp": "2026-06-17T08:17:56",
+  "timestamp": "2026-06-17T14:48:38",
   "debrief": {
     "orders_checked": 0,
     "fill_rate": "n.a.",
@@ -17,135 +17,75 @@
       "name": "GER40",
       "bias": "Neutral",
       "bias_pct": "50",
-      "daily_summary": "Bias NEUTRAL (align 0): b-Shape pos0.208 baerischer Kontext GEGEN ueber-VWAP/POC-Struktur. Kein Trade.",
-      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht im Morning-Read).",
-      "h1_summary": "Ichimoku 1H inside Kumo (Preis<Kijun 24937), bearish bias. ER 1H 14 schwach.",
-      "h30m_summary": "Kurs 24871 ueber VWAP 24667 + ueber POC 24852, b-Shape pos0.208. VAH 25032 VAL 24804. ER 30M 30 stark aber CDV negativ.",
-      "mp_shape_yesterday": "b-Shape (Trend Day Down Vortag aufgeloest)",
-      "mp_shape_forecast": "b-Shape -> D-Shape moeglich bei VAL-Halt",
+      "daily_summary": "Bias NEUTRAL (align 2, keine Freigabe): Preis 24893 ueber POC 24852 + CDV bullish + ueber VWAP (S2 stark), ABER b-Shape pos0.208 baerischer Kontext blockiert Long (S1 0.0). Kein Trade.",
+      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht im USUpdate-Read).",
+      "h1_summary": "Ichimoku 1H aus 08:13 getragen (inside Kumo). ER nicht intraday refresht.",
+      "h30m_summary": "USUpdate 14:48: Kurs 24893 (+0.09%) ueber VWAP 24672 + ueber POC 24852, b-Shape pos0.208. VAH 25032 VAL 24805. CDV 30M gedreht bullish (rising).",
+      "mp_shape_yesterday": "b-Shape",
+      "mp_shape_forecast": "b-Shape -> D-Shape moeglich bei Halt ueber POC",
       "mp_5day_sequence": "b-Shape | P-Shape | Trend Day (gemischt, POC-Migration steigend)",
       "key_levels": [
-        {
-          "level": "VAH",
-          "price": "25032.73",
-          "source": "Market Profile"
-        },
-        {
-          "level": "POC",
-          "price": "24852.31",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL",
-          "price": "24804.83",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "24667.50",
-          "source": "VWAP"
-        },
-        {
-          "level": "PDH/ONH",
-          "price": "25127.69",
-          "source": "Range"
-        }
+        {"level": "VAH", "price": "25032.73", "source": "Market Profile"},
+        {"level": "POC", "price": "24852.31", "source": "Market Profile"},
+        {"level": "VAL", "price": "24804.83", "source": "Market Profile"},
+        {"level": "VWAP 30M", "price": "24672.65", "source": "VWAP"},
+        {"level": "PDH/ONH", "price": "25127.69", "source": "Range"}
       ],
       "orders": [],
-      "invalidation": "Schluss unter VAL 24804.83 -> baerische Fortsetzung; Reclaim ueber POC 24852 noetig fuer Long."
+      "invalidation": "Schluss unter VAL 24804.83 -> baerische Fortsetzung; b-Shape-Aufloesung ueber VAH 25033 noetig fuer sauberen Long."
     },
     {
       "name": "US30",
-      "bias": "Bullisch (schwach)",
-      "bias_pct": "60",
-      "daily_summary": "Bias LEICHT_BULLISH (align 3, LEADER): Preis 52179 ueber VAH 52117 Breakout, Ichimoku 1H above Kumo strong_bullish, Pivot reclaimed. ABER b-Shape pos0.192 + ER -41.79 kein Momentum.",
-      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht im Morning-Read).",
-      "h1_summary": "Ichimoku 1H above Kumo (strong_bullish, score +4), Preis>Kijun 52050. ER 1H 11 moderat.",
-      "h30m_summary": "Kurs 52179 ueber VWAP 51034 + ueber VAH 52117 (extended). POC 51823. CDV +241k. b-Shape pos0.192 (POC unten, Tail oben).",
-      "mp_shape_yesterday": "b-Shape / Trend Day",
-      "mp_shape_forecast": "Breakout-Versuch ueber VAH - bei Halt P-Shape moeglich, sonst Reversal in VA",
+      "bias": "Neutral",
+      "bias_pct": "50",
+      "daily_summary": "Bias NEUTRAL (align 3->1): VAH-Breakout GESCHEITERT - Preis 52127 zurueck in VA (unter neuer VAH 52145), CDV 30M gedreht baerisch. S2 kollabiert (cvd +1->-1). Morning-Long-Lean negiert.",
+      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht im USUpdate-Read).",
+      "h1_summary": "Ichimoku 1H aus 08:13 getragen (above Kumo). ER nicht intraday refresht.",
+      "h30m_summary": "USUpdate 14:48: Kurs 52127 (-0.10%) zurueck in VA unter VAH 52145, ueber VWAP 51050 + ueber POC 51824. CDV 30M falling (2 consec bearish) - Momentum weg.",
+      "mp_shape_yesterday": "b-Shape",
+      "mp_shape_forecast": "Breakout gescheitert -> Rotation in VA, Halt ueber POC 51824 noetig",
       "mp_5day_sequence": "b-Shape | Trend Day | b-Shape (gemischt, POC-Migration steigend)",
       "key_levels": [
-        {
-          "level": "PDH/ONH",
-          "price": "52312.45",
-          "source": "Range"
-        },
-        {
-          "level": "VAH",
-          "price": "52117.05",
-          "source": "Market Profile"
-        },
-        {
-          "level": "POC",
-          "price": "51823.94",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL",
-          "price": "51754.15",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "51034.56",
-          "source": "VWAP"
-        }
+        {"level": "PDH/ONH", "price": "52312.45", "source": "Range"},
+        {"level": "VAH", "price": "52144.96", "source": "Market Profile"},
+        {"level": "POC", "price": "51823.94", "source": "Market Profile"},
+        {"level": "VAL", "price": "51754.15", "source": "Market Profile"},
+        {"level": "VWAP 30M", "price": "51050.30", "source": "VWAP"}
       ],
       "orders": [],
-      "invalidation": "Rueckfall unter VWAP 51034 / VAL 51754 negiert den Long-Lean; ER -41.79 = Breakout ohne Momentum, Vorsicht."
+      "invalidation": "Rueckfall unter VWAP 51050 / VAL 51754 baerisch; erneuter sauberer VAH-Breakout 52145 mit CDV-Bestaetigung noetig fuer Long."
     },
     {
       "name": "SPX500",
       "bias": "Bullisch (schwach)",
-      "bias_pct": "60",
-      "daily_summary": "Bias LEICHT_BULLISH (align 3): P-Shape pos0.687 bullischer Kontext + ueber VWAP + ER1H 40 stark. ABER Preis 7552.95 AM VAL-Rand 7552.88 (unterer VA) + unter POC.",
-      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht im Morning-Read).",
-      "h1_summary": "Ichimoku 1H inside Kumo (Kijun 7552 = Support direkt am Preis). ER 1H 40 stark.",
-      "h30m_summary": "Kurs 7552.95 ueber VWAP 7440 aber AM VAL 7552.88 + unter POC 7568.89. VAH 7576. P-Shape pos0.687. CDV +92k.",
-      "mp_shape_yesterday": "P-Shape (Trend Day Up Vortag)",
-      "mp_shape_forecast": "P-Shape Fortsetzung bei Reclaim POC 7569, sonst VAL-Bruch",
+      "bias_pct": "55",
+      "daily_summary": "Bias LEICHT_BULLISH (align 3->2): P-Shape pos0.66 haelt + ueber VWAP, ABER Preis 7541 UNTER VAL 7552.88 gerutscht (raus aus Value) + SMC 30M CHoCH baerisch 7561. Nur marginal long_ok.",
+      "h4_summary": "Manuelle Analyse erforderlich (4H-Daten nicht im USUpdate-Read).",
+      "h1_summary": "Ichimoku 1H aus 08:13 getragen (inside Kumo, Kijun 7552). ER nicht intraday refresht.",
+      "h30m_summary": "USUpdate 14:48: Kurs 7541 (-0.16%) UNTER VAL 7552.88, ueber VWAP 7442. POC 7569 VAH 7577. P-Shape pos0.66 haelt aber Preis raus aus Value, CDV 30M falling.",
+      "mp_shape_yesterday": "P-Shape",
+      "mp_shape_forecast": "P-Shape Fortsetzung nur bei Reclaim ueber VAL 7553 + POC 7569, sonst VAL-Bruch bestaetigt",
       "mp_5day_sequence": "P-Shape | D-Shape | b-Shape (gemischt, POC-Migration steigend)",
       "key_levels": [
-        {
-          "level": "PDH/ONH",
-          "price": "7582.00",
-          "source": "Range"
-        },
-        {
-          "level": "VAH",
-          "price": "7576.18",
-          "source": "Market Profile"
-        },
-        {
-          "level": "POC",
-          "price": "7568.89",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VAL",
-          "price": "7552.88",
-          "source": "Market Profile"
-        },
-        {
-          "level": "VWAP 30M",
-          "price": "7440.66",
-          "source": "VWAP"
-        }
+        {"level": "PDH/ONH", "price": "7582.00", "source": "Range"},
+        {"level": "VAH", "price": "7577.08", "source": "Market Profile"},
+        {"level": "POC", "price": "7568.89", "source": "Market Profile"},
+        {"level": "VAL", "price": "7552.88", "source": "Market Profile"},
+        {"level": "VWAP 30M", "price": "7441.89", "source": "VWAP"}
       ],
       "orders": [],
-      "invalidation": "Schluss unter VAL 7552.88 negiert P-Shape-Long; Reclaim ueber POC 7569 bestaetigt Fortsetzung."
+      "invalidation": "Haelt unter VAL 7552.88 negiert P-Shape-Long; Reclaim ueber VAL 7553 + POC 7569 bestaetigt Fortsetzung."
     }
   ],
   "summary": {
-    "best_instrument": "US30",
+    "best_instrument": "SPX500",
     "total_orders": 0,
     "warnings": [
       "FOMC HEUTE 20:00 (Federal Funds Rate fc 3.75% + Projections + Statement + Press Conf 20:30, high impact) - ZB-Hard-Stop WAIT",
-      "Core/Retail Sales 14:30 + Trump 15:30 (medium) - Intraday-Volatilitaet",
-      "Makro NEUTRAL +1 (Downgrade von +4) - VIX/Bonds/Gold steigend"
+      "DJ30 VAH-Breakout gescheitert + CDV baerisch; SPX unter VAL 7552.88 - Long-Lean abgeschwaecht",
+      "Makro NEUTRAL +3 (VIX 16.30 + Bonds 4.439 entspannen vor FOMC)"
     ],
-    "notes": "Morning 08:13 WAIT, 0 Live-Orders (ZB-Hard-Stop FOMC). ok_long 2/3 Long-Lean (DJ30/SPX) aber align 3<4. WATCH Post-FOMC: DJ30 Pullback POC 51824 / SPX Reclaim POC 7569."
+    "notes": "USUpdate 14:48 WAIT, 0 Live-Orders (ZB-Hard-Stop FOMC). Long-Lean morning broeckelt: ok_long 2/3->1/3 (nur SPX marginal), max alignment 2<4, konfidenz 0.25. Post-FOMC neu bewerten."
   },
   "stats": {
     "total": 217,
