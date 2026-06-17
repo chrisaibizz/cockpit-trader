@@ -1297,29 +1297,6 @@ def generate_order(inst, mp, price, bias_data, shape_name):
 # 6. JOURNAL
 # ============================================================
 
-def is_valid_sheet_order(ord_data, bias_str, confluence_pct):
-    """Phantom-Schutz fuer Sheet-Orders (Fix-A, 2026-06-16).
-    Nur echte, direktionale Orders mit ausreichender Konfidenz ins Google Sheet.
-    Bedingungen: Entry>0, SL>0, Bias LONG/SHORT (BULLISH/BEARISH), Konfidenz>0.30.
-    Konfidenz = confluence_pct / 100. Rueckgabe: (bool ok, str grund).
-    Quelle: reports/fix-a-orders-2026-06-16.md"""
-    try:
-        entry = float(ord_data.get("entry", 0) or 0)
-        sl    = float(ord_data.get("sl", 0) or 0)
-    except (TypeError, ValueError):
-        return False, "entry/sl nicht numerisch"
-    if entry <= 0:
-        return False, f"entry={entry} <= 0"
-    if sl <= 0:
-        return False, f"sl={sl} <= 0"
-    if bias_str not in ("BULLISH", "BEARISH"):
-        return False, f"bias={bias_str} nicht LONG/SHORT"
-    konfidenz = (confluence_pct or 0) / 100.0
-    if konfidenz <= 0.30:
-        return False, f"konfidenz={konfidenz:.3f} <= 0.30"
-    return True, "ok"
-
-
 def generate_journal_data(instruments_map, ctx, cal, script_dir):
     import subprocess
     today      = datetime.now().strftime("%Y-%m-%d")
@@ -1441,33 +1418,55 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
 
         # ---------------------------------------------------------------
         # Sheet-Write mit Phantom-Schutz (reaktiviert 2026-06-16, Fix A).
-        # Block urspruenglich auskommentiert 2026-05-18 (Commit a6aa848).
-        # Phantom-Schutz via is_valid_sheet_order():
-        #   Entry>0, SL>0, Bias LONG/SHORT (BULLISH/BEARISH), Konfidenz>0.30.
-        # Verworfene Orders -> DEBUG-Log, kein Sheet-Write.
+        # Nur Orders mit echter Direktion, gueltigen Preisen und
+        # ausreichender Konfluenz landen im Google Sheet.
         # Quelle: reports/fix-a-orders-2026-06-16.md
         #         + reports/fillrate-rootcause-2026-05-15.md (Root-Cause #1)
         # ---------------------------------------------------------------
-        # --- DEAKTIVIERT (Fix-A2, 2026-06-16): Order-Befuell-Block auskommentiert. ---
-        # morning.py schreibt ab jetzt KEINE Orders mehr ans Google Sheet.
-        # all_orders_for_sheet bleibt leer. Quelle: reports/fix-a2-morning-2026-06-16.md
-        # for ord_data in orders_list:
-        #     ok, grund = is_valid_sheet_order(ord_data, bias_str, conf_pct)
-        #     if not ok:
-        #         print(f"    [DEBUG] Order uebersprungen ({display_name}): {grund}")
-        #         continue
-        #
-        #     sheet_order = {
-        #         "date":        today,
-        #         "time":        today_time,
-        #         "instrument":  display_name,
-        #         "bias":        bias_de,
-        #         "bias_pct":    str(bias_pct),
-        #         "confluence":  conf_label,
-        #         "notes":       f"Auto-generiert | VIX={vix_price:.1f}",
-        #     }
-        #     sheet_order.update(ord_data)
-        #     all_orders_for_sheet.append(sheet_order)
+        ALLOWED_INSTRUMENTS = {"GER40", "US30", "SPX500", "DJ30", "SP500"}
+        # konfidenz_proxy: confluence_pct ist 0-100, Schwelle 0.30 -> 30.
+        # cockpit-morning.py laeuft VOR den Agenten, daher existiert die
+        # CAPTAIN-Konfidenz noch nicht; confluence_pct ist der verfuegbare Proxy.
+        konfidenz_proxy = (conf_pct or 0) / 100.0
+
+        for ord_data in orders_list:
+            # Entry / SL als echte floats pruefen (order-Felder sind Strings)
+            try:
+                entry_f = float(ord_data.get("entry"))
+            except (TypeError, ValueError):
+                entry_f = None
+            try:
+                sl_f = float(ord_data.get("sl"))
+            except (TypeError, ValueError):
+                sl_f = None
+
+            grund = None
+            if display_name not in ALLOWED_INSTRUMENTS:
+                grund = f"Instrument '{display_name}' nicht in {sorted(ALLOWED_INSTRUMENTS)}"
+            elif entry_f is None or math.isnan(entry_f) or entry_f <= 0:
+                grund = f"Entry ungueltig ({ord_data.get('entry')!r})"
+            elif sl_f is None or math.isnan(sl_f) or sl_f <= 0:
+                grund = f"SL ungueltig ({ord_data.get('sl')!r})"
+            elif bias_str not in ("BULLISH", "BEARISH") and not (bias_str == "NEUTRAL" and abs(score) > 0):
+                grund = f"Bias '{bias_str}' ohne Direktion/Score (score={score})"
+            elif konfidenz_proxy <= 0.30:
+                grund = f"Konfidenz {konfidenz_proxy:.2f} <= 0.30 (confluence_pct={conf_pct})"
+
+            if grund:
+                print(f"    [DEBUG] Order uebersprungen ({display_name}): {grund}")
+                continue
+
+            sheet_order = {
+                "date":        today,
+                "time":        today_time,
+                "instrument":  display_name,
+                "bias":        bias_de,
+                "bias_pct":    str(bias_pct),
+                "confluence":  conf_label,
+                "notes":       f"Auto-generiert | VIX={vix_price:.1f}",
+            }
+            sheet_order.update(ord_data)
+            all_orders_for_sheet.append(sheet_order)
 
         if score > best_score:
             best_score = score
@@ -1530,26 +1529,22 @@ def run_pipeline(journal, orders, script_dir):
 
     today = datetime.now().strftime("%Y-%m-%d")
 
-    # --- DEAKTIVIERT (Fix-A2, 2026-06-16): writeMultiple-Aufruf fuer Orders auskommentiert. ---
-    # morning.py schreibt KEINE Orders mehr ans Google Sheet.
-    # Quelle: reports/fix-a2-morning-2026-06-16.md
-    # if orders:
-    #     print("\n>>> Google Sheet: Orders schreiben...")
-    #     orders_json = json.dumps(orders, ensure_ascii=False, cls=SafeJSONEncoder)
-    #     try:
-    #         result = subprocess.run(
-    #             ["node", journal_js, "write-multiple", orders_json],
-    #             capture_output=True, text=True, timeout=30, encoding="utf-8"
-    #         )
-    #         if result.returncode == 0:
-    #             print(f"    -> {result.stdout.strip()}")
-    #         else:
-    #             print(f"    FEHLER: {result.stderr.strip()[:200]}")
-    #     except Exception as e:
-    #         print(f"    FEHLER (Sheet): {e}")
-    # else:
-    #     print("\n>>> Google Sheet: Keine Orders (NEUTRAL Bias)")
-    print("\n>>> Google Sheet: Order-Write deaktiviert (Fix-A2 2026-06-16)")
+    if orders:
+        print("\n>>> Google Sheet: Orders schreiben...")
+        orders_json = json.dumps(orders, ensure_ascii=False, cls=SafeJSONEncoder)
+        try:
+            result = subprocess.run(
+                ["node", journal_js, "write-multiple", orders_json],
+                capture_output=True, text=True, timeout=30, encoding="utf-8"
+            )
+            if result.returncode == 0:
+                print(f"    -> {result.stdout.strip()}")
+            else:
+                print(f"    FEHLER: {result.stderr.strip()[:200]}")
+        except Exception as e:
+            print(f"    FEHLER (Sheet): {e}")
+    else:
+        print("\n>>> Google Sheet: Keine Orders (NEUTRAL Bias)")
 
     print("\n>>> Google Docs: Morning Report erstellen...")
     report_payload = {

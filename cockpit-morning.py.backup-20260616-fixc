@@ -1087,13 +1087,12 @@ def compute_bias(mp, price, context, cvd=None, fred_data=None):
 # Preis-Fallback-Kette (additiv, 2026-06-16) ----------------------------------
 # Reihenfolge wenn der Primaer-Preis (TV live / yfinance Primaer-Ticker) None/NaN ist:
 #   (1) TV live > yfinance Primaer-Ticker            (bestehende Logik)
-#   (2) yfinance Retry mit Alt-Ticker                (DJ30->YM=F, SP500->ES=F, GER40->GDAXI)
+#   (2) yfinance Retry mit Futures-Ticker            (DJ30->YM=F, SP500->ES=F)
 #   (3) letzter bekannter Preis aus state.json
 #   (4) alle Quellen None -> WARNING, current_price=None (generate_order liefert None)
 ALT_TICKER_MAP = {            # yfinance Primaer-Ticker -> Futures-Fallback-Ticker
     "^DJI":  "YM=F",          # Dow Jones Futures
     "^GSPC": "ES=F",          # S&P 500 Futures
-    "^GDAXI": "GDAXI",        # DAX Alt-Ticker (Fix-C 2026-06-16, additiv)
 }
 STATE_INSTRUMENT_MAP = {      # yfinance-Ticker -> Instrument-Key in state.json
     "^GSPC":  "SPX500",
@@ -1297,29 +1296,6 @@ def generate_order(inst, mp, price, bias_data, shape_name):
 # 6. JOURNAL
 # ============================================================
 
-def is_valid_sheet_order(ord_data, bias_str, confluence_pct):
-    """Phantom-Schutz fuer Sheet-Orders (Fix-A, 2026-06-16).
-    Nur echte, direktionale Orders mit ausreichender Konfidenz ins Google Sheet.
-    Bedingungen: Entry>0, SL>0, Bias LONG/SHORT (BULLISH/BEARISH), Konfidenz>0.30.
-    Konfidenz = confluence_pct / 100. Rueckgabe: (bool ok, str grund).
-    Quelle: reports/fix-a-orders-2026-06-16.md"""
-    try:
-        entry = float(ord_data.get("entry", 0) or 0)
-        sl    = float(ord_data.get("sl", 0) or 0)
-    except (TypeError, ValueError):
-        return False, "entry/sl nicht numerisch"
-    if entry <= 0:
-        return False, f"entry={entry} <= 0"
-    if sl <= 0:
-        return False, f"sl={sl} <= 0"
-    if bias_str not in ("BULLISH", "BEARISH"):
-        return False, f"bias={bias_str} nicht LONG/SHORT"
-    konfidenz = (confluence_pct or 0) / 100.0
-    if konfidenz <= 0.30:
-        return False, f"konfidenz={konfidenz:.3f} <= 0.30"
-    return True, "ok"
-
-
 def generate_journal_data(instruments_map, ctx, cal, script_dir):
     import subprocess
     today      = datetime.now().strftime("%Y-%m-%d")
@@ -1439,35 +1415,22 @@ def generate_journal_data(instruments_map, ctx, cal, script_dir):
             "invalidation":        invalidation,
         })
 
-        # ---------------------------------------------------------------
-        # Sheet-Write mit Phantom-Schutz (reaktiviert 2026-06-16, Fix A).
-        # Block urspruenglich auskommentiert 2026-05-18 (Commit a6aa848).
-        # Phantom-Schutz via is_valid_sheet_order():
-        #   Entry>0, SL>0, Bias LONG/SHORT (BULLISH/BEARISH), Konfidenz>0.30.
-        # Verworfene Orders -> DEBUG-Log, kein Sheet-Write.
-        # Quelle: reports/fix-a-orders-2026-06-16.md
-        #         + reports/fillrate-rootcause-2026-05-15.md (Root-Cause #1)
-        # ---------------------------------------------------------------
-        # --- DEAKTIVIERT (Fix-A2, 2026-06-16): Order-Befuell-Block auskommentiert. ---
-        # morning.py schreibt ab jetzt KEINE Orders mehr ans Google Sheet.
-        # all_orders_for_sheet bleibt leer. Quelle: reports/fix-a2-morning-2026-06-16.md
-        # for ord_data in orders_list:
-        #     ok, grund = is_valid_sheet_order(ord_data, bias_str, conf_pct)
-        #     if not ok:
-        #         print(f"    [DEBUG] Order uebersprungen ({display_name}): {grund}")
-        #         continue
-        #
-        #     sheet_order = {
-        #         "date":        today,
-        #         "time":        today_time,
-        #         "instrument":  display_name,
-        #         "bias":        bias_de,
-        #         "bias_pct":    str(bias_pct),
-        #         "confluence":  conf_label,
-        #         "notes":       f"Auto-generiert | VIX={vix_price:.1f}",
-        #     }
-        #     sheet_order.update(ord_data)
-        #     all_orders_for_sheet.append(sheet_order)
+        # Sheet-Write nur bei klarer Direktion + ausreichender Konfluenz.
+        # Verhindert Phantom-Orders bei NEUTRAL/schwacher Bias.
+        # Quelle: reports/fillrate-rootcause-2026-05-15.md (Root-Cause #1)
+        # if bias_str != "NEUTRAL" and abs(score) >= 4:
+        #     for ord_data in orders_list:
+        #         sheet_order = {
+        #             "date":        today,
+        #             "time":        today_time,
+        #             "instrument":  display_name,
+        #             "bias":        bias_de,
+        #             "bias_pct":    str(bias_pct),
+        #             "confluence":  conf_label,
+        #             "notes":       f"Auto-generiert | VIX={vix_price:.1f}",
+        #         }
+        #         sheet_order.update(ord_data)
+        #         all_orders_for_sheet.append(sheet_order)
 
         if score > best_score:
             best_score = score
@@ -1530,26 +1493,22 @@ def run_pipeline(journal, orders, script_dir):
 
     today = datetime.now().strftime("%Y-%m-%d")
 
-    # --- DEAKTIVIERT (Fix-A2, 2026-06-16): writeMultiple-Aufruf fuer Orders auskommentiert. ---
-    # morning.py schreibt KEINE Orders mehr ans Google Sheet.
-    # Quelle: reports/fix-a2-morning-2026-06-16.md
-    # if orders:
-    #     print("\n>>> Google Sheet: Orders schreiben...")
-    #     orders_json = json.dumps(orders, ensure_ascii=False, cls=SafeJSONEncoder)
-    #     try:
-    #         result = subprocess.run(
-    #             ["node", journal_js, "write-multiple", orders_json],
-    #             capture_output=True, text=True, timeout=30, encoding="utf-8"
-    #         )
-    #         if result.returncode == 0:
-    #             print(f"    -> {result.stdout.strip()}")
-    #         else:
-    #             print(f"    FEHLER: {result.stderr.strip()[:200]}")
-    #     except Exception as e:
-    #         print(f"    FEHLER (Sheet): {e}")
-    # else:
-    #     print("\n>>> Google Sheet: Keine Orders (NEUTRAL Bias)")
-    print("\n>>> Google Sheet: Order-Write deaktiviert (Fix-A2 2026-06-16)")
+    if orders:
+        print("\n>>> Google Sheet: Orders schreiben...")
+        orders_json = json.dumps(orders, ensure_ascii=False, cls=SafeJSONEncoder)
+        try:
+            result = subprocess.run(
+                ["node", journal_js, "write-multiple", orders_json],
+                capture_output=True, text=True, timeout=30, encoding="utf-8"
+            )
+            if result.returncode == 0:
+                print(f"    -> {result.stdout.strip()}")
+            else:
+                print(f"    FEHLER: {result.stderr.strip()[:200]}")
+        except Exception as e:
+            print(f"    FEHLER (Sheet): {e}")
+    else:
+        print("\n>>> Google Sheet: Keine Orders (NEUTRAL Bias)")
 
     print("\n>>> Google Docs: Morning Report erstellen...")
     report_payload = {
