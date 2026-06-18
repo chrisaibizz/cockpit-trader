@@ -1355,21 +1355,21 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": "2026-06-18T08:18:25",
+    "_last_run": "2026-06-18T15:06:05",
     "_status": "ready",
-    "_update_type": "morning",
-    "session": "Morning",
+    "_update_type": "usupdate",
+    "session": "USUpdate",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260618_0818_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260618_1503_USUpdate.txt",
     "bereiche": {
-      "lokale_prozesse": "OK (CDP 9222 verbunden, ui_evaluate MP 30M x3 erfolgreich, yfinance MACRO ok, 1H-Pass Ichimoku/ER ok)",
-      "sheet_doc": "OK (0 Live-Orders -> kein Sheet-Write; Doc-Report erstellt)",
-      "github_web": "OK (Push am Morning-Ende, Pages https://chrisaibizz.github.io/cockpit-trader/)",
-      "datenqualitaet": "OK (2 WARN: VWAP Anchored ohne Stdev-Bands -> kein vwap_upper/lower; PCR n.v. ^PCALL delisted). MP pos/ER/Levels plausibel.",
-      "entscheidung": "WAIT (max align 3<4, konfidenz 0.258, 0/3 Schichten) - 0 Orders, kein ZB-Hard-Stop (FOMC gestern)",
-      "anomalien": "OK (2 OBS: Markt gespalten GER40 ueber Value vs US unter Value; VIX-Spike +12.4% post-FOMC)"
+      "lokale_prozesse": "OK (CDP 9222 verbunden, ui_evaluate MP 30M x3 + 1H Ichimoku/ER x3, yfinance MACRO-Mini ok)",
+      "sheet_doc": "OK (1 GER40-Order ins Sheet; Doc-Report angehaengt)",
+      "github_web": "OK (Push 33e1988, usupdate-2026-06-18.md geschrieben)",
+      "datenqualitaet": "OK (2 bekannte WARN: PCR n.v., VWAP ohne Stdev-Bands). MP unveraendert (pre-US-open erwartet).",
+      "entscheidung": "Trade LONG-LEAN (align 4/8, konfidenz 0.433, ok_long 2/3) - 1 GER40-Long-Order",
+      "anomalien": "OK (2 OBS: DJ30 laggt 1H strong_bearish; GER40 ueber ONH -> Retest-Entry)"
     }
   },
   "calendar": [
