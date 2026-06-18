@@ -1,12 +1,15 @@
 {
   "date": "2026-06-18",
-  "timestamp": "2026-06-18T08:02:01.781206",
+  "timestamp": "2026-06-18T08:19:14",
   "debrief": {
     "orders_checked": 0,
     "fill_rate": "44.0%",
     "tp1_rate": "22.7%",
     "trend": "Stabil",
-    "learnings": []
+    "learnings": [
+      "Post-FOMC (gestern 20:00) Markt gespalten: DAX haelt gruen ueber Value, US-Indizes brechen unter Value (VIX +12.4%).",
+      "Kein Trade bei <2 Instrumenten mit Schichten-Freigabe und max alignment <4 - Disziplin halten."
+    ]
   },
   "instruments": [
     {
@@ -305,24 +308,8 @@
           "source": "VWAP"
         }
       ],
-      "orders": [
-        {
-          "type": "Limit Buy",
-          "entry": "24913.3",
-          "sl": "24869.3",
-          "tp1": "25052.65",
-          "tp2": "25125.99",
-          "rr": "3.17",
-          "p_fill": "22",
-          "p_tp1": "15",
-          "tf": "30M",
-          "confluence": "Preis > VWAP (24935 > 24930) + Preis > POC (24935 > 24930) + VIX 18.44 â€“ Normal (NEUTRAL Bias â€“ geringere Konfluenz)",
-          "mp_shape_yesterday": "Normal Variation",
-          "mp_shape_forecast": "Normal Variation",
-          "vwap_position": "Preis ueber VWAP"
-        }
-      ],
-      "invalidation": "Kurs bricht aus Value Area (24905.97â€“25052.65) aus"
+      "orders": [],
+      "invalidation": "Haelt ueber VAH 24923 + VWAP, aber S2<0.25 + CDV baerisch -> kein Long-Freigabe."
     },
     {
       "name": "US30",
@@ -620,24 +607,8 @@
           "source": "VWAP"
         }
       ],
-      "orders": [
-        {
-          "type": "Limit Sell",
-          "entry": "52107.89",
-          "sl": "52172.38",
-          "tp1": "51903.69",
-          "tp2": "51796.22",
-          "rr": "3.17",
-          "p_fill": "50",
-          "p_tp1": "40",
-          "tf": "30M",
-          "confluence": "Preis < VWAP (51493 < 52045) + Unter VAL â€“ Breakdown (51493 < 51904) + Preis < POC (51493 < 52065)",
-          "mp_shape_yesterday": "Trend Day (Up)",
-          "mp_shape_forecast": "Trend Day (Up)",
-          "vwap_position": "Preis unter VWAP"
-        }
-      ],
-      "invalidation": "Kurs schliesst ueber 52118.64 â€“ bearischer Bias negiert"
+      "orders": [],
+      "invalidation": "Unter VAL 52055 + Ichimoku 1H strong_bearish, aber S1 zu schwach fuer Short."
     },
     {
       "name": "SPX500",
@@ -935,38 +906,29 @@
           "source": "VWAP"
         }
       ],
-      "orders": [
-        {
-          "type": "Limit Sell",
-          "entry": "7561.72",
-          "sl": "7572.69",
-          "tp1": "7526.97",
-          "tp2": "7508.68",
-          "rr": "3.17",
-          "p_fill": "50",
-          "p_tp1": "40",
-          "tf": "30M",
-          "confluence": "Preis < VWAP (7420 < 7534) + Unter VAL â€“ Breakdown (7420 < 7527) + Preis < POC (7420 < 7533)",
-          "mp_shape_yesterday": "Normal Day",
-          "mp_shape_forecast": "Normal Day",
-          "vwap_position": "Preis unter VWAP"
-        }
-      ],
-      "invalidation": "Kurs schliesst ueber 7563.55 â€“ bearischer Bias negiert"
+      "orders": [],
+      "invalidation": "P-Shape bullisch, aber Preis unter VAL 7510 + SMA200 -> kein sauberer Long."
     }
   ],
   "summary": {
     "best_instrument": "GER40",
     "total_orders": 0,
     "warnings": [
-      "VIX steigt stark (+12.4%) â€“ Volatilitaet im Wandel"
+      "WAIT - kein Live-Entry (max align 3<4, konfidenz 0.258, 0/3 Schichten-Freigabe)",
+      "Markt gespalten post-FOMC: GER40 ueber Value (long-lean) vs US unter Value (bearish-lean)",
+      "VIX +12.4% Spike auf 18.44 - HIGH risk"
     ],
-    "notes": "Auto-generiert 08:02. VIX=18.4. Beste Konfluenz: GER40."
+    "notes": "Morning 08:19 WAIT, 0 Orders. Post-FOMC gespaltener Markt. Makro NEUTRAL +1. WATCH: GER40 VAH-Ausbruch >24987 / US Value-Reclaim (SPX 7510, DJ30 52055)."
   },
   "stats": {
     "total": 217,
     "fill_rate": "44.0%",
     "tp1_rate": "22.7%",
     "trend": "Stabil"
-  }
+  },
+  "session_bias": "WAIT",
+  "alignment_score": 3,
+  "makro_bias": "NEUTRAL",
+  "phase": "TREND",
+  "regime": "NEUTRAL"
 }
