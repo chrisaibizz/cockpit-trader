@@ -1,6 +1,6 @@
 {
   "date": "2026-06-19",
-  "timestamp": "2026-06-19T08:18:25",
+  "timestamp": "2026-06-19T14:53:55",
   "debrief": {
     "orders_checked": 1,
     "fill_rate": "45.1%",
@@ -16,11 +16,11 @@
     {
       "name": "GER40",
       "bias": "LEICHT_BULLISH",
-      "bias_pct": "64",
-      "daily_summary": "Bias LEICHT_BULLISH (align 3/8). P-Shape-Ausbruch, POC-Migration steigend, ueber VWAP+SMA200, Ichimoku 1H strong_bullish.",
+      "bias_pct": "58",
+      "daily_summary": "US-Update 14:53: Bias LEICHT_BULLISH (align 2/8) ABER WATCH-Long verfallen. P-Shape-Profil intakt, doch Preis faellt unter POC zurueck, intraday-Momentum dreht ab.",
       "h4_summary": "Manuelle Analyse (4H-Daten nicht via MCP). Kontext: Aufwaertsausbruch ueber Vortags-VAH.",
-      "h1_summary": "Ichimoku 1H strong_bullish above kumo (Tenkan 25023 / Kijun 24986). ER 30M flach 8.4, 1H -25 (choppy).",
-      "h30m_summary": "Kurs 25002.18 ueber_VWAP (VWAP 24704.59), in_VA_unten. POC=25093.89 VAH=25115.49 VAL=24928.28. Shape: P-Shape (pos 0.885). align=3/8.",
+      "h1_summary": "Ichimoku 1H von above -> inside (Kumo-Unterkante 24990-25048). ER_1H +17.8 schwach. Long-Edge verloren.",
+      "h30m_summary": "Kurs 24990.68 ueber_VWAP (24711.59), in_VA unter POC 25094. ER 30M +8.4->-87.82 (Flip), RSI 41, unter 30M-Kumo. align=2/8, alle_long_ok FALSE.",
       "mp_shape_yesterday": "Trend Day",
       "mp_shape_forecast": "P-Shape",
       "mp_5day_sequence": "POC-Migration steigend | Shapes(0-2): P-Shape | Trend Day | b-Shape | composite_poc 24768.22 | naked_pocs [24875.01, 24605.53, 24228.7]",
@@ -47,16 +47,16 @@
         }
       ],
       "orders": [],
-      "invalidation": "Schluss unter VAL 24928 / VWAP 24705 negiert den bullischen Ausbruch."
+      "invalidation": "WATCH-Long verfallen: kein Reclaim POC 25094. Schluss unter VAL 24928 oeffnet Abwaerts."
     },
     {
       "name": "DJ30",
       "bias": "NEUTRAL",
-      "bias_pct": "50",
-      "daily_summary": "Bias NEUTRAL (align 0/8). P-Shape (schmal) ABER Preis unter VAL, unter SMA200, Ichimoku 1H strong_bearish.",
+      "bias_pct": "52",
+      "daily_summary": "US-Update 14:53: Bias NEUTRAL (align 1/8). P-Shape ABER Preis unter VAL 51775 + SMA200 + Kumo. Abverkauf laesst nach.",
       "h4_summary": "Manuelle Analyse. Kontext: Abverkauf unter Vortags-VAL.",
-      "h1_summary": "Ichimoku 1H strong_bearish below kumo. ER 30M -43 (Down-Effizienz).",
-      "h30m_summary": "Kurs 51526.13 ueber_VWAP (VWAP 51159.3), unter_VAL. POC=51909.25 VAH=51940.22 VAL=51775.02. Shape: P-Shape (pos 0.813). align=0/8.",
+      "h1_summary": "Ichimoku 1H below kumo. ER_1H -38.9->-2.54 (flach, Momentum erschoepft).",
+      "h30m_summary": "Kurs 51550.83 ueber_VWAP (51163.37), unter_VAL. ER 30M -43->-32 (easing), RSI 35->43. align=1/8.",
       "mp_shape_yesterday": "Trend Day",
       "mp_shape_forecast": "P-Shape",
       "mp_5day_sequence": "POC-Migration steigend | Shapes(0-2): P-Shape | Trend Day | b-Shape | composite_poc 51509.33 | naked_pocs [52211.68, 50944.96, 50322.38, 50856.19, 51632.21]",
@@ -83,16 +83,16 @@
         }
       ],
       "orders": [],
-      "invalidation": "Reclaim ueber VAL 51775 + POC 51909 noetig fuer Long; sonst weiter schwach."
+      "invalidation": "Reclaim ueber VAL 51775 + POC 51909 noetig fuer Long; sonst schwach unter SMA200."
     },
     {
       "name": "SPX500",
       "bias": "NEUTRAL",
       "bias_pct": "50",
-      "daily_summary": "Bias NEUTRAL (align 0/8). Trend Day, Preis unter VAL+SMA200, Ichimoku 1H strong_bearish. Preis in VP-HVN-Support 7476-7483.",
+      "daily_summary": "US-Update 14:53: Bias NEUTRAL (align 0/8). Trend Day, Preis an VAL 7490 (knapp drunter) + unter SMA200 7530. Abverkauf erschoepft.",
       "h4_summary": "Manuelle Analyse. Kontext: Abverkauf, Test VP-HVN-Support.",
-      "h1_summary": "Ichimoku 1H strong_bearish. ER 30M -50 (Down-Effizienz). RSI 39.9.",
-      "h30m_summary": "Kurs 7482.2 ueber_VWAP (VWAP 7448.74), unter_VAL. POC=7504.28 VAH=7513.98 VAL=7490.7. Shape: Trend Day (pos 0.583). align=0/8.",
+      "h1_summary": "Ichimoku 1H below (Kumo-Unterkante). ER_1H -37.5->+8.41 (flach), RSI 50.",
+      "h30m_summary": "Kurs 7487.7 ueber_VWAP (7448.72), unter_VAL/POC. ER 30M -50->-37 (easing), RSI 40->50. align=0/8.",
       "mp_shape_yesterday": "P-Shape",
       "mp_shape_forecast": "Trend Day",
       "mp_5day_sequence": "POC-Migration steigend | Shapes(0-2): Trend Day | P-Shape | P-Shape | composite_poc 7481.78 | naked_pocs [7548.37, 7568.89, 7414.32, 7307.23, 7374.56]",
@@ -119,7 +119,7 @@
         }
       ],
       "orders": [],
-      "invalidation": "Verlust VP-HVN 7476 oeffnet Weg zu 7440; Reclaim VAL 7490 + SMA200 7532 fuer Long."
+      "invalidation": "Verlust VAL 7490/VP-HVN 7476 oeffnet 7440; Reclaim VAL + SMA200 7532 fuer Long."
     }
   ],
   "summary": {
@@ -127,11 +127,11 @@
     "total_orders": 0,
     "warnings": [
       "WAIT-Tag: keine Orders",
-      "Divergenter Markt GER long vs US short",
-      "VIX overnight +12% auf 18.44",
-      "DXY +0.9% (101.01)"
+      "GER40 WATCH-Long verfallen (kein POC-Reclaim, ER 30M -87.82)",
+      "Alle 3 unter POC, Momentum erschoepft",
+      "NY-Open 15:30 abwarten"
     ],
-    "notes": "Morning WAIT. GER40 WATCH-Long (Reclaim/Halten POC 25094 + Ausbruch VAH 25115). Makro NEUTRAL -1."
+    "notes": "US-Update WAIT. GER40-WATCH-Long invalidiert. Keine 2-Instrument-Konfluenz (ok_long 0/3, ok_short 0/3). Makro +2 (VIX -6.7% auf 17.2)."
   },
   "stats": {
     "total": 218,
