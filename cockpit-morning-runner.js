@@ -1,4 +1,4 @@
-// cockpit-morning-runner.js
+﻿// cockpit-morning-runner.js
 // Liest Prompt-Datei und uebergibt sie korrekt an claude CLI via Node.js spawn().
 // Hintergrund: PowerShell 5.1 hat einen bekannten Bug beim Uebergeben von mehrzeiligen
 // Strings an native Commands (word-splitting bei Strings mit "..." oder Zeilenumbruechen).
@@ -20,7 +20,7 @@ try {
 
 // Auf Windows: cmd.exe /c verwenden, damit .cmd-Dateien (claude.cmd aus npm)
 // korrekt gefunden werden. Vermeidet shell:true Deprecation-Warning.
-const args = ['-p', prompt, '--allowedTools', allowedTools, '--dangerously-skip-permissions'];
+const args = ['--model', 'claude-sonnet-4-6', '-p', prompt, '--allowedTools', allowedTools, '--dangerously-skip-permissions'];
 const spawnCmd = process.platform === 'win32' ? 'cmd.exe' : 'claude';
 const spawnArgs = process.platform === 'win32' ? ['/c', 'claude', ...args] : args;
 const child = spawn(spawnCmd, spawnArgs, { stdio: 'inherit', windowsHide: false });
