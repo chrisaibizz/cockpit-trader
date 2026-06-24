@@ -133,14 +133,14 @@
           "tenkan": 24864.49,
           "kijun": 24942.84,
           "kumo_a": 24903.67,
-          "kumo_b": 24982.20,
+          "kumo_b": 24982.2,
           "position": "inside"
         },
         "fibo": {
-          "level_0": 24756.10,
-          "level_50": 24982.20,
+          "level_0": 24756.1,
+          "level_50": 24982.2,
           "level_618": 25035.56,
-          "top": 25208.30
+          "top": 25208.3
         },
         "mri": {
           "mean": 25044.14,
@@ -404,7 +404,7 @@
         "mp_shape": "P-Shape",
         "mp_shape_bias": "BULLISCH",
         "price_vs_va": "unter_VAL",
-        "vwap": 51218.30,
+        "vwap": 51218.3,
         "vwap_upper": null,
         "vwap_lower": null,
         "vwap_source": "VWAP Anchored (EU-Stdev-Bands nicht geladen)",
@@ -415,9 +415,9 @@
         "sma200": 51803.86,
         "ichimoku": {
           "tenkan": 51562.05,
-          "kijun": 51686.80,
+          "kijun": 51686.8,
           "kumo_a": 51624.43,
-          "kumo_b": 51706.80,
+          "kumo_b": 51706.8,
           "position": "below"
         },
         "fibo": {
@@ -430,7 +430,7 @@
           "mean": 51690.65,
           "r1": 51921.69,
           "s1": 51459.62,
-          "r2": 52248.60,
+          "r2": 52248.6,
           "s2": 51132.71
         },
         "cdv": 208405.99,
@@ -683,7 +683,7 @@
         "poc": 7490.92,
         "vah": 7521.64,
         "val": 7480.15,
-        "mp_shape_pos": 0.260,
+        "mp_shape_pos": 0.26,
         "va_breite_pct": 0.55,
         "mp_shape": "b-Shape",
         "mp_shape_bias": "BEARISCH",
@@ -699,7 +699,7 @@
         "sma200": 7495.61,
         "ichimoku": {
           "tenkan": 7389.42,
-          "kijun": 7433.90,
+          "kijun": 7433.9,
           "kumo_a": 7411.66,
           "kumo_b": 7460.74,
           "position": "below"
@@ -945,78 +945,6 @@
     },
     "calendar": [
       {
-        "date": "2026-06-23",
-        "time": "09:15",
-        "currency": "EUR",
-        "name": "French Flash Manufacturing PMI",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "50.2",
-        "previous": "48.9",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-23",
-        "time": "09:15",
-        "currency": "EUR",
-        "name": "French Flash Services PMI",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "45.9",
-        "previous": "42.9",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-23",
-        "time": "09:30",
-        "currency": "EUR",
-        "name": "German Flash Manufacturing PMI",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "50.3",
-        "previous": "49.9",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-23",
-        "time": "09:30",
-        "currency": "EUR",
-        "name": "German Flash Services PMI",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "49.0",
-        "previous": "47.8",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-23",
-        "time": "15:45",
-        "currency": "USD",
-        "name": "Flash Manufacturing PMI",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "54.6",
-        "previous": "55.3",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
-        "date": "2026-06-23",
-        "time": "15:45",
-        "currency": "USD",
-        "name": "Flash Services PMI",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "51.1",
-        "previous": "50.9",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-06-25",
         "time": "14:30",
         "currency": "USD",
@@ -1161,7 +1089,7 @@
         "mp_shape_pos": 0.654,
         "schichten": {
           "s1_kontext": {
-            "score": -0.30,
+            "score": -0.3,
             "raw": -3,
             "signale": {
               "mp_shape": 0,
@@ -1173,7 +1101,7 @@
             }
           },
           "s2_struktur": {
-            "score": 0.50,
+            "score": 0.5,
             "raw": 2,
             "signale": {
               "vwap": 1,
@@ -1184,7 +1112,7 @@
             }
           },
           "s3_entry": {
-            "score": -0.50,
+            "score": -0.5,
             "raw": -3,
             "signale": {
               "ichimoku": 0,
@@ -1229,7 +1157,7 @@
         "mp_shape_pos": 0.752,
         "schichten": {
           "s1_kontext": {
-            "score": 0.20,
+            "score": 0.2,
             "raw": 2,
             "signale": {
               "mp_shape": 3,
@@ -1280,7 +1208,7 @@
           "poc": 51848.15,
           "vah": 51921.64,
           "val": 51625.48,
-          "vwap": 51218.30,
+          "vwap": 51218.3,
           "current": 51587.15,
           "onh": 51610.65,
           "pdh": 51887.85
@@ -1294,10 +1222,10 @@
         "bias_pct": "12",
         "er_wert": -0.29,
         "mp_shape": "b-Shape",
-        "mp_shape_pos": 0.260,
+        "mp_shape_pos": 0.26,
         "schichten": {
           "s1_kontext": {
-            "score": -1.00,
+            "score": -1.0,
             "raw": -10,
             "signale": {
               "mp_shape": -3,
@@ -1375,8 +1303,8 @@
     "trade_freigabe": false,
     "shape_konflikt": false,
     "konfidenz_details": {
-      "chart_gewichtung": 0.30,
-      "makro_gewichtung": 0.70,
+      "chart_gewichtung": 0.3,
+      "makro_gewichtung": 0.7,
       "gewichtungs_grund": "Event < 2h: US Flash PMI 15:45 CET (in ~57min) -> Chart 30% / Makro 70%.",
       "alignment_beitrag": -0.225,
       "makro_beitrag": -0.058,
@@ -1392,7 +1320,7 @@
       "DJ30",
       "GER40"
     ],
-    "entry_fenster": "Kein Entry vor 15:50 CET (PMI). Danach: SPX Short nur wenn PMI schwach + Bestätigung 2/3 Instrumente.",
+    "entry_fenster": "Kein Entry vor 15:50 CET (PMI). Danach: SPX Short nur wenn PMI schwach + Best\u00e4tigung 2/3 Instrumente.",
     "max_risk_today": "0% (WAIT)",
     "max_trades_heute": 0,
     "trades_today": 0,
@@ -1444,85 +1372,13 @@
     "bereiche": {
       "lokale_prozesse": "OK (CDP 9222, data_get_market_profile x3 + quote_get x3 + study_values x3, data.json 14:38 geladen; yfinance EOD Daten)",
       "sheet_doc": "OK (0 Orders WAIT -> kein Sheet-Write; journal-data.json aktualisiert; us-update Log geschrieben)",
-      "github_web": "Pending (Push noch ausstehend)",
+      "github_web": "OK (Push 0558c07, state.json + journal-data.json aktualisiert)",
       "datenqualitaet": "OK (MP pos GER0.654/DJ0.752/SPX0.260; ER/CDV/Ichimoku/RSI/VWAP vollstaendig; 2 WARN: PCR n.v., er_1h nicht verfuegbar; alle unter VAL bestaetigt)",
       "entscheidung": "WAIT (align: GER-1/DJ+1/SPX-6; konfidenz_short SPX 0.283 <0.40; ok_long 0/3, ok_short 1/3) - 0 Orders. PMI Event 15:45 blockiert.",
       "anomalien": "KRITISCH: (1) SPX RSI 31 OVERSOLD - extremes Niveau. (2) VIX +14.47% auf 19.78 - signifikanter Spike. (3) Alle 3 unter VAL gleichzeitig - ungewoehnlich. (4) SPX gap-down -89pts. (5) US Flash PMI 15:45 < 1h - Event-Risiko hoch."
     }
   },
   "calendar": [
-    {
-      "date": "2026-06-23",
-      "time": "09:15",
-      "currency": "EUR",
-      "name": "French Flash Manufacturing PMI",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "50.2",
-      "previous": "48.9",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-23",
-      "time": "09:15",
-      "currency": "EUR",
-      "name": "French Flash Services PMI",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "45.9",
-      "previous": "42.9",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-23",
-      "time": "09:30",
-      "currency": "EUR",
-      "name": "German Flash Manufacturing PMI",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "50.3",
-      "previous": "49.9",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-23",
-      "time": "09:30",
-      "currency": "EUR",
-      "name": "German Flash Services PMI",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "49.0",
-      "previous": "47.8",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-23",
-      "time": "15:45",
-      "currency": "USD",
-      "name": "Flash Manufacturing PMI",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "54.6",
-      "previous": "55.3",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
-      "date": "2026-06-23",
-      "time": "15:45",
-      "currency": "USD",
-      "name": "Flash Services PMI",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "51.1",
-      "previous": "50.9",
-      "better": null,
-      "source": "forexfactory"
-    },
     {
       "date": "2026-06-25",
       "time": "14:30",
