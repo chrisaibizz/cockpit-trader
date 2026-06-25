@@ -16,7 +16,7 @@
     "morning_last_run": "2026-06-24T08:25:00",
     "usupdate_last_run": "2026-06-24T14:45:00",
     "result": "WAIT/0 Orders. BALANCE-Phase. GER40 Trend Day UNTER VAL (-198pts, ER=-51). DJ30 P-Shape stabil. SPX500 b-Shape leicht erholt. 0/3 alle_schichten_ok. Konfidenz 0.21. Makro RISK_ON +5. MORGEN Core PCE + GDP 14:30 HIGH.",
-    "score": "0/8 (mix) — 0 Orders — WAIT — ok_long 0/3, ok_short 0/3"
+    "score": "0/8 (mix) \u2014 0 Orders \u2014 WAIT \u2014 ok_long 0/3, ok_short 0/3"
   },
   "macro": {
     "_agent": "MACRO",
@@ -96,8 +96,8 @@
       "fred_score": 0
     },
     "warnungen": [
-      "GER40 Breakdown unter VAL (-198pts, ER=-51) — bearisher Ausbruch aus Value Area",
-      "MORGEN Core PCE 14:30 + Final GDP 14:30 HIGH IMPACT — erhoehte Vorsicht",
+      "GER40 Breakdown unter VAL (-198pts, ER=-51) \u2014 bearisher Ausbruch aus Value Area",
+      "MORGEN Core PCE 14:30 + Final GDP 14:30 HIGH IMPACT \u2014 erhoehte Vorsicht",
       "CPI 4.27% hoch (FRED) - Inflationsdruck bleibt",
       "DXY 101.728 steigend (moderat)",
       "Put/Call Ratio nicht verfuegbar (^PCALL delisted)"
@@ -582,7 +582,7 @@
         "va_breite_pct": 0.8,
         "mp_shape": "b-Shape",
         "mp_shape_bias": "BAERISCH",
-        "price_vs_va": "in_value",
+        "price_vs_va": "in_value_oben",
         "vwap": 7448.97,
         "vwap_upper": null,
         "vwap_lower": null,
@@ -783,11 +783,22 @@
           "shape_sequenz": "b-Shape / Trend / D-Shape / P-Shape / P-Shape",
           "poc_migration": "fallend"
         },
-        "price_vs_poc": "ueber_POC",
-        "price_vs_va": "in_value_oben"
+        "price_vs_poc": "ueber_POC"
       }
     },
     "calendar": [
+      {
+        "date": "2026-06-25",
+        "time": "02:30",
+        "currency": "USD",
+        "name": "President Trump Speaks",
+        "impact": "medium",
+        "actual": "",
+        "forecast": "",
+        "previous": "",
+        "better": null,
+        "source": "forexfactory"
+      },
       {
         "date": "2026-06-25",
         "time": "14:30",
@@ -871,7 +882,7 @@
         "price": "24943.9 (08:12) -> 24670.4 (-273.5pts, -1.10%). UNTER VAL 24868 (-198pts).",
         "lage": "von in_value (08:00) auf unter_VAL (14:45). Massiver Breakdown. ER=-51.32 (stark trendend).",
         "er_30m": "-13.22 (08:00) -> -51.32 (14:45). Bearish Trend extrem beschleunigt.",
-        "ichimoku": "von inside auf below Kumo. Tenkan=24692, Kijun=24812 — beide uber Preis."
+        "ichimoku": "von inside auf below Kumo. Tenkan=24692, Kijun=24812 \u2014 beide uber Preis."
       },
       "DJ30": {
         "price": "51740.38 (08:12) -> 51770.98 (+30.6pts, +0.06%). Marginal erholt.",
@@ -886,7 +897,7 @@
       "VIX": "19.49 (08:00) -> 18.82 (14:45) FALLEND (-0.67, -3.4%)",
       "makro_score": "+3 LEICHT_RISK_ON (08:00) -> +5 RISK_ON (14:45, VIX fallend +2)"
     },
-    "trigger": "GER40 Hauptbewegung: -273pts auf 24670, UNTER VAL 24868 (-198pts). ER=-51 stark. DJ30/SPX500 marginal. VIX fallend 19.49->18.82 positiv. Makro verbessert auf RISK_ON +5. Aber 0/3 alle_schichten_ok — WAIT bleibt. MORGEN Core PCE + GDP HIGH.",
+    "trigger": "GER40 Hauptbewegung: -273pts auf 24670, UNTER VAL 24868 (-198pts). ER=-51 stark. DJ30/SPX500 marginal. VIX fallend 19.49->18.82 positiv. Makro verbessert auf RISK_ON +5. Aber 0/3 alle_schichten_ok \u2014 WAIT bleibt. MORGEN Core PCE + GDP HIGH.",
     "bias_morning": "WAIT (Morning 08:25)",
     "bias_jetzt": "WAIT (0/3 Schichten-Freigabe, GER40 Breakdown kein Setup, keine ausreichende Konfluenz)"
   },
@@ -897,7 +908,7 @@
     "_update_type": "usupdate",
     "marktphase": {
       "begruendung": [
-        "GER40 UNTER VAL (-198pts). ER=-51.32 (stark trendend abwaerts). Kurs 24670 unter Kumo, VWAP, SMA200, Pivot — bearisher Breakdown.",
+        "GER40 UNTER VAL (-198pts). ER=-51.32 (stark trendend abwaerts). Kurs 24670 unter Kumo, VWAP, SMA200, Pivot \u2014 bearisher Breakdown.",
         "ER-Werte: GER40=-51.32 (TREND BEARISH), DJ30=-18.61, SP500=-4.38. GER40 allein > 25, kein 2-Instrument-Konsens fuer TREND-Phase.",
         "Mixed Shapes: GER40 Trend Day (UNTER VAL, bearish Druck), DJ30 P-Shape (bullische Struktur, stabil), SPX500 b-Shape (bearish POC-Migration).",
         "SPX500: b-Shape S1=-0.40, POC-Migration fallend -2. S2=0.00 (VWAP bearish aber CDV positiv). S3=-0.375. align=-2.",
@@ -1123,7 +1134,7 @@
       "gemischt": true,
       "alle_bearish": false,
       "alle_bullish": false,
-      "note": "GER40 UNTER VAL bearish Breakdown | DJ30 P-Shape leicht bullisch | SPX500 b-Shape leicht bearisch — kein Konsens, 0/3 Schichten-Freigabe"
+      "note": "GER40 UNTER VAL bearish Breakdown | DJ30 P-Shape leicht bullisch | SPX500 b-Shape leicht bearisch \u2014 kein Konsens, 0/3 Schichten-Freigabe"
     },
     "summary": "Phase BALANCE 14:45. GER40 massiver Breakdown UNTER VAL (-198pts, ER=-51), aber S1=-0.10 (POC-Migration +2 kompensiert), S2=0.00, alle_schichten_ok=false. DJ30 stabil P-Shape S1=+0.10 (S1 FAIL), S2=+0.60 stark. SPX500 b-Shape S1=-0.40 SHORT-nahe, S2=0.00 (S2 FAIL SHORT). Kein Instrument erfuellt alle_schichten_ok. Makro RISK_ON +5. WAIT."
   },
@@ -1149,7 +1160,7 @@
       "gewichtungs_grund": "BALANCE Phase -> 50/50",
       "konfidenz_short": 0.0
     },
-    "trade_plan": "WAIT — kein Trade. 0/3 Schichten-Freigabe. Konfidenz 0.21 < 0.40. GER40 massiver Breakdown UNTER VAL aber kein klares Short-Setup (POC-Migration kompensiert). Makro RISK_ON +5 positiv aber kein Setup. MORGEN Core PCE + GDP — erhohte Vorsicht.",
+    "trade_plan": "WAIT \u2014 kein Trade. 0/3 Schichten-Freigabe. Konfidenz 0.21 < 0.40. GER40 massiver Breakdown UNTER VAL aber kein klares Short-Setup (POC-Migration kompensiert). Makro RISK_ON +5 positiv aber kein Setup. MORGEN Core PCE + GDP \u2014 erhohte Vorsicht.",
     "instrument_prioritaet": [
       "DJ30",
       "SPX500",
@@ -1160,19 +1171,19 @@
     "max_trades_heute": 2,
     "trades_today": 0,
     "active_positions": [],
-    "notes": "WAIT: alle_schichten_ok 0/3 — kein Instrument erfuellt alle Freigabe-Bedingungen | GER40 S1=-0.10 (Short-Schwelle -0.20 verfehlt, poc_migration +2 kompensiert) | DJ30 S1=+0.10 (Long-Schwelle +0.20 verfehlt) | SPX500 S2=0.00 (Short-Schwelle -0.25 verfehlt) | Makro verbessert: VIX fallend 19.49->18.82, Score +3->+5 RISK_ON | MORGEN: Core PCE 14:30 + Final GDP 14:30 (HIGH IMPACT) — VIX-Anstieg moeglich",
+    "notes": "WAIT: alle_schichten_ok 0/3 \u2014 kein Instrument erfuellt alle Freigabe-Bedingungen | GER40 S1=-0.10 (Short-Schwelle -0.20 verfehlt, poc_migration +2 kompensiert) | DJ30 S1=+0.10 (Long-Schwelle +0.20 verfehlt) | SPX500 S2=0.00 (Short-Schwelle -0.25 verfehlt) | Makro verbessert: VIX fallend 19.49->18.82, Score +3->+5 RISK_ON | MORGEN: Core PCE 14:30 + Final GDP 14:30 (HIGH IMPACT) \u2014 VIX-Anstieg moeglich",
     "zentralbank_stop": false,
     "zentralbank_stop_grund": "",
     "verlust_pause": false,
     "verlust_pause_grund": "",
     "warnungen": [
-      "WAIT: alle_schichten_ok 0/3 — kein Instrument erfuellt alle Freigabe-Bedingungen",
-      "GER40 BREAKDOWN UNTER VAL (-198pts) — kein Short-Setup (S1 zu schwach, poc_migration kompensiert)",
+      "WAIT: alle_schichten_ok 0/3 \u2014 kein Instrument erfuellt alle Freigabe-Bedingungen",
+      "GER40 BREAKDOWN UNTER VAL (-198pts) \u2014 kein Short-Setup (S1 zu schwach, poc_migration kompensiert)",
       "SPX500 S2=0.00 (Short-Schwelle -0.25 verfehlt, kein Clear-Short)",
       "DJ30 S1=+0.10 (Long-Schwelle +0.20 verfehlt)",
-      "MORGEN: Core PCE 14:30 + Final GDP 14:30 (HIGH IMPACT) — WAIT morgen wahrscheinlich",
-      "VIX fallend (19.49->18.82) — Volatilitaet entspannt, Makro positiv",
-      "CPI 4.27% hoch (FRED) — Fed-Druck bleibt"
+      "MORGEN: Core PCE 14:30 + Final GDP 14:30 (HIGH IMPACT) \u2014 WAIT morgen wahrscheinlich",
+      "VIX fallend (19.49->18.82) \u2014 Volatilitaet entspannt, Makro positiv",
+      "CPI 4.27% hoch (FRED) \u2014 Fed-Druck bleibt"
     ]
   },
   "orders": {
@@ -1183,9 +1194,9 @@
       "total_orders": 0,
       "warnings": [
         "WAIT: 0/3 Schichten-Freigabe | Konfidenz 0.21 < 0.40 | abs(align) 0 < 4",
-        "GER40 BREAKDOWN UNTER VAL — kein verwertbares Short-Setup"
+        "GER40 BREAKDOWN UNTER VAL \u2014 kein verwertbares Short-Setup"
       ],
-      "notes": "WAIT 14:45. 0 Orders. GER40 Breakdown bearish aber S1 zu schwach (poc_migration kompensiert). Makro RISK_ON +5 aber kein Setup. MORGEN Core PCE + GDP 14:30 HIGH — erhoehte Vorsicht."
+      "notes": "WAIT 14:45. 0 Orders. GER40 Breakdown bearish aber S1 zu schwach (poc_migration kompensiert). Makro RISK_ON +5 aber kein Setup. MORGEN Core PCE + GDP 14:30 HIGH \u2014 erhoehte Vorsicht."
     },
     "_agent": "EXECUTOR",
     "_last_run": "2026-06-24T14:45:00",
@@ -1193,24 +1204,36 @@
     "_status": "ready"
   },
   "monitor": {
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260624_0825_Morning.txt",
+    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260624_1445_USUpdate.txt",
     "_status": "ready",
     "kritisch_count": 0,
     "_agent": "MONITOR",
+    "_last_run": "2026-06-24T14:46:00",
     "probleme_count": 0,
     "gesamt_status": "OK",
+    "session": "USUpdate",
     "bereiche": {
       "sheet_doc": "OK",
-      "github_web": "OK",
+      "github_web": "OK (7fac6c8)",
       "datenqualitaet": "2 Warnungen (PCR null, ER-1H fehlt)",
-      "anomalien": "OK (1 Hinweis: ER-1H uebersprungen)",
+      "anomalien": "OK (1 Hinweis: journal-data.json Morning-Stand)",
       "lokale_prozesse": "OK",
-      "entscheidung": "WAIT (Score -3/8, 0 Orders)"
-    },
-    "session": "Morning",
-    "_last_run": "2026-06-24T08:25:00"
+      "entscheidung": "WAIT (Score 0/8, 0 Orders)"
+    }
   },
   "calendar": [
+    {
+      "date": "2026-06-25",
+      "time": "02:30",
+      "currency": "USD",
+      "name": "President Trump Speaks",
+      "impact": "medium",
+      "actual": "",
+      "forecast": "",
+      "previous": "",
+      "better": null,
+      "source": "forexfactory"
+    },
     {
       "date": "2026-06-25",
       "time": "14:30",
