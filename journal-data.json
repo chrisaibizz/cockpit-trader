@@ -1,98 +1,105 @@
 {
   "date": "2026-06-25",
-  "timestamp": "2026-06-25T08:17:00",
+  "timestamp": "2026-06-25T14:45:00",
+  "session": "USUpdate",
   "debrief": {
     "orders_checked": 0,
-    "fill_rate": "n/a",
-    "tp1_rate": "n/a",
-    "trend": "keine Vortag-Orders",
-    "learnings": []
+    "fill_rate": "n.a. (0 Orders morning)",
+    "tp1_rate": "n.a.",
+    "trend": "WAIT-Session (morning + usupdate)",
+    "learnings": [
+      "AUSBRUCH-Konstellation nach Core PCE/GDP (14:30) bestaetigt: GER40 +0.98% bricht Naked POC 24952",
+      "S1-Schichten-Blockade durch poc_migration fallend haelt auch bei starken Ausbruechen -- korrekte Konservativitaet",
+      "DJ30 Ichimoku: below -> above Kumo (Strukturwechsel nach Ausbruch)"
+    ]
   },
   "instruments": [
     {
       "name": "GER40",
-      "bias": "Neutral",
-      "bias_pct": "50",
-      "daily_summary": "BALANCE. D-Shape (pos=0.375). Preis 24766 leicht ueber VWAP (24745) und POC (24702). Naked POCs 24952 und 25116 als Upside-Magnete. VP VAL 24825 ist naechster Widerstand.",
-      "h4_summary": "Nicht gelesen (Fokus 30M Morning).",
-      "h1_summary": "Ichimoku: Preis INSIDE Kumo (SpanA=24747, SpanB=24800) -- neutral/baerisch.",
-      "h30m_summary": "D-Shape, pos=0.375. ER=6.22 (Balance). VWAP=24745 (Preis leicht darueber). CDV=+12282 (bullisch). RSI=52.91 (neutral). SMA200=24957 (Preis darunter).",
-      "mp_shape_yesterday": "Trend Day (2026-06-24, poc=24952)",
-      "mp_shape_forecast": "Offen -- D-Shape aktuell, Trend-Day-Sequenz letzte 2 Tage",
-      "mp_5day_sequence": "S0(heute)=D-Shape | S1(24-Jun)=Trend Day | S2(23-Jun)=Trend Day | S3(20-Jun)=b-Shape | S4(19-Jun)=P-Shape | POC-Migration: fallend",
+      "bias": "LEICHT_BULLISH",
+      "bias_pct": "55",
+      "daily_summary": "D-Shape Session (pos=0.375). Morgen: WAIT Balance. Nachmittag: Ausbruch +0.98% ueber Naked POC 24952 nach PCE/GDP-Daten.",
+      "h4_summary": "n.a. (USUpdate keine H4-Analyse)",
+      "h1_summary": "n.a. (USUpdate keine H1-Analyse)",
+      "h30m_summary": "ER 73.33 (stark trendend). Preis 25009 weit ueber VAH (24841). Ichimoku ueber Kumo. RSI 76.85 stark ueberkauft.",
+      "mp_shape_yesterday": "Trend Day (Session 2026-06-24, POC 24952)",
+      "mp_shape_forecast": "Moeglicher Pullback (RSI ueberkauft), Aufwaertstendenz bei Schlusskurs ueber 24952",
+      "mp_5day_sequence": "D-Shape / Trend Day / Trend Day / b-Shape / P-Shape -- gemischt bearish Tendenz, aber Ausbruch heute",
       "key_levels": [
-        {"level": "VAH heute", "price": "24841.26", "source": "Market Profile"},
-        {"level": "POC heute", "price": "24702.60", "source": "Market Profile"},
-        {"level": "VAL heute", "price": "24619.40", "source": "Market Profile"},
-        {"level": "VWAP", "price": "24745.31", "source": "VWAP Anchored"},
-        {"level": "VP POC (LT)", "price": "24962.28", "source": "Volume Profile"},
-        {"level": "Naked POC 1", "price": "24952.17", "source": "MP History S1"},
-        {"level": "Naked POC 2", "price": "25116.75", "source": "MP History S2"}
+        {"level": "POC (heute)", "price": "24702.6", "source": "Market Profile 30M"},
+        {"level": "VAH (heute)", "price": "24841.26", "source": "Market Profile 30M"},
+        {"level": "Naked POC (gebrochen)", "price": "24952.17", "source": "Session 2026-06-24"},
+        {"level": "Naked POC (naechstes Ziel)", "price": "25116.75", "source": "Session 2026-06-23"},
+        {"level": "VWAP", "price": "24747.25", "source": "VWAP Anchored"},
+        {"level": "SMA200 (30M)", "price": "24949.93", "source": "Simple Moving Average"}
       ],
       "orders": [],
-      "invalidation": "WAIT -- kein Trade heute. S1=-0.10 unter Freigabe-Schwelle."
+      "invalidation": "WAIT -- S1 blockiert (s1_score=0.10 < 0.20). Morgen: Neuer MP-Shape entscheidend."
     },
     {
       "name": "DJ30",
-      "bias": "Neutral (b-Shape Warnung)",
+      "bias": "NEUTRAL",
       "bias_pct": "50",
-      "daily_summary": "b-Shape heute (pos=0.15) aber Preis 52013 nahe VAH (52061). CDV stark positiv (+226k). Spannung zwischen bearischem Shape und bullischem Preis. 3 consecutive P-Shapes letzte 3 vollstaendige Sessions.",
-      "h4_summary": "Nicht gelesen.",
-      "h1_summary": "Ichimoku UNTER Kumo (SpanA=52042, SpanB=52023) -- baerisch. SMA200=51759 (Preis darueber -- bullisch).",
-      "h30m_summary": "b-Shape pos=0.15. ER=18.95 (moderat). VWAP=51293 (Preis weit darueber). CDV=+226710 (stark bullisch). RSI=51.99 (neutral).",
-      "mp_shape_yesterday": "Trend Day (2026-06-24, poc=51861)",
-      "mp_shape_forecast": "Ungewiss -- b-Shape heute kann Reversal-Tag bedeuten",
-      "mp_5day_sequence": "S0(heute)=b-Shape | S1(24-Jun)=Trend Day | S2(23-Jun)=P-Shape | S3(20-Jun)=P-Shape | S4(19-Jun)=P-Shape | POC-Migration: fallend",
+      "daily_summary": "b-Shape Session (pos=0.15). Nachmittag: +0.29% ueber VAH. Ichimoku-Wechsel: below -> above Kumo.",
+      "h4_summary": "n.a. (USUpdate)",
+      "h1_summary": "n.a. (USUpdate)",
+      "h30m_summary": "ER 21.96 (moderat). Preis 52165 ueber VAH (52061) und Kumo. RSI 60.55. Naked POC 52211 in Reichweite.",
+      "mp_shape_yesterday": "Trend Day (Session 2026-06-24, POC 51861)",
+      "mp_shape_forecast": "b-Shape Strukturschwaeche. Naked POC 52211 als naechstes Ziel bei starker NY-Session.",
+      "mp_5day_sequence": "b-Shape / Trend Day / P-Shape / P-Shape / Trend Day -- bullisch Tendenz 2x P-Shape",
       "key_levels": [
-        {"level": "VAH heute", "price": "52061.01", "source": "Market Profile"},
-        {"level": "POC heute", "price": "51746.10", "source": "Market Profile"},
-        {"level": "VAL heute", "price": "51690.53", "source": "Market Profile"},
-        {"level": "VWAP", "price": "51293.07", "source": "VWAP Anchored"},
-        {"level": "VP POC (LT)", "price": "51811.33", "source": "Volume Profile"},
-        {"level": "Naked POC alt", "price": "52211.68", "source": "MP History S5"}
+        {"level": "POC (heute)", "price": "51746.1", "source": "Market Profile 30M"},
+        {"level": "VAH (heute)", "price": "52061.01", "source": "Market Profile 30M"},
+        {"level": "Naked POC (Ziel)", "price": "52211.68", "source": "Session 2026-06-18"},
+        {"level": "VWAP", "price": "51303.0", "source": "VWAP Anchored"},
+        {"level": "MRI R1", "price": "52188.30", "source": "Mean Reversion Channel"}
       ],
       "orders": [],
-      "invalidation": "WAIT -- kein Trade heute."
+      "invalidation": "WAIT -- S1 blockiert (s1_score=-0.10, b-Shape -3 dominant)."
     },
     {
       "name": "SPX500",
-      "bias": "Leicht Bullisch (Breakout-Tendenz)",
-      "bias_pct": "55",
-      "daily_summary": "Starkste Session: ER=57.64 (trendend), Preis 7426 ueber VAH (7420) -- Breakout! Ichimoku UEBER Kumo (bullisch). Aber S1=-0.10 wegen fallender POC-Migration und 2x b-Shape Sequenz. VWAP 7446 als naechstes Ziel.",
-      "h4_summary": "Nicht gelesen.",
-      "h1_summary": "Ichimoku UEBER Kumo (SpanA=7406, SpanB=7401) -- bullisch. SMA200=7452 leicht darueber.",
-      "h30m_summary": "Trend Day pos=0.5. ER=57.64 (stark). VWAP=7446 (Preis leicht darunter). CDV=+66440 (bullisch). RSI=57.82 (leicht bullisch). Preis ueber VAH (7420).",
-      "mp_shape_yesterday": "b-Shape (2026-06-24, poc=7388)",
-      "mp_shape_forecast": "Fortsetzung Trend Day moeglich wenn Preis ueber VWAP (7446) schliesst",
-      "mp_5day_sequence": "S0(heute)=Trend Day | S1(24-Jun)=b-Shape | S2(23-Jun)=b-Shape | S3(20-Jun)=P-Shape | S4(19-Jun)=Trend Day | POC-Migration: fallend (7399 vs 7504)",
+      "bias": "NEUTRAL",
+      "bias_pct": "48",
+      "daily_summary": "Trend Day Session (pos=0.5, va_breite=0.56%). Nachmittag: +0.22%, Konsolidierung. ER von 57 auf 4 gefallen.",
+      "h4_summary": "n.a. (USUpdate)",
+      "h1_summary": "n.a. (USUpdate)",
+      "h30m_summary": "ER 4.01 (Balance/Konsolidierung). Preis 7443 knapp unter VWAP (7446) und SMA200 (7447). RSI 60.68.",
+      "mp_shape_yesterday": "b-Shape (Session 2026-06-24, POC 7388)",
+      "mp_shape_forecast": "Konsolidierung zwischen VAH (7420) und SMA200 (7447). Naked POC 7490 strukturell bearisch.",
+      "mp_5day_sequence": "Trend Day / b-Shape / b-Shape / P-Shape / Trend Day -- gemischt 2x bearish",
       "key_levels": [
-        {"level": "VAH heute", "price": "7420.19", "source": "Market Profile"},
-        {"level": "POC heute", "price": "7399.49", "source": "Market Profile"},
-        {"level": "VAL heute", "price": "7378.79", "source": "Market Profile"},
-        {"level": "VWAP", "price": "7446.09", "source": "VWAP Anchored"},
-        {"level": "VP POC (LT)", "price": "7504.64", "source": "Volume Profile"},
-        {"level": "VP VAL", "price": "7429.62", "source": "Volume Profile"},
-        {"level": "Naked POC", "price": "7490.92", "source": "MP History S2"}
+        {"level": "POC (heute)", "price": "7399.49", "source": "Market Profile 30M"},
+        {"level": "VAH (heute)", "price": "7420.19", "source": "Market Profile 30M"},
+        {"level": "VWAP", "price": "7445.97", "source": "VWAP Anchored"},
+        {"level": "SMA200 (30M)", "price": "7446.95", "source": "Simple Moving Average"},
+        {"level": "Naked POC (Widerstand)", "price": "7490.92", "source": "Session 2026-06-23"}
       ],
       "orders": [],
-      "invalidation": "WAIT. USUpdate-Fokus: Long-Setup wenn PCE <0.3% und Preis ueber VWAP (7446)."
+      "invalidation": "WAIT -- S1+S2 blockiert (s1=-0.10, s2=0.00)."
     }
   ],
   "summary": {
-    "best_instrument": "SPX500",
+    "best_instrument": "GER40 (alignment_score=2/8, ER=73.33)",
     "total_orders": 0,
     "warnings": [
-      "HEUTE 14:30 Core PCE Price Index m/m HIGH IMPACT -- Prognose 0.3%",
-      "HEUTE 14:30 Final GDP q/q HIGH IMPACT -- Prognose 1.6%",
-      "DJ30 b-Shape Warnung -- Reversal-Risiko wenn Preis unter VAL (51690) faellt",
-      "SP500 POC-Migration fallend strukturell bearisch"
+      "GER40 RSI 76.85 -- stark ueberkauft nach Ausbruch",
+      "DJ30 b-Shape strukturelle Schwaeche trotz Preis ueber VAH",
+      "SPX500 ER=4.01 -- kein Trend-Momentum"
     ],
-    "notes": "WAIT. alignment_score=0 alle Instrumente. Makro LEICHT_RISK_ON +3. SP500 Best-Instrument fuer USUpdate nach Core PCE."
+    "notes": "AUSBRUCH-Phase nach Core PCE/GDP (14:30). Alle 3 ueber VAH. WAIT wegen S1-Blockade. Morgen entscheidend: GER40 Schlusskurs vs. Naked POC 24952."
   },
   "stats": {
     "total": 0,
-    "fill_rate": "n/a",
-    "tp1_rate": "n/a",
-    "trend": "keine Trades"
+    "fill_rate": "n.a.",
+    "tp1_rate": "n.a.",
+    "trend": "WAIT-Session"
+  },
+  "macro": {
+    "vix": 17.86,
+    "bonds_10y": 4.396,
+    "dxy": 101.563,
+    "makro_bias": "LEICHT_RISK_ON",
+    "gesamt_score": 3
   }
 }
