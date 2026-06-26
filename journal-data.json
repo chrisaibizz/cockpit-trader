@@ -1,6 +1,6 @@
 {
   "date": "2026-06-26",
-  "timestamp": "2026-06-26T08:05:08",
+  "timestamp": "2026-06-26T14:45:00",
   "debrief": {
     "orders_checked": 0,
     "fill_rate": "n/a",
@@ -9,96 +9,108 @@
     "learnings": [
       "AUSBRUCH-Phase nach Core PCE/GDP: GER40 +0.98% brach Naked POC 24952. Freitag zeigt Pullback.",
       "S2 bullisch (VWAP/CVD) blockiert SHORT auch wenn S1 bearisch -- wichtige Symmetrie-Regel.",
-      "SPX500 VP HVN 7309-7361 als Schluessel-Support fuer US-Session beobachten."
+      "DJ30 NY-Spike-Reversal-Muster (Spike auf 52817, Kollaps auf 51927) = institutioneller Abverkauf-Tag.",
+      "CVD-Divergenz (Kaeufer aktiv bei Abverkauf) = kein SHORT-Setup solange CVD positiv bleibt."
     ]
   },
   "instruments": [
     {
       "name": "GER40",
       "bias": "LEICHT_BEARISH",
-      "bias_pct": "40",
-      "daily_summary": "Freitags-Pullback -0.76% von Gestern-Schluss 25009. Ichimoku unter Kumo. SMA200 24935 als naechster Widerstand.",
-      "h4_summary": "b-Shape Struktur dominiert (Jun-20 session). Preis testet alte Ausbruch-Zone 24850-24900.",
-      "h1_summary": "VWAP 24756 als intraday Support. RSI 40.20 neutral -- kein Extrempunkt.",
-      "h30m_summary": "D-Shape Session (pos=0.625): Balance-Tag im Entstehen. Preis 34 Pts unter VAL 24852. POC 25007 weit weg.",
+      "bias_pct": "35",
+      "daily_summary": "US-Update 14:45: -161pts (-0.65%). ER dreht massiv negativ (-61.47). Preis 24657 weit unter VAL (24852,-195pts), unter VWAP (24756), unter SMA200 (24914). Ichimoku unter Kumo (KumoA 24783, KumoB 24888). RSI 30.96 near-oversold. Tail ausgedehnt bis 24708.",
+      "h4_summary": "Freitags-Trend-Tag abwaerts. Alle Indikatoren bestaetigen Abwärtsdruck. Pivot 24711 als letzte Intraday-Stuetze.",
+      "h1_summary": "VWAP 24756 jetzt Resistenz (Preis 24657 darunter). RSI 31 = Umkehr-Kandidat. CDV +9697 bullish Divergenz.",
+      "h30m_summary": "D-Shape (pos=0.625) unveraendert. Preis 24657 UNTER Tail (tiefster Tail 24708) -- extreme Abweichung. MRC S1=24681 als naechste Stuetze.",
       "mp_shape_yesterday": "D-Shape (Jun-25, POC 24702, pos=0.375) -- schwacher Tag gestern nach Ausbruch",
-      "mp_shape_forecast": "Erwartet: Balance/D-Shape. Rueckkehr in alte Value Area 24852-25100 moeglich wenn Freitags-Selling nachlasst.",
-      "mp_5day_sequence": "Jun-19 P-Shape / Jun-20 b-Shape / Jun-23 Trend Day / Jun-24 Trend Day / Jun-25 D-Shape -- Erschoepfung nach Trend",
+      "mp_shape_forecast": "Heutiger Tag: Trend Day BEARISH (alle ER>50). Erwarte Schlusskurs unter VAL 24852. Naked POC 24702 (Jun-25) als Ziel.",
+      "mp_5day_sequence": "Jun-19 P-Shape / Jun-20 b-Shape / Jun-23 Trend Day / Jun-24 Trend Day / Jun-25 D-Shape -- heute Trend Day BEARISH",
       "key_levels": [
+        {"level": "Aktuell", "price": "24657.5", "source": "Kurs 14:45"},
+        {"level": "MRC S1", "price": "24681.25", "source": "Mean Reversion Channel"},
+        {"level": "Pivot", "price": "24711.5", "source": "Daily Pivot"},
+        {"level": "VWAP", "price": "24756.83", "source": "VWAP Anchored"},
         {"level": "VAL", "price": "24852.72", "source": "Market Profile"},
         {"level": "POC", "price": "25007.39", "source": "Market Profile"},
         {"level": "VAH", "price": "25100.19", "source": "Market Profile"},
-        {"level": "VWAP", "price": "24756.46", "source": "VWAP Anchored"},
-        {"level": "SMA200", "price": "24934.98", "source": "SMA200 Daily"},
+        {"level": "SMA200", "price": "24914.21", "source": "SMA200"},
         {"level": "Naked POC 1", "price": "24702.60", "source": "MP Jun-25"},
         {"level": "Naked POC 2", "price": "25116.75", "source": "MP Jun-23"}
       ],
       "orders": [],
-      "invalidation": "WAIT -- keine Trade-Freigabe. S1=-0.50 blockiert LONG. S2=+0.40 blockiert SHORT."
+      "invalidation": "WAIT -- S1=-0.50 (unter VAL/POC/poc_migration fallend). S2=0.00 neutral (CVD+er_qual heben vwap/er_trend auf). alignment=-3 < 4."
     },
     {
       "name": "DJ30",
       "bias": "NEUTRAL",
       "bias_pct": "45",
-      "daily_summary": "b-Shape (pos=0.313) -- Verkaeufer-Kontrolle. Preis 51955 leicht ueber VAL 51942. Ichimoku unter Kumo.",
-      "h4_summary": "poc_migration steigend: POC von 51653 (Jun-20) auf 52051 (heute) -- bullischer Trend-Unterbau.",
-      "h1_summary": "VWAP 51356 weit unter Preis -- langer Weg nach unten zur fairen Bewertung.",
-      "h30m_summary": "b-Shape Session: Masse der Aktivitaet im unteren VA-Bereich. Preis 51955 haelt sich knapp ueber VAL 51942.",
+      "daily_summary": "US-Update 14:45: -28pts (-0.05%). NY-VERTEILER-SIGNAL: Spike bis ~52817 (Tail oben), dann Kollaps -890pts auf 51927. Jetzt UNTER VAL (51942,-15pts). ER +50->-64. RSI 39. CDV +204908 massive bullish Divergenz. SMA200 51910 knapp darunter.",
+      "h4_summary": "b-Shape bleibt (pos=0.313). Spike-Reversal-Muster = institutioneller Abverkauf. poc_migration steigend (bullischer Unterbau) haelt noch.",
+      "h1_summary": "VWAP 51368 weit unter Preis (51927) -- strukturell bullisch (ueber VWAP). Aber Preis unter VAL und Kumo.",
+      "h30m_summary": "b-Shape Session: Tail oben (52336-52817) = Kaeufer-Ablehnung der Hochs. VA 51942-52292. Preis 51927 unter VAL.",
       "mp_shape_yesterday": "D-Shape (Jun-25, POC 51746) -- moderater Tag gestern",
-      "mp_shape_forecast": "Erwartet: b-Shape oder D-Shape. VA-Range 51942-52292 als Tages-Rahmen.",
+      "mp_shape_forecast": "Heutiger Tag: Verteiler-Reversal. Naked POC 51746 (Jun-25) als naechstes Ziel wenn VAL 51942 bricht.",
       "mp_5day_sequence": "Jun-19 P-Shape / Jun-20 P-Shape / Jun-23 P-Shape / Jun-24 Trend Day / Jun-25 D-Shape -- bullische P-Shape Sequenz geschwaecht",
       "key_levels": [
+        {"level": "Aktuell", "price": "51927.15", "source": "Kurs 14:45"},
         {"level": "VAL", "price": "51942.52", "source": "Market Profile"},
+        {"level": "SMA200", "price": "51910.80", "source": "SMA200"},
+        {"level": "MRC S1", "price": "51767.24", "source": "Mean Reversion Channel"},
+        {"level": "Naked POC", "price": "51746.10", "source": "MP Jun-25"},
         {"level": "POC", "price": "52051.89", "source": "Market Profile"},
         {"level": "VAH", "price": "52292.50", "source": "Market Profile"},
-        {"level": "VWAP", "price": "51356.13", "source": "VWAP Anchored"},
-        {"level": "SMA200", "price": "51878.86", "source": "SMA200 Daily"},
-        {"level": "Naked POC", "price": "51746.10", "source": "MP Jun-25"}
+        {"level": "VWAP", "price": "51368.09", "source": "VWAP Anchored"},
+        {"level": "Spike-Top", "price": "52817.47", "source": "Auto Fibonacci / Tail Top"}
       ],
       "orders": [],
-      "invalidation": "WAIT -- S1=-0.30 (b-Shape -3) blockiert LONG. S2=+0.40 blockiert SHORT."
+      "invalidation": "WAIT -- S1=-0.30 (b-Shape -3, unter VAL). S2=+0.40 (CVD+VWAP positiv) blockiert SHORT. alignment=0."
     },
     {
       "name": "SPX500",
       "bias": "LEICHT_BEARISH",
-      "bias_pct": "38",
-      "daily_summary": "Staerkster Pullback: -1.58%. P-Shape (pos=0.864) zeigt historisch Kaeufer-Kontrolle, aber intraday massiver Abgabedruck. Unter VAL, VWAP und SMA200.",
-      "h4_summary": "3x Naked POCs oberhalb (7491/7548/7568) wirken als Magnete wenn Erholung kommt. VP HVN 7309-7361 als aktuelle Support-Zone.",
-      "h1_summary": "RSI 38.09 ueberverkauft -- potentieller Bounce-Kandidat. VWAP 7441 weit ueber Preis.",
-      "h30m_summary": "P-Shape: fast gesamte Aktivitaet im oberen VA-Bereich (7420-7442). Preis 7325 liegt 59 Pts unter VAL 7384 -- massive Abweichung.",
+      "bias_pct": "40",
+      "daily_summary": "US-Update 14:45: +9pts (+0.12%) leichte Erholung. ER +46->-53. Preis 7334 unter VAL (7384,-50pts), unter VWAP (7440), unter SMA200 (7417). Ichimoku unter Kumo (7346-7378). RSI 43 (Erholung von 38 morgens). CDV +41569 stark gestiegen. MRC S1=7328 als naechste Stuetze.",
+      "h4_summary": "P-Shape (pos=0.864) bleibt -- historisch Kaeufer-Kontrolle. Preis jedoch weiter unter VAL. 3x Naked POC oberhalb (7491/7548/7568) als Ziel bei Erholung.",
+      "h1_summary": "CDV 3200->41569 stark gestiegen = Kaeufer absorbieren Abverkauf. RSI 38->43 Erholungsansatz. Auto Fib Bottom 7309 als kritische Unterstuetzung.",
+      "h30m_summary": "P-Shape: VA 7384-7442. Preis 7334 UNTER Tail (tiefster Tail 7342). Auto Fib Bottom 7309.44 als letzter Support.",
       "mp_shape_yesterday": "Trend Day (Jun-25, POC 7399) -- bullischer Trend-Tag gestern",
-      "mp_shape_forecast": "Erwartet: Erholung in Richtung VAL 7384 moeglich (Mean-Reversion). VP HVN 7309-7361 muss halten.",
+      "mp_shape_forecast": "Heutiger Tag: Trend Day BEARISH. VP HVN Support 7309-7361 kritisch. Falls 7309 haelt: Bounce auf VAL 7384 moeglich.",
       "mp_5day_sequence": "Jun-19 Trend Day / Jun-20 P-Shape / Jun-23 P-Shape / Jun-24 b-Shape / Jun-25 Trend Day -- gemischt nach Ausbruch",
       "key_levels": [
+        {"level": "Aktuell", "price": "7333.7", "source": "Kurs 14:45"},
+        {"level": "MRC S1", "price": "7328.54", "source": "Mean Reversion Channel"},
+        {"level": "Auto Fib Bottom", "price": "7309.44", "source": "Auto Fibonacci"},
         {"level": "VP HVN Support", "price": "7309-7361", "source": "Volume Profile"},
         {"level": "VAL", "price": "7384.13", "source": "Market Profile"},
         {"level": "Pivot", "price": "7376.66", "source": "Daily Pivot"},
-        {"level": "SMA200", "price": "7425.89", "source": "SMA200 Daily"},
-        {"level": "VWAP", "price": "7441.16", "source": "VWAP Anchored"},
+        {"level": "SMA200", "price": "7416.67", "source": "SMA200"},
+        {"level": "VWAP", "price": "7439.66", "source": "VWAP Anchored"},
         {"level": "POC", "price": "7434.35", "source": "Market Profile"},
         {"level": "VAH", "price": "7442.27", "source": "Market Profile"},
         {"level": "Naked POC 1", "price": "7490.92", "source": "MP Jun-24"},
-        {"level": "Naked POC 2", "price": "7548.37", "source": "MP Jun-18"},
-        {"level": "Naked POC 3", "price": "7568.89", "source": "MP Jun-17"}
+        {"level": "Naked POC 2", "price": "7548.37", "source": "MP Jun-18"}
       ],
       "orders": [],
-      "invalidation": "WAIT -- S2=0.00 blockiert (kein Konsens). RSI ueberverkauft bietet Bounce-Potenzial fuer naechste Session."
+      "invalidation": "WAIT -- S1=-0.20 (unter VAL/POC/poc_migration fallend). S2=0.00 neutral. S3=-0.375 (Ichimoku+SMA200+Pivot bearisch). alignment=-1."
     }
   ],
   "summary": {
     "best_instrument": "none",
     "total_orders": 0,
     "warnings": [
-      "UoM Consumer Sentiment 16:00 (medium) -- Volatilitaet NY-Session moeglich",
-      "Freitags-Rebalancing: erhoehte Volumen-Schwankungen",
-      "SPX500 -1.58% unter VAL -- OPEX-Effekt oder Panikverkauf pruefe VP HVN 7309"
+      "TREND BEARISH: alle 3 ER massiv negativ (61/64/53) -- koordinierter Abwärtstrend",
+      "DJ30 NY-Verteiler: Spike 52817 -> Kollaps 51927 (-890pts) -- institutioneller Abverkauf",
+      "GER40 24657 unter Tail (24708) -- extreme Schwäche, Freitags-Beschleunigung",
+      "Makro-Downgrade: +4 LEICHT_RISK_ON -> +1 NEUTRAL (Gold risk-off +30, F&G 66->52)",
+      "CVD-Divergenz auf allen 3: Kaeufer aktiv -- SHORT-Signal fehlt noch",
+      "UoM Consumer Sentiment 16:00 medium -- Volatilitaet in 75min moeglich"
     ],
-    "notes": "WAIT wegen symmetrischer Blockade: S1 fuer alle bearisch (keine LONG-Freigabe), S2 fuer GER40/DJ30 bullisch (keine SHORT-Freigabe). Alignment max -2/8. Konfidenz 0.15 unter Schwelle. Freitags-Pullback nach starker AUSBRUCH-Woche -- normales Verhalten. Monitoring US-Open 15:30 fuer Richtungsentscheid."
+    "notes": "US-Update 14:45: WAIT bestaetigt. TREND BEARISH Phase (alle |ER|>50). Alignment -3/8 (schlechter als morgens -2/8). Konfidenz SHORT 0.225 < 0.40. CVD-Divergenz blockiert S2-SHORT auf allen Instrumenten -- Kaeufer absorbieren aktiv. Makro NEUTRAL (+1 nach Gold-Dreh). Watchlist: CDV-Dreh negativ = SHORT-Signal. GER40 Rueckkehr ueber VAL 24852 + VWAP 24756 = Erholung. DJ30 Naked POC 51746 als Abwaertsziel."
   },
   "stats": {
     "total": 0,
     "fill_rate": "n/a",
     "tp1_rate": "n/a",
-    "trend": "WAIT-Serie (Morning+USUpdate 2026-06-25, Morning 2026-06-26)"
+    "trend": "WAIT-Serie (Morning+USUpdate 2026-06-25, Morning+USUpdate 2026-06-26)"
   }
 }
