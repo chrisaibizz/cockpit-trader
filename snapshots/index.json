@@ -2106,6 +2106,49 @@
         }
       },
       "outcome": null
+    },
+    {
+      "date": "2026-06-26",
+      "file": "data_2026-06-26.json",
+      "bias": {
+        "GER40": {
+          "bias": "BULLISH",
+          "score": 64,
+          "confluence_label": "7/9 (bullisch)",
+          "confluence_pct": 78,
+          "poc": 24668.58,
+          "vah": 24702.25,
+          "val": 24619.38,
+          "vwap": 24668.58,
+          "shape": "Normal Day",
+          "price": 24994.83
+        },
+        "US30": {
+          "bias": "NEUTRAL",
+          "score": 11,
+          "confluence_label": "5 bullisch / 2 bearisch / 2 neutral von 9",
+          "confluence_pct": 50,
+          "poc": 51846.45,
+          "vah": 52012.08,
+          "val": 51712.37,
+          "vwap": 51922.91,
+          "shape": "Normal Day",
+          "price": 51920.62
+        },
+        "SPX500": {
+          "bias": "NEUTRAL",
+          "score": -11,
+          "confluence_label": "4 bullisch / 3 bearisch / 2 neutral von 9",
+          "confluence_pct": 50,
+          "poc": 7349.37,
+          "vah": 7393.84,
+          "val": 7336.82,
+          "vwap": 7378.03,
+          "shape": "Normal Variation",
+          "price": 7357.49
+        }
+      },
+      "outcome": null
     }
   ]
 }
