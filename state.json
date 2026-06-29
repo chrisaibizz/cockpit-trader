@@ -1177,20 +1177,20 @@
   },
   "monitor": {
     "_agent": "MONITOR",
-    "_last_run": null,
-    "_status": "pending",
+    "_last_run": "2026-06-29T10:20:00",
+    "_status": "ready",
     "session": "Morning",
     "gesamt_status": "OK",
     "probleme_count": 0,
     "kritisch_count": 0,
-    "report_datei": "C:\\Users\\chris\\TradingFloor\\logs\\DailyMon\\monitor_20260626_0805_Morning.txt",
+    "report_datei": "C:/Users/chris/TradingFloor/logs/DailyMon/monitor_20260629_0836_Morning.txt",
     "bereiche": {
-      "lokale_prozesse": "OK (Tasks: Morning Running, USUpdate Ready)",
-      "sheet_doc": "OK (WAIT -- 0 Orders + Doc erstellt)",
-      "github_web": "OK (Commit ca4fbca 08:39, Push OK)",
-      "datenqualitaet": "OK (1 Hinweis: PCR n.v.)",
-      "entscheidung": "WAIT Score:-2/8 -- regelkonform",
-      "anomalien": "OK (SPX500 -1.58% Pullback beobachten)"
+      "lokale_prozesse": "OK (Warnung: Prompt 136B)",
+      "sheet_doc": "OK",
+      "github_web": "OK",
+      "datenqualitaet": "OK (PCR delisted)",
+      "entscheidung": "WAIT Score:+2/8",
+      "anomalien": "OK"
     }
   },
   "calendar": [
