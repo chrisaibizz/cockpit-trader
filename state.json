@@ -705,25 +705,13 @@
     },
     "calendar": [
       {
-        "date": "2026-06-29",
-        "time": "19:30",
-        "currency": "EUR",
-        "name": "ECB President Lagarde Speaks",
-        "impact": "medium",
-        "actual": "",
-        "forecast": "",
-        "previous": "",
-        "better": null,
-        "source": "forexfactory"
-      },
-      {
         "date": "2026-06-30",
         "time": "08:29",
         "currency": "EUR",
         "name": "German Prelim CPI m/m",
         "impact": "medium",
         "actual": "",
-        "forecast": "0.1%",
+        "forecast": "0.0%",
         "previous": "-0.2%",
         "better": null,
         "source": "forexfactory"
@@ -735,7 +723,7 @@
         "name": "CB Consumer Confidence",
         "impact": "medium",
         "actual": "",
-        "forecast": "94.2",
+        "forecast": "94.4",
         "previous": "93.1",
         "better": null,
         "source": "forexfactory"
@@ -831,7 +819,7 @@
         "name": "ISM Manufacturing PMI",
         "impact": "high",
         "actual": "",
-        "forecast": "53.7",
+        "forecast": "53.8",
         "previous": "54.0",
         "better": null,
         "source": "forexfactory"
@@ -843,7 +831,7 @@
         "name": "ISM Manufacturing Prices",
         "impact": "medium",
         "actual": "",
-        "forecast": "79.0",
+        "forecast": "77.7",
         "previous": "82.1",
         "better": null,
         "source": "forexfactory"
@@ -867,7 +855,7 @@
         "name": "Non-Farm Employment Change",
         "impact": "high",
         "actual": "",
-        "forecast": "114K",
+        "forecast": "110K",
         "previous": "172K",
         "better": null,
         "source": "forexfactory"
@@ -891,7 +879,7 @@
         "name": "Unemployment Claims",
         "impact": "medium",
         "actual": "",
-        "forecast": "220K",
+        "forecast": "219K",
         "previous": "215K",
         "better": null,
         "source": "forexfactory"
@@ -1196,25 +1184,13 @@
   },
   "calendar": [
     {
-      "date": "2026-06-29",
-      "time": "19:30",
-      "currency": "EUR",
-      "name": "ECB President Lagarde Speaks",
-      "impact": "medium",
-      "actual": "",
-      "forecast": "",
-      "previous": "",
-      "better": null,
-      "source": "forexfactory"
-    },
-    {
       "date": "2026-06-30",
       "time": "08:29",
       "currency": "EUR",
       "name": "German Prelim CPI m/m",
       "impact": "medium",
       "actual": "",
-      "forecast": "0.1%",
+      "forecast": "0.0%",
       "previous": "-0.2%",
       "better": null,
       "source": "forexfactory"
@@ -1226,7 +1202,7 @@
       "name": "CB Consumer Confidence",
       "impact": "medium",
       "actual": "",
-      "forecast": "94.2",
+      "forecast": "94.4",
       "previous": "93.1",
       "better": null,
       "source": "forexfactory"
@@ -1322,7 +1298,7 @@
       "name": "ISM Manufacturing PMI",
       "impact": "high",
       "actual": "",
-      "forecast": "53.7",
+      "forecast": "53.8",
       "previous": "54.0",
       "better": null,
       "source": "forexfactory"
@@ -1334,7 +1310,7 @@
       "name": "ISM Manufacturing Prices",
       "impact": "medium",
       "actual": "",
-      "forecast": "79.0",
+      "forecast": "77.7",
       "previous": "82.1",
       "better": null,
       "source": "forexfactory"
@@ -1358,7 +1334,7 @@
       "name": "Non-Farm Employment Change",
       "impact": "high",
       "actual": "",
-      "forecast": "114K",
+      "forecast": "110K",
       "previous": "172K",
       "better": null,
       "source": "forexfactory"
@@ -1382,7 +1358,7 @@
       "name": "Unemployment Claims",
       "impact": "medium",
       "actual": "",
-      "forecast": "220K",
+      "forecast": "219K",
       "previous": "215K",
       "better": null,
       "source": "forexfactory"
