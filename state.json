@@ -1,20 +1,20 @@
 {
   "pipeline": {
-    "status": "completed_morning",
-    "last_run": "2026-06-30T08:33:00",
+    "status": "completed_usupdate",
+    "last_run": "2026-06-30T14:45:00",
     "run_date": "2026-06-30",
-    "run_type": "morning",
-    "steps_completed": ["macro","marketdata","analyst","reflect_resolve","captain","executor"],
+    "run_type": "usupdate",
+    "steps_completed": ["macro","marketdata","analyst","reflect_resolve","captain","executor","macro_mini","marketdata_us","delta","captain_ny","executor_valid"],
     "morning_last_run": "2026-06-30T08:33:00",
-    "usupdate_last_run": "2026-06-29T14:45:00",
-    "result": "LONG-BIAS/1 Order GER40. TREND Phase. GER40 P-Shape pos=0.722 BULLISH (ER+43 CDV+8401). DJ30 b-Shape ueber VAH (S1 blockt). SP500 D-Shape ueber VAH. Makro LEICHT_RISK_ON +3. align_abs=4/8. Konfidenz 0.425. GER40 LONG Entry 24795 SL 24663 TP1 25007 R:R 1.61",
-    "score": "align:+4 (GER40 P-Shape) -- 1 Order GER40 LONG -- LONG-BIAS -- TREND (ER>25 alle 3) -- Makro:LEICHT_RISK_ON+3"
+    "usupdate_last_run": "2026-06-30T14:45:00",
+    "result": "WAIT (NY-Session). GER40 LONG weiter valid (Preis 24962, +148 pts, TP1 25007 in 45 pts). US ER negativ (DJ30=-7, SP500=-4). Makro NEUTRAL 0 (VIX steig, Bonds steig). Schichten 1/3. Konfidenz 0.375 < 0.40. Order GER40 ANPASSEN: SL auf Breakeven 24800. Morgen 01.07 WAIT (Fed Warsh HIGH + ISM HIGH).",
+    "score": "align:+5 (GER40 P-Shape, verbessert) -- WAIT NY -- GER40 ANPASSEN SL -- US ER negativ -- Makro:NEUTRAL 0"
   },
   "macro": {
     "_agent": "MACRO",
-    "_last_run": "2026-06-30T08:06:00",
+    "_last_run": "2026-06-30T14:45:00",
     "_status": "ready",
-    "_update_type": "morning",
+    "_update_type": "usupdate_mini",
     "fear_greed": {
       "value": 74,
       "classification": "Greed",
@@ -28,20 +28,20 @@
       "interpretation": "unbekannt"
     },
     "vix": {
-      "value": 17.65,
-      "prev": 18.41,
+      "value": 17.71,
+      "prev": 17.65,
       "level": "normal",
-      "trend": "fallend",
-      "bias_einfluss": "leicht bullish"
+      "trend": "steigend",
+      "bias_einfluss": "leicht bearish"
     },
     "bonds_10y": {
-      "yield": 4.372,
-      "prev": 4.392,
-      "trend": "fallend",
+      "yield": 4.390,
+      "prev": 4.372,
+      "trend": "steigend",
       "interpretation": "zinsdruck_moderat"
     },
     "dxy": {
-      "value": 101.365,
+      "value": 101.363,
       "prev": 101.11,
       "trend": "steigend",
       "interpretation": "dollar_neutral"
@@ -67,33 +67,33 @@
       "last_updated": "2026-06-30 08:02"
     },
     "scoring": {
-      "bullish_punkte": 4,
-      "bearish_punkte": 0,
-      "basis_score": 4,
+      "bullish_punkte": 2,
+      "bearish_punkte": 1,
+      "basis_score": 1,
       "fred_score": -1,
-      "gesamt_score": 3,
-      "makro_bias": "LEICHT_RISK_ON",
-      "erklaerung": "Morning 30.06: F&G 74 Greed(+1) VIX 17.65 fall(+1) Bonds 4.372 fall(+1) DXY 101.37 stg(0,<104) Brent 73.43 stg(0,<90) Gold 3993 fall(+1) PCR n.v.(0) = Basis +4 / FRED YieldCurve 0.28%(flach,0) CPI 4.27%(hoch,-1) FedFunds 3.63%(neutral,0) = FRED -1 / Gesamt +3 LEICHT_RISK_ON"
+      "gesamt_score": 0,
+      "makro_bias": "NEUTRAL",
+      "erklaerung": "USUpdate Mini 30.06 14:45: F&G 74 Greed(+1, unveraendert) VIX 17.71 steig(-1, war +1) Bonds 4.39 steig(0, <4.5%) DXY 101.36 steig(0,<104) Brent unveraendert(0) Gold unveraendert(+1) PCR n.v.(0) = Basis +1 / FRED CPI hoch(-1) = Gesamt 0 NEUTRAL. Wechsel von +3 (morning) zu 0 durch VIX-Flip und Bonds-Flip"
     },
     "warnungen": [
+      "Mini-MACRO 14:45: VIX gestiegen 17.65->17.71, Bonds gestiegen 4.372->4.390 - Score -3 vs Morning",
       "CPI 4.27% weit ueber Ziel (2%) - FRED-Malus aktiv",
-      "DXY steigend (101.37 vs 101.11) - leichter Gegenwind",
-      "Brent 73.43 steigend - leichter Inflationsdruck",
-      "YieldCurve 0.28% gesunken von 0.31 (unter Bullish-Schwelle 0.30)",
-      "Morgen 01.07: Fed Warsh Speaks (HIGH 15:00) + ISM Manufacturing PMI (HIGH 16:00) - hohes Event-Risiko",
-      "02.07: NFP Non-Farm Employment Change (HIGH 14:30) + Unemployment Rate (HIGH) + Avg Hourly Earnings (HIGH)"
+      "DXY weiter steigend (101.363 vs 101.11) - Gegenwind",
+      "16:00 USD: CB Consumer Confidence + JOLTS Job Openings (beide medium impact) - heute noch",
+      "Morgen 01.07: Fed Warsh Speaks (HIGH 15:00) + ISM Manufacturing PMI (HIGH 16:00) - WAIT morgen",
+      "02.07: NFP Non-Farm Employment Change (HIGH 14:30) + Unemployment Rate (HIGH)"
     ]
   },
   "market": {
     "_agent": "MARKETDATA",
-    "_last_run": "2026-06-30T08:30:00",
+    "_last_run": "2026-06-30T14:45:00",
     "_status": "ready",
-    "_update_type": "morning",
-    "timestamp": "2026-06-30 08:30",
+    "_update_type": "usupdate",
+    "timestamp": "2026-06-30 14:45",
     "instruments": {
       "GER40": {
-        "last_run": "2026-06-30T08:30:00",
-        "price": 24814.67,
+        "last_run": "2026-06-30T14:45:00",
+        "price": 24962.0,
         "poc": 24768.4,
         "vah": 24799.4,
         "val": 24687.8,
@@ -103,25 +103,25 @@
         "mp_shape_bias": "BULLISCH",
         "price_vs_va": "ueber_VAH",
         "price_vs_poc": "ueber_POC",
-        "vwap": 24754.51,
+        "vwap": 24756.16,
         "vwap_upper": null,
         "vwap_lower": null,
         "vwap_source": "VWAP Anchored",
         "price_vs_vwap": "ueber_VWAP",
-        "er": 43.18,
-        "er_1h": 40.15,
-        "er_qualitaet": "ER 43.18 (starker Aufwaertstrend, massive Umkehr von -19.85 gestern 14:45). Preis 24814 UEBER VAH 24799 (+15pts Breakout). VWAP 24754 unter Kurs (+60pts). SMA200_1H 24897 ueber Kurs (-82pts Widerstand). Ichimoku: ABOVE kumo 30M (SpanA 24761/SpanB 24721). 1H INSIDE kumo (SpanA 24751/SpanB 24833). CDV +8401 bullish. RSI 58.71 neutral. CHoCH 24781 gebrochen nach oben.",
-        "sma200": 24897.32,
+        "er": 42.34,
+        "er_1h": null,
+        "er_qualitaet": "ER 42.34 (starker Trend stabil, unveraendert). Preis 24962 UEBER VAH 24799 (+163pts starker Ausbruch). VWAP 24756 unter Kurs (+206pts). SMA200_30M 24813 unter Kurs (+149pts - Preis breitet sich ueber SMA200 aus). Ichimoku 30M ABOVE kumo (SpanA 24908/SpanB 24818). CDV +12113 gestiegen vs morning 8401. RSI 62.30 neutral-bullisch. Morning Order Entry 24795 wahrscheinlich gefuellt.",
+        "sma200": 24813.74,
         "ichimoku": {
-          "tenkan": 24780.27,
-          "kijun": 24721.93,
-          "kumo_a": 24751.10,
-          "kumo_b": 24833.15,
-          "position": "inside"
+          "tenkan": 24940.50,
+          "kijun": 24877.14,
+          "kumo_a": 24908.82,
+          "kumo_b": 24818.80,
+          "position": "above"
         },
-        "smc_bias": "bullish (CHoCH 24781 nach oben gebrochen, Preis 24814 darueber)",
-        "cdv": 8400.99,
-        "rsi": 58.71,
+        "smc_bias": "bullish (Preis 24962 ueber Kumo, SMA200, VWAP - starke Aufwaertsdynamik)",
+        "cdv": 12113.54,
+        "rsi": 62.30,
         "pivot": 24728.88,
         "pdh": 25088.28,
         "pdl": 24761.72,
@@ -173,8 +173,8 @@
         }
       },
       "DJ30": {
-        "last_run": "2026-06-30T08:30:00",
-        "price": 52329.39,
+        "last_run": "2026-06-30T14:45:00",
+        "price": 52301.99,
         "poc": 52125.42,
         "vah": 52291.31,
         "val": 52061.61,
@@ -184,25 +184,25 @@
         "mp_shape_bias": "BAERISCH",
         "price_vs_va": "ueber_VAH",
         "price_vs_poc": "ueber_POC",
-        "vwap": 51435.99,
+        "vwap": 51444.95,
         "vwap_upper": null,
         "vwap_lower": null,
         "vwap_source": "VWAP Anchored",
         "price_vs_vwap": "ueber_VWAP",
-        "er": 37.78,
-        "er_1h": 14.19,
-        "er_qualitaet": "ER 37.78 (starker Trend, Erholung von 3.38 gestern). Preis 52329 UEBER VAH 52291 (+38pts). VWAP 51436 weit unter Kurs (+893pts = Swing-VWAP). SMA200_1H 51924 unter Kurs (+405pts). Ichimoku 1H above kumo (SpanA 52260/SpanB 52093). CDV +226841 sehr stark bullish. RSI 60.31 grenzwertig ueberkauft. 3x b-Shape Sequenz bleibt.",
-        "sma200": 51924.93,
+        "er": -7.06,
+        "er_1h": null,
+        "er_qualitaet": "ER -7.06 (UMKEHR von +37.78 morgens - Trend-Momentum kollabiert). Preis 52302 leicht ueber VAH 52291 (+11pts). VWAP 51444 weit unter Kurs (+857pts Swing). SMA200_30M 52116 unter Kurs (+186pts). Ichimoku 30M INSIDE kumo (SpanA 52338/SpanB 52264, Preis 52302). CDV 225227 weiter positiv. RSI 47.20 neutral-baerisch. ER-Umkehr = Trend vorbei, Konsolidierung.",
+        "sma200": 52116.81,
         "ichimoku": {
-          "tenkan": 52279.39,
-          "kijun": 52242.30,
-          "kumo_a": 52260.85,
-          "kumo_b": 52093.95,
-          "position": "above"
+          "tenkan": 52344.39,
+          "kijun": 52332.39,
+          "kumo_a": 52338.39,
+          "kumo_b": 52264.92,
+          "position": "inside"
         },
         "smc_bias": "neutral",
-        "cdv": 226841.32,
-        "rsi": 60.31,
+        "cdv": 225226.97,
+        "rsi": 47.20,
         "pivot": 52219.15,
         "pdh": 52817.47,
         "pdl": 51743.45,
@@ -242,8 +242,8 @@
         }
       },
       "SPX500": {
-        "last_run": "2026-06-30T08:30:00",
-        "price": 7463.8,
+        "last_run": "2026-06-30T14:45:00",
+        "price": 7455.2,
         "poc": 7406.17,
         "vah": 7429.37,
         "val": 7382.98,
@@ -253,25 +253,25 @@
         "mp_shape_bias": "NEUTRAL",
         "price_vs_va": "ueber_VAH",
         "price_vs_poc": "ueber_POC",
-        "vwap": 7436.09,
+        "vwap": 7436.30,
         "vwap_upper": null,
         "vwap_lower": null,
         "vwap_source": "VWAP Anchored",
         "price_vs_vwap": "ueber_VWAP",
-        "er": 28.36,
+        "er": -4.40,
         "er_1h": null,
-        "er_qualitaet": "ER 28.36 (moderater Trend, gefallen von 21.88 gestern). Preis 7463 UEBER VAH 7429 (+34pts). VWAP 7436 leicht unter Kurs (+27pts). SMA200_30M 7400 unter Kurs (+63pts). Ichimoku 30M above kumo (SpanA 7451/SpanB 7417). CDV +67256 positiv. RSI 65.81 ueberkauft (>60). Naked POC 7434 (sess2) als Magnet-Level.",
-        "sma200": 7400.99,
+        "er_qualitaet": "ER -4.40 (UMKEHR von +28.36 morgens - Trend-Momentum kollabiert). Preis 7455 ueber VAH 7429 (+26pts). VWAP 7436 unter Kurs (+19pts). SMA200_30M 7405 unter Kurs (+50pts). Ichimoku 30M INSIDE kumo (SpanA 7457/SpanB 7418, Preis 7455 knapp darunter SpanA). CDV +65604 positiv. RSI 48.79 neutral (stark gefallen von 65.81 morgens). Naked POC 7434 sess2 als Magnet. ER-Umkehr = Konsolidierung.",
+        "sma200": 7405.18,
         "ichimoku": {
-          "tenkan": 7456.55,
-          "kijun": 7447.40,
-          "kumo_a": 7451.98,
-          "kumo_b": 7417.03,
-          "position": "above"
+          "tenkan": 7459.83,
+          "kijun": 7455.00,
+          "kumo_a": 7457.42,
+          "kumo_b": 7418.60,
+          "position": "inside"
         },
         "smc_bias": "neutral",
-        "cdv": 67255.67,
-        "rsi": 65.81,
+        "cdv": 65604.13,
+        "rsi": 48.79,
         "pivot": 7422.08,
         "pdh": 7419.08,
         "pdl": 7323.5,
@@ -323,34 +323,34 @@
   },
   "analysis": {
     "_agent": "ANALYST",
-    "_last_run": "2026-06-30T08:32:00",
+    "_last_run": "2026-06-30T14:45:00",
     "_status": "ready",
     "marktphase": {
-      "phase": "TREND",
+      "phase": "TREND (GER40) / BALANCE (US)",
       "begruendung": [
-        "Alle 3 Instrumente haben ER>25 (GER40=43.18, DJ30=37.78, SP500=28.36) und Preis ausserhalb VA -- TREND-Bedingung erfuellt.",
-        "GER40 P-Shape pos=0.722 (BULLISCH, massive Umkehr von b-Shape -19.85 ER gestern) -- Kaeufer uebernehmen Kontrolle. Preis 24814 ueber VAH 24799.",
-        "DJ30 b-Shape pos=0.278 aber Preis 52329 deutlich ueber VAH 52291 (+38pts) mit CDV +226841 -- bullisher Ausbruch trotz bearishem Shape.",
-        "SP500 D-Shape pos=0.5 neutral, Preis 7463 ueber VAH 7429 (+34pts). RSI 65.81 ueberkauft -- Vorsicht vor kurzfristiger Konsolidierung.",
-        "Makro LEICHT_RISK_ON +3 (VIX fallend, Bonds fallend, Gold fallend). Morgen hohes Event-Risiko (Fed Warsh + ISM) -- Trade-Fenster heute morning."
+        "GER40 weiter TREND: ER=42.34 (>25), P-Shape pos=0.722, Preis 24962 weit ueber VAH 24799 (+163pts). Ichimoku ABOVE kumo, SMA200 darunter. Starkste Session.",
+        "DJ30 ER UMKEHR: +37.78 morgens -> -7.06 jetzt. Preis 52302 knapp ueber VAH 52291. Ichimoku INSIDE kumo. RSI 47.20 neutral-baerisch. US-Trend kollabiert.",
+        "SP500 ER UMKEHR: +28.36 morgens -> -4.40 jetzt. RSI 65.81 -> 48.79. Ichimoku INSIDE kumo. Konsolidierung nach morgendlichem Ausbruch.",
+        "Makro von +3 LEICHT_RISK_ON -> 0 NEUTRAL (VIX steigend 17.71, Bonds steigend 4.390). Kein neues Makro-Momentum.",
+        "Schichten: nur GER40 alle_schichten_ok (1/3). DJ30+SP500 durch S2=0 blockiert (ER negativ). Keine neue Trade-Freigabe."
       ],
-      "aktive_strategie": "Trend-Following (GER40 P-Shape Pullback an VAH/VWAP)",
-      "er_bestaetigung": "ja (GER40 ER=43 stark, DJ30 ER=37 moderat, SP500 ER=28 moderat)"
+      "aktive_strategie": "WAIT NY-Session. GER40 Order beobachten (SL Breakeven).",
+      "er_bestaetigung": "nein (nur GER40 ER=42 positiv, DJ30=-7 und SP500=-4 negativ)"
     },
-    "regime": "RISK-ON",
+    "regime": "RISK-ON (GER40) / NEUTRAL (US)",
     "risk_level": "MEDIUM",
     "top_down": {
-      "m30_entry_zone": { "preis_von": 24750.0, "preis_bis": 24800.0 },
-      "alignment_score": 4,
-      "alignment_score_abs": 4,
+      "m30_entry_zone": { "preis_von": 24900.0, "preis_bis": 24960.0 },
+      "alignment_score": 5,
+      "alignment_score_abs": 5,
       "best_direction": "LONG",
-      "trade_freigabe": true
+      "trade_freigabe": false
     },
     "instruments": {
       "GER40": {
         "bias": "BULLISH",
-        "bias_score": 4,
-        "er_wert": 43.18,
+        "bias_score": 5,
+        "er_wert": 42.34,
         "mp_shape": "P-Shape",
         "mp_shape_pos": 0.722,
         "schichten": {
@@ -363,8 +363,8 @@
             "signale": {"vwap": 1, "cvd": 1, "er_trend": 1, "er_qualitaet": 1, "er_1h": 1}
           },
           "s3_entry": {
-            "score": 0.0,
-            "signale": {"ichimoku": -1, "sma200": -1, "smc": 1, "sr_channel": 0, "pivot": 1, "autofibo": 0, "rsi": 0, "squeeze": 0}
+            "score": 0.5,
+            "signale": {"ichimoku": 1, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 1, "autofibo": 1, "rsi": 0, "squeeze": 0}
           },
           "freigabe_s1": true, "freigabe_s2": true, "freigabe_s3": true,
           "freigabe_s1_short": false, "freigabe_s2_short": false, "freigabe_s3_short": false,
@@ -373,13 +373,13 @@
         },
         "key_levels": {
           "poc": 24768.4, "vah": 24799.4, "val": 24687.8,
-          "vwap": 24754.51, "current": 24814.67, "onh": 24992.33, "pdh": 25088.28
+          "vwap": 24756.16, "current": 24962.0, "onh": 24992.33, "pdh": 25088.28
         }
       },
       "DJ30": {
-        "bias": "LEICHT_BULLISH",
-        "bias_score": 2,
-        "er_wert": 37.78,
+        "bias": "NEUTRAL",
+        "bias_score": 0,
+        "er_wert": -7.06,
         "mp_shape": "b-Shape",
         "mp_shape_pos": 0.278,
         "schichten": {
@@ -388,27 +388,27 @@
             "signale": {"mp_shape": -3, "preis_vs_va": 2, "preis_vs_poc": 1, "poc_migration": 2, "shape_sequenz": -2, "vp_hvn_lvn": 0}
           },
           "s2_struktur": {
-            "score": 1.0,
-            "signale": {"vwap": 1, "cvd": 1, "er_trend": 1, "er_qualitaet": 1, "er_1h": 1}
+            "score": 0.0,
+            "signale": {"vwap": 1, "cvd": 1, "er_trend": -1, "er_qualitaet": -1, "er_1h": 0}
           },
           "s3_entry": {
-            "score": 0.25,
-            "signale": {"ichimoku": 1, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 1, "autofibo": 0, "rsi": -1, "squeeze": 0}
+            "score": 0.375,
+            "signale": {"ichimoku": 0, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 1, "autofibo": 1, "rsi": 0, "squeeze": 0}
           },
-          "freigabe_s1": false, "freigabe_s2": true, "freigabe_s3": true,
+          "freigabe_s1": false, "freigabe_s2": false, "freigabe_s3": true,
           "freigabe_s1_short": false, "freigabe_s2_short": false, "freigabe_s3_short": false,
           "alle_long_ok": false, "alle_short_ok": false,
           "alle_schichten_ok": false, "bias_direction": "NONE"
         },
         "key_levels": {
           "poc": 52125.42, "vah": 52291.31, "val": 52061.61,
-          "vwap": 51435.99, "current": 52329.39, "onh": 52343.39, "pdh": 52817.47
+          "vwap": 51444.95, "current": 52301.99, "onh": 52343.39, "pdh": 52817.47
         }
       },
       "SPX500": {
         "bias": "LEICHT_BULLISH",
-        "bias_score": 3,
-        "er_wert": 28.36,
+        "bias_score": 2,
+        "er_wert": -4.40,
         "mp_shape": "D-Shape",
         "mp_shape_pos": 0.5,
         "schichten": {
@@ -417,21 +417,21 @@
             "signale": {"mp_shape": 0, "preis_vs_va": 2, "preis_vs_poc": 1, "poc_migration": 0, "shape_sequenz": 0, "vp_hvn_lvn": 0}
           },
           "s2_struktur": {
-            "score": 0.6,
-            "signale": {"vwap": 1, "cvd": 1, "er_trend": 1, "er_qualitaet": 0, "er_1h": 0}
+            "score": 0.0,
+            "signale": {"vwap": 1, "cvd": 1, "er_trend": -1, "er_qualitaet": -1, "er_1h": 0}
           },
           "s3_entry": {
-            "score": 0.25,
-            "signale": {"ichimoku": 1, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 1, "autofibo": 0, "rsi": -1, "squeeze": 0}
+            "score": 0.375,
+            "signale": {"ichimoku": 0, "sma200": 1, "smc": 0, "sr_channel": 0, "pivot": 1, "autofibo": 1, "rsi": 0, "squeeze": 0}
           },
-          "freigabe_s1": true, "freigabe_s2": true, "freigabe_s3": true,
+          "freigabe_s1": true, "freigabe_s2": false, "freigabe_s3": true,
           "freigabe_s1_short": false, "freigabe_s2_short": false, "freigabe_s3_short": false,
-          "alle_long_ok": true, "alle_short_ok": false,
-          "alle_schichten_ok": true, "bias_direction": "LONG"
+          "alle_long_ok": false, "alle_short_ok": false,
+          "alle_schichten_ok": false, "bias_direction": "NONE"
         },
         "key_levels": {
           "poc": 7406.17, "vah": 7429.37, "val": 7382.98,
-          "vwap": 7436.09, "current": 7463.8, "onh": 7466.8, "pdh": 7419.08
+          "vwap": 7436.30, "current": 7455.2, "onh": 7466.8, "pdh": 7419.08
         }
       }
     },
@@ -440,41 +440,44 @@
       "alle_bearish": false,
       "gemischt": true
     },
-    "summary": "Morning 30.06: GER40 P-Shape Umkehr (ER +43, CDV +8401) -- starkste Session seit Wochen. DJ30 weiter b-Shape aber Preis bricht ueber VAH aus (CDV +226841 stark). SP500 D-Shape ueber VAH, RSI 65 ueberkauft. ok_count_long=2 (GER40+SP500). DJ30 S1 blockt (b-Shape -3 + Seq -2 = 0.0). Makro +3 LEICHT_RISK_ON. Konfidenz 0.425 -- NUR GER40 P-Shape qualifiziert fuer Trade. Morgen Event-Risiko hoch (Fed Warsh+ISM)."
+    "summary": "USUpdate 30.06 14:45: GER40 +148pts (24962), P-Shape pos=0.722 unveraendert, ER 42 stabil, Ichimoku ABOVE kumo, bias_score verbessert 4->5. DJ30 ER UMKEHR +37->-7 (Konsolidierung), Ichimoku INSIDE kumo, score 2->0. SP500 ER UMKEHR +28->-4, RSI 65->48, score 3->2. ok_count_long=1 (nur GER40). Makro NEUTRAL 0 (war +3). WAIT NY-Session. GER40 LONG Order ANPASSEN: SL auf Breakeven 24800. Morgen 01.07 WAIT (Fed Warsh HIGH + ISM HIGH)."
   },
   "captain": {
     "_agent": "CAPTAIN",
-    "_last_run": "2026-06-30T08:33:00",
+    "_last_run": "2026-06-30T14:45:00",
     "_status": "ready",
-    "session_bias": "LONG-BIAS",
-    "aktive_strategie": "Trend-Following (GER40 P-Shape Pullback)",
-    "alignment_score": 4,
-    "trade_freigabe": true,
+    "_update_type": "usupdate_captain_ny",
+    "session_bias": "WAIT",
+    "aktive_strategie": "Keine neuen Trades (NY-Session). GER40 LONG absichern.",
+    "alignment_score": 5,
+    "trade_freigabe": false,
     "shape_konflikt": true,
     "konfidenz_details": {
-      "chart_gewichtung": 0.70,
-      "makro_gewichtung": 0.30,
-      "gewichtungs_grund": "TREND + LEICHT_RISK_ON (VIX<20, keine Events<2h, Phase=TREND)",
-      "alignment_beitrag": 0.35,
-      "makro_beitrag": 0.075,
-      "konfidenz_long": 0.425,
+      "chart_gewichtung": 0.60,
+      "makro_gewichtung": 0.40,
+      "gewichtungs_grund": "TREND (GER40) + NEUTRAL Makro -- Default 60/40",
+      "alignment_beitrag": 0.375,
+      "makro_beitrag": 0.0,
+      "konfidenz_long": 0.375,
       "konfidenz_short": 0.0,
       "konfidenz_direction": "LONG",
-      "konfidenz_final": 0.425,
-      "entscheidung": "TRADE (konfidenz=0.425>=0.40, align_abs=4>=4) -- NUR GER40 P-Shape pos>0.65 (0.722 qualifiziert). SP500 D-Shape qualifiziert NICHT bei dieser Konfidenz."
+      "konfidenz_final": 0.375,
+      "entscheidung": "WAIT: Schichten 1/3 (< 2 erforderlich). Konfidenz 0.375 < 0.40 Schwelle. US ER negativ (DJ30=-7, SP500=-4). Makro NEUTRAL (0, war +3). Keine neuen Orders NY-Session."
     },
-    "trade_plan": "GER40 LONG Trend-Following. P-Shape pos=0.722 bestaetigt Kaeufer-Kontrolle. Entry: Pullback in VAH-Zone (24795-24800). SL: unterhalb VAL (24663). TP1: Naked POC sess2 (25007). TP2: PDH-Region (25088). DJ30 und SP500 beobachten -- bei Konsolidierung warnen. Shape-Konflikt DJ30 (b-Shape): max_risk -0.25%. Event-Risiko morgen 01.07 (Fed Warsh + ISM): Trade muss heute abgeschlossen sein oder SL gezogen werden.",
+    "trade_plan": "WAIT NY-Session. GER40 LONG Order (Entry 24795): falls gefuellt, SL auf Breakeven 24800 ziehen. TP1 25007 in 45 pts. Position vor 16:00 beobachten (CB Consumer Confidence + JOLTS, medium). Morgen 01.07 WAIT zwingend (Fed Warsh HIGH + ISM HIGH). Position heute EOD sichern oder schliessen.",
     "instrument_prioritaet": ["GER40", "SPX500", "DJ30"],
-    "entry_fenster": "London Morning (09:00-12:00 CET) -- Pullback nach Initial Balance Formation",
+    "entry_fenster": "KEINES -- WAIT NY-Session",
     "max_risk_today": "0.75%",
     "max_trades_heute": 2,
     "trades_today": 0,
     "active_positions": [],
-    "notes": "Konfidenz-Einschraenkung 0.425 in [0.40-0.55) erfordert P-Shape Bestaetigung. GER40 qualifiziert (pos=0.722). SP500 D-Shape qualifiziert NICHT. DJ30 b-Shape KONFLIKT. Morgen 01.07: WAIT-Signal wegen Fed Warsh (HIGH) + ISM (HIGH). Trade heute schliessen oder sichern.",
+    "notes": "WAIT begruendet durch: (1) Schichten nur 1/3 (GER40). DJ30 S2 blockiert (ER -7). SP500 S2 blockiert (ER -4). (2) Konfidenz 0.375 < 0.40. (3) Makro NEUTRAL nach Mini-MACRO Update (VIX steig, Bonds steig). GER40 intern weiterhin stark (ER=42, Preis+148pts, Ichimoku ABOVE kumo) -- aber keine Breadth fuer neuen Trade.",
     "warnungen": [
-      "Konfidenz 0.425 -- grenzwertig. NUR GER40 P-Shape trade erlaubt.",
-      "DJ30 b-Shape KONFLIKT mit LONG-BIAS -- intermarket Divergenz",
-      "Morgen 01.07: Fed Chairman Warsh Speaks (HIGH 15:00) + ISM PMI (HIGH 16:00) -- WAIT morgen erwartet",
+      "WAIT NY-Session: Schichten 1/3, Konfidenz 0.375 < 0.40",
+      "DJ30 + SP500 ER negativ -- US-Trend kollabiert nachmittags",
+      "Makro NEUTRAL (war LEICHT_RISK_ON +3 morgens) -- VIX steigend, Bonds steigend",
+      "Heute 16:00: CB Consumer Confidence + JOLTS (medium) -- leichte Volatilitat moeglich",
+      "Morgen 01.07: ZWINGEND WAIT -- Fed Warsh Speaks (HIGH 15:00) + ISM PMI (HIGH 16:00)",
       "02.07: NFP + Unemployment Rate (HIGH) -- hohes Wochenrisiko"
     ],
     "zentralbank_stop": false,
@@ -484,8 +487,9 @@
   },
   "orders": {
     "_agent": "EXECUTOR",
-    "_last_run": "2026-06-30T08:35:00",
+    "_last_run": "2026-06-30T14:45:00",
     "_status": "ready",
+    "_update_type": "usupdate_validation",
     "session_date": "2026-06-30",
     "trades": [
       {
@@ -494,6 +498,8 @@
         "entry": 24795.0,
         "sl": 24663.0,
         "sl_referenz": "VAL (24687.8) - 0.1% buffer",
+        "sl_angepasst": 24800.0,
+        "sl_angepasst_referenz": "Breakeven (Entry 24795 + 5pts)",
         "tp1": 25007.0,
         "tp1_referenz": "Naked POC sess2 (25007.39)",
         "tp2": 25088.0,
@@ -505,15 +511,17 @@
         "mp_shape_konflikt": false,
         "size_lots": null,
         "risk_eur": null,
-        "notes": "P-Shape pos=0.722 BESTAETIGT LONG-BIAS. Entry an VAH-Retest (ehem. Widerstand = neuer Support). ER=43 starker Trend. CDV +8401 bullish. Naked POC 25007 als Ziel. shape_konflikt_system=true (DJ30 b-Shape) -- Warnung."
+        "validierung_status": "ANPASSEN",
+        "validierung_14h45": "Bias NICHT gedreht (GER40 score 5, verbessert). POC unveraendert 24768 (< 0.3% Drift). Phase GER40 weiter TREND (ER=42). Preis 24962 -- 167pts ueber Entry 24795. Falls gefuellt: +167pts Profit, TP1 25007 in 45pts. SL auf Breakeven 24800 ziehen (Risiko eliminieren). Falls nicht gefuellt: VERFALLEN (Entry 24795 nicht mehr erreichbar von 24962). Event-Risiko 16:00 (medium) + morgen 01.07 HIGH (zwingend sichern/schliessen).",
+        "notes": "P-Shape pos=0.722 BESTAETIGT LONG-BIAS. Morgen-Entry-Zone 24795 wahrscheinlich gefuellt (Preis war 24814 bei Eintrag, normale VAH-Retest-Bewegung). Preis jetzt +148pts. TP1 25007 in Reichweite."
       }
     ],
     "summary": {
       "best_instrument": "GER40",
       "total_orders": 1,
-      "trade_freigabe": true,
+      "trade_freigabe": false,
       "shape_konflikt": true,
-      "notes": "1 Order GER40 LONG. DJ30+SP500 abgelehnt (alignment<4). Shape-Konflikt DJ30 aktiv -- max_risk 0.75%."
+      "notes": "WAIT NY-Session. 1 bestehende Order GER40 LONG -- ANPASSEN: SL auf Breakeven 24800. Keine neuen Orders. Morgen 01.07 ZWINGEND WAIT."
     }
   },
   "monitor": {
@@ -539,7 +547,12 @@
   ],
   "delta": {
     "_agent": "DELTA",
-    "_last_run": "2026-06-29T14:45:00",
-    "_update_type": "usupdate"
+    "_last_run": "2026-06-30T14:45:00",
+    "_update_type": "usupdate",
+    "GER40": {"price_08h30": 24814.67, "price_14h45": 24962.0, "delta_pts": 147.33, "delta_pct": 0.59, "er_08h30": 43.18, "er_14h45": 42.34, "er_trend": "stabil", "shape": "P-Shape (unveraendert)", "key_change": "Preis +148pts, Ichimoku ABOVE kumo (war inside), SMA200 jetzt darunter"},
+    "DJ30":  {"price_08h30": 52329.39, "price_14h45": 52301.99, "delta_pts": -27.4, "delta_pct": -0.05, "er_08h30": 37.78, "er_14h45": -7.06, "er_trend": "UMKEHR", "shape": "b-Shape (unveraendert)", "key_change": "ER +37->-7 (Trend kollabiert), Ichimoku INSIDE kumo, RSI 60->47"},
+    "SPX500":{"price_08h30": 7463.8, "price_14h45": 7455.2, "delta_pts": -8.6, "delta_pct": -0.12, "er_08h30": 28.36, "er_14h45": -4.40, "er_trend": "UMKEHR", "shape": "D-Shape (unveraendert)", "key_change": "ER +28->-4, RSI 65->48, Ichimoku INSIDE kumo"},
+    "makro": {"gesamt_08h30": 3, "gesamt_14h45": 0, "delta": -3, "grund": "VIX steigend (17.65->17.71) und Bonds steigend (4.372->4.390) flippen je +1 zu -1/0"},
+    "fazit": "GER40 dominiert bullish. US-Maerkte konsolidieren mit ER-Umkehr. Makro verschlechtert. WAIT NY-Session empfohlen."
   }
 }
